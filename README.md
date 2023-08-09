@@ -1,1 +1,1 @@
-# plex-go-sdk
+# plexgo
