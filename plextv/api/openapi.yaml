@@ -1,0 +1,599 @@
+openapi: 3.1.0
+info:
+  contact:
+    email: Lukeslakemail@gmail.com
+    name: Luke Hagar
+    url: https://www.LukeHagar.com
+  description: An Open API Spec for interacting with Plex.tv
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  title: Plex-API
+  version: 0.0.3
+servers:
+- url: https://plex.tv/api/v2
+security:
+- Token: []
+  ClientIdentifier: []
+  Device: []
+  DeviceName: []
+  Platform: []
+  PlatformVersion: []
+  Product: []
+  Version: []
+tags:
+- description: |
+    Activities are awesome. They provide a way to monitor and control asynchronous operations on the server. In order to receive real-time updates for activities, a client would normally subscribe via either EventSource or Websocket endpoints.
+    Activities are associated with HTTP replies via a special `X-Plex-Activity` header which contains the UUID of the activity.
+    Activities are optional cancellable. If cancellable, they may be cancelled via the `DELETE` endpoint. Other details:
+    - They can contain a `progress` (from 0 to 100) marking the percent completion of the activity.
+    - They must contain an `type` which is used by clients to distinguish the specific activity.
+    - They may contain a `Context` object with attributes which associate the activity with various specific entities (items, libraries, etc.)
+    - The may contain a `Response` object which attributes which represent the result of the asynchronous operation.
+  name: Activities
+- description: |
+    API Calls regarding authentication for Plex Media Server
+  name: Authentication
+- description: |
+    Butler is the task manager of the Plex Media Server Ecosystem.
+  name: Butler
+- description: |
+    Operations against the Plex Media Server System.
+  name: Server
+- description: |
+    This describes the API for searching and applying updates to the Plex Media Server.
+    Updates to the status can be observed via the Event API.
+  name: Updater
+- description: |
+    Submit logs to the Log Handler for Plex Media Server
+  name: Log
+- description: |
+    API Calls against Security for Plex Media Server
+  name: Security
+- description: |
+    API Calls interacting with Plex Media Server Libraries
+  name: Library
+- description: |
+    Hubs are a structured two-dimensional container for media, generally represented by multiple horizontal rows.
+  name: Hubs
+- description: "Playlists are ordered collections of media. They can be dumb (just\
+    \ a list of media) or smart (based on a media query, such as \"all albums from\
+    \ 2017\"). \nThey can be organized in (optionally nesting) folders.\nRetrieving\
+    \ a playlist, or its items, will trigger a refresh of its metadata. \nThis may\
+    \ cause the duration and number of items to change.\n"
+  name: Playlists
+- description: |
+    API Calls that perform search operations with Plex Media Server
+  name: Search
+- description: |
+    API Calls that perform operations with Plex Media Server Users
+  name: User
+paths:
+  /companions:
+    get:
+      description: Get Companions Data
+      operationId: getCompanionsData
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  properties:
+                    identifier:
+                      example: tv.plex.sonos
+                    baseURL:
+                      example: https://sonos.plex.tv
+                    title:
+                      example: Sonos
+                    linkURL:
+                      example: https://sonos.plex.tv/link
+                    provides:
+                      example: clientplayer
+                    token:
+                      example: VFnxitsRFdWx_WrzsKL
+          description: Companions Data
+        "400":
+          description: "Bad Request - A parameter was not specified, or was specified\
+            \ incorrectly."
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getCompanionsData_401_response'
+          description: Unauthorized - Returned if the X-Plex-Token is missing from
+            the header or query.
+      summary: Get Companions Data
+      tags:
+      - Plex.tv
+  /geoip:
+    get:
+      description: Get Geo Data
+      operationId: getGeoData
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getGeoData_200_response'
+          description: Geo Data
+        "400":
+          description: "Bad Request - A parameter was not specified, or was specified\
+            \ incorrectly."
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getCompanionsData_401_response'
+          description: Unauthorized - Returned if the X-Plex-Token is missing from
+            the header or query.
+      summary: Get Geo Data
+      tags:
+      - Plex.tv
+  /home:
+    get:
+      description: Get Home Data
+      operationId: getHomeData
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getGeoData_200_response'
+          description: Home Data
+        "400":
+          description: "Bad Request - A parameter was not specified, or was specified\
+            \ incorrectly."
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getCompanionsData_401_response'
+          description: Unauthorized - Returned if the X-Plex-Token is missing from
+            the header or query.
+      summary: Get Home Data
+      tags:
+      - Plex.tv
+  /pins:
+    post:
+      description: Retrieve a Pin from Plex.tv for authentication flows
+      operationId: getPin
+      parameters:
+      - description: |
+          Determines the kind of code returned by the API call
+          Strong codes are used for Pin authentication flows
+          Non-Strong codes are used for `Plex.tv/link`
+        explode: true
+        in: query
+        name: strong
+        required: false
+        schema:
+          default: false
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getPin_200_response'
+          description: The Pin
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getPin_400_response'
+          description: X-Plex-Client-Identifier is missing
+      security:
+      - ClientIdentifier: []
+      summary: Get a Pin
+      tags:
+      - Plex.tv
+  /pins/{pinID}:
+    get:
+      description: Retrieve an Access Token from Plex.tv after the Pin has already
+        been authenticated
+      operationId: getToken
+      parameters:
+      - description: The PinID to retrieve an access token for
+        explode: false
+        in: path
+        name: pinID
+        required: true
+        schema: {}
+        style: simple
+      responses:
+        "200":
+          description: Access Token
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getPin_400_response'
+          description: X-Plex-Client-Identifier is missing
+      security:
+      - ClientIdentifier: []
+      summary: Get Access Token
+      tags:
+      - Plex.tv
+  /resources:
+    get:
+      description: Get Devices
+      operationId: getDevices
+      parameters:
+      - description: Include Https entries in the results
+        explode: true
+        in: query
+        name: includeHttps
+        required: false
+        schema:
+          enum:
+          - 0
+          - 1
+        style: form
+      - description: Include Relay addresses in the results
+        explode: true
+        in: query
+        name: includeRelay
+        required: false
+        schema:
+          enum:
+          - 0
+          - 1
+        style: form
+      - description: Include IPv6 entries in the results
+        explode: true
+        in: query
+        name: includeIPv6
+        required: false
+        schema:
+          enum:
+          - 0
+          - 1
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  properties:
+                    name:
+                      example: Hera
+                    product:
+                      example: Plex Media Server
+                    productVersion:
+                      example: 1.31.3.6868-28fc46b27
+                    platform:
+                      example: Linux
+                    platformVersion:
+                      example: 5.19.17-Unraid (#2 SMP PREEMPT_DYNAMIC Wed Nov 2 11:54:15
+                        PDT 2022)
+                    device:
+                      example: PC
+                    clientIdentifier:
+                      example: 96f2fe7a78c9dc1f16a16bedbe90f98149be16b4
+                    createdAt:
+                      example: 2022-06-02T00:54:26Z
+                      format: date-time
+                    lastSeenAt:
+                      example: 2023-04-11T05:53:59Z
+                      format: date-time
+                    provides:
+                      example: server
+                    ownerId:
+                      format: nullable
+                    sourceTitle:
+                      format: nullable
+                    publicAddress:
+                      example: 68.248.140.20
+                    accessToken:
+                      example: CR3nxzsaSHdWx_WwZsJL
+                    owned: {}
+                    home: {}
+                    synced: {}
+                    relay: {}
+                    presence: {}
+                    httpsRequired: {}
+                    publicAddressMatches: {}
+                    dnsRebindingProtection: {}
+                    natLoopbackSupported: {}
+                    connections:
+                      items:
+                        properties:
+                          protocol:
+                            example: http
+                          address:
+                            example: 172.18.0.1
+                          port:
+                            example: 32400
+                          uri:
+                            example: http://172.18.0.1:32400
+                          local: {}
+                          relay: {}
+                          IPv6: {}
+          description: List of Plex Devices
+        "400":
+          description: "Bad Request - A parameter was not specified, or was specified\
+            \ incorrectly."
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getCompanionsData_401_response'
+          description: Unauthorized - Returned if the X-Plex-Token is missing from
+            the header or query.
+      summary: Get Devices
+      tags:
+      - Plex.tv
+  /user:
+    get:
+      description: Get Logged in User
+      operationId: getUserDetails
+      responses:
+        "200":
+          description: Logged in user details
+        "400":
+          description: "Bad Request - A parameter was not specified, or was specified\
+            \ incorrectly."
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getCompanionsData_401_response'
+          description: Unauthorized - Returned if the X-Plex-Token is missing from
+            the header or query.
+      summary: Get Logged in User
+      tags:
+      - Plex.tv
+  /user/settings:
+    get:
+      description: Get User Settings
+      operationId: getUserSettings
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  properties:
+                    id:
+                      example: experience
+                    type:
+                      example: json
+                    value: {}
+                    hidden: {}
+                    updatedAt:
+                      example: 1681769995
+          description: User Settings
+        "400":
+          description: "Bad Request - A parameter was not specified, or was specified\
+            \ incorrectly."
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getCompanionsData_401_response'
+          description: Unauthorized - Returned if the X-Plex-Token is missing from
+            the header or query.
+      summary: Get User Settings
+      tags:
+      - Plex.tv
+  /user/settings/opt_outs:
+    get:
+      description: Get User Opt Out Settings
+      operationId: getUserOptOutSettings
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getUserOptOutSettings_200_response'
+          description: User Opt Out Settings
+        "400":
+          description: "Bad Request - A parameter was not specified, or was specified\
+            \ incorrectly."
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getCompanionsData_401_response'
+          description: Unauthorized - Returned if the X-Plex-Token is missing from
+            the header or query.
+      summary: Get User Opt Out Settings
+      tags:
+      - Plex.tv
+components:
+  schemas:
+    getPin_400_response:
+      properties:
+        errors:
+          items:
+            properties:
+              code:
+                example: 1000
+              message:
+                example: X-Plex-Client-Identifier is missing
+              status:
+                example: 400
+    getPin_200_response_location:
+      example:
+        country: United States
+        code: US
+        city: Austin
+        european_union_member: ""
+        coordinates: 30.3768 -97.8935
+        continent_code: NA
+        time_zone: America/Chicago
+        postal_code: 78732
+        in_privacy_restricted_country: ""
+        subdivisions: Texas
+      properties:
+        code:
+          example: US
+        european_union_member: {}
+        continent_code:
+          example: NA
+        country:
+          example: United States
+        city:
+          example: Austin
+        time_zone:
+          example: America/Chicago
+        postal_code:
+          example: 78732
+        in_privacy_restricted_country: {}
+        subdivisions:
+          example: Texas
+        coordinates:
+          example: 30.3768 -97.8935
+    getPin_200_response:
+      example:
+        expiresIn: 1800
+        qr: https://plex.tv/api/v2/pins/qr/3patfx1a78ukcbr7x0n9bl26t
+        createdAt: 2023-04-12T17:00:03Z
+        product: Plex Web
+        code: 3patfx1a78ukcbr7x0n9bl26t
+        trusted: ""
+        newRegistration: ""
+        clientIdentifier: Postman
+        authToken: ""
+        location:
+          country: United States
+          code: US
+          city: Austin
+          european_union_member: ""
+          coordinates: 30.3768 -97.8935
+          continent_code: NA
+          time_zone: America/Chicago
+          postal_code: 78732
+          in_privacy_restricted_country: ""
+          subdivisions: Texas
+        id: 1272322473
+        expiresAt: 2023-04-12T17:30:03Z
+      properties:
+        id:
+          description: PinID for use with authentication
+          example: 1272322473
+        code:
+          example: 3patfx1a78ukcbr7x0n9bl26t
+        product:
+          example: Plex Web
+        trusted: {}
+        qr:
+          description: "a link to a QR code hosted on plex.tv \nThe QR code redirects\
+            \ to the relevant `plex.tv/link` authentication page\nWhich then prompts\
+            \ the user for the 4 Digit Link Pin\n"
+          example: https://plex.tv/api/v2/pins/qr/3patfx1a78ukcbr7x0n9bl26t
+        clientIdentifier:
+          example: Postman
+        location:
+          $ref: '#/components/schemas/getPin_200_response_location'
+        expiresIn:
+          example: 1800
+        createdAt:
+          example: 2023-04-12T17:00:03Z
+          format: date-time
+        expiresAt:
+          example: 2023-04-12T17:30:03Z
+          format: date-time
+        authToken:
+          format: nullable
+        newRegistration:
+          format: nullable
+    getUserOptOutSettings_200_response:
+      example:
+        tv.plex.provider.podcasts: opt_in
+        tv.plex.provider.webshows: opt_out
+        scrobbling: opt_in
+        tv.plex.provider.vod: opt_in
+        tv.plex.provider.news: opt_in
+        tv.plex.provider.music: opt_out
+      properties:
+        tv.plex.provider.podcasts:
+          example: opt_in
+        tv.plex.provider.news:
+          example: opt_in
+        tv.plex.provider.webshows:
+          example: opt_out
+        tv.plex.provider.music:
+          example: opt_out
+        tv.plex.provider.vod:
+          example: opt_in
+        scrobbling:
+          example: opt_in
+    getGeoData_200_response:
+      example:
+        guestUserID: 58815432
+        guestUserUUID: f3df4e01bfca0787
+        name: Blindkitty38's home
+        id: 1841489
+        subscription: ""
+        guestEnabled: ""
+      properties:
+        id:
+          example: 1841489
+        name:
+          example: Blindkitty38's home
+        guestUserID:
+          example: 58815432
+        guestUserUUID:
+          example: f3df4e01bfca0787
+        guestEnabled: {}
+        subscription: {}
+    getCompanionsData_401_response:
+      properties:
+        errors:
+          items:
+            properties:
+              code:
+                example: 1001
+              message:
+                example: User could not be authenticated
+              status:
+                example: 401
+  securitySchemes:
+    Token:
+      description: Plex Authentication Token
+      in: header
+      name: X-Plex-Token
+      type: apiKey
+    ClientIdentifier:
+      description: Plex Authentication Token
+      in: header
+      name: X-Plex-Client-Identifier
+      type: apiKey
+    DeviceName:
+      description: Primary name for the device eg. `Plex Web (Chrome)`
+      in: header
+      name: X-Plex-Device-Name
+      type: apiKey
+    Device:
+      description: |
+        The type of device your application is running on
+        Device name and or model number, eg `iPhone3,2`, `Motorola XOOM™`, `LG5200TV`
+      in: header
+      name: X-Plex-Device
+      type: apiKey
+    PlatformVersion:
+      description: |
+        Operating system version
+        eg `4.3.1`, `10.6.7`, `3.2`
+      in: header
+      name: X-Plex-Platform-Version
+      type: apiKey
+    Platform:
+      description: "Platform name \neg: `Web`, `iOS`, `MacOSX`, `Android`, `LG`\n"
+      in: header
+      name: X-Plex-Platform
+      type: apiKey
+    Product:
+      description: "Plex application name \neg: `Laika`, `Plex Media Server`, `Media\
+        \ Link`\n"
+      in: header
+      name: X-Plex-Product
+      type: apiKey
+    Version:
+      description: Plex application version number
+      in: header
+      name: X-Plex-Version
+      type: apiKey
