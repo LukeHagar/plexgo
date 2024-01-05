@@ -1,7 +1,0 @@
-templateDir: ./sdk-resources/resources
-packageName: pms
-packageVersion: 1.1.6
-generateInterfaces: false
-enumClassPrefix: false
-disallowAdditionalPropertiesIfNotPresent: false
-useOneOfDiscriminatorLookup: false
