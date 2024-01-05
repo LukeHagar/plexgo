@@ -1,0 +1,14 @@
+# GetRecentlyAddedMediaContainer
+
+
+## Fields
+
+| Field                                                        | Type                                                         | Required                                                     | Description                                                  | Example                                                      |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `Size`                                                       | **float64*                                                   | :heavy_minus_sign:                                           | N/A                                                          | 50                                                           |
+| `AllowSync`                                                  | **bool*                                                      | :heavy_minus_sign:                                           | N/A                                                          |                                                              |
+| `Identifier`                                                 | **string*                                                    | :heavy_minus_sign:                                           | N/A                                                          | com.plexapp.plugins.library                                  |
+| `MediaTagPrefix`                                             | **string*                                                    | :heavy_minus_sign:                                           | N/A                                                          | /system/bundle/media/flags/                                  |
+| `MediaTagVersion`                                            | **float64*                                                   | :heavy_minus_sign:                                           | N/A                                                          | 1680021154                                                   |
+| `MixedParents`                                               | **bool*                                                      | :heavy_minus_sign:                                           | N/A                                                          |                                                              |
+| `Metadata`                                                   | [][operations.Metadata](../../models/operations/metadata.md) | :heavy_minus_sign:                                           | N/A                                                          |                                                              |
