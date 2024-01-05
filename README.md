@@ -209,8 +209,7 @@ You can override the default server globally using the `WithServerIndex` option 
 
 | # | Server | Variables |
 | - | ------ | --------- |
-| 0 | `http://10.10.10.47:32400` | None |
-| 1 | `{protocol}://{ip}:{port}` | `protocol` (default is `http`), `ip` (default is `10.10.10.47`), `port` (default is `32400`) |
+| 0 | `{protocol}://{ip}:{port}` | `protocol` (default is `http`), `ip` (default is `10.10.10.47`), `port` (default is `32400`) |
 
 #### Example
 
@@ -226,7 +225,7 @@ import (
 
 func main() {
 	s := plexgo.New(
-		plexgo.WithServerIndex(1),
+		plexgo.WithServerIndex(0),
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
 	)
 
@@ -265,7 +264,7 @@ import (
 
 func main() {
 	s := plexgo.New(
-		plexgo.WithServerURL("http://10.10.10.47:32400"),
+		plexgo.WithServerURL("{protocol}://{ip}:{port}"),
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
 	)
 
