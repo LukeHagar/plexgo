@@ -6,6 +6,243 @@ import (
 	"net/http"
 )
 
+type Location struct {
+	ID   *int    `json:"id,omitempty"`
+	Path *string `json:"path,omitempty"`
+}
+
+func (o *Location) GetID() *int {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *Location) GetPath() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Path
+}
+
+type GetLibrariesDirectory struct {
+	AllowSync        *bool      `json:"allowSync,omitempty"`
+	Art              *string    `json:"art,omitempty"`
+	Composite        *string    `json:"composite,omitempty"`
+	Filters          *bool      `json:"filters,omitempty"`
+	Refreshing       *bool      `json:"refreshing,omitempty"`
+	Thumb            *string    `json:"thumb,omitempty"`
+	Key              *string    `json:"key,omitempty"`
+	Type             *string    `json:"type,omitempty"`
+	Title            *string    `json:"title,omitempty"`
+	Agent            *string    `json:"agent,omitempty"`
+	Scanner          *string    `json:"scanner,omitempty"`
+	Language         *string    `json:"language,omitempty"`
+	UUID             *string    `json:"uuid,omitempty"`
+	UpdatedAt        *int       `json:"updatedAt,omitempty"`
+	CreatedAt        *int       `json:"createdAt,omitempty"`
+	ScannedAt        *int       `json:"scannedAt,omitempty"`
+	Content          *bool      `json:"content,omitempty"`
+	Directory        *bool      `json:"directory,omitempty"`
+	ContentChangedAt *int       `json:"contentChangedAt,omitempty"`
+	Hidden           *int       `json:"hidden,omitempty"`
+	Location         []Location `json:"Location,omitempty"`
+}
+
+func (o *GetLibrariesDirectory) GetAllowSync() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.AllowSync
+}
+
+func (o *GetLibrariesDirectory) GetArt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Art
+}
+
+func (o *GetLibrariesDirectory) GetComposite() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Composite
+}
+
+func (o *GetLibrariesDirectory) GetFilters() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Filters
+}
+
+func (o *GetLibrariesDirectory) GetRefreshing() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Refreshing
+}
+
+func (o *GetLibrariesDirectory) GetThumb() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Thumb
+}
+
+func (o *GetLibrariesDirectory) GetKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Key
+}
+
+func (o *GetLibrariesDirectory) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
+func (o *GetLibrariesDirectory) GetTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Title
+}
+
+func (o *GetLibrariesDirectory) GetAgent() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Agent
+}
+
+func (o *GetLibrariesDirectory) GetScanner() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Scanner
+}
+
+func (o *GetLibrariesDirectory) GetLanguage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Language
+}
+
+func (o *GetLibrariesDirectory) GetUUID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UUID
+}
+
+func (o *GetLibrariesDirectory) GetUpdatedAt() *int {
+	if o == nil {
+		return nil
+	}
+	return o.UpdatedAt
+}
+
+func (o *GetLibrariesDirectory) GetCreatedAt() *int {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedAt
+}
+
+func (o *GetLibrariesDirectory) GetScannedAt() *int {
+	if o == nil {
+		return nil
+	}
+	return o.ScannedAt
+}
+
+func (o *GetLibrariesDirectory) GetContent() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Content
+}
+
+func (o *GetLibrariesDirectory) GetDirectory() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Directory
+}
+
+func (o *GetLibrariesDirectory) GetContentChangedAt() *int {
+	if o == nil {
+		return nil
+	}
+	return o.ContentChangedAt
+}
+
+func (o *GetLibrariesDirectory) GetHidden() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Hidden
+}
+
+func (o *GetLibrariesDirectory) GetLocation() []Location {
+	if o == nil {
+		return nil
+	}
+	return o.Location
+}
+
+type GetLibrariesMediaContainer struct {
+	Size      *int                    `json:"size,omitempty"`
+	AllowSync *bool                   `json:"allowSync,omitempty"`
+	Title1    *string                 `json:"title1,omitempty"`
+	Directory []GetLibrariesDirectory `json:"Directory,omitempty"`
+}
+
+func (o *GetLibrariesMediaContainer) GetSize() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Size
+}
+
+func (o *GetLibrariesMediaContainer) GetAllowSync() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.AllowSync
+}
+
+func (o *GetLibrariesMediaContainer) GetTitle1() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Title1
+}
+
+func (o *GetLibrariesMediaContainer) GetDirectory() []GetLibrariesDirectory {
+	if o == nil {
+		return nil
+	}
+	return o.Directory
+}
+
+// GetLibrariesResponseBody - The libraries available on the Server
+type GetLibrariesResponseBody struct {
+	MediaContainer *GetLibrariesMediaContainer `json:"MediaContainer,omitempty"`
+}
+
+func (o *GetLibrariesResponseBody) GetMediaContainer() *GetLibrariesMediaContainer {
+	if o == nil {
+		return nil
+	}
+	return o.MediaContainer
+}
+
 type GetLibrariesResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -13,6 +250,8 @@ type GetLibrariesResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+	// The libraries available on the Server
+	Object *GetLibrariesResponseBody
 }
 
 func (o *GetLibrariesResponse) GetContentType() string {
@@ -34,4 +273,11 @@ func (o *GetLibrariesResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
+}
+
+func (o *GetLibrariesResponse) GetObject() *GetLibrariesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.Object
 }

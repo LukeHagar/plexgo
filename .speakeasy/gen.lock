@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: dfa99515-01c0-42eb-9be5-ee212fd03eb3
 management:
-  docChecksum: 34d22936f2456c2c461abdfc773e3fc4
+  docChecksum: 45c73686e6dbe8c29b7e2857b6194ccf
   docVersion: 0.0.3
   speakeasyVersion: internal
-  generationVersion: 2.234.3
-  releaseVersion: 0.0.3
-  configChecksum: 9a4ca7acc5fd79b147c2ee13557b2a17
+  generationVersion: 2.237.2
+  releaseVersion: 0.0.4
+  configChecksum: 270cef9347fac851edf7560dfe79d63c
   repoURL: https://github.com/LukeHagar/plexgo.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexgo
@@ -16,7 +16,7 @@ features:
     constsAndDefaults: 0.1.2
     core: 3.3.1
     flattening: 2.81.1
-    globalSecurity: 2.82.3
+    globalSecurity: 2.82.4
     globalServerURLs: 2.82.1
     nameOverrides: 2.81.1
 generatedFiles:
@@ -36,7 +36,6 @@ generatedFiles:
   - plexapi.go
   - go.mod
   - go.sum
-  - tests/helpers.go
   - models/sdkerrors/sdkerror.go
   - types/bigint.go
   - types/date.go
@@ -258,6 +257,10 @@ generatedFiles:
   - docs/models/operations/getrecentlyaddedmediacontainer.md
   - docs/models/operations/getrecentlyaddedresponsebody.md
   - docs/models/operations/getrecentlyaddedresponse.md
+  - docs/models/operations/location.md
+  - docs/models/operations/getlibrariesdirectory.md
+  - docs/models/operations/getlibrariesmediacontainer.md
+  - docs/models/operations/getlibrariesresponsebody.md
   - docs/models/operations/getlibrariesresponse.md
   - docs/models/operations/includedetails.md
   - docs/models/operations/getlibraryrequest.md
