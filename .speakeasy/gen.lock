@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: dfa99515-01c0-42eb-9be5-ee212fd03eb3
 management:
-  docChecksum: 45c73686e6dbe8c29b7e2857b6194ccf
+  docChecksum: a14d0ae27d4f5bd83b80747112f74352
   docVersion: 0.0.3
   speakeasyVersion: internal
   generationVersion: 2.237.2
-  releaseVersion: 0.0.4
-  configChecksum: 270cef9347fac851edf7560dfe79d63c
+  releaseVersion: 0.0.5
+  configChecksum: 5b3127b5f000f6d96e7a3e6ea5fc06e9
   repoURL: https://github.com/LukeHagar/plexgo.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexgo
@@ -264,6 +264,9 @@ generatedFiles:
   - docs/models/operations/getlibrariesresponse.md
   - docs/models/operations/includedetails.md
   - docs/models/operations/getlibraryrequest.md
+  - docs/models/operations/getlibrarydirectory.md
+  - docs/models/operations/getlibrarymediacontainer.md
+  - docs/models/operations/getlibraryresponsebody.md
   - docs/models/operations/getlibraryresponse.md
   - docs/models/operations/deletelibraryrequest.md
   - docs/models/operations/deletelibraryresponse.md
