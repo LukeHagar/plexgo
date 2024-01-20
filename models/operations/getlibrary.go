@@ -73,11 +73,25 @@ func (o *GetLibraryRequest) GetIncludeDetails() *IncludeDetails {
 }
 
 type GetLibraryDirectory struct {
+	Key       *string `json:"key,omitempty"`
+	Title     *string `json:"title,omitempty"`
 	Secondary *bool   `json:"secondary,omitempty"`
 	Prompt    *string `json:"prompt,omitempty"`
 	Search    *bool   `json:"search,omitempty"`
-	Key       *string `json:"key,omitempty"`
-	Title     *string `json:"title,omitempty"`
+}
+
+func (o *GetLibraryDirectory) GetKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Key
+}
+
+func (o *GetLibraryDirectory) GetTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Title
 }
 
 func (o *GetLibraryDirectory) GetSecondary() *bool {
@@ -101,18 +115,230 @@ func (o *GetLibraryDirectory) GetSearch() *bool {
 	return o.Search
 }
 
-func (o *GetLibraryDirectory) GetKey() *string {
+type Filter struct {
+	Filter     *string `json:"filter,omitempty"`
+	FilterType *string `json:"filterType,omitempty"`
+	Key        *string `json:"key,omitempty"`
+	Title      *string `json:"title,omitempty"`
+	Type       *string `json:"type,omitempty"`
+}
+
+func (o *Filter) GetFilter() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Filter
+}
+
+func (o *Filter) GetFilterType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FilterType
+}
+
+func (o *Filter) GetKey() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Key
 }
 
-func (o *GetLibraryDirectory) GetTitle() *string {
+func (o *Filter) GetTitle() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Title
+}
+
+func (o *Filter) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
+type Sort struct {
+	Default           *string `json:"default,omitempty"`
+	DefaultDirection  *string `json:"defaultDirection,omitempty"`
+	DescKey           *string `json:"descKey,omitempty"`
+	FirstCharacterKey *string `json:"firstCharacterKey,omitempty"`
+	Key               *string `json:"key,omitempty"`
+	Title             *string `json:"title,omitempty"`
+}
+
+func (o *Sort) GetDefault() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Default
+}
+
+func (o *Sort) GetDefaultDirection() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DefaultDirection
+}
+
+func (o *Sort) GetDescKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DescKey
+}
+
+func (o *Sort) GetFirstCharacterKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FirstCharacterKey
+}
+
+func (o *Sort) GetKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Key
+}
+
+func (o *Sort) GetTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Title
+}
+
+type Field struct {
+	Key     *string `json:"key,omitempty"`
+	Title   *string `json:"title,omitempty"`
+	Type    *string `json:"type,omitempty"`
+	SubType *string `json:"subType,omitempty"`
+}
+
+func (o *Field) GetKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Key
+}
+
+func (o *Field) GetTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Title
+}
+
+func (o *Field) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
+func (o *Field) GetSubType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SubType
+}
+
+type GetLibraryType struct {
+	Key    *string  `json:"key,omitempty"`
+	Type   *string  `json:"type,omitempty"`
+	Title  *string  `json:"title,omitempty"`
+	Active *bool    `json:"active,omitempty"`
+	Filter []Filter `json:"Filter,omitempty"`
+	Sort   []Sort   `json:"Sort,omitempty"`
+	Field  []Field  `json:"Field,omitempty"`
+}
+
+func (o *GetLibraryType) GetKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Key
+}
+
+func (o *GetLibraryType) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
+func (o *GetLibraryType) GetTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Title
+}
+
+func (o *GetLibraryType) GetActive() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Active
+}
+
+func (o *GetLibraryType) GetFilter() []Filter {
+	if o == nil {
+		return nil
+	}
+	return o.Filter
+}
+
+func (o *GetLibraryType) GetSort() []Sort {
+	if o == nil {
+		return nil
+	}
+	return o.Sort
+}
+
+func (o *GetLibraryType) GetField() []Field {
+	if o == nil {
+		return nil
+	}
+	return o.Field
+}
+
+type Operator struct {
+	Key   *string `json:"key,omitempty"`
+	Title *string `json:"title,omitempty"`
+}
+
+func (o *Operator) GetKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Key
+}
+
+func (o *Operator) GetTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Title
+}
+
+type FieldType struct {
+	Type     *string    `json:"type,omitempty"`
+	Operator []Operator `json:"Operator,omitempty"`
+}
+
+func (o *FieldType) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
+func (o *FieldType) GetOperator() []Operator {
+	if o == nil {
+		return nil
+	}
+	return o.Operator
 }
 
 type GetLibraryMediaContainer struct {
@@ -129,6 +355,8 @@ type GetLibraryMediaContainer struct {
 	ViewGroup        *string               `json:"viewGroup,omitempty"`
 	ViewMode         *int                  `json:"viewMode,omitempty"`
 	Directory        []GetLibraryDirectory `json:"Directory,omitempty"`
+	Type             []GetLibraryType      `json:"Type,omitempty"`
+	FieldType        []FieldType           `json:"FieldType,omitempty"`
 }
 
 func (o *GetLibraryMediaContainer) GetSize() *int {
@@ -220,6 +448,20 @@ func (o *GetLibraryMediaContainer) GetDirectory() []GetLibraryDirectory {
 		return nil
 	}
 	return o.Directory
+}
+
+func (o *GetLibraryMediaContainer) GetType() []GetLibraryType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
+func (o *GetLibraryMediaContainer) GetFieldType() []FieldType {
+	if o == nil {
+		return nil
+	}
+	return o.FieldType
 }
 
 // GetLibraryResponseBody - The details of the library
