@@ -57,6 +57,283 @@ func (o *GetGlobalHubsRequest) GetOnlyTransient() *OnlyTransient {
 	return o.OnlyTransient
 }
 
+type GetGlobalHubsMetadata struct {
+	RatingKey    *string `json:"ratingKey,omitempty"`
+	Key          *string `json:"key,omitempty"`
+	GUID         *string `json:"guid,omitempty"`
+	Type         *string `json:"type,omitempty"`
+	Title        *string `json:"title,omitempty"`
+	TitleSort    *string `json:"titleSort,omitempty"`
+	Summary      *string `json:"summary,omitempty"`
+	Smart        *bool   `json:"smart,omitempty"`
+	PlaylistType *string `json:"playlistType,omitempty"`
+	Composite    *string `json:"composite,omitempty"`
+	Icon         *string `json:"icon,omitempty"`
+	ViewCount    *int    `json:"viewCount,omitempty"`
+	LastViewedAt *int    `json:"lastViewedAt,omitempty"`
+	Duration     *int    `json:"duration,omitempty"`
+	LeafCount    *int    `json:"leafCount,omitempty"`
+	AddedAt      *int    `json:"addedAt,omitempty"`
+	UpdatedAt    *int    `json:"updatedAt,omitempty"`
+}
+
+func (o *GetGlobalHubsMetadata) GetRatingKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RatingKey
+}
+
+func (o *GetGlobalHubsMetadata) GetKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Key
+}
+
+func (o *GetGlobalHubsMetadata) GetGUID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.GUID
+}
+
+func (o *GetGlobalHubsMetadata) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
+func (o *GetGlobalHubsMetadata) GetTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Title
+}
+
+func (o *GetGlobalHubsMetadata) GetTitleSort() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TitleSort
+}
+
+func (o *GetGlobalHubsMetadata) GetSummary() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Summary
+}
+
+func (o *GetGlobalHubsMetadata) GetSmart() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Smart
+}
+
+func (o *GetGlobalHubsMetadata) GetPlaylistType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PlaylistType
+}
+
+func (o *GetGlobalHubsMetadata) GetComposite() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Composite
+}
+
+func (o *GetGlobalHubsMetadata) GetIcon() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Icon
+}
+
+func (o *GetGlobalHubsMetadata) GetViewCount() *int {
+	if o == nil {
+		return nil
+	}
+	return o.ViewCount
+}
+
+func (o *GetGlobalHubsMetadata) GetLastViewedAt() *int {
+	if o == nil {
+		return nil
+	}
+	return o.LastViewedAt
+}
+
+func (o *GetGlobalHubsMetadata) GetDuration() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Duration
+}
+
+func (o *GetGlobalHubsMetadata) GetLeafCount() *int {
+	if o == nil {
+		return nil
+	}
+	return o.LeafCount
+}
+
+func (o *GetGlobalHubsMetadata) GetAddedAt() *int {
+	if o == nil {
+		return nil
+	}
+	return o.AddedAt
+}
+
+func (o *GetGlobalHubsMetadata) GetUpdatedAt() *int {
+	if o == nil {
+		return nil
+	}
+	return o.UpdatedAt
+}
+
+type Hub struct {
+	HubKey        *string                 `json:"hubKey,omitempty"`
+	Key           *string                 `json:"key,omitempty"`
+	Title         *string                 `json:"title,omitempty"`
+	Type          *string                 `json:"type,omitempty"`
+	HubIdentifier *string                 `json:"hubIdentifier,omitempty"`
+	Context       *string                 `json:"context,omitempty"`
+	Size          *int                    `json:"size,omitempty"`
+	More          *bool                   `json:"more,omitempty"`
+	Style         *string                 `json:"style,omitempty"`
+	Promoted      *bool                   `json:"promoted,omitempty"`
+	Metadata      []GetGlobalHubsMetadata `json:"Metadata,omitempty"`
+}
+
+func (o *Hub) GetHubKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.HubKey
+}
+
+func (o *Hub) GetKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Key
+}
+
+func (o *Hub) GetTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Title
+}
+
+func (o *Hub) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
+func (o *Hub) GetHubIdentifier() *string {
+	if o == nil {
+		return nil
+	}
+	return o.HubIdentifier
+}
+
+func (o *Hub) GetContext() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Context
+}
+
+func (o *Hub) GetSize() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Size
+}
+
+func (o *Hub) GetMore() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.More
+}
+
+func (o *Hub) GetStyle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Style
+}
+
+func (o *Hub) GetPromoted() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Promoted
+}
+
+func (o *Hub) GetMetadata() []GetGlobalHubsMetadata {
+	if o == nil {
+		return nil
+	}
+	return o.Metadata
+}
+
+type GetGlobalHubsMediaContainer struct {
+	Size       *int    `json:"size,omitempty"`
+	AllowSync  *bool   `json:"allowSync,omitempty"`
+	Identifier *string `json:"identifier,omitempty"`
+	Hub        []Hub   `json:"Hub,omitempty"`
+}
+
+func (o *GetGlobalHubsMediaContainer) GetSize() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Size
+}
+
+func (o *GetGlobalHubsMediaContainer) GetAllowSync() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.AllowSync
+}
+
+func (o *GetGlobalHubsMediaContainer) GetIdentifier() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Identifier
+}
+
+func (o *GetGlobalHubsMediaContainer) GetHub() []Hub {
+	if o == nil {
+		return nil
+	}
+	return o.Hub
+}
+
+// GetGlobalHubsResponseBody - returns global hubs
+type GetGlobalHubsResponseBody struct {
+	MediaContainer *GetGlobalHubsMediaContainer `json:"MediaContainer,omitempty"`
+}
+
+func (o *GetGlobalHubsResponseBody) GetMediaContainer() *GetGlobalHubsMediaContainer {
+	if o == nil {
+		return nil
+	}
+	return o.MediaContainer
+}
+
 type GetGlobalHubsResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -64,6 +341,8 @@ type GetGlobalHubsResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+	// returns global hubs
+	Object *GetGlobalHubsResponseBody
 }
 
 func (o *GetGlobalHubsResponse) GetContentType() string {
@@ -85,4 +364,11 @@ func (o *GetGlobalHubsResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
+}
+
+func (o *GetGlobalHubsResponse) GetObject() *GetGlobalHubsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.Object
 }

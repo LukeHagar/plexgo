@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-type Stream struct {
+type GetOnDeckStream struct {
 	ID                   *float64 `json:"id,omitempty"`
 	StreamType           *float64 `json:"streamType,omitempty"`
 	Default              *bool    `json:"default,omitempty"`
@@ -34,161 +34,161 @@ type Stream struct {
 	ExtendedDisplayTitle *string  `json:"extendedDisplayTitle,omitempty"`
 }
 
-func (o *Stream) GetID() *float64 {
+func (o *GetOnDeckStream) GetID() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *Stream) GetStreamType() *float64 {
+func (o *GetOnDeckStream) GetStreamType() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.StreamType
 }
 
-func (o *Stream) GetDefault() *bool {
+func (o *GetOnDeckStream) GetDefault() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Default
 }
 
-func (o *Stream) GetCodec() *string {
+func (o *GetOnDeckStream) GetCodec() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Codec
 }
 
-func (o *Stream) GetIndex() *float64 {
+func (o *GetOnDeckStream) GetIndex() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Index
 }
 
-func (o *Stream) GetBitrate() *float64 {
+func (o *GetOnDeckStream) GetBitrate() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Bitrate
 }
 
-func (o *Stream) GetLanguage() *string {
+func (o *GetOnDeckStream) GetLanguage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Language
 }
 
-func (o *Stream) GetLanguageTag() *string {
+func (o *GetOnDeckStream) GetLanguageTag() *string {
 	if o == nil {
 		return nil
 	}
 	return o.LanguageTag
 }
 
-func (o *Stream) GetLanguageCode() *string {
+func (o *GetOnDeckStream) GetLanguageCode() *string {
 	if o == nil {
 		return nil
 	}
 	return o.LanguageCode
 }
 
-func (o *Stream) GetBitDepth() *float64 {
+func (o *GetOnDeckStream) GetBitDepth() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.BitDepth
 }
 
-func (o *Stream) GetChromaLocation() *string {
+func (o *GetOnDeckStream) GetChromaLocation() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ChromaLocation
 }
 
-func (o *Stream) GetChromaSubsampling() *string {
+func (o *GetOnDeckStream) GetChromaSubsampling() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ChromaSubsampling
 }
 
-func (o *Stream) GetCodedHeight() *float64 {
+func (o *GetOnDeckStream) GetCodedHeight() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.CodedHeight
 }
 
-func (o *Stream) GetCodedWidth() *float64 {
+func (o *GetOnDeckStream) GetCodedWidth() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.CodedWidth
 }
 
-func (o *Stream) GetColorRange() *string {
+func (o *GetOnDeckStream) GetColorRange() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ColorRange
 }
 
-func (o *Stream) GetFrameRate() *float64 {
+func (o *GetOnDeckStream) GetFrameRate() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.FrameRate
 }
 
-func (o *Stream) GetHeight() *float64 {
+func (o *GetOnDeckStream) GetHeight() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Height
 }
 
-func (o *Stream) GetLevel() *float64 {
+func (o *GetOnDeckStream) GetLevel() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Level
 }
 
-func (o *Stream) GetProfile() *string {
+func (o *GetOnDeckStream) GetProfile() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Profile
 }
 
-func (o *Stream) GetRefFrames() *float64 {
+func (o *GetOnDeckStream) GetRefFrames() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.RefFrames
 }
 
-func (o *Stream) GetWidth() *float64 {
+func (o *GetOnDeckStream) GetWidth() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Width
 }
 
-func (o *Stream) GetDisplayTitle() *string {
+func (o *GetOnDeckStream) GetDisplayTitle() *string {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayTitle
 }
 
-func (o *Stream) GetExtendedDisplayTitle() *string {
+func (o *GetOnDeckStream) GetExtendedDisplayTitle() *string {
 	if o == nil {
 		return nil
 	}
@@ -196,15 +196,15 @@ func (o *Stream) GetExtendedDisplayTitle() *string {
 }
 
 type GetOnDeckPart struct {
-	ID           *float64 `json:"id,omitempty"`
-	Key          *string  `json:"key,omitempty"`
-	Duration     *float64 `json:"duration,omitempty"`
-	File         *string  `json:"file,omitempty"`
-	Size         *float64 `json:"size,omitempty"`
-	AudioProfile *string  `json:"audioProfile,omitempty"`
-	Container    *string  `json:"container,omitempty"`
-	VideoProfile *string  `json:"videoProfile,omitempty"`
-	Stream       []Stream `json:"Stream,omitempty"`
+	ID           *float64          `json:"id,omitempty"`
+	Key          *string           `json:"key,omitempty"`
+	Duration     *float64          `json:"duration,omitempty"`
+	File         *string           `json:"file,omitempty"`
+	Size         *float64          `json:"size,omitempty"`
+	AudioProfile *string           `json:"audioProfile,omitempty"`
+	Container    *string           `json:"container,omitempty"`
+	VideoProfile *string           `json:"videoProfile,omitempty"`
+	Stream       []GetOnDeckStream `json:"Stream,omitempty"`
 }
 
 func (o *GetOnDeckPart) GetID() *float64 {
@@ -263,7 +263,7 @@ func (o *GetOnDeckPart) GetVideoProfile() *string {
 	return o.VideoProfile
 }
 
-func (o *GetOnDeckPart) GetStream() []Stream {
+func (o *GetOnDeckPart) GetStream() []GetOnDeckStream {
 	if o == nil {
 		return nil
 	}
@@ -393,11 +393,11 @@ func (o *GetOnDeckMedia) GetPart() []GetOnDeckPart {
 	return o.Part
 }
 
-type Guids struct {
+type GetOnDeckGuids struct {
 	ID *string `json:"id,omitempty"`
 }
 
-func (o *Guids) GetID() *string {
+func (o *GetOnDeckGuids) GetID() *string {
 	if o == nil {
 		return nil
 	}
@@ -440,7 +440,7 @@ type GetOnDeckMetadata struct {
 	AddedAt               *float64         `json:"addedAt,omitempty"`
 	UpdatedAt             *float64         `json:"updatedAt,omitempty"`
 	Media                 []GetOnDeckMedia `json:"Media,omitempty"`
-	Guids                 []Guids          `json:"Guid,omitempty"`
+	Guids                 []GetOnDeckGuids `json:"Guid,omitempty"`
 }
 
 func (g GetOnDeckMetadata) MarshalJSON() ([]byte, error) {
@@ -699,7 +699,7 @@ func (o *GetOnDeckMetadata) GetMedia() []GetOnDeckMedia {
 	return o.Media
 }
 
-func (o *GetOnDeckMetadata) GetGuids() []Guids {
+func (o *GetOnDeckMetadata) GetGuids() []GetOnDeckGuids {
 	if o == nil {
 		return nil
 	}

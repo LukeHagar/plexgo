@@ -9,6 +9,10 @@ import (
 type UpdatePlaylistRequest struct {
 	// the ID of the playlist
 	PlaylistID float64 `pathParam:"style=simple,explode=false,name=playlistID"`
+	// name of the playlist
+	Title *string `queryParam:"style=form,explode=true,name=title"`
+	// summary description of the playlist
+	Summary *string `queryParam:"style=form,explode=true,name=summary"`
 }
 
 func (o *UpdatePlaylistRequest) GetPlaylistID() float64 {
@@ -16,6 +20,20 @@ func (o *UpdatePlaylistRequest) GetPlaylistID() float64 {
 		return 0.0
 	}
 	return o.PlaylistID
+}
+
+func (o *UpdatePlaylistRequest) GetTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Title
+}
+
+func (o *UpdatePlaylistRequest) GetSummary() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Summary
 }
 
 type UpdatePlaylistResponse struct {

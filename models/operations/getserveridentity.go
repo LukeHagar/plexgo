@@ -41,7 +41,7 @@ func (o *GetServerIdentityMediaContainer) GetVersion() *string {
 	return o.Version
 }
 
-// GetServerIdentityResponseBody - The Transcode Sessions
+// GetServerIdentityResponseBody - The Server Identity information
 type GetServerIdentityResponseBody struct {
 	MediaContainer *GetServerIdentityMediaContainer `json:"MediaContainer,omitempty"`
 }
@@ -60,7 +60,7 @@ type GetServerIdentityResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The Transcode Sessions
+	// The Server Identity information
 	Object *GetServerIdentityResponseBody
 }
 

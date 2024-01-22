@@ -116,11 +116,12 @@ func (o *GetAvailableClientsMediaContainer) GetServer() []Server {
 	return o.Server
 }
 
-type ResponseBody struct {
+// GetAvailableClientsResponseBody - Available Clients
+type GetAvailableClientsResponseBody struct {
 	MediaContainer *GetAvailableClientsMediaContainer `json:"MediaContainer,omitempty"`
 }
 
-func (o *ResponseBody) GetMediaContainer() *GetAvailableClientsMediaContainer {
+func (o *GetAvailableClientsResponseBody) GetMediaContainer() *GetAvailableClientsMediaContainer {
 	if o == nil {
 		return nil
 	}
@@ -135,7 +136,7 @@ type GetAvailableClientsResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Available Clients
-	ResponseBodies []ResponseBody
+	Object *GetAvailableClientsResponseBody
 }
 
 func (o *GetAvailableClientsResponse) GetContentType() string {
@@ -159,9 +160,9 @@ func (o *GetAvailableClientsResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetAvailableClientsResponse) GetResponseBodies() []ResponseBody {
+func (o *GetAvailableClientsResponse) GetObject() *GetAvailableClientsResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.ResponseBodies
+	return o.Object
 }

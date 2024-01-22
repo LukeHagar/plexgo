@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"github.com/LukeHagar/plexgo/internal/utils"
+	"github.com/LukeHagar/plexgo/types"
 	"net/http"
 )
 
@@ -18,6 +20,1132 @@ func (o *GetMetadataRequest) GetRatingKey() float64 {
 	return o.RatingKey
 }
 
+type Stream struct {
+	ID                   *int    `json:"id,omitempty"`
+	StreamType           *int    `json:"streamType,omitempty"`
+	Default              *bool   `json:"default,omitempty"`
+	Codec                *string `json:"codec,omitempty"`
+	Index                *int    `json:"index,omitempty"`
+	Bitrate              *int    `json:"bitrate,omitempty"`
+	BitDepth             *int    `json:"bitDepth,omitempty"`
+	ChromaLocation       *string `json:"chromaLocation,omitempty"`
+	ChromaSubsampling    *string `json:"chromaSubsampling,omitempty"`
+	CodedHeight          *int    `json:"codedHeight,omitempty"`
+	CodedWidth           *int    `json:"codedWidth,omitempty"`
+	ColorPrimaries       *string `json:"colorPrimaries,omitempty"`
+	ColorRange           *string `json:"colorRange,omitempty"`
+	ColorSpace           *string `json:"colorSpace,omitempty"`
+	ColorTrc             *string `json:"colorTrc,omitempty"`
+	FrameRate            *int    `json:"frameRate,omitempty"`
+	HasScalingMatrix     *bool   `json:"hasScalingMatrix,omitempty"`
+	Height               *int    `json:"height,omitempty"`
+	Level                *int    `json:"level,omitempty"`
+	Profile              *string `json:"profile,omitempty"`
+	RefFrames            *int    `json:"refFrames,omitempty"`
+	ScanType             *string `json:"scanType,omitempty"`
+	StreamIdentifier     *string `json:"streamIdentifier,omitempty"`
+	Width                *int    `json:"width,omitempty"`
+	DisplayTitle         *string `json:"displayTitle,omitempty"`
+	ExtendedDisplayTitle *string `json:"extendedDisplayTitle,omitempty"`
+	Selected             *bool   `json:"selected,omitempty"`
+	Channels             *int    `json:"channels,omitempty"`
+	Language             *string `json:"language,omitempty"`
+	LanguageTag          *string `json:"languageTag,omitempty"`
+	LanguageCode         *string `json:"languageCode,omitempty"`
+	SamplingRate         *int    `json:"samplingRate,omitempty"`
+}
+
+func (o *Stream) GetID() *int {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *Stream) GetStreamType() *int {
+	if o == nil {
+		return nil
+	}
+	return o.StreamType
+}
+
+func (o *Stream) GetDefault() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Default
+}
+
+func (o *Stream) GetCodec() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Codec
+}
+
+func (o *Stream) GetIndex() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Index
+}
+
+func (o *Stream) GetBitrate() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Bitrate
+}
+
+func (o *Stream) GetBitDepth() *int {
+	if o == nil {
+		return nil
+	}
+	return o.BitDepth
+}
+
+func (o *Stream) GetChromaLocation() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ChromaLocation
+}
+
+func (o *Stream) GetChromaSubsampling() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ChromaSubsampling
+}
+
+func (o *Stream) GetCodedHeight() *int {
+	if o == nil {
+		return nil
+	}
+	return o.CodedHeight
+}
+
+func (o *Stream) GetCodedWidth() *int {
+	if o == nil {
+		return nil
+	}
+	return o.CodedWidth
+}
+
+func (o *Stream) GetColorPrimaries() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ColorPrimaries
+}
+
+func (o *Stream) GetColorRange() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ColorRange
+}
+
+func (o *Stream) GetColorSpace() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ColorSpace
+}
+
+func (o *Stream) GetColorTrc() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ColorTrc
+}
+
+func (o *Stream) GetFrameRate() *int {
+	if o == nil {
+		return nil
+	}
+	return o.FrameRate
+}
+
+func (o *Stream) GetHasScalingMatrix() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasScalingMatrix
+}
+
+func (o *Stream) GetHeight() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Height
+}
+
+func (o *Stream) GetLevel() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Level
+}
+
+func (o *Stream) GetProfile() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Profile
+}
+
+func (o *Stream) GetRefFrames() *int {
+	if o == nil {
+		return nil
+	}
+	return o.RefFrames
+}
+
+func (o *Stream) GetScanType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ScanType
+}
+
+func (o *Stream) GetStreamIdentifier() *string {
+	if o == nil {
+		return nil
+	}
+	return o.StreamIdentifier
+}
+
+func (o *Stream) GetWidth() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Width
+}
+
+func (o *Stream) GetDisplayTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DisplayTitle
+}
+
+func (o *Stream) GetExtendedDisplayTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ExtendedDisplayTitle
+}
+
+func (o *Stream) GetSelected() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Selected
+}
+
+func (o *Stream) GetChannels() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Channels
+}
+
+func (o *Stream) GetLanguage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Language
+}
+
+func (o *Stream) GetLanguageTag() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LanguageTag
+}
+
+func (o *Stream) GetLanguageCode() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LanguageCode
+}
+
+func (o *Stream) GetSamplingRate() *int {
+	if o == nil {
+		return nil
+	}
+	return o.SamplingRate
+}
+
+type GetMetadataPart struct {
+	ID                    *int     `json:"id,omitempty"`
+	Key                   *string  `json:"key,omitempty"`
+	Duration              *int     `json:"duration,omitempty"`
+	File                  *string  `json:"file,omitempty"`
+	Size                  *int     `json:"size,omitempty"`
+	AudioProfile          *string  `json:"audioProfile,omitempty"`
+	Container             *string  `json:"container,omitempty"`
+	Has64bitOffsets       *bool    `json:"has64bitOffsets,omitempty"`
+	OptimizedForStreaming *bool    `json:"optimizedForStreaming,omitempty"`
+	VideoProfile          *string  `json:"videoProfile,omitempty"`
+	Stream                []Stream `json:"Stream,omitempty"`
+}
+
+func (o *GetMetadataPart) GetID() *int {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetMetadataPart) GetKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Key
+}
+
+func (o *GetMetadataPart) GetDuration() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Duration
+}
+
+func (o *GetMetadataPart) GetFile() *string {
+	if o == nil {
+		return nil
+	}
+	return o.File
+}
+
+func (o *GetMetadataPart) GetSize() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Size
+}
+
+func (o *GetMetadataPart) GetAudioProfile() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AudioProfile
+}
+
+func (o *GetMetadataPart) GetContainer() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Container
+}
+
+func (o *GetMetadataPart) GetHas64bitOffsets() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Has64bitOffsets
+}
+
+func (o *GetMetadataPart) GetOptimizedForStreaming() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.OptimizedForStreaming
+}
+
+func (o *GetMetadataPart) GetVideoProfile() *string {
+	if o == nil {
+		return nil
+	}
+	return o.VideoProfile
+}
+
+func (o *GetMetadataPart) GetStream() []Stream {
+	if o == nil {
+		return nil
+	}
+	return o.Stream
+}
+
+type GetMetadataMedia struct {
+	ID                    *int              `json:"id,omitempty"`
+	Duration              *int              `json:"duration,omitempty"`
+	Bitrate               *int              `json:"bitrate,omitempty"`
+	Width                 *int              `json:"width,omitempty"`
+	Height                *int              `json:"height,omitempty"`
+	AspectRatio           *float64          `json:"aspectRatio,omitempty"`
+	AudioChannels         *int              `json:"audioChannels,omitempty"`
+	AudioCodec            *string           `json:"audioCodec,omitempty"`
+	VideoCodec            *string           `json:"videoCodec,omitempty"`
+	VideoResolution       *string           `json:"videoResolution,omitempty"`
+	Container             *string           `json:"container,omitempty"`
+	VideoFrameRate        *string           `json:"videoFrameRate,omitempty"`
+	OptimizedForStreaming *int              `json:"optimizedForStreaming,omitempty"`
+	AudioProfile          *string           `json:"audioProfile,omitempty"`
+	Has64bitOffsets       *bool             `json:"has64bitOffsets,omitempty"`
+	VideoProfile          *string           `json:"videoProfile,omitempty"`
+	Part                  []GetMetadataPart `json:"Part,omitempty"`
+}
+
+func (o *GetMetadataMedia) GetID() *int {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetMetadataMedia) GetDuration() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Duration
+}
+
+func (o *GetMetadataMedia) GetBitrate() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Bitrate
+}
+
+func (o *GetMetadataMedia) GetWidth() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Width
+}
+
+func (o *GetMetadataMedia) GetHeight() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Height
+}
+
+func (o *GetMetadataMedia) GetAspectRatio() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.AspectRatio
+}
+
+func (o *GetMetadataMedia) GetAudioChannels() *int {
+	if o == nil {
+		return nil
+	}
+	return o.AudioChannels
+}
+
+func (o *GetMetadataMedia) GetAudioCodec() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AudioCodec
+}
+
+func (o *GetMetadataMedia) GetVideoCodec() *string {
+	if o == nil {
+		return nil
+	}
+	return o.VideoCodec
+}
+
+func (o *GetMetadataMedia) GetVideoResolution() *string {
+	if o == nil {
+		return nil
+	}
+	return o.VideoResolution
+}
+
+func (o *GetMetadataMedia) GetContainer() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Container
+}
+
+func (o *GetMetadataMedia) GetVideoFrameRate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.VideoFrameRate
+}
+
+func (o *GetMetadataMedia) GetOptimizedForStreaming() *int {
+	if o == nil {
+		return nil
+	}
+	return o.OptimizedForStreaming
+}
+
+func (o *GetMetadataMedia) GetAudioProfile() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AudioProfile
+}
+
+func (o *GetMetadataMedia) GetHas64bitOffsets() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Has64bitOffsets
+}
+
+func (o *GetMetadataMedia) GetVideoProfile() *string {
+	if o == nil {
+		return nil
+	}
+	return o.VideoProfile
+}
+
+func (o *GetMetadataMedia) GetPart() []GetMetadataPart {
+	if o == nil {
+		return nil
+	}
+	return o.Part
+}
+
+type GetMetadataGenre struct {
+	ID     *int    `json:"id,omitempty"`
+	Filter *string `json:"filter,omitempty"`
+	Tag    *string `json:"tag,omitempty"`
+}
+
+func (o *GetMetadataGenre) GetID() *int {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetMetadataGenre) GetFilter() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Filter
+}
+
+func (o *GetMetadataGenre) GetTag() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Tag
+}
+
+type GetMetadataCountry struct {
+	ID     *int    `json:"id,omitempty"`
+	Filter *string `json:"filter,omitempty"`
+	Tag    *string `json:"tag,omitempty"`
+}
+
+func (o *GetMetadataCountry) GetID() *int {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetMetadataCountry) GetFilter() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Filter
+}
+
+func (o *GetMetadataCountry) GetTag() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Tag
+}
+
+type Guids struct {
+	ID *string `json:"id,omitempty"`
+}
+
+func (o *Guids) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+type Ratings struct {
+	Image *string  `json:"image,omitempty"`
+	Value *float64 `json:"value,omitempty"`
+	Type  *string  `json:"type,omitempty"`
+}
+
+func (o *Ratings) GetImage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Image
+}
+
+func (o *Ratings) GetValue() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Value
+}
+
+func (o *Ratings) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
+type GetMetadataDirector struct {
+	ID     *int    `json:"id,omitempty"`
+	Filter *string `json:"filter,omitempty"`
+	Tag    *string `json:"tag,omitempty"`
+	TagKey *string `json:"tagKey,omitempty"`
+	Thumb  *string `json:"thumb,omitempty"`
+}
+
+func (o *GetMetadataDirector) GetID() *int {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetMetadataDirector) GetFilter() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Filter
+}
+
+func (o *GetMetadataDirector) GetTag() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Tag
+}
+
+func (o *GetMetadataDirector) GetTagKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TagKey
+}
+
+func (o *GetMetadataDirector) GetThumb() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Thumb
+}
+
+type GetMetadataWriter struct {
+	ID     *int    `json:"id,omitempty"`
+	Filter *string `json:"filter,omitempty"`
+	Tag    *string `json:"tag,omitempty"`
+	TagKey *string `json:"tagKey,omitempty"`
+	Thumb  *string `json:"thumb,omitempty"`
+}
+
+func (o *GetMetadataWriter) GetID() *int {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetMetadataWriter) GetFilter() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Filter
+}
+
+func (o *GetMetadataWriter) GetTag() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Tag
+}
+
+func (o *GetMetadataWriter) GetTagKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TagKey
+}
+
+func (o *GetMetadataWriter) GetThumb() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Thumb
+}
+
+type GetMetadataRole struct {
+	ID     *int    `json:"id,omitempty"`
+	Filter *string `json:"filter,omitempty"`
+	Tag    *string `json:"tag,omitempty"`
+	TagKey *string `json:"tagKey,omitempty"`
+	Role   *string `json:"role,omitempty"`
+	Thumb  *string `json:"thumb,omitempty"`
+}
+
+func (o *GetMetadataRole) GetID() *int {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetMetadataRole) GetFilter() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Filter
+}
+
+func (o *GetMetadataRole) GetTag() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Tag
+}
+
+func (o *GetMetadataRole) GetTagKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TagKey
+}
+
+func (o *GetMetadataRole) GetRole() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Role
+}
+
+func (o *GetMetadataRole) GetThumb() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Thumb
+}
+
+type Producer struct {
+	ID     *int    `json:"id,omitempty"`
+	Filter *string `json:"filter,omitempty"`
+	Tag    *string `json:"tag,omitempty"`
+	TagKey *string `json:"tagKey,omitempty"`
+	Thumb  *string `json:"thumb,omitempty"`
+}
+
+func (o *Producer) GetID() *int {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *Producer) GetFilter() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Filter
+}
+
+func (o *Producer) GetTag() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Tag
+}
+
+func (o *Producer) GetTagKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TagKey
+}
+
+func (o *Producer) GetThumb() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Thumb
+}
+
+type GetMetadataMetadata struct {
+	RatingKey              *string               `json:"ratingKey,omitempty"`
+	Key                    *string               `json:"key,omitempty"`
+	GUID                   *string               `json:"guid,omitempty"`
+	Studio                 *string               `json:"studio,omitempty"`
+	Type                   *string               `json:"type,omitempty"`
+	Title                  *string               `json:"title,omitempty"`
+	LibrarySectionTitle    *string               `json:"librarySectionTitle,omitempty"`
+	LibrarySectionID       *int                  `json:"librarySectionID,omitempty"`
+	LibrarySectionKey      *string               `json:"librarySectionKey,omitempty"`
+	ContentRating          *string               `json:"contentRating,omitempty"`
+	Summary                *string               `json:"summary,omitempty"`
+	Rating                 *float64              `json:"rating,omitempty"`
+	AudienceRating         *float64              `json:"audienceRating,omitempty"`
+	Year                   *int                  `json:"year,omitempty"`
+	Tagline                *string               `json:"tagline,omitempty"`
+	Thumb                  *string               `json:"thumb,omitempty"`
+	Art                    *string               `json:"art,omitempty"`
+	Duration               *int                  `json:"duration,omitempty"`
+	OriginallyAvailableAt  *types.Date           `json:"originallyAvailableAt,omitempty"`
+	AddedAt                *int                  `json:"addedAt,omitempty"`
+	UpdatedAt              *int                  `json:"updatedAt,omitempty"`
+	AudienceRatingImage    *string               `json:"audienceRatingImage,omitempty"`
+	HasPremiumPrimaryExtra *string               `json:"hasPremiumPrimaryExtra,omitempty"`
+	RatingImage            *string               `json:"ratingImage,omitempty"`
+	Media                  []GetMetadataMedia    `json:"Media,omitempty"`
+	Genre                  []GetMetadataGenre    `json:"Genre,omitempty"`
+	Country                []GetMetadataCountry  `json:"Country,omitempty"`
+	Guids                  []Guids               `json:"Guid,omitempty"`
+	Ratings                []Ratings             `json:"Rating,omitempty"`
+	Director               []GetMetadataDirector `json:"Director,omitempty"`
+	Writer                 []GetMetadataWriter   `json:"Writer,omitempty"`
+	Role                   []GetMetadataRole     `json:"Role,omitempty"`
+	Producer               []Producer            `json:"Producer,omitempty"`
+}
+
+func (g GetMetadataMetadata) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetMetadataMetadata) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *GetMetadataMetadata) GetRatingKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RatingKey
+}
+
+func (o *GetMetadataMetadata) GetKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Key
+}
+
+func (o *GetMetadataMetadata) GetGUID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.GUID
+}
+
+func (o *GetMetadataMetadata) GetStudio() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Studio
+}
+
+func (o *GetMetadataMetadata) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
+func (o *GetMetadataMetadata) GetTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Title
+}
+
+func (o *GetMetadataMetadata) GetLibrarySectionTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LibrarySectionTitle
+}
+
+func (o *GetMetadataMetadata) GetLibrarySectionID() *int {
+	if o == nil {
+		return nil
+	}
+	return o.LibrarySectionID
+}
+
+func (o *GetMetadataMetadata) GetLibrarySectionKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LibrarySectionKey
+}
+
+func (o *GetMetadataMetadata) GetContentRating() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ContentRating
+}
+
+func (o *GetMetadataMetadata) GetSummary() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Summary
+}
+
+func (o *GetMetadataMetadata) GetRating() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Rating
+}
+
+func (o *GetMetadataMetadata) GetAudienceRating() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.AudienceRating
+}
+
+func (o *GetMetadataMetadata) GetYear() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Year
+}
+
+func (o *GetMetadataMetadata) GetTagline() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Tagline
+}
+
+func (o *GetMetadataMetadata) GetThumb() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Thumb
+}
+
+func (o *GetMetadataMetadata) GetArt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Art
+}
+
+func (o *GetMetadataMetadata) GetDuration() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Duration
+}
+
+func (o *GetMetadataMetadata) GetOriginallyAvailableAt() *types.Date {
+	if o == nil {
+		return nil
+	}
+	return o.OriginallyAvailableAt
+}
+
+func (o *GetMetadataMetadata) GetAddedAt() *int {
+	if o == nil {
+		return nil
+	}
+	return o.AddedAt
+}
+
+func (o *GetMetadataMetadata) GetUpdatedAt() *int {
+	if o == nil {
+		return nil
+	}
+	return o.UpdatedAt
+}
+
+func (o *GetMetadataMetadata) GetAudienceRatingImage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AudienceRatingImage
+}
+
+func (o *GetMetadataMetadata) GetHasPremiumPrimaryExtra() *string {
+	if o == nil {
+		return nil
+	}
+	return o.HasPremiumPrimaryExtra
+}
+
+func (o *GetMetadataMetadata) GetRatingImage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RatingImage
+}
+
+func (o *GetMetadataMetadata) GetMedia() []GetMetadataMedia {
+	if o == nil {
+		return nil
+	}
+	return o.Media
+}
+
+func (o *GetMetadataMetadata) GetGenre() []GetMetadataGenre {
+	if o == nil {
+		return nil
+	}
+	return o.Genre
+}
+
+func (o *GetMetadataMetadata) GetCountry() []GetMetadataCountry {
+	if o == nil {
+		return nil
+	}
+	return o.Country
+}
+
+func (o *GetMetadataMetadata) GetGuids() []Guids {
+	if o == nil {
+		return nil
+	}
+	return o.Guids
+}
+
+func (o *GetMetadataMetadata) GetRatings() []Ratings {
+	if o == nil {
+		return nil
+	}
+	return o.Ratings
+}
+
+func (o *GetMetadataMetadata) GetDirector() []GetMetadataDirector {
+	if o == nil {
+		return nil
+	}
+	return o.Director
+}
+
+func (o *GetMetadataMetadata) GetWriter() []GetMetadataWriter {
+	if o == nil {
+		return nil
+	}
+	return o.Writer
+}
+
+func (o *GetMetadataMetadata) GetRole() []GetMetadataRole {
+	if o == nil {
+		return nil
+	}
+	return o.Role
+}
+
+func (o *GetMetadataMetadata) GetProducer() []Producer {
+	if o == nil {
+		return nil
+	}
+	return o.Producer
+}
+
+type GetMetadataMediaContainer struct {
+	Size                *int                  `json:"size,omitempty"`
+	AllowSync           *bool                 `json:"allowSync,omitempty"`
+	Identifier          *string               `json:"identifier,omitempty"`
+	LibrarySectionID    *int                  `json:"librarySectionID,omitempty"`
+	LibrarySectionTitle *string               `json:"librarySectionTitle,omitempty"`
+	LibrarySectionUUID  *string               `json:"librarySectionUUID,omitempty"`
+	MediaTagPrefix      *string               `json:"mediaTagPrefix,omitempty"`
+	MediaTagVersion     *int                  `json:"mediaTagVersion,omitempty"`
+	Metadata            []GetMetadataMetadata `json:"Metadata,omitempty"`
+}
+
+func (o *GetMetadataMediaContainer) GetSize() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Size
+}
+
+func (o *GetMetadataMediaContainer) GetAllowSync() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.AllowSync
+}
+
+func (o *GetMetadataMediaContainer) GetIdentifier() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Identifier
+}
+
+func (o *GetMetadataMediaContainer) GetLibrarySectionID() *int {
+	if o == nil {
+		return nil
+	}
+	return o.LibrarySectionID
+}
+
+func (o *GetMetadataMediaContainer) GetLibrarySectionTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LibrarySectionTitle
+}
+
+func (o *GetMetadataMediaContainer) GetLibrarySectionUUID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LibrarySectionUUID
+}
+
+func (o *GetMetadataMediaContainer) GetMediaTagPrefix() *string {
+	if o == nil {
+		return nil
+	}
+	return o.MediaTagPrefix
+}
+
+func (o *GetMetadataMediaContainer) GetMediaTagVersion() *int {
+	if o == nil {
+		return nil
+	}
+	return o.MediaTagVersion
+}
+
+func (o *GetMetadataMediaContainer) GetMetadata() []GetMetadataMetadata {
+	if o == nil {
+		return nil
+	}
+	return o.Metadata
+}
+
+// GetMetadataResponseBody - The metadata of the library item.
+type GetMetadataResponseBody struct {
+	MediaContainer *GetMetadataMediaContainer `json:"MediaContainer,omitempty"`
+}
+
+func (o *GetMetadataResponseBody) GetMediaContainer() *GetMetadataMediaContainer {
+	if o == nil {
+		return nil
+	}
+	return o.MediaContainer
+}
+
 type GetMetadataResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -25,6 +1153,8 @@ type GetMetadataResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+	// The metadata of the library item.
+	Object *GetMetadataResponseBody
 }
 
 func (o *GetMetadataResponse) GetContentType() string {
@@ -46,4 +1176,11 @@ func (o *GetMetadataResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
+}
+
+func (o *GetMetadataResponse) GetObject() *GetMetadataResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.Object
 }

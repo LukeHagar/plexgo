@@ -30,7 +30,7 @@ func newPlaylists(sdkConfig sdkConfiguration) *Playlists {
 
 // CreatePlaylist - Create a Playlist
 // Create a new playlist. By default the playlist is blank. To create a playlist along with a first item, pass:
-// - `uri` - The content URI for what we're playing (e.g. `library://...`).
+// - `uri` - The content URI for what we're playing (e.g. `server://1234/com.plexapp.plugins.library/library/metadata/1`).
 // - `playQueueID` - To create a playlist from an existing play queue.
 func (s *Playlists) CreatePlaylist(ctx context.Context, request operations.CreatePlaylistRequest) (*operations.CreatePlaylistResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
@@ -73,6 +73,17 @@ func (s *Playlists) CreatePlaylist(ctx context.Context, request operations.Creat
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
 	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out operations.CreatePlaylistResponseBody
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.Object = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
 	case httpRes.StatusCode == 400:
 		fallthrough
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
@@ -106,7 +117,7 @@ func (s *Playlists) GetPlaylists(ctx context.Context, playlistType *operations.P
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	url := strings.TrimSuffix(baseURL, "/") + "/playlists/all"
+	url := strings.TrimSuffix(baseURL, "/") + "/playlists"
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -145,6 +156,17 @@ func (s *Playlists) GetPlaylists(ctx context.Context, playlistType *operations.P
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
 	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out operations.GetPlaylistsResponseBody
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.Object = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
 	case httpRes.StatusCode == 400:
 		fallthrough
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
@@ -216,6 +238,17 @@ func (s *Playlists) GetPlaylist(ctx context.Context, playlistID float64) (*opera
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
 	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out operations.GetPlaylistResponseBody
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.Object = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
 	case httpRes.StatusCode == 400:
 		fallthrough
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
@@ -312,9 +345,11 @@ func (s *Playlists) DeletePlaylist(ctx context.Context, playlistID float64) (*op
 
 // UpdatePlaylist - Update a Playlist
 // From PMS version 1.9.1 clients can also edit playlist metadata using this endpoint as they would via `PUT /library/metadata/{playlistID}`
-func (s *Playlists) UpdatePlaylist(ctx context.Context, playlistID float64) (*operations.UpdatePlaylistResponse, error) {
+func (s *Playlists) UpdatePlaylist(ctx context.Context, playlistID float64, title *string, summary *string) (*operations.UpdatePlaylistResponse, error) {
 	request := operations.UpdatePlaylistRequest{
 		PlaylistID: playlistID,
+		Title:      title,
+		Summary:    summary,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
@@ -329,6 +364,10 @@ func (s *Playlists) UpdatePlaylist(ctx context.Context, playlistID float64) (*op
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", s.sdkConfiguration.UserAgent)
+
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	client := s.sdkConfiguration.SecurityClient
 
@@ -434,6 +473,17 @@ func (s *Playlists) GetPlaylistContents(ctx context.Context, playlistID float64,
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
 	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out operations.GetPlaylistContentsResponseBody
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.Object = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
 	case httpRes.StatusCode == 400:
 		fallthrough
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
@@ -529,9 +579,9 @@ func (s *Playlists) ClearPlaylistContents(ctx context.Context, playlistID float6
 }
 
 // AddPlaylistContents - Adding to a Playlist
-// Adds a generator to a playlist, same parameters as the POST above. With a dumb playlist, this adds the specified items to the playlist.
+// Adds a generator to a playlist, same parameters as the POST to create. With a dumb playlist, this adds the specified items to the playlist.
 // With a smart playlist, passing a new `uri` parameter replaces the rules for the playlist. Returns the playlist.
-func (s *Playlists) AddPlaylistContents(ctx context.Context, playlistID float64, uri string, playQueueID float64) (*operations.AddPlaylistContentsResponse, error) {
+func (s *Playlists) AddPlaylistContents(ctx context.Context, playlistID float64, uri string, playQueueID *float64) (*operations.AddPlaylistContentsResponse, error) {
 	request := operations.AddPlaylistContentsRequest{
 		PlaylistID:  playlistID,
 		URI:         uri,
@@ -581,6 +631,17 @@ func (s *Playlists) AddPlaylistContents(ctx context.Context, playlistID float64,
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
 	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out operations.AddPlaylistContentsResponseBody
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.Object = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
 	case httpRes.StatusCode == 400:
 		fallthrough
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:

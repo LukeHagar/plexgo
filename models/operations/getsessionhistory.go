@@ -3,8 +3,207 @@
 package operations
 
 import (
+	"github.com/LukeHagar/plexgo/internal/utils"
+	"github.com/LukeHagar/plexgo/types"
 	"net/http"
 )
+
+type GetSessionHistoryMetadata struct {
+	HistoryKey            *string     `json:"historyKey,omitempty"`
+	Key                   *string     `json:"key,omitempty"`
+	RatingKey             *string     `json:"ratingKey,omitempty"`
+	LibrarySectionID      *string     `json:"librarySectionID,omitempty"`
+	ParentKey             *string     `json:"parentKey,omitempty"`
+	GrandparentKey        *string     `json:"grandparentKey,omitempty"`
+	Title                 *string     `json:"title,omitempty"`
+	GrandparentTitle      *string     `json:"grandparentTitle,omitempty"`
+	Type                  *string     `json:"type,omitempty"`
+	Thumb                 *string     `json:"thumb,omitempty"`
+	ParentThumb           *string     `json:"parentThumb,omitempty"`
+	GrandparentThumb      *string     `json:"grandparentThumb,omitempty"`
+	GrandparentArt        *string     `json:"grandparentArt,omitempty"`
+	Index                 *int        `json:"index,omitempty"`
+	ParentIndex           *int        `json:"parentIndex,omitempty"`
+	OriginallyAvailableAt *types.Date `json:"originallyAvailableAt,omitempty"`
+	ViewedAt              *int        `json:"viewedAt,omitempty"`
+	AccountID             *int        `json:"accountID,omitempty"`
+	DeviceID              *int        `json:"deviceID,omitempty"`
+}
+
+func (g GetSessionHistoryMetadata) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetSessionHistoryMetadata) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *GetSessionHistoryMetadata) GetHistoryKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.HistoryKey
+}
+
+func (o *GetSessionHistoryMetadata) GetKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Key
+}
+
+func (o *GetSessionHistoryMetadata) GetRatingKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RatingKey
+}
+
+func (o *GetSessionHistoryMetadata) GetLibrarySectionID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LibrarySectionID
+}
+
+func (o *GetSessionHistoryMetadata) GetParentKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ParentKey
+}
+
+func (o *GetSessionHistoryMetadata) GetGrandparentKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.GrandparentKey
+}
+
+func (o *GetSessionHistoryMetadata) GetTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Title
+}
+
+func (o *GetSessionHistoryMetadata) GetGrandparentTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.GrandparentTitle
+}
+
+func (o *GetSessionHistoryMetadata) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
+func (o *GetSessionHistoryMetadata) GetThumb() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Thumb
+}
+
+func (o *GetSessionHistoryMetadata) GetParentThumb() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ParentThumb
+}
+
+func (o *GetSessionHistoryMetadata) GetGrandparentThumb() *string {
+	if o == nil {
+		return nil
+	}
+	return o.GrandparentThumb
+}
+
+func (o *GetSessionHistoryMetadata) GetGrandparentArt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.GrandparentArt
+}
+
+func (o *GetSessionHistoryMetadata) GetIndex() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Index
+}
+
+func (o *GetSessionHistoryMetadata) GetParentIndex() *int {
+	if o == nil {
+		return nil
+	}
+	return o.ParentIndex
+}
+
+func (o *GetSessionHistoryMetadata) GetOriginallyAvailableAt() *types.Date {
+	if o == nil {
+		return nil
+	}
+	return o.OriginallyAvailableAt
+}
+
+func (o *GetSessionHistoryMetadata) GetViewedAt() *int {
+	if o == nil {
+		return nil
+	}
+	return o.ViewedAt
+}
+
+func (o *GetSessionHistoryMetadata) GetAccountID() *int {
+	if o == nil {
+		return nil
+	}
+	return o.AccountID
+}
+
+func (o *GetSessionHistoryMetadata) GetDeviceID() *int {
+	if o == nil {
+		return nil
+	}
+	return o.DeviceID
+}
+
+type GetSessionHistoryMediaContainer struct {
+	Size     *int                        `json:"size,omitempty"`
+	Metadata []GetSessionHistoryMetadata `json:"Metadata,omitempty"`
+}
+
+func (o *GetSessionHistoryMediaContainer) GetSize() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Size
+}
+
+func (o *GetSessionHistoryMediaContainer) GetMetadata() []GetSessionHistoryMetadata {
+	if o == nil {
+		return nil
+	}
+	return o.Metadata
+}
+
+// GetSessionHistoryResponseBody - List of Plex Sessions
+type GetSessionHistoryResponseBody struct {
+	MediaContainer *GetSessionHistoryMediaContainer `json:"MediaContainer,omitempty"`
+}
+
+func (o *GetSessionHistoryResponseBody) GetMediaContainer() *GetSessionHistoryMediaContainer {
+	if o == nil {
+		return nil
+	}
+	return o.MediaContainer
+}
 
 type GetSessionHistoryResponse struct {
 	// HTTP response content type for this operation
@@ -13,6 +212,8 @@ type GetSessionHistoryResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+	// List of Plex Sessions
+	Object *GetSessionHistoryResponseBody
 }
 
 func (o *GetSessionHistoryResponse) GetContentType() string {
@@ -34,4 +235,11 @@ func (o *GetSessionHistoryResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
+}
+
+func (o *GetSessionHistoryResponse) GetObject() *GetSessionHistoryResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.Object
 }

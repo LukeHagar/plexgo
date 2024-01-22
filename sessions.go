@@ -64,6 +64,17 @@ func (s *Sessions) GetSessions(ctx context.Context) (*operations.GetSessionsResp
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
 	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out operations.GetSessionsResponseBody
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.Object = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
 	case httpRes.StatusCode == 400:
 		fallthrough
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
@@ -127,6 +138,17 @@ func (s *Sessions) GetSessionHistory(ctx context.Context) (*operations.GetSessio
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
 	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out operations.GetSessionHistoryResponseBody
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.Object = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
 	case httpRes.StatusCode == 400:
 		fallthrough
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
@@ -270,7 +292,7 @@ func (s *Sessions) StopTranscodeSession(ctx context.Context, sessionKey string) 
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
-	case httpRes.StatusCode == 200:
+	case httpRes.StatusCode == 204:
 	case httpRes.StatusCode == 400:
 		fallthrough
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:

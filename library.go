@@ -251,28 +251,45 @@ func (s *Library) GetLibraries(ctx context.Context) (*operations.GetLibrariesRes
 }
 
 // GetLibrary - Get Library Details
-// Returns details for the library. This can be thought of as an interstitial endpoint because it contains information about the library, rather than content itself. These details are:
+// ## Library Details Endpoint
 //
-// - A list of `Directory` objects: These used to be used by clients to build a menuing system. There are four flavors of directory found here:
-//   - Primary: (e.g. all, On Deck) These are still used in some clients to provide "shortcuts" to subsets of media. However, with the exception of On Deck, all of them can be created by media queries, and the desire is to allow these to be customized by users.
-//   - Secondary: These are marked with `secondary="1"` and were used by old clients to provide nested menus allowing for primative (but structured) navigation.
-//   - Special: There is a By Folder entry which allows browsing the media by the underlying filesystem structure, and there's a completely obsolete entry marked `search="1"` which used to be used to allow clients to build search dialogs on the fly.
+// This endpoint provides comprehensive details about the library, focusing on organizational aspects rather than the content itself.
 //
-// - A list of `Type` objects: These represent the types of things found in this library, and for each one, a list of `Filter` and `Sort` objects. These can be used to build rich controls around a grid of media to allow filtering and organizing. Note that these filters and sorts are optional, and without them, the client won't render any filtering controls. The `Type` object contains:
-//   - `key`: This provides the root endpoint returning the actual media list for the type.
-//   - `type`: This is the metadata type for the type (if a standard Plex type).
-//   - `title`: The title for for the content of this type (e.g. "Movies").
+// The details include:
 //
-// - Each `Filter` object contains a description of the filter. Note that it is not an exhaustive list of the full media query language, but an inportant subset useful for top-level API.
-//   - `filter`: This represents the filter name used for the filter, which can be used to construct complex media queries with.
-//   - `filterType`: This is either `string`, `integer`, or `boolean`, and describes the type of values used for the filter.
-//   - `key`: This provides the endpoint where the possible range of values for the filter can be retrieved (e.g. for a "Genre" filter, it returns a list of all the genres in the library). This will include a `type` argument that matches the metadata type of the Type element.
-//   - `title`: The title for the filter.
+// ### Directories
+// Organized into three categories:
 //
-// - Each `Sort` object contains a description of the sort field.
-//   - `defaultDirection`: Can be either `asc` or `desc`, and specifies the default direction for the sort field (e.g. titles default to alphabetically ascending).
-//   - `descKey` and `key`: Contains the parameters passed to the `sort=...` media query for each direction of the sort.
-//   - `title`: The title of the field.
+// - **Primary Directories**:
+//   - Used in some clients for quick access to media subsets (e.g., "All", "On Deck").
+//   - Most can be replicated via media queries.
+//   - Customizable by users.
+//
+// - **Secondary Directories**:
+//   - Marked with `secondary="1"`.
+//   - Used in older clients for structured navigation.
+//
+// - **Special Directories**:
+//   - Includes a "By Folder" entry for filesystem-based browsing.
+//   - Contains an obsolete `search="1"` entry for on-the-fly search dialog creation.
+//
+// ### Types
+// Each type in the library comes with a set of filters and sorts, aiding in building dynamic media controls:
+//
+// - **Type Object Attributes**:
+//   - `key`: Endpoint for the media list of this type.
+//   - `type`: Metadata type (if standard Plex type).
+//   - `title`: Title for this content type (e.g., "Movies").
+//
+// - **Filter Objects**:
+//   - Subset of the media query language.
+//   - Attributes include `filter` (name), `filterType` (data type), `key` (endpoint for value range), and `title`.
+//
+// - **Sort Objects**:
+//   - Description of sort fields.
+//   - Attributes include `defaultDirection` (asc/desc), `descKey` and `key` (sort parameters), and `title`.
+//
+// > **Note**: Filters and sorts are optional; without them, no filtering controls are rendered.
 func (s *Library) GetLibrary(ctx context.Context, sectionID float64, includeDetails *operations.IncludeDetails) (*operations.GetLibraryResponse, error) {
 	request := operations.GetLibraryRequest{
 		SectionID:      sectionID,
@@ -428,16 +445,35 @@ func (s *Library) DeleteLibrary(ctx context.Context, sectionID float64) (*operat
 }
 
 // GetLibraryItems - Get Library Items
-// This endpoint will return a list of library items filtered by the filter and type provided
-func (s *Library) GetLibraryItems(ctx context.Context, sectionID float64, type_ *float64, filter *string) (*operations.GetLibraryItemsResponse, error) {
+// Fetches details from a specific section of the library identified by a section key and a tag. The tag parameter accepts the following values:
+// - `all`: All items in the section.
+// - `unwatched`: Items that have not been played.
+// - `newest`: Items that are recently released.
+// - `recentlyAdded`: Items that are recently added to the library.
+// - `recentlyViewed`: Items that were recently viewed.
+// - `onDeck`: Items to continue watching.
+// - `collection`: Items categorized by collection.
+// - `edition`: Items categorized by edition.
+// - `genre`: Items categorized by genre.
+// - `year`: Items categorized by year of release.
+// - `decade`: Items categorized by decade.
+// - `director`: Items categorized by director.
+// - `actor`: Items categorized by starring actor.
+// - `country`: Items categorized by country of origin.
+// - `contentRating`: Items categorized by content rating.
+// - `rating`: Items categorized by rating.
+// - `resolution`: Items categorized by resolution.
+// - `firstCharacter`: Items categorized by the first letter.
+// - `folder`: Items categorized by folder.
+// - `search?type=1`: Search functionality within the section.
+func (s *Library) GetLibraryItems(ctx context.Context, sectionID int64, tag operations.Tag) (*operations.GetLibraryItemsResponse, error) {
 	request := operations.GetLibraryItemsRequest{
 		SectionID: sectionID,
-		Type:      type_,
-		Filter:    filter,
+		Tag:       tag,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	url, err := utils.GenerateURL(ctx, baseURL, "/library/sections/{sectionId}/all", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/library/sections/{sectionId}/{tag}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -448,10 +484,6 @@ func (s *Library) GetLibraryItems(ctx context.Context, sectionID float64, type_ 
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", s.sdkConfiguration.UserAgent)
-
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
 
 	client := s.sdkConfiguration.SecurityClient
 
@@ -479,25 +511,21 @@ func (s *Library) GetLibraryItems(ctx context.Context, sectionID float64, type_ 
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
 	case httpRes.StatusCode == 200:
-	case httpRes.StatusCode == 400:
-		fallthrough
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out operations.GetLibraryItemsResponseBody
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.Object = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		fallthrough
 	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
 		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
-	case httpRes.StatusCode == 401:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out sdkerrors.GetLibraryItemsResponseBody
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-			out.RawResponse = httpRes
-
-			return nil, &out
-		default:
-			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
-		}
 	}
 
 	return res, nil
@@ -573,160 +601,6 @@ func (s *Library) RefreshLibrary(ctx context.Context, sectionID float64) (*opera
 	return res, nil
 }
 
-// GetLatestLibraryItems - Get Latest Library Items
-// This endpoint will return a list of the latest library items filtered by the filter and type provided
-func (s *Library) GetLatestLibraryItems(ctx context.Context, sectionID float64, type_ float64, filter *string) (*operations.GetLatestLibraryItemsResponse, error) {
-	request := operations.GetLatestLibraryItemsRequest{
-		SectionID: sectionID,
-		Type:      type_,
-		Filter:    filter,
-	}
-
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	url, err := utils.GenerateURL(ctx, baseURL, "/library/sections/{sectionId}/latest", request, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error generating URL: %w", err)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", s.sdkConfiguration.UserAgent)
-
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
-
-	client := s.sdkConfiguration.SecurityClient
-
-	httpRes, err := client.Do(req)
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.GetLatestLibraryItemsResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-	switch {
-	case httpRes.StatusCode == 200:
-	case httpRes.StatusCode == 400:
-		fallthrough
-	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
-		fallthrough
-	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
-		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
-	case httpRes.StatusCode == 401:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out sdkerrors.GetLatestLibraryItemsResponseBody
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-			out.RawResponse = httpRes
-
-			return nil, &out
-		default:
-			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
-		}
-	}
-
-	return res, nil
-}
-
-// GetCommonLibraryItems - Get Common Library Items
-// Represents a "Common" item. It contains only the common attributes of the items selected by the provided filter
-func (s *Library) GetCommonLibraryItems(ctx context.Context, sectionID float64, type_ float64, filter *string) (*operations.GetCommonLibraryItemsResponse, error) {
-	request := operations.GetCommonLibraryItemsRequest{
-		SectionID: sectionID,
-		Type:      type_,
-		Filter:    filter,
-	}
-
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	url, err := utils.GenerateURL(ctx, baseURL, "/library/sections/{sectionId}/common", request, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error generating URL: %w", err)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", s.sdkConfiguration.UserAgent)
-
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
-
-	client := s.sdkConfiguration.SecurityClient
-
-	httpRes, err := client.Do(req)
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.GetCommonLibraryItemsResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-	switch {
-	case httpRes.StatusCode == 200:
-	case httpRes.StatusCode == 400:
-		fallthrough
-	case httpRes.StatusCode == 404:
-		fallthrough
-	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
-		fallthrough
-	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
-		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
-	case httpRes.StatusCode == 401:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out sdkerrors.GetCommonLibraryItemsResponseBody
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-			out.RawResponse = httpRes
-
-			return nil, &out
-		default:
-			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
-		}
-	}
-
-	return res, nil
-}
-
 // GetMetadata - Get Items Metadata
 // This endpoint will return the metadata of a library item specified with the ratingKey.
 func (s *Library) GetMetadata(ctx context.Context, ratingKey float64) (*operations.GetMetadataResponse, error) {
@@ -773,6 +647,17 @@ func (s *Library) GetMetadata(ctx context.Context, ratingKey float64) (*operatio
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
 	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out operations.GetMetadataResponseBody
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.Object = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
 	case httpRes.StatusCode == 400:
 		fallthrough
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
@@ -843,6 +728,17 @@ func (s *Library) GetMetadataChildren(ctx context.Context, ratingKey float64) (*
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
 	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out operations.GetMetadataChildrenResponseBody
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.Object = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
 	case httpRes.StatusCode == 400:
 		fallthrough
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:

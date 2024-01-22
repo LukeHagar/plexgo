@@ -140,7 +140,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.ResponseBodies != nil {
+    if res.Object != nil {
         // handle response
     }
 }

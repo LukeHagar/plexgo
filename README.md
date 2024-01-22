@@ -102,8 +102,6 @@ func main() {
 * [DeleteLibrary](docs/sdks/library/README.md#deletelibrary) - Delete Library Section
 * [GetLibraryItems](docs/sdks/library/README.md#getlibraryitems) - Get Library Items
 * [RefreshLibrary](docs/sdks/library/README.md#refreshlibrary) - Refresh Library
-* [GetLatestLibraryItems](docs/sdks/library/README.md#getlatestlibraryitems) - Get Latest Library Items
-* [GetCommonLibraryItems](docs/sdks/library/README.md#getcommonlibraryitems) - Get Common Library Items
 * [GetMetadata](docs/sdks/library/README.md#getmetadata) - Get Items Metadata
 * [GetMetadataChildren](docs/sdks/library/README.md#getmetadatachildren) - Get Items Children
 * [GetOnDeck](docs/sdks/library/README.md#getondeck) - Get On Deck
@@ -354,7 +352,27 @@ func main() {
 <!-- Start Special Types [types] -->
 ## Special Types
 
+This SDK defines the following custom types to assist with marshalling and unmarshalling data.
 
+### Date
+
+`types.Date` is a wrapper around time.Time that allows for JSON marshaling a date string formatted as "2006-01-02".
+
+#### Usage
+
+```go
+d1 := types.NewDate(time.Now()) // returns *types.Date
+
+d2 := types.DateFromTime(time.Now()) // returns types.Date
+
+d3, err := types.NewDateFromString("2019-01-01") // returns *types.Date, error
+
+d4, err := types.DateFromString("2019-01-01") // returns types.Date, error
+
+d5 := types.MustNewDateFromString("2019-01-01") // returns *types.Date and panics on error
+
+d6 := types.MustDateFromString("2019-01-01") // returns types.Date and panics on error
+```
 <!-- End Special Types [types] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
