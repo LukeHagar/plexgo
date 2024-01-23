@@ -27,7 +27,7 @@ func newSecurity(sdkConfig sdkConfiguration) *Security {
 
 // GetTransientToken - Get a Transient Token.
 // This endpoint provides the caller with a temporary token with the same access level as the caller's token. These tokens are valid for up to 48 hours and are destroyed if the server instance is restarted.
-func (s *Security) GetTransientToken(ctx context.Context, type_ operations.QueryParamType, scope operations.Scope) (*operations.GetTransientTokenResponse, error) {
+func (s *Security) GetTransientToken(ctx context.Context, type_ operations.GetTransientTokenQueryParamType, scope operations.Scope) (*operations.GetTransientTokenResponse, error) {
 	request := operations.GetTransientTokenRequest{
 		Type:  type_,
 		Scope: scope,

@@ -15,6 +15,7 @@ API Calls interacting with Plex Media Server Libraries
 * [DeleteLibrary](#deletelibrary) - Delete Library Section
 * [GetLibraryItems](#getlibraryitems) - Get Library Items
 * [RefreshLibrary](#refreshlibrary) - Refresh Library
+* [SearchLibrary](#searchlibrary) - Search Library
 * [GetMetadata](#getmetadata) - Get Items Metadata
 * [GetMetadataChildren](#getmetadatachildren) - Get Items Children
 * [GetOnDeck](#getondeck) - Get On Deck
@@ -348,7 +349,6 @@ Fetches details from a specific section of the library identified by a section k
 - `resolution`: Items categorized by resolution.
 - `firstCharacter`: Items categorized by the first letter.
 - `folder`: Items categorized by folder.
-- `search?type=1`: Search functionality within the section.
 
 
 ### Example Usage
@@ -455,6 +455,79 @@ func main() {
 | ------------------------------------ | ------------------------------------ | ------------------------------------ |
 | sdkerrors.RefreshLibraryResponseBody | 401                                  | application/json                     |
 | sdkerrors.SDKError                   | 4xx-5xx                              | */*                                  |
+
+## SearchLibrary
+
+Search for content within a specific section of the library.
+
+### Types
+Each type in the library comes with a set of filters and sorts, aiding in building dynamic media controls:
+
+- **Type Object Attributes**:
+  - `type`: Metadata type (if standard Plex type).  
+  - `title`: Title for this content type (e.g., "Movies").
+
+- **Filter Objects**:
+  - Subset of the media query language.
+  - Attributes include `filter` (name), `filterType` (data type), `key` (endpoint for value range), and `title`.
+
+- **Sort Objects**:
+  - Description of sort fields.
+  - Attributes include `defaultDirection` (asc/desc), `descKey` and `key` (sort parameters), and `title`.
+
+> **Note**: Filters and sorts are optional; without them, no filtering controls are rendered.
+
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"github.com/LukeHagar/plexgo/models/components"
+	"github.com/LukeHagar/plexgo"
+	"github.com/LukeHagar/plexgo/models/operations"
+	"context"
+	"log"
+)
+
+func main() {
+    s := plexgo.New(
+        plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+
+    var sectionID int64 = 933505
+
+    var type_ operations.Type = operations.TypeFour
+
+    ctx := context.Background()
+    res, err := s.Library.SearchLibrary(ctx, sectionID, type_)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `sectionID`                                           | *int64*                                               | :heavy_check_mark:                                    | the Id of the library to query                        |
+| `type_`                                               | [operations.Type](../../models/operations/type.md)    | :heavy_check_mark:                                    | Plex content type to search for                       |
+
+
+### Response
+
+**[*operations.SearchLibraryResponse](../../models/operations/searchlibraryresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetMetadata
 

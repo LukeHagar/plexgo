@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: dfa99515-01c0-42eb-9be5-ee212fd03eb3
 management:
-  docChecksum: 7aba498c024534142941d65a7c2e649c
+  docChecksum: 49e77b550f057eb568502dc74fee7cce
   docVersion: 0.0.3
   speakeasyVersion: internal
   generationVersion: 2.237.3
-  releaseVersion: 0.1.1
-  configChecksum: 75ea35f7a212ecc077e24de582ed767e
+  releaseVersion: 0.1.2
+  configChecksum: 6e7156b73170398db5f73b78a4f03b59
   repoURL: https://github.com/LukeHagar/plexgo.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexgo
@@ -83,6 +83,7 @@ generatedFiles:
   - /models/operations/deletelibrary.go
   - /models/operations/getlibraryitems.go
   - /models/operations/refreshlibrary.go
+  - /models/operations/searchlibrary.go
   - /models/operations/getmetadata.go
   - /models/operations/getmetadatachildren.go
   - /models/operations/getondeck.go
@@ -308,6 +309,12 @@ generatedFiles:
   - docs/models/operations/getlibraryitemsresponse.md
   - docs/models/operations/refreshlibraryrequest.md
   - docs/models/operations/refreshlibraryresponse.md
+  - docs/models/operations/type.md
+  - docs/models/operations/searchlibraryrequest.md
+  - docs/models/operations/searchlibrarymetadata.md
+  - docs/models/operations/searchlibrarymediacontainer.md
+  - docs/models/operations/searchlibraryresponsebody.md
+  - docs/models/operations/searchlibraryresponse.md
   - docs/models/operations/getmetadatarequest.md
   - docs/models/operations/stream.md
   - docs/models/operations/getmetadatapart.md
@@ -343,7 +350,7 @@ generatedFiles:
   - docs/models/operations/loglineresponse.md
   - docs/models/operations/logmultilineresponse.md
   - docs/models/operations/enablepapertrailresponse.md
-  - docs/models/operations/type.md
+  - docs/models/operations/queryparamtype.md
   - docs/models/operations/smart.md
   - docs/models/operations/createplaylistrequest.md
   - docs/models/operations/createplaylistmetadata.md
@@ -388,7 +395,7 @@ generatedFiles:
   - docs/models/operations/force.md
   - docs/models/operations/uploadplaylistrequest.md
   - docs/models/operations/uploadplaylistresponse.md
-  - docs/models/operations/queryparamtype.md
+  - docs/models/operations/gettransienttokenqueryparamtype.md
   - docs/models/operations/scope.md
   - docs/models/operations/gettransienttokenrequest.md
   - docs/models/operations/gettransienttokenresponse.md

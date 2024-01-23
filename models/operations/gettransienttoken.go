@@ -8,28 +8,28 @@ import (
 	"net/http"
 )
 
-// QueryParamType - `delegation` - This is the only supported `type` parameter.
-type QueryParamType string
+// GetTransientTokenQueryParamType - `delegation` - This is the only supported `type` parameter.
+type GetTransientTokenQueryParamType string
 
 const (
-	QueryParamTypeDelegation QueryParamType = "delegation"
+	GetTransientTokenQueryParamTypeDelegation GetTransientTokenQueryParamType = "delegation"
 )
 
-func (e QueryParamType) ToPointer() *QueryParamType {
+func (e GetTransientTokenQueryParamType) ToPointer() *GetTransientTokenQueryParamType {
 	return &e
 }
 
-func (e *QueryParamType) UnmarshalJSON(data []byte) error {
+func (e *GetTransientTokenQueryParamType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "delegation":
-		*e = QueryParamType(v)
+		*e = GetTransientTokenQueryParamType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for QueryParamType: %v", v)
+		return fmt.Errorf("invalid value for GetTransientTokenQueryParamType: %v", v)
 	}
 }
 
@@ -60,14 +60,14 @@ func (e *Scope) UnmarshalJSON(data []byte) error {
 
 type GetTransientTokenRequest struct {
 	// `delegation` - This is the only supported `type` parameter.
-	Type QueryParamType `queryParam:"style=form,explode=true,name=type"`
+	Type GetTransientTokenQueryParamType `queryParam:"style=form,explode=true,name=type"`
 	// `all` - This is the only supported `scope` parameter.
 	Scope Scope `queryParam:"style=form,explode=true,name=scope"`
 }
 
-func (o *GetTransientTokenRequest) GetType() QueryParamType {
+func (o *GetTransientTokenRequest) GetType() GetTransientTokenQueryParamType {
 	if o == nil {
-		return QueryParamType("")
+		return GetTransientTokenQueryParamType("")
 	}
 	return o.Type
 }

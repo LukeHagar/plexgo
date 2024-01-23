@@ -465,7 +465,6 @@ func (s *Library) DeleteLibrary(ctx context.Context, sectionID float64) (*operat
 // - `resolution`: Items categorized by resolution.
 // - `firstCharacter`: Items categorized by the first letter.
 // - `folder`: Items categorized by folder.
-// - `search?type=1`: Search functionality within the section.
 func (s *Library) GetLibraryItems(ctx context.Context, sectionID int64, tag operations.Tag) (*operations.GetLibraryItemsResponse, error) {
 	request := operations.GetLibraryItemsRequest{
 		SectionID: sectionID,
@@ -596,6 +595,94 @@ func (s *Library) RefreshLibrary(ctx context.Context, sectionID float64) (*opera
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	}
+
+	return res, nil
+}
+
+// SearchLibrary - Search Library
+// Search for content within a specific section of the library.
+//
+// ### Types
+// Each type in the library comes with a set of filters and sorts, aiding in building dynamic media controls:
+//
+// - **Type Object Attributes**:
+//   - `type`: Metadata type (if standard Plex type).
+//   - `title`: Title for this content type (e.g., "Movies").
+//
+// - **Filter Objects**:
+//   - Subset of the media query language.
+//   - Attributes include `filter` (name), `filterType` (data type), `key` (endpoint for value range), and `title`.
+//
+// - **Sort Objects**:
+//   - Description of sort fields.
+//   - Attributes include `defaultDirection` (asc/desc), `descKey` and `key` (sort parameters), and `title`.
+//
+// > **Note**: Filters and sorts are optional; without them, no filtering controls are rendered.
+func (s *Library) SearchLibrary(ctx context.Context, sectionID int64, type_ operations.Type) (*operations.SearchLibraryResponse, error) {
+	request := operations.SearchLibraryRequest{
+		SectionID: sectionID,
+		Type:      type_,
+	}
+
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	url, err := utils.GenerateURL(ctx, baseURL, "/library/sections/{sectionId}/search", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", s.sdkConfiguration.UserAgent)
+
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
+
+	client := s.sdkConfiguration.SecurityClient
+
+	httpRes, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.SearchLibraryResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out operations.SearchLibraryResponseBody
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.Object = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

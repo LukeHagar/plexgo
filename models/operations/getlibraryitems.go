@@ -14,26 +14,25 @@ import (
 type Tag string
 
 const (
-	TagAll              Tag = "all"
-	TagUnwatched        Tag = "unwatched"
-	TagNewest           Tag = "newest"
-	TagRecentlyAdded    Tag = "recentlyAdded"
-	TagRecentlyViewed   Tag = "recentlyViewed"
-	TagOnDeck           Tag = "onDeck"
-	TagCollection       Tag = "collection"
-	TagEdition          Tag = "edition"
-	TagGenre            Tag = "genre"
-	TagYear             Tag = "year"
-	TagDecade           Tag = "decade"
-	TagDirector         Tag = "director"
-	TagActor            Tag = "actor"
-	TagCountry          Tag = "country"
-	TagContentRating    Tag = "contentRating"
-	TagRating           Tag = "rating"
-	TagResolution       Tag = "resolution"
-	TagFirstCharacter   Tag = "firstCharacter"
-	TagFolder           Tag = "folder"
-	TagSearchTypeEqual1 Tag = "search?type=1"
+	TagAll            Tag = "all"
+	TagUnwatched      Tag = "unwatched"
+	TagNewest         Tag = "newest"
+	TagRecentlyAdded  Tag = "recentlyAdded"
+	TagRecentlyViewed Tag = "recentlyViewed"
+	TagOnDeck         Tag = "onDeck"
+	TagCollection     Tag = "collection"
+	TagEdition        Tag = "edition"
+	TagGenre          Tag = "genre"
+	TagYear           Tag = "year"
+	TagDecade         Tag = "decade"
+	TagDirector       Tag = "director"
+	TagActor          Tag = "actor"
+	TagCountry        Tag = "country"
+	TagContentRating  Tag = "contentRating"
+	TagRating         Tag = "rating"
+	TagResolution     Tag = "resolution"
+	TagFirstCharacter Tag = "firstCharacter"
+	TagFolder         Tag = "folder"
 )
 
 func (e Tag) ToPointer() *Tag {
@@ -83,8 +82,6 @@ func (e *Tag) UnmarshalJSON(data []byte) error {
 	case "firstCharacter":
 		fallthrough
 	case "folder":
-		fallthrough
-	case "search?type=1":
 		*e = Tag(v)
 		return nil
 	default:

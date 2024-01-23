@@ -8,20 +8,20 @@ import (
 	"net/http"
 )
 
-// Type - type of playlist to create
-type Type string
+// QueryParamType - type of playlist to create
+type QueryParamType string
 
 const (
-	TypeAudio Type = "audio"
-	TypeVideo Type = "video"
-	TypePhoto Type = "photo"
+	QueryParamTypeAudio QueryParamType = "audio"
+	QueryParamTypeVideo QueryParamType = "video"
+	QueryParamTypePhoto QueryParamType = "photo"
 )
 
-func (e Type) ToPointer() *Type {
+func (e QueryParamType) ToPointer() *QueryParamType {
 	return &e
 }
 
-func (e *Type) UnmarshalJSON(data []byte) error {
+func (e *QueryParamType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -32,10 +32,10 @@ func (e *Type) UnmarshalJSON(data []byte) error {
 	case "video":
 		fallthrough
 	case "photo":
-		*e = Type(v)
+		*e = QueryParamType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Type: %v", v)
+		return fmt.Errorf("invalid value for QueryParamType: %v", v)
 	}
 }
 
@@ -71,7 +71,7 @@ type CreatePlaylistRequest struct {
 	// name of the playlist
 	Title string `queryParam:"style=form,explode=true,name=title"`
 	// type of playlist to create
-	Type Type `queryParam:"style=form,explode=true,name=type"`
+	Type QueryParamType `queryParam:"style=form,explode=true,name=type"`
 	// whether the playlist is smart or not
 	Smart Smart `queryParam:"style=form,explode=true,name=smart"`
 	// the content URI for the playlist
@@ -87,9 +87,9 @@ func (o *CreatePlaylistRequest) GetTitle() string {
 	return o.Title
 }
 
-func (o *CreatePlaylistRequest) GetType() Type {
+func (o *CreatePlaylistRequest) GetType() QueryParamType {
 	if o == nil {
-		return Type("")
+		return QueryParamType("")
 	}
 	return o.Type
 }

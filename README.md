@@ -102,6 +102,7 @@ func main() {
 * [DeleteLibrary](docs/sdks/library/README.md#deletelibrary) - Delete Library Section
 * [GetLibraryItems](docs/sdks/library/README.md#getlibraryitems) - Get Library Items
 * [RefreshLibrary](docs/sdks/library/README.md#refreshlibrary) - Refresh Library
+* [SearchLibrary](docs/sdks/library/README.md#searchlibrary) - Search Library
 * [GetMetadata](docs/sdks/library/README.md#getmetadata) - Get Items Metadata
 * [GetMetadataChildren](docs/sdks/library/README.md#getmetadatachildren) - Get Items Children
 * [GetOnDeck](docs/sdks/library/README.md#getondeck) - Get On Deck

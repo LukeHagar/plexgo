@@ -49,7 +49,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Playlists.CreatePlaylist(ctx, operations.CreatePlaylistRequest{
         Title: "string",
-        Type: operations.TypePhoto,
+        Type: operations.QueryParamTypePhoto,
         Smart: operations.SmartOne,
         URI: "https://inborn-brochure.biz",
     })

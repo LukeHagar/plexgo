@@ -36,7 +36,7 @@ func main() {
     )
 
 
-    var type_ operations.QueryParamType = operations.QueryParamTypeDelegation
+    var type_ operations.GetTransientTokenQueryParamType = operations.GetTransientTokenQueryParamTypeDelegation
 
     var scope operations.Scope = operations.ScopeAll
 
@@ -54,11 +54,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
-| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `ctx`                                                                  | [context.Context](https://pkg.go.dev/context#Context)                  | :heavy_check_mark:                                                     | The context to use for the request.                                    |
-| `type_`                                                                | [operations.QueryParamType](../../models/operations/queryparamtype.md) | :heavy_check_mark:                                                     | `delegation` - This is the only supported `type` parameter.            |
-| `scope`                                                                | [operations.Scope](../../models/operations/scope.md)                   | :heavy_check_mark:                                                     | `all` - This is the only supported `scope` parameter.                  |
+| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                    | :heavy_check_mark:                                                                                       | The context to use for the request.                                                                      |
+| `type_`                                                                                                  | [operations.GetTransientTokenQueryParamType](../../models/operations/gettransienttokenqueryparamtype.md) | :heavy_check_mark:                                                                                       | `delegation` - This is the only supported `type` parameter.                                              |
+| `scope`                                                                                                  | [operations.Scope](../../models/operations/scope.md)                                                     | :heavy_check_mark:                                                                                       | `all` - This is the only supported `scope` parameter.                                                    |
 
 
 ### Response
