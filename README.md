@@ -113,6 +113,12 @@ func main() {
 * [LogMultiLine](docs/sdks/log/README.md#logmultiline) - Logging a multi-line message
 * [EnablePaperTrail](docs/sdks/log/README.md#enablepapertrail) - Enabling Papertrail
 
+
+### [Plex.Tv](docs/sdks/tv/README.md)
+
+* [GetPin](docs/sdks/tv/README.md#getpin) - Get a Pin
+* [GetToken](docs/sdks/tv/README.md#gettoken) - Get Access Token
+
 ### [Playlists](docs/sdks/playlists/README.md)
 
 * [CreatePlaylist](docs/sdks/playlists/README.md#createplaylist) - Create a Playlist
@@ -269,6 +275,41 @@ func main() {
 
 	ctx := context.Background()
 	res, err := s.Server.GetServerCapabilities(ctx)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if res.Object != nil {
+		// handle response
+	}
+}
+
+```
+
+### Override Server URL Per-Operation
+
+The server URL can also be overridden on a per-operation basis, provided a server list was specified for the operation. For example:
+```go
+package main
+
+import (
+	"context"
+	"github.com/LukeHagar/plexgo"
+	"github.com/LukeHagar/plexgo/models/components"
+	"log"
+)
+
+func main() {
+	s := plexgo.New(
+		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+	)
+
+	var xPlexClientIdentifier string = "string"
+
+	var strong *bool = false
+
+	ctx := context.Background()
+	res, err := s.Plex.Tv.GetPin(ctx, operations.WithServerURL("https://plex.tv/api/v2"), xPlexClientIdentifier, strong)
 	if err != nil {
 		log.Fatal(err)
 	}
