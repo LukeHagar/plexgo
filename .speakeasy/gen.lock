@@ -4,9 +4,9 @@ management:
   docChecksum: 94439465ae5d544f0e52b00719af05ee
   docVersion: 0.0.3
   speakeasyVersion: internal
-  generationVersion: 2.239.4
-  releaseVersion: 0.2.0
-  configChecksum: cab54fc8ee2784bf822df0198252c4f5
+  generationVersion: 2.245.1
+  releaseVersion: 0.2.1
+  configChecksum: 0c6f5f0bce6af6f3bd99f99ce9584d7e
   repoURL: https://github.com/LukeHagar/plexgo.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexgo
@@ -16,7 +16,7 @@ features:
     constsAndDefaults: 0.1.2
     core: 3.3.1
     flattening: 2.81.1
-    globalSecurity: 2.82.4
+    globalSecurity: 2.82.5
     globalServerURLs: 2.82.1
     methodServerURLs: 2.82.1
     nameOverrides: 2.81.1

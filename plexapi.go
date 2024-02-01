@@ -240,6 +240,15 @@ func WithSecurity(accessToken string) SDKOption {
 	}
 }
 
+// WithSecuritySource configures the SDK to invoke the Security Source function on each method call to determine authentication
+func WithSecuritySource(security func(context.Context) (components.Security, error)) SDKOption {
+	return func(sdk *PlexAPI) {
+		sdk.sdkConfiguration.Security = func(ctx context.Context) (interface{}, error) {
+			return security(ctx)
+		}
+	}
+}
+
 func WithRetryConfig(retryConfig utils.RetryConfig) SDKOption {
 	return func(sdk *PlexAPI) {
 		sdk.sdkConfiguration.RetryConfig = &retryConfig
@@ -252,9 +261,9 @@ func New(opts ...SDKOption) *PlexAPI {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.3",
-			SDKVersion:        "0.2.0",
-			GenVersion:        "2.239.4",
-			UserAgent:         "speakeasy-sdk/go 0.2.0 2.239.4 0.0.3 github.com/LukeHagar/plexgo",
+			SDKVersion:        "0.2.1",
+			GenVersion:        "2.245.1",
+			UserAgent:         "speakeasy-sdk/go 0.2.1 2.245.1 0.0.3 github.com/LukeHagar/plexgo",
 			ServerDefaults: []map[string]string{
 				{
 					"protocol": "http",
