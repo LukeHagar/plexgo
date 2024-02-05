@@ -113,11 +113,10 @@ func main() {
 * [LogMultiLine](docs/sdks/log/README.md#logmultiline) - Logging a multi-line message
 * [EnablePaperTrail](docs/sdks/log/README.md#enablepapertrail) - Enabling Papertrail
 
+### [Plex](docs/sdks/plex/README.md)
 
-### [Plex.Tv](docs/sdks/tv/README.md)
-
-* [GetPin](docs/sdks/tv/README.md#getpin) - Get a Pin
-* [GetToken](docs/sdks/tv/README.md#gettoken) - Get Access Token
+* [GetPin](docs/sdks/plex/README.md#getpin) - Get a Pin
+* [GetToken](docs/sdks/plex/README.md#gettoken) - Get Access Token
 
 ### [Playlists](docs/sdks/playlists/README.md)
 
@@ -309,7 +308,7 @@ func main() {
 	var strong *bool = false
 
 	ctx := context.Background()
-	res, err := s.Plex.Tv.GetPin(ctx, operations.WithServerURL("https://plex.tv/api/v2"), xPlexClientIdentifier, strong)
+	res, err := s.Plex.GetPin(ctx, operations.WithServerURL("https://plex.tv/api/v2"), xPlexClientIdentifier, strong)
 	if err != nil {
 		log.Fatal(err)
 	}

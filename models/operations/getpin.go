@@ -13,7 +13,10 @@ var GetPinServerList = []string{
 }
 
 type GetPinRequest struct {
-	// Plex Authentication Token
+	// The unique identifier for the client application
+	// This is used to track the client application and its usage
+	// (UUID, serial number, or other number unique per device)
+	//
 	XPlexClientIdentifier string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
 	// Determines the kind of code returned by the API call
 	// Strong codes are used for Pin authentication flows

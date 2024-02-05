@@ -96,7 +96,9 @@ type PlexAPI struct {
 	Library *Library
 	// Submit logs to the Log Handler for Plex Media Server
 	//
-	Log  *Log
+	Log *Log
+	// API Calls that perform operations directly against https://Plex.tv
+	//
 	Plex *Plex
 	// Playlists are ordered collections of media. They can be dumb (just a list of media) or smart (based on a media query, such as "all albums from 2017").
 	// They can be organized in (optionally nesting) folders.
@@ -261,9 +263,9 @@ func New(opts ...SDKOption) *PlexAPI {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.3",
-			SDKVersion:        "0.2.1",
-			GenVersion:        "2.245.1",
-			UserAgent:         "speakeasy-sdk/go 0.2.1 2.245.1 0.0.3 github.com/LukeHagar/plexgo",
+			SDKVersion:        "0.3.0",
+			GenVersion:        "2.249.1",
+			UserAgent:         "speakeasy-sdk/go 0.3.0 2.249.1 0.0.3 github.com/LukeHagar/plexgo",
 			ServerDefaults: []map[string]string{
 				{
 					"protocol": "http",

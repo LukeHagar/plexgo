@@ -13,7 +13,10 @@ var GetTokenServerList = []string{
 type GetTokenRequest struct {
 	// The PinID to retrieve an access token for
 	PinID string `pathParam:"style=simple,explode=false,name=pinID"`
-	// Plex Authentication Token
+	// The unique identifier for the client application
+	// This is used to track the client application and its usage
+	// (UUID, serial number, or other number unique per device)
+	//
 	XPlexClientIdentifier string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
 }
 
