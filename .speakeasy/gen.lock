@@ -1,29 +1,29 @@
 lockVersion: 2.0.0
 id: dfa99515-01c0-42eb-9be5-ee212fd03eb3
 management:
-  docChecksum: 099fc5bbb987ae7e391f7f07b4212860
+  docChecksum: 278d186496d83d5830ba4870f8cad39d
   docVersion: 0.0.3
   speakeasyVersion: internal
-  generationVersion: 2.249.1
-  releaseVersion: 0.3.0
-  configChecksum: ae48b3df080bde21a30ed099e1ffc0d8
+  generationVersion: 2.269.0
+  releaseVersion: 0.4.0
+  configChecksum: 319de8bf53c668d84b706d9496459b7c
   repoURL: https://github.com/LukeHagar/plexgo.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexgo
   published: true
 features:
   go:
-    constsAndDefaults: 0.1.2
-    core: 3.3.2
+    constsAndDefaults: 0.1.3
+    core: 3.4.1
     flattening: 2.81.1
     globalSecurity: 2.82.6
     globalServerURLs: 2.82.1
     methodServerURLs: 2.82.1
     nameOverrides: 2.81.1
-    unions: 2.85.2
 generatedFiles:
   - server.go
   - media.go
+  - video.go
   - activities.go
   - butler.go
   - hubs.go
@@ -33,12 +33,11 @@ generatedFiles:
   - plex.go
   - playlists.go
   - security.go
+  - statistics.go
   - sessions.go
   - updater.go
-  - video.go
   - plexapi.go
   - go.mod
-  - go.sum
   - models/sdkerrors/sdkerror.go
   - types/bigint.go
   - types/date.go
@@ -66,6 +65,8 @@ generatedFiles:
   - /models/operations/markplayed.go
   - /models/operations/markunplayed.go
   - /models/operations/updateplayprogress.go
+  - /models/operations/gettimeline.go
+  - /models/operations/startuniversaltranscode.go
   - /models/operations/getserveractivities.go
   - /models/operations/cancelserveractivities.go
   - /models/operations/getbutlertasks.go
@@ -105,6 +106,7 @@ generatedFiles:
   - /models/operations/uploadplaylist.go
   - /models/operations/gettransienttoken.go
   - /models/operations/getsourceconnectioninformation.go
+  - /models/operations/getstatistics.go
   - /models/operations/getsessions.go
   - /models/operations/getsessionhistory.go
   - /models/operations/gettranscodesessions.go
@@ -112,8 +114,6 @@ generatedFiles:
   - /models/operations/getupdatestatus.go
   - /models/operations/checkforupdates.go
   - /models/operations/applyupdates.go
-  - /models/operations/startuniversaltranscode.go
-  - /models/operations/gettimeline.go
   - /models/sdkerrors/getservercapabilities.go
   - /models/sdkerrors/getserverpreferences.go
   - /models/sdkerrors/getavailableclients.go
@@ -125,6 +125,8 @@ generatedFiles:
   - /models/sdkerrors/markplayed.go
   - /models/sdkerrors/markunplayed.go
   - /models/sdkerrors/updateplayprogress.go
+  - /models/sdkerrors/gettimeline.go
+  - /models/sdkerrors/startuniversaltranscode.go
   - /models/sdkerrors/getserveractivities.go
   - /models/sdkerrors/cancelserveractivities.go
   - /models/sdkerrors/getbutlertasks.go
@@ -162,6 +164,7 @@ generatedFiles:
   - /models/sdkerrors/uploadplaylist.go
   - /models/sdkerrors/gettransienttoken.go
   - /models/sdkerrors/getsourceconnectioninformation.go
+  - /models/sdkerrors/getstatistics.go
   - /models/sdkerrors/getsessions.go
   - /models/sdkerrors/getsessionhistory.go
   - /models/sdkerrors/gettranscodesessions.go
@@ -169,15 +172,11 @@ generatedFiles:
   - /models/sdkerrors/getupdatestatus.go
   - /models/sdkerrors/checkforupdates.go
   - /models/sdkerrors/applyupdates.go
-  - /models/sdkerrors/startuniversaltranscode.go
-  - /models/sdkerrors/gettimeline.go
   - /models/components/security.go
   - docs/models/operations/directory.md
   - docs/models/operations/mediacontainer.md
   - docs/models/operations/getservercapabilitiesresponsebody.md
   - docs/models/operations/getservercapabilitiesresponse.md
-  - docs/models/operations/two.md
-  - docs/models/operations/one.md
   - docs/models/operations/setting.md
   - docs/models/operations/getserverpreferencesmediacontainer.md
   - docs/models/operations/getserverpreferencesresponsebody.md
@@ -210,6 +209,11 @@ generatedFiles:
   - docs/models/operations/markunplayedresponse.md
   - docs/models/operations/updateplayprogressrequest.md
   - docs/models/operations/updateplayprogressresponse.md
+  - docs/models/operations/state.md
+  - docs/models/operations/gettimelinerequest.md
+  - docs/models/operations/gettimelineresponse.md
+  - docs/models/operations/startuniversaltranscoderequest.md
+  - docs/models/operations/startuniversaltranscoderesponse.md
   - docs/models/operations/context.md
   - docs/models/operations/activity.md
   - docs/models/operations/getserveractivitiesmediacontainer.md
@@ -413,6 +417,13 @@ generatedFiles:
   - docs/models/operations/gettransienttokenresponse.md
   - docs/models/operations/getsourceconnectioninformationrequest.md
   - docs/models/operations/getsourceconnectioninformationresponse.md
+  - docs/models/operations/getstatisticsrequest.md
+  - docs/models/operations/getstatisticsdevice.md
+  - docs/models/operations/account.md
+  - docs/models/operations/statisticsmedia.md
+  - docs/models/operations/getstatisticsmediacontainer.md
+  - docs/models/operations/getstatisticsresponsebody.md
+  - docs/models/operations/getstatisticsresponse.md
   - docs/models/operations/getsessionsstream.md
   - docs/models/operations/getsessionspart.md
   - docs/models/operations/getsessionsmedia.md
@@ -444,11 +455,6 @@ generatedFiles:
   - docs/models/operations/skip.md
   - docs/models/operations/applyupdatesrequest.md
   - docs/models/operations/applyupdatesresponse.md
-  - docs/models/operations/startuniversaltranscoderequest.md
-  - docs/models/operations/startuniversaltranscoderesponse.md
-  - docs/models/operations/state.md
-  - docs/models/operations/gettimelinerequest.md
-  - docs/models/operations/gettimelineresponse.md
   - docs/models/sdkerrors/errors.md
   - docs/models/sdkerrors/getservercapabilitiesresponsebody.md
   - docs/models/sdkerrors/getserverpreferenceserrors.md
@@ -471,6 +477,10 @@ generatedFiles:
   - docs/models/sdkerrors/markunplayedresponsebody.md
   - docs/models/sdkerrors/updateplayprogresserrors.md
   - docs/models/sdkerrors/updateplayprogressresponsebody.md
+  - docs/models/sdkerrors/gettimelineerrors.md
+  - docs/models/sdkerrors/gettimelineresponsebody.md
+  - docs/models/sdkerrors/startuniversaltranscodeerrors.md
+  - docs/models/sdkerrors/startuniversaltranscoderesponsebody.md
   - docs/models/sdkerrors/getserveractivitieserrors.md
   - docs/models/sdkerrors/getserveractivitiesresponsebody.md
   - docs/models/sdkerrors/cancelserveractivitieserrors.md
@@ -545,6 +555,8 @@ generatedFiles:
   - docs/models/sdkerrors/gettransienttokenresponsebody.md
   - docs/models/sdkerrors/getsourceconnectioninformationerrors.md
   - docs/models/sdkerrors/getsourceconnectioninformationresponsebody.md
+  - docs/models/sdkerrors/getstatisticserrors.md
+  - docs/models/sdkerrors/getstatisticsresponsebody.md
   - docs/models/sdkerrors/getsessionserrors.md
   - docs/models/sdkerrors/getsessionsresponsebody.md
   - docs/models/sdkerrors/getsessionhistoryerrors.md
@@ -559,14 +571,11 @@ generatedFiles:
   - docs/models/sdkerrors/checkforupdatesresponsebody.md
   - docs/models/sdkerrors/applyupdateserrors.md
   - docs/models/sdkerrors/applyupdatesresponsebody.md
-  - docs/models/sdkerrors/startuniversaltranscodeerrors.md
-  - docs/models/sdkerrors/startuniversaltranscoderesponsebody.md
-  - docs/models/sdkerrors/gettimelineerrors.md
-  - docs/models/sdkerrors/gettimelineresponsebody.md
   - docs/models/components/security.md
   - docs/sdks/plexapi/README.md
   - docs/sdks/server/README.md
   - docs/sdks/media/README.md
+  - docs/sdks/video/README.md
   - docs/sdks/activities/README.md
   - docs/sdks/butler/README.md
   - docs/sdks/hubs/README.md
@@ -577,9 +586,10 @@ generatedFiles:
   - docs/sdks/plex/README.md
   - docs/sdks/playlists/README.md
   - docs/sdks/security/README.md
+  - docs/sdks/statistics/README.md
   - docs/sdks/sessions/README.md
   - docs/sdks/updater/README.md
-  - docs/sdks/video/README.md
   - USAGE.md
   - models/operations/options.go
   - .gitattributes
+  - internal/hooks/hooks.go

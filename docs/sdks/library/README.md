@@ -45,7 +45,7 @@ func main() {
 
     var url_ string = "file://C:\Image.png&type=13"
 
-    var type_ *float64 = 4462.17
+    var type_ *float64 = plexgo.Float64(4462.17)
 
     ctx := context.Background()
     res, err := s.Library.GetFileHash(ctx, url_, type_)
@@ -243,7 +243,7 @@ func main() {
 
     var sectionID float64 = 1000
 
-    var includeDetails *operations.IncludeDetails = operations.IncludeDetailsZero
+    var includeDetails *operations.IncludeDetails = operations.IncludeDetailsZero.ToPointer()
 
     ctx := context.Background()
     res, err := s.Library.GetLibrary(ctx, sectionID, includeDetails)

@@ -142,11 +142,11 @@ func main() {
     )
 
 
-    var key string = "string"
+    var key string = "<value>"
 
     var time float64 = 6900.91
 
-    var state string = "string"
+    var state string = "<value>"
 
     ctx := context.Background()
     res, err := s.Media.UpdatePlayProgress(ctx, key, time, state)

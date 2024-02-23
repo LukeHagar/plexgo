@@ -88,7 +88,7 @@ func main() {
     )
 
 
-    var activityUUID string = "string"
+    var activityUUID string = "<value>"
 
     ctx := context.Background()
     res, err := s.Activities.CancelServerActivities(ctx, activityUUID)

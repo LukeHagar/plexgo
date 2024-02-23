@@ -15,24 +15,28 @@ import (
 	"net/url"
 )
 
-// Video - API Calls that perform operations with Plex Media Server Videos
-type Video struct {
+// Statistics - API Calls that perform operations with Plex Media Server Statistics
+type Statistics struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newVideo(sdkConfig sdkConfiguration) *Video {
-	return &Video{
+func newStatistics(sdkConfig sdkConfiguration) *Statistics {
+	return &Statistics{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-// GetTimeline - Get the timeline for a media item
-// Get the timeline for a media item
-func (s *Video) GetTimeline(ctx context.Context, request operations.GetTimelineRequest) (*operations.GetTimelineResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "getTimeline"}
+// GetStatistics - Get Media Statistics
+// This will return the media statistics for the server
+func (s *Statistics) GetStatistics(ctx context.Context, timespan *int64) (*operations.GetStatisticsResponse, error) {
+	hookCtx := hooks.HookContext{OperationID: "getStatistics"}
+
+	request := operations.GetStatisticsRequest{
+		Timespan: timespan,
+	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := url.JoinPath(baseURL, "/:/timeline")
+	opURL, err := url.JoinPath(baseURL, "/statistics/media")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -78,7 +82,7 @@ func (s *Video) GetTimeline(ctx context.Context, request operations.GetTimelineR
 	}
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetTimelineResponse{
+	res := &operations.GetStatisticsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -93,97 +97,17 @@ func (s *Video) GetTimeline(ctx context.Context, request operations.GetTimelineR
 
 	switch {
 	case httpRes.StatusCode == 200:
-	case httpRes.StatusCode == 400:
-		fallthrough
-	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
-		fallthrough
-	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
-		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
-	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out sdkerrors.GetTimelineResponseBody
+			var out operations.GetStatisticsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-			out.RawResponse = httpRes
 
-			return nil, &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
-	}
-
-	return res, nil
-}
-
-// StartUniversalTranscode - Start Universal Transcode
-// Begin a Universal Transcode Session
-func (s *Video) StartUniversalTranscode(ctx context.Context, request operations.StartUniversalTranscodeRequest) (*operations.StartUniversalTranscodeResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "startUniversalTranscode"}
-
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := url.JoinPath(baseURL, "/video/:/transcode/universal/start.mpd")
-	if err != nil {
-		return nil, fmt.Errorf("error generating URL: %w", err)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "GET", opURL, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-	req.Header.Set("Accept", "application/json")
-	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
-
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
-	if err != nil {
-		return nil, err
-	}
-
-	client := s.sdkConfiguration.SecurityClient
-
-	httpRes, err := client.Do(req)
-	if err != nil || httpRes == nil {
-		if err != nil {
-			err = fmt.Errorf("error sending request: %w", err)
-		} else {
-			err = fmt.Errorf("error sending request: no response")
-		}
-
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
-		return nil, err
-	} else if utils.MatchStatusCodes([]string{"400", "401", "4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
-		if err != nil {
-			return nil, err
-		}
-	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
-		if err != nil {
-			return nil, err
-		}
-	}
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.StartUniversalTranscodeResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
-	switch {
-	case httpRes.StatusCode == 200:
 	case httpRes.StatusCode == 400:
 		fallthrough
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
@@ -193,7 +117,7 @@ func (s *Video) StartUniversalTranscode(ctx context.Context, request operations.
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out sdkerrors.StartUniversalTranscodeResponseBody
+			var out sdkerrors.GetStatisticsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

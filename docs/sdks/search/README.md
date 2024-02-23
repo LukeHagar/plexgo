@@ -49,9 +49,9 @@ func main() {
 
     var query string = "dylan"
 
-    var sectionID *float64 = 1516.53
+    var sectionID *float64 = plexgo.Float64(1516.53)
 
-    var limit *float64 = 5
+    var limit *float64 = plexgo.Float64(5)
 
     ctx := context.Background()
     res, err := s.Search.PerformSearch(ctx, query, sectionID, limit)
@@ -112,9 +112,9 @@ func main() {
 
     var query string = "dead+poop"
 
-    var sectionID *float64 = 4094.8
+    var sectionID *float64 = plexgo.Float64(4094.8)
 
-    var limit *float64 = 5
+    var limit *float64 = plexgo.Float64(5)
 
     ctx := context.Background()
     res, err := s.Search.PerformVoiceSearch(ctx, query, sectionID, limit)

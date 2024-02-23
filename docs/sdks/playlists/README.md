@@ -48,7 +48,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Playlists.CreatePlaylist(ctx, operations.CreatePlaylistRequest{
-        Title: "string",
+        Title: "<value>",
         Type: operations.QueryParamTypePhoto,
         Smart: operations.SmartOne,
         URI: "https://inborn-brochure.biz",
@@ -102,9 +102,9 @@ func main() {
     )
 
 
-    var playlistType *operations.PlaylistType = operations.PlaylistTypeAudio
+    var playlistType *operations.PlaylistType = operations.PlaylistTypeAudio.ToPointer()
 
-    var smart *operations.QueryParamSmart = operations.QueryParamSmartZero
+    var smart *operations.QueryParamSmart = operations.QueryParamSmartZero.ToPointer()
 
     ctx := context.Background()
     res, err := s.Playlists.GetPlaylists(ctx, playlistType, smart)
@@ -269,9 +269,9 @@ func main() {
 
     var playlistID float64 = 3915
 
-    var title *string = "string"
+    var title *string = plexgo.String("<value>")
 
-    var summary *string = "string"
+    var summary *string = plexgo.String("<value>")
 
     ctx := context.Background()
     res, err := s.Playlists.UpdatePlaylist(ctx, playlistID, title, summary)
@@ -444,7 +444,7 @@ func main() {
 
     var uri string = "server://12345/com.plexapp.plugins.library/library/metadata/1"
 
-    var playQueueID *float64 = 123
+    var playQueueID *float64 = plexgo.Float64(123)
 
     ctx := context.Background()
     res, err := s.Playlists.AddPlaylistContents(ctx, playlistID, uri, playQueueID)

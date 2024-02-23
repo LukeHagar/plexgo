@@ -3,230 +3,90 @@
 package operations
 
 import (
-	"errors"
-	"github.com/LukeHagar/plexgo/internal/utils"
 	"net/http"
 )
 
-type Two struct {
+type Setting struct {
 	ID         *string `json:"id,omitempty"`
 	Label      *string `json:"label,omitempty"`
 	Summary    *string `json:"summary,omitempty"`
 	Type       *string `json:"type,omitempty"`
-	Default    *int    `json:"default,omitempty"`
-	Value      *int    `json:"value,omitempty"`
+	Default    *bool   `json:"default,omitempty"`
+	Value      *bool   `json:"value,omitempty"`
 	Hidden     *bool   `json:"hidden,omitempty"`
 	Advanced   *bool   `json:"advanced,omitempty"`
 	Group      *string `json:"group,omitempty"`
 	EnumValues *string `json:"enumValues,omitempty"`
 }
 
-func (o *Two) GetID() *string {
+func (o *Setting) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *Two) GetLabel() *string {
+func (o *Setting) GetLabel() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Label
 }
 
-func (o *Two) GetSummary() *string {
+func (o *Setting) GetSummary() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Summary
 }
 
-func (o *Two) GetType() *string {
+func (o *Setting) GetType() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *Two) GetDefault() *int {
+func (o *Setting) GetDefault() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Default
 }
 
-func (o *Two) GetValue() *int {
+func (o *Setting) GetValue() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Value
 }
 
-func (o *Two) GetHidden() *bool {
+func (o *Setting) GetHidden() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Hidden
 }
 
-func (o *Two) GetAdvanced() *bool {
+func (o *Setting) GetAdvanced() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Advanced
 }
 
-func (o *Two) GetGroup() *string {
+func (o *Setting) GetGroup() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Group
 }
 
-func (o *Two) GetEnumValues() *string {
+func (o *Setting) GetEnumValues() *string {
 	if o == nil {
 		return nil
 	}
 	return o.EnumValues
-}
-
-type One struct {
-	ID       *string `json:"id,omitempty"`
-	Label    *string `json:"label,omitempty"`
-	Summary  *string `json:"summary,omitempty"`
-	Type     *string `json:"type,omitempty"`
-	Default  *string `json:"default,omitempty"`
-	Value    *string `json:"value,omitempty"`
-	Hidden   *bool   `json:"hidden,omitempty"`
-	Advanced *bool   `json:"advanced,omitempty"`
-	Group    *string `json:"group,omitempty"`
-}
-
-func (o *One) GetID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ID
-}
-
-func (o *One) GetLabel() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Label
-}
-
-func (o *One) GetSummary() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Summary
-}
-
-func (o *One) GetType() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Type
-}
-
-func (o *One) GetDefault() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Default
-}
-
-func (o *One) GetValue() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Value
-}
-
-func (o *One) GetHidden() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Hidden
-}
-
-func (o *One) GetAdvanced() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Advanced
-}
-
-func (o *One) GetGroup() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Group
-}
-
-type SettingType string
-
-const (
-	SettingTypeOne SettingType = "1"
-	SettingTypeTwo SettingType = "2"
-)
-
-type Setting struct {
-	One *One
-	Two *Two
-
-	Type SettingType
-}
-
-func CreateSettingOne(one One) Setting {
-	typ := SettingTypeOne
-
-	return Setting{
-		One:  &one,
-		Type: typ,
-	}
-}
-
-func CreateSettingTwo(two Two) Setting {
-	typ := SettingTypeTwo
-
-	return Setting{
-		Two:  &two,
-		Type: typ,
-	}
-}
-
-func (u *Setting) UnmarshalJSON(data []byte) error {
-
-	one := One{}
-	if err := utils.UnmarshalJSON(data, &one, "", true, true); err == nil {
-		u.One = &one
-		u.Type = SettingTypeOne
-		return nil
-	}
-
-	two := Two{}
-	if err := utils.UnmarshalJSON(data, &two, "", true, true); err == nil {
-		u.Two = &two
-		u.Type = SettingTypeTwo
-		return nil
-	}
-
-	return errors.New("could not unmarshal into supported union types")
-}
-
-func (u Setting) MarshalJSON() ([]byte, error) {
-	if u.One != nil {
-		return utils.MarshalJSON(u.One, "", true)
-	}
-
-	if u.Two != nil {
-		return utils.MarshalJSON(u.Two, "", true)
-	}
-
-	return nil, errors.New("could not marshal union type: all fields are null")
 }
 
 type GetServerPreferencesMediaContainer struct {

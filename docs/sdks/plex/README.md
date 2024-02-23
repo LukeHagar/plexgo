@@ -33,9 +33,9 @@ func main() {
     )
 
 
-    var xPlexClientIdentifier string = "string"
+    var xPlexClientIdentifier string = "<value>"
 
-    var strong *bool = false
+    var strong *bool = plexgo.Bool(false)
 
     ctx := context.Background()
     res, err := s.Plex.GetPin(ctx, xPlexClientIdentifier, strong)
@@ -90,9 +90,9 @@ func main() {
     )
 
 
-    var pinID string = "string"
+    var pinID string = "<value>"
 
-    var xPlexClientIdentifier string = "string"
+    var xPlexClientIdentifier string = "<value>"
 
     ctx := context.Background()
     res, err := s.Plex.GetToken(ctx, pinID, xPlexClientIdentifier)

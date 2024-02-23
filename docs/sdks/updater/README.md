@@ -85,7 +85,7 @@ func main() {
     )
 
 
-    var download *operations.Download = operations.DownloadOne
+    var download *operations.Download = operations.DownloadOne.ToPointer()
 
     ctx := context.Background()
     res, err := s.Updater.CheckForUpdates(ctx, download)
@@ -140,9 +140,9 @@ func main() {
     )
 
 
-    var tonight *operations.Tonight = operations.TonightOne
+    var tonight *operations.Tonight = operations.TonightOne.ToPointer()
 
-    var skip *operations.Skip = operations.SkipZero
+    var skip *operations.Skip = operations.SkipZero.ToPointer()
 
     ctx := context.Background()
     res, err := s.Updater.ApplyUpdates(ctx, tonight, skip)

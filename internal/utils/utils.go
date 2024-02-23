@@ -8,6 +8,7 @@ import (
 	"math/big"
 	"reflect"
 	"regexp"
+	"strconv"
 	"strings"
 	"time"
 
@@ -60,6 +61,29 @@ func Contains(slice []string, item string) bool {
 			return true
 		}
 	}
+	return false
+}
+
+func MatchStatusCodes(expectedCodes []string, statusCode int) bool {
+	for _, codeStr := range expectedCodes {
+		code, err := strconv.Atoi(codeStr)
+		if err == nil {
+			if code == statusCode {
+				return true
+			}
+			continue
+		}
+
+		codeRange, err := strconv.Atoi(string(codeStr[0]))
+		if err != nil {
+			continue
+		}
+
+		if statusCode >= (codeRange*100) && statusCode < ((codeRange+1)*100) {
+			return true
+		}
+	}
+
 	return false
 }
 

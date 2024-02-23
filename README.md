@@ -69,6 +69,11 @@ func main() {
 * [MarkUnplayed](docs/sdks/media/README.md#markunplayed) - Mark Media Unplayed
 * [UpdatePlayProgress](docs/sdks/media/README.md#updateplayprogress) - Update Media Play Progress
 
+### [Video](docs/sdks/video/README.md)
+
+* [GetTimeline](docs/sdks/video/README.md#gettimeline) - Get the timeline for a media item
+* [StartUniversalTranscode](docs/sdks/video/README.md#startuniversaltranscode) - Start Universal Transcode
+
 ### [Activities](docs/sdks/activities/README.md)
 
 * [GetServerActivities](docs/sdks/activities/README.md#getserveractivities) - Get Server Activities
@@ -135,6 +140,10 @@ func main() {
 * [GetTransientToken](docs/sdks/security/README.md#gettransienttoken) - Get a Transient Token.
 * [GetSourceConnectionInformation](docs/sdks/security/README.md#getsourceconnectioninformation) - Get Source Connection Information
 
+### [Statistics](docs/sdks/statistics/README.md)
+
+* [GetStatistics](docs/sdks/statistics/README.md#getstatistics) - Get Media Statistics
+
 ### [Sessions](docs/sdks/sessions/README.md)
 
 * [GetSessions](docs/sdks/sessions/README.md#getsessions) - Get Active Sessions
@@ -147,11 +156,6 @@ func main() {
 * [GetUpdateStatus](docs/sdks/updater/README.md#getupdatestatus) - Querying status of updates
 * [CheckForUpdates](docs/sdks/updater/README.md#checkforupdates) - Checking for updates
 * [ApplyUpdates](docs/sdks/updater/README.md#applyupdates) - Apply Updates
-
-### [Video](docs/sdks/video/README.md)
-
-* [StartUniversalTranscode](docs/sdks/video/README.md#startuniversaltranscode) - Start Universal Transcode
-* [GetTimeline](docs/sdks/video/README.md#gettimeline) - Get the timeline for a media item
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Error Handling [errors] -->
@@ -303,9 +307,9 @@ func main() {
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
 	)
 
-	var xPlexClientIdentifier string = "string"
+	var xPlexClientIdentifier string = "<value>"
 
-	var strong *bool = false
+	var strong *bool = plexgo.Bool(false)
 
 	ctx := context.Background()
 	res, err := s.Plex.GetPin(ctx, operations.WithServerURL("https://plex.tv/api/v2"), xPlexClientIdentifier, strong)

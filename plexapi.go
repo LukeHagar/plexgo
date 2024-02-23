@@ -6,6 +6,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/LukeHagar/plexgo/internal/hooks"
 	"github.com/LukeHagar/plexgo/internal/utils"
 	"github.com/LukeHagar/plexgo/models/components"
 	"net/http"
@@ -54,6 +55,7 @@ type sdkConfiguration struct {
 	GenVersion        string
 	UserAgent         string
 	RetryConfig       *utils.RetryConfig
+	Hooks             *hooks.Hooks
 }
 
 func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
@@ -73,6 +75,9 @@ type PlexAPI struct {
 	// API Calls interacting with Plex Media Server Media
 	//
 	Media *Media
+	// API Calls that perform operations with Plex Media Server Videos
+	//
+	Video *Video
 	// Activities are awesome. They provide a way to monitor and control asynchronous operations on the server. In order to receive real-time updates for activities, a client would normally subscribe via either EventSource or Websocket endpoints.
 	// Activities are associated with HTTP replies via a special `X-Plex-Activity` header which contains the UUID of the activity.
 	// Activities are optional cancellable. If cancellable, they may be cancelled via the `DELETE` endpoint. Other details:
@@ -109,6 +114,9 @@ type PlexAPI struct {
 	// API Calls against Security for Plex Media Server
 	//
 	Security *Security
+	// API Calls that perform operations with Plex Media Server Statistics
+	//
+	Statistics *Statistics
 	// API Calls that perform search operations with Plex Media Server Sessions
 	//
 	Sessions *Sessions
@@ -116,9 +124,6 @@ type PlexAPI struct {
 	// Updates to the status can be observed via the Event API.
 	//
 	Updater *Updater
-	// API Calls that perform operations with Plex Media Server Videos
-	//
-	Video *Video
 
 	sdkConfiguration sdkConfiguration
 }
@@ -263,9 +268,9 @@ func New(opts ...SDKOption) *PlexAPI {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.3",
-			SDKVersion:        "0.3.0",
-			GenVersion:        "2.249.1",
-			UserAgent:         "speakeasy-sdk/go 0.3.0 2.249.1 0.0.3 github.com/LukeHagar/plexgo",
+			SDKVersion:        "0.4.0",
+			GenVersion:        "2.269.0",
+			UserAgent:         "speakeasy-sdk/go 0.4.0 2.269.0 0.0.3 github.com/LukeHagar/plexgo",
 			ServerDefaults: []map[string]string{
 				{
 					"protocol": "http",
@@ -273,11 +278,14 @@ func New(opts ...SDKOption) *PlexAPI {
 					"port":     "32400",
 				},
 			},
+			Hooks: hooks.New(),
 		},
 	}
 	for _, opt := range opts {
 		opt(sdk)
 	}
+
+	sdk.sdkConfiguration.DefaultClient = sdk.sdkConfiguration.Hooks.ClientInit(sdk.sdkConfiguration.DefaultClient)
 
 	// Use WithClient to override the default client if you would like to customize the timeout
 	if sdk.sdkConfiguration.DefaultClient == nil {
@@ -294,6 +302,8 @@ func New(opts ...SDKOption) *PlexAPI {
 	sdk.Server = newServer(sdk.sdkConfiguration)
 
 	sdk.Media = newMedia(sdk.sdkConfiguration)
+
+	sdk.Video = newVideo(sdk.sdkConfiguration)
 
 	sdk.Activities = newActivities(sdk.sdkConfiguration)
 
@@ -313,11 +323,11 @@ func New(opts ...SDKOption) *PlexAPI {
 
 	sdk.Security = newSecurity(sdk.sdkConfiguration)
 
+	sdk.Statistics = newStatistics(sdk.sdkConfiguration)
+
 	sdk.Sessions = newSessions(sdk.sdkConfiguration)
 
 	sdk.Updater = newUpdater(sdk.sdkConfiguration)
-
-	sdk.Video = newVideo(sdk.sdkConfiguration)
 
 	return sdk
 }
