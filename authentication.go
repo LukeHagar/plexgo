@@ -15,21 +15,25 @@ import (
 	"net/url"
 )
 
-// Security - API Calls against Security for Plex Media Server
-type Security struct {
+// Authentication - API Calls regarding authentication for Plex Media Server
+type Authentication struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newSecurity(sdkConfig sdkConfiguration) *Security {
-	return &Security{
+func newAuthentication(sdkConfig sdkConfiguration) *Authentication {
+	return &Authentication{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetTransientToken - Get a Transient Token.
 // This endpoint provides the caller with a temporary token with the same access level as the caller's token. These tokens are valid for up to 48 hours and are destroyed if the server instance is restarted.
-func (s *Security) GetTransientToken(ctx context.Context, type_ operations.GetTransientTokenQueryParamType, scope operations.Scope) (*operations.GetTransientTokenResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "getTransientToken"}
+func (s *Authentication) GetTransientToken(ctx context.Context, type_ operations.GetTransientTokenQueryParamType, scope operations.Scope) (*operations.GetTransientTokenResponse, error) {
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "getTransientToken",
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 
 	request := operations.GetTransientTokenRequest{
 		Type:  type_,
@@ -53,12 +57,12 @@ func (s *Security) GetTransientToken(ctx context.Context, type_ operations.GetTr
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.SecurityClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -68,15 +72,15 @@ func (s *Security) GetTransientToken(ctx context.Context, type_ operations.GetTr
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"400", "401", "4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}
@@ -125,8 +129,12 @@ func (s *Security) GetTransientToken(ctx context.Context, type_ operations.GetTr
 // GetSourceConnectionInformation - Get Source Connection Information
 // If a caller requires connection details and a transient token for a source that is known to the server, for example a cloud media provider or shared PMS, then this endpoint can be called. This endpoint is only accessible with either an admin token or a valid transient token generated from an admin token.
 // Note: requires Plex Media Server >= 1.15.4.
-func (s *Security) GetSourceConnectionInformation(ctx context.Context, source string) (*operations.GetSourceConnectionInformationResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "getSourceConnectionInformation"}
+func (s *Authentication) GetSourceConnectionInformation(ctx context.Context, source string) (*operations.GetSourceConnectionInformationResponse, error) {
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "getSourceConnectionInformation",
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 
 	request := operations.GetSourceConnectionInformationRequest{
 		Source: source,
@@ -149,12 +157,12 @@ func (s *Security) GetSourceConnectionInformation(ctx context.Context, source st
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.SecurityClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -164,15 +172,15 @@ func (s *Security) GetSourceConnectionInformation(ctx context.Context, source st
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"400", "401", "4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}

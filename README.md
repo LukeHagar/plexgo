@@ -135,10 +135,10 @@ func main() {
 * [AddPlaylistContents](docs/sdks/playlists/README.md#addplaylistcontents) - Adding to a Playlist
 * [UploadPlaylist](docs/sdks/playlists/README.md#uploadplaylist) - Upload Playlist
 
-### [Security](docs/sdks/security/README.md)
+### [Authentication](docs/sdks/authentication/README.md)
 
-* [GetTransientToken](docs/sdks/security/README.md#gettransienttoken) - Get a Transient Token.
-* [GetSourceConnectionInformation](docs/sdks/security/README.md#getsourceconnectioninformation) - Get Source Connection Information
+* [GetTransientToken](docs/sdks/authentication/README.md#gettransienttoken) - Get a Transient Token.
+* [GetSourceConnectionInformation](docs/sdks/authentication/README.md#getsourceconnectioninformation) - Get Source Connection Information
 
 ### [Statistics](docs/sdks/statistics/README.md)
 
@@ -298,14 +298,11 @@ package main
 import (
 	"context"
 	"github.com/LukeHagar/plexgo"
-	"github.com/LukeHagar/plexgo/models/components"
 	"log"
 )
 
 func main() {
-	s := plexgo.New(
-		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-	)
+	s := plexgo.New()
 
 	var xPlexClientIdentifier string = "<value>"
 

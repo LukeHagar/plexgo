@@ -41,7 +41,11 @@ func newSearch(sdkConfig sdkConfiguration) *Search {
 //
 // This request is intended to be very fast, and called as the user types.
 func (s *Search) PerformSearch(ctx context.Context, query string, sectionID *float64, limit *float64) (*operations.PerformSearchResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "performSearch"}
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "performSearch",
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 
 	request := operations.PerformSearchRequest{
 		Query:     query,
@@ -66,12 +70,12 @@ func (s *Search) PerformSearch(ctx context.Context, query string, sectionID *flo
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.SecurityClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -81,15 +85,15 @@ func (s *Search) PerformSearch(ctx context.Context, query string, sectionID *flo
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"400", "401", "4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}
@@ -141,7 +145,11 @@ func (s *Search) PerformSearch(ctx context.Context, query string, sectionID *flo
 // Whenever possible, clients should limit the search to the appropriate type.
 // Results, as well as their containing per-type hubs, contain a `distance` attribute which can be used to judge result quality.
 func (s *Search) PerformVoiceSearch(ctx context.Context, query string, sectionID *float64, limit *float64) (*operations.PerformVoiceSearchResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "performVoiceSearch"}
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "performVoiceSearch",
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 
 	request := operations.PerformVoiceSearchRequest{
 		Query:     query,
@@ -166,12 +174,12 @@ func (s *Search) PerformVoiceSearch(ctx context.Context, query string, sectionID
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.SecurityClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -181,15 +189,15 @@ func (s *Search) PerformVoiceSearch(ctx context.Context, query string, sectionID
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"400", "401", "4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}
@@ -238,7 +246,11 @@ func (s *Search) PerformVoiceSearch(ctx context.Context, query string, sectionID
 // GetSearchResults - Get Search Results
 // This will search the database for the string provided.
 func (s *Search) GetSearchResults(ctx context.Context, query string) (*operations.GetSearchResultsResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "getSearchResults"}
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "getSearchResults",
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 
 	request := operations.GetSearchResultsRequest{
 		Query: query,
@@ -261,12 +273,12 @@ func (s *Search) GetSearchResults(ctx context.Context, query string) (*operation
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.SecurityClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -276,15 +288,15 @@ func (s *Search) GetSearchResults(ctx context.Context, query string) (*operation
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"400", "401", "4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}

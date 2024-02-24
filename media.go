@@ -29,7 +29,11 @@ func newMedia(sdkConfig sdkConfiguration) *Media {
 // MarkPlayed - Mark Media Played
 // This will mark the provided media key as Played.
 func (s *Media) MarkPlayed(ctx context.Context, key float64) (*operations.MarkPlayedResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "markPlayed"}
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "markPlayed",
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 
 	request := operations.MarkPlayedRequest{
 		Key: key,
@@ -52,12 +56,12 @@ func (s *Media) MarkPlayed(ctx context.Context, key float64) (*operations.MarkPl
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.SecurityClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -67,15 +71,15 @@ func (s *Media) MarkPlayed(ctx context.Context, key float64) (*operations.MarkPl
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"400", "401", "4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}
@@ -124,7 +128,11 @@ func (s *Media) MarkPlayed(ctx context.Context, key float64) (*operations.MarkPl
 // MarkUnplayed - Mark Media Unplayed
 // This will mark the provided media key as Unplayed.
 func (s *Media) MarkUnplayed(ctx context.Context, key float64) (*operations.MarkUnplayedResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "markUnplayed"}
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "markUnplayed",
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 
 	request := operations.MarkUnplayedRequest{
 		Key: key,
@@ -147,12 +155,12 @@ func (s *Media) MarkUnplayed(ctx context.Context, key float64) (*operations.Mark
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.SecurityClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -162,15 +170,15 @@ func (s *Media) MarkUnplayed(ctx context.Context, key float64) (*operations.Mark
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"400", "401", "4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}
@@ -219,7 +227,11 @@ func (s *Media) MarkUnplayed(ctx context.Context, key float64) (*operations.Mark
 // UpdatePlayProgress - Update Media Play Progress
 // This API command can be used to update the play progress of a media item.
 func (s *Media) UpdatePlayProgress(ctx context.Context, key string, time float64, state string) (*operations.UpdatePlayProgressResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "updatePlayProgress"}
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "updatePlayProgress",
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 
 	request := operations.UpdatePlayProgressRequest{
 		Key:   key,
@@ -244,12 +256,12 @@ func (s *Media) UpdatePlayProgress(ctx context.Context, key string, time float64
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.SecurityClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -259,15 +271,15 @@ func (s *Media) UpdatePlayProgress(ctx context.Context, key string, time float64
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"400", "401", "4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}

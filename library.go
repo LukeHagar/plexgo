@@ -29,7 +29,11 @@ func newLibrary(sdkConfig sdkConfiguration) *Library {
 // GetFileHash - Get Hash Value
 // This resource returns hash values for local files
 func (s *Library) GetFileHash(ctx context.Context, url_ string, type_ *float64) (*operations.GetFileHashResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "getFileHash"}
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "getFileHash",
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 
 	request := operations.GetFileHashRequest{
 		URL:  url_,
@@ -53,12 +57,12 @@ func (s *Library) GetFileHash(ctx context.Context, url_ string, type_ *float64) 
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.SecurityClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -68,15 +72,15 @@ func (s *Library) GetFileHash(ctx context.Context, url_ string, type_ *float64) 
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"400", "401", "4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}
@@ -125,7 +129,11 @@ func (s *Library) GetFileHash(ctx context.Context, url_ string, type_ *float64) 
 // GetRecentlyAdded - Get Recently Added
 // This endpoint will return the recently added content.
 func (s *Library) GetRecentlyAdded(ctx context.Context) (*operations.GetRecentlyAddedResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "getRecentlyAdded"}
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "getRecentlyAdded",
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	opURL, err := url.JoinPath(baseURL, "/library/recentlyAdded")
@@ -140,12 +148,12 @@ func (s *Library) GetRecentlyAdded(ctx context.Context) (*operations.GetRecently
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.SecurityClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -155,15 +163,15 @@ func (s *Library) GetRecentlyAdded(ctx context.Context) (*operations.GetRecently
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"400", "401", "4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}
@@ -228,7 +236,11 @@ func (s *Library) GetRecentlyAdded(ctx context.Context) (*operations.GetRecently
 // Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.
 // This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year).
 func (s *Library) GetLibraries(ctx context.Context) (*operations.GetLibrariesResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "getLibraries"}
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "getLibraries",
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	opURL, err := url.JoinPath(baseURL, "/library/sections")
@@ -243,12 +255,12 @@ func (s *Library) GetLibraries(ctx context.Context) (*operations.GetLibrariesRes
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.SecurityClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -258,15 +270,15 @@ func (s *Library) GetLibraries(ctx context.Context) (*operations.GetLibrariesRes
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"400", "401", "4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}
@@ -364,7 +376,11 @@ func (s *Library) GetLibraries(ctx context.Context) (*operations.GetLibrariesRes
 //
 // > **Note**: Filters and sorts are optional; without them, no filtering controls are rendered.
 func (s *Library) GetLibrary(ctx context.Context, sectionID float64, includeDetails *operations.IncludeDetails) (*operations.GetLibraryResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "getLibrary"}
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "getLibrary",
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 
 	request := operations.GetLibraryRequest{
 		SectionID:      sectionID,
@@ -388,12 +404,12 @@ func (s *Library) GetLibrary(ctx context.Context, sectionID float64, includeDeta
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.SecurityClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -403,15 +419,15 @@ func (s *Library) GetLibrary(ctx context.Context, sectionID float64, includeDeta
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"400", "401", "4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}
@@ -471,7 +487,11 @@ func (s *Library) GetLibrary(ctx context.Context, sectionID float64, includeDeta
 // DeleteLibrary - Delete Library Section
 // Delate a library using a specific section
 func (s *Library) DeleteLibrary(ctx context.Context, sectionID float64) (*operations.DeleteLibraryResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "deleteLibrary"}
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "deleteLibrary",
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 
 	request := operations.DeleteLibraryRequest{
 		SectionID: sectionID,
@@ -490,12 +510,12 @@ func (s *Library) DeleteLibrary(ctx context.Context, sectionID float64) (*operat
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.SecurityClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -505,15 +525,15 @@ func (s *Library) DeleteLibrary(ctx context.Context, sectionID float64) (*operat
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"400", "401", "4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}
@@ -581,7 +601,11 @@ func (s *Library) DeleteLibrary(ctx context.Context, sectionID float64) (*operat
 // - `firstCharacter`: Items categorized by the first letter.
 // - `folder`: Items categorized by folder.
 func (s *Library) GetLibraryItems(ctx context.Context, sectionID int64, tag operations.Tag) (*operations.GetLibraryItemsResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "getLibraryItems"}
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "getLibraryItems",
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 
 	request := operations.GetLibraryItemsRequest{
 		SectionID: sectionID,
@@ -601,12 +625,12 @@ func (s *Library) GetLibraryItems(ctx context.Context, sectionID int64, tag oper
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.SecurityClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -616,15 +640,15 @@ func (s *Library) GetLibraryItems(ctx context.Context, sectionID int64, tag oper
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}
@@ -669,7 +693,11 @@ func (s *Library) GetLibraryItems(ctx context.Context, sectionID int64, tag oper
 // RefreshLibrary - Refresh Library
 // This endpoint Refreshes the library.
 func (s *Library) RefreshLibrary(ctx context.Context, sectionID float64) (*operations.RefreshLibraryResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "refreshLibrary"}
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "refreshLibrary",
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 
 	request := operations.RefreshLibraryRequest{
 		SectionID: sectionID,
@@ -688,12 +716,12 @@ func (s *Library) RefreshLibrary(ctx context.Context, sectionID float64) (*opera
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.SecurityClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -703,15 +731,15 @@ func (s *Library) RefreshLibrary(ctx context.Context, sectionID float64) (*opera
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"400", "401", "4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}
@@ -777,7 +805,11 @@ func (s *Library) RefreshLibrary(ctx context.Context, sectionID float64) (*opera
 //
 // > **Note**: Filters and sorts are optional; without them, no filtering controls are rendered.
 func (s *Library) SearchLibrary(ctx context.Context, sectionID int64, type_ operations.Type) (*operations.SearchLibraryResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "searchLibrary"}
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "searchLibrary",
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 
 	request := operations.SearchLibraryRequest{
 		SectionID: sectionID,
@@ -801,12 +833,12 @@ func (s *Library) SearchLibrary(ctx context.Context, sectionID int64, type_ oper
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.SecurityClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -816,15 +848,15 @@ func (s *Library) SearchLibrary(ctx context.Context, sectionID int64, type_ oper
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}
@@ -869,7 +901,11 @@ func (s *Library) SearchLibrary(ctx context.Context, sectionID int64, type_ oper
 // GetMetadata - Get Items Metadata
 // This endpoint will return the metadata of a library item specified with the ratingKey.
 func (s *Library) GetMetadata(ctx context.Context, ratingKey float64) (*operations.GetMetadataResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "getMetadata"}
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "getMetadata",
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 
 	request := operations.GetMetadataRequest{
 		RatingKey: ratingKey,
@@ -888,12 +924,12 @@ func (s *Library) GetMetadata(ctx context.Context, ratingKey float64) (*operatio
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.SecurityClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -903,15 +939,15 @@ func (s *Library) GetMetadata(ctx context.Context, ratingKey float64) (*operatio
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"400", "401", "4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}
@@ -971,7 +1007,11 @@ func (s *Library) GetMetadata(ctx context.Context, ratingKey float64) (*operatio
 // GetMetadataChildren - Get Items Children
 // This endpoint will return the children of of a library item specified with the ratingKey.
 func (s *Library) GetMetadataChildren(ctx context.Context, ratingKey float64) (*operations.GetMetadataChildrenResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "getMetadataChildren"}
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "getMetadataChildren",
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 
 	request := operations.GetMetadataChildrenRequest{
 		RatingKey: ratingKey,
@@ -990,12 +1030,12 @@ func (s *Library) GetMetadataChildren(ctx context.Context, ratingKey float64) (*
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.SecurityClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -1005,15 +1045,15 @@ func (s *Library) GetMetadataChildren(ctx context.Context, ratingKey float64) (*
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"400", "401", "4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}
@@ -1073,7 +1113,11 @@ func (s *Library) GetMetadataChildren(ctx context.Context, ratingKey float64) (*
 // GetOnDeck - Get On Deck
 // This endpoint will return the on deck content.
 func (s *Library) GetOnDeck(ctx context.Context) (*operations.GetOnDeckResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "getOnDeck"}
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "getOnDeck",
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	opURL, err := url.JoinPath(baseURL, "/library/onDeck")
@@ -1088,12 +1132,12 @@ func (s *Library) GetOnDeck(ctx context.Context) (*operations.GetOnDeckResponse,
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.SecurityClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -1103,15 +1147,15 @@ func (s *Library) GetOnDeck(ctx context.Context) (*operations.GetOnDeckResponse,
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"400", "401", "4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}

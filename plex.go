@@ -29,7 +29,11 @@ func newPlex(sdkConfig sdkConfiguration) *Plex {
 // GetPin - Get a Pin
 // Retrieve a Pin from Plex.tv for authentication flows
 func (s *Plex) GetPin(ctx context.Context, xPlexClientIdentifier string, strong *bool, opts ...operations.Option) (*operations.GetPinResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "getPin"}
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "getPin",
+		SecuritySource: nil,
+	}
 
 	request := operations.GetPinRequest{
 		XPlexClientIdentifier: xPlexClientIdentifier,
@@ -69,12 +73,12 @@ func (s *Plex) GetPin(ctx context.Context, xPlexClientIdentifier string, strong 
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.DefaultClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -84,15 +88,15 @@ func (s *Plex) GetPin(ctx context.Context, xPlexClientIdentifier string, strong 
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"400", "4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}
@@ -150,7 +154,11 @@ func (s *Plex) GetPin(ctx context.Context, xPlexClientIdentifier string, strong 
 // GetToken - Get Access Token
 // Retrieve an Access Token from Plex.tv after the Pin has already been authenticated
 func (s *Plex) GetToken(ctx context.Context, pinID string, xPlexClientIdentifier string, opts ...operations.Option) (*operations.GetTokenResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "getToken"}
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "getToken",
+		SecuritySource: nil,
+	}
 
 	request := operations.GetTokenRequest{
 		PinID:                 pinID,
@@ -186,12 +194,12 @@ func (s *Plex) GetToken(ctx context.Context, pinID string, xPlexClientIdentifier
 
 	utils.PopulateHeaders(ctx, req, request)
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.DefaultClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -201,15 +209,15 @@ func (s *Plex) GetToken(ctx context.Context, pinID string, xPlexClientIdentifier
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"400", "4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}

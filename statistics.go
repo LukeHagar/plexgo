@@ -29,7 +29,11 @@ func newStatistics(sdkConfig sdkConfiguration) *Statistics {
 // GetStatistics - Get Media Statistics
 // This will return the media statistics for the server
 func (s *Statistics) GetStatistics(ctx context.Context, timespan *int64) (*operations.GetStatisticsResponse, error) {
-	hookCtx := hooks.HookContext{OperationID: "getStatistics"}
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "getStatistics",
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 
 	request := operations.GetStatisticsRequest{
 		Timespan: timespan,
@@ -52,12 +56,12 @@ func (s *Statistics) GetStatistics(ctx context.Context, timespan *int64) (*opera
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
+	client := s.sdkConfiguration.SecurityClient
+
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
 		return nil, err
 	}
-
-	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil || httpRes == nil {
@@ -67,15 +71,15 @@ func (s *Statistics) GetStatistics(ctx context.Context, timespan *int64) (*opera
 			err = fmt.Errorf("error sending request: no response")
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 		return nil, err
 	} else if utils.MatchStatusCodes([]string{"400", "401", "4XX", "5XX"}, httpRes.StatusCode) {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
 			return nil, err
 		}

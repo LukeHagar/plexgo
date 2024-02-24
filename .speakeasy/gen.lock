@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: dfa99515-01c0-42eb-9be5-ee212fd03eb3
 management:
-  docChecksum: 278d186496d83d5830ba4870f8cad39d
+  docChecksum: e34dac84738ebf2d447ea2b9055a6eeb
   docVersion: 0.0.3
   speakeasyVersion: internal
-  generationVersion: 2.269.0
-  releaseVersion: 0.4.0
-  configChecksum: 319de8bf53c668d84b706d9496459b7c
+  generationVersion: 2.272.4
+  releaseVersion: 0.4.1
+  configChecksum: 181fc3f925a145abd1f8441c7a0c7cda
   repoURL: https://github.com/LukeHagar/plexgo.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexgo
@@ -14,9 +14,9 @@ management:
 features:
   go:
     constsAndDefaults: 0.1.3
-    core: 3.4.1
+    core: 3.4.3
     flattening: 2.81.1
-    globalSecurity: 2.82.6
+    globalSecurity: 2.82.7
     globalServerURLs: 2.82.1
     methodServerURLs: 2.82.1
     nameOverrides: 2.81.1
@@ -32,7 +32,7 @@ generatedFiles:
   - log.go
   - plex.go
   - playlists.go
-  - security.go
+  - authentication.go
   - statistics.go
   - sessions.go
   - updater.go
@@ -585,7 +585,7 @@ generatedFiles:
   - docs/models/operations/option.md
   - docs/sdks/plex/README.md
   - docs/sdks/playlists/README.md
-  - docs/sdks/security/README.md
+  - docs/sdks/authentication/README.md
   - docs/sdks/statistics/README.md
   - docs/sdks/sessions/README.md
   - docs/sdks/updater/README.md

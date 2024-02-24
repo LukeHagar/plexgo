@@ -1,9 +1,9 @@
-# Security
-(*Security*)
+# Authentication
+(*Authentication*)
 
 ## Overview
 
-API Calls against Security for Plex Media Server
+API Calls regarding authentication for Plex Media Server
 
 
 ### Available Operations
@@ -41,7 +41,7 @@ func main() {
     var scope operations.Scope = operations.ScopeAll
 
     ctx := context.Background()
-    res, err := s.Security.GetTransientToken(ctx, type_, scope)
+    res, err := s.Authentication.GetTransientToken(ctx, type_, scope)
     if err != nil {
         log.Fatal(err)
     }
@@ -97,7 +97,7 @@ func main() {
     var source string = "server://client-identifier"
 
     ctx := context.Background()
-    res, err := s.Security.GetSourceConnectionInformation(ctx, source)
+    res, err := s.Authentication.GetSourceConnectionInformation(ctx, source)
     if err != nil {
         log.Fatal(err)
     }

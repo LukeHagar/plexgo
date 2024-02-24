@@ -21,16 +21,13 @@ Retrieve a Pin from Plex.tv for authentication flows
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"context"
 	"log"
 )
 
 func main() {
-    s := plexgo.New(
-        plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := plexgo.New()
 
 
     var xPlexClientIdentifier string = "<value>"
@@ -77,7 +74,6 @@ Retrieve an Access Token from Plex.tv after the Pin has already been authenticat
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"context"
 	"log"
@@ -85,9 +81,7 @@ import(
 )
 
 func main() {
-    s := plexgo.New(
-        plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := plexgo.New()
 
 
     var pinID string = "<value>"
