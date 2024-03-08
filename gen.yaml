@@ -12,7 +12,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: false
 go:
-  version: 0.4.3
+  version: 0.5.0
   additionalDependencies: {}
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: true
@@ -28,3 +28,4 @@ go:
   maxMethodParams: 4
   outputModelSuffix: output
   packageName: github.com/LukeHagar/plexgo
+  responseFormat: envelope
