@@ -10,13 +10,15 @@ import (
 	"strings"
 )
 
-func PopulateHeaders(ctx context.Context, req *http.Request, headers interface{}) {
+func PopulateHeaders(ctx context.Context, req *http.Request, headers interface{}, globals map[string]map[string]map[string]interface{}) {
 	headerParamsStructType := reflect.TypeOf(headers)
 	headerParamsValType := reflect.ValueOf(headers)
 
 	for i := 0; i < headerParamsStructType.NumField(); i++ {
 		fieldType := headerParamsStructType.Field(i)
 		valType := headerParamsValType.Field(i)
+
+		valType = populateFromGlobals(fieldType, valType, "header", globals)
 
 		tag := parseParamTag(headerParamTagKey, fieldType, "simple", false)
 		if tag == nil {
