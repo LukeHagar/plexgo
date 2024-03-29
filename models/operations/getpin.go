@@ -13,16 +13,16 @@ var GetPinServerList = []string{
 }
 
 type GetPinRequest struct {
-	// The unique identifier for the client application
-	// This is used to track the client application and its usage
-	// (UUID, serial number, or other number unique per device)
-	//
-	XPlexClientIdentifier string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
 	// Determines the kind of code returned by the API call
 	// Strong codes are used for Pin authentication flows
 	// Non-Strong codes are used for `Plex.tv/link`
 	//
 	Strong *bool `default:"false" queryParam:"style=form,explode=true,name=strong"`
+	// The unique identifier for the client application
+	// This is used to track the client application and its usage
+	// (UUID, serial number, or other number unique per device)
+	//
+	XPlexClientIdentifier *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
 }
 
 func (g GetPinRequest) MarshalJSON() ([]byte, error) {
@@ -36,18 +36,18 @@ func (g *GetPinRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetPinRequest) GetXPlexClientIdentifier() string {
-	if o == nil {
-		return ""
-	}
-	return o.XPlexClientIdentifier
-}
-
 func (o *GetPinRequest) GetStrong() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Strong
+}
+
+func (o *GetPinRequest) GetXPlexClientIdentifier() *string {
+	if o == nil {
+		return nil
+	}
+	return o.XPlexClientIdentifier
 }
 
 type Location struct {

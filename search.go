@@ -67,7 +67,7 @@ func (s *Search) PerformSearch(ctx context.Context, query string, sectionID *flo
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, s.sdkConfiguration.Globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -175,7 +175,7 @@ func (s *Search) PerformVoiceSearch(ctx context.Context, query string, sectionID
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, s.sdkConfiguration.Globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -278,7 +278,7 @@ func (s *Search) GetSearchResults(ctx context.Context, query string) (*operation
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, s.sdkConfiguration.Globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

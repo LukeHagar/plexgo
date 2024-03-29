@@ -54,7 +54,7 @@ func (s *Playlists) CreatePlaylist(ctx context.Context, request operations.Creat
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, s.sdkConfiguration.Globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -169,7 +169,7 @@ func (s *Playlists) GetPlaylists(ctx context.Context, playlistType *operations.P
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, s.sdkConfiguration.Globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -272,7 +272,7 @@ func (s *Playlists) GetPlaylist(ctx context.Context, playlistID float64) (*opera
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/playlists/{playlistID}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/playlists/{playlistID}", request, s.sdkConfiguration.Globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -382,7 +382,7 @@ func (s *Playlists) DeletePlaylist(ctx context.Context, playlistID float64) (*op
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/playlists/{playlistID}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/playlists/{playlistID}", request, s.sdkConfiguration.Globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -483,7 +483,7 @@ func (s *Playlists) UpdatePlaylist(ctx context.Context, playlistID float64, titl
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/playlists/{playlistID}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/playlists/{playlistID}", request, s.sdkConfiguration.Globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -495,7 +495,7 @@ func (s *Playlists) UpdatePlaylist(ctx context.Context, playlistID float64, titl
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, s.sdkConfiguration.Globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -590,7 +590,7 @@ func (s *Playlists) GetPlaylistContents(ctx context.Context, playlistID float64,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/playlists/{playlistID}/items", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/playlists/{playlistID}/items", request, s.sdkConfiguration.Globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -602,7 +602,7 @@ func (s *Playlists) GetPlaylistContents(ctx context.Context, playlistID float64,
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, s.sdkConfiguration.Globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -704,7 +704,7 @@ func (s *Playlists) ClearPlaylistContents(ctx context.Context, playlistID float6
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/playlists/{playlistID}/items", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/playlists/{playlistID}/items", request, s.sdkConfiguration.Globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -806,7 +806,7 @@ func (s *Playlists) AddPlaylistContents(ctx context.Context, playlistID float64,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/playlists/{playlistID}/items", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/playlists/{playlistID}/items", request, s.sdkConfiguration.Globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -818,7 +818,7 @@ func (s *Playlists) AddPlaylistContents(ctx context.Context, playlistID float64,
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, s.sdkConfiguration.Globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -933,7 +933,7 @@ func (s *Playlists) UploadPlaylist(ctx context.Context, path string, force opera
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, s.sdkConfiguration.Globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

@@ -27,15 +27,17 @@ import(
 )
 
 func main() {
-    s := plexgo.New()
+    s := plexgo.New(
+        plexgo.WithXPlexClientIdentifier("<value>"),
+    )
 
-
-    var xPlexClientIdentifier string = "<value>"
 
     var strong *bool = plexgo.Bool(false)
 
+    var xPlexClientIdentifier *string = plexgo.String("<value>")
+
     ctx := context.Background()
-    res, err := s.Plex.GetPin(ctx, xPlexClientIdentifier, strong)
+    res, err := s.Plex.GetPin(ctx, strong, xPlexClientIdentifier)
     if err != nil {
         log.Fatal(err)
     }
@@ -50,8 +52,8 @@ func main() {
 | Parameter                                                                                                                                                             | Type                                                                                                                                                                  | Required                                                                                                                                                              | Description                                                                                                                                                           |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                                                                                 | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                 | :heavy_check_mark:                                                                                                                                                    | The context to use for the request.                                                                                                                                   |
-| `xPlexClientIdentifier`                                                                                                                                               | *string*                                                                                                                                                              | :heavy_check_mark:                                                                                                                                                    | The unique identifier for the client application<br/>This is used to track the client application and its usage<br/>(UUID, serial number, or other number unique per device)<br/> |
 | `strong`                                                                                                                                                              | **bool*                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                    | Determines the kind of code returned by the API call<br/>Strong codes are used for Pin authentication flows<br/>Non-Strong codes are used for `Plex.tv/link`<br/>     |
+| `xPlexClientIdentifier`                                                                                                                                               | **string*                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                    | The unique identifier for the client application<br/>This is used to track the client application and its usage<br/>(UUID, serial number, or other number unique per device)<br/> |
 | `opts`                                                                                                                                                                | [][operations.Option](../../models/operations/option.md)                                                                                                              | :heavy_minus_sign:                                                                                                                                                    | The options for this request.                                                                                                                                         |
 
 
@@ -79,12 +81,14 @@ import(
 )
 
 func main() {
-    s := plexgo.New()
+    s := plexgo.New(
+        plexgo.WithXPlexClientIdentifier("<value>"),
+    )
 
 
     var pinID string = "<value>"
 
-    var xPlexClientIdentifier string = "<value>"
+    var xPlexClientIdentifier *string = plexgo.String("<value>")
 
     ctx := context.Background()
     res, err := s.Plex.GetToken(ctx, pinID, xPlexClientIdentifier)
@@ -103,7 +107,7 @@ func main() {
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                                                                                 | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                 | :heavy_check_mark:                                                                                                                                                    | The context to use for the request.                                                                                                                                   |
 | `pinID`                                                                                                                                                               | *string*                                                                                                                                                              | :heavy_check_mark:                                                                                                                                                    | The PinID to retrieve an access token for                                                                                                                             |
-| `xPlexClientIdentifier`                                                                                                                                               | *string*                                                                                                                                                              | :heavy_check_mark:                                                                                                                                                    | The unique identifier for the client application<br/>This is used to track the client application and its usage<br/>(UUID, serial number, or other number unique per device)<br/> |
+| `xPlexClientIdentifier`                                                                                                                                               | **string*                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                    | The unique identifier for the client application<br/>This is used to track the client application and its usage<br/>(UUID, serial number, or other number unique per device)<br/> |
 | `opts`                                                                                                                                                                | [][operations.Option](../../models/operations/option.md)                                                                                                              | :heavy_minus_sign:                                                                                                                                                    | The options for this request.                                                                                                                                         |
 
 

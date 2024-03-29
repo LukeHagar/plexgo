@@ -39,6 +39,7 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+        plexgo.WithXPlexClientIdentifier("<value>"),
     )
 
 
@@ -94,6 +95,7 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+        plexgo.WithXPlexClientIdentifier("<value>"),
     )
 
     ctx := context.Background()
@@ -147,6 +149,7 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+        plexgo.WithXPlexClientIdentifier("<value>"),
     )
 
     ctx := context.Background()
@@ -234,6 +237,7 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+        plexgo.WithXPlexClientIdentifier("<value>"),
     )
 
 
@@ -288,6 +292,7 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+        plexgo.WithXPlexClientIdentifier("<value>"),
     )
 
 
@@ -360,6 +365,7 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+        plexgo.WithXPlexClientIdentifier("<value>"),
     )
 
 
@@ -414,6 +420,7 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+        plexgo.WithXPlexClientIdentifier("<value>"),
     )
 
 
@@ -484,6 +491,7 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+        plexgo.WithXPlexClientIdentifier("<value>"),
     )
 
 
@@ -538,6 +546,7 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+        plexgo.WithXPlexClientIdentifier("<value>"),
     )
 
 
@@ -590,6 +599,7 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+        plexgo.WithXPlexClientIdentifier("<value>"),
     )
 
 
@@ -642,6 +652,7 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+        plexgo.WithXPlexClientIdentifier("<value>"),
     )
 
     ctx := context.Background()

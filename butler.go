@@ -345,7 +345,7 @@ func (s *Butler) StartTask(ctx context.Context, taskName operations.TaskName) (*
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/butler/{taskName}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/butler/{taskName}", request, s.sdkConfiguration.Globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -446,7 +446,7 @@ func (s *Butler) StopTask(ctx context.Context, taskName operations.PathParamTask
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/butler/{taskName}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/butler/{taskName}", request, s.sdkConfiguration.Globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

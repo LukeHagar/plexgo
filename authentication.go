@@ -54,7 +54,7 @@ func (s *Authentication) GetTransientToken(ctx context.Context, type_ operations
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, s.sdkConfiguration.Globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -158,7 +158,7 @@ func (s *Authentication) GetSourceConnectionInformation(ctx context.Context, sou
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, s.sdkConfiguration.Globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

@@ -29,6 +29,7 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+        plexgo.WithXPlexClientIdentifier("<value>"),
     )
 
 

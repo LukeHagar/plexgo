@@ -359,7 +359,7 @@ func (s *Sessions) StopTranscodeSession(ctx context.Context, sessionKey string) 
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/transcode/sessions/{sessionKey}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/transcode/sessions/{sessionKey}", request, s.sdkConfiguration.Globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

@@ -28,7 +28,7 @@ func newPlex(sdkConfig sdkConfiguration) *Plex {
 
 // GetPin - Get a Pin
 // Retrieve a Pin from Plex.tv for authentication flows
-func (s *Plex) GetPin(ctx context.Context, xPlexClientIdentifier string, strong *bool, opts ...operations.Option) (*operations.GetPinResponse, error) {
+func (s *Plex) GetPin(ctx context.Context, strong *bool, xPlexClientIdentifier *string, opts ...operations.Option) (*operations.GetPinResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "getPin",
@@ -37,8 +37,8 @@ func (s *Plex) GetPin(ctx context.Context, xPlexClientIdentifier string, strong 
 	}
 
 	request := operations.GetPinRequest{
-		XPlexClientIdentifier: xPlexClientIdentifier,
 		Strong:                strong,
+		XPlexClientIdentifier: xPlexClientIdentifier,
 	}
 
 	o := operations.Options{}
@@ -68,9 +68,9 @@ func (s *Plex) GetPin(ctx context.Context, xPlexClientIdentifier string, strong 
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, s.sdkConfiguration.Globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, s.sdkConfiguration.Globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -153,7 +153,7 @@ func (s *Plex) GetPin(ctx context.Context, xPlexClientIdentifier string, strong 
 
 // GetToken - Get Access Token
 // Retrieve an Access Token from Plex.tv after the Pin has already been authenticated
-func (s *Plex) GetToken(ctx context.Context, pinID string, xPlexClientIdentifier string, opts ...operations.Option) (*operations.GetTokenResponse, error) {
+func (s *Plex) GetToken(ctx context.Context, pinID string, xPlexClientIdentifier *string, opts ...operations.Option) (*operations.GetTokenResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "getToken",
@@ -181,7 +181,7 @@ func (s *Plex) GetToken(ctx context.Context, pinID string, xPlexClientIdentifier
 		baseURL = *o.ServerURL
 	}
 
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/pins/{pinID}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/pins/{pinID}", request, s.sdkConfiguration.Globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -193,7 +193,7 @@ func (s *Plex) GetToken(ctx context.Context, pinID string, xPlexClientIdentifier
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, s.sdkConfiguration.Globals)
 
 	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {
