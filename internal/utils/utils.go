@@ -158,23 +158,43 @@ func valToString(val interface{}) string {
 	}
 }
 
-func populateFromGlobals(fieldType reflect.StructField, valType reflect.Value, paramType string, globals map[string]map[string]map[string]interface{}) reflect.Value {
-	if globals != nil && fieldType.Type.Kind() == reflect.Ptr {
-		parameters, ok := globals["parameters"]
-		if ok {
-			paramsOfType, ok := parameters[paramType]
-			if ok {
-				globalVal, ok := paramsOfType[fieldType.Name]
-				if ok {
-					if reflect.TypeOf(globalVal).Kind() == fieldType.Type.Elem().Kind() && valType.IsNil() {
-						valType = reflect.ValueOf(&globalVal)
-					}
-				}
-			}
+func populateFromGlobals(fieldType reflect.StructField, valType reflect.Value, paramType string, globals interface{}) (reflect.StructField, reflect.Value, bool) {
+	if globals == nil {
+		return fieldType, valType, false
+	}
+
+	globalsStruct := reflect.TypeOf(globals)
+	globalsStructVal := reflect.ValueOf(globals)
+
+	globalsField, found := globalsStruct.FieldByName(fieldType.Name)
+	if !found {
+		return fieldType, valType, false
+	}
+
+	if fieldType.Type.Kind() != reflect.Ptr || !valType.IsNil() {
+		return fieldType, valType, true
+	}
+
+	globalsVal := globalsStructVal.FieldByName(fieldType.Name)
+
+	if !globalsVal.IsValid() {
+		return fieldType, valType, false
+	}
+
+	switch paramType {
+	case queryParamTagKey:
+		qpTag := parseQueryParamTag(globalsField)
+		if qpTag == nil {
+			return fieldType, valType, false
+		}
+	default:
+		tag := parseParamTag(paramType, fieldType, "simple", false)
+		if tag == nil {
+			return fieldType, valType, false
 		}
 	}
 
-	return valType
+	return globalsField, globalsVal, true
 }
 
 func isNil(typ reflect.Type, val reflect.Value) bool {
@@ -190,5 +210,14 @@ func isNil(typ reflect.Type, val reflect.Value) bool {
 		return val.IsNil()
 	}
 
+	return false
+}
+
+func contains(arr []string, str string) bool {
+	for _, a := range arr {
+		if a == str {
+			return true
+		}
+	}
 	return false
 }

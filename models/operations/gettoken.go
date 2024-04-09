@@ -10,6 +10,21 @@ var GetTokenServerList = []string{
 	"https://plex.tv/api/v2",
 }
 
+type GetTokenGlobals struct {
+	// The unique identifier for the client application
+	// This is used to track the client application and its usage
+	// (UUID, serial number, or other number unique per device)
+	//
+	XPlexClientIdentifier string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+}
+
+func (o *GetTokenGlobals) GetXPlexClientIdentifier() string {
+	if o == nil {
+		return ""
+	}
+	return o.XPlexClientIdentifier
+}
+
 type GetTokenRequest struct {
 	// The PinID to retrieve an access token for
 	PinID string `pathParam:"style=simple,explode=false,name=pinID"`

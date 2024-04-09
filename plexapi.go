@@ -6,6 +6,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/LukeHagar/plexgo/internal/globals"
 	"github.com/LukeHagar/plexgo/internal/hooks"
 	"github.com/LukeHagar/plexgo/internal/utils"
 	"github.com/LukeHagar/plexgo/models/components"
@@ -53,7 +54,7 @@ type sdkConfiguration struct {
 	SDKVersion        string
 	GenVersion        string
 	UserAgent         string
-	Globals           map[string]map[string]map[string]interface{}
+	Globals           globals.Globals
 	RetryConfig       *utils.RetryConfig
 	Hooks             *hooks.Hooks
 }
@@ -259,11 +260,7 @@ func WithSecuritySource(security func(context.Context) (components.Security, err
 // WithXPlexClientIdentifier allows setting the XPlexClientIdentifier parameter for all supported operations
 func WithXPlexClientIdentifier(xPlexClientIdentifier string) SDKOption {
 	return func(sdk *PlexAPI) {
-		if _, ok := sdk.sdkConfiguration.Globals["parameters"]["header"]; !ok {
-			sdk.sdkConfiguration.Globals["parameters"]["header"] = map[string]interface{}{}
-		}
-
-		sdk.sdkConfiguration.Globals["parameters"]["header"]["XPlexClientIdentifier"] = xPlexClientIdentifier
+		sdk.sdkConfiguration.Globals.XPlexClientIdentifier = xPlexClientIdentifier
 	}
 }
 
@@ -279,12 +276,10 @@ func New(opts ...SDKOption) *PlexAPI {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.3",
-			SDKVersion:        "0.6.1",
-			GenVersion:        "2.298.0",
-			UserAgent:         "speakeasy-sdk/go 0.6.1 2.298.0 0.0.3 github.com/LukeHagar/plexgo",
-			Globals: map[string]map[string]map[string]interface{}{
-				"parameters": {},
-			},
+			SDKVersion:        "0.6.2",
+			GenVersion:        "2.301.0",
+			UserAgent:         "speakeasy-sdk/go 0.6.2 2.301.0 0.0.3 github.com/LukeHagar/plexgo",
+			Globals:           globals.Globals{},
 			ServerDefaults: []map[string]string{
 				{
 					"protocol": "http",

@@ -12,7 +12,6 @@ import (
 	"github.com/LukeHagar/plexgo/models/sdkerrors"
 	"io"
 	"net/http"
-	"net/url"
 )
 
 // Plex - API Calls that perform operations directly against https://Plex.tv
@@ -41,6 +40,10 @@ func (s *Plex) GetPin(ctx context.Context, strong *bool, xPlexClientIdentifier *
 		XPlexClientIdentifier: xPlexClientIdentifier,
 	}
 
+	globals := operations.GetPinGlobals{
+		XPlexClientIdentifier: s.sdkConfiguration.Globals.XPlexClientIdentifier,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionServerURL,
@@ -56,7 +59,7 @@ func (s *Plex) GetPin(ctx context.Context, strong *bool, xPlexClientIdentifier *
 		baseURL = *o.ServerURL
 	}
 
-	opURL, err := url.JoinPath(baseURL, "/pins")
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/pins", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -68,9 +71,9 @@ func (s *Plex) GetPin(ctx context.Context, strong *bool, xPlexClientIdentifier *
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, s.sdkConfiguration.Globals)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, s.sdkConfiguration.Globals); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -166,6 +169,10 @@ func (s *Plex) GetToken(ctx context.Context, pinID string, xPlexClientIdentifier
 		XPlexClientIdentifier: xPlexClientIdentifier,
 	}
 
+	globals := operations.GetTokenGlobals{
+		XPlexClientIdentifier: s.sdkConfiguration.Globals.XPlexClientIdentifier,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionServerURL,
@@ -181,7 +188,7 @@ func (s *Plex) GetToken(ctx context.Context, pinID string, xPlexClientIdentifier
 		baseURL = *o.ServerURL
 	}
 
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/pins/{pinID}", request, s.sdkConfiguration.Globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/pins/{pinID}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -193,7 +200,11 @@ func (s *Plex) GetToken(ctx context.Context, pinID string, xPlexClientIdentifier
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, s.sdkConfiguration.Globals)
+	utils.PopulateHeaders(ctx, req, request, globals)
+
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {

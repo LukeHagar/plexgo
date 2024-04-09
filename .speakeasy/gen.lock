@@ -3,10 +3,10 @@ id: dfa99515-01c0-42eb-9be5-ee212fd03eb3
 management:
   docChecksum: a91eaf9ec1e6a3a6f4bf0571f5b18bae
   docVersion: 0.0.3
-  speakeasyVersion: 1.235.0
-  generationVersion: 2.298.0
-  releaseVersion: 0.6.1
-  configChecksum: d8f185571a23470089a80d835fcabcbb
+  speakeasyVersion: 1.244.0
+  generationVersion: 2.301.0
+  releaseVersion: 0.6.2
+  configChecksum: acec136a1f3ec962b5f7a52fe3035935
   repoURL: https://github.com/LukeHagar/plexgo.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexgo
@@ -14,7 +14,7 @@ management:
 features:
   go:
     constsAndDefaults: 0.1.4
-    core: 3.4.5
+    core: 3.4.6
     flattening: 2.81.1
     globalSecurity: 2.82.9
     globalServerURLs: 2.82.2
@@ -56,6 +56,7 @@ generatedFiles:
   - internal/utils/retries.go
   - internal/utils/security.go
   - internal/utils/utils.go
+  - internal/globals/globals.go
   - /models/operations/getservercapabilities.go
   - /models/operations/getserverpreferences.go
   - /models/operations/getavailableclients.go
@@ -362,10 +363,12 @@ generatedFiles:
   - docs/models/operations/loglineresponse.md
   - docs/models/operations/logmultilineresponse.md
   - docs/models/operations/enablepapertrailresponse.md
+  - docs/models/operations/getpinglobals.md
   - docs/models/operations/getpinrequest.md
   - docs/models/operations/location.md
   - docs/models/operations/getpinresponsebody.md
   - docs/models/operations/getpinresponse.md
+  - docs/models/operations/gettokenglobals.md
   - docs/models/operations/gettokenrequest.md
   - docs/models/operations/gettokenresponse.md
   - docs/models/operations/queryparamtype.md

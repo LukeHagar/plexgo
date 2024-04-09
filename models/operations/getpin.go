@@ -12,6 +12,21 @@ var GetPinServerList = []string{
 	"https://plex.tv/api/v2",
 }
 
+type GetPinGlobals struct {
+	// The unique identifier for the client application
+	// This is used to track the client application and its usage
+	// (UUID, serial number, or other number unique per device)
+	//
+	XPlexClientIdentifier string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+}
+
+func (o *GetPinGlobals) GetXPlexClientIdentifier() string {
+	if o == nil {
+		return ""
+	}
+	return o.XPlexClientIdentifier
+}
+
 type GetPinRequest struct {
 	// Determines the kind of code returned by the API call
 	// Strong codes are used for Pin authentication flows
