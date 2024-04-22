@@ -33,7 +33,7 @@ import (
 func main() {
 	s := plexgo.New(
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithXPlexClientIdentifier("<value>"),
+		plexgo.WithXPlexClientIdentifier("Postman"),
 	)
 
 	ctx := context.Background()
@@ -185,7 +185,7 @@ import (
 func main() {
 	s := plexgo.New(
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithXPlexClientIdentifier("<value>"),
+		plexgo.WithXPlexClientIdentifier("Postman"),
 	)
 
 	ctx := context.Background()
@@ -236,7 +236,7 @@ func main() {
 	s := plexgo.New(
 		plexgo.WithServerIndex(0),
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithXPlexClientIdentifier("<value>"),
+		plexgo.WithXPlexClientIdentifier("Postman"),
 	)
 
 	ctx := context.Background()
@@ -275,7 +275,7 @@ func main() {
 	s := plexgo.New(
 		plexgo.WithServerURL("{protocol}://{ip}:{port}"),
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithXPlexClientIdentifier("<value>"),
+		plexgo.WithXPlexClientIdentifier("Postman"),
 	)
 
 	ctx := context.Background()
@@ -304,12 +304,12 @@ import (
 
 func main() {
 	s := plexgo.New(
-		plexgo.WithXPlexClientIdentifier("<value>"),
+		plexgo.WithXPlexClientIdentifier("Postman"),
 	)
 
 	var strong *bool = plexgo.Bool(false)
 
-	var xPlexClientIdentifier *string = plexgo.String("<value>")
+	var xPlexClientIdentifier *string = plexgo.String("Postman")
 
 	ctx := context.Background()
 	res, err := s.Plex.GetPin(ctx, operations.WithServerURL("https://plex.tv/api/v2"), strong, xPlexClientIdentifier)
@@ -377,7 +377,7 @@ import (
 func main() {
 	s := plexgo.New(
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithXPlexClientIdentifier("<value>"),
+		plexgo.WithXPlexClientIdentifier("Postman"),
 	)
 
 	ctx := context.Background()
@@ -424,7 +424,7 @@ d6 := types.MustDateFromString("2019-01-01") // returns types.Date and panics on
 
 A parameter is configured globally. This parameter must be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, This global value will be used as the default on the operations that use it. When such operations are called, there is a place in each to override the global value, if needed.
 
-For example, you can set `X-Plex-Client-Identifier` to `"<value>"` at SDK initialization and then you do not have to pass the same value on calls to operations like `GetPin`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
+For example, you can set `X-Plex-Client-Identifier` to `"Postman"` at SDK initialization and then you do not have to pass the same value on calls to operations like `GetPin`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
 
 
 ### Available Globals
@@ -452,12 +452,12 @@ import (
 
 func main() {
 	s := plexgo.New(
-		plexgo.WithXPlexClientIdentifier("<value>"),
+		plexgo.WithXPlexClientIdentifier("Postman"),
 	)
 
 	var strong *bool = plexgo.Bool(false)
 
-	var xPlexClientIdentifier *string = plexgo.String("<value>")
+	var xPlexClientIdentifier *string = plexgo.String("Postman")
 
 	ctx := context.Background()
 	res, err := s.Plex.GetPin(ctx, strong, xPlexClientIdentifier)

@@ -32,7 +32,7 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("<value>"),
+        plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
     ctx := context.Background()
@@ -80,7 +80,7 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("<value>"),
+        plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
     ctx := context.Background()
@@ -128,7 +128,7 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("<value>"),
+        plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
     ctx := context.Background()
@@ -176,7 +176,7 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("<value>"),
+        plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
 
