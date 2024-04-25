@@ -257,3 +257,11 @@ Based on:
 - Speakeasy CLI 1.271.0 (2.312.1) https://github.com/speakeasy-api/speakeasy
 ### Generated
 - [go v0.6.5] .
+
+## 2024-04-25 00:48:55
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.274.1 (2.314.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v0.6.5] .
