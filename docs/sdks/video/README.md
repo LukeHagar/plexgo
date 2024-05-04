@@ -36,16 +36,16 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Video.GetTimeline(ctx, operations.GetTimelineRequest{
-        RatingKey: 716.56,
-        Key: "<key>",
-        State: operations.StatePaused,
-        HasMDE: 7574.33,
-        Time: 3327.51,
-        Duration: 7585.39,
-        Context: "<value>",
-        PlayQueueItemID: 1406.21,
-        PlayBackTime: 2699.34,
-        Row: 3536.42,
+        RatingKey: 23409,
+        Key: "/library/metadata/23409",
+        State: operations.StatePlaying,
+        HasMDE: 1,
+        Time: 2000,
+        Duration: 10000,
+        Context: "home:hub.continueWatching",
+        PlayQueueItemID: 1,
+        PlayBackTime: 2000,
+        Row: 1,
     })
     if err != nil {
         log.Fatal(err)
@@ -97,11 +97,22 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Video.StartUniversalTranscode(ctx, operations.StartUniversalTranscodeRequest{
-        HasMDE: 8924.99,
-        Path: "/etc/mail",
-        MediaIndex: 9962.95,
-        PartIndex: 1232.82,
-        Protocol: "<value>",
+        HasMDE: 1,
+        Path: "/library/metadata/23409",
+        MediaIndex: 0,
+        PartIndex: 0,
+        Protocol: "hls",
+        FastSeek: plexgo.Float64(0),
+        DirectPlay: plexgo.Float64(0),
+        DirectStream: plexgo.Float64(0),
+        SubtitleSize: plexgo.Float64(100),
+        Subtites: plexgo.String("burn"),
+        AudioBoost: plexgo.Float64(100),
+        Location: plexgo.String("lan"),
+        MediaBufferSize: plexgo.Float64(102400),
+        Session: plexgo.String("zvcage8b7rkioqcm8f4uns4c"),
+        AddDebugOverlay: plexgo.Float64(0),
+        AutoAdjustQuality: plexgo.Float64(0),
     })
     if err != nil {
         log.Fatal(err)

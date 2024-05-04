@@ -88,7 +88,7 @@ func main() {
     )
 
 
-    var activityUUID string = "<value>"
+    var activityUUID string = "25b71ed5-0f9d-461c-baa7-d404e9e10d3e"
 
     ctx := context.Background()
     res, err := s.Activities.CancelServerActivities(ctx, activityUUID)
@@ -103,10 +103,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `activityUUID`                                        | *string*                                              | :heavy_check_mark:                                    | The UUID of the activity to cancel.                   |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           | Example                                               |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |                                                       |
+| `activityUUID`                                        | *string*                                              | :heavy_check_mark:                                    | The UUID of the activity to cancel.                   | 25b71ed5-0f9d-461c-baa7-d404e9e10d3e                  |
 
 
 ### Response
