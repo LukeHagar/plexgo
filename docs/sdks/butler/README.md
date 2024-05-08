@@ -36,6 +36,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
+
+    
     ctx := context.Background()
     res, err := s.Butler.GetButlerTasks(ctx)
     if err != nil {
@@ -89,6 +91,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
+
+    
     ctx := context.Background()
     res, err := s.Butler.StartAllTasks(ctx)
     if err != nil {
@@ -138,6 +142,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
+
+    
     ctx := context.Background()
     res, err := s.Butler.StopAllTasks(ctx)
     if err != nil {
@@ -192,9 +198,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var taskName operations.TaskName = operations.TaskNameCleanOldBundles
-
+    
     ctx := context.Background()
     res, err := s.Butler.StartTask(ctx, taskName)
     if err != nil {
@@ -246,9 +251,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var taskName operations.PathParamTaskName = operations.PathParamTaskNameBackupDatabase
-
+    
     ctx := context.Background()
     res, err := s.Butler.StopTask(ctx, taskName)
     if err != nil {

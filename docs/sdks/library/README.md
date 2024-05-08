@@ -13,7 +13,6 @@ API Calls interacting with Plex Media Server Libraries
 * [GetLibraries](#getlibraries) - Get All Libraries
 * [GetLibrary](#getlibrary) - Get Library Details
 * [DeleteLibrary](#deletelibrary) - Delete Library Section
-* [GetLibraryItems](#getlibraryitems) - Get Library Items
 * [RefreshLibrary](#refreshlibrary) - Refresh Library
 * [SearchLibrary](#searchlibrary) - Search Library
 * [GetMetadata](#getmetadata) - Get Items Metadata
@@ -42,11 +41,10 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var url_ string = "file://C:\Image.png&type=13"
 
     var type_ *float64 = plexgo.Float64(4462.17)
-
+    
     ctx := context.Background()
     res, err := s.Library.GetFileHash(ctx, url_, type_)
     if err != nil {
@@ -98,6 +96,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
+
+    
     ctx := context.Background()
     res, err := s.Library.GetRecentlyAdded(ctx)
     if err != nil {
@@ -152,6 +152,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
+
+    
     ctx := context.Background()
     res, err := s.Library.GetLibraries(ctx)
     if err != nil {
@@ -240,11 +242,10 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var sectionID float64 = 1000
 
     var includeDetails *operations.IncludeDetails = operations.IncludeDetailsZero.ToPointer()
-
+    
     ctx := context.Background()
     res, err := s.Library.GetLibrary(ctx, sectionID, includeDetails)
     if err != nil {
@@ -295,9 +296,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var sectionID float64 = 1000
-
+    
     ctx := context.Background()
     res, err := s.Library.DeleteLibrary(ctx, sectionID)
     if err != nil {
@@ -325,81 +325,6 @@ func main() {
 | sdkerrors.DeleteLibraryResponseBody | 401                                 | application/json                    |
 | sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
 
-## GetLibraryItems
-
-Fetches details from a specific section of the library identified by a section key and a tag. The tag parameter accepts the following values:
-- `all`: All items in the section.
-- `unwatched`: Items that have not been played.
-- `newest`: Items that are recently released.
-- `recentlyAdded`: Items that are recently added to the library.
-- `recentlyViewed`: Items that were recently viewed.
-- `onDeck`: Items to continue watching.
-- `collection`: Items categorized by collection.
-- `edition`: Items categorized by edition.
-- `genre`: Items categorized by genre.
-- `year`: Items categorized by year of release.
-- `decade`: Items categorized by decade.
-- `director`: Items categorized by director.
-- `actor`: Items categorized by starring actor.
-- `country`: Items categorized by country of origin.
-- `contentRating`: Items categorized by content rating.
-- `rating`: Items categorized by rating.
-- `resolution`: Items categorized by resolution.
-- `firstCharacter`: Items categorized by the first letter.
-- `folder`: Items categorized by folder.
-
-
-### Example Usage
-
-```go
-package main
-
-import(
-	"github.com/LukeHagar/plexgo/models/components"
-	"github.com/LukeHagar/plexgo"
-	"github.com/LukeHagar/plexgo/models/operations"
-	"context"
-	"log"
-)
-
-func main() {
-    s := plexgo.New(
-        plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
-    )
-
-
-    var sectionID int64 = 451092
-
-    var tag operations.Tag = operations.TagUnwatched
-
-    ctx := context.Background()
-    res, err := s.Library.GetLibraryItems(ctx, sectionID, tag)
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.Object != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `sectionID`                                           | *int64*                                               | :heavy_check_mark:                                    | the Id of the library to query                        |
-| `tag`                                                 | [operations.Tag](../../models/operations/tag.md)      | :heavy_check_mark:                                    | A key representing a specific tag within the section. |
-
-
-### Response
-
-**[*operations.GetLibraryItemsResponse](../../models/operations/getlibraryitemsresponse.md), error**
-| Error Object       | Status Code        | Content Type       |
-| ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 4xx-5xx            | */*                |
-
 ## RefreshLibrary
 
 This endpoint Refreshes the library.
@@ -423,9 +348,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var sectionID float64 = 934.16
-
+    
     ctx := context.Background()
     res, err := s.Library.RefreshLibrary(ctx, sectionID)
     if err != nil {
@@ -494,11 +418,10 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var sectionID int64 = 933505
 
     var type_ operations.Type = operations.TypeFour
-
+    
     ctx := context.Background()
     res, err := s.Library.SearchLibrary(ctx, sectionID, type_)
     if err != nil {
@@ -549,9 +472,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var ratingKey float64 = 8382.31
-
+    
     ctx := context.Background()
     res, err := s.Library.GetMetadata(ctx, ratingKey)
     if err != nil {
@@ -602,9 +524,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var ratingKey float64 = 1539.14
-
+    
     ctx := context.Background()
     res, err := s.Library.GetMetadataChildren(ctx, ratingKey)
     if err != nil {
@@ -655,6 +576,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
+
+    
     ctx := context.Background()
     res, err := s.Library.GetOnDeck(ctx)
     if err != nil {

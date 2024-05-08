@@ -36,13 +36,12 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var level operations.Level = operations.LevelThree
 
     var message string = "Test log message"
 
     var source string = "Postman"
-
+    
     ctx := context.Background()
     res, err := s.Log.LogLine(ctx, level, message, source)
     if err != nil {
@@ -115,10 +114,12 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-    ctx := context.Background()
-    res, err := s.Log.LogMultiLine(ctx, "level=4&message=Test%20message%201&source=postman
+    var request string = "level=4&message=Test%20message%201&source=postman
 level=3&message=Test%20message%202&source=postman
-level=1&message=Test%20message%203&source=postman")
+level=1&message=Test%20message%203&source=postman"
+    
+    ctx := context.Background()
+    res, err := s.Log.LogMultiLine(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
@@ -167,6 +168,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
+
+    
     ctx := context.Background()
     res, err := s.Log.EnablePaperTrail(ctx)
     if err != nil {

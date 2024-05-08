@@ -36,8 +36,8 @@ package main
 import(
 	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
-	"context"
 	"github.com/LukeHagar/plexgo/models/operations"
+	"context"
 	"log"
 )
 
@@ -47,13 +47,15 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-    ctx := context.Background()
-    res, err := s.Playlists.CreatePlaylist(ctx, operations.CreatePlaylistRequest{
+    request := operations.CreatePlaylistRequest{
         Title: "<value>",
         Type: operations.QueryParamTypePhoto,
         Smart: operations.SmartOne,
         URI: "https://inborn-brochure.biz",
-    })
+    }
+    
+    ctx := context.Background()
+    res, err := s.Playlists.CreatePlaylist(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
@@ -102,11 +104,10 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var playlistType *operations.PlaylistType = operations.PlaylistTypeAudio.ToPointer()
 
     var smart *operations.QueryParamSmart = operations.QueryParamSmartZero.ToPointer()
-
+    
     ctx := context.Background()
     res, err := s.Playlists.GetPlaylists(ctx, playlistType, smart)
     if err != nil {
@@ -159,9 +160,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var playlistID float64 = 4109.48
-
+    
     ctx := context.Background()
     res, err := s.Playlists.GetPlaylist(ctx, playlistID)
     if err != nil {
@@ -212,9 +212,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var playlistID float64 = 216.22
-
+    
     ctx := context.Background()
     res, err := s.Playlists.DeletePlaylist(ctx, playlistID)
     if err != nil {
@@ -265,13 +264,12 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var playlistID float64 = 3915
 
     var title *string = plexgo.String("<value>")
 
     var summary *string = plexgo.String("<value>")
-
+    
     ctx := context.Background()
     res, err := s.Playlists.UpdatePlaylist(ctx, playlistID, title, summary)
     if err != nil {
@@ -327,11 +325,10 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var playlistID float64 = 5004.46
 
     var type_ float64 = 9403.59
-
+    
     ctx := context.Background()
     res, err := s.Playlists.GetPlaylistContents(ctx, playlistID, type_)
     if err != nil {
@@ -383,9 +380,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var playlistID float64 = 1893.18
-
+    
     ctx := context.Background()
     res, err := s.Playlists.ClearPlaylistContents(ctx, playlistID)
     if err != nil {
@@ -437,13 +433,12 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var playlistID float64 = 8502.01
 
     var uri string = "server://12345/com.plexapp.plugins.library/library/metadata/1"
 
     var playQueueID *float64 = plexgo.Float64(123)
-
+    
     ctx := context.Background()
     res, err := s.Playlists.AddPlaylistContents(ctx, playlistID, uri, playQueueID)
     if err != nil {
@@ -497,11 +492,10 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var path string = "/home/barkley/playlist.m3u"
 
     var force operations.Force = operations.ForceZero
-
+    
     ctx := context.Background()
     res, err := s.Playlists.UploadPlaylist(ctx, path, force)
     if err != nil {

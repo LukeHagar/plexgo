@@ -46,13 +46,12 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var query string = "dylan"
 
     var sectionID *float64 = plexgo.Float64(1516.53)
 
     var limit *float64 = plexgo.Float64(5)
-
+    
     ctx := context.Background()
     res, err := s.Search.PerformSearch(ctx, query, sectionID, limit)
     if err != nil {
@@ -108,13 +107,12 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var query string = "dead+poop"
 
     var sectionID *float64 = plexgo.Float64(4094.8)
 
     var limit *float64 = plexgo.Float64(5)
-
+    
     ctx := context.Background()
     res, err := s.Search.PerformVoiceSearch(ctx, query, sectionID, limit)
     if err != nil {
@@ -166,9 +164,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var query string = "110"
-
+    
     ctx := context.Background()
     res, err := s.Search.GetSearchResults(ctx, query)
     if err != nil {

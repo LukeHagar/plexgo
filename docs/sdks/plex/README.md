@@ -31,11 +31,10 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var strong *bool = plexgo.Bool(false)
 
     var xPlexClientIdentifier *string = plexgo.String("Postman")
-
+    
     ctx := context.Background()
     res, err := s.Plex.GetPin(ctx, strong, xPlexClientIdentifier)
     if err != nil {
@@ -85,11 +84,10 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var pinID string = "<value>"
 
     var xPlexClientIdentifier *string = plexgo.String("Postman")
-
+    
     ctx := context.Background()
     res, err := s.Plex.GetToken(ctx, pinID, xPlexClientIdentifier)
     if err != nil {

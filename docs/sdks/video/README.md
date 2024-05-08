@@ -23,8 +23,8 @@ package main
 import(
 	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
-	"context"
 	"github.com/LukeHagar/plexgo/models/operations"
+	"context"
 	"log"
 )
 
@@ -34,8 +34,7 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-    ctx := context.Background()
-    res, err := s.Video.GetTimeline(ctx, operations.GetTimelineRequest{
+    request := operations.GetTimelineRequest{
         RatingKey: 23409,
         Key: "/library/metadata/23409",
         State: operations.StatePlaying,
@@ -46,7 +45,10 @@ func main() {
         PlayQueueItemID: 1,
         PlayBackTime: 2000,
         Row: 1,
-    })
+    }
+    
+    ctx := context.Background()
+    res, err := s.Video.GetTimeline(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
@@ -84,8 +86,8 @@ package main
 import(
 	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
-	"context"
 	"github.com/LukeHagar/plexgo/models/operations"
+	"context"
 	"log"
 )
 
@@ -95,8 +97,7 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-    ctx := context.Background()
-    res, err := s.Video.StartUniversalTranscode(ctx, operations.StartUniversalTranscodeRequest{
+    request := operations.StartUniversalTranscodeRequest{
         HasMDE: 1,
         Path: "/library/metadata/23409",
         MediaIndex: 0,
@@ -113,7 +114,10 @@ func main() {
         Session: plexgo.String("zvcage8b7rkioqcm8f4uns4c"),
         AddDebugOverlay: plexgo.Float64(0),
         AutoAdjustQuality: plexgo.Float64(0),
-    })
+    }
+    
+    ctx := context.Background()
+    res, err := s.Video.StartUniversalTranscode(ctx, request)
     if err != nil {
         log.Fatal(err)
     }

@@ -35,11 +35,10 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var type_ operations.GetTransientTokenQueryParamType = operations.GetTransientTokenQueryParamTypeDelegation
 
     var scope operations.Scope = operations.ScopeAll
-
+    
     ctx := context.Background()
     res, err := s.Authentication.GetTransientToken(ctx, type_, scope)
     if err != nil {
@@ -92,9 +91,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var source string = "server://client-identifier"
-
+    
     ctx := context.Background()
     res, err := s.Authentication.GetSourceConnectionInformation(ctx, source)
     if err != nil {

@@ -34,11 +34,10 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var count *float64 = plexgo.Float64(1262.49)
 
     var onlyTransient *operations.OnlyTransient = operations.OnlyTransientOne.ToPointer()
-
+    
     ctx := context.Background()
     res, err := s.Hubs.GetGlobalHubs(ctx, count, onlyTransient)
     if err != nil {
@@ -91,13 +90,12 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var sectionID float64 = 6728.76
 
     var count *float64 = plexgo.Float64(9010.22)
 
     var onlyTransient *operations.QueryParamOnlyTransient = operations.QueryParamOnlyTransientZero.ToPointer()
-
+    
     ctx := context.Background()
     res, err := s.Hubs.GetLibraryHubs(ctx, sectionID, count, onlyTransient)
     if err != nil {

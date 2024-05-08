@@ -35,6 +35,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
+
+    
     ctx := context.Background()
     res, err := s.Sessions.GetSessions(ctx)
     if err != nil {
@@ -83,6 +85,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
+
+    
     ctx := context.Background()
     res, err := s.Sessions.GetSessionHistory(ctx)
     if err != nil {
@@ -131,6 +135,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
+
+    
     ctx := context.Background()
     res, err := s.Sessions.GetTranscodeSessions(ctx)
     if err != nil {
@@ -179,9 +185,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var sessionKey string = "zz7llzqlx8w9vnrsbnwhbmep"
-
+    
     ctx := context.Background()
     res, err := s.Sessions.StopTranscodeSession(ctx, sessionKey)
     if err != nil {

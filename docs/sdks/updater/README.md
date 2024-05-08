@@ -35,6 +35,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
+
+    
     ctx := context.Background()
     res, err := s.Updater.GetUpdateStatus(ctx)
     if err != nil {
@@ -84,9 +86,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var download *operations.Download = operations.DownloadOne.ToPointer()
-
+    
     ctx := context.Background()
     res, err := s.Updater.CheckForUpdates(ctx, download)
     if err != nil {
@@ -138,11 +139,10 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var tonight *operations.Tonight = operations.TonightOne.ToPointer()
 
     var skip *operations.Skip = operations.SkipOne.ToPointer()
-
+    
     ctx := context.Background()
     res, err := s.Updater.ApplyUpdates(ctx, tonight, skip)
     if err != nil {

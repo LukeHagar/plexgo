@@ -32,9 +32,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var timespan *int64 = plexgo.Int64(4)
-
+    
     ctx := context.Background()
     res, err := s.Statistics.GetStatistics(ctx, timespan)
     if err != nil {

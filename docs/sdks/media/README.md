@@ -34,9 +34,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var key float64 = 59398
-
+    
     ctx := context.Background()
     res, err := s.Media.MarkPlayed(ctx, key)
     if err != nil {
@@ -86,9 +85,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var key float64 = 59398
-
+    
     ctx := context.Background()
     res, err := s.Media.MarkUnplayed(ctx, key)
     if err != nil {
@@ -139,13 +137,12 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var key string = "<value>"
 
     var time float64 = 90000
 
     var state string = "played"
-
+    
     ctx := context.Background()
     res, err := s.Media.UpdatePlayProgress(ctx, key, time, state)
     if err != nil {

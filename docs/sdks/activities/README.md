@@ -39,6 +39,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
+
+    
     ctx := context.Background()
     res, err := s.Activities.GetServerActivities(ctx)
     if err != nil {
@@ -87,9 +89,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
     var activityUUID string = "25b71ed5-0f9d-461c-baa7-d404e9e10d3e"
-
+    
     ctx := context.Background()
     res, err := s.Activities.CancelServerActivities(ctx, activityUUID)
     if err != nil {

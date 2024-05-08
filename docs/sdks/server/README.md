@@ -39,6 +39,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
+
+    
     ctx := context.Background()
     res, err := s.Server.GetServerCapabilities(ctx)
     if err != nil {
@@ -87,6 +89,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
+
+    
     ctx := context.Background()
     res, err := s.Server.GetServerPreferences(ctx)
     if err != nil {
@@ -135,6 +139,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
+
+    
     ctx := context.Background()
     res, err := s.Server.GetAvailableClients(ctx)
     if err != nil {
@@ -183,6 +189,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
+
+    
     ctx := context.Background()
     res, err := s.Server.GetDevices(ctx)
     if err != nil {
@@ -231,6 +239,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
+
+    
     ctx := context.Background()
     res, err := s.Server.GetServerIdentity(ctx)
     if err != nil {
@@ -279,6 +289,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
+
+    
     ctx := context.Background()
     res, err := s.Server.GetMyPlexAccount(ctx)
     if err != nil {
@@ -318,8 +330,8 @@ package main
 import(
 	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
-	"context"
 	"github.com/LukeHagar/plexgo/models/operations"
+	"context"
 	"log"
 )
 
@@ -329,8 +341,7 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-    ctx := context.Background()
-    res, err := s.Server.GetResizedPhoto(ctx, operations.GetResizedPhotoRequest{
+    request := operations.GetResizedPhotoRequest{
         Width: 110,
         Height: 165,
         Opacity: 100,
@@ -338,7 +349,10 @@ func main() {
         MinSize: operations.MinSizeOne,
         Upscale: operations.UpscaleZero,
         URL: "/library/metadata/49564/thumb/1654258204",
-    })
+    }
+    
+    ctx := context.Background()
+    res, err := s.Server.GetResizedPhoto(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
@@ -386,6 +400,8 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
+
+    
     ctx := context.Background()
     res, err := s.Server.GetServerList(ctx)
     if err != nil {
