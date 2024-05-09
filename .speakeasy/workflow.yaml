@@ -1,12 +1,14 @@
 workflowVersion: 1.0.0
 speakeasyVersion: latest
 sources:
-  my-source:
-    inputs:
-      - location: https://raw.githubusercontent.com/LukeHagar/plex-api-spec/main/plex-media-server-spec-dereferenced.yaml
+    my-source:
+        inputs:
+            - location: https://raw.githubusercontent.com/LukeHagar/plex-api-spec/main/plex-media-server-spec-dereferenced.yaml
+        registry:
+            location: registry.speakeasyapi.dev/lukehagar/lukehagar/my-source
 targets:
-  plexgo:
-    target: go
-    source: my-source
-    codeSamples:
-      output: codeSamples.yaml
+    plexgo:
+        target: go
+        source: my-source
+        codeSamples:
+            output: codeSamples.yaml
