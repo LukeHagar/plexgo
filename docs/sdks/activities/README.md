@@ -27,7 +27,6 @@ Get Server Activities
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"context"
 	"log"
@@ -39,8 +38,6 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
-    
     ctx := context.Background()
     res, err := s.Activities.GetServerActivities(ctx)
     if err != nil {
@@ -77,7 +74,6 @@ Cancel Server Activities
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"context"
 	"log"
@@ -88,9 +84,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
-
     var activityUUID string = "25b71ed5-0f9d-461c-baa7-d404e9e10d3e"
-    
     ctx := context.Background()
     res, err := s.Activities.CancelServerActivities(ctx, activityUUID)
     if err != nil {

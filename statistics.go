@@ -140,4 +140,5 @@ func (s *Statistics) GetStatistics(ctx context.Context, timespan *int64) (*opera
 	}
 
 	return res, nil
+
 }

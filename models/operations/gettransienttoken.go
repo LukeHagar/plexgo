@@ -18,7 +18,6 @@ const (
 func (e GetTransientTokenQueryParamType) ToPointer() *GetTransientTokenQueryParamType {
 	return &e
 }
-
 func (e *GetTransientTokenQueryParamType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -43,7 +42,6 @@ const (
 func (e Scope) ToPointer() *Scope {
 	return &e
 }
-
 func (e *Scope) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

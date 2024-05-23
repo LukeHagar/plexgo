@@ -21,7 +21,6 @@ Get the timeline for a media item
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"github.com/LukeHagar/plexgo/models/operations"
 	"context"
@@ -33,7 +32,6 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
-
     request := operations.GetTimelineRequest{
         RatingKey: 23409,
         Key: "/library/metadata/23409",
@@ -46,7 +44,6 @@ func main() {
         PlayBackTime: 2000,
         Row: 1,
     }
-    
     ctx := context.Background()
     res, err := s.Video.GetTimeline(ctx, request)
     if err != nil {
@@ -84,7 +81,6 @@ Begin a Universal Transcode Session
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"github.com/LukeHagar/plexgo/models/operations"
 	"context"
@@ -96,7 +92,6 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
-
     request := operations.StartUniversalTranscodeRequest{
         HasMDE: 1,
         Path: "/library/metadata/23409",
@@ -115,7 +110,6 @@ func main() {
         AddDebugOverlay: plexgo.Float64(0),
         AutoAdjustQuality: plexgo.Float64(0),
     }
-    
     ctx := context.Background()
     res, err := s.Video.StartUniversalTranscode(ctx, request)
     if err != nil {

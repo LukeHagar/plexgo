@@ -34,7 +34,6 @@ This request is intended to be very fast, and called as the user types.
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"context"
 	"log"
@@ -45,13 +44,11 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
-
     var query string = "dylan"
 
     var sectionID *float64 = plexgo.Float64(1516.53)
 
     var limit *float64 = plexgo.Float64(5)
-    
     ctx := context.Background()
     res, err := s.Search.PerformSearch(ctx, query, sectionID, limit)
     if err != nil {
@@ -95,7 +92,6 @@ Results, as well as their containing per-type hubs, contain a `distance` attribu
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"context"
 	"log"
@@ -106,13 +102,11 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
-
     var query string = "dead+poop"
 
     var sectionID *float64 = plexgo.Float64(4094.8)
 
     var limit *float64 = plexgo.Float64(5)
-    
     ctx := context.Background()
     res, err := s.Search.PerformVoiceSearch(ctx, query, sectionID, limit)
     if err != nil {
@@ -152,7 +146,6 @@ This will search the database for the string provided.
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"context"
 	"log"
@@ -163,9 +156,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
-
     var query string = "110"
-    
     ctx := context.Background()
     res, err := s.Search.GetSearchResults(ctx, query)
     if err != nil {

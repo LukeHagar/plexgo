@@ -31,7 +31,6 @@ const (
 func (e PathParamTaskName) ToPointer() *PathParamTaskName {
 	return &e
 }
-
 func (e *PathParamTaskName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

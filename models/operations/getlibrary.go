@@ -21,7 +21,6 @@ const (
 func (e IncludeDetails) ToPointer() *IncludeDetails {
 	return &e
 }
-
 func (e *IncludeDetails) UnmarshalJSON(data []byte) error {
 	var v int64
 	if err := json.Unmarshal(data, &v); err != nil {

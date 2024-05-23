@@ -138,6 +138,7 @@ func (s *Activities) GetServerActivities(ctx context.Context) (*operations.GetSe
 	}
 
 	return res, nil
+
 }
 
 // CancelServerActivities - Cancel Server Activities
@@ -239,4 +240,5 @@ func (s *Activities) CancelServerActivities(ctx context.Context, activityUUID st
 	}
 
 	return res, nil
+
 }

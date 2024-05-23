@@ -130,6 +130,7 @@ func (s *Authentication) GetTransientToken(ctx context.Context, type_ operations
 	}
 
 	return res, nil
+
 }
 
 // GetSourceConnectionInformation - Get Source Connection Information
@@ -236,4 +237,5 @@ func (s *Authentication) GetSourceConnectionInformation(ctx context.Context, sou
 	}
 
 	return res, nil
+
 }

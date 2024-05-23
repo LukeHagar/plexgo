@@ -27,7 +27,6 @@ Server Capabilities
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"context"
 	"log"
@@ -39,8 +38,6 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
-    
     ctx := context.Background()
     res, err := s.Server.GetServerCapabilities(ctx)
     if err != nil {
@@ -77,7 +74,6 @@ Get Server Preferences
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"context"
 	"log"
@@ -89,8 +85,6 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
-    
     ctx := context.Background()
     res, err := s.Server.GetServerPreferences(ctx)
     if err != nil {
@@ -127,7 +121,6 @@ Get Available Clients
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"context"
 	"log"
@@ -139,8 +132,6 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
-    
     ctx := context.Background()
     res, err := s.Server.GetAvailableClients(ctx)
     if err != nil {
@@ -177,7 +168,6 @@ Get Devices
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"context"
 	"log"
@@ -189,8 +179,6 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
-    
     ctx := context.Background()
     res, err := s.Server.GetDevices(ctx)
     if err != nil {
@@ -227,7 +215,6 @@ Get Server Identity
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"context"
 	"log"
@@ -239,8 +226,6 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
-    
     ctx := context.Background()
     res, err := s.Server.GetServerIdentity(ctx)
     if err != nil {
@@ -277,7 +262,6 @@ Returns MyPlex Account Information
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"context"
 	"log"
@@ -289,8 +273,6 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
-    
     ctx := context.Background()
     res, err := s.Server.GetMyPlexAccount(ctx)
     if err != nil {
@@ -328,7 +310,6 @@ Plex's Photo transcoder is used throughout the service to serve images at specif
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"github.com/LukeHagar/plexgo/models/operations"
 	"context"
@@ -340,7 +321,6 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
-
     request := operations.GetResizedPhotoRequest{
         Width: 110,
         Height: 165,
@@ -350,7 +330,6 @@ func main() {
         Upscale: operations.UpscaleZero,
         URL: "/library/metadata/49564/thumb/1654258204",
     }
-    
     ctx := context.Background()
     res, err := s.Server.GetResizedPhoto(ctx, request)
     if err != nil {
@@ -388,7 +367,6 @@ Get Server List
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"context"
 	"log"
@@ -400,8 +378,6 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
-    
     ctx := context.Background()
     res, err := s.Server.GetServerList(ctx)
     if err != nil {

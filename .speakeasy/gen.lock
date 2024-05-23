@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: dfa99515-01c0-42eb-9be5-ee212fd03eb3
 management:
-  docChecksum: 543cb95355401d2e3c2ba11a50d9dd94
+  docChecksum: 911d74baa0d06121d2ce2c71d94e977a
   docVersion: 0.0.3
-  speakeasyVersion: 1.285.0
-  generationVersion: 2.326.3
-  releaseVersion: 0.7.0
-  configChecksum: 98c0e864ba8f7c2e3b366fd643dd90ab
+  speakeasyVersion: 1.295.1
+  generationVersion: 2.335.5
+  releaseVersion: 0.8.0
+  configChecksum: 9936959f866802e61eb9349bd46ba213
   repoURL: https://github.com/LukeHagar/plexgo.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexgo
@@ -15,7 +15,7 @@ features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.4
-    core: 3.4.7
+    core: 3.4.10
     flattening: 2.81.1
     globalSecurity: 2.82.9
     globalSecurityCallbacks: 0.1.0
@@ -25,9 +25,8 @@ features:
     intellisenseMarkdownSupport: 0.1.0
     methodServerURLs: 2.82.1
     nameOverrides: 2.81.2
-    responseFormat: 0.1.1
+    responseFormat: 0.1.2
     sdkHooks: 0.1.0
-    unions: 2.85.5
 generatedFiles:
   - server.go
   - media.go
@@ -93,6 +92,7 @@ generatedFiles:
   - /models/operations/getlibraries.go
   - /models/operations/getlibrary.go
   - /models/operations/deletelibrary.go
+  - /models/operations/getlibraryitems.go
   - /models/operations/refreshlibrary.go
   - /models/operations/searchlibrary.go
   - /models/operations/getmetadata.go
@@ -152,7 +152,9 @@ generatedFiles:
   - /models/sdkerrors/getlibraries.go
   - /models/sdkerrors/getlibrary.go
   - /models/sdkerrors/deletelibrary.go
+  - /models/sdkerrors/getlibraryitems.go
   - /models/sdkerrors/refreshlibrary.go
+  - /models/sdkerrors/searchlibrary.go
   - /models/sdkerrors/getmetadata.go
   - /models/sdkerrors/getmetadatachildren.go
   - /models/sdkerrors/getondeck.go
@@ -312,6 +314,19 @@ generatedFiles:
   - docs/models/operations/getlibraryresponse.md
   - docs/models/operations/deletelibraryrequest.md
   - docs/models/operations/deletelibraryresponse.md
+  - docs/models/operations/tag.md
+  - docs/models/operations/getlibraryitemsrequest.md
+  - docs/models/operations/getlibraryitemspart.md
+  - docs/models/operations/getlibraryitemsmedia.md
+  - docs/models/operations/getlibraryitemsgenre.md
+  - docs/models/operations/getlibraryitemscountry.md
+  - docs/models/operations/getlibraryitemsdirector.md
+  - docs/models/operations/getlibraryitemswriter.md
+  - docs/models/operations/getlibraryitemsrole.md
+  - docs/models/operations/getlibraryitemsmetadata.md
+  - docs/models/operations/getlibraryitemsmediacontainer.md
+  - docs/models/operations/getlibraryitemsresponsebody.md
+  - docs/models/operations/getlibraryitemsresponse.md
   - docs/models/operations/refreshlibraryrequest.md
   - docs/models/operations/refreshlibraryresponse.md
   - docs/models/operations/type.md
@@ -512,8 +527,12 @@ generatedFiles:
   - docs/models/sdkerrors/getlibraryresponsebody.md
   - docs/models/sdkerrors/deletelibraryerrors.md
   - docs/models/sdkerrors/deletelibraryresponsebody.md
+  - docs/models/sdkerrors/getlibraryitemserrors.md
+  - docs/models/sdkerrors/getlibraryitemsresponsebody.md
   - docs/models/sdkerrors/refreshlibraryerrors.md
   - docs/models/sdkerrors/refreshlibraryresponsebody.md
+  - docs/models/sdkerrors/searchlibraryerrors.md
+  - docs/models/sdkerrors/searchlibraryresponsebody.md
   - docs/models/sdkerrors/getmetadataerrors.md
   - docs/models/sdkerrors/getmetadataresponsebody.md
   - docs/models/sdkerrors/getmetadatachildrenerrors.md

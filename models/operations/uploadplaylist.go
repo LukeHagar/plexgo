@@ -22,7 +22,6 @@ const (
 func (e Force) ToPointer() *Force {
 	return &e
 }
-
 func (e *Force) UnmarshalJSON(data []byte) error {
 	var v int64
 	if err := json.Unmarshal(data, &v); err != nil {

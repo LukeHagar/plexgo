@@ -19,7 +19,6 @@ const (
 func (e Tonight) ToPointer() *Tonight {
 	return &e
 }
-
 func (e *Tonight) UnmarshalJSON(data []byte) error {
 	var v int64
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -47,7 +46,6 @@ const (
 func (e Skip) ToPointer() *Skip {
 	return &e
 }
-
 func (e *Skip) UnmarshalJSON(data []byte) error {
 	var v int64
 	if err := json.Unmarshal(data, &v); err != nil {

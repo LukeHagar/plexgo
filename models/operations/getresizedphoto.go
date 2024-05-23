@@ -20,7 +20,6 @@ const (
 func (e MinSize) ToPointer() *MinSize {
 	return &e
 }
-
 func (e *MinSize) UnmarshalJSON(data []byte) error {
 	var v int64
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -48,7 +47,6 @@ const (
 func (e Upscale) ToPointer() *Upscale {
 	return &e
 }
-
 func (e *Upscale) UnmarshalJSON(data []byte) error {
 	var v int64
 	if err := json.Unmarshal(data, &v); err != nil {

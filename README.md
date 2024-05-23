@@ -26,7 +26,6 @@ package main
 import (
 	"context"
 	"github.com/LukeHagar/plexgo"
-	"github.com/LukeHagar/plexgo/models/components"
 	"log"
 )
 
@@ -105,6 +104,7 @@ func main() {
 * [GetLibraries](docs/sdks/library/README.md#getlibraries) - Get All Libraries
 * [GetLibrary](docs/sdks/library/README.md#getlibrary) - Get Library Details
 * [DeleteLibrary](docs/sdks/library/README.md#deletelibrary) - Delete Library Section
+* [GetLibraryItems](docs/sdks/library/README.md#getlibraryitems) - Get Library Items
 * [RefreshLibrary](docs/sdks/library/README.md#refreshlibrary) - Refresh Library
 * [SearchLibrary](docs/sdks/library/README.md#searchlibrary) - Search Library
 * [GetMetadata](docs/sdks/library/README.md#getmetadata) - Get Items Metadata
@@ -176,7 +176,6 @@ import (
 	"context"
 	"errors"
 	"github.com/LukeHagar/plexgo"
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo/models/sdkerrors"
 	"log"
 )
@@ -227,7 +226,6 @@ package main
 import (
 	"context"
 	"github.com/LukeHagar/plexgo"
-	"github.com/LukeHagar/plexgo/models/components"
 	"log"
 )
 
@@ -266,7 +264,6 @@ package main
 import (
 	"context"
 	"github.com/LukeHagar/plexgo"
-	"github.com/LukeHagar/plexgo/models/components"
 	"log"
 )
 
@@ -298,6 +295,7 @@ package main
 import (
 	"context"
 	"github.com/LukeHagar/plexgo"
+	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
@@ -305,11 +303,9 @@ func main() {
 	s := plexgo.New(
 		plexgo.WithXPlexClientIdentifier("Postman"),
 	)
-
 	var strong *bool = plexgo.Bool(false)
 
 	var xPlexClientIdentifier *string = plexgo.String("Postman")
-
 	ctx := context.Background()
 	res, err := s.Plex.GetPin(ctx, strong, xPlexClientIdentifier, operations.WithServerURL("https://plex.tv/api/v2"))
 	if err != nil {
@@ -453,11 +449,9 @@ func main() {
 	s := plexgo.New(
 		plexgo.WithXPlexClientIdentifier("Postman"),
 	)
-
 	var strong *bool = plexgo.Bool(false)
 
 	var xPlexClientIdentifier *string = plexgo.String("Postman")
-
 	ctx := context.Background()
 	res, err := s.Plex.GetPin(ctx, strong, xPlexClientIdentifier)
 	if err != nil {

@@ -141,6 +141,7 @@ func (s *Hubs) GetGlobalHubs(ctx context.Context, count *float64, onlyTransient 
 	}
 
 	return res, nil
+
 }
 
 // GetLibraryHubs - Get library specific hubs
@@ -259,4 +260,5 @@ func (s *Hubs) GetLibraryHubs(ctx context.Context, sectionID float64, count *flo
 	}
 
 	return res, nil
+
 }

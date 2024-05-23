@@ -24,7 +24,6 @@ Returns a list of butler tasks
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"context"
 	"log"
@@ -36,8 +35,6 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
-    
     ctx := context.Background()
     res, err := s.Butler.GetButlerTasks(ctx)
     if err != nil {
@@ -79,7 +76,6 @@ This endpoint will attempt to start all Butler tasks that are enabled in the set
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"context"
 	"log"
@@ -91,8 +87,6 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
-    
     ctx := context.Background()
     res, err := s.Butler.StartAllTasks(ctx)
     if err != nil {
@@ -130,7 +124,6 @@ This endpoint will stop all currently running tasks and remove any scheduled tas
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"context"
 	"log"
@@ -142,8 +135,6 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
-    
     ctx := context.Background()
     res, err := s.Butler.StopAllTasks(ctx)
     if err != nil {
@@ -185,7 +176,6 @@ This endpoint will attempt to start a single Butler task that is enabled in the 
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"github.com/LukeHagar/plexgo/models/operations"
 	"context"
@@ -197,9 +187,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
-
     var taskName operations.TaskName = operations.TaskNameCleanOldBundles
-    
     ctx := context.Background()
     res, err := s.Butler.StartTask(ctx, taskName)
     if err != nil {
@@ -238,7 +226,6 @@ This endpoint will stop a currently running task by name, or remove it from the 
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"github.com/LukeHagar/plexgo/models/operations"
 	"context"
@@ -250,9 +237,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
-
     var taskName operations.PathParamTaskName = operations.PathParamTaskNameBackupDatabase
-    
     ctx := context.Background()
     res, err := s.Butler.StopTask(ctx, taskName)
     if err != nil {

@@ -20,7 +20,6 @@ const (
 func (e PlaylistType) ToPointer() *PlaylistType {
 	return &e
 }
-
 func (e *PlaylistType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -50,7 +49,6 @@ const (
 func (e QueryParamSmart) ToPointer() *QueryParamSmart {
 	return &e
 }
-
 func (e *QueryParamSmart) UnmarshalJSON(data []byte) error {
 	var v int64
 	if err := json.Unmarshal(data, &v); err != nil {

@@ -34,7 +34,6 @@ Create a new playlist. By default the playlist is blank. To create a playlist al
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"github.com/LukeHagar/plexgo/models/operations"
 	"context"
@@ -46,14 +45,12 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
-
     request := operations.CreatePlaylistRequest{
         Title: "<value>",
         Type: operations.QueryParamTypePhoto,
         Smart: operations.SmartOne,
         URI: "https://inborn-brochure.biz",
     }
-    
     ctx := context.Background()
     res, err := s.Playlists.CreatePlaylist(ctx, request)
     if err != nil {
@@ -91,7 +88,6 @@ Get All Playlists given the specified filters.
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"github.com/LukeHagar/plexgo/models/operations"
 	"context"
@@ -103,11 +99,9 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
-
     var playlistType *operations.PlaylistType = operations.PlaylistTypeAudio.ToPointer()
 
     var smart *operations.QueryParamSmart = operations.QueryParamSmartZero.ToPointer()
-    
     ctx := context.Background()
     res, err := s.Playlists.GetPlaylists(ctx, playlistType, smart)
     if err != nil {
@@ -148,7 +142,6 @@ Smart playlist details contain the `content` attribute. This is the content URI 
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"context"
 	"log"
@@ -159,9 +152,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
-
     var playlistID float64 = 4109.48
-    
     ctx := context.Background()
     res, err := s.Playlists.GetPlaylist(ctx, playlistID)
     if err != nil {
@@ -200,7 +191,6 @@ This endpoint will delete a playlist
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"context"
 	"log"
@@ -211,9 +201,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
-
     var playlistID float64 = 216.22
-    
     ctx := context.Background()
     res, err := s.Playlists.DeletePlaylist(ctx, playlistID)
     if err != nil {
@@ -252,7 +240,6 @@ From PMS version 1.9.1 clients can also edit playlist metadata using this endpoi
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"context"
 	"log"
@@ -263,13 +250,11 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
-
     var playlistID float64 = 3915
 
     var title *string = plexgo.String("<value>")
 
     var summary *string = plexgo.String("<value>")
-    
     ctx := context.Background()
     res, err := s.Playlists.UpdatePlaylist(ctx, playlistID, title, summary)
     if err != nil {
@@ -313,7 +298,6 @@ Note that for dumb playlists, items have a `playlistItemID` attribute which is u
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"context"
 	"log"
@@ -324,11 +308,9 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
-
     var playlistID float64 = 5004.46
 
     var type_ float64 = 9403.59
-    
     ctx := context.Background()
     res, err := s.Playlists.GetPlaylistContents(ctx, playlistID, type_)
     if err != nil {
@@ -368,7 +350,6 @@ Clears a playlist, only works with dumb playlists. Returns the playlist.
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"context"
 	"log"
@@ -379,9 +360,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
-
     var playlistID float64 = 1893.18
-    
     ctx := context.Background()
     res, err := s.Playlists.ClearPlaylistContents(ctx, playlistID)
     if err != nil {
@@ -421,7 +400,6 @@ With a smart playlist, passing a new `uri` parameter replaces the rules for the 
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"context"
 	"log"
@@ -432,13 +410,11 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
-
     var playlistID float64 = 8502.01
 
     var uri string = "server://12345/com.plexapp.plugins.library/library/metadata/1"
 
     var playQueueID *float64 = plexgo.Float64(123)
-    
     ctx := context.Background()
     res, err := s.Playlists.AddPlaylistContents(ctx, playlistID, uri, playQueueID)
     if err != nil {
@@ -479,7 +455,6 @@ Imports m3u playlists by passing a path on the server to scan for m3u-formatted 
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"github.com/LukeHagar/plexgo/models/operations"
 	"context"
@@ -491,11 +466,9 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
-
     var path string = "/home/barkley/playlist.m3u"
 
     var force operations.Force = operations.ForceZero
-    
     ctx := context.Background()
     res, err := s.Playlists.UploadPlaylist(ctx, path, force)
     if err != nil {

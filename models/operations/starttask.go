@@ -31,7 +31,6 @@ const (
 func (e TaskName) ToPointer() *TaskName {
 	return &e
 }
-
 func (e *TaskName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

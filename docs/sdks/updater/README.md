@@ -23,7 +23,6 @@ Querying status of updates
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"context"
 	"log"
@@ -35,8 +34,6 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
-    
     ctx := context.Background()
     res, err := s.Updater.GetUpdateStatus(ctx)
     if err != nil {
@@ -73,7 +70,6 @@ Checking for updates
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"github.com/LukeHagar/plexgo/models/operations"
 	"context"
@@ -85,9 +81,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
-
     var download *operations.Download = operations.DownloadOne.ToPointer()
-    
     ctx := context.Background()
     res, err := s.Updater.CheckForUpdates(ctx, download)
     if err != nil {
@@ -126,7 +120,6 @@ Note that these two parameters are effectively mutually exclusive. The `tonight`
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"github.com/LukeHagar/plexgo/models/operations"
 	"context"
@@ -138,11 +131,9 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
-
     var tonight *operations.Tonight = operations.TonightOne.ToPointer()
 
     var skip *operations.Skip = operations.SkipOne.ToPointer()
-    
     ctx := context.Background()
     res, err := s.Updater.ApplyUpdates(ctx, tonight, skip)
     if err != nil {

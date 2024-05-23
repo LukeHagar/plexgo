@@ -21,7 +21,6 @@ const (
 func (e QueryParamOnlyTransient) ToPointer() *QueryParamOnlyTransient {
 	return &e
 }
-
 func (e *QueryParamOnlyTransient) UnmarshalJSON(data []byte) error {
 	var v int64
 	if err := json.Unmarshal(data, &v); err != nil {

@@ -131,6 +131,7 @@ func (s *Log) LogLine(ctx context.Context, level operations.Level, message strin
 	}
 
 	return res, nil
+
 }
 
 // LogMultiLine - Logging a multi-line message
@@ -254,6 +255,7 @@ func (s *Log) LogMultiLine(ctx context.Context, request string) (*operations.Log
 	}
 
 	return res, nil
+
 }
 
 // EnablePaperTrail - Enabling Papertrail
@@ -353,4 +355,5 @@ func (s *Log) EnablePaperTrail(ctx context.Context) (*operations.EnablePaperTrai
 	}
 
 	return res, nil
+
 }

@@ -19,7 +19,6 @@ const (
 func (e Download) ToPointer() *Download {
 	return &e
 }
-
 func (e *Download) UnmarshalJSON(data []byte) error {
 	var v int64
 	if err := json.Unmarshal(data, &v); err != nil {

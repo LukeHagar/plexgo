@@ -22,7 +22,6 @@ This endpoint provides the caller with a temporary token with the same access le
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"github.com/LukeHagar/plexgo/models/operations"
 	"context"
@@ -34,11 +33,9 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
-
     var type_ operations.GetTransientTokenQueryParamType = operations.GetTransientTokenQueryParamTypeDelegation
 
     var scope operations.Scope = operations.ScopeAll
-    
     ctx := context.Background()
     res, err := s.Authentication.GetTransientToken(ctx, type_, scope)
     if err != nil {
@@ -79,7 +76,6 @@ Note: requires Plex Media Server >= 1.15.4.
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"context"
 	"log"
@@ -90,9 +86,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
-
     var source string = "server://client-identifier"
-    
     ctx := context.Background()
     res, err := s.Authentication.GetSourceConnectionInformation(ctx, source)
     if err != nil {

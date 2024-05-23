@@ -20,7 +20,6 @@ const (
 func (e QueryParamType) ToPointer() *QueryParamType {
 	return &e
 }
-
 func (e *QueryParamType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -50,7 +49,6 @@ const (
 func (e Smart) ToPointer() *Smart {
 	return &e
 }
-
 func (e *Smart) UnmarshalJSON(data []byte) error {
 	var v int64
 	if err := json.Unmarshal(data, &v); err != nil {

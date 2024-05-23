@@ -125,6 +125,7 @@ func (s *Video) GetTimeline(ctx context.Context, request operations.GetTimelineR
 	}
 
 	return res, nil
+
 }
 
 // StartUniversalTranscode - Start Universal Transcode
@@ -226,4 +227,5 @@ func (s *Video) StartUniversalTranscode(ctx context.Context, request operations.
 	}
 
 	return res, nil
+
 }

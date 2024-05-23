@@ -19,7 +19,6 @@ const (
 func (e OnlyTransient) ToPointer() *OnlyTransient {
 	return &e
 }
-
 func (e *OnlyTransient) UnmarshalJSON(data []byte) error {
 	var v int64
 	if err := json.Unmarshal(data, &v); err != nil {

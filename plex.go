@@ -154,6 +154,7 @@ func (s *Plex) GetPin(ctx context.Context, strong *bool, xPlexClientIdentifier *
 	}
 
 	return res, nil
+
 }
 
 // GetToken - Get Access Token
@@ -274,4 +275,5 @@ func (s *Plex) GetToken(ctx context.Context, pinID string, xPlexClientIdentifier
 	}
 
 	return res, nil
+
 }

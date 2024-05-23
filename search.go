@@ -143,6 +143,7 @@ func (s *Search) PerformSearch(ctx context.Context, query string, sectionID *flo
 	}
 
 	return res, nil
+
 }
 
 // PerformVoiceSearch - Perform a voice search
@@ -253,6 +254,7 @@ func (s *Search) PerformVoiceSearch(ctx context.Context, query string, sectionID
 	}
 
 	return res, nil
+
 }
 
 // GetSearchResults - Get Search Results
@@ -369,4 +371,5 @@ func (s *Search) GetSearchResults(ctx context.Context, query string) (*operation
 	}
 
 	return res, nil
+
 }

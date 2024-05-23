@@ -20,7 +20,6 @@ This will return the media statistics for the server
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"context"
 	"log"
@@ -31,9 +30,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
-
     var timespan *int64 = plexgo.Int64(4)
-    
     ctx := context.Background()
     res, err := s.Statistics.GetStatistics(ctx, timespan)
     if err != nil {

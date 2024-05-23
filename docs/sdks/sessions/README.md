@@ -23,7 +23,6 @@ This will retrieve the "Now Playing" Information of the PMS.
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"context"
 	"log"
@@ -35,8 +34,6 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
-    
     ctx := context.Background()
     res, err := s.Sessions.GetSessions(ctx)
     if err != nil {
@@ -73,7 +70,6 @@ This will Retrieve a listing of all history views.
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"context"
 	"log"
@@ -85,8 +81,6 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
-    
     ctx := context.Background()
     res, err := s.Sessions.GetSessionHistory(ctx)
     if err != nil {
@@ -123,7 +117,6 @@ Get Transcode Sessions
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"context"
 	"log"
@@ -135,8 +128,6 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
 
-
-    
     ctx := context.Background()
     res, err := s.Sessions.GetTranscodeSessions(ctx)
     if err != nil {
@@ -173,7 +164,6 @@ Stop a Transcode Session
 package main
 
 import(
-	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"context"
 	"log"
@@ -184,9 +174,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
-
     var sessionKey string = "zz7llzqlx8w9vnrsbnwhbmep"
-    
     ctx := context.Background()
     res, err := s.Sessions.StopTranscodeSession(ctx, sessionKey)
     if err != nil {

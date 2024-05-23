@@ -132,6 +132,7 @@ func (s *Butler) GetButlerTasks(ctx context.Context) (*operations.GetButlerTasks
 	}
 
 	return res, nil
+
 }
 
 // StartAllTasks - Start all Butler tasks
@@ -233,6 +234,7 @@ func (s *Butler) StartAllTasks(ctx context.Context) (*operations.StartAllTasksRe
 	}
 
 	return res, nil
+
 }
 
 // StopAllTasks - Stop all Butler tasks
@@ -330,6 +332,7 @@ func (s *Butler) StopAllTasks(ctx context.Context) (*operations.StopAllTasksResp
 	}
 
 	return res, nil
+
 }
 
 // StartTask - Start a single Butler task
@@ -437,6 +440,7 @@ func (s *Butler) StartTask(ctx context.Context, taskName operations.TaskName) (*
 	}
 
 	return res, nil
+
 }
 
 // StopTask - Stop a single Butler task
@@ -540,4 +544,5 @@ func (s *Butler) StopTask(ctx context.Context, taskName operations.PathParamTask
 	}
 
 	return res, nil
+
 }
