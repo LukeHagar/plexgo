@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: dfa99515-01c0-42eb-9be5-ee212fd03eb3
 management:
-  docChecksum: 911d74baa0d06121d2ce2c71d94e977a
+  docChecksum: 37654ea0982ab5e87a9a9576014c9d19
   docVersion: 0.0.3
-  speakeasyVersion: 1.299.6
-  generationVersion: 2.338.12
-  releaseVersion: 0.8.1
-  configChecksum: b899da965d1d55861cb2c0c7e96b4864
+  speakeasyVersion: 1.308.1
+  generationVersion: 2.342.6
+  releaseVersion: 0.9.0
+  configChecksum: 21802bb6ef89f8b23e39a8afe2761568
   repoURL: https://github.com/LukeHagar/plexgo.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexgo
@@ -27,22 +27,24 @@ features:
     nameOverrides: 2.81.2
     responseFormat: 0.1.2
     sdkHooks: 0.1.0
+    typeOverrides: 2.81.1
 generatedFiles:
   - server.go
   - media.go
   - video.go
   - activities.go
   - butler.go
+  - plex.go
   - hubs.go
   - search.go
   - library.go
   - log.go
-  - plex.go
   - playlists.go
   - authentication.go
   - statistics.go
   - sessions.go
   - updater.go
+  - watchlist.go
   - plexapi.go
   - go.mod
   - models/sdkerrors/sdkerror.go
@@ -82,6 +84,9 @@ generatedFiles:
   - /models/operations/stopalltasks.go
   - /models/operations/starttask.go
   - /models/operations/stoptask.go
+  - /models/operations/gethomedata.go
+  - /models/operations/getpin.go
+  - /models/operations/gettoken.go
   - /models/operations/getglobalhubs.go
   - /models/operations/getlibraryhubs.go
   - /models/operations/performsearch.go
@@ -101,8 +106,6 @@ generatedFiles:
   - /models/operations/logline.go
   - /models/operations/logmultiline.go
   - /models/operations/enablepapertrail.go
-  - /models/operations/getpin.go
-  - /models/operations/gettoken.go
   - /models/operations/createplaylist.go
   - /models/operations/getplaylists.go
   - /models/operations/getplaylist.go
@@ -122,6 +125,7 @@ generatedFiles:
   - /models/operations/getupdatestatus.go
   - /models/operations/checkforupdates.go
   - /models/operations/applyupdates.go
+  - /models/operations/getwatchlist.go
   - /models/sdkerrors/getservercapabilities.go
   - /models/sdkerrors/getserverpreferences.go
   - /models/sdkerrors/getavailableclients.go
@@ -142,6 +146,9 @@ generatedFiles:
   - /models/sdkerrors/stopalltasks.go
   - /models/sdkerrors/starttask.go
   - /models/sdkerrors/stoptask.go
+  - /models/sdkerrors/gethomedata.go
+  - /models/sdkerrors/getpin.go
+  - /models/sdkerrors/gettoken.go
   - /models/sdkerrors/getglobalhubs.go
   - /models/sdkerrors/getlibraryhubs.go
   - /models/sdkerrors/performsearch.go
@@ -161,8 +168,6 @@ generatedFiles:
   - /models/sdkerrors/logline.go
   - /models/sdkerrors/logmultiline.go
   - /models/sdkerrors/enablepapertrail.go
-  - /models/sdkerrors/getpin.go
-  - /models/sdkerrors/gettoken.go
   - /models/sdkerrors/createplaylist.go
   - /models/sdkerrors/getplaylists.go
   - /models/sdkerrors/getplaylist.go
@@ -182,6 +187,7 @@ generatedFiles:
   - /models/sdkerrors/getupdatestatus.go
   - /models/sdkerrors/checkforupdates.go
   - /models/sdkerrors/applyupdates.go
+  - /models/sdkerrors/getwatchlist.go
   - /models/components/security.go
   - docs/models/operations/directory.md
   - docs/models/operations/mediacontainer.md
@@ -243,6 +249,18 @@ generatedFiles:
   - docs/models/operations/pathparamtaskname.md
   - docs/models/operations/stoptaskrequest.md
   - docs/models/operations/stoptaskresponse.md
+  - docs/models/operations/gethomedataresponsebody.md
+  - docs/models/operations/gethomedataresponse.md
+  - docs/models/operations/getpinglobals.md
+  - docs/models/operations/getpinrequest.md
+  - docs/models/operations/location.md
+  - docs/models/operations/getpinresponsebody.md
+  - docs/models/operations/getpinresponse.md
+  - docs/models/operations/gettokenglobals.md
+  - docs/models/operations/gettokenrequest.md
+  - docs/models/operations/gettokenlocation.md
+  - docs/models/operations/gettokenresponsebody.md
+  - docs/models/operations/gettokenresponse.md
   - docs/models/operations/onlytransient.md
   - docs/models/operations/getglobalhubsrequest.md
   - docs/models/operations/getglobalhubsmetadata.md
@@ -291,7 +309,7 @@ generatedFiles:
   - docs/models/operations/writer.md
   - docs/models/operations/country.md
   - docs/models/operations/role.md
-  - docs/models/operations/metadata.md
+  - docs/models/operations/getrecentlyaddedmetadata.md
   - docs/models/operations/getrecentlyaddedmediacontainer.md
   - docs/models/operations/getrecentlyaddedresponsebody.md
   - docs/models/operations/getrecentlyaddedresponse.md
@@ -303,7 +321,7 @@ generatedFiles:
   - docs/models/operations/includedetails.md
   - docs/models/operations/getlibraryrequest.md
   - docs/models/operations/getlibrarydirectory.md
-  - docs/models/operations/filter.md
+  - docs/models/operations/getlibraryfilter.md
   - docs/models/operations/sort.md
   - docs/models/operations/field.md
   - docs/models/operations/getlibrarytype.md
@@ -370,14 +388,6 @@ generatedFiles:
   - docs/models/operations/loglineresponse.md
   - docs/models/operations/logmultilineresponse.md
   - docs/models/operations/enablepapertrailresponse.md
-  - docs/models/operations/getpinglobals.md
-  - docs/models/operations/getpinrequest.md
-  - docs/models/operations/location.md
-  - docs/models/operations/getpinresponsebody.md
-  - docs/models/operations/getpinresponse.md
-  - docs/models/operations/gettokenglobals.md
-  - docs/models/operations/gettokenrequest.md
-  - docs/models/operations/gettokenresponse.md
   - docs/models/operations/queryparamtype.md
   - docs/models/operations/smart.md
   - docs/models/operations/createplaylistrequest.md
@@ -467,6 +477,15 @@ generatedFiles:
   - docs/models/operations/skip.md
   - docs/models/operations/applyupdatesrequest.md
   - docs/models/operations/applyupdatesresponse.md
+  - docs/models/operations/filter.md
+  - docs/models/operations/libtype.md
+  - docs/models/operations/includecollections.md
+  - docs/models/operations/includeexternalmedia.md
+  - docs/models/operations/getwatchlistrequest.md
+  - docs/models/operations/image.md
+  - docs/models/operations/metadata.md
+  - docs/models/operations/getwatchlistresponsebody.md
+  - docs/models/operations/getwatchlistresponse.md
   - docs/models/sdkerrors/errors.md
   - docs/models/sdkerrors/getservercapabilitiesresponsebody.md
   - docs/models/sdkerrors/getserverpreferenceserrors.md
@@ -507,6 +526,12 @@ generatedFiles:
   - docs/models/sdkerrors/starttaskresponsebody.md
   - docs/models/sdkerrors/stoptaskerrors.md
   - docs/models/sdkerrors/stoptaskresponsebody.md
+  - docs/models/sdkerrors/gethomedataerrors.md
+  - docs/models/sdkerrors/gethomedataresponsebody.md
+  - docs/models/sdkerrors/getpinerrors.md
+  - docs/models/sdkerrors/getpinresponsebody.md
+  - docs/models/sdkerrors/gettokenerrors.md
+  - docs/models/sdkerrors/gettokenresponsebody.md
   - docs/models/sdkerrors/getglobalhubserrors.md
   - docs/models/sdkerrors/getglobalhubsresponsebody.md
   - docs/models/sdkerrors/getlibraryhubserrors.md
@@ -545,10 +570,6 @@ generatedFiles:
   - docs/models/sdkerrors/logmultilineresponsebody.md
   - docs/models/sdkerrors/enablepapertrailerrors.md
   - docs/models/sdkerrors/enablepapertrailresponsebody.md
-  - docs/models/sdkerrors/getpinerrors.md
-  - docs/models/sdkerrors/getpinresponsebody.md
-  - docs/models/sdkerrors/gettokenerrors.md
-  - docs/models/sdkerrors/gettokenresponsebody.md
   - docs/models/sdkerrors/createplaylisterrors.md
   - docs/models/sdkerrors/createplaylistresponsebody.md
   - docs/models/sdkerrors/getplaylistserrors.md
@@ -587,6 +608,8 @@ generatedFiles:
   - docs/models/sdkerrors/checkforupdatesresponsebody.md
   - docs/models/sdkerrors/applyupdateserrors.md
   - docs/models/sdkerrors/applyupdatesresponsebody.md
+  - docs/models/sdkerrors/getwatchlisterrors.md
+  - docs/models/sdkerrors/getwatchlistresponsebody.md
   - docs/models/components/security.md
   - docs/sdks/plexapi/README.md
   - docs/sdks/server/README.md
@@ -594,17 +617,18 @@ generatedFiles:
   - docs/sdks/video/README.md
   - docs/sdks/activities/README.md
   - docs/sdks/butler/README.md
+  - docs/models/operations/option.md
+  - docs/sdks/plex/README.md
   - docs/sdks/hubs/README.md
   - docs/sdks/search/README.md
   - docs/sdks/library/README.md
   - docs/sdks/log/README.md
-  - docs/models/operations/option.md
-  - docs/sdks/plex/README.md
   - docs/sdks/playlists/README.md
   - docs/sdks/authentication/README.md
   - docs/sdks/statistics/README.md
   - docs/sdks/sessions/README.md
   - docs/sdks/updater/README.md
+  - docs/sdks/watchlist/README.md
   - USAGE.md
   - models/operations/options.go
   - .gitattributes

@@ -277,7 +277,7 @@ func (o *Role) GetTag() *string {
 	return o.Tag
 }
 
-type Metadata struct {
+type GetRecentlyAddedMetadata struct {
 	AllowSync             *bool      `json:"allowSync,omitempty"`
 	LibrarySectionID      *float64   `json:"librarySectionID,omitempty"`
 	LibrarySectionTitle   *string    `json:"librarySectionTitle,omitempty"`
@@ -312,235 +312,235 @@ type Metadata struct {
 	Role                  []Role     `json:"Role,omitempty"`
 }
 
-func (m Metadata) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(m, "", false)
+func (g GetRecentlyAddedMetadata) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
 }
 
-func (m *Metadata) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, false); err != nil {
+func (g *GetRecentlyAddedMetadata) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Metadata) GetAllowSync() *bool {
+func (o *GetRecentlyAddedMetadata) GetAllowSync() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.AllowSync
 }
 
-func (o *Metadata) GetLibrarySectionID() *float64 {
+func (o *GetRecentlyAddedMetadata) GetLibrarySectionID() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.LibrarySectionID
 }
 
-func (o *Metadata) GetLibrarySectionTitle() *string {
+func (o *GetRecentlyAddedMetadata) GetLibrarySectionTitle() *string {
 	if o == nil {
 		return nil
 	}
 	return o.LibrarySectionTitle
 }
 
-func (o *Metadata) GetLibrarySectionUUID() *string {
+func (o *GetRecentlyAddedMetadata) GetLibrarySectionUUID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.LibrarySectionUUID
 }
 
-func (o *Metadata) GetRatingKey() *float64 {
+func (o *GetRecentlyAddedMetadata) GetRatingKey() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.RatingKey
 }
 
-func (o *Metadata) GetKey() *string {
+func (o *GetRecentlyAddedMetadata) GetKey() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Key
 }
 
-func (o *Metadata) GetGUID() *string {
+func (o *GetRecentlyAddedMetadata) GetGUID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.GUID
 }
 
-func (o *Metadata) GetStudio() *string {
+func (o *GetRecentlyAddedMetadata) GetStudio() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Studio
 }
 
-func (o *Metadata) GetType() *string {
+func (o *GetRecentlyAddedMetadata) GetType() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *Metadata) GetTitle() *string {
+func (o *GetRecentlyAddedMetadata) GetTitle() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Title
 }
 
-func (o *Metadata) GetContentRating() *string {
+func (o *GetRecentlyAddedMetadata) GetContentRating() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ContentRating
 }
 
-func (o *Metadata) GetSummary() *string {
+func (o *GetRecentlyAddedMetadata) GetSummary() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Summary
 }
 
-func (o *Metadata) GetRating() *float64 {
+func (o *GetRecentlyAddedMetadata) GetRating() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Rating
 }
 
-func (o *Metadata) GetAudienceRating() *float64 {
+func (o *GetRecentlyAddedMetadata) GetAudienceRating() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.AudienceRating
 }
 
-func (o *Metadata) GetYear() *float64 {
+func (o *GetRecentlyAddedMetadata) GetYear() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Year
 }
 
-func (o *Metadata) GetTagline() *string {
+func (o *GetRecentlyAddedMetadata) GetTagline() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Tagline
 }
 
-func (o *Metadata) GetThumb() *string {
+func (o *GetRecentlyAddedMetadata) GetThumb() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Thumb
 }
 
-func (o *Metadata) GetArt() *string {
+func (o *GetRecentlyAddedMetadata) GetArt() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Art
 }
 
-func (o *Metadata) GetDuration() *float64 {
+func (o *GetRecentlyAddedMetadata) GetDuration() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Duration
 }
 
-func (o *Metadata) GetOriginallyAvailableAt() *time.Time {
+func (o *GetRecentlyAddedMetadata) GetOriginallyAvailableAt() *time.Time {
 	if o == nil {
 		return nil
 	}
 	return o.OriginallyAvailableAt
 }
 
-func (o *Metadata) GetAddedAt() *float64 {
+func (o *GetRecentlyAddedMetadata) GetAddedAt() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.AddedAt
 }
 
-func (o *Metadata) GetUpdatedAt() *float64 {
+func (o *GetRecentlyAddedMetadata) GetUpdatedAt() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *Metadata) GetAudienceRatingImage() *string {
+func (o *GetRecentlyAddedMetadata) GetAudienceRatingImage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.AudienceRatingImage
 }
 
-func (o *Metadata) GetChapterSource() *string {
+func (o *GetRecentlyAddedMetadata) GetChapterSource() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ChapterSource
 }
 
-func (o *Metadata) GetPrimaryExtraKey() *string {
+func (o *GetRecentlyAddedMetadata) GetPrimaryExtraKey() *string {
 	if o == nil {
 		return nil
 	}
 	return o.PrimaryExtraKey
 }
 
-func (o *Metadata) GetRatingImage() *string {
+func (o *GetRecentlyAddedMetadata) GetRatingImage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.RatingImage
 }
 
-func (o *Metadata) GetMedia() []Media {
+func (o *GetRecentlyAddedMetadata) GetMedia() []Media {
 	if o == nil {
 		return nil
 	}
 	return o.Media
 }
 
-func (o *Metadata) GetGenre() []Genre {
+func (o *GetRecentlyAddedMetadata) GetGenre() []Genre {
 	if o == nil {
 		return nil
 	}
 	return o.Genre
 }
 
-func (o *Metadata) GetDirector() []Director {
+func (o *GetRecentlyAddedMetadata) GetDirector() []Director {
 	if o == nil {
 		return nil
 	}
 	return o.Director
 }
 
-func (o *Metadata) GetWriter() []Writer {
+func (o *GetRecentlyAddedMetadata) GetWriter() []Writer {
 	if o == nil {
 		return nil
 	}
 	return o.Writer
 }
 
-func (o *Metadata) GetCountry() []Country {
+func (o *GetRecentlyAddedMetadata) GetCountry() []Country {
 	if o == nil {
 		return nil
 	}
 	return o.Country
 }
 
-func (o *Metadata) GetRole() []Role {
+func (o *GetRecentlyAddedMetadata) GetRole() []Role {
 	if o == nil {
 		return nil
 	}
@@ -548,13 +548,13 @@ func (o *Metadata) GetRole() []Role {
 }
 
 type GetRecentlyAddedMediaContainer struct {
-	Size            *float64   `json:"size,omitempty"`
-	AllowSync       *bool      `json:"allowSync,omitempty"`
-	Identifier      *string    `json:"identifier,omitempty"`
-	MediaTagPrefix  *string    `json:"mediaTagPrefix,omitempty"`
-	MediaTagVersion *float64   `json:"mediaTagVersion,omitempty"`
-	MixedParents    *bool      `json:"mixedParents,omitempty"`
-	Metadata        []Metadata `json:"Metadata,omitempty"`
+	Size            *float64                   `json:"size,omitempty"`
+	AllowSync       *bool                      `json:"allowSync,omitempty"`
+	Identifier      *string                    `json:"identifier,omitempty"`
+	MediaTagPrefix  *string                    `json:"mediaTagPrefix,omitempty"`
+	MediaTagVersion *float64                   `json:"mediaTagVersion,omitempty"`
+	MixedParents    *bool                      `json:"mixedParents,omitempty"`
+	Metadata        []GetRecentlyAddedMetadata `json:"Metadata,omitempty"`
 }
 
 func (o *GetRecentlyAddedMediaContainer) GetSize() *float64 {
@@ -599,7 +599,7 @@ func (o *GetRecentlyAddedMediaContainer) GetMixedParents() *bool {
 	return o.MixedParents
 }
 
-func (o *GetRecentlyAddedMediaContainer) GetMetadata() []Metadata {
+func (o *GetRecentlyAddedMediaContainer) GetMetadata() []GetRecentlyAddedMetadata {
 	if o == nil {
 		return nil
 	}

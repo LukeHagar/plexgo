@@ -90,14 +90,14 @@ func (e *Tag) UnmarshalJSON(data []byte) error {
 
 type GetLibraryItemsRequest struct {
 	// the Id of the library to query
-	SectionID int64 `pathParam:"style=simple,explode=false,name=sectionId"`
+	SectionID any `pathParam:"style=simple,explode=false,name=sectionId"`
 	// A key representing a specific tag within the section.
 	Tag Tag `pathParam:"style=simple,explode=false,name=tag"`
 }
 
-func (o *GetLibraryItemsRequest) GetSectionID() int64 {
+func (o *GetLibraryItemsRequest) GetSectionID() any {
 	if o == nil {
-		return 0
+		return nil
 	}
 	return o.SectionID
 }

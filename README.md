@@ -86,6 +86,12 @@ func main() {
 * [StartTask](docs/sdks/butler/README.md#starttask) - Start a single Butler task
 * [StopTask](docs/sdks/butler/README.md#stoptask) - Stop a single Butler task
 
+### [Plex](docs/sdks/plex/README.md)
+
+* [GetHomeData](docs/sdks/plex/README.md#gethomedata) - Get Plex Home Data
+* [GetPin](docs/sdks/plex/README.md#getpin) - Get a Pin
+* [GetToken](docs/sdks/plex/README.md#gettoken) - Get Access Token
+
 ### [Hubs](docs/sdks/hubs/README.md)
 
 * [GetGlobalHubs](docs/sdks/hubs/README.md#getglobalhubs) - Get Global Hubs
@@ -116,11 +122,6 @@ func main() {
 * [LogLine](docs/sdks/log/README.md#logline) - Logging a single line message.
 * [LogMultiLine](docs/sdks/log/README.md#logmultiline) - Logging a multi-line message
 * [EnablePaperTrail](docs/sdks/log/README.md#enablepapertrail) - Enabling Papertrail
-
-### [Plex](docs/sdks/plex/README.md)
-
-* [GetPin](docs/sdks/plex/README.md#getpin) - Get a Pin
-* [GetToken](docs/sdks/plex/README.md#gettoken) - Get Access Token
 
 ### [Playlists](docs/sdks/playlists/README.md)
 
@@ -155,6 +156,10 @@ func main() {
 * [GetUpdateStatus](docs/sdks/updater/README.md#getupdatestatus) - Querying status of updates
 * [CheckForUpdates](docs/sdks/updater/README.md#checkforupdates) - Checking for updates
 * [ApplyUpdates](docs/sdks/updater/README.md#applyupdates) - Apply Updates
+
+### [Watchlist](docs/sdks/watchlist/README.md)
+
+* [GetWatchlist](docs/sdks/watchlist/README.md#getwatchlist) - Get User Watchlist
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Error Handling [errors] -->
@@ -303,11 +308,13 @@ func main() {
 	s := plexgo.New(
 		plexgo.WithXPlexClientIdentifier("Postman"),
 	)
+	var xPlexProduct string = "Postman"
+
 	var strong *bool = plexgo.Bool(false)
 
 	var xPlexClientIdentifier *string = plexgo.String("Postman")
 	ctx := context.Background()
-	res, err := s.Plex.GetPin(ctx, strong, xPlexClientIdentifier, operations.WithServerURL("https://plex.tv/api/v2"))
+	res, err := s.Plex.GetPin(ctx, xPlexProduct, strong, xPlexClientIdentifier, operations.WithServerURL("https://plex.tv/api/v2"))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -449,11 +456,13 @@ func main() {
 	s := plexgo.New(
 		plexgo.WithXPlexClientIdentifier("Postman"),
 	)
+	var xPlexProduct string = "Postman"
+
 	var strong *bool = plexgo.Bool(false)
 
 	var xPlexClientIdentifier *string = plexgo.String("Postman")
 	ctx := context.Background()
-	res, err := s.Plex.GetPin(ctx, strong, xPlexClientIdentifier)
+	res, err := s.Plex.GetPin(ctx, xPlexProduct, strong, xPlexClientIdentifier)
 	if err != nil {
 		log.Fatal(err)
 	}

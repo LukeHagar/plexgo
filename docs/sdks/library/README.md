@@ -352,7 +352,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
-    var sectionID int64 = 1
+    var sectionID any = "<value>"
 
     var tag operations.Tag = operations.TagGenre
     ctx := context.Background()
@@ -368,11 +368,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           | Example                                               |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |                                                       |
-| `sectionID`                                           | *int64*                                               | :heavy_check_mark:                                    | the Id of the library to query                        | 1                                                     |
-| `tag`                                                 | [operations.Tag](../../models/operations/tag.md)      | :heavy_check_mark:                                    | A key representing a specific tag within the section. |                                                       |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `sectionID`                                           | *any*                                                 | :heavy_check_mark:                                    | the Id of the library to query                        |
+| `tag`                                                 | [operations.Tag](../../models/operations/tag.md)      | :heavy_check_mark:                                    | A key representing a specific tag within the section. |
 
 
 ### Response

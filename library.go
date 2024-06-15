@@ -635,7 +635,7 @@ func (s *Library) DeleteLibrary(ctx context.Context, sectionID float64) (*operat
 // - `resolution`: Items categorized by resolution.
 // - `firstCharacter`: Items categorized by the first letter.
 // - `folder`: Items categorized by folder.
-func (s *Library) GetLibraryItems(ctx context.Context, sectionID int64, tag operations.Tag) (*operations.GetLibraryItemsResponse, error) {
+func (s *Library) GetLibraryItems(ctx context.Context, sectionID any, tag operations.Tag) (*operations.GetLibraryItemsResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "getLibraryItems",

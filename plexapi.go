@@ -91,6 +91,9 @@ type PlexAPI struct {
 	// Butler is the task manager of the Plex Media Server Ecosystem.
 	//
 	Butler *Butler
+	// API Calls that perform operations directly against https://Plex.tv
+	//
+	Plex *Plex
 	// Hubs are a structured two-dimensional container for media, generally represented by multiple horizontal rows.
 	//
 	Hubs *Hubs
@@ -103,9 +106,6 @@ type PlexAPI struct {
 	// Submit logs to the Log Handler for Plex Media Server
 	//
 	Log *Log
-	// API Calls that perform operations directly against https://Plex.tv
-	//
-	Plex *Plex
 	// Playlists are ordered collections of media. They can be dumb (just a list of media) or smart (based on a media query, such as "all albums from 2017").
 	// They can be organized in (optionally nesting) folders.
 	// Retrieving a playlist, or its items, will trigger a refresh of its metadata.
@@ -125,6 +125,9 @@ type PlexAPI struct {
 	// Updates to the status can be observed via the Event API.
 	//
 	Updater *Updater
+	// API Calls that perform operations with Plex Media Server Watchlists
+	//
+	Watchlist *Watchlist
 
 	sdkConfiguration sdkConfiguration
 }
@@ -269,9 +272,9 @@ func New(opts ...SDKOption) *PlexAPI {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.3",
-			SDKVersion:        "0.8.1",
-			GenVersion:        "2.338.12",
-			UserAgent:         "speakeasy-sdk/go 0.8.1 2.338.12 0.0.3 github.com/LukeHagar/plexgo",
+			SDKVersion:        "0.9.0",
+			GenVersion:        "2.342.6",
+			UserAgent:         "speakeasy-sdk/go 0.9.0 2.342.6 0.0.3 github.com/LukeHagar/plexgo",
 			Globals:           globals.Globals{},
 			ServerDefaults: []map[string]string{
 				{
@@ -309,6 +312,8 @@ func New(opts ...SDKOption) *PlexAPI {
 
 	sdk.Butler = newButler(sdk.sdkConfiguration)
 
+	sdk.Plex = newPlex(sdk.sdkConfiguration)
+
 	sdk.Hubs = newHubs(sdk.sdkConfiguration)
 
 	sdk.Search = newSearch(sdk.sdkConfiguration)
@@ -316,8 +321,6 @@ func New(opts ...SDKOption) *PlexAPI {
 	sdk.Library = newLibrary(sdk.sdkConfiguration)
 
 	sdk.Log = newLog(sdk.sdkConfiguration)
-
-	sdk.Plex = newPlex(sdk.sdkConfiguration)
 
 	sdk.Playlists = newPlaylists(sdk.sdkConfiguration)
 
@@ -328,6 +331,8 @@ func New(opts ...SDKOption) *PlexAPI {
 	sdk.Sessions = newSessions(sdk.sdkConfiguration)
 
 	sdk.Updater = newUpdater(sdk.sdkConfiguration)
+
+	sdk.Watchlist = newWatchlist(sdk.sdkConfiguration)
 
 	return sdk
 }
