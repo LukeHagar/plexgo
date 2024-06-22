@@ -26,8 +26,8 @@ func newServer(sdkConfig sdkConfiguration) *Server {
 	}
 }
 
-// GetServerCapabilities - Server Capabilities
-// Server Capabilities
+// GetServerCapabilities - Get Server Capabilities
+// Get Server Capabilities
 func (s *Server) GetServerCapabilities(ctx context.Context) (*operations.GetServerCapabilitiesResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,

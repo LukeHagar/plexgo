@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: dfa99515-01c0-42eb-9be5-ee212fd03eb3
 management:
-  docChecksum: 37654ea0982ab5e87a9a9576014c9d19
+  docChecksum: e73920abd3a55e8d249592f2e3090574
   docVersion: 0.0.3
-  speakeasyVersion: 1.308.1
-  generationVersion: 2.342.6
-  releaseVersion: 0.9.0
-  configChecksum: 21802bb6ef89f8b23e39a8afe2761568
+  speakeasyVersion: 1.314.2
+  generationVersion: 2.349.6
+  releaseVersion: 0.10.0
+  configChecksum: 28df6cdfff7ddcd30cd89a07a82b5e6c
   repoURL: https://github.com/LukeHagar/plexgo.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexgo
@@ -15,7 +15,7 @@ features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.4
-    core: 3.4.11
+    core: 3.4.14
     flattening: 2.81.1
     globalSecurity: 2.82.9
     globalSecurityCallbacks: 0.1.0
@@ -25,9 +25,11 @@ features:
     intellisenseMarkdownSupport: 0.1.0
     methodServerURLs: 2.82.1
     nameOverrides: 2.81.2
+    nullables: 0.1.0
     responseFormat: 0.1.2
     sdkHooks: 0.1.0
     typeOverrides: 2.81.1
+    unions: 2.85.8
 generatedFiles:
   - server.go
   - media.go
@@ -102,6 +104,7 @@ generatedFiles:
   - /models/operations/searchlibrary.go
   - /models/operations/getmetadata.go
   - /models/operations/getmetadatachildren.go
+  - /models/operations/gettopwatchedcontent.go
   - /models/operations/getondeck.go
   - /models/operations/logline.go
   - /models/operations/logmultiline.go
@@ -118,6 +121,8 @@ generatedFiles:
   - /models/operations/gettransienttoken.go
   - /models/operations/getsourceconnectioninformation.go
   - /models/operations/getstatistics.go
+  - /models/operations/getresourcesstatistics.go
+  - /models/operations/getbandwidthstatistics.go
   - /models/operations/getsessions.go
   - /models/operations/getsessionhistory.go
   - /models/operations/gettranscodesessions.go
@@ -180,6 +185,8 @@ generatedFiles:
   - /models/sdkerrors/gettransienttoken.go
   - /models/sdkerrors/getsourceconnectioninformation.go
   - /models/sdkerrors/getstatistics.go
+  - /models/sdkerrors/getresourcesstatistics.go
+  - /models/sdkerrors/getbandwidthstatistics.go
   - /models/sdkerrors/getsessions.go
   - /models/sdkerrors/getsessionhistory.go
   - /models/sdkerrors/gettranscodesessions.go
@@ -334,6 +341,7 @@ generatedFiles:
   - docs/models/operations/deletelibraryresponse.md
   - docs/models/operations/tag.md
   - docs/models/operations/getlibraryitemsrequest.md
+  - docs/models/operations/librarysectionid.md
   - docs/models/operations/getlibraryitemspart.md
   - docs/models/operations/getlibraryitemsmedia.md
   - docs/models/operations/getlibraryitemsgenre.md
@@ -375,6 +383,16 @@ generatedFiles:
   - docs/models/operations/getmetadatachildrenmediacontainer.md
   - docs/models/operations/getmetadatachildrenresponsebody.md
   - docs/models/operations/getmetadatachildrenresponse.md
+  - docs/models/operations/gettopwatchedcontentrequest.md
+  - docs/models/operations/gettopwatchedcontentgenre.md
+  - docs/models/operations/gettopwatchedcontentcountry.md
+  - docs/models/operations/gettopwatchedcontentguids.md
+  - docs/models/operations/gettopwatchedcontentrole.md
+  - docs/models/operations/user.md
+  - docs/models/operations/gettopwatchedcontentmetadata.md
+  - docs/models/operations/gettopwatchedcontentmediacontainer.md
+  - docs/models/operations/gettopwatchedcontentresponsebody.md
+  - docs/models/operations/gettopwatchedcontentresponse.md
   - docs/models/operations/getondeckstream.md
   - docs/models/operations/getondeckpart.md
   - docs/models/operations/getondeckmedia.md
@@ -446,16 +464,30 @@ generatedFiles:
   - docs/models/operations/getstatisticsmediacontainer.md
   - docs/models/operations/getstatisticsresponsebody.md
   - docs/models/operations/getstatisticsresponse.md
+  - docs/models/operations/getresourcesstatisticsrequest.md
+  - docs/models/operations/statisticsresources.md
+  - docs/models/operations/getresourcesstatisticsmediacontainer.md
+  - docs/models/operations/getresourcesstatisticsresponsebody.md
+  - docs/models/operations/getresourcesstatisticsresponse.md
+  - docs/models/operations/getbandwidthstatisticsrequest.md
+  - docs/models/operations/getbandwidthstatisticsdevice.md
+  - docs/models/operations/getbandwidthstatisticsaccount.md
+  - docs/models/operations/statisticsbandwidth.md
+  - docs/models/operations/getbandwidthstatisticsmediacontainer.md
+  - docs/models/operations/getbandwidthstatisticsresponsebody.md
+  - docs/models/operations/getbandwidthstatisticsresponse.md
   - docs/models/operations/getsessionsstream.md
   - docs/models/operations/getsessionspart.md
   - docs/models/operations/getsessionsmedia.md
-  - docs/models/operations/user.md
+  - docs/models/operations/getsessionsuser.md
   - docs/models/operations/player.md
   - docs/models/operations/session.md
   - docs/models/operations/getsessionsmetadata.md
   - docs/models/operations/getsessionsmediacontainer.md
   - docs/models/operations/getsessionsresponsebody.md
   - docs/models/operations/getsessionsresponse.md
+  - docs/models/operations/filter.md
+  - docs/models/operations/getsessionhistoryrequest.md
   - docs/models/operations/getsessionhistorymetadata.md
   - docs/models/operations/getsessionhistorymediacontainer.md
   - docs/models/operations/getsessionhistoryresponsebody.md
@@ -477,7 +509,7 @@ generatedFiles:
   - docs/models/operations/skip.md
   - docs/models/operations/applyupdatesrequest.md
   - docs/models/operations/applyupdatesresponse.md
-  - docs/models/operations/filter.md
+  - docs/models/operations/pathparamfilter.md
   - docs/models/operations/libtype.md
   - docs/models/operations/includecollections.md
   - docs/models/operations/includeexternalmedia.md
@@ -594,6 +626,10 @@ generatedFiles:
   - docs/models/sdkerrors/getsourceconnectioninformationresponsebody.md
   - docs/models/sdkerrors/getstatisticserrors.md
   - docs/models/sdkerrors/getstatisticsresponsebody.md
+  - docs/models/sdkerrors/getresourcesstatisticserrors.md
+  - docs/models/sdkerrors/getresourcesstatisticsresponsebody.md
+  - docs/models/sdkerrors/getbandwidthstatisticserrors.md
+  - docs/models/sdkerrors/getbandwidthstatisticsresponsebody.md
   - docs/models/sdkerrors/getsessionserrors.md
   - docs/models/sdkerrors/getsessionsresponsebody.md
   - docs/models/sdkerrors/getsessionhistoryerrors.md

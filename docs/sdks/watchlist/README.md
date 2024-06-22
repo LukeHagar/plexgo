@@ -32,7 +32,7 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
     request := operations.GetWatchlistRequest{
-        Filter: operations.FilterReleased,
+        Filter: operations.PathParamFilterReleased,
         XPlexToken: "<value>",
     }
     ctx := context.Background()

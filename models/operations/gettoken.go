@@ -17,12 +17,12 @@ type GetTokenGlobals struct {
 	// This is used to track the client application and its usage
 	// (UUID, serial number, or other number unique per device)
 	//
-	XPlexClientIdentifier string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+	XPlexClientIdentifier *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
 }
 
-func (o *GetTokenGlobals) GetXPlexClientIdentifier() string {
+func (o *GetTokenGlobals) GetXPlexClientIdentifier() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.XPlexClientIdentifier
 }

@@ -8,6 +8,55 @@ import (
 	"net/http"
 )
 
+// Filter - Filters content by field and direction/equality
+// (Unknown if viewedAt is the only supported column)
+type Filter struct {
+}
+
+type GetSessionHistoryRequest struct {
+	// Sorts the results by the specified field followed by the direction (asc, desc)
+	//
+	Sort *string `queryParam:"style=form,explode=true,name=sort"`
+	// Filter results by those that are related to a specific users id
+	//
+	AccountID *int64 `queryParam:"style=form,explode=true,name=accountId"`
+	// Filters content by field and direction/equality
+	// (Unknown if viewedAt is the only supported column)
+	//
+	Filter *Filter `queryParam:"style=form,explode=true,name=filter"`
+	// Filters the results based on the id of a valid library section
+	//
+	LibrarySectionID *int64 `queryParam:"style=form,explode=true,name=librarySectionID"`
+}
+
+func (o *GetSessionHistoryRequest) GetSort() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Sort
+}
+
+func (o *GetSessionHistoryRequest) GetAccountID() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.AccountID
+}
+
+func (o *GetSessionHistoryRequest) GetFilter() *Filter {
+	if o == nil {
+		return nil
+	}
+	return o.Filter
+}
+
+func (o *GetSessionHistoryRequest) GetLibrarySectionID() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.LibrarySectionID
+}
+
 type GetSessionHistoryMetadata struct {
 	HistoryKey            *string     `json:"historyKey,omitempty"`
 	Key                   *string     `json:"key,omitempty"`

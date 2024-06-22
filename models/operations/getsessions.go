@@ -319,27 +319,27 @@ func (o *GetSessionsMedia) GetPart() []GetSessionsPart {
 	return o.Part
 }
 
-type User struct {
+type GetSessionsUser struct {
 	ID    *string `json:"id,omitempty"`
 	Thumb *string `json:"thumb,omitempty"`
 	Title *string `json:"title,omitempty"`
 }
 
-func (o *User) GetID() *string {
+func (o *GetSessionsUser) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *User) GetThumb() *string {
+func (o *GetSessionsUser) GetThumb() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Thumb
 }
 
-func (o *User) GetTitle() *string {
+func (o *GetSessionsUser) GetTitle() *string {
 	if o == nil {
 		return nil
 	}
@@ -531,7 +531,7 @@ type GetSessionsMetadata struct {
 	UpdatedAt            *int               `json:"updatedAt,omitempty"`
 	ViewOffset           *int               `json:"viewOffset,omitempty"`
 	Media                []GetSessionsMedia `json:"Media,omitempty"`
-	User                 *User              `json:"User,omitempty"`
+	User                 *GetSessionsUser   `json:"User,omitempty"`
 	Player               *Player            `json:"Player,omitempty"`
 	Session              *Session           `json:"Session,omitempty"`
 }
@@ -774,7 +774,7 @@ func (o *GetSessionsMetadata) GetMedia() []GetSessionsMedia {
 	return o.Media
 }
 
-func (o *GetSessionsMetadata) GetUser() *User {
+func (o *GetSessionsMetadata) GetUser() *GetSessionsUser {
 	if o == nil {
 		return nil
 	}

@@ -4,6 +4,7 @@ package operations
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"github.com/LukeHagar/plexgo/internal/utils"
 	"github.com/LukeHagar/plexgo/types"
@@ -93,6 +94,9 @@ type GetLibraryItemsRequest struct {
 	SectionID any `pathParam:"style=simple,explode=false,name=sectionId"`
 	// A key representing a specific tag within the section.
 	Tag Tag `pathParam:"style=simple,explode=false,name=tag"`
+	// Adds the Guids object to the response
+	//
+	IncludeGuids *int64 `queryParam:"style=form,explode=true,name=includeGuids"`
 }
 
 func (o *GetLibraryItemsRequest) GetSectionID() any {
@@ -107,6 +111,76 @@ func (o *GetLibraryItemsRequest) GetTag() Tag {
 		return Tag("")
 	}
 	return o.Tag
+}
+
+func (o *GetLibraryItemsRequest) GetIncludeGuids() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.IncludeGuids
+}
+
+type LibrarySectionIDType string
+
+const (
+	LibrarySectionIDTypeInteger LibrarySectionIDType = "integer"
+	LibrarySectionIDTypeStr     LibrarySectionIDType = "str"
+)
+
+type LibrarySectionID struct {
+	Integer *int64
+	Str     *string
+
+	Type LibrarySectionIDType
+}
+
+func CreateLibrarySectionIDInteger(integer int64) LibrarySectionID {
+	typ := LibrarySectionIDTypeInteger
+
+	return LibrarySectionID{
+		Integer: &integer,
+		Type:    typ,
+	}
+}
+
+func CreateLibrarySectionIDStr(str string) LibrarySectionID {
+	typ := LibrarySectionIDTypeStr
+
+	return LibrarySectionID{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func (u *LibrarySectionID) UnmarshalJSON(data []byte) error {
+
+	var integer int64 = int64(0)
+	if err := utils.UnmarshalJSON(data, &integer, "", true, true); err == nil {
+		u.Integer = &integer
+		u.Type = LibrarySectionIDTypeInteger
+		return nil
+	}
+
+	var str string = ""
+	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+		u.Str = &str
+		u.Type = LibrarySectionIDTypeStr
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for LibrarySectionID", string(data))
+}
+
+func (u LibrarySectionID) MarshalJSON() ([]byte, error) {
+	if u.Integer != nil {
+		return utils.MarshalJSON(u.Integer, "", true)
+	}
+
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type LibrarySectionID: all fields are null")
 }
 
 type GetLibraryItemsPart struct {
@@ -813,7 +887,7 @@ type GetLibraryItemsMediaContainer struct {
 	AllowSync           *bool                     `json:"allowSync,omitempty"`
 	Art                 *string                   `json:"art,omitempty"`
 	Identifier          *string                   `json:"identifier,omitempty"`
-	LibrarySectionID    *int                      `json:"librarySectionID,omitempty"`
+	LibrarySectionID    *LibrarySectionID         `json:"librarySectionID,omitempty"`
 	LibrarySectionTitle *string                   `json:"librarySectionTitle,omitempty"`
 	LibrarySectionUUID  *string                   `json:"librarySectionUUID,omitempty"`
 	MediaTagPrefix      *string                   `json:"mediaTagPrefix,omitempty"`
@@ -855,7 +929,7 @@ func (o *GetLibraryItemsMediaContainer) GetIdentifier() *string {
 	return o.Identifier
 }
 
-func (o *GetLibraryItemsMediaContainer) GetLibrarySectionID() *int {
+func (o *GetLibraryItemsMediaContainer) GetLibrarySectionID() *LibrarySectionID {
 	if o == nil {
 		return nil
 	}

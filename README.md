@@ -53,7 +53,7 @@ func main() {
 
 ### [Server](docs/sdks/server/README.md)
 
-* [GetServerCapabilities](docs/sdks/server/README.md#getservercapabilities) - Server Capabilities
+* [GetServerCapabilities](docs/sdks/server/README.md#getservercapabilities) - Get Server Capabilities
 * [GetServerPreferences](docs/sdks/server/README.md#getserverpreferences) - Get Server Preferences
 * [GetAvailableClients](docs/sdks/server/README.md#getavailableclients) - Get Available Clients
 * [GetDevices](docs/sdks/server/README.md#getdevices) - Get Devices
@@ -115,6 +115,7 @@ func main() {
 * [SearchLibrary](docs/sdks/library/README.md#searchlibrary) - Search Library
 * [GetMetadata](docs/sdks/library/README.md#getmetadata) - Get Items Metadata
 * [GetMetadataChildren](docs/sdks/library/README.md#getmetadatachildren) - Get Items Children
+* [GetTopWatchedContent](docs/sdks/library/README.md#gettopwatchedcontent) - Get Top Watched Content
 * [GetOnDeck](docs/sdks/library/README.md#getondeck) - Get On Deck
 
 ### [Log](docs/sdks/log/README.md)
@@ -143,6 +144,8 @@ func main() {
 ### [Statistics](docs/sdks/statistics/README.md)
 
 * [GetStatistics](docs/sdks/statistics/README.md#getstatistics) - Get Media Statistics
+* [GetResourcesStatistics](docs/sdks/statistics/README.md#getresourcesstatistics) - Get Resources Statistics
+* [GetBandwidthStatistics](docs/sdks/statistics/README.md#getbandwidthstatistics) - Get Bandwidth Statistics
 
 ### [Sessions](docs/sdks/sessions/README.md)
 
@@ -424,18 +427,18 @@ d6 := types.MustDateFromString("2019-01-01") // returns types.Date and panics on
 <!-- Start Global Parameters [global-parameters] -->
 ## Global Parameters
 
-A parameter is configured globally. This parameter must be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, This global value will be used as the default on the operations that use it. When such operations are called, there is a place in each to override the global value, if needed.
+A parameter is configured globally. This parameter may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, This global value will be used as the default on the operations that use it. When such operations are called, there is a place in each to override the global value, if needed.
 
 For example, you can set `X-Plex-Client-Identifier` to `"Postman"` at SDK initialization and then you do not have to pass the same value on calls to operations like `GetPin`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
 
 
 ### Available Globals
 
-The following global parameter is available. The required parameter must be set when you initialize the SDK client.
+The following global parameter is available.
 
 | Name | Type | Required | Description |
 | ---- | ---- |:--------:| ----------- |
-| XPlexClientIdentifier | string | ✔️ | The unique identifier for the client application
+| XPlexClientIdentifier | string |  | The unique identifier for the client application
 This is used to track the client application and its usage
 (UUID, serial number, or other number unique per device)
  |

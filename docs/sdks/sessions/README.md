@@ -71,6 +71,7 @@ package main
 
 import(
 	"github.com/LukeHagar/plexgo"
+	"github.com/LukeHagar/plexgo/models/operations"
 	"context"
 	"log"
 )
@@ -80,9 +81,15 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
+    var sort *string = plexgo.String("<value>")
 
+    var accountID *int64 = plexgo.Int64(1)
+
+    var filter *operations.Filter = &operations.Filter{}
+
+    var librarySectionID *int64 = plexgo.Int64(12)
     ctx := context.Background()
-    res, err := s.Sessions.GetSessionHistory(ctx)
+    res, err := s.Sessions.GetSessionHistory(ctx, sort, accountID, filter, librarySectionID)
     if err != nil {
         log.Fatal(err)
     }
@@ -94,9 +101,13 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| Parameter                                                                                                                                                                                     | Type                                                                                                                                                                                          | Required                                                                                                                                                                                      | Description                                                                                                                                                                                   | Example                                                                                                                                                                                       |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                                                                                         | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                                         | :heavy_check_mark:                                                                                                                                                                            | The context to use for the request.                                                                                                                                                           |                                                                                                                                                                                               |
+| `sort`                                                                                                                                                                                        | **string*                                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                            | Sorts the results by the specified field followed by the direction (asc, desc)<br/>                                                                                                           |                                                                                                                                                                                               |
+| `accountID`                                                                                                                                                                                   | **int64*                                                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                                            | Filter results by those that are related to a specific users id<br/>                                                                                                                          | 1                                                                                                                                                                                             |
+| `filter`                                                                                                                                                                                      | [*operations.Filter](../../models/operations/filter.md)                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                            | Filters content by field and direction/equality<br/>(Unknown if viewedAt is the only supported column)<br/>                                                                                   | {<br/>"viewed-at-greater-than": {<br/>"value": "viewedAt\u003e"<br/>},<br/>"viewed-at-greater-than-or-equal-to": {<br/>"value": "viewedAt\u003e=\u003e"<br/>},<br/>"viewed-at-less-than": {<br/>"value": "viewedAt\u003c"<br/>}<br/>} |
+| `librarySectionID`                                                                                                                                                                            | **int64*                                                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                                            | Filters the results based on the id of a valid library section<br/>                                                                                                                           | 12                                                                                                                                                                                            |
 
 
 ### Response

@@ -14,19 +14,19 @@ var GetWatchlistServerList = []string{
 	"https://metadata.provider.plex.tv",
 }
 
-// Filter
-type Filter string
+// PathParamFilter - Filter
+type PathParamFilter string
 
 const (
-	FilterAll       Filter = "all"
-	FilterAvailable Filter = "available"
-	FilterReleased  Filter = "released"
+	PathParamFilterAll       PathParamFilter = "all"
+	PathParamFilterAvailable PathParamFilter = "available"
+	PathParamFilterReleased  PathParamFilter = "released"
 )
 
-func (e Filter) ToPointer() *Filter {
+func (e PathParamFilter) ToPointer() *PathParamFilter {
 	return &e
 }
-func (e *Filter) UnmarshalJSON(data []byte) error {
+func (e *PathParamFilter) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -37,10 +37,10 @@ func (e *Filter) UnmarshalJSON(data []byte) error {
 	case "available":
 		fallthrough
 	case "released":
-		*e = Filter(v)
+		*e = PathParamFilter(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Filter: %v", v)
+		return fmt.Errorf("invalid value for PathParamFilter: %v", v)
 	}
 }
 
@@ -127,7 +127,7 @@ func (e *IncludeExternalMedia) UnmarshalJSON(data []byte) error {
 
 type GetWatchlistRequest struct {
 	// Filter
-	Filter Filter `pathParam:"style=simple,explode=false,name=filter"`
+	Filter PathParamFilter `pathParam:"style=simple,explode=false,name=filter"`
 	// In the format "field:dir". Available fields are "watchlistedAt" (Added At),
 	// "titleSort" (Title), "originallyAvailableAt" (Release Date), or "rating" (Critic Rating).
 	// "dir" can be "asc" or "desc"
@@ -158,9 +158,9 @@ type GetWatchlistRequest struct {
 	XPlexContainerSize *int `queryParam:"style=form,explode=true,name=X-Plex-Container-Size"`
 }
 
-func (o *GetWatchlistRequest) GetFilter() Filter {
+func (o *GetWatchlistRequest) GetFilter() PathParamFilter {
 	if o == nil {
-		return Filter("")
+		return PathParamFilter("")
 	}
 	return o.Filter
 }

@@ -17,12 +17,12 @@ type GetPinGlobals struct {
 	// This is used to track the client application and its usage
 	// (UUID, serial number, or other number unique per device)
 	//
-	XPlexClientIdentifier string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+	XPlexClientIdentifier *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
 }
 
-func (o *GetPinGlobals) GetXPlexClientIdentifier() string {
+func (o *GetPinGlobals) GetXPlexClientIdentifier() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.XPlexClientIdentifier
 }
@@ -176,7 +176,7 @@ type GetPinResponseBody struct {
 	CreatedAt        *time.Time `json:"createdAt,omitempty"`
 	ExpiresAt        *time.Time `json:"expiresAt,omitempty"`
 	AuthToken        *string    `json:"authToken,omitempty"`
-	NewRegistration  *string    `json:"newRegistration,omitempty"`
+	NewRegistration  *bool      `json:"newRegistration,omitempty"`
 }
 
 func (g GetPinResponseBody) MarshalJSON() ([]byte, error) {
@@ -267,7 +267,7 @@ func (o *GetPinResponseBody) GetAuthToken() *string {
 	return o.AuthToken
 }
 
-func (o *GetPinResponseBody) GetNewRegistration() *string {
+func (o *GetPinResponseBody) GetNewRegistration() *bool {
 	if o == nil {
 		return nil
 	}

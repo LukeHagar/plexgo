@@ -18,6 +18,7 @@ API Calls interacting with Plex Media Server Libraries
 * [SearchLibrary](#searchlibrary) - Search Library
 * [GetMetadata](#getmetadata) - Get Items Metadata
 * [GetMetadataChildren](#getmetadatachildren) - Get Items Children
+* [GetTopWatchedContent](#gettopwatchedcontent) - Get Top Watched Content
 * [GetOnDeck](#getondeck) - Get On Deck
 
 ## GetFileHash
@@ -355,8 +356,10 @@ func main() {
     var sectionID any = "<value>"
 
     var tag operations.Tag = operations.TagGenre
+
+    var includeGuids *int64 = plexgo.Int64(1)
     ctx := context.Background()
-    res, err := s.Library.GetLibraryItems(ctx, sectionID, tag)
+    res, err := s.Library.GetLibraryItems(ctx, sectionID, tag, includeGuids)
     if err != nil {
         log.Fatal(err)
     }
@@ -368,11 +371,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `sectionID`                                           | *any*                                                 | :heavy_check_mark:                                    | the Id of the library to query                        |
-| `tag`                                                 | [operations.Tag](../../models/operations/tag.md)      | :heavy_check_mark:                                    | A key representing a specific tag within the section. |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           | Example                                               |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |                                                       |
+| `sectionID`                                           | *any*                                                 | :heavy_check_mark:                                    | the Id of the library to query                        |                                                       |
+| `tag`                                                 | [operations.Tag](../../models/operations/tag.md)      | :heavy_check_mark:                                    | A key representing a specific tag within the section. |                                                       |
+| `includeGuids`                                        | **int64*                                              | :heavy_minus_sign:                                    | Adds the Guids object to the response<br/>            | 1                                                     |
 
 
 ### Response
@@ -573,8 +577,10 @@ func main() {
         plexgo.WithXPlexClientIdentifier("Postman"),
     )
     var ratingKey float64 = 1539.14
+
+    var includeElements *string = plexgo.String("<value>")
     ctx := context.Background()
-    res, err := s.Library.GetMetadataChildren(ctx, ratingKey)
+    res, err := s.Library.GetMetadataChildren(ctx, ratingKey, includeElements)
     if err != nil {
         log.Fatal(err)
     }
@@ -586,10 +592,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `ratingKey`                                           | *float64*                                             | :heavy_check_mark:                                    | the id of the library item to return the children of. |
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `ctx`                                                                   | [context.Context](https://pkg.go.dev/context#Context)                   | :heavy_check_mark:                                                      | The context to use for the request.                                     |
+| `ratingKey`                                                             | *float64*                                                               | :heavy_check_mark:                                                      | the id of the library item to return the children of.                   |
+| `includeElements`                                                       | **string*                                                               | :heavy_minus_sign:                                                      | Adds additional elements to the response. Supported types are (Stream)<br/> |
 
 
 ### Response
@@ -599,6 +606,57 @@ func main() {
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | sdkerrors.GetMetadataChildrenResponseBody | 401                                       | application/json                          |
 | sdkerrors.SDKError                        | 4xx-5xx                                   | */*                                       |
+
+## GetTopWatchedContent
+
+This endpoint will return the top watched content from libraries of a certain type
+
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"github.com/LukeHagar/plexgo"
+	"context"
+	"log"
+)
+
+func main() {
+    s := plexgo.New(
+        plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+        plexgo.WithXPlexClientIdentifier("Postman"),
+    )
+    var type_ int64 = 505531
+
+    var includeGuids *int64 = plexgo.Int64(1)
+    ctx := context.Background()
+    res, err := s.Library.GetTopWatchedContent(ctx, type_, includeGuids)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           | Example                                               |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |                                                       |
+| `type_`                                               | *int64*                                               | :heavy_check_mark:                                    | the library type (1 - movies, 2 - shows, 3 - music)   |                                                       |
+| `includeGuids`                                        | **int64*                                              | :heavy_minus_sign:                                    | Adds the Guids object to the response<br/>            | 1                                                     |
+
+
+### Response
+
+**[*operations.GetTopWatchedContentResponse](../../models/operations/gettopwatchedcontentresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetOnDeck
 

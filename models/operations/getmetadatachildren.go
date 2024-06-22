@@ -9,6 +9,9 @@ import (
 type GetMetadataChildrenRequest struct {
 	// the id of the library item to return the children of.
 	RatingKey float64 `pathParam:"style=simple,explode=false,name=ratingKey"`
+	// Adds additional elements to the response. Supported types are (Stream)
+	//
+	IncludeElements *string `queryParam:"style=form,explode=true,name=includeElements"`
 }
 
 func (o *GetMetadataChildrenRequest) GetRatingKey() float64 {
@@ -16,6 +19,13 @@ func (o *GetMetadataChildrenRequest) GetRatingKey() float64 {
 		return 0.0
 	}
 	return o.RatingKey
+}
+
+func (o *GetMetadataChildrenRequest) GetIncludeElements() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IncludeElements
 }
 
 type GetMetadataChildrenDirectory struct {

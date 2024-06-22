@@ -163,7 +163,6 @@ func WithServerIndex(serverIndex int) SDKOption {
 	}
 }
 
-// ServerProtocol - The protocol to use when connecting to your plex server.
 type ServerProtocol string
 
 const (
@@ -256,7 +255,7 @@ func WithSecuritySource(security func(context.Context) (components.Security, err
 // WithXPlexClientIdentifier allows setting the XPlexClientIdentifier parameter for all supported operations
 func WithXPlexClientIdentifier(xPlexClientIdentifier string) SDKOption {
 	return func(sdk *PlexAPI) {
-		sdk.sdkConfiguration.Globals.XPlexClientIdentifier = xPlexClientIdentifier
+		sdk.sdkConfiguration.Globals.XPlexClientIdentifier = &xPlexClientIdentifier
 	}
 }
 
@@ -272,9 +271,9 @@ func New(opts ...SDKOption) *PlexAPI {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.3",
-			SDKVersion:        "0.9.0",
-			GenVersion:        "2.342.6",
-			UserAgent:         "speakeasy-sdk/go 0.9.0 2.342.6 0.0.3 github.com/LukeHagar/plexgo",
+			SDKVersion:        "0.10.0",
+			GenVersion:        "2.349.6",
+			UserAgent:         "speakeasy-sdk/go 0.10.0 2.349.6 0.0.3 github.com/LukeHagar/plexgo",
 			Globals:           globals.Globals{},
 			ServerDefaults: []map[string]string{
 				{

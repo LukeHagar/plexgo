@@ -137,12 +137,19 @@ func (s *Sessions) GetSessions(ctx context.Context) (*operations.GetSessionsResp
 
 // GetSessionHistory - Get Session History
 // This will Retrieve a listing of all history views.
-func (s *Sessions) GetSessionHistory(ctx context.Context) (*operations.GetSessionHistoryResponse, error) {
+func (s *Sessions) GetSessionHistory(ctx context.Context, sort *string, accountID *int64, filter *operations.Filter, librarySectionID *int64) (*operations.GetSessionHistoryResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "getSessionHistory",
 		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
+	}
+
+	request := operations.GetSessionHistoryRequest{
+		Sort:             sort,
+		AccountID:        accountID,
+		Filter:           filter,
+		LibrarySectionID: librarySectionID,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
@@ -157,6 +164,10 @@ func (s *Sessions) GetSessionHistory(ctx context.Context) (*operations.GetSessio
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
