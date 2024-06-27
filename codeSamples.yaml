@@ -3,17 +3,16 @@ info:
   title: CodeSamples overlay for go target
   version: 0.0.0
 actions:
-  - target: $["paths"]["/library/sections/{sectionId}"]["get"]
+  - target: $["paths"]["/playlists/{playlistID}"]["get"]
     update:
       x-codeSamples:
         - lang: go
-          label: getLibrary
+          label: getPlaylist
           source: |-
             package main
 
             import(
             	"github.com/LukeHagar/plexgo"
-            	"github.com/LukeHagar/plexgo/models/operations"
             	"context"
             	"log"
             )
@@ -23,11 +22,9 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                     plexgo.WithXPlexClientIdentifier("Postman"),
                 )
-                var sectionID float64 = 1000
-
-                var includeDetails *operations.IncludeDetails = operations.IncludeDetailsZero.ToPointer()
+                var playlistID float64 = 4109.48
                 ctx := context.Background()
-                res, err := s.Library.GetLibrary(ctx, sectionID, includeDetails)
+                res, err := s.Playlists.GetPlaylist(ctx, playlistID)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -35,17 +32,16 @@ actions:
                     // handle response
                 }
             }
-  - target: $["paths"]["/security/token"]["get"]
+  - target: $["paths"]["/:/unscrobble"]["get"]
     update:
       x-codeSamples:
         - lang: go
-          label: getTransientToken
+          label: markUnplayed
           source: |-
             package main
 
             import(
             	"github.com/LukeHagar/plexgo"
-            	"github.com/LukeHagar/plexgo/models/operations"
             	"context"
             	"log"
             )
@@ -55,11 +51,9 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                     plexgo.WithXPlexClientIdentifier("Postman"),
                 )
-                var type_ operations.GetTransientTokenQueryParamType = operations.GetTransientTokenQueryParamTypeDelegation
-
-                var scope operations.Scope = operations.ScopeAll
+                var key float64 = 59398
                 ctx := context.Background()
-                res, err := s.Authentication.GetTransientToken(ctx, type_, scope)
+                res, err := s.Media.MarkUnplayed(ctx, key)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -67,16 +61,17 @@ actions:
                     // handle response
                 }
             }
-  - target: $["paths"]["/statistics/resources"]["get"]
+  - target: $["paths"]["/video/:/transcode/universal/start.mpd"]["get"]
     update:
       x-codeSamples:
         - lang: go
-          label: getResourcesStatistics
+          label: startUniversalTranscode
           source: |-
             package main
 
             import(
             	"github.com/LukeHagar/plexgo"
+            	"github.com/LukeHagar/plexgo/models/operations"
             	"context"
             	"log"
             )
@@ -86,42 +81,30 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                     plexgo.WithXPlexClientIdentifier("Postman"),
                 )
-                var timespan *int64 = plexgo.Int64(4)
+                request := operations.StartUniversalTranscodeRequest{
+                    HasMDE: 1,
+                    Path: "/library/metadata/23409",
+                    MediaIndex: 0,
+                    PartIndex: 0,
+                    Protocol: "hls",
+                    FastSeek: plexgo.Float64(0),
+                    DirectPlay: plexgo.Float64(0),
+                    DirectStream: plexgo.Float64(0),
+                    SubtitleSize: plexgo.Float64(100),
+                    Subtites: plexgo.String("burn"),
+                    AudioBoost: plexgo.Float64(100),
+                    Location: plexgo.String("lan"),
+                    MediaBufferSize: plexgo.Float64(102400),
+                    Session: plexgo.String("zvcage8b7rkioqcm8f4uns4c"),
+                    AddDebugOverlay: plexgo.Float64(0),
+                    AutoAdjustQuality: plexgo.Float64(0),
+                }
                 ctx := context.Background()
-                res, err := s.Statistics.GetResourcesStatistics(ctx, timespan)
+                res, err := s.Video.StartUniversalTranscode(ctx, request)
                 if err != nil {
                     log.Fatal(err)
                 }
-                if res.Object != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/:/prefs"]["get"]
-    update:
-      x-codeSamples:
-        - lang: go
-          label: getServerPreferences
-          source: |-
-            package main
-
-            import(
-            	"github.com/LukeHagar/plexgo"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := plexgo.New(
-                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-                    plexgo.WithXPlexClientIdentifier("Postman"),
-                )
-
-                ctx := context.Background()
-                res, err := s.Server.GetServerPreferences(ctx)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res.Object != nil {
+                if res != nil {
                     // handle response
                 }
             }
@@ -154,11 +137,11 @@ actions:
                     // handle response
                 }
             }
-  - target: $["paths"]["/butler"]["get"]
+  - target: $["paths"]["/library/onDeck"]["get"]
     update:
       x-codeSamples:
         - lang: go
-          label: getButlerTasks
+          label: getOnDeck
           source: |-
             package main
 
@@ -175,7 +158,7 @@ actions:
                 )
 
                 ctx := context.Background()
-                res, err := s.Butler.GetButlerTasks(ctx)
+                res, err := s.Library.GetOnDeck(ctx)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -183,43 +166,11 @@ actions:
                     // handle response
                 }
             }
-  - target: $["paths"]["/pins"]["post"]
+  - target: $["paths"]["/playlists/{playlistID}/items"]["get"]
     update:
       x-codeSamples:
         - lang: go
-          label: getPin
-          source: |-
-            package main
-
-            import(
-            	"github.com/LukeHagar/plexgo"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := plexgo.New(
-                    plexgo.WithXPlexClientIdentifier("Postman"),
-                )
-                var xPlexProduct string = "Postman"
-
-                var strong *bool = plexgo.Bool(false)
-
-                var xPlexClientIdentifier *string = plexgo.String("Postman")
-                ctx := context.Background()
-                res, err := s.Plex.GetPin(ctx, xPlexProduct, strong, xPlexClientIdentifier)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res.Object != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/hubs/search/voice"]["get"]
-    update:
-      x-codeSamples:
-        - lang: go
-          label: performVoiceSearch
+          label: getPlaylistContents
           source: |-
             package main
 
@@ -234,227 +185,11 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                     plexgo.WithXPlexClientIdentifier("Postman"),
                 )
-                var query string = "dead+poop"
+                var playlistID float64 = 5004.46
 
-                var sectionID *float64 = plexgo.Float64(4094.8)
-
-                var limit *float64 = plexgo.Float64(5)
+                var type_ float64 = 9403.59
                 ctx := context.Background()
-                res, err := s.Search.PerformVoiceSearch(ctx, query, sectionID, limit)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/updater/apply"]["put"]
-    update:
-      x-codeSamples:
-        - lang: go
-          label: applyUpdates
-          source: |-
-            package main
-
-            import(
-            	"github.com/LukeHagar/plexgo"
-            	"github.com/LukeHagar/plexgo/models/operations"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := plexgo.New(
-                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-                    plexgo.WithXPlexClientIdentifier("Postman"),
-                )
-                var tonight *operations.Tonight = operations.TonightOne.ToPointer()
-
-                var skip *operations.Skip = operations.SkipOne.ToPointer()
-                ctx := context.Background()
-                res, err := s.Updater.ApplyUpdates(ctx, tonight, skip)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/butler/{taskName}"]["post"]
-    update:
-      x-codeSamples:
-        - lang: go
-          label: startTask
-          source: |-
-            package main
-
-            import(
-            	"github.com/LukeHagar/plexgo"
-            	"github.com/LukeHagar/plexgo/models/operations"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := plexgo.New(
-                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-                    plexgo.WithXPlexClientIdentifier("Postman"),
-                )
-                var taskName operations.TaskName = operations.TaskNameCleanOldBundles
-                ctx := context.Background()
-                res, err := s.Butler.StartTask(ctx, taskName)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/log"]["get"]
-    update:
-      x-codeSamples:
-        - lang: go
-          label: logLine
-          source: |-
-            package main
-
-            import(
-            	"github.com/LukeHagar/plexgo"
-            	"github.com/LukeHagar/plexgo/models/operations"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := plexgo.New(
-                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-                    plexgo.WithXPlexClientIdentifier("Postman"),
-                )
-                var level operations.Level = operations.LevelThree
-
-                var message string = "Test log message"
-
-                var source string = "Postman"
-                ctx := context.Background()
-                res, err := s.Log.LogLine(ctx, level, message, source)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/log"]["post"]
-    update:
-      x-codeSamples:
-        - lang: go
-          label: logMultiLine
-          source: |-
-            package main
-
-            import(
-            	"github.com/LukeHagar/plexgo"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := plexgo.New(
-                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-                    plexgo.WithXPlexClientIdentifier("Postman"),
-                )
-                var request string = "level=4&message=Test%20message%201&source=postman
-            level=3&message=Test%20message%202&source=postman
-            level=1&message=Test%20message%203&source=postman"
-                ctx := context.Background()
-                res, err := s.Log.LogMultiLine(ctx, request)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/log/networked"]["get"]
-    update:
-      x-codeSamples:
-        - lang: go
-          label: enablePaperTrail
-          source: |-
-            package main
-
-            import(
-            	"github.com/LukeHagar/plexgo"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := plexgo.New(
-                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-                    plexgo.WithXPlexClientIdentifier("Postman"),
-                )
-
-                ctx := context.Background()
-                res, err := s.Log.EnablePaperTrail(ctx)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/statistics/bandwidth"]["get"]
-    update:
-      x-codeSamples:
-        - lang: go
-          label: getBandwidthStatistics
-          source: |-
-            package main
-
-            import(
-            	"github.com/LukeHagar/plexgo"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := plexgo.New(
-                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-                    plexgo.WithXPlexClientIdentifier("Postman"),
-                )
-                var timespan *int64 = plexgo.Int64(4)
-                ctx := context.Background()
-                res, err := s.Statistics.GetBandwidthStatistics(ctx, timespan)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res.Object != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/status/sessions"]["get"]
-    update:
-      x-codeSamples:
-        - lang: go
-          label: getSessions
-          source: |-
-            package main
-
-            import(
-            	"github.com/LukeHagar/plexgo"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := plexgo.New(
-                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-                    plexgo.WithXPlexClientIdentifier("Postman"),
-                )
-
-                ctx := context.Background()
-                res, err := s.Sessions.GetSessions(ctx)
+                res, err := s.Playlists.GetPlaylistContents(ctx, playlistID, type_)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -498,11 +233,40 @@ actions:
                     // handle response
                 }
             }
-  - target: $["paths"]["/photo/:/transcode"]["get"]
+  - target: $["paths"]["/:/prefs"]["get"]
     update:
       x-codeSamples:
         - lang: go
-          label: getResizedPhoto
+          label: getServerPreferences
+          source: |-
+            package main
+
+            import(
+            	"github.com/LukeHagar/plexgo"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := plexgo.New(
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                    plexgo.WithXPlexClientIdentifier("Postman"),
+                )
+
+                ctx := context.Background()
+                res, err := s.Server.GetServerPreferences(ctx)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res.Object != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/hubs"]["get"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: getGlobalHubs
           source: |-
             package main
 
@@ -518,79 +282,15 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                     plexgo.WithXPlexClientIdentifier("Postman"),
                 )
-                request := operations.GetResizedPhotoRequest{
-                    Width: 110,
-                    Height: 165,
-                    Opacity: 100,
-                    Blur: 20,
-                    MinSize: operations.MinSizeOne,
-                    Upscale: operations.UpscaleZero,
-                    URL: "/library/metadata/49564/thumb/1654258204",
-                }
+                var count *float64 = plexgo.Float64(1262.49)
+
+                var onlyTransient *operations.OnlyTransient = operations.OnlyTransientOne.ToPointer()
                 ctx := context.Background()
-                res, err := s.Server.GetResizedPhoto(ctx, request)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/servers"]["get"]
-    update:
-      x-codeSamples:
-        - lang: go
-          label: getServerList
-          source: |-
-            package main
-
-            import(
-            	"github.com/LukeHagar/plexgo"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := plexgo.New(
-                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-                    plexgo.WithXPlexClientIdentifier("Postman"),
-                )
-
-                ctx := context.Background()
-                res, err := s.Server.GetServerList(ctx)
+                res, err := s.Hubs.GetGlobalHubs(ctx, count, onlyTransient)
                 if err != nil {
                     log.Fatal(err)
                 }
                 if res.Object != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/:/unscrobble"]["get"]
-    update:
-      x-codeSamples:
-        - lang: go
-          label: markUnplayed
-          source: |-
-            package main
-
-            import(
-            	"github.com/LukeHagar/plexgo"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := plexgo.New(
-                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-                    plexgo.WithXPlexClientIdentifier("Postman"),
-                )
-                var key float64 = 59398
-                ctx := context.Background()
-                res, err := s.Media.MarkUnplayed(ctx, key)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res != nil {
                     // handle response
                 }
             }
@@ -626,11 +326,43 @@ actions:
                     // handle response
                 }
             }
-  - target: $["paths"]["/playlists/{playlistID}/items"]["delete"]
+  - target: $["paths"]["/playlists"]["get"]
     update:
       x-codeSamples:
         - lang: go
-          label: clearPlaylistContents
+          label: getPlaylists
+          source: |-
+            package main
+
+            import(
+            	"github.com/LukeHagar/plexgo"
+            	"github.com/LukeHagar/plexgo/models/operations"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := plexgo.New(
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                    plexgo.WithXPlexClientIdentifier("Postman"),
+                )
+                var playlistType *operations.PlaylistType = operations.PlaylistTypeAudio.ToPointer()
+
+                var smart *operations.QueryParamSmart = operations.QueryParamSmartZero.ToPointer()
+                ctx := context.Background()
+                res, err := s.Playlists.GetPlaylists(ctx, playlistType, smart)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res.Object != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/"]["get"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: getServerCapabilities
           source: |-
             package main
 
@@ -645,9 +377,40 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                     plexgo.WithXPlexClientIdentifier("Postman"),
                 )
-                var playlistID float64 = 1893.18
+
                 ctx := context.Background()
-                res, err := s.Playlists.ClearPlaylistContents(ctx, playlistID)
+                res, err := s.Server.GetServerCapabilities(ctx)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res.Object != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/library/hashes"]["get"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: getFileHash
+          source: |-
+            package main
+
+            import(
+            	"github.com/LukeHagar/plexgo"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := plexgo.New(
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                    plexgo.WithXPlexClientIdentifier("Postman"),
+                )
+                var url_ string = "file://C:\Image.png&type=13"
+
+                var type_ *float64 = plexgo.Float64(4462.17)
+                ctx := context.Background()
+                res, err := s.Library.GetFileHash(ctx, url_, type_)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -655,11 +418,69 @@ actions:
                     // handle response
                 }
             }
-  - target: $["paths"]["/updater/status"]["get"]
+  - target: $["paths"]["/library/metadata/{ratingKey}"]["get"]
     update:
       x-codeSamples:
         - lang: go
-          label: getUpdateStatus
+          label: getMetadata
+          source: |-
+            package main
+
+            import(
+            	"github.com/LukeHagar/plexgo"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := plexgo.New(
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                    plexgo.WithXPlexClientIdentifier("Postman"),
+                )
+                var ratingKey float64 = 8382.31
+                ctx := context.Background()
+                res, err := s.Library.GetMetadata(ctx, ratingKey)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res.Object != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/playlists/{playlistID}"]["delete"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: deletePlaylist
+          source: |-
+            package main
+
+            import(
+            	"github.com/LukeHagar/plexgo"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := plexgo.New(
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                    plexgo.WithXPlexClientIdentifier("Postman"),
+                )
+                var playlistID float64 = 216.22
+                ctx := context.Background()
+                res, err := s.Playlists.DeletePlaylist(ctx, playlistID)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/butler"]["post"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: startAllTasks
           source: |-
             package main
 
@@ -676,7 +497,259 @@ actions:
                 )
 
                 ctx := context.Background()
-                res, err := s.Updater.GetUpdateStatus(ctx)
+                res, err := s.Butler.StartAllTasks(ctx)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/library/all/top"]["get"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: getTopWatchedContent
+          source: |-
+            package main
+
+            import(
+            	"github.com/LukeHagar/plexgo"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := plexgo.New(
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                    plexgo.WithXPlexClientIdentifier("Postman"),
+                )
+                var type_ int64 = 505531
+
+                var includeGuids *int64 = plexgo.Int64(1)
+                ctx := context.Background()
+                res, err := s.Library.GetTopWatchedContent(ctx, type_, includeGuids)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res.Object != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/log"]["get"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: logLine
+          source: |-
+            package main
+
+            import(
+            	"github.com/LukeHagar/plexgo"
+            	"github.com/LukeHagar/plexgo/models/operations"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := plexgo.New(
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                    plexgo.WithXPlexClientIdentifier("Postman"),
+                )
+                var level operations.Level = operations.LevelThree
+
+                var message string = "Test log message"
+
+                var source string = "Postman"
+                ctx := context.Background()
+                res, err := s.Log.LogLine(ctx, level, message, source)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/transcode/sessions/{sessionKey}"]["delete"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: stopTranscodeSession
+          source: |-
+            package main
+
+            import(
+            	"github.com/LukeHagar/plexgo"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := plexgo.New(
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                    plexgo.WithXPlexClientIdentifier("Postman"),
+                )
+                var sessionKey string = "zz7llzqlx8w9vnrsbnwhbmep"
+                ctx := context.Background()
+                res, err := s.Sessions.StopTranscodeSession(ctx, sessionKey)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/hubs/sections/{sectionId}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: getLibraryHubs
+          source: |-
+            package main
+
+            import(
+            	"github.com/LukeHagar/plexgo"
+            	"github.com/LukeHagar/plexgo/models/operations"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := plexgo.New(
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                    plexgo.WithXPlexClientIdentifier("Postman"),
+                )
+                var sectionID float64 = 6728.76
+
+                var count *float64 = plexgo.Float64(9010.22)
+
+                var onlyTransient *operations.QueryParamOnlyTransient = operations.QueryParamOnlyTransientZero.ToPointer()
+                ctx := context.Background()
+                res, err := s.Hubs.GetLibraryHubs(ctx, sectionID, count, onlyTransient)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res.Object != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/library/sections/{sectionId}/{tag}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: getLibraryItems
+          source: |-
+            package main
+
+            import(
+            	"github.com/LukeHagar/plexgo"
+            	"github.com/LukeHagar/plexgo/models/operations"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := plexgo.New(
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                    plexgo.WithXPlexClientIdentifier("Postman"),
+                )
+                var sectionID any = "<value>"
+
+                var tag operations.Tag = operations.TagGenre
+
+                var includeGuids *int64 = plexgo.Int64(1)
+                ctx := context.Background()
+                res, err := s.Library.GetLibraryItems(ctx, sectionID, tag, includeGuids)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res.Object != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/log/networked"]["get"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: enablePaperTrail
+          source: |-
+            package main
+
+            import(
+            	"github.com/LukeHagar/plexgo"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := plexgo.New(
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                    plexgo.WithXPlexClientIdentifier("Postman"),
+                )
+
+                ctx := context.Background()
+                res, err := s.Log.EnablePaperTrail(ctx)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/playlists/upload"]["post"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: uploadPlaylist
+          source: |-
+            package main
+
+            import(
+            	"github.com/LukeHagar/plexgo"
+            	"github.com/LukeHagar/plexgo/models/operations"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := plexgo.New(
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                    plexgo.WithXPlexClientIdentifier("Postman"),
+                )
+                var path string = "/home/barkley/playlist.m3u"
+
+                var force operations.Force = operations.ForceZero
+                ctx := context.Background()
+                res, err := s.Playlists.UploadPlaylist(ctx, path, force)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/myplex/account"]["get"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: getMyPlexAccount
+          source: |-
+            package main
+
+            import(
+            	"github.com/LukeHagar/plexgo"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := plexgo.New(
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                    plexgo.WithXPlexClientIdentifier("Postman"),
+                )
+
+                ctx := context.Background()
+                res, err := s.Server.GetMyPlexAccount(ctx)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -713,11 +786,11 @@ actions:
                     // handle response
                 }
             }
-  - target: $["paths"]["/activities"]["get"]
+  - target: $["paths"]["/butler"]["delete"]
     update:
       x-codeSamples:
         - lang: go
-          label: getServerActivities
+          label: stopAllTasks
           source: |-
             package main
 
@@ -734,7 +807,283 @@ actions:
                 )
 
                 ctx := context.Background()
-                res, err := s.Activities.GetServerActivities(ctx)
+                res, err := s.Butler.StopAllTasks(ctx)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/search"]["get"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: getSearchResults
+          source: |-
+            package main
+
+            import(
+            	"github.com/LukeHagar/plexgo"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := plexgo.New(
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                    plexgo.WithXPlexClientIdentifier("Postman"),
+                )
+                var query string = "110"
+                ctx := context.Background()
+                res, err := s.Search.GetSearchResults(ctx, query)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res.Object != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/library/sections/{sectionId}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: getLibrary
+          source: |-
+            package main
+
+            import(
+            	"github.com/LukeHagar/plexgo"
+            	"github.com/LukeHagar/plexgo/models/operations"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := plexgo.New(
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                    plexgo.WithXPlexClientIdentifier("Postman"),
+                )
+                var sectionID float64 = 1000
+
+                var includeDetails *operations.IncludeDetails = operations.IncludeDetailsZero.ToPointer()
+                ctx := context.Background()
+                res, err := s.Library.GetLibrary(ctx, sectionID, includeDetails)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res.Object != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/log"]["post"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: logMultiLine
+          source: |-
+            package main
+
+            import(
+            	"github.com/LukeHagar/plexgo"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := plexgo.New(
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                    plexgo.WithXPlexClientIdentifier("Postman"),
+                )
+                var request string = "level=4&message=Test%20message%201&source=postman
+            level=3&message=Test%20message%202&source=postman
+            level=1&message=Test%20message%203&source=postman"
+                ctx := context.Background()
+                res, err := s.Log.LogMultiLine(ctx, request)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/security/token"]["get"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: getTransientToken
+          source: |-
+            package main
+
+            import(
+            	"github.com/LukeHagar/plexgo"
+            	"github.com/LukeHagar/plexgo/models/operations"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := plexgo.New(
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                    plexgo.WithXPlexClientIdentifier("Postman"),
+                )
+                var type_ operations.GetTransientTokenQueryParamType = operations.GetTransientTokenQueryParamTypeDelegation
+
+                var scope operations.Scope = operations.ScopeAll
+                ctx := context.Background()
+                res, err := s.Authentication.GetTransientToken(ctx, type_, scope)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/statistics/bandwidth"]["get"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: getBandwidthStatistics
+          source: |-
+            package main
+
+            import(
+            	"github.com/LukeHagar/plexgo"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := plexgo.New(
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                    plexgo.WithXPlexClientIdentifier("Postman"),
+                )
+                var timespan *int64 = plexgo.Int64(4)
+                ctx := context.Background()
+                res, err := s.Statistics.GetBandwidthStatistics(ctx, timespan)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res.Object != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/clients"]["get"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: getAvailableClients
+          source: |-
+            package main
+
+            import(
+            	"github.com/LukeHagar/plexgo"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := plexgo.New(
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                    plexgo.WithXPlexClientIdentifier("Postman"),
+                )
+
+                ctx := context.Background()
+                res, err := s.Server.GetAvailableClients(ctx)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res.Object != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/updater/apply"]["put"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: applyUpdates
+          source: |-
+            package main
+
+            import(
+            	"github.com/LukeHagar/plexgo"
+            	"github.com/LukeHagar/plexgo/models/operations"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := plexgo.New(
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                    plexgo.WithXPlexClientIdentifier("Postman"),
+                )
+                var tonight *operations.Tonight = operations.TonightOne.ToPointer()
+
+                var skip *operations.Skip = operations.SkipOne.ToPointer()
+                ctx := context.Background()
+                res, err := s.Updater.ApplyUpdates(ctx, tonight, skip)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/:/progress"]["post"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: updatePlayProgress
+          source: |-
+            package main
+
+            import(
+            	"github.com/LukeHagar/plexgo"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := plexgo.New(
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                    plexgo.WithXPlexClientIdentifier("Postman"),
+                )
+                var key string = "<value>"
+
+                var time float64 = 90000
+
+                var state string = "played"
+                ctx := context.Background()
+                res, err := s.Media.UpdatePlayProgress(ctx, key, time, state)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/butler"]["get"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: getButlerTasks
+          source: |-
+            package main
+
+            import(
+            	"github.com/LukeHagar/plexgo"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := plexgo.New(
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                    plexgo.WithXPlexClientIdentifier("Postman"),
+                )
+
+                ctx := context.Background()
+                res, err := s.Butler.GetButlerTasks(ctx)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -836,17 +1185,16 @@ actions:
                     // handle response
                 }
             }
-  - target: $["paths"]["/library/sections/watchlist/{filter}"]["get"]
+  - target: $["paths"]["/servers"]["get"]
     update:
       x-codeSamples:
         - lang: go
-          label: getWatchlist
+          label: getServerList
           source: |-
             package main
 
             import(
             	"github.com/LukeHagar/plexgo"
-            	"github.com/LukeHagar/plexgo/models/operations"
             	"context"
             	"log"
             )
@@ -856,12 +1204,9 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                     plexgo.WithXPlexClientIdentifier("Postman"),
                 )
-                request := operations.GetWatchlistRequest{
-                    Filter: operations.PathParamFilterReleased,
-                    XPlexToken: "<value>",
-                }
+
                 ctx := context.Background()
-                res, err := s.Watchlist.GetWatchlist(ctx, request)
+                res, err := s.Server.GetServerList(ctx)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -869,17 +1214,16 @@ actions:
                     // handle response
                 }
             }
-  - target: $["paths"]["/video/:/transcode/universal/start.mpd"]["get"]
+  - target: $["paths"]["/activities"]["get"]
     update:
       x-codeSamples:
         - lang: go
-          label: startUniversalTranscode
+          label: getServerActivities
           source: |-
             package main
 
             import(
             	"github.com/LukeHagar/plexgo"
-            	"github.com/LukeHagar/plexgo/models/operations"
             	"context"
             	"log"
             )
@@ -889,30 +1233,13 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                     plexgo.WithXPlexClientIdentifier("Postman"),
                 )
-                request := operations.StartUniversalTranscodeRequest{
-                    HasMDE: 1,
-                    Path: "/library/metadata/23409",
-                    MediaIndex: 0,
-                    PartIndex: 0,
-                    Protocol: "hls",
-                    FastSeek: plexgo.Float64(0),
-                    DirectPlay: plexgo.Float64(0),
-                    DirectStream: plexgo.Float64(0),
-                    SubtitleSize: plexgo.Float64(100),
-                    Subtites: plexgo.String("burn"),
-                    AudioBoost: plexgo.Float64(100),
-                    Location: plexgo.String("lan"),
-                    MediaBufferSize: plexgo.Float64(102400),
-                    Session: plexgo.String("zvcage8b7rkioqcm8f4uns4c"),
-                    AddDebugOverlay: plexgo.Float64(0),
-                    AutoAdjustQuality: plexgo.Float64(0),
-                }
+
                 ctx := context.Background()
-                res, err := s.Video.StartUniversalTranscode(ctx, request)
+                res, err := s.Activities.GetServerActivities(ctx)
                 if err != nil {
                     log.Fatal(err)
                 }
-                if res != nil {
+                if res.Object != nil {
                     // handle response
                 }
             }
@@ -946,11 +1273,11 @@ actions:
                     // handle response
                 }
             }
-  - target: $["paths"]["/library/hashes"]["get"]
+  - target: $["paths"]["/playlists/{playlistID}/items"]["put"]
     update:
       x-codeSamples:
         - lang: go
-          label: getFileHash
+          label: addPlaylistContents
           source: |-
             package main
 
@@ -965,23 +1292,25 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                     plexgo.WithXPlexClientIdentifier("Postman"),
                 )
-                var url_ string = "file://C:\Image.png&type=13"
+                var playlistID float64 = 8502.01
 
-                var type_ *float64 = plexgo.Float64(4462.17)
+                var uri string = "server://12345/com.plexapp.plugins.library/library/metadata/1"
+
+                var playQueueID *float64 = plexgo.Float64(123)
                 ctx := context.Background()
-                res, err := s.Library.GetFileHash(ctx, url_, type_)
+                res, err := s.Playlists.AddPlaylistContents(ctx, playlistID, uri, playQueueID)
                 if err != nil {
                     log.Fatal(err)
                 }
-                if res != nil {
+                if res.Object != nil {
                     // handle response
                 }
             }
-  - target: $["paths"]["/library/sections/{sectionId}/refresh"]["get"]
+  - target: $["paths"]["/identity"]["get"]
     update:
       x-codeSamples:
         - lang: go
-          label: refreshLibrary
+          label: getServerIdentity
           source: |-
             package main
 
@@ -996,50 +1325,21 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                     plexgo.WithXPlexClientIdentifier("Postman"),
                 )
-                var sectionID float64 = 934.16
+
                 ctx := context.Background()
-                res, err := s.Library.RefreshLibrary(ctx, sectionID)
+                res, err := s.Server.GetServerIdentity(ctx)
                 if err != nil {
                     log.Fatal(err)
                 }
-                if res != nil {
+                if res.Object != nil {
                     // handle response
                 }
             }
-  - target: $["paths"]["/playlists/{playlistID}"]["delete"]
+  - target: $["paths"]["/butler/{taskName}"]["post"]
     update:
       x-codeSamples:
         - lang: go
-          label: deletePlaylist
-          source: |-
-            package main
-
-            import(
-            	"github.com/LukeHagar/plexgo"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := plexgo.New(
-                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-                    plexgo.WithXPlexClientIdentifier("Postman"),
-                )
-                var playlistID float64 = 216.22
-                ctx := context.Background()
-                res, err := s.Playlists.DeletePlaylist(ctx, playlistID)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/library/sections/{sectionId}/{tag}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: go
-          label: getLibraryItems
+          label: startTask
           source: |-
             package main
 
@@ -1055,54 +1355,21 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                     plexgo.WithXPlexClientIdentifier("Postman"),
                 )
-                var sectionID any = "<value>"
-
-                var tag operations.Tag = operations.TagGenre
-
-                var includeGuids *int64 = plexgo.Int64(1)
+                var taskName operations.TaskName = operations.TaskNameCleanOldBundles
                 ctx := context.Background()
-                res, err := s.Library.GetLibraryItems(ctx, sectionID, tag, includeGuids)
+                res, err := s.Butler.StartTask(ctx, taskName)
                 if err != nil {
                     log.Fatal(err)
                 }
-                if res.Object != nil {
+                if res != nil {
                     // handle response
                 }
             }
-  - target: $["paths"]["/library/onDeck"]["get"]
+  - target: $["paths"]["/statistics/resources"]["get"]
     update:
       x-codeSamples:
         - lang: go
-          label: getOnDeck
-          source: |-
-            package main
-
-            import(
-            	"github.com/LukeHagar/plexgo"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := plexgo.New(
-                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-                    plexgo.WithXPlexClientIdentifier("Postman"),
-                )
-
-                ctx := context.Background()
-                res, err := s.Library.GetOnDeck(ctx)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res.Object != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/statistics/media"]["get"]
-    update:
-      x-codeSamples:
-        - lang: go
-          label: getStatistics
+          label: getResourcesStatistics
           source: |-
             package main
 
@@ -1119,7 +1386,7 @@ actions:
                 )
                 var timespan *int64 = plexgo.Int64(4)
                 ctx := context.Background()
-                res, err := s.Statistics.GetStatistics(ctx, timespan)
+                res, err := s.Statistics.GetResourcesStatistics(ctx, timespan)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -1127,11 +1394,11 @@ actions:
                     // handle response
                 }
             }
-  - target: $["paths"]["/:/timeline"]["get"]
+  - target: $["paths"]["/photo/:/transcode"]["get"]
     update:
       x-codeSamples:
         - lang: go
-          label: getTimeline
+          label: getResizedPhoto
           source: |-
             package main
 
@@ -1147,84 +1414,21 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                     plexgo.WithXPlexClientIdentifier("Postman"),
                 )
-                request := operations.GetTimelineRequest{
-                    RatingKey: 23409,
-                    Key: "/library/metadata/23409",
-                    State: operations.StatePlaying,
-                    HasMDE: 1,
-                    Time: 2000,
-                    Duration: 10000,
-                    Context: "home:hub.continueWatching",
-                    PlayQueueItemID: 1,
-                    PlayBackTime: 2000,
-                    Row: 1,
+                request := operations.GetResizedPhotoRequest{
+                    Width: 110,
+                    Height: 165,
+                    Opacity: 100,
+                    Blur: 20,
+                    MinSize: operations.MinSizeOne,
+                    Upscale: operations.UpscaleZero,
+                    URL: "/library/metadata/49564/thumb/1654258204",
                 }
                 ctx := context.Background()
-                res, err := s.Video.GetTimeline(ctx, request)
+                res, err := s.Server.GetResizedPhoto(ctx, request)
                 if err != nil {
                     log.Fatal(err)
                 }
                 if res != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/butler"]["post"]
-    update:
-      x-codeSamples:
-        - lang: go
-          label: startAllTasks
-          source: |-
-            package main
-
-            import(
-            	"github.com/LukeHagar/plexgo"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := plexgo.New(
-                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-                    plexgo.WithXPlexClientIdentifier("Postman"),
-                )
-
-                ctx := context.Background()
-                res, err := s.Butler.StartAllTasks(ctx)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/library/metadata/{ratingKey}/children"]["get"]
-    update:
-      x-codeSamples:
-        - lang: go
-          label: getMetadataChildren
-          source: |-
-            package main
-
-            import(
-            	"github.com/LukeHagar/plexgo"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := plexgo.New(
-                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-                    plexgo.WithXPlexClientIdentifier("Postman"),
-                )
-                var ratingKey float64 = 1539.14
-
-                var includeElements *string = plexgo.String("<value>")
-                ctx := context.Background()
-                res, err := s.Library.GetMetadataChildren(ctx, ratingKey, includeElements)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res.Object != nil {
                     // handle response
                 }
             }
@@ -1287,11 +1491,11 @@ actions:
                     // handle response
                 }
             }
-  - target: $["paths"]["/playlists/{playlistID}/items"]["put"]
+  - target: $["paths"]["/playlists/{playlistID}/items"]["delete"]
     update:
       x-codeSamples:
         - lang: go
-          label: addPlaylistContents
+          label: clearPlaylistContents
           source: |-
             package main
 
@@ -1306,100 +1510,9 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                     plexgo.WithXPlexClientIdentifier("Postman"),
                 )
-                var playlistID float64 = 8502.01
-
-                var uri string = "server://12345/com.plexapp.plugins.library/library/metadata/1"
-
-                var playQueueID *float64 = plexgo.Float64(123)
+                var playlistID float64 = 1893.18
                 ctx := context.Background()
-                res, err := s.Playlists.AddPlaylistContents(ctx, playlistID, uri, playQueueID)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res.Object != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/"]["get"]
-    update:
-      x-codeSamples:
-        - lang: go
-          label: getServerCapabilities
-          source: |-
-            package main
-
-            import(
-            	"github.com/LukeHagar/plexgo"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := plexgo.New(
-                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-                    plexgo.WithXPlexClientIdentifier("Postman"),
-                )
-
-                ctx := context.Background()
-                res, err := s.Server.GetServerCapabilities(ctx)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res.Object != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/search"]["get"]
-    update:
-      x-codeSamples:
-        - lang: go
-          label: getSearchResults
-          source: |-
-            package main
-
-            import(
-            	"github.com/LukeHagar/plexgo"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := plexgo.New(
-                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-                    plexgo.WithXPlexClientIdentifier("Postman"),
-                )
-                var query string = "110"
-                ctx := context.Background()
-                res, err := s.Search.GetSearchResults(ctx, query)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res.Object != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/library/sections/{sectionId}"]["delete"]
-    update:
-      x-codeSamples:
-        - lang: go
-          label: deleteLibrary
-          source: |-
-            package main
-
-            import(
-            	"github.com/LukeHagar/plexgo"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := plexgo.New(
-                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-                    plexgo.WithXPlexClientIdentifier("Postman"),
-                )
-                var sectionID float64 = 1000
-                ctx := context.Background()
-                res, err := s.Library.DeleteLibrary(ctx, sectionID)
+                res, err := s.Playlists.ClearPlaylistContents(ctx, playlistID)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -1407,11 +1520,11 @@ actions:
                     // handle response
                 }
             }
-  - target: $["paths"]["/playlists/{playlistID}"]["get"]
+  - target: $["paths"]["/pins"]["post"]
     update:
       x-codeSamples:
         - lang: go
-          label: getPlaylist
+          label: getPin
           source: |-
             package main
 
@@ -1423,12 +1536,15 @@ actions:
 
             func main() {
                 s := plexgo.New(
-                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                     plexgo.WithXPlexClientIdentifier("Postman"),
                 )
-                var playlistID float64 = 4109.48
+                var xPlexProduct string = "Postman"
+
+                var strong *bool = plexgo.Bool(false)
+
+                var xPlexClientIdentifier *string = plexgo.String("Postman")
                 ctx := context.Background()
-                res, err := s.Playlists.GetPlaylist(ctx, playlistID)
+                res, err := s.Plex.GetPin(ctx, xPlexProduct, strong, xPlexClientIdentifier)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -1436,11 +1552,11 @@ actions:
                     // handle response
                 }
             }
-  - target: $["paths"]["/playlists/{playlistID}/items"]["get"]
+  - target: $["paths"]["/library/metadata/{ratingKey}/children"]["get"]
     update:
       x-codeSamples:
         - lang: go
-          label: getPlaylistContents
+          label: getMetadataChildren
           source: |-
             package main
 
@@ -1455,11 +1571,11 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                     plexgo.WithXPlexClientIdentifier("Postman"),
                 )
-                var playlistID float64 = 5004.46
+                var ratingKey float64 = 1539.14
 
-                var type_ float64 = 9403.59
+                var includeElements *string = plexgo.String("<value>")
                 ctx := context.Background()
-                res, err := s.Playlists.GetPlaylistContents(ctx, playlistID, type_)
+                res, err := s.Library.GetMetadataChildren(ctx, ratingKey, includeElements)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -1467,11 +1583,11 @@ actions:
                     // handle response
                 }
             }
-  - target: $["paths"]["/:/progress"]["post"]
+  - target: $["paths"]["/status/sessions"]["get"]
     update:
       x-codeSamples:
         - lang: go
-          label: updatePlayProgress
+          label: getSessions
           source: |-
             package main
 
@@ -1486,17 +1602,83 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                     plexgo.WithXPlexClientIdentifier("Postman"),
                 )
-                var key string = "<value>"
 
-                var time float64 = 90000
-
-                var state string = "played"
                 ctx := context.Background()
-                res, err := s.Media.UpdatePlayProgress(ctx, key, time, state)
+                res, err := s.Sessions.GetSessions(ctx)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res.Object != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/:/timeline"]["get"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: getTimeline
+          source: |-
+            package main
+
+            import(
+            	"github.com/LukeHagar/plexgo"
+            	"github.com/LukeHagar/plexgo/models/operations"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := plexgo.New(
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                    plexgo.WithXPlexClientIdentifier("Postman"),
+                )
+                request := operations.GetTimelineRequest{
+                    RatingKey: 23409,
+                    Key: "/library/metadata/23409",
+                    State: operations.StatePlaying,
+                    HasMDE: 1,
+                    Time: 2000,
+                    Duration: 10000,
+                    Context: "home:hub.continueWatching",
+                    PlayQueueItemID: 1,
+                    PlayBackTime: 2000,
+                    Row: 1,
+                }
+                ctx := context.Background()
+                res, err := s.Video.GetTimeline(ctx, request)
                 if err != nil {
                     log.Fatal(err)
                 }
                 if res != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/statistics/media"]["get"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: getStatistics
+          source: |-
+            package main
+
+            import(
+            	"github.com/LukeHagar/plexgo"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := plexgo.New(
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                    plexgo.WithXPlexClientIdentifier("Postman"),
+                )
+                var timespan *int64 = plexgo.Int64(4)
+                ctx := context.Background()
+                res, err := s.Statistics.GetStatistics(ctx, timespan)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res.Object != nil {
                     // handle response
                 }
             }
@@ -1529,11 +1711,11 @@ actions:
                     // handle response
                 }
             }
-  - target: $["paths"]["/library/metadata/{ratingKey}"]["get"]
+  - target: $["paths"]["/updater/status"]["get"]
     update:
       x-codeSamples:
         - lang: go
-          label: getMetadata
+          label: getUpdateStatus
           source: |-
             package main
 
@@ -1548,9 +1730,9 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                     plexgo.WithXPlexClientIdentifier("Postman"),
                 )
-                var ratingKey float64 = 8382.31
+
                 ctx := context.Background()
-                res, err := s.Library.GetMetadata(ctx, ratingKey)
+                res, err := s.Updater.GetUpdateStatus(ctx)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -1558,11 +1740,11 @@ actions:
                     // handle response
                 }
             }
-  - target: $["paths"]["/playlists/upload"]["post"]
+  - target: $["paths"]["/library/sections/watchlist/{filter}"]["get"]
     update:
       x-codeSamples:
         - lang: go
-          label: uploadPlaylist
+          label: getWatchlist
           source: |-
             package main
 
@@ -1578,11 +1760,103 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                     plexgo.WithXPlexClientIdentifier("Postman"),
                 )
-                var path string = "/home/barkley/playlist.m3u"
-
-                var force operations.Force = operations.ForceZero
+                request := operations.GetWatchlistRequest{
+                    Filter: operations.PathParamFilterReleased,
+                    XPlexToken: "<value>",
+                }
                 ctx := context.Background()
-                res, err := s.Playlists.UploadPlaylist(ctx, path, force)
+                res, err := s.Watchlist.GetWatchlist(ctx, request)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res.Object != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/devices"]["get"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: getDevices
+          source: |-
+            package main
+
+            import(
+            	"github.com/LukeHagar/plexgo"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := plexgo.New(
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                    plexgo.WithXPlexClientIdentifier("Postman"),
+                )
+
+                ctx := context.Background()
+                res, err := s.Server.GetDevices(ctx)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res.Object != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/hubs/search/voice"]["get"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: performVoiceSearch
+          source: |-
+            package main
+
+            import(
+            	"github.com/LukeHagar/plexgo"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := plexgo.New(
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                    plexgo.WithXPlexClientIdentifier("Postman"),
+                )
+                var query string = "dead+poop"
+
+                var sectionID *float64 = plexgo.Float64(4094.8)
+
+                var limit *float64 = plexgo.Float64(5)
+                ctx := context.Background()
+                res, err := s.Search.PerformVoiceSearch(ctx, query, sectionID, limit)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/library/sections/{sectionId}"]["delete"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: deleteLibrary
+          source: |-
+            package main
+
+            import(
+            	"github.com/LukeHagar/plexgo"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := plexgo.New(
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                    plexgo.WithXPlexClientIdentifier("Postman"),
+                )
+                var sectionID float64 = 1000
+                ctx := context.Background()
+                res, err := s.Library.DeleteLibrary(ctx, sectionID)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -1619,11 +1893,11 @@ actions:
                     // handle response
                 }
             }
-  - target: $["paths"]["/transcode/sessions/{sessionKey}"]["delete"]
+  - target: $["paths"]["/library/sections/{sectionId}/refresh"]["get"]
     update:
       x-codeSamples:
         - lang: go
-          label: stopTranscodeSession
+          label: refreshLibrary
           source: |-
             package main
 
@@ -1638,192 +1912,13 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                     plexgo.WithXPlexClientIdentifier("Postman"),
                 )
-                var sessionKey string = "zz7llzqlx8w9vnrsbnwhbmep"
+                var sectionID float64 = 934.16
                 ctx := context.Background()
-                res, err := s.Sessions.StopTranscodeSession(ctx, sessionKey)
+                res, err := s.Library.RefreshLibrary(ctx, sectionID)
                 if err != nil {
                     log.Fatal(err)
                 }
                 if res != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/devices"]["get"]
-    update:
-      x-codeSamples:
-        - lang: go
-          label: getDevices
-          source: |-
-            package main
-
-            import(
-            	"github.com/LukeHagar/plexgo"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := plexgo.New(
-                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-                    plexgo.WithXPlexClientIdentifier("Postman"),
-                )
-
-                ctx := context.Background()
-                res, err := s.Server.GetDevices(ctx)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res.Object != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/myplex/account"]["get"]
-    update:
-      x-codeSamples:
-        - lang: go
-          label: getMyPlexAccount
-          source: |-
-            package main
-
-            import(
-            	"github.com/LukeHagar/plexgo"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := plexgo.New(
-                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-                    plexgo.WithXPlexClientIdentifier("Postman"),
-                )
-
-                ctx := context.Background()
-                res, err := s.Server.GetMyPlexAccount(ctx)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res.Object != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/clients"]["get"]
-    update:
-      x-codeSamples:
-        - lang: go
-          label: getAvailableClients
-          source: |-
-            package main
-
-            import(
-            	"github.com/LukeHagar/plexgo"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := plexgo.New(
-                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-                    plexgo.WithXPlexClientIdentifier("Postman"),
-                )
-
-                ctx := context.Background()
-                res, err := s.Server.GetAvailableClients(ctx)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res.Object != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/library/recentlyAdded"]["get"]
-    update:
-      x-codeSamples:
-        - lang: go
-          label: getRecentlyAdded
-          source: |-
-            package main
-
-            import(
-            	"github.com/LukeHagar/plexgo"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := plexgo.New(
-                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-                    plexgo.WithXPlexClientIdentifier("Postman"),
-                )
-
-                ctx := context.Background()
-                res, err := s.Library.GetRecentlyAdded(ctx)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res.Object != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/library/all/top"]["get"]
-    update:
-      x-codeSamples:
-        - lang: go
-          label: getTopWatchedContent
-          source: |-
-            package main
-
-            import(
-            	"github.com/LukeHagar/plexgo"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := plexgo.New(
-                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-                    plexgo.WithXPlexClientIdentifier("Postman"),
-                )
-                var type_ int64 = 505531
-
-                var includeGuids *int64 = plexgo.Int64(1)
-                ctx := context.Background()
-                res, err := s.Library.GetTopWatchedContent(ctx, type_, includeGuids)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res.Object != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/playlists"]["get"]
-    update:
-      x-codeSamples:
-        - lang: go
-          label: getPlaylists
-          source: |-
-            package main
-
-            import(
-            	"github.com/LukeHagar/plexgo"
-            	"github.com/LukeHagar/plexgo/models/operations"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := plexgo.New(
-                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-                    plexgo.WithXPlexClientIdentifier("Postman"),
-                )
-                var playlistType *operations.PlaylistType = operations.PlaylistTypeAudio.ToPointer()
-
-                var smart *operations.QueryParamSmart = operations.QueryParamSmartZero.ToPointer()
-                ctx := context.Background()
-                res, err := s.Playlists.GetPlaylists(ctx, playlistType, smart)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res.Object != nil {
                     // handle response
                 }
             }
@@ -1860,130 +1955,6 @@ actions:
                     // handle response
                 }
             }
-  - target: $["paths"]["/identity"]["get"]
-    update:
-      x-codeSamples:
-        - lang: go
-          label: getServerIdentity
-          source: |-
-            package main
-
-            import(
-            	"github.com/LukeHagar/plexgo"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := plexgo.New(
-                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-                    plexgo.WithXPlexClientIdentifier("Postman"),
-                )
-
-                ctx := context.Background()
-                res, err := s.Server.GetServerIdentity(ctx)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res.Object != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/butler"]["delete"]
-    update:
-      x-codeSamples:
-        - lang: go
-          label: stopAllTasks
-          source: |-
-            package main
-
-            import(
-            	"github.com/LukeHagar/plexgo"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := plexgo.New(
-                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-                    plexgo.WithXPlexClientIdentifier("Postman"),
-                )
-
-                ctx := context.Background()
-                res, err := s.Butler.StopAllTasks(ctx)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/hubs"]["get"]
-    update:
-      x-codeSamples:
-        - lang: go
-          label: getGlobalHubs
-          source: |-
-            package main
-
-            import(
-            	"github.com/LukeHagar/plexgo"
-            	"github.com/LukeHagar/plexgo/models/operations"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := plexgo.New(
-                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-                    plexgo.WithXPlexClientIdentifier("Postman"),
-                )
-                var count *float64 = plexgo.Float64(1262.49)
-
-                var onlyTransient *operations.OnlyTransient = operations.OnlyTransientOne.ToPointer()
-                ctx := context.Background()
-                res, err := s.Hubs.GetGlobalHubs(ctx, count, onlyTransient)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res.Object != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/hubs/sections/{sectionId}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: go
-          label: getLibraryHubs
-          source: |-
-            package main
-
-            import(
-            	"github.com/LukeHagar/plexgo"
-            	"github.com/LukeHagar/plexgo/models/operations"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := plexgo.New(
-                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-                    plexgo.WithXPlexClientIdentifier("Postman"),
-                )
-                var sectionID float64 = 6728.76
-
-                var count *float64 = plexgo.Float64(9010.22)
-
-                var onlyTransient *operations.QueryParamOnlyTransient = operations.QueryParamOnlyTransientZero.ToPointer()
-                ctx := context.Background()
-                res, err := s.Hubs.GetLibraryHubs(ctx, sectionID, count, onlyTransient)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res.Object != nil {
-                    // handle response
-                }
-            }
   - target: $["paths"]["/hubs/search"]["get"]
     update:
       x-codeSamples:
@@ -2014,6 +1985,35 @@ actions:
                     log.Fatal(err)
                 }
                 if res != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/library/recentlyAdded"]["get"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: getRecentlyAdded
+          source: |-
+            package main
+
+            import(
+            	"github.com/LukeHagar/plexgo"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := plexgo.New(
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                    plexgo.WithXPlexClientIdentifier("Postman"),
+                )
+
+                ctx := context.Background()
+                res, err := s.Library.GetRecentlyAdded(ctx)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res.Object != nil {
                     // handle response
                 }
             }
