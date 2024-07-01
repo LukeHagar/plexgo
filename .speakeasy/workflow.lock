@@ -1,9 +1,9 @@
-speakeasyVersion: 1.322.3
+speakeasyVersion: 1.323.0
 sources:
     my-source:
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:0978c3c4683b17879e3030237d535c36dd29e7dc602c950438dca0d3f536a40b
-        sourceBlobDigest: sha256:e187d7c8df65903a04c4fa6725b2c63edc6d3d3b6c5d0216f84485cacc308fbf
+        sourceRevisionDigest: sha256:ff9779ff7b4bdff35d146a962e94b766578532ac129d6adff9883756f1e4e8ed
+        sourceBlobDigest: sha256:f5d953ec4a6fb0e4fc2a8fa79009d6d5c818c97394020a744172870ea27a0e32
         tags:
             - latest
             - main
@@ -11,8 +11,10 @@ targets:
     plexgo:
         source: my-source
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:0978c3c4683b17879e3030237d535c36dd29e7dc602c950438dca0d3f536a40b
-        sourceBlobDigest: sha256:e187d7c8df65903a04c4fa6725b2c63edc6d3d3b6c5d0216f84485cacc308fbf
+        sourceRevisionDigest: sha256:ff9779ff7b4bdff35d146a962e94b766578532ac129d6adff9883756f1e4e8ed
+        sourceBlobDigest: sha256:f5d953ec4a6fb0e4fc2a8fa79009d6d5c818c97394020a744172870ea27a0e32
+        codeSamplesNamespace: code-samples-go-plexgo
+        codeSamplesRevisionDigest: sha256:2ba78526af38dcbc157c79a2ffe44ed0a6746610f0fa145e806ad99d3f45dacb
         outLocation: /github/workspace/repo
 workflow:
     workflowVersion: 1.0.0
@@ -29,3 +31,5 @@ workflow:
             source: my-source
             codeSamples:
                 output: codeSamples.yaml
+                registry:
+                    location: registry.speakeasyapi.dev/lukehagar/lukehagar/code-samples-go-plexgo
