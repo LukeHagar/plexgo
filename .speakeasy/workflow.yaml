@@ -12,3 +12,5 @@ targets:
         source: my-source
         codeSamples:
             output: codeSamples.yaml
+            registry:
+                location: registry.speakeasyapi.dev/lukehagar/lukehagar/code-samples-go-plexgo
