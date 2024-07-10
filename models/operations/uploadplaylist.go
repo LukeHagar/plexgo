@@ -53,6 +53,8 @@ type UploadPlaylistRequest struct {
 	// If the `force` argument is set to 0, a new playlist will be created suffixed with the date and time that the duplicate was uploaded.
 	//
 	Force Force `queryParam:"style=form,explode=true,name=force"`
+
+	SectionID int `queryParam:"style=form,explode=true,name=sectionID"`
 }
 
 func (o *UploadPlaylistRequest) GetPath() string {

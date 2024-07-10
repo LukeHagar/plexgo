@@ -942,6 +942,7 @@ func (s *Playlists) UploadPlaylist(ctx context.Context, path string, force opera
 	request := operations.UploadPlaylistRequest{
 		Path:  path,
 		Force: force,
+		SectionID: 1,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
