@@ -192,7 +192,7 @@ func (s *Video) GetTimeline(ctx context.Context, request operations.GetTimelineR
 				return nil, err
 			}
 
-			var out sdkerrors.GetTimelineResponseBody
+			var out sdkerrors.GetTimelineBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -215,7 +215,7 @@ func (s *Video) GetTimeline(ctx context.Context, request operations.GetTimelineR
 				return nil, err
 			}
 
-			var out sdkerrors.GetTimelineVideoResponseBody
+			var out sdkerrors.GetTimelineUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -417,7 +417,7 @@ func (s *Video) StartUniversalTranscode(ctx context.Context, request operations.
 				return nil, err
 			}
 
-			var out sdkerrors.StartUniversalTranscodeResponseBody
+			var out sdkerrors.StartUniversalTranscodeBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -440,7 +440,7 @@ func (s *Video) StartUniversalTranscode(ctx context.Context, request operations.
 				return nil, err
 			}
 
-			var out sdkerrors.StartUniversalTranscodeVideoResponseBody
+			var out sdkerrors.StartUniversalTranscodeUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

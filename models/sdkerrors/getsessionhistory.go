@@ -34,16 +34,16 @@ func (o *GetSessionHistorySessionsErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetSessionHistorySessionsResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type GetSessionHistorySessionsResponseBody struct {
+// GetSessionHistoryUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type GetSessionHistoryUnauthorized struct {
 	Errors []GetSessionHistorySessionsErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetSessionHistorySessionsResponseBody{}
+var _ error = &GetSessionHistoryUnauthorized{}
 
-func (e *GetSessionHistorySessionsResponseBody) Error() string {
+func (e *GetSessionHistoryUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *GetSessionHistoryErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetSessionHistoryResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type GetSessionHistoryResponseBody struct {
+// GetSessionHistoryBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type GetSessionHistoryBadRequest struct {
 	Errors []GetSessionHistoryErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetSessionHistoryResponseBody{}
+var _ error = &GetSessionHistoryBadRequest{}
 
-func (e *GetSessionHistoryResponseBody) Error() string {
+func (e *GetSessionHistoryBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

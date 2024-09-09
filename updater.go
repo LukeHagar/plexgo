@@ -210,7 +210,7 @@ func (s *Updater) GetUpdateStatus(ctx context.Context, opts ...operations.Option
 				return nil, err
 			}
 
-			var out sdkerrors.GetUpdateStatusResponseBody
+			var out sdkerrors.GetUpdateStatusBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -233,7 +233,7 @@ func (s *Updater) GetUpdateStatus(ctx context.Context, opts ...operations.Option
 				return nil, err
 			}
 
-			var out sdkerrors.GetUpdateStatusUpdaterResponseBody
+			var out sdkerrors.GetUpdateStatusUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -439,7 +439,7 @@ func (s *Updater) CheckForUpdates(ctx context.Context, download *operations.Down
 				return nil, err
 			}
 
-			var out sdkerrors.CheckForUpdatesResponseBody
+			var out sdkerrors.CheckForUpdatesBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -462,7 +462,7 @@ func (s *Updater) CheckForUpdates(ctx context.Context, download *operations.Down
 				return nil, err
 			}
 
-			var out sdkerrors.CheckForUpdatesUpdaterResponseBody
+			var out sdkerrors.CheckForUpdatesUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -669,7 +669,7 @@ func (s *Updater) ApplyUpdates(ctx context.Context, tonight *operations.Tonight,
 				return nil, err
 			}
 
-			var out sdkerrors.ApplyUpdatesResponseBody
+			var out sdkerrors.ApplyUpdatesBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -692,7 +692,7 @@ func (s *Updater) ApplyUpdates(ctx context.Context, tonight *operations.Tonight,
 				return nil, err
 			}
 
-			var out sdkerrors.ApplyUpdatesUpdaterResponseBody
+			var out sdkerrors.ApplyUpdatesUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

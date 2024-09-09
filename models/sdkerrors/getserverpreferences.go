@@ -34,16 +34,16 @@ func (o *GetServerPreferencesServerErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetServerPreferencesServerResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type GetServerPreferencesServerResponseBody struct {
+// GetServerPreferencesUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type GetServerPreferencesUnauthorized struct {
 	Errors []GetServerPreferencesServerErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetServerPreferencesServerResponseBody{}
+var _ error = &GetServerPreferencesUnauthorized{}
 
-func (e *GetServerPreferencesServerResponseBody) Error() string {
+func (e *GetServerPreferencesUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *GetServerPreferencesErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetServerPreferencesResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type GetServerPreferencesResponseBody struct {
+// GetServerPreferencesBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type GetServerPreferencesBadRequest struct {
 	Errors []GetServerPreferencesErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetServerPreferencesResponseBody{}
+var _ error = &GetServerPreferencesBadRequest{}
 
-func (e *GetServerPreferencesResponseBody) Error() string {
+func (e *GetServerPreferencesBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

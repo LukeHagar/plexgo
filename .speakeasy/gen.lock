@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: dfa99515-01c0-42eb-9be5-ee212fd03eb3
 management:
-  docChecksum: 06023774169418572a5ebabe14a70f3f
+  docChecksum: a6fee1797b2da7ccbaf7743772a40b56
   docVersion: 0.0.3
-  speakeasyVersion: 1.393.1
+  speakeasyVersion: 1.393.2
   generationVersion: 2.413.0
-  releaseVersion: 0.11.1
-  configChecksum: 82d2664097fb7735d616a6cfb85ff21c
+  releaseVersion: 0.11.2
+  configChecksum: b2ffd09b00bc9950596816d3400fcda2
   repoURL: https://github.com/LukeHagar/plexgo.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexgo
@@ -89,11 +89,11 @@ generatedFiles:
   - /models/operations/getthumbimage.go
   - /models/operations/gettimeline.go
   - /models/operations/gettokenbypinid.go
+  - /models/operations/gettokendetails.go
   - /models/operations/gettopwatchedcontent.go
   - /models/operations/gettranscodesessions.go
   - /models/operations/gettransienttoken.go
   - /models/operations/getupdatestatus.go
-  - /models/operations/getuserdetails.go
   - /models/operations/getuserfriends.go
   - /models/operations/getwatchlist.go
   - /models/operations/logline.go
@@ -163,11 +163,11 @@ generatedFiles:
   - /models/sdkerrors/getthumbimage.go
   - /models/sdkerrors/gettimeline.go
   - /models/sdkerrors/gettokenbypinid.go
+  - /models/sdkerrors/gettokendetails.go
   - /models/sdkerrors/gettopwatchedcontent.go
   - /models/sdkerrors/gettranscodesessions.go
   - /models/sdkerrors/gettransienttoken.go
   - /models/sdkerrors/getupdatestatus.go
-  - /models/sdkerrors/getuserdetails.go
   - /models/sdkerrors/getuserfriends.go
   - /models/sdkerrors/getwatchlist.go
   - /models/sdkerrors/logline.go
@@ -441,6 +441,13 @@ generatedFiles:
   - docs/models/operations/gettokenbypinidglobals.md
   - docs/models/operations/gettokenbypinidrequest.md
   - docs/models/operations/gettokenbypinidresponse.md
+  - docs/models/operations/gettokendetailsauthenticationresponsestatus.md
+  - docs/models/operations/gettokendetailsauthenticationstatus.md
+  - docs/models/operations/gettokendetailsfeatures.md
+  - docs/models/operations/gettokendetailsresponse.md
+  - docs/models/operations/gettokendetailsstatus.md
+  - docs/models/operations/gettokendetailssubscription.md
+  - docs/models/operations/gettokendetailsuserplexaccount.md
   - docs/models/operations/gettopwatchedcontentcountry.md
   - docs/models/operations/gettopwatchedcontentgenre.md
   - docs/models/operations/gettopwatchedcontentguids.md
@@ -460,14 +467,6 @@ generatedFiles:
   - docs/models/operations/getupdatestatusmediacontainer.md
   - docs/models/operations/getupdatestatusresponse.md
   - docs/models/operations/getupdatestatusresponsebody.md
-  - docs/models/operations/getuserdetailsauthenticationresponsestatus.md
-  - docs/models/operations/getuserdetailsauthenticationstatus.md
-  - docs/models/operations/getuserdetailsfeatures.md
-  - docs/models/operations/getuserdetailsrequest.md
-  - docs/models/operations/getuserdetailsresponse.md
-  - docs/models/operations/getuserdetailsstatus.md
-  - docs/models/operations/getuserdetailssubscription.md
-  - docs/models/operations/getuserdetailsuserplexaccount.md
   - docs/models/operations/getuserfriendsresponse.md
   - docs/models/operations/getwatchlistrequest.md
   - docs/models/operations/getwatchlistresponse.md
@@ -593,297 +592,297 @@ generatedFiles:
   - docs/models/operations/userprofile.md
   - docs/models/operations/watchedindicator.md
   - docs/models/operations/writer.md
+  - docs/models/sdkerrors/addplaylistcontentsbadrequest.md
   - docs/models/sdkerrors/addplaylistcontentserrors.md
   - docs/models/sdkerrors/addplaylistcontentsplaylistserrors.md
-  - docs/models/sdkerrors/addplaylistcontentsplaylistsresponsebody.md
-  - docs/models/sdkerrors/addplaylistcontentsresponsebody.md
+  - docs/models/sdkerrors/addplaylistcontentsunauthorized.md
+  - docs/models/sdkerrors/applyupdatesbadrequest.md
   - docs/models/sdkerrors/applyupdateserrors.md
-  - docs/models/sdkerrors/applyupdatesresponsebody.md
+  - docs/models/sdkerrors/applyupdatesunauthorized.md
   - docs/models/sdkerrors/applyupdatesupdatererrors.md
-  - docs/models/sdkerrors/applyupdatesupdaterresponsebody.md
   - docs/models/sdkerrors/cancelserveractivitiesactivitieserrors.md
-  - docs/models/sdkerrors/cancelserveractivitiesactivitiesresponsebody.md
+  - docs/models/sdkerrors/cancelserveractivitiesbadrequest.md
   - docs/models/sdkerrors/cancelserveractivitieserrors.md
-  - docs/models/sdkerrors/cancelserveractivitiesresponsebody.md
+  - docs/models/sdkerrors/cancelserveractivitiesunauthorized.md
+  - docs/models/sdkerrors/checkforupdatesbadrequest.md
   - docs/models/sdkerrors/checkforupdateserrors.md
-  - docs/models/sdkerrors/checkforupdatesresponsebody.md
+  - docs/models/sdkerrors/checkforupdatesunauthorized.md
   - docs/models/sdkerrors/checkforupdatesupdatererrors.md
-  - docs/models/sdkerrors/checkforupdatesupdaterresponsebody.md
+  - docs/models/sdkerrors/clearplaylistcontentsbadrequest.md
   - docs/models/sdkerrors/clearplaylistcontentserrors.md
   - docs/models/sdkerrors/clearplaylistcontentsplaylistserrors.md
-  - docs/models/sdkerrors/clearplaylistcontentsplaylistsresponsebody.md
-  - docs/models/sdkerrors/clearplaylistcontentsresponsebody.md
+  - docs/models/sdkerrors/clearplaylistcontentsunauthorized.md
+  - docs/models/sdkerrors/createplaylistbadrequest.md
   - docs/models/sdkerrors/createplaylisterrors.md
   - docs/models/sdkerrors/createplaylistplaylistserrors.md
-  - docs/models/sdkerrors/createplaylistplaylistsresponsebody.md
-  - docs/models/sdkerrors/createplaylistresponsebody.md
+  - docs/models/sdkerrors/createplaylistunauthorized.md
+  - docs/models/sdkerrors/deletelibrarybadrequest.md
   - docs/models/sdkerrors/deletelibraryerrors.md
   - docs/models/sdkerrors/deletelibrarylibraryerrors.md
-  - docs/models/sdkerrors/deletelibrarylibraryresponsebody.md
-  - docs/models/sdkerrors/deletelibraryresponsebody.md
+  - docs/models/sdkerrors/deletelibraryunauthorized.md
+  - docs/models/sdkerrors/deleteplaylistbadrequest.md
   - docs/models/sdkerrors/deleteplaylisterrors.md
   - docs/models/sdkerrors/deleteplaylistplaylistserrors.md
-  - docs/models/sdkerrors/deleteplaylistplaylistsresponsebody.md
-  - docs/models/sdkerrors/deleteplaylistresponsebody.md
+  - docs/models/sdkerrors/deleteplaylistunauthorized.md
+  - docs/models/sdkerrors/enablepapertrailbadrequest.md
   - docs/models/sdkerrors/enablepapertrailerrors.md
   - docs/models/sdkerrors/enablepapertraillogerrors.md
-  - docs/models/sdkerrors/enablepapertraillogresponsebody.md
-  - docs/models/sdkerrors/enablepapertrailresponsebody.md
+  - docs/models/sdkerrors/enablepapertrailunauthorized.md
   - docs/models/sdkerrors/errors.md
+  - docs/models/sdkerrors/getalllibrariesbadrequest.md
   - docs/models/sdkerrors/getalllibrarieserrors.md
   - docs/models/sdkerrors/getalllibrarieslibraryerrors.md
-  - docs/models/sdkerrors/getalllibrarieslibraryresponsebody.md
-  - docs/models/sdkerrors/getalllibrariesresponsebody.md
+  - docs/models/sdkerrors/getalllibrariesunauthorized.md
+  - docs/models/sdkerrors/getavailableclientsbadrequest.md
   - docs/models/sdkerrors/getavailableclientserrors.md
-  - docs/models/sdkerrors/getavailableclientsresponsebody.md
   - docs/models/sdkerrors/getavailableclientsservererrors.md
-  - docs/models/sdkerrors/getavailableclientsserverresponsebody.md
+  - docs/models/sdkerrors/getavailableclientsunauthorized.md
+  - docs/models/sdkerrors/getbandwidthstatisticsbadrequest.md
   - docs/models/sdkerrors/getbandwidthstatisticserrors.md
-  - docs/models/sdkerrors/getbandwidthstatisticsresponsebody.md
   - docs/models/sdkerrors/getbandwidthstatisticsstatisticserrors.md
-  - docs/models/sdkerrors/getbandwidthstatisticsstatisticsresponsebody.md
+  - docs/models/sdkerrors/getbandwidthstatisticsunauthorized.md
+  - docs/models/sdkerrors/getbannerimagebadrequest.md
   - docs/models/sdkerrors/getbannerimageerrors.md
   - docs/models/sdkerrors/getbannerimagemediaerrors.md
-  - docs/models/sdkerrors/getbannerimagemediaresponsebody.md
-  - docs/models/sdkerrors/getbannerimageresponsebody.md
+  - docs/models/sdkerrors/getbannerimageunauthorized.md
+  - docs/models/sdkerrors/getbutlertasksbadrequest.md
   - docs/models/sdkerrors/getbutlertasksbutlererrors.md
-  - docs/models/sdkerrors/getbutlertasksbutlerresponsebody.md
   - docs/models/sdkerrors/getbutlertaskserrors.md
-  - docs/models/sdkerrors/getbutlertasksresponsebody.md
+  - docs/models/sdkerrors/getbutlertasksunauthorized.md
+  - docs/models/sdkerrors/getcompanionsdatabadrequest.md
   - docs/models/sdkerrors/getcompanionsdataerrors.md
   - docs/models/sdkerrors/getcompanionsdataplexerrors.md
-  - docs/models/sdkerrors/getcompanionsdataplexresponsebody.md
-  - docs/models/sdkerrors/getcompanionsdataresponsebody.md
+  - docs/models/sdkerrors/getcompanionsdataunauthorized.md
+  - docs/models/sdkerrors/getdevicesbadrequest.md
   - docs/models/sdkerrors/getdeviceserrors.md
-  - docs/models/sdkerrors/getdevicesresponsebody.md
   - docs/models/sdkerrors/getdevicesservererrors.md
-  - docs/models/sdkerrors/getdevicesserverresponsebody.md
+  - docs/models/sdkerrors/getdevicesunauthorized.md
+  - docs/models/sdkerrors/getfilehashbadrequest.md
   - docs/models/sdkerrors/getfilehasherrors.md
   - docs/models/sdkerrors/getfilehashlibraryerrors.md
-  - docs/models/sdkerrors/getfilehashlibraryresponsebody.md
-  - docs/models/sdkerrors/getfilehashresponsebody.md
+  - docs/models/sdkerrors/getfilehashunauthorized.md
+  - docs/models/sdkerrors/getgeodatabadrequest.md
   - docs/models/sdkerrors/getgeodataerrors.md
   - docs/models/sdkerrors/getgeodataplexerrors.md
-  - docs/models/sdkerrors/getgeodataplexresponsebody.md
-  - docs/models/sdkerrors/getgeodataresponsebody.md
+  - docs/models/sdkerrors/getgeodataunauthorized.md
+  - docs/models/sdkerrors/getglobalhubsbadrequest.md
   - docs/models/sdkerrors/getglobalhubserrors.md
   - docs/models/sdkerrors/getglobalhubshubserrors.md
-  - docs/models/sdkerrors/getglobalhubshubsresponsebody.md
-  - docs/models/sdkerrors/getglobalhubsresponsebody.md
+  - docs/models/sdkerrors/getglobalhubsunauthorized.md
+  - docs/models/sdkerrors/gethomedatabadrequest.md
   - docs/models/sdkerrors/gethomedataerrors.md
   - docs/models/sdkerrors/gethomedataplexerrors.md
-  - docs/models/sdkerrors/gethomedataplexresponsebody.md
-  - docs/models/sdkerrors/gethomedataresponsebody.md
+  - docs/models/sdkerrors/gethomedataunauthorized.md
+  - docs/models/sdkerrors/getlibrarydetailsbadrequest.md
   - docs/models/sdkerrors/getlibrarydetailserrors.md
   - docs/models/sdkerrors/getlibrarydetailslibraryerrors.md
-  - docs/models/sdkerrors/getlibrarydetailslibraryresponsebody.md
-  - docs/models/sdkerrors/getlibrarydetailsresponsebody.md
+  - docs/models/sdkerrors/getlibrarydetailsunauthorized.md
+  - docs/models/sdkerrors/getlibraryhubsbadrequest.md
   - docs/models/sdkerrors/getlibraryhubserrors.md
   - docs/models/sdkerrors/getlibraryhubshubserrors.md
-  - docs/models/sdkerrors/getlibraryhubshubsresponsebody.md
-  - docs/models/sdkerrors/getlibraryhubsresponsebody.md
+  - docs/models/sdkerrors/getlibraryhubsunauthorized.md
+  - docs/models/sdkerrors/getlibraryitemsbadrequest.md
   - docs/models/sdkerrors/getlibraryitemserrors.md
   - docs/models/sdkerrors/getlibraryitemslibraryerrors.md
-  - docs/models/sdkerrors/getlibraryitemslibraryresponsebody.md
-  - docs/models/sdkerrors/getlibraryitemsresponsebody.md
+  - docs/models/sdkerrors/getlibraryitemsunauthorized.md
+  - docs/models/sdkerrors/getmediaprovidersbadrequest.md
   - docs/models/sdkerrors/getmediaproviderserrors.md
-  - docs/models/sdkerrors/getmediaprovidersresponsebody.md
   - docs/models/sdkerrors/getmediaprovidersservererrors.md
-  - docs/models/sdkerrors/getmediaprovidersserverresponsebody.md
+  - docs/models/sdkerrors/getmediaprovidersunauthorized.md
+  - docs/models/sdkerrors/getmetadatabyratingkeybadrequest.md
   - docs/models/sdkerrors/getmetadatabyratingkeyerrors.md
   - docs/models/sdkerrors/getmetadatabyratingkeylibraryerrors.md
-  - docs/models/sdkerrors/getmetadatabyratingkeylibraryresponsebody.md
-  - docs/models/sdkerrors/getmetadatabyratingkeyresponsebody.md
+  - docs/models/sdkerrors/getmetadatabyratingkeyunauthorized.md
+  - docs/models/sdkerrors/getmetadatachildrenbadrequest.md
   - docs/models/sdkerrors/getmetadatachildrenerrors.md
   - docs/models/sdkerrors/getmetadatachildrenlibraryerrors.md
-  - docs/models/sdkerrors/getmetadatachildrenlibraryresponsebody.md
-  - docs/models/sdkerrors/getmetadatachildrenresponsebody.md
+  - docs/models/sdkerrors/getmetadatachildrenunauthorized.md
+  - docs/models/sdkerrors/getmyplexaccountbadrequest.md
   - docs/models/sdkerrors/getmyplexaccounterrors.md
-  - docs/models/sdkerrors/getmyplexaccountresponsebody.md
   - docs/models/sdkerrors/getmyplexaccountservererrors.md
-  - docs/models/sdkerrors/getmyplexaccountserverresponsebody.md
+  - docs/models/sdkerrors/getmyplexaccountunauthorized.md
+  - docs/models/sdkerrors/getondeckbadrequest.md
   - docs/models/sdkerrors/getondeckerrors.md
   - docs/models/sdkerrors/getondecklibraryerrors.md
-  - docs/models/sdkerrors/getondecklibraryresponsebody.md
-  - docs/models/sdkerrors/getondeckresponsebody.md
+  - docs/models/sdkerrors/getondeckunauthorized.md
+  - docs/models/sdkerrors/getpinbadrequest.md
   - docs/models/sdkerrors/getpinerrors.md
-  - docs/models/sdkerrors/getpinresponsebody.md
+  - docs/models/sdkerrors/getplaylistbadrequest.md
+  - docs/models/sdkerrors/getplaylistcontentsbadrequest.md
   - docs/models/sdkerrors/getplaylistcontentserrors.md
   - docs/models/sdkerrors/getplaylistcontentsplaylistserrors.md
-  - docs/models/sdkerrors/getplaylistcontentsplaylistsresponsebody.md
-  - docs/models/sdkerrors/getplaylistcontentsresponsebody.md
+  - docs/models/sdkerrors/getplaylistcontentsunauthorized.md
   - docs/models/sdkerrors/getplaylisterrors.md
   - docs/models/sdkerrors/getplaylistplaylistserrors.md
-  - docs/models/sdkerrors/getplaylistplaylistsresponsebody.md
-  - docs/models/sdkerrors/getplaylistresponsebody.md
+  - docs/models/sdkerrors/getplaylistsbadrequest.md
   - docs/models/sdkerrors/getplaylistserrors.md
   - docs/models/sdkerrors/getplaylistsplaylistserrors.md
-  - docs/models/sdkerrors/getplaylistsplaylistsresponsebody.md
-  - docs/models/sdkerrors/getplaylistsresponsebody.md
+  - docs/models/sdkerrors/getplaylistsunauthorized.md
+  - docs/models/sdkerrors/getplaylistunauthorized.md
+  - docs/models/sdkerrors/getrecentlyaddedbadrequest.md
   - docs/models/sdkerrors/getrecentlyaddederrors.md
   - docs/models/sdkerrors/getrecentlyaddedlibraryerrors.md
-  - docs/models/sdkerrors/getrecentlyaddedlibraryresponsebody.md
-  - docs/models/sdkerrors/getrecentlyaddedresponsebody.md
+  - docs/models/sdkerrors/getrecentlyaddedunauthorized.md
+  - docs/models/sdkerrors/getrefreshlibrarymetadatabadrequest.md
   - docs/models/sdkerrors/getrefreshlibrarymetadataerrors.md
   - docs/models/sdkerrors/getrefreshlibrarymetadatalibraryerrors.md
-  - docs/models/sdkerrors/getrefreshlibrarymetadatalibraryresponsebody.md
-  - docs/models/sdkerrors/getrefreshlibrarymetadataresponsebody.md
+  - docs/models/sdkerrors/getrefreshlibrarymetadataunauthorized.md
+  - docs/models/sdkerrors/getresizedphotobadrequest.md
   - docs/models/sdkerrors/getresizedphotoerrors.md
-  - docs/models/sdkerrors/getresizedphotoresponsebody.md
   - docs/models/sdkerrors/getresizedphotoservererrors.md
-  - docs/models/sdkerrors/getresizedphotoserverresponsebody.md
+  - docs/models/sdkerrors/getresizedphotounauthorized.md
+  - docs/models/sdkerrors/getresourcesstatisticsbadrequest.md
   - docs/models/sdkerrors/getresourcesstatisticserrors.md
-  - docs/models/sdkerrors/getresourcesstatisticsresponsebody.md
   - docs/models/sdkerrors/getresourcesstatisticsstatisticserrors.md
-  - docs/models/sdkerrors/getresourcesstatisticsstatisticsresponsebody.md
+  - docs/models/sdkerrors/getresourcesstatisticsunauthorized.md
+  - docs/models/sdkerrors/getsearchlibrarybadrequest.md
   - docs/models/sdkerrors/getsearchlibraryerrors.md
   - docs/models/sdkerrors/getsearchlibrarylibraryerrors.md
-  - docs/models/sdkerrors/getsearchlibrarylibraryresponsebody.md
-  - docs/models/sdkerrors/getsearchlibraryresponsebody.md
+  - docs/models/sdkerrors/getsearchlibraryunauthorized.md
+  - docs/models/sdkerrors/getsearchresultsbadrequest.md
   - docs/models/sdkerrors/getsearchresultserrors.md
-  - docs/models/sdkerrors/getsearchresultsresponsebody.md
   - docs/models/sdkerrors/getsearchresultssearcherrors.md
-  - docs/models/sdkerrors/getsearchresultssearchresponsebody.md
+  - docs/models/sdkerrors/getsearchresultsunauthorized.md
   - docs/models/sdkerrors/getserveractivitiesactivitieserrors.md
-  - docs/models/sdkerrors/getserveractivitiesactivitiesresponsebody.md
+  - docs/models/sdkerrors/getserveractivitiesbadrequest.md
   - docs/models/sdkerrors/getserveractivitieserrors.md
-  - docs/models/sdkerrors/getserveractivitiesresponsebody.md
+  - docs/models/sdkerrors/getserveractivitiesunauthorized.md
+  - docs/models/sdkerrors/getservercapabilitiesbadrequest.md
   - docs/models/sdkerrors/getservercapabilitieserrors.md
-  - docs/models/sdkerrors/getservercapabilitiesresponsebody.md
-  - docs/models/sdkerrors/getservercapabilitiesserverresponsebody.md
-  - docs/models/sdkerrors/getserveridentityresponsebody.md
+  - docs/models/sdkerrors/getservercapabilitiesunauthorized.md
+  - docs/models/sdkerrors/getserveridentityrequesttimeout.md
+  - docs/models/sdkerrors/getserverlistbadrequest.md
   - docs/models/sdkerrors/getserverlisterrors.md
-  - docs/models/sdkerrors/getserverlistresponsebody.md
   - docs/models/sdkerrors/getserverlistservererrors.md
-  - docs/models/sdkerrors/getserverlistserverresponsebody.md
+  - docs/models/sdkerrors/getserverlistunauthorized.md
+  - docs/models/sdkerrors/getserverpreferencesbadrequest.md
   - docs/models/sdkerrors/getserverpreferenceserrors.md
-  - docs/models/sdkerrors/getserverpreferencesresponsebody.md
   - docs/models/sdkerrors/getserverpreferencesservererrors.md
-  - docs/models/sdkerrors/getserverpreferencesserverresponsebody.md
+  - docs/models/sdkerrors/getserverpreferencesunauthorized.md
+  - docs/models/sdkerrors/getserverresourcesbadrequest.md
   - docs/models/sdkerrors/getserverresourceserrors.md
   - docs/models/sdkerrors/getserverresourcesplexerrors.md
-  - docs/models/sdkerrors/getserverresourcesplexresponsebody.md
-  - docs/models/sdkerrors/getserverresourcesresponsebody.md
+  - docs/models/sdkerrors/getserverresourcesunauthorized.md
+  - docs/models/sdkerrors/getsessionhistorybadrequest.md
   - docs/models/sdkerrors/getsessionhistoryerrors.md
-  - docs/models/sdkerrors/getsessionhistoryresponsebody.md
   - docs/models/sdkerrors/getsessionhistorysessionserrors.md
-  - docs/models/sdkerrors/getsessionhistorysessionsresponsebody.md
+  - docs/models/sdkerrors/getsessionhistoryunauthorized.md
+  - docs/models/sdkerrors/getsessionsbadrequest.md
   - docs/models/sdkerrors/getsessionserrors.md
-  - docs/models/sdkerrors/getsessionsresponsebody.md
   - docs/models/sdkerrors/getsessionssessionserrors.md
-  - docs/models/sdkerrors/getsessionssessionsresponsebody.md
+  - docs/models/sdkerrors/getsessionsunauthorized.md
   - docs/models/sdkerrors/getsourceconnectioninformationauthenticationerrors.md
-  - docs/models/sdkerrors/getsourceconnectioninformationauthenticationresponsebody.md
+  - docs/models/sdkerrors/getsourceconnectioninformationbadrequest.md
   - docs/models/sdkerrors/getsourceconnectioninformationerrors.md
-  - docs/models/sdkerrors/getsourceconnectioninformationresponsebody.md
+  - docs/models/sdkerrors/getsourceconnectioninformationunauthorized.md
+  - docs/models/sdkerrors/getstatisticsbadrequest.md
   - docs/models/sdkerrors/getstatisticserrors.md
-  - docs/models/sdkerrors/getstatisticsresponsebody.md
   - docs/models/sdkerrors/getstatisticsstatisticserrors.md
-  - docs/models/sdkerrors/getstatisticsstatisticsresponsebody.md
+  - docs/models/sdkerrors/getstatisticsunauthorized.md
+  - docs/models/sdkerrors/getthumbimagebadrequest.md
   - docs/models/sdkerrors/getthumbimageerrors.md
   - docs/models/sdkerrors/getthumbimagemediaerrors.md
-  - docs/models/sdkerrors/getthumbimagemediaresponsebody.md
-  - docs/models/sdkerrors/getthumbimageresponsebody.md
+  - docs/models/sdkerrors/getthumbimageunauthorized.md
+  - docs/models/sdkerrors/gettimelinebadrequest.md
   - docs/models/sdkerrors/gettimelineerrors.md
-  - docs/models/sdkerrors/gettimelineresponsebody.md
+  - docs/models/sdkerrors/gettimelineunauthorized.md
   - docs/models/sdkerrors/gettimelinevideoerrors.md
-  - docs/models/sdkerrors/gettimelinevideoresponsebody.md
+  - docs/models/sdkerrors/gettokenbypinidbadrequest.md
   - docs/models/sdkerrors/gettokenbypiniderrors.md
   - docs/models/sdkerrors/gettokenbypinidplexerrors.md
-  - docs/models/sdkerrors/gettokenbypinidplexresponsebody.md
   - docs/models/sdkerrors/gettokenbypinidresponsebody.md
+  - docs/models/sdkerrors/gettokendetailsauthenticationerrors.md
+  - docs/models/sdkerrors/gettokendetailsbadrequest.md
+  - docs/models/sdkerrors/gettokendetailserrors.md
+  - docs/models/sdkerrors/gettokendetailsunauthorized.md
+  - docs/models/sdkerrors/gettopwatchedcontentbadrequest.md
   - docs/models/sdkerrors/gettopwatchedcontenterrors.md
   - docs/models/sdkerrors/gettopwatchedcontentlibraryerrors.md
-  - docs/models/sdkerrors/gettopwatchedcontentlibraryresponsebody.md
-  - docs/models/sdkerrors/gettopwatchedcontentresponsebody.md
+  - docs/models/sdkerrors/gettopwatchedcontentunauthorized.md
+  - docs/models/sdkerrors/gettranscodesessionsbadrequest.md
   - docs/models/sdkerrors/gettranscodesessionserrors.md
-  - docs/models/sdkerrors/gettranscodesessionsresponsebody.md
   - docs/models/sdkerrors/gettranscodesessionssessionserrors.md
-  - docs/models/sdkerrors/gettranscodesessionssessionsresponsebody.md
+  - docs/models/sdkerrors/gettranscodesessionsunauthorized.md
   - docs/models/sdkerrors/gettransienttokenauthenticationerrors.md
-  - docs/models/sdkerrors/gettransienttokenauthenticationresponsebody.md
+  - docs/models/sdkerrors/gettransienttokenbadrequest.md
   - docs/models/sdkerrors/gettransienttokenerrors.md
-  - docs/models/sdkerrors/gettransienttokenresponsebody.md
+  - docs/models/sdkerrors/gettransienttokenunauthorized.md
+  - docs/models/sdkerrors/getupdatestatusbadrequest.md
   - docs/models/sdkerrors/getupdatestatuserrors.md
-  - docs/models/sdkerrors/getupdatestatusresponsebody.md
+  - docs/models/sdkerrors/getupdatestatusunauthorized.md
   - docs/models/sdkerrors/getupdatestatusupdatererrors.md
-  - docs/models/sdkerrors/getupdatestatusupdaterresponsebody.md
-  - docs/models/sdkerrors/getuserdetailsauthenticationerrors.md
-  - docs/models/sdkerrors/getuserdetailsauthenticationresponsebody.md
-  - docs/models/sdkerrors/getuserdetailserrors.md
-  - docs/models/sdkerrors/getuserdetailsresponsebody.md
+  - docs/models/sdkerrors/getuserfriendsbadrequest.md
   - docs/models/sdkerrors/getuserfriendserrors.md
   - docs/models/sdkerrors/getuserfriendsplexerrors.md
-  - docs/models/sdkerrors/getuserfriendsplexresponsebody.md
-  - docs/models/sdkerrors/getuserfriendsresponsebody.md
+  - docs/models/sdkerrors/getuserfriendsunauthorized.md
+  - docs/models/sdkerrors/getwatchlistbadrequest.md
   - docs/models/sdkerrors/getwatchlisterrors.md
-  - docs/models/sdkerrors/getwatchlistresponsebody.md
+  - docs/models/sdkerrors/getwatchlistunauthorized.md
   - docs/models/sdkerrors/getwatchlistwatchlisterrors.md
-  - docs/models/sdkerrors/getwatchlistwatchlistresponsebody.md
+  - docs/models/sdkerrors/loglinebadrequest.md
   - docs/models/sdkerrors/loglineerrors.md
   - docs/models/sdkerrors/loglinelogerrors.md
-  - docs/models/sdkerrors/loglinelogresponsebody.md
-  - docs/models/sdkerrors/loglineresponsebody.md
+  - docs/models/sdkerrors/loglineunauthorized.md
+  - docs/models/sdkerrors/logmultilinebadrequest.md
   - docs/models/sdkerrors/logmultilineerrors.md
   - docs/models/sdkerrors/logmultilinelogerrors.md
-  - docs/models/sdkerrors/logmultilinelogresponsebody.md
-  - docs/models/sdkerrors/logmultilineresponsebody.md
+  - docs/models/sdkerrors/logmultilineunauthorized.md
+  - docs/models/sdkerrors/markplayedbadrequest.md
   - docs/models/sdkerrors/markplayederrors.md
   - docs/models/sdkerrors/markplayedmediaerrors.md
-  - docs/models/sdkerrors/markplayedmediaresponsebody.md
-  - docs/models/sdkerrors/markplayedresponsebody.md
+  - docs/models/sdkerrors/markplayedunauthorized.md
+  - docs/models/sdkerrors/markunplayedbadrequest.md
   - docs/models/sdkerrors/markunplayederrors.md
   - docs/models/sdkerrors/markunplayedmediaerrors.md
-  - docs/models/sdkerrors/markunplayedmediaresponsebody.md
-  - docs/models/sdkerrors/markunplayedresponsebody.md
+  - docs/models/sdkerrors/markunplayedunauthorized.md
+  - docs/models/sdkerrors/performsearchbadrequest.md
   - docs/models/sdkerrors/performsearcherrors.md
-  - docs/models/sdkerrors/performsearchresponsebody.md
   - docs/models/sdkerrors/performsearchsearcherrors.md
-  - docs/models/sdkerrors/performsearchsearchresponsebody.md
+  - docs/models/sdkerrors/performsearchunauthorized.md
+  - docs/models/sdkerrors/performvoicesearchbadrequest.md
   - docs/models/sdkerrors/performvoicesearcherrors.md
-  - docs/models/sdkerrors/performvoicesearchresponsebody.md
   - docs/models/sdkerrors/performvoicesearchsearcherrors.md
-  - docs/models/sdkerrors/performvoicesearchsearchresponsebody.md
+  - docs/models/sdkerrors/performvoicesearchunauthorized.md
   - docs/models/sdkerrors/postuserssignindataauthenticationerrors.md
-  - docs/models/sdkerrors/postuserssignindataauthenticationresponsebody.md
+  - docs/models/sdkerrors/postuserssignindatabadrequest.md
   - docs/models/sdkerrors/postuserssignindataerrors.md
-  - docs/models/sdkerrors/postuserssignindataresponsebody.md
+  - docs/models/sdkerrors/postuserssignindataunauthorized.md
+  - docs/models/sdkerrors/startalltasksbadrequest.md
   - docs/models/sdkerrors/startalltasksbutlererrors.md
-  - docs/models/sdkerrors/startalltasksbutlerresponsebody.md
   - docs/models/sdkerrors/startalltaskserrors.md
-  - docs/models/sdkerrors/startalltasksresponsebody.md
+  - docs/models/sdkerrors/startalltasksunauthorized.md
+  - docs/models/sdkerrors/starttaskbadrequest.md
   - docs/models/sdkerrors/starttaskbutlererrors.md
-  - docs/models/sdkerrors/starttaskbutlerresponsebody.md
   - docs/models/sdkerrors/starttaskerrors.md
-  - docs/models/sdkerrors/starttaskresponsebody.md
+  - docs/models/sdkerrors/starttaskunauthorized.md
+  - docs/models/sdkerrors/startuniversaltranscodebadrequest.md
   - docs/models/sdkerrors/startuniversaltranscodeerrors.md
-  - docs/models/sdkerrors/startuniversaltranscoderesponsebody.md
+  - docs/models/sdkerrors/startuniversaltranscodeunauthorized.md
   - docs/models/sdkerrors/startuniversaltranscodevideoerrors.md
-  - docs/models/sdkerrors/startuniversaltranscodevideoresponsebody.md
+  - docs/models/sdkerrors/stopalltasksbadrequest.md
   - docs/models/sdkerrors/stopalltasksbutlererrors.md
-  - docs/models/sdkerrors/stopalltasksbutlerresponsebody.md
   - docs/models/sdkerrors/stopalltaskserrors.md
-  - docs/models/sdkerrors/stopalltasksresponsebody.md
+  - docs/models/sdkerrors/stopalltasksunauthorized.md
+  - docs/models/sdkerrors/stoptaskbadrequest.md
   - docs/models/sdkerrors/stoptaskbutlererrors.md
-  - docs/models/sdkerrors/stoptaskbutlerresponsebody.md
   - docs/models/sdkerrors/stoptaskerrors.md
-  - docs/models/sdkerrors/stoptaskresponsebody.md
+  - docs/models/sdkerrors/stoptaskunauthorized.md
+  - docs/models/sdkerrors/stoptranscodesessionbadrequest.md
   - docs/models/sdkerrors/stoptranscodesessionerrors.md
-  - docs/models/sdkerrors/stoptranscodesessionresponsebody.md
   - docs/models/sdkerrors/stoptranscodesessionsessionserrors.md
-  - docs/models/sdkerrors/stoptranscodesessionsessionsresponsebody.md
+  - docs/models/sdkerrors/stoptranscodesessionunauthorized.md
+  - docs/models/sdkerrors/updateplaylistbadrequest.md
   - docs/models/sdkerrors/updateplaylisterrors.md
   - docs/models/sdkerrors/updateplaylistplaylistserrors.md
-  - docs/models/sdkerrors/updateplaylistplaylistsresponsebody.md
-  - docs/models/sdkerrors/updateplaylistresponsebody.md
+  - docs/models/sdkerrors/updateplaylistunauthorized.md
+  - docs/models/sdkerrors/updateplayprogressbadrequest.md
   - docs/models/sdkerrors/updateplayprogresserrors.md
   - docs/models/sdkerrors/updateplayprogressmediaerrors.md
-  - docs/models/sdkerrors/updateplayprogressmediaresponsebody.md
-  - docs/models/sdkerrors/updateplayprogressresponsebody.md
+  - docs/models/sdkerrors/updateplayprogressunauthorized.md
+  - docs/models/sdkerrors/uploadplaylistbadrequest.md
   - docs/models/sdkerrors/uploadplaylisterrors.md
   - docs/models/sdkerrors/uploadplaylistplaylistserrors.md
-  - docs/models/sdkerrors/uploadplaylistplaylistsresponsebody.md
-  - docs/models/sdkerrors/uploadplaylistresponsebody.md
+  - docs/models/sdkerrors/uploadplaylistunauthorized.md
   - docs/sdks/activities/README.md
   - docs/sdks/authentication/README.md
   - docs/sdks/butler/README.md
@@ -1858,6 +1857,15 @@ examples:
           tonight: 1
           skip: 1
       responses:
+        "400":
+          application/json: {"errors": []}
+        "401":
+          application/json: {"errors": []}
+  getTokenDetails:
+    speakeasy-default-get-token-details:
+      responses:
+        "200":
+          application/json: {"adsConsent": true, "adsConsentReminderAt": "2019-08-24T14:15:22Z", "adsConsentSetAt": "2019-08-24T14:15:22Z", "anonymous": false, "authToken": "CxoUzBTSV5hsxjTpFKaf", "backupCodesCreated": false, "confirmed": false, "country": "US", "email": "username@email.com", "emailOnlyAuth": false, "experimentalFeatures": false, "friendlyName": "friendlyUsername", "entitlements": [], "guest": false, "hasPassword": true, "home": false, "homeAdmin": false, "homeSize": 1, "id": 13692262, "joinedAt": 1721154902, "locale": null, "mailingListActive": false, "mailingListStatus": "unsubscribed", "maxHomeSize": 15, "pin": "string", "profile": {"autoSelectAudio": true, "defaultAudioLanguage": "ja", "defaultSubtitleLanguage": "en", "autoSelectSubtitle": "1", "defaultSubtitleAccessibility": "1", "defaultSubtitleForced": "0", "watchedIndicator": "1", "mediaReviewsVisibility": 0}, "protected": false, "rememberExpiresAt": 1722364046, "restricted": false, "roles": ["string"], "scrobbleTypes": "", "services": [{"identifier": "metadata-dev", "endpoint": "https://epg.provider.plex.tv", "token": "DjoMtqFAGRL1uVtCyF1dKIorTbShJeqv", "secret": "string", "status": "online"}], "subscription": {"features": ["Android - Dolby Vision"], "active": true, "subscribedAt": "2021-04-12T18:21:12Z", "status": "Inactive", "paymentService": "string", "plan": "string"}, "subscriptionDescription": "string", "subscriptions": [{"features": ["Android - Dolby Vision"], "active": true, "subscribedAt": "2021-04-12T18:21:12Z", "status": "Inactive", "paymentService": "string", "plan": "string"}], "thumb": "https://plex.tv/users/a4f43c1ebfde43a5/avatar?c=8372075101", "title": "UsernameTitle", "twoFactorEnabled": false, "username": "Username", "uuid": "dae343c1f45beb4f"}
         "400":
           application/json: {"errors": []}
         "401":

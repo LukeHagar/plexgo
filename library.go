@@ -197,7 +197,7 @@ func (s *Library) GetFileHash(ctx context.Context, url_ string, type_ *float64, 
 				return nil, err
 			}
 
-			var out sdkerrors.GetFileHashResponseBody
+			var out sdkerrors.GetFileHashBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -220,7 +220,7 @@ func (s *Library) GetFileHash(ctx context.Context, url_ string, type_ *float64, 
 				return nil, err
 			}
 
-			var out sdkerrors.GetFileHashLibraryResponseBody
+			var out sdkerrors.GetFileHashUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -448,7 +448,7 @@ func (s *Library) GetRecentlyAdded(ctx context.Context, xPlexContainerStart *int
 				return nil, err
 			}
 
-			var out sdkerrors.GetRecentlyAddedResponseBody
+			var out sdkerrors.GetRecentlyAddedBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -471,7 +471,7 @@ func (s *Library) GetRecentlyAdded(ctx context.Context, xPlexContainerStart *int
 				return nil, err
 			}
 
-			var out sdkerrors.GetRecentlyAddedLibraryResponseBody
+			var out sdkerrors.GetRecentlyAddedUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -695,7 +695,7 @@ func (s *Library) GetAllLibraries(ctx context.Context, opts ...operations.Option
 				return nil, err
 			}
 
-			var out sdkerrors.GetAllLibrariesResponseBody
+			var out sdkerrors.GetAllLibrariesBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -718,7 +718,7 @@ func (s *Library) GetAllLibraries(ctx context.Context, opts ...operations.Option
 				return nil, err
 			}
 
-			var out sdkerrors.GetAllLibrariesLibraryResponseBody
+			var out sdkerrors.GetAllLibrariesUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -984,7 +984,7 @@ func (s *Library) GetLibraryDetails(ctx context.Context, sectionKey int, include
 				return nil, err
 			}
 
-			var out sdkerrors.GetLibraryDetailsResponseBody
+			var out sdkerrors.GetLibraryDetailsBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1007,7 +1007,7 @@ func (s *Library) GetLibraryDetails(ctx context.Context, sectionKey int, include
 				return nil, err
 			}
 
-			var out sdkerrors.GetLibraryDetailsLibraryResponseBody
+			var out sdkerrors.GetLibraryDetailsUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1209,7 +1209,7 @@ func (s *Library) DeleteLibrary(ctx context.Context, sectionKey int, opts ...ope
 				return nil, err
 			}
 
-			var out sdkerrors.DeleteLibraryResponseBody
+			var out sdkerrors.DeleteLibraryBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1232,7 +1232,7 @@ func (s *Library) DeleteLibrary(ctx context.Context, sectionKey int, opts ...ope
 				return nil, err
 			}
 
-			var out sdkerrors.DeleteLibraryLibraryResponseBody
+			var out sdkerrors.DeleteLibraryUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1474,7 +1474,7 @@ func (s *Library) GetLibraryItems(ctx context.Context, request operations.GetLib
 				return nil, err
 			}
 
-			var out sdkerrors.GetLibraryItemsResponseBody
+			var out sdkerrors.GetLibraryItemsBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1497,7 +1497,7 @@ func (s *Library) GetLibraryItems(ctx context.Context, request operations.GetLib
 				return nil, err
 			}
 
-			var out sdkerrors.GetLibraryItemsLibraryResponseBody
+			var out sdkerrors.GetLibraryItemsUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1704,7 +1704,7 @@ func (s *Library) GetRefreshLibraryMetadata(ctx context.Context, sectionKey int,
 				return nil, err
 			}
 
-			var out sdkerrors.GetRefreshLibraryMetadataResponseBody
+			var out sdkerrors.GetRefreshLibraryMetadataBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1727,7 +1727,7 @@ func (s *Library) GetRefreshLibraryMetadata(ctx context.Context, sectionKey int,
 				return nil, err
 			}
 
-			var out sdkerrors.GetRefreshLibraryMetadataLibraryResponseBody
+			var out sdkerrors.GetRefreshLibraryMetadataUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1972,7 +1972,7 @@ func (s *Library) GetSearchLibrary(ctx context.Context, sectionKey int, type_ op
 				return nil, err
 			}
 
-			var out sdkerrors.GetSearchLibraryResponseBody
+			var out sdkerrors.GetSearchLibraryBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1995,7 +1995,7 @@ func (s *Library) GetSearchLibrary(ctx context.Context, sectionKey int, type_ op
 				return nil, err
 			}
 
-			var out sdkerrors.GetSearchLibraryLibraryResponseBody
+			var out sdkerrors.GetSearchLibraryUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2218,7 +2218,7 @@ func (s *Library) GetMetaDataByRatingKey(ctx context.Context, ratingKey int64, o
 				return nil, err
 			}
 
-			var out sdkerrors.GetMetaDataByRatingKeyResponseBody
+			var out sdkerrors.GetMetaDataByRatingKeyBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2241,7 +2241,7 @@ func (s *Library) GetMetaDataByRatingKey(ctx context.Context, ratingKey int64, o
 				return nil, err
 			}
 
-			var out sdkerrors.GetMetaDataByRatingKeyLibraryResponseBody
+			var out sdkerrors.GetMetaDataByRatingKeyUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2469,7 +2469,7 @@ func (s *Library) GetMetadataChildren(ctx context.Context, ratingKey float64, in
 				return nil, err
 			}
 
-			var out sdkerrors.GetMetadataChildrenResponseBody
+			var out sdkerrors.GetMetadataChildrenBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2492,7 +2492,7 @@ func (s *Library) GetMetadataChildren(ctx context.Context, ratingKey float64, in
 				return nil, err
 			}
 
-			var out sdkerrors.GetMetadataChildrenLibraryResponseBody
+			var out sdkerrors.GetMetadataChildrenUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2720,7 +2720,7 @@ func (s *Library) GetTopWatchedContent(ctx context.Context, type_ operations.Get
 				return nil, err
 			}
 
-			var out sdkerrors.GetTopWatchedContentResponseBody
+			var out sdkerrors.GetTopWatchedContentBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2743,7 +2743,7 @@ func (s *Library) GetTopWatchedContent(ctx context.Context, type_ operations.Get
 				return nil, err
 			}
 
-			var out sdkerrors.GetTopWatchedContentLibraryResponseBody
+			var out sdkerrors.GetTopWatchedContentUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2962,7 +2962,7 @@ func (s *Library) GetOnDeck(ctx context.Context, opts ...operations.Option) (*op
 				return nil, err
 			}
 
-			var out sdkerrors.GetOnDeckResponseBody
+			var out sdkerrors.GetOnDeckBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2985,7 +2985,7 @@ func (s *Library) GetOnDeck(ctx context.Context, opts ...operations.Option) (*op
 				return nil, err
 			}
 
-			var out sdkerrors.GetOnDeckLibraryResponseBody
+			var out sdkerrors.GetOnDeckUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

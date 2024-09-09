@@ -34,16 +34,16 @@ func (o *GetTopWatchedContentLibraryErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetTopWatchedContentLibraryResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type GetTopWatchedContentLibraryResponseBody struct {
+// GetTopWatchedContentUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type GetTopWatchedContentUnauthorized struct {
 	Errors []GetTopWatchedContentLibraryErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetTopWatchedContentLibraryResponseBody{}
+var _ error = &GetTopWatchedContentUnauthorized{}
 
-func (e *GetTopWatchedContentLibraryResponseBody) Error() string {
+func (e *GetTopWatchedContentUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *GetTopWatchedContentErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetTopWatchedContentResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type GetTopWatchedContentResponseBody struct {
+// GetTopWatchedContentBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type GetTopWatchedContentBadRequest struct {
 	Errors []GetTopWatchedContentErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetTopWatchedContentResponseBody{}
+var _ error = &GetTopWatchedContentBadRequest{}
 
-func (e *GetTopWatchedContentResponseBody) Error() string {
+func (e *GetTopWatchedContentBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

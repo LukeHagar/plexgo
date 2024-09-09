@@ -34,16 +34,16 @@ func (o *GetWatchListWatchlistErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetWatchListWatchlistResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type GetWatchListWatchlistResponseBody struct {
+// GetWatchListUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type GetWatchListUnauthorized struct {
 	Errors []GetWatchListWatchlistErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetWatchListWatchlistResponseBody{}
+var _ error = &GetWatchListUnauthorized{}
 
-func (e *GetWatchListWatchlistResponseBody) Error() string {
+func (e *GetWatchListUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *GetWatchListErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetWatchListResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type GetWatchListResponseBody struct {
+// GetWatchListBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type GetWatchListBadRequest struct {
 	Errors []GetWatchListErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetWatchListResponseBody{}
+var _ error = &GetWatchListBadRequest{}
 
-func (e *GetWatchListResponseBody) Error() string {
+func (e *GetWatchListBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

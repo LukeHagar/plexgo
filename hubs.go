@@ -218,7 +218,7 @@ func (s *Hubs) GetGlobalHubs(ctx context.Context, count *float64, onlyTransient 
 				return nil, err
 			}
 
-			var out sdkerrors.GetGlobalHubsResponseBody
+			var out sdkerrors.GetGlobalHubsBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -241,7 +241,7 @@ func (s *Hubs) GetGlobalHubs(ctx context.Context, count *float64, onlyTransient 
 				return nil, err
 			}
 
-			var out sdkerrors.GetGlobalHubsHubsResponseBody
+			var out sdkerrors.GetGlobalHubsUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -470,7 +470,7 @@ func (s *Hubs) GetLibraryHubs(ctx context.Context, sectionID float64, count *flo
 				return nil, err
 			}
 
-			var out sdkerrors.GetLibraryHubsResponseBody
+			var out sdkerrors.GetLibraryHubsBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -493,7 +493,7 @@ func (s *Hubs) GetLibraryHubs(ctx context.Context, sectionID float64, count *flo
 				return nil, err
 			}
 
-			var out sdkerrors.GetLibraryHubsHubsResponseBody
+			var out sdkerrors.GetLibraryHubsUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

@@ -58,11 +58,11 @@ func main() {
 
 ### Errors
 
-| Error Object                            | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| sdkerrors.GetGlobalHubsResponseBody     | 400                                     | application/json                        |
-| sdkerrors.GetGlobalHubsHubsResponseBody | 401                                     | application/json                        |
-| sdkerrors.SDKError                      | 4xx-5xx                                 | */*                                     |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| sdkerrors.GetGlobalHubsBadRequest   | 400                                 | application/json                    |
+| sdkerrors.GetGlobalHubsUnauthorized | 401                                 | application/json                    |
+| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
 
 
 ## GetLibraryHubs
@@ -114,8 +114,8 @@ func main() {
 
 ### Errors
 
-| Error Object                             | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| sdkerrors.GetLibraryHubsResponseBody     | 400                                      | application/json                         |
-| sdkerrors.GetLibraryHubsHubsResponseBody | 401                                      | application/json                         |
-| sdkerrors.SDKError                       | 4xx-5xx                                  | */*                                      |
+| Error Object                         | Status Code                          | Content Type                         |
+| ------------------------------------ | ------------------------------------ | ------------------------------------ |
+| sdkerrors.GetLibraryHubsBadRequest   | 400                                  | application/json                     |
+| sdkerrors.GetLibraryHubsUnauthorized | 401                                  | application/json                     |
+| sdkerrors.SDKError                   | 4xx-5xx                              | */*                                  |

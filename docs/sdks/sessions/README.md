@@ -58,11 +58,11 @@ func main() {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| sdkerrors.GetSessionsResponseBody         | 400                                       | application/json                          |
-| sdkerrors.GetSessionsSessionsResponseBody | 401                                       | application/json                          |
-| sdkerrors.SDKError                        | 4xx-5xx                                   | */*                                       |
+| Error Object                      | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.GetSessionsBadRequest   | 400                               | application/json                  |
+| sdkerrors.GetSessionsUnauthorized | 401                               | application/json                  |
+| sdkerrors.SDKError                | 4xx-5xx                           | */*                               |
 
 
 ## GetSessionHistory
@@ -115,11 +115,11 @@ func main() {
 
 ### Errors
 
-| Error Object                                    | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| sdkerrors.GetSessionHistoryResponseBody         | 400                                             | application/json                                |
-| sdkerrors.GetSessionHistorySessionsResponseBody | 401                                             | application/json                                |
-| sdkerrors.SDKError                              | 4xx-5xx                                         | */*                                             |
+| Error Object                            | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| sdkerrors.GetSessionHistoryBadRequest   | 400                                     | application/json                        |
+| sdkerrors.GetSessionHistoryUnauthorized | 401                                     | application/json                        |
+| sdkerrors.SDKError                      | 4xx-5xx                                 | */*                                     |
 
 
 ## GetTranscodeSessions
@@ -167,11 +167,11 @@ func main() {
 
 ### Errors
 
-| Error Object                                       | Status Code                                        | Content Type                                       |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| sdkerrors.GetTranscodeSessionsResponseBody         | 400                                                | application/json                                   |
-| sdkerrors.GetTranscodeSessionsSessionsResponseBody | 401                                                | application/json                                   |
-| sdkerrors.SDKError                                 | 4xx-5xx                                            | */*                                                |
+| Error Object                               | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| sdkerrors.GetTranscodeSessionsBadRequest   | 400                                        | application/json                           |
+| sdkerrors.GetTranscodeSessionsUnauthorized | 401                                        | application/json                           |
+| sdkerrors.SDKError                         | 4xx-5xx                                    | */*                                        |
 
 
 ## StopTranscodeSession
@@ -220,8 +220,8 @@ func main() {
 
 ### Errors
 
-| Error Object                                       | Status Code                                        | Content Type                                       |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| sdkerrors.StopTranscodeSessionResponseBody         | 400                                                | application/json                                   |
-| sdkerrors.StopTranscodeSessionSessionsResponseBody | 401                                                | application/json                                   |
-| sdkerrors.SDKError                                 | 4xx-5xx                                            | */*                                                |
+| Error Object                               | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| sdkerrors.StopTranscodeSessionBadRequest   | 400                                        | application/json                           |
+| sdkerrors.StopTranscodeSessionUnauthorized | 401                                        | application/json                           |
+| sdkerrors.SDKError                         | 4xx-5xx                                    | */*                                        |

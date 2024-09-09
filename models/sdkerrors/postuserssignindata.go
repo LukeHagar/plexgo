@@ -34,16 +34,16 @@ func (o *PostUsersSignInDataAuthenticationErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// PostUsersSignInDataAuthenticationResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type PostUsersSignInDataAuthenticationResponseBody struct {
+// PostUsersSignInDataUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type PostUsersSignInDataUnauthorized struct {
 	Errors []PostUsersSignInDataAuthenticationErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &PostUsersSignInDataAuthenticationResponseBody{}
+var _ error = &PostUsersSignInDataUnauthorized{}
 
-func (e *PostUsersSignInDataAuthenticationResponseBody) Error() string {
+func (e *PostUsersSignInDataUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *PostUsersSignInDataErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// PostUsersSignInDataResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type PostUsersSignInDataResponseBody struct {
+// PostUsersSignInDataBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type PostUsersSignInDataBadRequest struct {
 	Errors []PostUsersSignInDataErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &PostUsersSignInDataResponseBody{}
+var _ error = &PostUsersSignInDataBadRequest{}
 
-func (e *PostUsersSignInDataResponseBody) Error() string {
+func (e *PostUsersSignInDataBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

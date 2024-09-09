@@ -72,11 +72,11 @@ func main() {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| sdkerrors.PerformSearchResponseBody       | 400                                       | application/json                          |
-| sdkerrors.PerformSearchSearchResponseBody | 401                                       | application/json                          |
-| sdkerrors.SDKError                        | 4xx-5xx                                   | */*                                       |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| sdkerrors.PerformSearchBadRequest   | 400                                 | application/json                    |
+| sdkerrors.PerformSearchUnauthorized | 401                                 | application/json                    |
+| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
 
 
 ## PerformVoiceSearch
@@ -131,11 +131,11 @@ func main() {
 
 ### Errors
 
-| Error Object                                   | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| sdkerrors.PerformVoiceSearchResponseBody       | 400                                            | application/json                               |
-| sdkerrors.PerformVoiceSearchSearchResponseBody | 401                                            | application/json                               |
-| sdkerrors.SDKError                             | 4xx-5xx                                        | */*                                            |
+| Error Object                             | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| sdkerrors.PerformVoiceSearchBadRequest   | 400                                      | application/json                         |
+| sdkerrors.PerformVoiceSearchUnauthorized | 401                                      | application/json                         |
+| sdkerrors.SDKError                       | 4xx-5xx                                  | */*                                      |
 
 
 ## GetSearchResults
@@ -184,8 +184,8 @@ func main() {
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| sdkerrors.GetSearchResultsResponseBody       | 400                                          | application/json                             |
-| sdkerrors.GetSearchResultsSearchResponseBody | 401                                          | application/json                             |
-| sdkerrors.SDKError                           | 4xx-5xx                                      | */*                                          |
+| Error Object                           | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.GetSearchResultsBadRequest   | 400                                    | application/json                       |
+| sdkerrors.GetSearchResultsUnauthorized | 401                                    | application/json                       |
+| sdkerrors.SDKError                     | 4xx-5xx                                | */*                                    |

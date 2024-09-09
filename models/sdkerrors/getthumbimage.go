@@ -34,16 +34,16 @@ func (o *GetThumbImageMediaErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetThumbImageMediaResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type GetThumbImageMediaResponseBody struct {
+// GetThumbImageUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type GetThumbImageUnauthorized struct {
 	Errors []GetThumbImageMediaErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetThumbImageMediaResponseBody{}
+var _ error = &GetThumbImageUnauthorized{}
 
-func (e *GetThumbImageMediaResponseBody) Error() string {
+func (e *GetThumbImageUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *GetThumbImageErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetThumbImageResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type GetThumbImageResponseBody struct {
+// GetThumbImageBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type GetThumbImageBadRequest struct {
 	Errors []GetThumbImageErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetThumbImageResponseBody{}
+var _ error = &GetThumbImageBadRequest{}
 
-func (e *GetThumbImageResponseBody) Error() string {
+func (e *GetThumbImageBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

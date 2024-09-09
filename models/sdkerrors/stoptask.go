@@ -34,16 +34,16 @@ func (o *StopTaskButlerErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// StopTaskButlerResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type StopTaskButlerResponseBody struct {
+// StopTaskUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type StopTaskUnauthorized struct {
 	Errors []StopTaskButlerErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &StopTaskButlerResponseBody{}
+var _ error = &StopTaskUnauthorized{}
 
-func (e *StopTaskButlerResponseBody) Error() string {
+func (e *StopTaskUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *StopTaskErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// StopTaskResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type StopTaskResponseBody struct {
+// StopTaskBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type StopTaskBadRequest struct {
 	Errors []StopTaskErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &StopTaskResponseBody{}
+var _ error = &StopTaskBadRequest{}
 
-func (e *StopTaskResponseBody) Error() string {
+func (e *StopTaskBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

@@ -34,16 +34,16 @@ func (o *GetBannerImageMediaErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetBannerImageMediaResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type GetBannerImageMediaResponseBody struct {
+// GetBannerImageUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type GetBannerImageUnauthorized struct {
 	Errors []GetBannerImageMediaErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetBannerImageMediaResponseBody{}
+var _ error = &GetBannerImageUnauthorized{}
 
-func (e *GetBannerImageMediaResponseBody) Error() string {
+func (e *GetBannerImageUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *GetBannerImageErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetBannerImageResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type GetBannerImageResponseBody struct {
+// GetBannerImageBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type GetBannerImageBadRequest struct {
 	Errors []GetBannerImageErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetBannerImageResponseBody{}
+var _ error = &GetBannerImageBadRequest{}
 
-func (e *GetBannerImageResponseBody) Error() string {
+func (e *GetBannerImageBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

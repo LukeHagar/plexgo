@@ -34,16 +34,16 @@ func (o *GetOnDeckLibraryErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetOnDeckLibraryResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type GetOnDeckLibraryResponseBody struct {
+// GetOnDeckUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type GetOnDeckUnauthorized struct {
 	Errors []GetOnDeckLibraryErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetOnDeckLibraryResponseBody{}
+var _ error = &GetOnDeckUnauthorized{}
 
-func (e *GetOnDeckLibraryResponseBody) Error() string {
+func (e *GetOnDeckUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *GetOnDeckErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetOnDeckResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type GetOnDeckResponseBody struct {
+// GetOnDeckBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type GetOnDeckBadRequest struct {
 	Errors []GetOnDeckErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetOnDeckResponseBody{}
+var _ error = &GetOnDeckBadRequest{}
 
-func (e *GetOnDeckResponseBody) Error() string {
+func (e *GetOnDeckBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

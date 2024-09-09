@@ -34,16 +34,16 @@ func (o *UpdatePlayProgressMediaErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// UpdatePlayProgressMediaResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type UpdatePlayProgressMediaResponseBody struct {
+// UpdatePlayProgressUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type UpdatePlayProgressUnauthorized struct {
 	Errors []UpdatePlayProgressMediaErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &UpdatePlayProgressMediaResponseBody{}
+var _ error = &UpdatePlayProgressUnauthorized{}
 
-func (e *UpdatePlayProgressMediaResponseBody) Error() string {
+func (e *UpdatePlayProgressUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *UpdatePlayProgressErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// UpdatePlayProgressResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type UpdatePlayProgressResponseBody struct {
+// UpdatePlayProgressBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type UpdatePlayProgressBadRequest struct {
 	Errors []UpdatePlayProgressErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &UpdatePlayProgressResponseBody{}
+var _ error = &UpdatePlayProgressBadRequest{}
 
-func (e *UpdatePlayProgressResponseBody) Error() string {
+func (e *UpdatePlayProgressBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

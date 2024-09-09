@@ -34,16 +34,16 @@ func (o *GetSessionsSessionsErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetSessionsSessionsResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type GetSessionsSessionsResponseBody struct {
+// GetSessionsUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type GetSessionsUnauthorized struct {
 	Errors []GetSessionsSessionsErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetSessionsSessionsResponseBody{}
+var _ error = &GetSessionsUnauthorized{}
 
-func (e *GetSessionsSessionsResponseBody) Error() string {
+func (e *GetSessionsUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *GetSessionsErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetSessionsResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type GetSessionsResponseBody struct {
+// GetSessionsBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type GetSessionsBadRequest struct {
 	Errors []GetSessionsErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetSessionsResponseBody{}
+var _ error = &GetSessionsBadRequest{}
 
-func (e *GetSessionsResponseBody) Error() string {
+func (e *GetSessionsBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

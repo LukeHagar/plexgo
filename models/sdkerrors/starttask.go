@@ -34,16 +34,16 @@ func (o *StartTaskButlerErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// StartTaskButlerResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type StartTaskButlerResponseBody struct {
+// StartTaskUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type StartTaskUnauthorized struct {
 	Errors []StartTaskButlerErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &StartTaskButlerResponseBody{}
+var _ error = &StartTaskUnauthorized{}
 
-func (e *StartTaskButlerResponseBody) Error() string {
+func (e *StartTaskUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *StartTaskErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// StartTaskResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type StartTaskResponseBody struct {
+// StartTaskBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type StartTaskBadRequest struct {
 	Errors []StartTaskErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &StartTaskResponseBody{}
+var _ error = &StartTaskBadRequest{}
 
-func (e *StartTaskResponseBody) Error() string {
+func (e *StartTaskBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

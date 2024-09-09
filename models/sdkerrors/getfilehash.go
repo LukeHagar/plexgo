@@ -34,16 +34,16 @@ func (o *GetFileHashLibraryErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetFileHashLibraryResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type GetFileHashLibraryResponseBody struct {
+// GetFileHashUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type GetFileHashUnauthorized struct {
 	Errors []GetFileHashLibraryErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetFileHashLibraryResponseBody{}
+var _ error = &GetFileHashUnauthorized{}
 
-func (e *GetFileHashLibraryResponseBody) Error() string {
+func (e *GetFileHashUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *GetFileHashErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetFileHashResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type GetFileHashResponseBody struct {
+// GetFileHashBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type GetFileHashBadRequest struct {
 	Errors []GetFileHashErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetFileHashResponseBody{}
+var _ error = &GetFileHashBadRequest{}
 
-func (e *GetFileHashResponseBody) Error() string {
+func (e *GetFileHashBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

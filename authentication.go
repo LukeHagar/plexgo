@@ -27,7 +27,7 @@ func newAuthentication(sdkConfig sdkConfiguration) *Authentication {
 	}
 }
 
-// GetTransientToken - Get a Transient Token.
+// GetTransientToken - Get a Transient Token
 // This endpoint provides the caller with a temporary token with the same access level as the caller's token. These tokens are valid for up to 48 hours and are destroyed if the server instance is restarted.
 func (s *Authentication) GetTransientToken(ctx context.Context, type_ operations.GetTransientTokenQueryParamType, scope operations.Scope, opts ...operations.Option) (*operations.GetTransientTokenResponse, error) {
 	hookCtx := hooks.HookContext{
@@ -197,7 +197,7 @@ func (s *Authentication) GetTransientToken(ctx context.Context, type_ operations
 				return nil, err
 			}
 
-			var out sdkerrors.GetTransientTokenResponseBody
+			var out sdkerrors.GetTransientTokenBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -220,7 +220,7 @@ func (s *Authentication) GetTransientToken(ctx context.Context, type_ operations
 				return nil, err
 			}
 
-			var out sdkerrors.GetTransientTokenAuthenticationResponseBody
+			var out sdkerrors.GetTransientTokenUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -427,7 +427,7 @@ func (s *Authentication) GetSourceConnectionInformation(ctx context.Context, sou
 				return nil, err
 			}
 
-			var out sdkerrors.GetSourceConnectionInformationResponseBody
+			var out sdkerrors.GetSourceConnectionInformationBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -450,7 +450,7 @@ func (s *Authentication) GetSourceConnectionInformation(ctx context.Context, sou
 				return nil, err
 			}
 
-			var out sdkerrors.GetSourceConnectionInformationAuthenticationResponseBody
+			var out sdkerrors.GetSourceConnectionInformationUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -487,18 +487,14 @@ func (s *Authentication) GetSourceConnectionInformation(ctx context.Context, sou
 
 }
 
-// GetUserDetails - Get User Data By Token
+// GetTokenDetails - Get Token Details
 // Get the User data from the provided X-Plex-Token
-func (s *Authentication) GetUserDetails(ctx context.Context, xPlexToken string, opts ...operations.Option) (*operations.GetUserDetailsResponse, error) {
+func (s *Authentication) GetTokenDetails(ctx context.Context, opts ...operations.Option) (*operations.GetTokenDetailsResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
-		OperationID:    "getUserDetails",
+		OperationID:    "getTokenDetails",
 		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
-	}
-
-	request := operations.GetUserDetailsRequest{
-		XPlexToken: xPlexToken,
 	}
 
 	o := operations.Options{}
@@ -514,7 +510,7 @@ func (s *Authentication) GetUserDetails(ctx context.Context, xPlexToken string, 
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(operations.GetUserDetailsServerList[0], map[string]string{})
+	baseURL := utils.ReplaceParameters(operations.GetTokenDetailsServerList[0], map[string]string{})
 	if o.ServerURL != nil {
 		baseURL = *o.ServerURL
 	}
@@ -541,10 +537,6 @@ func (s *Authentication) GetUserDetails(ctx context.Context, xPlexToken string, 
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -635,7 +627,7 @@ func (s *Authentication) GetUserDetails(ctx context.Context, xPlexToken string, 
 		}
 	}
 
-	res := &operations.GetUserDetailsResponse{
+	res := &operations.GetTokenDetailsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: httpRes.Header.Get("Content-Type"),
 		RawResponse: httpRes,
@@ -660,7 +652,7 @@ func (s *Authentication) GetUserDetails(ctx context.Context, xPlexToken string, 
 				return nil, err
 			}
 
-			var out operations.GetUserDetailsUserPlexAccount
+			var out operations.GetTokenDetailsUserPlexAccount
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -682,7 +674,7 @@ func (s *Authentication) GetUserDetails(ctx context.Context, xPlexToken string, 
 				return nil, err
 			}
 
-			var out sdkerrors.GetUserDetailsResponseBody
+			var out sdkerrors.GetTokenDetailsBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -705,7 +697,7 @@ func (s *Authentication) GetUserDetails(ctx context.Context, xPlexToken string, 
 				return nil, err
 			}
 
-			var out sdkerrors.GetUserDetailsAuthenticationResponseBody
+			var out sdkerrors.GetTokenDetailsUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -944,7 +936,7 @@ func (s *Authentication) PostUsersSignInData(ctx context.Context, xPlexClientIde
 				return nil, err
 			}
 
-			var out sdkerrors.PostUsersSignInDataResponseBody
+			var out sdkerrors.PostUsersSignInDataBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -967,7 +959,7 @@ func (s *Authentication) PostUsersSignInData(ctx context.Context, xPlexClientIde
 				return nil, err
 			}
 
-			var out sdkerrors.PostUsersSignInDataAuthenticationResponseBody
+			var out sdkerrors.PostUsersSignInDataUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

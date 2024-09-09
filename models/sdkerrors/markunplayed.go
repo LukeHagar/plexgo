@@ -34,16 +34,16 @@ func (o *MarkUnplayedMediaErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// MarkUnplayedMediaResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type MarkUnplayedMediaResponseBody struct {
+// MarkUnplayedUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type MarkUnplayedUnauthorized struct {
 	Errors []MarkUnplayedMediaErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &MarkUnplayedMediaResponseBody{}
+var _ error = &MarkUnplayedUnauthorized{}
 
-func (e *MarkUnplayedMediaResponseBody) Error() string {
+func (e *MarkUnplayedUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *MarkUnplayedErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// MarkUnplayedResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type MarkUnplayedResponseBody struct {
+// MarkUnplayedBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type MarkUnplayedBadRequest struct {
 	Errors []MarkUnplayedErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &MarkUnplayedResponseBody{}
+var _ error = &MarkUnplayedBadRequest{}
 
-func (e *MarkUnplayedResponseBody) Error() string {
+func (e *MarkUnplayedBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

@@ -34,16 +34,16 @@ func (o *GetMetaDataByRatingKeyLibraryErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetMetaDataByRatingKeyLibraryResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type GetMetaDataByRatingKeyLibraryResponseBody struct {
+// GetMetaDataByRatingKeyUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type GetMetaDataByRatingKeyUnauthorized struct {
 	Errors []GetMetaDataByRatingKeyLibraryErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetMetaDataByRatingKeyLibraryResponseBody{}
+var _ error = &GetMetaDataByRatingKeyUnauthorized{}
 
-func (e *GetMetaDataByRatingKeyLibraryResponseBody) Error() string {
+func (e *GetMetaDataByRatingKeyUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *GetMetaDataByRatingKeyErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetMetaDataByRatingKeyResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type GetMetaDataByRatingKeyResponseBody struct {
+// GetMetaDataByRatingKeyBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type GetMetaDataByRatingKeyBadRequest struct {
 	Errors []GetMetaDataByRatingKeyErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetMetaDataByRatingKeyResponseBody{}
+var _ error = &GetMetaDataByRatingKeyBadRequest{}
 
-func (e *GetMetaDataByRatingKeyResponseBody) Error() string {
+func (e *GetMetaDataByRatingKeyBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

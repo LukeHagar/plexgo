@@ -117,8 +117,6 @@ type GetServerResourcesRequest struct {
 	// (UUID, serial number, or other number unique per device)
 	//
 	XPlexClientIdentifier *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
-	// Plex Authentication Token
-	XPlexToken string `queryParam:"style=form,explode=true,name=X-Plex-Token"`
 	// Include Https entries in the results
 	IncludeHTTPS *IncludeHTTPS `default:"0" queryParam:"style=form,explode=true,name=includeHttps"`
 	// Include Relay addresses in the results
@@ -145,13 +143,6 @@ func (o *GetServerResourcesRequest) GetXPlexClientIdentifier() *string {
 		return nil
 	}
 	return o.XPlexClientIdentifier
-}
-
-func (o *GetServerResourcesRequest) GetXPlexToken() string {
-	if o == nil {
-		return ""
-	}
-	return o.XPlexToken
 }
 
 func (o *GetServerResourcesRequest) GetIncludeHTTPS() *IncludeHTTPS {

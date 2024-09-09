@@ -217,7 +217,7 @@ func (s *Watchlist) GetWatchList(ctx context.Context, request operations.GetWatc
 				return nil, err
 			}
 
-			var out sdkerrors.GetWatchListResponseBody
+			var out sdkerrors.GetWatchListBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -240,7 +240,7 @@ func (s *Watchlist) GetWatchList(ctx context.Context, request operations.GetWatc
 				return nil, err
 			}
 
-			var out sdkerrors.GetWatchListWatchlistResponseBody
+			var out sdkerrors.GetWatchListUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

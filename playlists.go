@@ -218,7 +218,7 @@ func (s *Playlists) CreatePlaylist(ctx context.Context, request operations.Creat
 				return nil, err
 			}
 
-			var out sdkerrors.CreatePlaylistResponseBody
+			var out sdkerrors.CreatePlaylistBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -241,7 +241,7 @@ func (s *Playlists) CreatePlaylist(ctx context.Context, request operations.Creat
 				return nil, err
 			}
 
-			var out sdkerrors.CreatePlaylistPlaylistsResponseBody
+			var out sdkerrors.CreatePlaylistUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -469,7 +469,7 @@ func (s *Playlists) GetPlaylists(ctx context.Context, playlistType *operations.P
 				return nil, err
 			}
 
-			var out sdkerrors.GetPlaylistsResponseBody
+			var out sdkerrors.GetPlaylistsBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -492,7 +492,7 @@ func (s *Playlists) GetPlaylists(ctx context.Context, playlistType *operations.P
 				return nil, err
 			}
 
-			var out sdkerrors.GetPlaylistsPlaylistsResponseBody
+			var out sdkerrors.GetPlaylistsUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -716,7 +716,7 @@ func (s *Playlists) GetPlaylist(ctx context.Context, playlistID float64, opts ..
 				return nil, err
 			}
 
-			var out sdkerrors.GetPlaylistResponseBody
+			var out sdkerrors.GetPlaylistBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -739,7 +739,7 @@ func (s *Playlists) GetPlaylist(ctx context.Context, playlistID float64, opts ..
 				return nil, err
 			}
 
-			var out sdkerrors.GetPlaylistPlaylistsResponseBody
+			var out sdkerrors.GetPlaylistUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -941,7 +941,7 @@ func (s *Playlists) DeletePlaylist(ctx context.Context, playlistID float64, opts
 				return nil, err
 			}
 
-			var out sdkerrors.DeletePlaylistResponseBody
+			var out sdkerrors.DeletePlaylistBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -964,7 +964,7 @@ func (s *Playlists) DeletePlaylist(ctx context.Context, playlistID float64, opts
 				return nil, err
 			}
 
-			var out sdkerrors.DeletePlaylistPlaylistsResponseBody
+			var out sdkerrors.DeletePlaylistUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1172,7 +1172,7 @@ func (s *Playlists) UpdatePlaylist(ctx context.Context, playlistID float64, titl
 				return nil, err
 			}
 
-			var out sdkerrors.UpdatePlaylistResponseBody
+			var out sdkerrors.UpdatePlaylistBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1195,7 +1195,7 @@ func (s *Playlists) UpdatePlaylist(ctx context.Context, playlistID float64, titl
 				return nil, err
 			}
 
-			var out sdkerrors.UpdatePlaylistPlaylistsResponseBody
+			var out sdkerrors.UpdatePlaylistUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1426,7 +1426,7 @@ func (s *Playlists) GetPlaylistContents(ctx context.Context, playlistID float64,
 				return nil, err
 			}
 
-			var out sdkerrors.GetPlaylistContentsResponseBody
+			var out sdkerrors.GetPlaylistContentsBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1449,7 +1449,7 @@ func (s *Playlists) GetPlaylistContents(ctx context.Context, playlistID float64,
 				return nil, err
 			}
 
-			var out sdkerrors.GetPlaylistContentsPlaylistsResponseBody
+			var out sdkerrors.GetPlaylistContentsUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1651,7 +1651,7 @@ func (s *Playlists) ClearPlaylistContents(ctx context.Context, playlistID float6
 				return nil, err
 			}
 
-			var out sdkerrors.ClearPlaylistContentsResponseBody
+			var out sdkerrors.ClearPlaylistContentsBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1674,7 +1674,7 @@ func (s *Playlists) ClearPlaylistContents(ctx context.Context, playlistID float6
 				return nil, err
 			}
 
-			var out sdkerrors.ClearPlaylistContentsPlaylistsResponseBody
+			var out sdkerrors.ClearPlaylistContentsUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1904,7 +1904,7 @@ func (s *Playlists) AddPlaylistContents(ctx context.Context, playlistID float64,
 				return nil, err
 			}
 
-			var out sdkerrors.AddPlaylistContentsResponseBody
+			var out sdkerrors.AddPlaylistContentsBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1927,7 +1927,7 @@ func (s *Playlists) AddPlaylistContents(ctx context.Context, playlistID float64,
 				return nil, err
 			}
 
-			var out sdkerrors.AddPlaylistContentsPlaylistsResponseBody
+			var out sdkerrors.AddPlaylistContentsUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2134,7 +2134,7 @@ func (s *Playlists) UploadPlaylist(ctx context.Context, path string, force opera
 				return nil, err
 			}
 
-			var out sdkerrors.UploadPlaylistResponseBody
+			var out sdkerrors.UploadPlaylistBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2157,7 +2157,7 @@ func (s *Playlists) UploadPlaylist(ctx context.Context, path string, force opera
 				return nil, err
 			}
 
-			var out sdkerrors.UploadPlaylistPlaylistsResponseBody
+			var out sdkerrors.UploadPlaylistUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

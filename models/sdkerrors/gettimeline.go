@@ -34,16 +34,16 @@ func (o *GetTimelineVideoErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetTimelineVideoResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type GetTimelineVideoResponseBody struct {
+// GetTimelineUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type GetTimelineUnauthorized struct {
 	Errors []GetTimelineVideoErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetTimelineVideoResponseBody{}
+var _ error = &GetTimelineUnauthorized{}
 
-func (e *GetTimelineVideoResponseBody) Error() string {
+func (e *GetTimelineUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *GetTimelineErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetTimelineResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type GetTimelineResponseBody struct {
+// GetTimelineBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type GetTimelineBadRequest struct {
 	Errors []GetTimelineErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetTimelineResponseBody{}
+var _ error = &GetTimelineBadRequest{}
 
-func (e *GetTimelineResponseBody) Error() string {
+func (e *GetTimelineBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

@@ -34,16 +34,16 @@ func (o *GetDevicesServerErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetDevicesServerResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type GetDevicesServerResponseBody struct {
+// GetDevicesUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type GetDevicesUnauthorized struct {
 	Errors []GetDevicesServerErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetDevicesServerResponseBody{}
+var _ error = &GetDevicesUnauthorized{}
 
-func (e *GetDevicesServerResponseBody) Error() string {
+func (e *GetDevicesUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *GetDevicesErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetDevicesResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type GetDevicesResponseBody struct {
+// GetDevicesBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type GetDevicesBadRequest struct {
 	Errors []GetDevicesErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetDevicesResponseBody{}
+var _ error = &GetDevicesBadRequest{}
 
-func (e *GetDevicesResponseBody) Error() string {
+func (e *GetDevicesBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

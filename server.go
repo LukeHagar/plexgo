@@ -209,7 +209,7 @@ func (s *Server) GetServerCapabilities(ctx context.Context, opts ...operations.O
 				return nil, err
 			}
 
-			var out sdkerrors.GetServerCapabilitiesResponseBody
+			var out sdkerrors.GetServerCapabilitiesBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -232,7 +232,7 @@ func (s *Server) GetServerCapabilities(ctx context.Context, opts ...operations.O
 				return nil, err
 			}
 
-			var out sdkerrors.GetServerCapabilitiesServerResponseBody
+			var out sdkerrors.GetServerCapabilitiesUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -451,7 +451,7 @@ func (s *Server) GetServerPreferences(ctx context.Context, opts ...operations.Op
 				return nil, err
 			}
 
-			var out sdkerrors.GetServerPreferencesResponseBody
+			var out sdkerrors.GetServerPreferencesBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -474,7 +474,7 @@ func (s *Server) GetServerPreferences(ctx context.Context, opts ...operations.Op
 				return nil, err
 			}
 
-			var out sdkerrors.GetServerPreferencesServerResponseBody
+			var out sdkerrors.GetServerPreferencesUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -693,7 +693,7 @@ func (s *Server) GetAvailableClients(ctx context.Context, opts ...operations.Opt
 				return nil, err
 			}
 
-			var out sdkerrors.GetAvailableClientsResponseBody
+			var out sdkerrors.GetAvailableClientsBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -716,7 +716,7 @@ func (s *Server) GetAvailableClients(ctx context.Context, opts ...operations.Opt
 				return nil, err
 			}
 
-			var out sdkerrors.GetAvailableClientsServerResponseBody
+			var out sdkerrors.GetAvailableClientsUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -935,7 +935,7 @@ func (s *Server) GetDevices(ctx context.Context, opts ...operations.Option) (*op
 				return nil, err
 			}
 
-			var out sdkerrors.GetDevicesResponseBody
+			var out sdkerrors.GetDevicesBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -958,7 +958,7 @@ func (s *Server) GetDevices(ctx context.Context, opts ...operations.Option) (*op
 				return nil, err
 			}
 
-			var out sdkerrors.GetDevicesServerResponseBody
+			var out sdkerrors.GetDevicesUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1173,7 +1173,7 @@ func (s *Server) GetServerIdentity(ctx context.Context, opts ...operations.Optio
 				return nil, err
 			}
 
-			var out sdkerrors.GetServerIdentityResponseBody
+			var out sdkerrors.GetServerIdentityRequestTimeout
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1392,7 +1392,7 @@ func (s *Server) GetMyPlexAccount(ctx context.Context, opts ...operations.Option
 				return nil, err
 			}
 
-			var out sdkerrors.GetMyPlexAccountResponseBody
+			var out sdkerrors.GetMyPlexAccountBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1415,7 +1415,7 @@ func (s *Server) GetMyPlexAccount(ctx context.Context, opts ...operations.Option
 				return nil, err
 			}
 
-			var out sdkerrors.GetMyPlexAccountServerResponseBody
+			var out sdkerrors.GetMyPlexAccountUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1617,7 +1617,7 @@ func (s *Server) GetResizedPhoto(ctx context.Context, request operations.GetResi
 				return nil, err
 			}
 
-			var out sdkerrors.GetResizedPhotoResponseBody
+			var out sdkerrors.GetResizedPhotoBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1640,7 +1640,7 @@ func (s *Server) GetResizedPhoto(ctx context.Context, request operations.GetResi
 				return nil, err
 			}
 
-			var out sdkerrors.GetResizedPhotoServerResponseBody
+			var out sdkerrors.GetResizedPhotoUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1867,7 +1867,7 @@ func (s *Server) GetMediaProviders(ctx context.Context, xPlexToken string, opts 
 				return nil, err
 			}
 
-			var out sdkerrors.GetMediaProvidersResponseBody
+			var out sdkerrors.GetMediaProvidersBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1890,7 +1890,7 @@ func (s *Server) GetMediaProviders(ctx context.Context, xPlexToken string, opts 
 				return nil, err
 			}
 
-			var out sdkerrors.GetMediaProvidersServerResponseBody
+			var out sdkerrors.GetMediaProvidersUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2109,7 +2109,7 @@ func (s *Server) GetServerList(ctx context.Context, opts ...operations.Option) (
 				return nil, err
 			}
 
-			var out sdkerrors.GetServerListResponseBody
+			var out sdkerrors.GetServerListBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2132,7 +2132,7 @@ func (s *Server) GetServerList(ctx context.Context, opts ...operations.Option) (
 				return nil, err
 			}
 
-			var out sdkerrors.GetServerListServerResponseBody
+			var out sdkerrors.GetServerListUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

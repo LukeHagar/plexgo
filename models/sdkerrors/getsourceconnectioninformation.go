@@ -34,16 +34,16 @@ func (o *GetSourceConnectionInformationAuthenticationErrors) GetStatus() *int64 
 	return o.Status
 }
 
-// GetSourceConnectionInformationAuthenticationResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type GetSourceConnectionInformationAuthenticationResponseBody struct {
+// GetSourceConnectionInformationUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type GetSourceConnectionInformationUnauthorized struct {
 	Errors []GetSourceConnectionInformationAuthenticationErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetSourceConnectionInformationAuthenticationResponseBody{}
+var _ error = &GetSourceConnectionInformationUnauthorized{}
 
-func (e *GetSourceConnectionInformationAuthenticationResponseBody) Error() string {
+func (e *GetSourceConnectionInformationUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *GetSourceConnectionInformationErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetSourceConnectionInformationResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type GetSourceConnectionInformationResponseBody struct {
+// GetSourceConnectionInformationBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type GetSourceConnectionInformationBadRequest struct {
 	Errors []GetSourceConnectionInformationErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetSourceConnectionInformationResponseBody{}
+var _ error = &GetSourceConnectionInformationBadRequest{}
 
-func (e *GetSourceConnectionInformationResponseBody) Error() string {
+func (e *GetSourceConnectionInformationBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

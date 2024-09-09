@@ -217,7 +217,7 @@ func (s *Statistics) GetStatistics(ctx context.Context, timespan *int64, opts ..
 				return nil, err
 			}
 
-			var out sdkerrors.GetStatisticsResponseBody
+			var out sdkerrors.GetStatisticsBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -240,7 +240,7 @@ func (s *Statistics) GetStatistics(ctx context.Context, timespan *int64, opts ..
 				return nil, err
 			}
 
-			var out sdkerrors.GetStatisticsStatisticsResponseBody
+			var out sdkerrors.GetStatisticsUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -467,7 +467,7 @@ func (s *Statistics) GetResourcesStatistics(ctx context.Context, timespan *int64
 				return nil, err
 			}
 
-			var out sdkerrors.GetResourcesStatisticsResponseBody
+			var out sdkerrors.GetResourcesStatisticsBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -490,7 +490,7 @@ func (s *Statistics) GetResourcesStatistics(ctx context.Context, timespan *int64
 				return nil, err
 			}
 
-			var out sdkerrors.GetResourcesStatisticsStatisticsResponseBody
+			var out sdkerrors.GetResourcesStatisticsUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -717,7 +717,7 @@ func (s *Statistics) GetBandwidthStatistics(ctx context.Context, timespan *int64
 				return nil, err
 			}
 
-			var out sdkerrors.GetBandwidthStatisticsResponseBody
+			var out sdkerrors.GetBandwidthStatisticsBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -740,7 +740,7 @@ func (s *Statistics) GetBandwidthStatistics(ctx context.Context, timespan *int64
 				return nil, err
 			}
 
-			var out sdkerrors.GetBandwidthStatisticsStatisticsResponseBody
+			var out sdkerrors.GetBandwidthStatisticsUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

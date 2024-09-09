@@ -34,16 +34,16 @@ func (o *CheckForUpdatesUpdaterErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// CheckForUpdatesUpdaterResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type CheckForUpdatesUpdaterResponseBody struct {
+// CheckForUpdatesUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type CheckForUpdatesUnauthorized struct {
 	Errors []CheckForUpdatesUpdaterErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &CheckForUpdatesUpdaterResponseBody{}
+var _ error = &CheckForUpdatesUnauthorized{}
 
-func (e *CheckForUpdatesUpdaterResponseBody) Error() string {
+func (e *CheckForUpdatesUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *CheckForUpdatesErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// CheckForUpdatesResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type CheckForUpdatesResponseBody struct {
+// CheckForUpdatesBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type CheckForUpdatesBadRequest struct {
 	Errors []CheckForUpdatesErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &CheckForUpdatesResponseBody{}
+var _ error = &CheckForUpdatesBadRequest{}
 
-func (e *CheckForUpdatesResponseBody) Error() string {
+func (e *CheckForUpdatesBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

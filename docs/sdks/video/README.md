@@ -69,11 +69,11 @@ func main() {
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| sdkerrors.GetTimelineResponseBody      | 400                                    | application/json                       |
-| sdkerrors.GetTimelineVideoResponseBody | 401                                    | application/json                       |
-| sdkerrors.SDKError                     | 4xx-5xx                                | */*                                    |
+| Error Object                      | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.GetTimelineBadRequest   | 400                               | application/json                  |
+| sdkerrors.GetTimelineUnauthorized | 401                               | application/json                  |
+| sdkerrors.SDKError                | 4xx-5xx                           | */*                               |
 
 
 ## StartUniversalTranscode
@@ -140,8 +140,8 @@ func main() {
 
 ### Errors
 
-| Error Object                                       | Status Code                                        | Content Type                                       |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| sdkerrors.StartUniversalTranscodeResponseBody      | 400                                                | application/json                                   |
-| sdkerrors.StartUniversalTranscodeVideoResponseBody | 401                                                | application/json                                   |
-| sdkerrors.SDKError                                 | 4xx-5xx                                            | */*                                                |
+| Error Object                                  | Status Code                                   | Content Type                                  |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| sdkerrors.StartUniversalTranscodeBadRequest   | 400                                           | application/json                              |
+| sdkerrors.StartUniversalTranscodeUnauthorized | 401                                           | application/json                              |
+| sdkerrors.SDKError                            | 4xx-5xx                                       | */*                                           |

@@ -34,16 +34,16 @@ func (o *GetPinErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetPinResponseBody - Bad Request response when the X-Plex-Client-Identifier is missing
-type GetPinResponseBody struct {
+// GetPinBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type GetPinBadRequest struct {
 	Errors []GetPinErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetPinResponseBody{}
+var _ error = &GetPinBadRequest{}
 
-func (e *GetPinResponseBody) Error() string {
+func (e *GetPinBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

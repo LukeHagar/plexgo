@@ -34,16 +34,16 @@ func (o *EnablePaperTrailLogErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// EnablePaperTrailLogResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type EnablePaperTrailLogResponseBody struct {
+// EnablePaperTrailUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type EnablePaperTrailUnauthorized struct {
 	Errors []EnablePaperTrailLogErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &EnablePaperTrailLogResponseBody{}
+var _ error = &EnablePaperTrailUnauthorized{}
 
-func (e *EnablePaperTrailLogResponseBody) Error() string {
+func (e *EnablePaperTrailUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *EnablePaperTrailErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// EnablePaperTrailResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type EnablePaperTrailResponseBody struct {
+// EnablePaperTrailBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type EnablePaperTrailBadRequest struct {
 	Errors []EnablePaperTrailErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &EnablePaperTrailResponseBody{}
+var _ error = &EnablePaperTrailBadRequest{}
 
-func (e *EnablePaperTrailResponseBody) Error() string {
+func (e *EnablePaperTrailBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

@@ -34,16 +34,16 @@ func (o *GetLibraryItemsLibraryErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetLibraryItemsLibraryResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type GetLibraryItemsLibraryResponseBody struct {
+// GetLibraryItemsUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type GetLibraryItemsUnauthorized struct {
 	Errors []GetLibraryItemsLibraryErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetLibraryItemsLibraryResponseBody{}
+var _ error = &GetLibraryItemsUnauthorized{}
 
-func (e *GetLibraryItemsLibraryResponseBody) Error() string {
+func (e *GetLibraryItemsUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *GetLibraryItemsErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetLibraryItemsResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type GetLibraryItemsResponseBody struct {
+// GetLibraryItemsBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type GetLibraryItemsBadRequest struct {
 	Errors []GetLibraryItemsErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetLibraryItemsResponseBody{}
+var _ error = &GetLibraryItemsBadRequest{}
 
-func (e *GetLibraryItemsResponseBody) Error() string {
+func (e *GetLibraryItemsBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

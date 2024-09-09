@@ -6,17 +6,17 @@ import (
 	"net/http"
 )
 
-// GetServerIdentityResponseBody - Request Timeout
-type GetServerIdentityResponseBody struct {
+// GetServerIdentityRequestTimeout - Request Timeout
+type GetServerIdentityRequestTimeout struct {
 	Code    *int64  `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetServerIdentityResponseBody{}
+var _ error = &GetServerIdentityRequestTimeout{}
 
-func (e *GetServerIdentityResponseBody) Error() string {
+func (e *GetServerIdentityRequestTimeout) Error() string {
 	if e.Message == nil {
 		return "unknown error"
 	}

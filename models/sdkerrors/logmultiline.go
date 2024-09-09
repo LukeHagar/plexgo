@@ -34,16 +34,16 @@ func (o *LogMultiLineLogErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// LogMultiLineLogResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type LogMultiLineLogResponseBody struct {
+// LogMultiLineUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type LogMultiLineUnauthorized struct {
 	Errors []LogMultiLineLogErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &LogMultiLineLogResponseBody{}
+var _ error = &LogMultiLineUnauthorized{}
 
-func (e *LogMultiLineLogResponseBody) Error() string {
+func (e *LogMultiLineUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *LogMultiLineErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// LogMultiLineResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type LogMultiLineResponseBody struct {
+// LogMultiLineBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type LogMultiLineBadRequest struct {
 	Errors []LogMultiLineErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &LogMultiLineResponseBody{}
+var _ error = &LogMultiLineBadRequest{}
 
-func (e *LogMultiLineResponseBody) Error() string {
+func (e *LogMultiLineBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

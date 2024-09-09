@@ -68,11 +68,11 @@ func main() {
 
 ### Errors
 
-| Error Object                             | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| sdkerrors.GetFileHashResponseBody        | 400                                      | application/json                         |
-| sdkerrors.GetFileHashLibraryResponseBody | 401                                      | application/json                         |
-| sdkerrors.SDKError                       | 4xx-5xx                                  | */*                                      |
+| Error Object                      | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.GetFileHashBadRequest   | 400                               | application/json                  |
+| sdkerrors.GetFileHashUnauthorized | 401                               | application/json                  |
+| sdkerrors.SDKError                | 4xx-5xx                           | */*                               |
 
 
 ## GetRecentlyAdded
@@ -123,11 +123,11 @@ func main() {
 
 ### Errors
 
-| Error Object                                  | Status Code                                   | Content Type                                  |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| sdkerrors.GetRecentlyAddedResponseBody        | 400                                           | application/json                              |
-| sdkerrors.GetRecentlyAddedLibraryResponseBody | 401                                           | application/json                              |
-| sdkerrors.SDKError                            | 4xx-5xx                                       | */*                                           |
+| Error Object                           | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.GetRecentlyAddedBadRequest   | 400                                    | application/json                       |
+| sdkerrors.GetRecentlyAddedUnauthorized | 401                                    | application/json                       |
+| sdkerrors.SDKError                     | 4xx-5xx                                | */*                                    |
 
 
 ## GetAllLibraries
@@ -181,11 +181,11 @@ func main() {
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| sdkerrors.GetAllLibrariesResponseBody        | 400                                          | application/json                             |
-| sdkerrors.GetAllLibrariesLibraryResponseBody | 401                                          | application/json                             |
-| sdkerrors.SDKError                           | 4xx-5xx                                      | */*                                          |
+| Error Object                          | Status Code                           | Content Type                          |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| sdkerrors.GetAllLibrariesBadRequest   | 400                                   | application/json                      |
+| sdkerrors.GetAllLibrariesUnauthorized | 401                                   | application/json                      |
+| sdkerrors.SDKError                    | 4xx-5xx                               | */*                                   |
 
 
 ## GetLibraryDetails
@@ -274,11 +274,11 @@ func main() {
 
 ### Errors
 
-| Error Object                                   | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| sdkerrors.GetLibraryDetailsResponseBody        | 400                                            | application/json                               |
-| sdkerrors.GetLibraryDetailsLibraryResponseBody | 401                                            | application/json                               |
-| sdkerrors.SDKError                             | 4xx-5xx                                        | */*                                            |
+| Error Object                            | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| sdkerrors.GetLibraryDetailsBadRequest   | 400                                     | application/json                        |
+| sdkerrors.GetLibraryDetailsUnauthorized | 401                                     | application/json                        |
+| sdkerrors.SDKError                      | 4xx-5xx                                 | */*                                     |
 
 
 ## DeleteLibrary
@@ -327,11 +327,11 @@ func main() {
 
 ### Errors
 
-| Error Object                               | Status Code                                | Content Type                               |
-| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
-| sdkerrors.DeleteLibraryResponseBody        | 400                                        | application/json                           |
-| sdkerrors.DeleteLibraryLibraryResponseBody | 401                                        | application/json                           |
-| sdkerrors.SDKError                         | 4xx-5xx                                    | */*                                        |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| sdkerrors.DeleteLibraryBadRequest   | 400                                 | application/json                    |
+| sdkerrors.DeleteLibraryUnauthorized | 401                                 | application/json                    |
+| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
 
 
 ## GetLibraryItems
@@ -409,11 +409,11 @@ func main() {
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| sdkerrors.GetLibraryItemsResponseBody        | 400                                          | application/json                             |
-| sdkerrors.GetLibraryItemsLibraryResponseBody | 401                                          | application/json                             |
-| sdkerrors.SDKError                           | 4xx-5xx                                      | */*                                          |
+| Error Object                          | Status Code                           | Content Type                          |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| sdkerrors.GetLibraryItemsBadRequest   | 400                                   | application/json                      |
+| sdkerrors.GetLibraryItemsUnauthorized | 401                                   | application/json                      |
+| sdkerrors.SDKError                    | 4xx-5xx                               | */*                                   |
 
 
 ## GetRefreshLibraryMetadata
@@ -465,11 +465,11 @@ func main() {
 
 ### Errors
 
-| Error Object                                           | Status Code                                            | Content Type                                           |
-| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
-| sdkerrors.GetRefreshLibraryMetadataResponseBody        | 400                                                    | application/json                                       |
-| sdkerrors.GetRefreshLibraryMetadataLibraryResponseBody | 401                                                    | application/json                                       |
-| sdkerrors.SDKError                                     | 4xx-5xx                                                | */*                                                    |
+| Error Object                                    | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| sdkerrors.GetRefreshLibraryMetadataBadRequest   | 400                                             | application/json                                |
+| sdkerrors.GetRefreshLibraryMetadataUnauthorized | 401                                             | application/json                                |
+| sdkerrors.SDKError                              | 4xx-5xx                                         | */*                                             |
 
 
 ## GetSearchLibrary
@@ -538,11 +538,11 @@ func main() {
 
 ### Errors
 
-| Error Object                                  | Status Code                                   | Content Type                                  |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| sdkerrors.GetSearchLibraryResponseBody        | 400                                           | application/json                              |
-| sdkerrors.GetSearchLibraryLibraryResponseBody | 401                                           | application/json                              |
-| sdkerrors.SDKError                            | 4xx-5xx                                       | */*                                           |
+| Error Object                           | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.GetSearchLibraryBadRequest   | 400                                    | application/json                       |
+| sdkerrors.GetSearchLibraryUnauthorized | 401                                    | application/json                       |
+| sdkerrors.SDKError                     | 4xx-5xx                                | */*                                    |
 
 
 ## GetMetaDataByRatingKey
@@ -592,11 +592,11 @@ func main() {
 
 ### Errors
 
-| Error Object                                        | Status Code                                         | Content Type                                        |
-| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
-| sdkerrors.GetMetaDataByRatingKeyResponseBody        | 400                                                 | application/json                                    |
-| sdkerrors.GetMetaDataByRatingKeyLibraryResponseBody | 401                                                 | application/json                                    |
-| sdkerrors.SDKError                                  | 4xx-5xx                                             | */*                                                 |
+| Error Object                                 | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| sdkerrors.GetMetaDataByRatingKeyBadRequest   | 400                                          | application/json                             |
+| sdkerrors.GetMetaDataByRatingKeyUnauthorized | 401                                          | application/json                             |
+| sdkerrors.SDKError                           | 4xx-5xx                                      | */*                                          |
 
 
 ## GetMetadataChildren
@@ -647,11 +647,11 @@ func main() {
 
 ### Errors
 
-| Error Object                                     | Status Code                                      | Content Type                                     |
-| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
-| sdkerrors.GetMetadataChildrenResponseBody        | 400                                              | application/json                                 |
-| sdkerrors.GetMetadataChildrenLibraryResponseBody | 401                                              | application/json                                 |
-| sdkerrors.SDKError                               | 4xx-5xx                                          | */*                                              |
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| sdkerrors.GetMetadataChildrenBadRequest   | 400                                       | application/json                          |
+| sdkerrors.GetMetadataChildrenUnauthorized | 401                                       | application/json                          |
+| sdkerrors.SDKError                        | 4xx-5xx                                   | */*                                       |
 
 
 ## GetTopWatchedContent
@@ -703,11 +703,11 @@ func main() {
 
 ### Errors
 
-| Error Object                                      | Status Code                                       | Content Type                                      |
-| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
-| sdkerrors.GetTopWatchedContentResponseBody        | 400                                               | application/json                                  |
-| sdkerrors.GetTopWatchedContentLibraryResponseBody | 401                                               | application/json                                  |
-| sdkerrors.SDKError                                | 4xx-5xx                                           | */*                                               |
+| Error Object                               | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| sdkerrors.GetTopWatchedContentBadRequest   | 400                                        | application/json                           |
+| sdkerrors.GetTopWatchedContentUnauthorized | 401                                        | application/json                           |
+| sdkerrors.SDKError                         | 4xx-5xx                                    | */*                                        |
 
 
 ## GetOnDeck
@@ -756,8 +756,8 @@ func main() {
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| sdkerrors.GetOnDeckResponseBody        | 400                                    | application/json                       |
-| sdkerrors.GetOnDeckLibraryResponseBody | 401                                    | application/json                       |
-| sdkerrors.SDKError                     | 4xx-5xx                                | */*                                    |
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.GetOnDeckBadRequest   | 400                             | application/json                |
+| sdkerrors.GetOnDeckUnauthorized | 401                             | application/json                |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |

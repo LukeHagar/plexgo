@@ -34,16 +34,16 @@ func (o *GetBandwidthStatisticsStatisticsErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetBandwidthStatisticsStatisticsResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type GetBandwidthStatisticsStatisticsResponseBody struct {
+// GetBandwidthStatisticsUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type GetBandwidthStatisticsUnauthorized struct {
 	Errors []GetBandwidthStatisticsStatisticsErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetBandwidthStatisticsStatisticsResponseBody{}
+var _ error = &GetBandwidthStatisticsUnauthorized{}
 
-func (e *GetBandwidthStatisticsStatisticsResponseBody) Error() string {
+func (e *GetBandwidthStatisticsUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *GetBandwidthStatisticsErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetBandwidthStatisticsResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type GetBandwidthStatisticsResponseBody struct {
+// GetBandwidthStatisticsBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type GetBandwidthStatisticsBadRequest struct {
 	Errors []GetBandwidthStatisticsErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetBandwidthStatisticsResponseBody{}
+var _ error = &GetBandwidthStatisticsBadRequest{}
 
-func (e *GetBandwidthStatisticsResponseBody) Error() string {
+func (e *GetBandwidthStatisticsBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

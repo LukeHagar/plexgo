@@ -34,16 +34,16 @@ func (o *CancelServerActivitiesActivitiesErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// CancelServerActivitiesActivitiesResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type CancelServerActivitiesActivitiesResponseBody struct {
+// CancelServerActivitiesUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type CancelServerActivitiesUnauthorized struct {
 	Errors []CancelServerActivitiesActivitiesErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &CancelServerActivitiesActivitiesResponseBody{}
+var _ error = &CancelServerActivitiesUnauthorized{}
 
-func (e *CancelServerActivitiesActivitiesResponseBody) Error() string {
+func (e *CancelServerActivitiesUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *CancelServerActivitiesErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// CancelServerActivitiesResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type CancelServerActivitiesResponseBody struct {
+// CancelServerActivitiesBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type CancelServerActivitiesBadRequest struct {
 	Errors []CancelServerActivitiesErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &CancelServerActivitiesResponseBody{}
+var _ error = &CancelServerActivitiesBadRequest{}
 
-func (e *CancelServerActivitiesResponseBody) Error() string {
+func (e *CancelServerActivitiesBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

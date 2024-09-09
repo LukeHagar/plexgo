@@ -8,9 +8,9 @@ API Calls regarding authentication for Plex Media Server
 
 ### Available Operations
 
-* [GetTransientToken](#gettransienttoken) - Get a Transient Token.
+* [GetTransientToken](#gettransienttoken) - Get a Transient Token
 * [GetSourceConnectionInformation](#getsourceconnectioninformation) - Get Source Connection Information
-* [GetUserDetails](#getuserdetails) - Get User Data By Token
+* [GetTokenDetails](#gettokendetails) - Get Token Details
 * [PostUsersSignInData](#postuserssignindata) - Get User Sign In Data
 
 ## GetTransientToken
@@ -62,11 +62,11 @@ func main() {
 
 ### Errors
 
-| Error Object                                          | Status Code                                           | Content Type                                          |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| sdkerrors.GetTransientTokenResponseBody               | 400                                                   | application/json                                      |
-| sdkerrors.GetTransientTokenAuthenticationResponseBody | 401                                                   | application/json                                      |
-| sdkerrors.SDKError                                    | 4xx-5xx                                               | */*                                                   |
+| Error Object                            | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| sdkerrors.GetTransientTokenBadRequest   | 400                                     | application/json                        |
+| sdkerrors.GetTransientTokenUnauthorized | 401                                     | application/json                        |
+| sdkerrors.SDKError                      | 4xx-5xx                                 | */*                                     |
 
 
 ## GetSourceConnectionInformation
@@ -117,14 +117,14 @@ func main() {
 
 ### Errors
 
-| Error Object                                                       | Status Code                                                        | Content Type                                                       |
-| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| sdkerrors.GetSourceConnectionInformationResponseBody               | 400                                                                | application/json                                                   |
-| sdkerrors.GetSourceConnectionInformationAuthenticationResponseBody | 401                                                                | application/json                                                   |
-| sdkerrors.SDKError                                                 | 4xx-5xx                                                            | */*                                                                |
+| Error Object                                         | Status Code                                          | Content Type                                         |
+| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
+| sdkerrors.GetSourceConnectionInformationBadRequest   | 400                                                  | application/json                                     |
+| sdkerrors.GetSourceConnectionInformationUnauthorized | 401                                                  | application/json                                     |
+| sdkerrors.SDKError                                   | 4xx-5xx                                              | */*                                                  |
 
 
-## GetUserDetails
+## GetTokenDetails
 
 Get the User data from the provided X-Plex-Token
 
@@ -146,7 +146,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Authentication.GetUserDetails(ctx, "CV5xoxjTpFKUzBTShsaf")
+    res, err := s.Authentication.GetTokenDetails(ctx)
     if err != nil {
         log.Fatal(err)
     }
@@ -158,23 +158,22 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              | Example                                                  |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
-| `xPlexToken`                                             | *string*                                                 | :heavy_check_mark:                                       | Plex Authentication Token                                | CV5xoxjTpFKUzBTShsaf                                     |
-| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
 ### Response
 
-**[*operations.GetUserDetailsResponse](../../models/operations/getuserdetailsresponse.md), error**
+**[*operations.GetTokenDetailsResponse](../../models/operations/gettokendetailsresponse.md), error**
 
 ### Errors
 
-| Error Object                                       | Status Code                                        | Content Type                                       |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| sdkerrors.GetUserDetailsResponseBody               | 400                                                | application/json                                   |
-| sdkerrors.GetUserDetailsAuthenticationResponseBody | 401                                                | application/json                                   |
-| sdkerrors.SDKError                                 | 4xx-5xx                                            | */*                                                |
+| Error Object                          | Status Code                           | Content Type                          |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| sdkerrors.GetTokenDetailsBadRequest   | 400                                   | application/json                      |
+| sdkerrors.GetTokenDetailsUnauthorized | 401                                   | application/json                      |
+| sdkerrors.SDKError                    | 4xx-5xx                               | */*                                   |
 
 
 ## PostUsersSignInData
@@ -228,8 +227,8 @@ func main() {
 
 ### Errors
 
-| Error Object                                            | Status Code                                             | Content Type                                            |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| sdkerrors.PostUsersSignInDataResponseBody               | 400                                                     | application/json                                        |
-| sdkerrors.PostUsersSignInDataAuthenticationResponseBody | 401                                                     | application/json                                        |
-| sdkerrors.SDKError                                      | 4xx-5xx                                                 | */*                                                     |
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| sdkerrors.PostUsersSignInDataBadRequest   | 400                                       | application/json                          |
+| sdkerrors.PostUsersSignInDataUnauthorized | 401                                       | application/json                          |
+| sdkerrors.SDKError                        | 4xx-5xx                                   | */*                                       |

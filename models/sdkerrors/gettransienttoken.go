@@ -34,16 +34,16 @@ func (o *GetTransientTokenAuthenticationErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetTransientTokenAuthenticationResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type GetTransientTokenAuthenticationResponseBody struct {
+// GetTransientTokenUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type GetTransientTokenUnauthorized struct {
 	Errors []GetTransientTokenAuthenticationErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetTransientTokenAuthenticationResponseBody{}
+var _ error = &GetTransientTokenUnauthorized{}
 
-func (e *GetTransientTokenAuthenticationResponseBody) Error() string {
+func (e *GetTransientTokenUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *GetTransientTokenErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetTransientTokenResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type GetTransientTokenResponseBody struct {
+// GetTransientTokenBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type GetTransientTokenBadRequest struct {
 	Errors []GetTransientTokenErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetTransientTokenResponseBody{}
+var _ error = &GetTransientTokenBadRequest{}
 
-func (e *GetTransientTokenResponseBody) Error() string {
+func (e *GetTransientTokenBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

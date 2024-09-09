@@ -209,7 +209,7 @@ func (s *Butler) GetButlerTasks(ctx context.Context, opts ...operations.Option) 
 				return nil, err
 			}
 
-			var out sdkerrors.GetButlerTasksResponseBody
+			var out sdkerrors.GetButlerTasksBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -232,7 +232,7 @@ func (s *Butler) GetButlerTasks(ctx context.Context, opts ...operations.Option) 
 				return nil, err
 			}
 
-			var out sdkerrors.GetButlerTasksButlerResponseBody
+			var out sdkerrors.GetButlerTasksUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -434,7 +434,7 @@ func (s *Butler) StartAllTasks(ctx context.Context, opts ...operations.Option) (
 				return nil, err
 			}
 
-			var out sdkerrors.StartAllTasksResponseBody
+			var out sdkerrors.StartAllTasksBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -457,7 +457,7 @@ func (s *Butler) StartAllTasks(ctx context.Context, opts ...operations.Option) (
 				return nil, err
 			}
 
-			var out sdkerrors.StartAllTasksButlerResponseBody
+			var out sdkerrors.StartAllTasksUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -655,7 +655,7 @@ func (s *Butler) StopAllTasks(ctx context.Context, opts ...operations.Option) (*
 				return nil, err
 			}
 
-			var out sdkerrors.StopAllTasksResponseBody
+			var out sdkerrors.StopAllTasksBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -678,7 +678,7 @@ func (s *Butler) StopAllTasks(ctx context.Context, opts ...operations.Option) (*
 				return nil, err
 			}
 
-			var out sdkerrors.StopAllTasksButlerResponseBody
+			var out sdkerrors.StopAllTasksUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -886,7 +886,7 @@ func (s *Butler) StartTask(ctx context.Context, taskName operations.TaskName, op
 				return nil, err
 			}
 
-			var out sdkerrors.StartTaskResponseBody
+			var out sdkerrors.StartTaskBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -909,7 +909,7 @@ func (s *Butler) StartTask(ctx context.Context, taskName operations.TaskName, op
 				return nil, err
 			}
 
-			var out sdkerrors.StartTaskButlerResponseBody
+			var out sdkerrors.StartTaskUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1111,7 +1111,7 @@ func (s *Butler) StopTask(ctx context.Context, taskName operations.PathParamTask
 				return nil, err
 			}
 
-			var out sdkerrors.StopTaskResponseBody
+			var out sdkerrors.StopTaskBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1134,7 +1134,7 @@ func (s *Butler) StopTask(ctx context.Context, taskName operations.PathParamTask
 				return nil, err
 			}
 
-			var out sdkerrors.StopTaskButlerResponseBody
+			var out sdkerrors.StopTaskUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

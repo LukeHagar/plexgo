@@ -34,16 +34,16 @@ func (o *GetMetadataChildrenLibraryErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetMetadataChildrenLibraryResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type GetMetadataChildrenLibraryResponseBody struct {
+// GetMetadataChildrenUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type GetMetadataChildrenUnauthorized struct {
 	Errors []GetMetadataChildrenLibraryErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetMetadataChildrenLibraryResponseBody{}
+var _ error = &GetMetadataChildrenUnauthorized{}
 
-func (e *GetMetadataChildrenLibraryResponseBody) Error() string {
+func (e *GetMetadataChildrenUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *GetMetadataChildrenErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetMetadataChildrenResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type GetMetadataChildrenResponseBody struct {
+// GetMetadataChildrenBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type GetMetadataChildrenBadRequest struct {
 	Errors []GetMetadataChildrenErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetMetadataChildrenResponseBody{}
+var _ error = &GetMetadataChildrenBadRequest{}
 
-func (e *GetMetadataChildrenResponseBody) Error() string {
+func (e *GetMetadataChildrenBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

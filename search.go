@@ -210,7 +210,7 @@ func (s *Search) PerformSearch(ctx context.Context, query string, sectionID *flo
 				return nil, err
 			}
 
-			var out sdkerrors.PerformSearchResponseBody
+			var out sdkerrors.PerformSearchBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -233,7 +233,7 @@ func (s *Search) PerformSearch(ctx context.Context, query string, sectionID *flo
 				return nil, err
 			}
 
-			var out sdkerrors.PerformSearchSearchResponseBody
+			var out sdkerrors.PerformSearchUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -444,7 +444,7 @@ func (s *Search) PerformVoiceSearch(ctx context.Context, query string, sectionID
 				return nil, err
 			}
 
-			var out sdkerrors.PerformVoiceSearchResponseBody
+			var out sdkerrors.PerformVoiceSearchBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -467,7 +467,7 @@ func (s *Search) PerformVoiceSearch(ctx context.Context, query string, sectionID
 				return nil, err
 			}
 
-			var out sdkerrors.PerformVoiceSearchSearchResponseBody
+			var out sdkerrors.PerformVoiceSearchUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -694,7 +694,7 @@ func (s *Search) GetSearchResults(ctx context.Context, query string, opts ...ope
 				return nil, err
 			}
 
-			var out sdkerrors.GetSearchResultsResponseBody
+			var out sdkerrors.GetSearchResultsBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -717,7 +717,7 @@ func (s *Search) GetSearchResults(ctx context.Context, query string, opts ...ope
 				return nil, err
 			}
 
-			var out sdkerrors.GetSearchResultsSearchResponseBody
+			var out sdkerrors.GetSearchResultsUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

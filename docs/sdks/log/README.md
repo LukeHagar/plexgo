@@ -62,11 +62,11 @@ func main() {
 
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| sdkerrors.LogLineResponseBody    | 400                              | application/json                 |
-| sdkerrors.LogLineLogResponseBody | 401                              | application/json                 |
-| sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
+| Error Object                  | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| sdkerrors.LogLineBadRequest   | 400                           | application/json              |
+| sdkerrors.LogLineUnauthorized | 401                           | application/json              |
+| sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
 
 
 ## LogMultiLine
@@ -138,11 +138,11 @@ func main() {
 
 ### Errors
 
-| Error Object                          | Status Code                           | Content Type                          |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| sdkerrors.LogMultiLineResponseBody    | 400                                   | application/json                      |
-| sdkerrors.LogMultiLineLogResponseBody | 401                                   | application/json                      |
-| sdkerrors.SDKError                    | 4xx-5xx                               | */*                                   |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| sdkerrors.LogMultiLineBadRequest   | 400                                | application/json                   |
+| sdkerrors.LogMultiLineUnauthorized | 401                                | application/json                   |
+| sdkerrors.SDKError                 | 4xx-5xx                            | */*                                |
 
 
 ## EnablePaperTrail
@@ -191,8 +191,8 @@ func main() {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| sdkerrors.EnablePaperTrailResponseBody    | 400                                       | application/json                          |
-| sdkerrors.EnablePaperTrailLogResponseBody | 401                                       | application/json                          |
-| sdkerrors.SDKError                        | 4xx-5xx                                   | */*                                       |
+| Error Object                           | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.EnablePaperTrailBadRequest   | 400                                    | application/json                       |
+| sdkerrors.EnablePaperTrailUnauthorized | 401                                    | application/json                       |
+| sdkerrors.SDKError                     | 4xx-5xx                                | */*                                    |

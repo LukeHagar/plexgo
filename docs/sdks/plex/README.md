@@ -61,11 +61,11 @@ func main() {
 
 ### Errors
 
-| Error Object                                | Status Code                                 | Content Type                                |
-| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| sdkerrors.GetCompanionsDataResponseBody     | 400                                         | application/json                            |
-| sdkerrors.GetCompanionsDataPlexResponseBody | 401                                         | application/json                            |
-| sdkerrors.SDKError                          | 4xx-5xx                                     | */*                                         |
+| Error Object                            | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| sdkerrors.GetCompanionsDataBadRequest   | 400                                     | application/json                        |
+| sdkerrors.GetCompanionsDataUnauthorized | 401                                     | application/json                        |
+| sdkerrors.SDKError                      | 4xx-5xx                                 | */*                                     |
 
 
 ## GetUserFriends
@@ -113,11 +113,11 @@ func main() {
 
 ### Errors
 
-| Error Object                             | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| sdkerrors.GetUserFriendsResponseBody     | 400                                      | application/json                         |
-| sdkerrors.GetUserFriendsPlexResponseBody | 401                                      | application/json                         |
-| sdkerrors.SDKError                       | 4xx-5xx                                  | */*                                      |
+| Error Object                         | Status Code                          | Content Type                         |
+| ------------------------------------ | ------------------------------------ | ------------------------------------ |
+| sdkerrors.GetUserFriendsBadRequest   | 400                                  | application/json                     |
+| sdkerrors.GetUserFriendsUnauthorized | 401                                  | application/json                     |
+| sdkerrors.SDKError                   | 4xx-5xx                              | */*                                  |
 
 
 ## GetGeoData
@@ -164,11 +164,11 @@ func main() {
 
 ### Errors
 
-| Error Object                         | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| sdkerrors.GetGeoDataResponseBody     | 400                                  | application/json                     |
-| sdkerrors.GetGeoDataPlexResponseBody | 401                                  | application/json                     |
-| sdkerrors.SDKError                   | 4xx-5xx                              | */*                                  |
+| Error Object                     | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| sdkerrors.GetGeoDataBadRequest   | 400                              | application/json                 |
+| sdkerrors.GetGeoDataUnauthorized | 401                              | application/json                 |
+| sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
 
 
 ## GetHomeData
@@ -216,11 +216,11 @@ func main() {
 
 ### Errors
 
-| Error Object                          | Status Code                           | Content Type                          |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| sdkerrors.GetHomeDataResponseBody     | 400                                   | application/json                      |
-| sdkerrors.GetHomeDataPlexResponseBody | 401                                   | application/json                      |
-| sdkerrors.SDKError                    | 4xx-5xx                               | */*                                   |
+| Error Object                      | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.GetHomeDataBadRequest   | 400                               | application/json                  |
+| sdkerrors.GetHomeDataUnauthorized | 401                               | application/json                  |
+| sdkerrors.SDKError                | 4xx-5xx                           | */*                               |
 
 
 ## GetServerResources
@@ -246,12 +246,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Plex.GetServerResources(ctx, operations.GetServerResourcesRequest{
-        XPlexToken: "CV5xoxjTpFKUzBTShsaf",
-        IncludeHTTPS: operations.IncludeHTTPSOne.ToPointer(),
-        IncludeRelay: operations.IncludeRelayOne.ToPointer(),
-        IncludeIPv6: operations.IncludeIPv6One.ToPointer(),
-    })
+    res, err := s.Plex.GetServerResources(ctx, plexgo.String("gcgzw5rz2xovp84b4vha3a40"), operations.IncludeHTTPSOne.ToPointer(), operations.IncludeRelayOne.ToPointer(), operations.IncludeIPv6One.ToPointer())
     if err != nil {
         log.Fatal(err)
     }
@@ -263,11 +258,14 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
-| `request`                                                                                    | [operations.GetServerResourcesRequest](../../models/operations/getserverresourcesrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `opts`                                                                                       | [][operations.Option](../../models/operations/option.md)                                     | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
+| Parameter                                                                                                                                                             | Type                                                                                                                                                                  | Required                                                                                                                                                              | Description                                                                                                                                                           | Example                                                                                                                                                               |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                                                                 | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                 | :heavy_check_mark:                                                                                                                                                    | The context to use for the request.                                                                                                                                   |                                                                                                                                                                       |
+| `xPlexClientIdentifier`                                                                                                                                               | **string*                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                    | The unique identifier for the client application<br/>This is used to track the client application and its usage<br/>(UUID, serial number, or other number unique per device)<br/> | gcgzw5rz2xovp84b4vha3a40                                                                                                                                              |
+| `includeHTTPS`                                                                                                                                                        | [*operations.IncludeHTTPS](../../models/operations/includehttps.md)                                                                                                   | :heavy_minus_sign:                                                                                                                                                    | Include Https entries in the results                                                                                                                                  | 1                                                                                                                                                                     |
+| `includeRelay`                                                                                                                                                        | [*operations.IncludeRelay](../../models/operations/includerelay.md)                                                                                                   | :heavy_minus_sign:                                                                                                                                                    | Include Relay addresses in the results <br/>E.g: https://10-0-0-25.bbf8e10c7fa20447cacee74cd9914cde.plex.direct:32400<br/>                                            | 1                                                                                                                                                                     |
+| `includeIPv6`                                                                                                                                                         | [*operations.IncludeIPv6](../../models/operations/includeipv6.md)                                                                                                     | :heavy_minus_sign:                                                                                                                                                    | Include IPv6 entries in the results                                                                                                                                   | 1                                                                                                                                                                     |
+| `opts`                                                                                                                                                                | [][operations.Option](../../models/operations/option.md)                                                                                                              | :heavy_minus_sign:                                                                                                                                                    | The options for this request.                                                                                                                                         |                                                                                                                                                                       |
 
 ### Response
 
@@ -275,11 +273,11 @@ func main() {
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| sdkerrors.GetServerResourcesResponseBody     | 400                                          | application/json                             |
-| sdkerrors.GetServerResourcesPlexResponseBody | 401                                          | application/json                             |
-| sdkerrors.SDKError                           | 4xx-5xx                                      | */*                                          |
+| Error Object                             | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| sdkerrors.GetServerResourcesBadRequest   | 400                                      | application/json                         |
+| sdkerrors.GetServerResourcesUnauthorized | 401                                      | application/json                         |
+| sdkerrors.SDKError                       | 4xx-5xx                                  | */*                                      |
 
 
 ## GetPin
@@ -329,10 +327,10 @@ func main() {
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| sdkerrors.GetPinResponseBody | 400                          | application/json             |
-| sdkerrors.SDKError           | 4xx-5xx                      | */*                          |
+| Error Object               | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| sdkerrors.GetPinBadRequest | 400                        | application/json           |
+| sdkerrors.SDKError         | 4xx-5xx                    | */*                        |
 
 
 ## GetTokenByPinID
@@ -381,8 +379,8 @@ func main() {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| sdkerrors.GetTokenByPinIDResponseBody     | 400                                       | application/json                          |
-| sdkerrors.GetTokenByPinIDPlexResponseBody | 404                                       | application/json                          |
-| sdkerrors.SDKError                        | 4xx-5xx                                   | */*                                       |
+| Error Object                          | Status Code                           | Content Type                          |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| sdkerrors.GetTokenByPinIDBadRequest   | 400                                   | application/json                      |
+| sdkerrors.GetTokenByPinIDResponseBody | 404                                   | application/json                      |
+| sdkerrors.SDKError                    | 4xx-5xx                               | */*                                   |

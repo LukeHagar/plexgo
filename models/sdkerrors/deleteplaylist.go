@@ -34,16 +34,16 @@ func (o *DeletePlaylistPlaylistsErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// DeletePlaylistPlaylistsResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type DeletePlaylistPlaylistsResponseBody struct {
+// DeletePlaylistUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type DeletePlaylistUnauthorized struct {
 	Errors []DeletePlaylistPlaylistsErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &DeletePlaylistPlaylistsResponseBody{}
+var _ error = &DeletePlaylistUnauthorized{}
 
-func (e *DeletePlaylistPlaylistsResponseBody) Error() string {
+func (e *DeletePlaylistUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *DeletePlaylistErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// DeletePlaylistResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type DeletePlaylistResponseBody struct {
+// DeletePlaylistBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type DeletePlaylistBadRequest struct {
 	Errors []DeletePlaylistErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &DeletePlaylistResponseBody{}
+var _ error = &DeletePlaylistBadRequest{}
 
-func (e *DeletePlaylistResponseBody) Error() string {
+func (e *DeletePlaylistBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

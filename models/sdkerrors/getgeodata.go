@@ -34,16 +34,16 @@ func (o *GetGeoDataPlexErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetGeoDataPlexResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type GetGeoDataPlexResponseBody struct {
+// GetGeoDataUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type GetGeoDataUnauthorized struct {
 	Errors []GetGeoDataPlexErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetGeoDataPlexResponseBody{}
+var _ error = &GetGeoDataUnauthorized{}
 
-func (e *GetGeoDataPlexResponseBody) Error() string {
+func (e *GetGeoDataUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *GetGeoDataErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetGeoDataResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type GetGeoDataResponseBody struct {
+// GetGeoDataBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type GetGeoDataBadRequest struct {
 	Errors []GetGeoDataErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetGeoDataResponseBody{}
+var _ error = &GetGeoDataBadRequest{}
 
-func (e *GetGeoDataResponseBody) Error() string {
+func (e *GetGeoDataBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

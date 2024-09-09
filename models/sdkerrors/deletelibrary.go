@@ -34,16 +34,16 @@ func (o *DeleteLibraryLibraryErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// DeleteLibraryLibraryResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type DeleteLibraryLibraryResponseBody struct {
+// DeleteLibraryUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type DeleteLibraryUnauthorized struct {
 	Errors []DeleteLibraryLibraryErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &DeleteLibraryLibraryResponseBody{}
+var _ error = &DeleteLibraryUnauthorized{}
 
-func (e *DeleteLibraryLibraryResponseBody) Error() string {
+func (e *DeleteLibraryUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *DeleteLibraryErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// DeleteLibraryResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type DeleteLibraryResponseBody struct {
+// DeleteLibraryBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type DeleteLibraryBadRequest struct {
 	Errors []DeleteLibraryErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &DeleteLibraryResponseBody{}
+var _ error = &DeleteLibraryBadRequest{}
 
-func (e *DeleteLibraryResponseBody) Error() string {
+func (e *DeleteLibraryBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

@@ -196,7 +196,7 @@ func (s *Media) MarkPlayed(ctx context.Context, key float64, opts ...operations.
 				return nil, err
 			}
 
-			var out sdkerrors.MarkPlayedResponseBody
+			var out sdkerrors.MarkPlayedBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -219,7 +219,7 @@ func (s *Media) MarkPlayed(ctx context.Context, key float64, opts ...operations.
 				return nil, err
 			}
 
-			var out sdkerrors.MarkPlayedMediaResponseBody
+			var out sdkerrors.MarkPlayedUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -425,7 +425,7 @@ func (s *Media) MarkUnplayed(ctx context.Context, key float64, opts ...operation
 				return nil, err
 			}
 
-			var out sdkerrors.MarkUnplayedResponseBody
+			var out sdkerrors.MarkUnplayedBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -448,7 +448,7 @@ func (s *Media) MarkUnplayed(ctx context.Context, key float64, opts ...operation
 				return nil, err
 			}
 
-			var out sdkerrors.MarkUnplayedMediaResponseBody
+			var out sdkerrors.MarkUnplayedUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -656,7 +656,7 @@ func (s *Media) UpdatePlayProgress(ctx context.Context, key string, time float64
 				return nil, err
 			}
 
-			var out sdkerrors.UpdatePlayProgressResponseBody
+			var out sdkerrors.UpdatePlayProgressBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -679,7 +679,7 @@ func (s *Media) UpdatePlayProgress(ctx context.Context, key string, time float64
 				return nil, err
 			}
 
-			var out sdkerrors.UpdatePlayProgressMediaResponseBody
+			var out sdkerrors.UpdatePlayProgressUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -896,7 +896,7 @@ func (s *Media) GetBannerImage(ctx context.Context, request operations.GetBanner
 				return nil, err
 			}
 
-			var out sdkerrors.GetBannerImageResponseBody
+			var out sdkerrors.GetBannerImageBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -919,7 +919,7 @@ func (s *Media) GetBannerImage(ctx context.Context, request operations.GetBanner
 				return nil, err
 			}
 
-			var out sdkerrors.GetBannerImageMediaResponseBody
+			var out sdkerrors.GetBannerImageUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1136,7 +1136,7 @@ func (s *Media) GetThumbImage(ctx context.Context, request operations.GetThumbIm
 				return nil, err
 			}
 
-			var out sdkerrors.GetThumbImageResponseBody
+			var out sdkerrors.GetThumbImageBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1159,7 +1159,7 @@ func (s *Media) GetThumbImage(ctx context.Context, request operations.GetThumbIm
 				return nil, err
 			}
 
-			var out sdkerrors.GetThumbImageMediaResponseBody
+			var out sdkerrors.GetThumbImageUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

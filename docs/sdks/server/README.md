@@ -63,11 +63,11 @@ func main() {
 
 ### Errors
 
-| Error Object                                      | Status Code                                       | Content Type                                      |
-| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
-| sdkerrors.GetServerCapabilitiesResponseBody       | 400                                               | application/json                                  |
-| sdkerrors.GetServerCapabilitiesServerResponseBody | 401                                               | application/json                                  |
-| sdkerrors.SDKError                                | 4xx-5xx                                           | */*                                               |
+| Error Object                                | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| sdkerrors.GetServerCapabilitiesBadRequest   | 400                                         | application/json                            |
+| sdkerrors.GetServerCapabilitiesUnauthorized | 401                                         | application/json                            |
+| sdkerrors.SDKError                          | 4xx-5xx                                     | */*                                         |
 
 
 ## GetServerPreferences
@@ -115,11 +115,11 @@ func main() {
 
 ### Errors
 
-| Error Object                                     | Status Code                                      | Content Type                                     |
-| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
-| sdkerrors.GetServerPreferencesResponseBody       | 400                                              | application/json                                 |
-| sdkerrors.GetServerPreferencesServerResponseBody | 401                                              | application/json                                 |
-| sdkerrors.SDKError                               | 4xx-5xx                                          | */*                                              |
+| Error Object                               | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| sdkerrors.GetServerPreferencesBadRequest   | 400                                        | application/json                           |
+| sdkerrors.GetServerPreferencesUnauthorized | 401                                        | application/json                           |
+| sdkerrors.SDKError                         | 4xx-5xx                                    | */*                                        |
 
 
 ## GetAvailableClients
@@ -167,11 +167,11 @@ func main() {
 
 ### Errors
 
-| Error Object                                    | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| sdkerrors.GetAvailableClientsResponseBody       | 400                                             | application/json                                |
-| sdkerrors.GetAvailableClientsServerResponseBody | 401                                             | application/json                                |
-| sdkerrors.SDKError                              | 4xx-5xx                                         | */*                                             |
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| sdkerrors.GetAvailableClientsBadRequest   | 400                                       | application/json                          |
+| sdkerrors.GetAvailableClientsUnauthorized | 401                                       | application/json                          |
+| sdkerrors.SDKError                        | 4xx-5xx                                   | */*                                       |
 
 
 ## GetDevices
@@ -219,11 +219,11 @@ func main() {
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| sdkerrors.GetDevicesResponseBody       | 400                                    | application/json                       |
-| sdkerrors.GetDevicesServerResponseBody | 401                                    | application/json                       |
-| sdkerrors.SDKError                     | 4xx-5xx                                | */*                                    |
+| Error Object                     | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| sdkerrors.GetDevicesBadRequest   | 400                              | application/json                 |
+| sdkerrors.GetDevicesUnauthorized | 401                              | application/json                 |
+| sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
 
 
 ## GetServerIdentity
@@ -270,10 +270,10 @@ func main() {
 
 ### Errors
 
-| Error Object                            | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| sdkerrors.GetServerIdentityResponseBody | 408                                     | application/json                        |
-| sdkerrors.SDKError                      | 4xx-5xx                                 | */*                                     |
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| sdkerrors.GetServerIdentityRequestTimeout | 408                                       | application/json                          |
+| sdkerrors.SDKError                        | 4xx-5xx                                   | */*                                       |
 
 
 ## GetMyPlexAccount
@@ -321,11 +321,11 @@ func main() {
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| sdkerrors.GetMyPlexAccountResponseBody       | 400                                          | application/json                             |
-| sdkerrors.GetMyPlexAccountServerResponseBody | 401                                          | application/json                             |
-| sdkerrors.SDKError                           | 4xx-5xx                                      | */*                                          |
+| Error Object                           | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.GetMyPlexAccountBadRequest   | 400                                    | application/json                       |
+| sdkerrors.GetMyPlexAccountUnauthorized | 401                                    | application/json                       |
+| sdkerrors.SDKError                     | 4xx-5xx                                | */*                                    |
 
 
 ## GetResizedPhoto
@@ -384,11 +384,11 @@ func main() {
 
 ### Errors
 
-| Error Object                                | Status Code                                 | Content Type                                |
-| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| sdkerrors.GetResizedPhotoResponseBody       | 400                                         | application/json                            |
-| sdkerrors.GetResizedPhotoServerResponseBody | 401                                         | application/json                            |
-| sdkerrors.SDKError                          | 4xx-5xx                                     | */*                                         |
+| Error Object                          | Status Code                           | Content Type                          |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| sdkerrors.GetResizedPhotoBadRequest   | 400                                   | application/json                      |
+| sdkerrors.GetResizedPhotoUnauthorized | 401                                   | application/json                      |
+| sdkerrors.SDKError                    | 4xx-5xx                               | */*                                   |
 
 
 ## GetMediaProviders
@@ -437,11 +437,11 @@ func main() {
 
 ### Errors
 
-| Error Object                                  | Status Code                                   | Content Type                                  |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| sdkerrors.GetMediaProvidersResponseBody       | 400                                           | application/json                              |
-| sdkerrors.GetMediaProvidersServerResponseBody | 401                                           | application/json                              |
-| sdkerrors.SDKError                            | 4xx-5xx                                       | */*                                           |
+| Error Object                            | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| sdkerrors.GetMediaProvidersBadRequest   | 400                                     | application/json                        |
+| sdkerrors.GetMediaProvidersUnauthorized | 401                                     | application/json                        |
+| sdkerrors.SDKError                      | 4xx-5xx                                 | */*                                     |
 
 
 ## GetServerList
@@ -489,8 +489,8 @@ func main() {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| sdkerrors.GetServerListResponseBody       | 400                                       | application/json                          |
-| sdkerrors.GetServerListServerResponseBody | 401                                       | application/json                          |
-| sdkerrors.SDKError                        | 4xx-5xx                                   | */*                                       |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| sdkerrors.GetServerListBadRequest   | 400                                 | application/json                    |
+| sdkerrors.GetServerListUnauthorized | 401                                 | application/json                    |
+| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |

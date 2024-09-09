@@ -26,16 +26,16 @@ func (o *GetTokenByPinIDPlexErrors) GetMessage() *string {
 	return o.Message
 }
 
-// GetTokenByPinIDPlexResponseBody - Not Found or Expired
-type GetTokenByPinIDPlexResponseBody struct {
+// GetTokenByPinIDResponseBody - Not Found or Expired
+type GetTokenByPinIDResponseBody struct {
 	Errors []GetTokenByPinIDPlexErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetTokenByPinIDPlexResponseBody{}
+var _ error = &GetTokenByPinIDResponseBody{}
 
-func (e *GetTokenByPinIDPlexResponseBody) Error() string {
+func (e *GetTokenByPinIDResponseBody) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -67,16 +67,16 @@ func (o *GetTokenByPinIDErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetTokenByPinIDResponseBody - Bad Request response when the X-Plex-Client-Identifier is missing
-type GetTokenByPinIDResponseBody struct {
+// GetTokenByPinIDBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type GetTokenByPinIDBadRequest struct {
 	Errors []GetTokenByPinIDErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetTokenByPinIDResponseBody{}
+var _ error = &GetTokenByPinIDBadRequest{}
 
-func (e *GetTokenByPinIDResponseBody) Error() string {
+func (e *GetTokenByPinIDBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

@@ -34,16 +34,16 @@ func (o *StartUniversalTranscodeVideoErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// StartUniversalTranscodeVideoResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type StartUniversalTranscodeVideoResponseBody struct {
+// StartUniversalTranscodeUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type StartUniversalTranscodeUnauthorized struct {
 	Errors []StartUniversalTranscodeVideoErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &StartUniversalTranscodeVideoResponseBody{}
+var _ error = &StartUniversalTranscodeUnauthorized{}
 
-func (e *StartUniversalTranscodeVideoResponseBody) Error() string {
+func (e *StartUniversalTranscodeUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *StartUniversalTranscodeErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// StartUniversalTranscodeResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type StartUniversalTranscodeResponseBody struct {
+// StartUniversalTranscodeBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type StartUniversalTranscodeBadRequest struct {
 	Errors []StartUniversalTranscodeErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &StartUniversalTranscodeResponseBody{}
+var _ error = &StartUniversalTranscodeBadRequest{}
 
-func (e *StartUniversalTranscodeResponseBody) Error() string {
+func (e *StartUniversalTranscodeBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

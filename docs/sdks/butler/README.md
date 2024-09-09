@@ -59,11 +59,11 @@ func main() {
 
 ### Errors
 
-| Error Object                               | Status Code                                | Content Type                               |
-| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
-| sdkerrors.GetButlerTasksResponseBody       | 400                                        | application/json                           |
-| sdkerrors.GetButlerTasksButlerResponseBody | 401                                        | application/json                           |
-| sdkerrors.SDKError                         | 4xx-5xx                                    | */*                                        |
+| Error Object                         | Status Code                          | Content Type                         |
+| ------------------------------------ | ------------------------------------ | ------------------------------------ |
+| sdkerrors.GetButlerTasksBadRequest   | 400                                  | application/json                     |
+| sdkerrors.GetButlerTasksUnauthorized | 401                                  | application/json                     |
+| sdkerrors.SDKError                   | 4xx-5xx                              | */*                                  |
 
 
 ## StartAllTasks
@@ -116,11 +116,11 @@ func main() {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| sdkerrors.StartAllTasksResponseBody       | 400                                       | application/json                          |
-| sdkerrors.StartAllTasksButlerResponseBody | 401                                       | application/json                          |
-| sdkerrors.SDKError                        | 4xx-5xx                                   | */*                                       |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| sdkerrors.StartAllTasksBadRequest   | 400                                 | application/json                    |
+| sdkerrors.StartAllTasksUnauthorized | 401                                 | application/json                    |
+| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
 
 
 ## StopAllTasks
@@ -169,11 +169,11 @@ func main() {
 
 ### Errors
 
-| Error Object                             | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| sdkerrors.StopAllTasksResponseBody       | 400                                      | application/json                         |
-| sdkerrors.StopAllTasksButlerResponseBody | 401                                      | application/json                         |
-| sdkerrors.SDKError                       | 4xx-5xx                                  | */*                                      |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| sdkerrors.StopAllTasksBadRequest   | 400                                | application/json                   |
+| sdkerrors.StopAllTasksUnauthorized | 401                                | application/json                   |
+| sdkerrors.SDKError                 | 4xx-5xx                            | */*                                |
 
 
 ## StartTask
@@ -228,11 +228,11 @@ func main() {
 
 ### Errors
 
-| Error Object                          | Status Code                           | Content Type                          |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| sdkerrors.StartTaskResponseBody       | 400                                   | application/json                      |
-| sdkerrors.StartTaskButlerResponseBody | 401                                   | application/json                      |
-| sdkerrors.SDKError                    | 4xx-5xx                               | */*                                   |
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.StartTaskBadRequest   | 400                             | application/json                |
+| sdkerrors.StartTaskUnauthorized | 401                             | application/json                |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
 
 
 ## StopTask
@@ -283,8 +283,8 @@ func main() {
 
 ### Errors
 
-| Error Object                         | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| sdkerrors.StopTaskResponseBody       | 400                                  | application/json                     |
-| sdkerrors.StopTaskButlerResponseBody | 401                                  | application/json                     |
-| sdkerrors.SDKError                   | 4xx-5xx                              | */*                                  |
+| Error Object                   | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| sdkerrors.StopTaskBadRequest   | 400                            | application/json               |
+| sdkerrors.StopTaskUnauthorized | 401                            | application/json               |
+| sdkerrors.SDKError             | 4xx-5xx                        | */*                            |

@@ -214,7 +214,7 @@ func (s *Plex) GetCompanionsData(ctx context.Context, opts ...operations.Option)
 				return nil, err
 			}
 
-			var out sdkerrors.GetCompanionsDataResponseBody
+			var out sdkerrors.GetCompanionsDataBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -237,7 +237,7 @@ func (s *Plex) GetCompanionsData(ctx context.Context, opts ...operations.Option)
 				return nil, err
 			}
 
-			var out sdkerrors.GetCompanionsDataPlexResponseBody
+			var out sdkerrors.GetCompanionsDataUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -461,7 +461,7 @@ func (s *Plex) GetUserFriends(ctx context.Context, opts ...operations.Option) (*
 				return nil, err
 			}
 
-			var out sdkerrors.GetUserFriendsResponseBody
+			var out sdkerrors.GetUserFriendsBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -484,7 +484,7 @@ func (s *Plex) GetUserFriends(ctx context.Context, opts ...operations.Option) (*
 				return nil, err
 			}
 
-			var out sdkerrors.GetUserFriendsPlexResponseBody
+			var out sdkerrors.GetUserFriendsUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -704,7 +704,7 @@ func (s *Plex) GetGeoData(ctx context.Context, opts ...operations.Option) (*oper
 				return nil, err
 			}
 
-			var out sdkerrors.GetGeoDataResponseBody
+			var out sdkerrors.GetGeoDataBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -727,7 +727,7 @@ func (s *Plex) GetGeoData(ctx context.Context, opts ...operations.Option) (*oper
 				return nil, err
 			}
 
-			var out sdkerrors.GetGeoDataPlexResponseBody
+			var out sdkerrors.GetGeoDataUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -946,7 +946,7 @@ func (s *Plex) GetHomeData(ctx context.Context, opts ...operations.Option) (*ope
 				return nil, err
 			}
 
-			var out sdkerrors.GetHomeDataResponseBody
+			var out sdkerrors.GetHomeDataBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -969,7 +969,7 @@ func (s *Plex) GetHomeData(ctx context.Context, opts ...operations.Option) (*ope
 				return nil, err
 			}
 
-			var out sdkerrors.GetHomeDataPlexResponseBody
+			var out sdkerrors.GetHomeDataUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1008,12 +1008,19 @@ func (s *Plex) GetHomeData(ctx context.Context, opts ...operations.Option) (*ope
 
 // GetServerResources - Get Server Resources
 // Get Plex server access tokens and server connections
-func (s *Plex) GetServerResources(ctx context.Context, request operations.GetServerResourcesRequest, opts ...operations.Option) (*operations.GetServerResourcesResponse, error) {
+func (s *Plex) GetServerResources(ctx context.Context, xPlexClientIdentifier *string, includeHTTPS *operations.IncludeHTTPS, includeRelay *operations.IncludeRelay, includeIPv6 *operations.IncludeIPv6, opts ...operations.Option) (*operations.GetServerResourcesResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "get-server-resources",
 		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
+	}
+
+	request := operations.GetServerResourcesRequest{
+		XPlexClientIdentifier: xPlexClientIdentifier,
+		IncludeHTTPS:          includeHTTPS,
+		IncludeRelay:          includeRelay,
+		IncludeIPv6:           includeIPv6,
 	}
 
 	globals := operations.GetServerResourcesGlobals{
@@ -1201,7 +1208,7 @@ func (s *Plex) GetServerResources(ctx context.Context, request operations.GetSer
 				return nil, err
 			}
 
-			var out sdkerrors.GetServerResourcesResponseBody
+			var out sdkerrors.GetServerResourcesBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1224,7 +1231,7 @@ func (s *Plex) GetServerResources(ctx context.Context, request operations.GetSer
 				return nil, err
 			}
 
-			var out sdkerrors.GetServerResourcesPlexResponseBody
+			var out sdkerrors.GetServerResourcesUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1458,7 +1465,7 @@ func (s *Plex) GetPin(ctx context.Context, strong *bool, xPlexClientIdentifier *
 				return nil, err
 			}
 
-			var out sdkerrors.GetPinResponseBody
+			var out sdkerrors.GetPinBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1691,7 +1698,7 @@ func (s *Plex) GetTokenByPinID(ctx context.Context, pinID int64, xPlexClientIden
 				return nil, err
 			}
 
-			var out sdkerrors.GetTokenByPinIDResponseBody
+			var out sdkerrors.GetTokenByPinIDBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1714,7 +1721,7 @@ func (s *Plex) GetTokenByPinID(ctx context.Context, pinID int64, xPlexClientIden
 				return nil, err
 			}
 
-			var out sdkerrors.GetTokenByPinIDPlexResponseBody
+			var out sdkerrors.GetTokenByPinIDResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

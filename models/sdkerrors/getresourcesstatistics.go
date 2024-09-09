@@ -34,16 +34,16 @@ func (o *GetResourcesStatisticsStatisticsErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetResourcesStatisticsStatisticsResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type GetResourcesStatisticsStatisticsResponseBody struct {
+// GetResourcesStatisticsUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type GetResourcesStatisticsUnauthorized struct {
 	Errors []GetResourcesStatisticsStatisticsErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetResourcesStatisticsStatisticsResponseBody{}
+var _ error = &GetResourcesStatisticsUnauthorized{}
 
-func (e *GetResourcesStatisticsStatisticsResponseBody) Error() string {
+func (e *GetResourcesStatisticsUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *GetResourcesStatisticsErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetResourcesStatisticsResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type GetResourcesStatisticsResponseBody struct {
+// GetResourcesStatisticsBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type GetResourcesStatisticsBadRequest struct {
 	Errors []GetResourcesStatisticsErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetResourcesStatisticsResponseBody{}
+var _ error = &GetResourcesStatisticsBadRequest{}
 
-func (e *GetResourcesStatisticsResponseBody) Error() string {
+func (e *GetResourcesStatisticsBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

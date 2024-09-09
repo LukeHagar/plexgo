@@ -1713,12 +1713,7 @@ actions:
                 )
 
                 ctx := context.Background()
-                res, err := s.Plex.GetServerResources(ctx, operations.GetServerResourcesRequest{
-                    XPlexToken: "CV5xoxjTpFKUzBTShsaf",
-                    IncludeHTTPS: operations.IncludeHTTPSOne.ToPointer(),
-                    IncludeRelay: operations.IncludeRelayOne.ToPointer(),
-                    IncludeIPv6: operations.IncludeIPv6One.ToPointer(),
-                })
+                res, err := s.Plex.GetServerResources(ctx, plexgo.String("gcgzw5rz2xovp84b4vha3a40"), operations.IncludeHTTPSOne.ToPointer(), operations.IncludeRelayOne.ToPointer(), operations.IncludeIPv6One.ToPointer())
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -2140,7 +2135,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getUserDetails
+          label: getTokenDetails
           source: |-
             package main
 
@@ -2157,7 +2152,7 @@ actions:
                 )
 
                 ctx := context.Background()
-                res, err := s.Authentication.GetUserDetails(ctx, "CV5xoxjTpFKUzBTShsaf")
+                res, err := s.Authentication.GetTokenDetails(ctx)
                 if err != nil {
                     log.Fatal(err)
                 }

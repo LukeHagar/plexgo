@@ -62,8 +62,8 @@ func main() {
 
 ### Errors
 
-| Error Object                                | Status Code                                 | Content Type                                |
-| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| sdkerrors.GetWatchListResponseBody          | 400                                         | application/json                            |
-| sdkerrors.GetWatchListWatchlistResponseBody | 401                                         | application/json                            |
-| sdkerrors.SDKError                          | 4xx-5xx                                     | */*                                         |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| sdkerrors.GetWatchListBadRequest   | 400                                | application/json                   |
+| sdkerrors.GetWatchListUnauthorized | 401                                | application/json                   |
+| sdkerrors.SDKError                 | 4xx-5xx                            | */*                                |

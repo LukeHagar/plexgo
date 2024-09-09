@@ -34,16 +34,16 @@ func (o *GetResizedPhotoServerErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetResizedPhotoServerResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type GetResizedPhotoServerResponseBody struct {
+// GetResizedPhotoUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type GetResizedPhotoUnauthorized struct {
 	Errors []GetResizedPhotoServerErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetResizedPhotoServerResponseBody{}
+var _ error = &GetResizedPhotoUnauthorized{}
 
-func (e *GetResizedPhotoServerResponseBody) Error() string {
+func (e *GetResizedPhotoUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *GetResizedPhotoErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetResizedPhotoResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type GetResizedPhotoResponseBody struct {
+// GetResizedPhotoBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type GetResizedPhotoBadRequest struct {
 	Errors []GetResizedPhotoErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetResizedPhotoResponseBody{}
+var _ error = &GetResizedPhotoBadRequest{}
 
-func (e *GetResizedPhotoResponseBody) Error() string {
+func (e *GetResizedPhotoBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

@@ -34,16 +34,16 @@ func (o *GetAvailableClientsServerErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetAvailableClientsServerResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type GetAvailableClientsServerResponseBody struct {
+// GetAvailableClientsUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type GetAvailableClientsUnauthorized struct {
 	Errors []GetAvailableClientsServerErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetAvailableClientsServerResponseBody{}
+var _ error = &GetAvailableClientsUnauthorized{}
 
-func (e *GetAvailableClientsServerResponseBody) Error() string {
+func (e *GetAvailableClientsUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *GetAvailableClientsErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetAvailableClientsResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type GetAvailableClientsResponseBody struct {
+// GetAvailableClientsBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type GetAvailableClientsBadRequest struct {
 	Errors []GetAvailableClientsErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetAvailableClientsResponseBody{}
+var _ error = &GetAvailableClientsBadRequest{}
 
-func (e *GetAvailableClientsResponseBody) Error() string {
+func (e *GetAvailableClientsBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

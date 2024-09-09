@@ -34,16 +34,16 @@ func (o *LogLineLogErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// LogLineLogResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type LogLineLogResponseBody struct {
+// LogLineUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type LogLineUnauthorized struct {
 	Errors []LogLineLogErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &LogLineLogResponseBody{}
+var _ error = &LogLineUnauthorized{}
 
-func (e *LogLineLogResponseBody) Error() string {
+func (e *LogLineUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *LogLineErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// LogLineResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type LogLineResponseBody struct {
+// LogLineBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type LogLineBadRequest struct {
 	Errors []LogLineErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &LogLineResponseBody{}
+var _ error = &LogLineBadRequest{}
 
-func (e *LogLineResponseBody) Error() string {
+func (e *LogLineBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

@@ -34,16 +34,16 @@ func (o *CreatePlaylistPlaylistsErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// CreatePlaylistPlaylistsResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type CreatePlaylistPlaylistsResponseBody struct {
+// CreatePlaylistUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type CreatePlaylistUnauthorized struct {
 	Errors []CreatePlaylistPlaylistsErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &CreatePlaylistPlaylistsResponseBody{}
+var _ error = &CreatePlaylistUnauthorized{}
 
-func (e *CreatePlaylistPlaylistsResponseBody) Error() string {
+func (e *CreatePlaylistUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *CreatePlaylistErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// CreatePlaylistResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type CreatePlaylistResponseBody struct {
+// CreatePlaylistBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type CreatePlaylistBadRequest struct {
 	Errors []CreatePlaylistErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &CreatePlaylistResponseBody{}
+var _ error = &CreatePlaylistBadRequest{}
 
-func (e *CreatePlaylistResponseBody) Error() string {
+func (e *CreatePlaylistBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

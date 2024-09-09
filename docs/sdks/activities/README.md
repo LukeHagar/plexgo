@@ -62,11 +62,11 @@ func main() {
 
 ### Errors
 
-| Error Object                                        | Status Code                                         | Content Type                                        |
-| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
-| sdkerrors.GetServerActivitiesResponseBody           | 400                                                 | application/json                                    |
-| sdkerrors.GetServerActivitiesActivitiesResponseBody | 401                                                 | application/json                                    |
-| sdkerrors.SDKError                                  | 4xx-5xx                                             | */*                                                 |
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| sdkerrors.GetServerActivitiesBadRequest   | 400                                       | application/json                          |
+| sdkerrors.GetServerActivitiesUnauthorized | 401                                       | application/json                          |
+| sdkerrors.SDKError                        | 4xx-5xx                                   | */*                                       |
 
 
 ## CancelServerActivities
@@ -115,8 +115,8 @@ func main() {
 
 ### Errors
 
-| Error Object                                           | Status Code                                            | Content Type                                           |
-| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
-| sdkerrors.CancelServerActivitiesResponseBody           | 400                                                    | application/json                                       |
-| sdkerrors.CancelServerActivitiesActivitiesResponseBody | 401                                                    | application/json                                       |
-| sdkerrors.SDKError                                     | 4xx-5xx                                                | */*                                                    |
+| Error Object                                 | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| sdkerrors.CancelServerActivitiesBadRequest   | 400                                          | application/json                             |
+| sdkerrors.CancelServerActivitiesUnauthorized | 401                                          | application/json                             |
+| sdkerrors.SDKError                           | 4xx-5xx                                      | */*                                          |

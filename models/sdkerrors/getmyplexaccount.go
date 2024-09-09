@@ -34,16 +34,16 @@ func (o *GetMyPlexAccountServerErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetMyPlexAccountServerResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type GetMyPlexAccountServerResponseBody struct {
+// GetMyPlexAccountUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type GetMyPlexAccountUnauthorized struct {
 	Errors []GetMyPlexAccountServerErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetMyPlexAccountServerResponseBody{}
+var _ error = &GetMyPlexAccountUnauthorized{}
 
-func (e *GetMyPlexAccountServerResponseBody) Error() string {
+func (e *GetMyPlexAccountUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *GetMyPlexAccountErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetMyPlexAccountResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type GetMyPlexAccountResponseBody struct {
+// GetMyPlexAccountBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type GetMyPlexAccountBadRequest struct {
 	Errors []GetMyPlexAccountErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetMyPlexAccountResponseBody{}
+var _ error = &GetMyPlexAccountBadRequest{}
 
-func (e *GetMyPlexAccountResponseBody) Error() string {
+func (e *GetMyPlexAccountBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

@@ -34,16 +34,16 @@ func (o *GetCompanionsDataPlexErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetCompanionsDataPlexResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type GetCompanionsDataPlexResponseBody struct {
+// GetCompanionsDataUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type GetCompanionsDataUnauthorized struct {
 	Errors []GetCompanionsDataPlexErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetCompanionsDataPlexResponseBody{}
+var _ error = &GetCompanionsDataUnauthorized{}
 
-func (e *GetCompanionsDataPlexResponseBody) Error() string {
+func (e *GetCompanionsDataUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *GetCompanionsDataErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetCompanionsDataResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type GetCompanionsDataResponseBody struct {
+// GetCompanionsDataBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type GetCompanionsDataBadRequest struct {
 	Errors []GetCompanionsDataErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetCompanionsDataResponseBody{}
+var _ error = &GetCompanionsDataBadRequest{}
 
-func (e *GetCompanionsDataResponseBody) Error() string {
+func (e *GetCompanionsDataBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

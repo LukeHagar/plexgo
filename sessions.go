@@ -209,7 +209,7 @@ func (s *Sessions) GetSessions(ctx context.Context, opts ...operations.Option) (
 				return nil, err
 			}
 
-			var out sdkerrors.GetSessionsResponseBody
+			var out sdkerrors.GetSessionsBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -232,7 +232,7 @@ func (s *Sessions) GetSessions(ctx context.Context, opts ...operations.Option) (
 				return nil, err
 			}
 
-			var out sdkerrors.GetSessionsSessionsResponseBody
+			var out sdkerrors.GetSessionsUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -462,7 +462,7 @@ func (s *Sessions) GetSessionHistory(ctx context.Context, sort *string, accountI
 				return nil, err
 			}
 
-			var out sdkerrors.GetSessionHistoryResponseBody
+			var out sdkerrors.GetSessionHistoryBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -485,7 +485,7 @@ func (s *Sessions) GetSessionHistory(ctx context.Context, sort *string, accountI
 				return nil, err
 			}
 
-			var out sdkerrors.GetSessionHistorySessionsResponseBody
+			var out sdkerrors.GetSessionHistoryUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -704,7 +704,7 @@ func (s *Sessions) GetTranscodeSessions(ctx context.Context, opts ...operations.
 				return nil, err
 			}
 
-			var out sdkerrors.GetTranscodeSessionsResponseBody
+			var out sdkerrors.GetTranscodeSessionsBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -727,7 +727,7 @@ func (s *Sessions) GetTranscodeSessions(ctx context.Context, opts ...operations.
 				return nil, err
 			}
 
-			var out sdkerrors.GetTranscodeSessionsSessionsResponseBody
+			var out sdkerrors.GetTranscodeSessionsUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -929,7 +929,7 @@ func (s *Sessions) StopTranscodeSession(ctx context.Context, sessionKey string, 
 				return nil, err
 			}
 
-			var out sdkerrors.StopTranscodeSessionResponseBody
+			var out sdkerrors.StopTranscodeSessionBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -952,7 +952,7 @@ func (s *Sessions) StopTranscodeSession(ctx context.Context, sessionKey string, 
 				return nil, err
 			}
 
-			var out sdkerrors.StopTranscodeSessionSessionsResponseBody
+			var out sdkerrors.StopTranscodeSessionUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

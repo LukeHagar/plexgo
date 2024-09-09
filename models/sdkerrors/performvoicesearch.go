@@ -34,16 +34,16 @@ func (o *PerformVoiceSearchSearchErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// PerformVoiceSearchSearchResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type PerformVoiceSearchSearchResponseBody struct {
+// PerformVoiceSearchUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type PerformVoiceSearchUnauthorized struct {
 	Errors []PerformVoiceSearchSearchErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &PerformVoiceSearchSearchResponseBody{}
+var _ error = &PerformVoiceSearchUnauthorized{}
 
-func (e *PerformVoiceSearchSearchResponseBody) Error() string {
+func (e *PerformVoiceSearchUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *PerformVoiceSearchErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// PerformVoiceSearchResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type PerformVoiceSearchResponseBody struct {
+// PerformVoiceSearchBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type PerformVoiceSearchBadRequest struct {
 	Errors []PerformVoiceSearchErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &PerformVoiceSearchResponseBody{}
+var _ error = &PerformVoiceSearchBadRequest{}
 
-func (e *PerformVoiceSearchResponseBody) Error() string {
+func (e *PerformVoiceSearchBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

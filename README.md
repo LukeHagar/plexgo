@@ -171,9 +171,9 @@ func main() {
 
 ### [Authentication](docs/sdks/authentication/README.md)
 
-* [GetTransientToken](docs/sdks/authentication/README.md#gettransienttoken) - Get a Transient Token.
+* [GetTransientToken](docs/sdks/authentication/README.md#gettransienttoken) - Get a Transient Token
 * [GetSourceConnectionInformation](docs/sdks/authentication/README.md#getsourceconnectioninformation) - Get Source Connection Information
-* [GetUserDetails](docs/sdks/authentication/README.md#getuserdetails) - Get User Data By Token
+* [GetTokenDetails](docs/sdks/authentication/README.md#gettokendetails) - Get Token Details
 * [PostUsersSignInData](docs/sdks/authentication/README.md#postuserssignindata) - Get User Sign In Data
 
 ### [Statistics](docs/sdks/statistics/README.md)
@@ -287,11 +287,11 @@ func main() {
 
 Handling errors in this SDK should largely match your expectations.  All operations return a response object or an error, they will never return both.  When specified by the OpenAPI spec document, the SDK will return the appropriate subclass.
 
-| Error Object                                      | Status Code                                       | Content Type                                      |
-| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
-| sdkerrors.GetServerCapabilitiesResponseBody       | 400                                               | application/json                                  |
-| sdkerrors.GetServerCapabilitiesServerResponseBody | 401                                               | application/json                                  |
-| sdkerrors.SDKError                                | 4xx-5xx                                           | */*                                               |
+| Error Object                                | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| sdkerrors.GetServerCapabilitiesBadRequest   | 400                                         | application/json                            |
+| sdkerrors.GetServerCapabilitiesUnauthorized | 401                                         | application/json                            |
+| sdkerrors.SDKError                          | 4xx-5xx                                     | */*                                         |
 
 ### Example
 
@@ -316,13 +316,13 @@ func main() {
 	res, err := s.Server.GetServerCapabilities(ctx)
 	if err != nil {
 
-		var e *sdkerrors.GetServerCapabilitiesResponseBody
+		var e *sdkerrors.GetServerCapabilitiesBadRequest
 		if errors.As(err, &e) {
 			// handle error
 			log.Fatal(e.Error())
 		}
 
-		var e *sdkerrors.GetServerCapabilitiesServerResponseBody
+		var e *sdkerrors.GetServerCapabilitiesUnauthorized
 		if errors.As(err, &e) {
 			// handle error
 			log.Fatal(e.Error())
@@ -584,12 +584,7 @@ func main() {
 	)
 
 	ctx := context.Background()
-	res, err := s.Plex.GetServerResources(ctx, operations.GetServerResourcesRequest{
-		XPlexToken:   "CV5xoxjTpFKUzBTShsaf",
-		IncludeHTTPS: operations.IncludeHTTPSOne.ToPointer(),
-		IncludeRelay: operations.IncludeRelayOne.ToPointer(),
-		IncludeIPv6:  operations.IncludeIPv6One.ToPointer(),
-	})
+	res, err := s.Plex.GetServerResources(ctx, plexgo.String("gcgzw5rz2xovp84b4vha3a40"), operations.IncludeHTTPSOne.ToPointer(), operations.IncludeRelayOne.ToPointer(), operations.IncludeIPv6One.ToPointer())
 	if err != nil {
 		log.Fatal(err)
 	}

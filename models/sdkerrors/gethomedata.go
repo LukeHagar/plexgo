@@ -34,16 +34,16 @@ func (o *GetHomeDataPlexErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetHomeDataPlexResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type GetHomeDataPlexResponseBody struct {
+// GetHomeDataUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type GetHomeDataUnauthorized struct {
 	Errors []GetHomeDataPlexErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetHomeDataPlexResponseBody{}
+var _ error = &GetHomeDataUnauthorized{}
 
-func (e *GetHomeDataPlexResponseBody) Error() string {
+func (e *GetHomeDataUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *GetHomeDataErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetHomeDataResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type GetHomeDataResponseBody struct {
+// GetHomeDataBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type GetHomeDataBadRequest struct {
 	Errors []GetHomeDataErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetHomeDataResponseBody{}
+var _ error = &GetHomeDataBadRequest{}
 
-func (e *GetHomeDataResponseBody) Error() string {
+func (e *GetHomeDataBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

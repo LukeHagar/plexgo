@@ -198,7 +198,7 @@ func (s *Log) LogLine(ctx context.Context, level operations.Level, message strin
 				return nil, err
 			}
 
-			var out sdkerrors.LogLineResponseBody
+			var out sdkerrors.LogLineBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -221,7 +221,7 @@ func (s *Log) LogLine(ctx context.Context, level operations.Level, message strin
 				return nil, err
 			}
 
-			var out sdkerrors.LogLineLogResponseBody
+			var out sdkerrors.LogLineUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -445,7 +445,7 @@ func (s *Log) LogMultiLine(ctx context.Context, request string, opts ...operatio
 				return nil, err
 			}
 
-			var out sdkerrors.LogMultiLineResponseBody
+			var out sdkerrors.LogMultiLineBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -468,7 +468,7 @@ func (s *Log) LogMultiLine(ctx context.Context, request string, opts ...operatio
 				return nil, err
 			}
 
-			var out sdkerrors.LogMultiLineLogResponseBody
+			var out sdkerrors.LogMultiLineUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -666,7 +666,7 @@ func (s *Log) EnablePaperTrail(ctx context.Context, opts ...operations.Option) (
 				return nil, err
 			}
 
-			var out sdkerrors.EnablePaperTrailResponseBody
+			var out sdkerrors.EnablePaperTrailBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -689,7 +689,7 @@ func (s *Log) EnablePaperTrail(ctx context.Context, opts ...operations.Option) (
 				return nil, err
 			}
 
-			var out sdkerrors.EnablePaperTrailLogResponseBody
+			var out sdkerrors.EnablePaperTrailUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

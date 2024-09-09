@@ -34,16 +34,16 @@ func (o *StopTranscodeSessionSessionsErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// StopTranscodeSessionSessionsResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type StopTranscodeSessionSessionsResponseBody struct {
+// StopTranscodeSessionUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type StopTranscodeSessionUnauthorized struct {
 	Errors []StopTranscodeSessionSessionsErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &StopTranscodeSessionSessionsResponseBody{}
+var _ error = &StopTranscodeSessionUnauthorized{}
 
-func (e *StopTranscodeSessionSessionsResponseBody) Error() string {
+func (e *StopTranscodeSessionUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *StopTranscodeSessionErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// StopTranscodeSessionResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type StopTranscodeSessionResponseBody struct {
+// StopTranscodeSessionBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type StopTranscodeSessionBadRequest struct {
 	Errors []StopTranscodeSessionErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &StopTranscodeSessionResponseBody{}
+var _ error = &StopTranscodeSessionBadRequest{}
 
-func (e *StopTranscodeSessionResponseBody) Error() string {
+func (e *StopTranscodeSessionBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

@@ -34,16 +34,16 @@ func (o *GetGlobalHubsHubsErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetGlobalHubsHubsResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type GetGlobalHubsHubsResponseBody struct {
+// GetGlobalHubsUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type GetGlobalHubsUnauthorized struct {
 	Errors []GetGlobalHubsHubsErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetGlobalHubsHubsResponseBody{}
+var _ error = &GetGlobalHubsUnauthorized{}
 
-func (e *GetGlobalHubsHubsResponseBody) Error() string {
+func (e *GetGlobalHubsUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *GetGlobalHubsErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetGlobalHubsResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type GetGlobalHubsResponseBody struct {
+// GetGlobalHubsBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type GetGlobalHubsBadRequest struct {
 	Errors []GetGlobalHubsErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetGlobalHubsResponseBody{}
+var _ error = &GetGlobalHubsBadRequest{}
 
-func (e *GetGlobalHubsResponseBody) Error() string {
+func (e *GetGlobalHubsBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

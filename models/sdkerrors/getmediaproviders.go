@@ -34,16 +34,16 @@ func (o *GetMediaProvidersServerErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetMediaProvidersServerResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type GetMediaProvidersServerResponseBody struct {
+// GetMediaProvidersUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type GetMediaProvidersUnauthorized struct {
 	Errors []GetMediaProvidersServerErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetMediaProvidersServerResponseBody{}
+var _ error = &GetMediaProvidersUnauthorized{}
 
-func (e *GetMediaProvidersServerResponseBody) Error() string {
+func (e *GetMediaProvidersUnauthorized) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
@@ -75,16 +75,16 @@ func (o *GetMediaProvidersErrors) GetStatus() *int64 {
 	return o.Status
 }
 
-// GetMediaProvidersResponseBody - Bad Request - A parameter was not specified, or was specified incorrectly.
-type GetMediaProvidersResponseBody struct {
+// GetMediaProvidersBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.
+type GetMediaProvidersBadRequest struct {
 	Errors []GetMediaProvidersErrors `json:"errors,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`
 }
 
-var _ error = &GetMediaProvidersResponseBody{}
+var _ error = &GetMediaProvidersBadRequest{}
 
-func (e *GetMediaProvidersResponseBody) Error() string {
+func (e *GetMediaProvidersBadRequest) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

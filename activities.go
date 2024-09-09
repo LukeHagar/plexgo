@@ -215,7 +215,7 @@ func (s *Activities) GetServerActivities(ctx context.Context, opts ...operations
 				return nil, err
 			}
 
-			var out sdkerrors.GetServerActivitiesResponseBody
+			var out sdkerrors.GetServerActivitiesBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -238,7 +238,7 @@ func (s *Activities) GetServerActivities(ctx context.Context, opts ...operations
 				return nil, err
 			}
 
-			var out sdkerrors.GetServerActivitiesActivitiesResponseBody
+			var out sdkerrors.GetServerActivitiesUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -440,7 +440,7 @@ func (s *Activities) CancelServerActivities(ctx context.Context, activityUUID st
 				return nil, err
 			}
 
-			var out sdkerrors.CancelServerActivitiesResponseBody
+			var out sdkerrors.CancelServerActivitiesBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -463,7 +463,7 @@ func (s *Activities) CancelServerActivities(ctx context.Context, activityUUID st
 				return nil, err
 			}
 
-			var out sdkerrors.CancelServerActivitiesActivitiesResponseBody
+			var out sdkerrors.CancelServerActivitiesUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
