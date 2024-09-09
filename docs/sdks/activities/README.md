@@ -35,7 +35,7 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
 
     ctx := context.Background()
@@ -51,18 +51,23 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
 ### Response
 
 **[*operations.GetServerActivitiesResponse](../../models/operations/getserveractivitiesresponse.md), error**
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| sdkerrors.GetServerActivitiesResponseBody | 401                                       | application/json                          |
-| sdkerrors.SDKError                        | 4xx-5xx                                   | */*                                       |
+
+### Errors
+
+| Error Object                                        | Status Code                                         | Content Type                                        |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| sdkerrors.GetServerActivitiesResponseBody           | 400                                                 | application/json                                    |
+| sdkerrors.GetServerActivitiesActivitiesResponseBody | 401                                                 | application/json                                    |
+| sdkerrors.SDKError                                  | 4xx-5xx                                             | */*                                                 |
+
 
 ## CancelServerActivities
 
@@ -82,11 +87,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var activityUUID string = "25b71ed5-0f9d-461c-baa7-d404e9e10d3e"
+
     ctx := context.Background()
-    res, err := s.Activities.CancelServerActivities(ctx, activityUUID)
+    res, err := s.Activities.CancelServerActivities(ctx, "25b71ed5-0f9d-461c-baa7-d404e9e10d3e")
     if err != nil {
         log.Fatal(err)
     }
@@ -98,16 +103,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           | Example                                               |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |                                                       |
-| `activityUUID`                                        | *string*                                              | :heavy_check_mark:                                    | The UUID of the activity to cancel.                   | 25b71ed5-0f9d-461c-baa7-d404e9e10d3e                  |
-
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              | Example                                                  |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
+| `activityUUID`                                           | *string*                                                 | :heavy_check_mark:                                       | The UUID of the activity to cancel.                      | 25b71ed5-0f9d-461c-baa7-d404e9e10d3e                     |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
 
 ### Response
 
 **[*operations.CancelServerActivitiesResponse](../../models/operations/cancelserveractivitiesresponse.md), error**
-| Error Object                                 | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| sdkerrors.CancelServerActivitiesResponseBody | 401                                          | application/json                             |
-| sdkerrors.SDKError                           | 4xx-5xx                                      | */*                                          |
+
+### Errors
+
+| Error Object                                           | Status Code                                            | Content Type                                           |
+| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
+| sdkerrors.CancelServerActivitiesResponseBody           | 400                                                    | application/json                                       |
+| sdkerrors.CancelServerActivitiesActivitiesResponseBody | 401                                                    | application/json                                       |
+| sdkerrors.SDKError                                     | 4xx-5xx                                                | */*                                                    |

@@ -1,4 +1,4 @@
-# GetWatchlistResponseBody
+# GetWatchListResponseBody
 
 Watchlist Data
 

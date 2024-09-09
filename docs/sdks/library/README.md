@@ -10,13 +10,13 @@ API Calls interacting with Plex Media Server Libraries
 
 * [GetFileHash](#getfilehash) - Get Hash Value
 * [GetRecentlyAdded](#getrecentlyadded) - Get Recently Added
-* [GetLibraries](#getlibraries) - Get All Libraries
-* [GetLibrary](#getlibrary) - Get Library Details
+* [GetAllLibraries](#getalllibraries) - Get All Libraries
+* [GetLibraryDetails](#getlibrarydetails) - Get Library Details
 * [DeleteLibrary](#deletelibrary) - Delete Library Section
 * [GetLibraryItems](#getlibraryitems) - Get Library Items
-* [RefreshLibrary](#refreshlibrary) - Refresh Library
-* [SearchLibrary](#searchlibrary) - Search Library
-* [GetMetadata](#getmetadata) - Get Items Metadata
+* [GetRefreshLibraryMetadata](#getrefreshlibrarymetadata) - Refresh Metadata Of The Library
+* [GetSearchLibrary](#getsearchlibrary) - Search Library
+* [GetMetaDataByRatingKey](#getmetadatabyratingkey) - Get Metadata by RatingKey
 * [GetMetadataChildren](#getmetadatachildren) - Get Items Children
 * [GetTopWatchedContent](#gettopwatchedcontent) - Get Top Watched Content
 * [GetOnDeck](#getondeck) - Get On Deck
@@ -39,13 +39,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var url_ string = "file://C:\Image.png&type=13"
 
-    var type_ *float64 = plexgo.Float64(4462.17)
     ctx := context.Background()
-    res, err := s.Library.GetFileHash(ctx, url_, type_)
+    res, err := s.Library.GetFileHash(ctx, "file://C:\Image.png&type=13", nil)
     if err != nil {
         log.Fatal(err)
     }
@@ -62,15 +60,20 @@ func main() {
 | `ctx`                                                             | [context.Context](https://pkg.go.dev/context#Context)             | :heavy_check_mark:                                                | The context to use for the request.                               |                                                                   |
 | `url_`                                                            | *string*                                                          | :heavy_check_mark:                                                | This is the path to the local file, must be prefixed by `file://` | file://C:\Image.png&type=13                                       |
 | `type_`                                                           | **float64*                                                        | :heavy_minus_sign:                                                | Item type                                                         |                                                                   |
-
+| `opts`                                                            | [][operations.Option](../../models/operations/option.md)          | :heavy_minus_sign:                                                | The options for this request.                                     |                                                                   |
 
 ### Response
 
 **[*operations.GetFileHashResponse](../../models/operations/getfilehashresponse.md), error**
-| Error Object                      | Status Code                       | Content Type                      |
-| --------------------------------- | --------------------------------- | --------------------------------- |
-| sdkerrors.GetFileHashResponseBody | 401                               | application/json                  |
-| sdkerrors.SDKError                | 4xx-5xx                           | */*                               |
+
+### Errors
+
+| Error Object                             | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| sdkerrors.GetFileHashResponseBody        | 400                                      | application/json                         |
+| sdkerrors.GetFileHashLibraryResponseBody | 401                                      | application/json                         |
+| sdkerrors.SDKError                       | 4xx-5xx                                  | */*                                      |
+
 
 ## GetRecentlyAdded
 
@@ -91,11 +94,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
 
     ctx := context.Background()
-    res, err := s.Library.GetRecentlyAdded(ctx)
+    res, err := s.Library.GetRecentlyAdded(ctx, plexgo.Int(0), plexgo.Int(50))
     if err != nil {
         log.Fatal(err)
     }
@@ -107,20 +110,27 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-
+| Parameter                                                                                                                                                                                 | Type                                                                                                                                                                                      | Required                                                                                                                                                                                  | Description                                                                                                                                                                               | Example                                                                                                                                                                                   |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                                                                                     | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                                     | :heavy_check_mark:                                                                                                                                                                        | The context to use for the request.                                                                                                                                                       |                                                                                                                                                                                           |
+| `xPlexContainerStart`                                                                                                                                                                     | **int*                                                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                                        | The index of the first item to return. If not specified, the first item will be returned.<br/>If the number of items exceeds the limit, the response will be paginated.<br/>By default this is 0<br/> | 0                                                                                                                                                                                         |
+| `xPlexContainerSize`                                                                                                                                                                      | **int*                                                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                                        | The number of items to return. If not specified, all items will be returned.<br/>If the number of items exceeds the limit, the response will be paginated.<br/>By default this is 50<br/> | 50                                                                                                                                                                                        |
+| `opts`                                                                                                                                                                                    | [][operations.Option](../../models/operations/option.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                                        | The options for this request.                                                                                                                                                             |                                                                                                                                                                                           |
 
 ### Response
 
 **[*operations.GetRecentlyAddedResponse](../../models/operations/getrecentlyaddedresponse.md), error**
-| Error Object                           | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| sdkerrors.GetRecentlyAddedResponseBody | 401                                    | application/json                       |
-| sdkerrors.SDKError                     | 4xx-5xx                                | */*                                    |
 
-## GetLibraries
+### Errors
+
+| Error Object                                  | Status Code                                   | Content Type                                  |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| sdkerrors.GetRecentlyAddedResponseBody        | 400                                           | application/json                              |
+| sdkerrors.GetRecentlyAddedLibraryResponseBody | 401                                           | application/json                              |
+| sdkerrors.SDKError                            | 4xx-5xx                                       | */*                                           |
+
+
+## GetAllLibraries
 
 A library section (commonly referred to as just a library) is a collection of media. 
 Libraries are typed, and depending on their type provide either a flat or a hierarchical view of the media. 
@@ -144,11 +154,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
 
     ctx := context.Background()
-    res, err := s.Library.GetLibraries(ctx)
+    res, err := s.Library.GetAllLibraries(ctx)
     if err != nil {
         log.Fatal(err)
     }
@@ -160,20 +170,25 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
 ### Response
 
-**[*operations.GetLibrariesResponse](../../models/operations/getlibrariesresponse.md), error**
-| Error Object                       | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| sdkerrors.GetLibrariesResponseBody | 401                                | application/json                   |
-| sdkerrors.SDKError                 | 4xx-5xx                            | */*                                |
+**[*operations.GetAllLibrariesResponse](../../models/operations/getalllibrariesresponse.md), error**
 
-## GetLibrary
+### Errors
+
+| Error Object                                 | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| sdkerrors.GetAllLibrariesResponseBody        | 400                                          | application/json                             |
+| sdkerrors.GetAllLibrariesLibraryResponseBody | 401                                          | application/json                             |
+| sdkerrors.SDKError                           | 4xx-5xx                                      | */*                                          |
+
+
+## GetLibraryDetails
 
 ## Library Details Endpoint
 
@@ -223,7 +238,6 @@ package main
 
 import(
 	"github.com/LukeHagar/plexgo"
-	"github.com/LukeHagar/plexgo/models/operations"
 	"context"
 	"log"
 )
@@ -231,13 +245,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var sectionID float64 = 1000
 
-    var includeDetails *operations.IncludeDetails = operations.IncludeDetailsZero.ToPointer()
     ctx := context.Background()
-    res, err := s.Library.GetLibrary(ctx, sectionID, includeDetails)
+    res, err := s.Library.GetLibraryDetails(ctx, 9518, nil)
     if err != nil {
         log.Fatal(err)
     }
@@ -252,21 +264,26 @@ func main() {
 | Parameter                                                                                                                                                                                  | Type                                                                                                                                                                                       | Required                                                                                                                                                                                   | Description                                                                                                                                                                                | Example                                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `ctx`                                                                                                                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                                      | :heavy_check_mark:                                                                                                                                                                         | The context to use for the request.                                                                                                                                                        |                                                                                                                                                                                            |
-| `sectionID`                                                                                                                                                                                | *float64*                                                                                                                                                                                  | :heavy_check_mark:                                                                                                                                                                         | the Id of the library to query                                                                                                                                                             | 1000                                                                                                                                                                                       |
+| `sectionKey`                                                                                                                                                                               | *int*                                                                                                                                                                                      | :heavy_check_mark:                                                                                                                                                                         | The unique key of the Plex library. <br/>Note: This is unique in the context of the Plex server.<br/>                                                                                      | 9518                                                                                                                                                                                       |
 | `includeDetails`                                                                                                                                                                           | [*operations.IncludeDetails](../../models/operations/includedetails.md)                                                                                                                    | :heavy_minus_sign:                                                                                                                                                                         | Whether or not to include details for a section (types, filters, and sorts). <br/>Only exists for backwards compatibility, media providers other than the server libraries have it on always.<br/> |                                                                                                                                                                                            |
-
+| `opts`                                                                                                                                                                                     | [][operations.Option](../../models/operations/option.md)                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                         | The options for this request.                                                                                                                                                              |                                                                                                                                                                                            |
 
 ### Response
 
-**[*operations.GetLibraryResponse](../../models/operations/getlibraryresponse.md), error**
-| Error Object                     | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| sdkerrors.GetLibraryResponseBody | 401                              | application/json                 |
-| sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
+**[*operations.GetLibraryDetailsResponse](../../models/operations/getlibrarydetailsresponse.md), error**
+
+### Errors
+
+| Error Object                                   | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| sdkerrors.GetLibraryDetailsResponseBody        | 400                                            | application/json                               |
+| sdkerrors.GetLibraryDetailsLibraryResponseBody | 401                                            | application/json                               |
+| sdkerrors.SDKError                             | 4xx-5xx                                        | */*                                            |
+
 
 ## DeleteLibrary
 
-Delate a library using a specific section
+Delete a library using a specific section id
 
 ### Example Usage
 
@@ -282,11 +299,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var sectionID float64 = 1000
+
     ctx := context.Background()
-    res, err := s.Library.DeleteLibrary(ctx, sectionID)
+    res, err := s.Library.DeleteLibrary(ctx, 9518)
     if err != nil {
         log.Fatal(err)
     }
@@ -298,19 +315,24 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           | Example                                               |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |                                                       |
-| `sectionID`                                           | *float64*                                             | :heavy_check_mark:                                    | the Id of the library to query                        | 1000                                                  |
-
+| Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   | Example                                                                                       |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                         | [context.Context](https://pkg.go.dev/context#Context)                                         | :heavy_check_mark:                                                                            | The context to use for the request.                                                           |                                                                                               |
+| `sectionKey`                                                                                  | *int*                                                                                         | :heavy_check_mark:                                                                            | The unique key of the Plex library. <br/>Note: This is unique in the context of the Plex server.<br/> | 9518                                                                                          |
+| `opts`                                                                                        | [][operations.Option](../../models/operations/option.md)                                      | :heavy_minus_sign:                                                                            | The options for this request.                                                                 |                                                                                               |
 
 ### Response
 
 **[*operations.DeleteLibraryResponse](../../models/operations/deletelibraryresponse.md), error**
-| Error Object                        | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| sdkerrors.DeleteLibraryResponseBody | 401                                 | application/json                    |
-| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
+
+### Errors
+
+| Error Object                               | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| sdkerrors.DeleteLibraryResponseBody        | 400                                        | application/json                           |
+| sdkerrors.DeleteLibraryLibraryResponseBody | 401                                        | application/json                           |
+| sdkerrors.SDKError                         | 4xx-5xx                                    | */*                                        |
+
 
 ## GetLibraryItems
 
@@ -343,23 +365,27 @@ package main
 
 import(
 	"github.com/LukeHagar/plexgo"
-	"github.com/LukeHagar/plexgo/models/operations"
 	"context"
+	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var sectionID any = "<value>"
 
-    var tag operations.Tag = operations.TagGenre
-
-    var includeGuids *int64 = plexgo.Int64(1)
     ctx := context.Background()
-    res, err := s.Library.GetLibraryItems(ctx, sectionID, tag, includeGuids)
+    res, err := s.Library.GetLibraryItems(ctx, operations.GetLibraryItemsRequest{
+        SectionKey: 9518,
+        Tag: operations.TagEdition,
+        IncludeGuids: operations.IncludeGuidsOne.ToPointer(),
+        IncludeMeta: operations.IncludeMetaOne.ToPointer(),
+        Type: operations.TypeTwo,
+        XPlexContainerStart: plexgo.Int(0),
+        XPlexContainerSize: plexgo.Int(50),
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -371,25 +397,28 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           | Example                                               |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |                                                       |
-| `sectionID`                                           | *any*                                                 | :heavy_check_mark:                                    | the Id of the library to query                        |                                                       |
-| `tag`                                                 | [operations.Tag](../../models/operations/tag.md)      | :heavy_check_mark:                                    | A key representing a specific tag within the section. |                                                       |
-| `includeGuids`                                        | **int64*                                              | :heavy_minus_sign:                                    | Adds the Guids object to the response<br/>            | 1                                                     |
-
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [operations.GetLibraryItemsRequest](../../models/operations/getlibraryitemsrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `opts`                                                                                 | [][operations.Option](../../models/operations/option.md)                               | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
 ### Response
 
 **[*operations.GetLibraryItemsResponse](../../models/operations/getlibraryitemsresponse.md), error**
-| Error Object                          | Status Code                           | Content Type                          |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| sdkerrors.GetLibraryItemsResponseBody | 401                                   | application/json                      |
-| sdkerrors.SDKError                    | 4xx-5xx                               | */*                                   |
 
-## RefreshLibrary
+### Errors
 
-This endpoint Refreshes the library.
+| Error Object                                 | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| sdkerrors.GetLibraryItemsResponseBody        | 400                                          | application/json                             |
+| sdkerrors.GetLibraryItemsLibraryResponseBody | 401                                          | application/json                             |
+| sdkerrors.SDKError                           | 4xx-5xx                                      | */*                                          |
+
+
+## GetRefreshLibraryMetadata
+
+This endpoint Refreshes all the Metadata of the library.
 
 
 ### Example Usage
@@ -400,17 +429,18 @@ package main
 import(
 	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var sectionID float64 = 934.16
+
     ctx := context.Background()
-    res, err := s.Library.RefreshLibrary(ctx, sectionID)
+    res, err := s.Library.GetRefreshLibraryMetadata(ctx, 9518, operations.ForceOne.ToPointer())
     if err != nil {
         log.Fatal(err)
     }
@@ -422,21 +452,27 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `sectionID`                                           | *float64*                                             | :heavy_check_mark:                                    | the Id of the library to refresh                      |
-
+| Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   | Example                                                                                       |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                         | [context.Context](https://pkg.go.dev/context#Context)                                         | :heavy_check_mark:                                                                            | The context to use for the request.                                                           |                                                                                               |
+| `sectionKey`                                                                                  | *int*                                                                                         | :heavy_check_mark:                                                                            | The unique key of the Plex library. <br/>Note: This is unique in the context of the Plex server.<br/> | 9518                                                                                          |
+| `force`                                                                                       | [*operations.Force](../../models/operations/force.md)                                         | :heavy_minus_sign:                                                                            | Force the refresh even if the library is already being refreshed.                             | 0                                                                                             |
+| `opts`                                                                                        | [][operations.Option](../../models/operations/option.md)                                      | :heavy_minus_sign:                                                                            | The options for this request.                                                                 |                                                                                               |
 
 ### Response
 
-**[*operations.RefreshLibraryResponse](../../models/operations/refreshlibraryresponse.md), error**
-| Error Object                         | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| sdkerrors.RefreshLibraryResponseBody | 401                                  | application/json                     |
-| sdkerrors.SDKError                   | 4xx-5xx                              | */*                                  |
+**[*operations.GetRefreshLibraryMetadataResponse](../../models/operations/getrefreshlibrarymetadataresponse.md), error**
 
-## SearchLibrary
+### Errors
+
+| Error Object                                           | Status Code                                            | Content Type                                           |
+| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
+| sdkerrors.GetRefreshLibraryMetadataResponseBody        | 400                                                    | application/json                                       |
+| sdkerrors.GetRefreshLibraryMetadataLibraryResponseBody | 401                                                    | application/json                                       |
+| sdkerrors.SDKError                                     | 4xx-5xx                                                | */*                                                    |
+
+
+## GetSearchLibrary
 
 Search for content within a specific section of the library.
 
@@ -465,21 +501,19 @@ package main
 
 import(
 	"github.com/LukeHagar/plexgo"
-	"github.com/LukeHagar/plexgo/models/operations"
 	"context"
+	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var sectionID int64 = 933505
 
-    var type_ operations.Type = operations.TypeFour
     ctx := context.Background()
-    res, err := s.Library.SearchLibrary(ctx, sectionID, type_)
+    res, err := s.Library.GetSearchLibrary(ctx, 9518, operations.QueryParamTypeTwo)
     if err != nil {
         log.Fatal(err)
     }
@@ -491,22 +525,27 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `sectionID`                                           | *int64*                                               | :heavy_check_mark:                                    | the Id of the library to query                        |
-| `type_`                                               | [operations.Type](../../models/operations/type.md)    | :heavy_check_mark:                                    | Plex content type to search for                       |
-
+| Parameter                                                                                                                                                                       | Type                                                                                                                                                                            | Required                                                                                                                                                                        | Description                                                                                                                                                                     | Example                                                                                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                                                                           | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                           | :heavy_check_mark:                                                                                                                                                              | The context to use for the request.                                                                                                                                             |                                                                                                                                                                                 |
+| `sectionKey`                                                                                                                                                                    | *int*                                                                                                                                                                           | :heavy_check_mark:                                                                                                                                                              | The unique key of the Plex library. <br/>Note: This is unique in the context of the Plex server.<br/>                                                                           | 9518                                                                                                                                                                            |
+| `type_`                                                                                                                                                                         | [operations.QueryParamType](../../models/operations/queryparamtype.md)                                                                                                          | :heavy_check_mark:                                                                                                                                                              | The type of media to retrieve.<br/>1 = movie<br/>2 = show<br/>3 = season<br/>4 = episode<br/>E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries<br/> | 2                                                                                                                                                                               |
+| `opts`                                                                                                                                                                          | [][operations.Option](../../models/operations/option.md)                                                                                                                        | :heavy_minus_sign:                                                                                                                                                              | The options for this request.                                                                                                                                                   |                                                                                                                                                                                 |
 
 ### Response
 
-**[*operations.SearchLibraryResponse](../../models/operations/searchlibraryresponse.md), error**
-| Error Object                        | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| sdkerrors.SearchLibraryResponseBody | 401                                 | application/json                    |
-| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
+**[*operations.GetSearchLibraryResponse](../../models/operations/getsearchlibraryresponse.md), error**
 
-## GetMetadata
+### Errors
+
+| Error Object                                  | Status Code                                   | Content Type                                  |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| sdkerrors.GetSearchLibraryResponseBody        | 400                                           | application/json                              |
+| sdkerrors.GetSearchLibraryLibraryResponseBody | 401                                           | application/json                              |
+| sdkerrors.SDKError                            | 4xx-5xx                                       | */*                                           |
+
+
+## GetMetaDataByRatingKey
 
 This endpoint will return the metadata of a library item specified with the ratingKey.
 
@@ -525,11 +564,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var ratingKey float64 = 8382.31
+
     ctx := context.Background()
-    res, err := s.Library.GetMetadata(ctx, ratingKey)
+    res, err := s.Library.GetMetaDataByRatingKey(ctx, 9518)
     if err != nil {
         log.Fatal(err)
     }
@@ -541,19 +580,24 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `ratingKey`                                           | *float64*                                             | :heavy_check_mark:                                    | the id of the library item to return the children of. |
-
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              | Example                                                  |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
+| `ratingKey`                                              | *int64*                                                  | :heavy_check_mark:                                       | the id of the library item to return the children of.    | 9518                                                     |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
 
 ### Response
 
-**[*operations.GetMetadataResponse](../../models/operations/getmetadataresponse.md), error**
-| Error Object                      | Status Code                       | Content Type                      |
-| --------------------------------- | --------------------------------- | --------------------------------- |
-| sdkerrors.GetMetadataResponseBody | 401                               | application/json                  |
-| sdkerrors.SDKError                | 4xx-5xx                           | */*                               |
+**[*operations.GetMetaDataByRatingKeyResponse](../../models/operations/getmetadatabyratingkeyresponse.md), error**
+
+### Errors
+
+| Error Object                                        | Status Code                                         | Content Type                                        |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| sdkerrors.GetMetaDataByRatingKeyResponseBody        | 400                                                 | application/json                                    |
+| sdkerrors.GetMetaDataByRatingKeyLibraryResponseBody | 401                                                 | application/json                                    |
+| sdkerrors.SDKError                                  | 4xx-5xx                                             | */*                                                 |
+
 
 ## GetMetadataChildren
 
@@ -574,13 +618,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var ratingKey float64 = 1539.14
 
-    var includeElements *string = plexgo.String("<value>")
     ctx := context.Background()
-    res, err := s.Library.GetMetadataChildren(ctx, ratingKey, includeElements)
+    res, err := s.Library.GetMetadataChildren(ctx, 1539.14, plexgo.String("Stream"))
     if err != nil {
         log.Fatal(err)
     }
@@ -597,15 +639,20 @@ func main() {
 | `ctx`                                                                   | [context.Context](https://pkg.go.dev/context#Context)                   | :heavy_check_mark:                                                      | The context to use for the request.                                     |
 | `ratingKey`                                                             | *float64*                                                               | :heavy_check_mark:                                                      | the id of the library item to return the children of.                   |
 | `includeElements`                                                       | **string*                                                               | :heavy_minus_sign:                                                      | Adds additional elements to the response. Supported types are (Stream)<br/> |
-
+| `opts`                                                                  | [][operations.Option](../../models/operations/option.md)                | :heavy_minus_sign:                                                      | The options for this request.                                           |
 
 ### Response
 
 **[*operations.GetMetadataChildrenResponse](../../models/operations/getmetadatachildrenresponse.md), error**
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| sdkerrors.GetMetadataChildrenResponseBody | 401                                       | application/json                          |
-| sdkerrors.SDKError                        | 4xx-5xx                                   | */*                                       |
+
+### Errors
+
+| Error Object                                     | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| sdkerrors.GetMetadataChildrenResponseBody        | 400                                              | application/json                                 |
+| sdkerrors.GetMetadataChildrenLibraryResponseBody | 401                                              | application/json                                 |
+| sdkerrors.SDKError                               | 4xx-5xx                                          | */*                                              |
+
 
 ## GetTopWatchedContent
 
@@ -620,19 +667,18 @@ package main
 import(
 	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var type_ int64 = 505531
 
-    var includeGuids *int64 = plexgo.Int64(1)
     ctx := context.Background()
-    res, err := s.Library.GetTopWatchedContent(ctx, type_, includeGuids)
+    res, err := s.Library.GetTopWatchedContent(ctx, operations.GetTopWatchedContentQueryParamTypeTwo, plexgo.Int64(1))
     if err != nil {
         log.Fatal(err)
     }
@@ -644,19 +690,25 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           | Example                                               |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |                                                       |
-| `type_`                                               | *int64*                                               | :heavy_check_mark:                                    | the library type (1 - movies, 2 - shows, 3 - music)   |                                                       |
-| `includeGuids`                                        | **int64*                                              | :heavy_minus_sign:                                    | Adds the Guids object to the response<br/>            | 1                                                     |
-
+| Parameter                                                                                                                                                                       | Type                                                                                                                                                                            | Required                                                                                                                                                                        | Description                                                                                                                                                                     | Example                                                                                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                                                                           | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                           | :heavy_check_mark:                                                                                                                                                              | The context to use for the request.                                                                                                                                             |                                                                                                                                                                                 |
+| `type_`                                                                                                                                                                         | [operations.GetTopWatchedContentQueryParamType](../../models/operations/gettopwatchedcontentqueryparamtype.md)                                                                  | :heavy_check_mark:                                                                                                                                                              | The type of media to retrieve.<br/>1 = movie<br/>2 = show<br/>3 = season<br/>4 = episode<br/>E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries<br/> | 2                                                                                                                                                                               |
+| `includeGuids`                                                                                                                                                                  | **int64*                                                                                                                                                                        | :heavy_minus_sign:                                                                                                                                                              | Adds the Guids object to the response<br/>                                                                                                                                      | 1                                                                                                                                                                               |
+| `opts`                                                                                                                                                                          | [][operations.Option](../../models/operations/option.md)                                                                                                                        | :heavy_minus_sign:                                                                                                                                                              | The options for this request.                                                                                                                                                   |                                                                                                                                                                                 |
 
 ### Response
 
 **[*operations.GetTopWatchedContentResponse](../../models/operations/gettopwatchedcontentresponse.md), error**
-| Error Object       | Status Code        | Content Type       |
-| ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 4xx-5xx            | */*                |
+
+### Errors
+
+| Error Object                                      | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| sdkerrors.GetTopWatchedContentResponseBody        | 400                                               | application/json                                  |
+| sdkerrors.GetTopWatchedContentLibraryResponseBody | 401                                               | application/json                                  |
+| sdkerrors.SDKError                                | 4xx-5xx                                           | */*                                               |
+
 
 ## GetOnDeck
 
@@ -677,7 +729,7 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
 
     ctx := context.Background()
@@ -693,15 +745,19 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
 ### Response
 
 **[*operations.GetOnDeckResponse](../../models/operations/getondeckresponse.md), error**
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.GetOnDeckResponseBody | 401                             | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
+### Errors
+
+| Error Object                           | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.GetOnDeckResponseBody        | 400                                    | application/json                       |
+| sdkerrors.GetOnDeckLibraryResponseBody | 401                                    | application/json                       |
+| sdkerrors.SDKError                     | 4xx-5xx                                | */*                                    |

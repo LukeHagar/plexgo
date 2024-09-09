@@ -1,11 +1,12 @@
 # GetServerIdentityResponseBody
 
-Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+Request Timeout
 
 
 ## Fields
 
-| Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `Errors`                                                                                 | [][sdkerrors.GetServerIdentityErrors](../../models/sdkerrors/getserveridentityerrors.md) | :heavy_minus_sign:                                                                       | N/A                                                                                      |
-| `RawResponse`                                                                            | [*http.Response](https://pkg.go.dev/net/http#Response)                                   | :heavy_minus_sign:                                                                       | Raw HTTP response; suitable for custom response parsing                                  |
+| Field                                                   | Type                                                    | Required                                                | Description                                             | Example                                                 |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| `Code`                                                  | **int64*                                                | :heavy_minus_sign:                                      | N/A                                                     | 408                                                     |
+| `Message`                                               | **string*                                               | :heavy_minus_sign:                                      | N/A                                                     | The server timed out waiting for the request.           |
+| `RawResponse`                                           | [*http.Response](https://pkg.go.dev/net/http#Response)  | :heavy_minus_sign:                                      | Raw HTTP response; suitable for custom response parsing |                                                         |

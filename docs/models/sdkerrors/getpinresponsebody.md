@@ -1,6 +1,6 @@
 # GetPinResponseBody
 
-X-Plex-Client-Identifier is missing
+Bad Request response when the X-Plex-Client-Identifier is missing
 
 
 ## Fields

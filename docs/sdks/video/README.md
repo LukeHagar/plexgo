@@ -22,17 +22,19 @@ package main
 
 import(
 	"github.com/LukeHagar/plexgo"
-	"github.com/LukeHagar/plexgo/models/operations"
 	"context"
+	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    request := operations.GetTimelineRequest{
+
+    ctx := context.Background()
+    res, err := s.Video.GetTimeline(ctx, operations.GetTimelineRequest{
         RatingKey: 23409,
         Key: "/library/metadata/23409",
         State: operations.StatePlaying,
@@ -43,9 +45,7 @@ func main() {
         PlayQueueItemID: 1,
         PlayBackTime: 2000,
         Row: 1,
-    }
-    ctx := context.Background()
-    res, err := s.Video.GetTimeline(ctx, request)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -61,15 +61,20 @@ func main() {
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
 | `request`                                                                      | [operations.GetTimelineRequest](../../models/operations/gettimelinerequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-
+| `opts`                                                                         | [][operations.Option](../../models/operations/option.md)                       | :heavy_minus_sign:                                                             | The options for this request.                                                  |
 
 ### Response
 
 **[*operations.GetTimelineResponse](../../models/operations/gettimelineresponse.md), error**
-| Error Object                      | Status Code                       | Content Type                      |
-| --------------------------------- | --------------------------------- | --------------------------------- |
-| sdkerrors.GetTimelineResponseBody | 401                               | application/json                  |
-| sdkerrors.SDKError                | 4xx-5xx                           | */*                               |
+
+### Errors
+
+| Error Object                           | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.GetTimelineResponseBody      | 400                                    | application/json                       |
+| sdkerrors.GetTimelineVideoResponseBody | 401                                    | application/json                       |
+| sdkerrors.SDKError                     | 4xx-5xx                                | */*                                    |
+
 
 ## StartUniversalTranscode
 
@@ -82,17 +87,19 @@ package main
 
 import(
 	"github.com/LukeHagar/plexgo"
-	"github.com/LukeHagar/plexgo/models/operations"
 	"context"
+	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    request := operations.StartUniversalTranscodeRequest{
+
+    ctx := context.Background()
+    res, err := s.Video.StartUniversalTranscode(ctx, operations.StartUniversalTranscodeRequest{
         HasMDE: 1,
         Path: "/library/metadata/23409",
         MediaIndex: 0,
@@ -109,9 +116,7 @@ func main() {
         Session: plexgo.String("zvcage8b7rkioqcm8f4uns4c"),
         AddDebugOverlay: plexgo.Float64(0),
         AutoAdjustQuality: plexgo.Float64(0),
-    }
-    ctx := context.Background()
-    res, err := s.Video.StartUniversalTranscode(ctx, request)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -127,12 +132,16 @@ func main() {
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `ctx`                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                  | :heavy_check_mark:                                                                                     | The context to use for the request.                                                                    |
 | `request`                                                                                              | [operations.StartUniversalTranscodeRequest](../../models/operations/startuniversaltranscoderequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
-
+| `opts`                                                                                                 | [][operations.Option](../../models/operations/option.md)                                               | :heavy_minus_sign:                                                                                     | The options for this request.                                                                          |
 
 ### Response
 
 **[*operations.StartUniversalTranscodeResponse](../../models/operations/startuniversaltranscoderesponse.md), error**
-| Error Object                                  | Status Code                                   | Content Type                                  |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| sdkerrors.StartUniversalTranscodeResponseBody | 401                                           | application/json                              |
-| sdkerrors.SDKError                            | 4xx-5xx                                       | */*                                           |
+
+### Errors
+
+| Error Object                                       | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| sdkerrors.StartUniversalTranscodeResponseBody      | 400                                                | application/json                                   |
+| sdkerrors.StartUniversalTranscodeVideoResponseBody | 401                                                | application/json                                   |
+| sdkerrors.SDKError                                 | 4xx-5xx                                            | */*                                                |

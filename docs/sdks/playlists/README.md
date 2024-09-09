@@ -35,24 +35,24 @@ package main
 
 import(
 	"github.com/LukeHagar/plexgo"
-	"github.com/LukeHagar/plexgo/models/operations"
 	"context"
+	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    request := operations.CreatePlaylistRequest{
+
+    ctx := context.Background()
+    res, err := s.Playlists.CreatePlaylist(ctx, operations.CreatePlaylistRequest{
         Title: "<value>",
-        Type: operations.QueryParamTypePhoto,
+        Type: operations.CreatePlaylistQueryParamTypePhoto,
         Smart: operations.SmartOne,
         URI: "https://inborn-brochure.biz",
-    }
-    ctx := context.Background()
-    res, err := s.Playlists.CreatePlaylist(ctx, request)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -68,15 +68,20 @@ func main() {
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
 | `request`                                                                            | [operations.CreatePlaylistRequest](../../models/operations/createplaylistrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-
+| `opts`                                                                               | [][operations.Option](../../models/operations/option.md)                             | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
 
 ### Response
 
 **[*operations.CreatePlaylistResponse](../../models/operations/createplaylistresponse.md), error**
-| Error Object                         | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| sdkerrors.CreatePlaylistResponseBody | 401                                  | application/json                     |
-| sdkerrors.SDKError                   | 4xx-5xx                              | */*                                  |
+
+### Errors
+
+| Error Object                                  | Status Code                                   | Content Type                                  |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| sdkerrors.CreatePlaylistResponseBody          | 400                                           | application/json                              |
+| sdkerrors.CreatePlaylistPlaylistsResponseBody | 401                                           | application/json                              |
+| sdkerrors.SDKError                            | 4xx-5xx                                       | */*                                           |
+
 
 ## GetPlaylists
 
@@ -89,7 +94,6 @@ package main
 
 import(
 	"github.com/LukeHagar/plexgo"
-	"github.com/LukeHagar/plexgo/models/operations"
 	"context"
 	"log"
 )
@@ -97,13 +101,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var playlistType *operations.PlaylistType = operations.PlaylistTypeAudio.ToPointer()
 
-    var smart *operations.QueryParamSmart = operations.QueryParamSmartZero.ToPointer()
     ctx := context.Background()
-    res, err := s.Playlists.GetPlaylists(ctx, playlistType, smart)
+    res, err := s.Playlists.GetPlaylists(ctx, nil, nil)
     if err != nil {
         log.Fatal(err)
     }
@@ -120,15 +122,20 @@ func main() {
 | `ctx`                                                                     | [context.Context](https://pkg.go.dev/context#Context)                     | :heavy_check_mark:                                                        | The context to use for the request.                                       |
 | `playlistType`                                                            | [*operations.PlaylistType](../../models/operations/playlisttype.md)       | :heavy_minus_sign:                                                        | limit to a type of playlist.                                              |
 | `smart`                                                                   | [*operations.QueryParamSmart](../../models/operations/queryparamsmart.md) | :heavy_minus_sign:                                                        | type of playlists to return (default is all).                             |
-
+| `opts`                                                                    | [][operations.Option](../../models/operations/option.md)                  | :heavy_minus_sign:                                                        | The options for this request.                                             |
 
 ### Response
 
 **[*operations.GetPlaylistsResponse](../../models/operations/getplaylistsresponse.md), error**
-| Error Object                       | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| sdkerrors.GetPlaylistsResponseBody | 401                                | application/json                   |
-| sdkerrors.SDKError                 | 4xx-5xx                            | */*                                |
+
+### Errors
+
+| Error Object                                | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| sdkerrors.GetPlaylistsResponseBody          | 400                                         | application/json                            |
+| sdkerrors.GetPlaylistsPlaylistsResponseBody | 401                                         | application/json                            |
+| sdkerrors.SDKError                          | 4xx-5xx                                     | */*                                         |
+
 
 ## GetPlaylist
 
@@ -150,11 +157,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var playlistID float64 = 4109.48
+
     ctx := context.Background()
-    res, err := s.Playlists.GetPlaylist(ctx, playlistID)
+    res, err := s.Playlists.GetPlaylist(ctx, 4109.48)
     if err != nil {
         log.Fatal(err)
     }
@@ -166,19 +173,24 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `playlistID`                                          | *float64*                                             | :heavy_check_mark:                                    | the ID of the playlist                                |
-
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
+| `playlistID`                                             | *float64*                                                | :heavy_check_mark:                                       | the ID of the playlist                                   |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
 ### Response
 
 **[*operations.GetPlaylistResponse](../../models/operations/getplaylistresponse.md), error**
-| Error Object                      | Status Code                       | Content Type                      |
-| --------------------------------- | --------------------------------- | --------------------------------- |
-| sdkerrors.GetPlaylistResponseBody | 401                               | application/json                  |
-| sdkerrors.SDKError                | 4xx-5xx                           | */*                               |
+
+### Errors
+
+| Error Object                               | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| sdkerrors.GetPlaylistResponseBody          | 400                                        | application/json                           |
+| sdkerrors.GetPlaylistPlaylistsResponseBody | 401                                        | application/json                           |
+| sdkerrors.SDKError                         | 4xx-5xx                                    | */*                                        |
+
 
 ## DeletePlaylist
 
@@ -199,11 +211,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var playlistID float64 = 216.22
+
     ctx := context.Background()
-    res, err := s.Playlists.DeletePlaylist(ctx, playlistID)
+    res, err := s.Playlists.DeletePlaylist(ctx, 216.22)
     if err != nil {
         log.Fatal(err)
     }
@@ -215,19 +227,24 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `playlistID`                                          | *float64*                                             | :heavy_check_mark:                                    | the ID of the playlist                                |
-
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
+| `playlistID`                                             | *float64*                                                | :heavy_check_mark:                                       | the ID of the playlist                                   |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
 ### Response
 
 **[*operations.DeletePlaylistResponse](../../models/operations/deleteplaylistresponse.md), error**
-| Error Object                         | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| sdkerrors.DeletePlaylistResponseBody | 401                                  | application/json                     |
-| sdkerrors.SDKError                   | 4xx-5xx                              | */*                                  |
+
+### Errors
+
+| Error Object                                  | Status Code                                   | Content Type                                  |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| sdkerrors.DeletePlaylistResponseBody          | 400                                           | application/json                              |
+| sdkerrors.DeletePlaylistPlaylistsResponseBody | 401                                           | application/json                              |
+| sdkerrors.SDKError                            | 4xx-5xx                                       | */*                                           |
+
 
 ## UpdatePlaylist
 
@@ -248,15 +265,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var playlistID float64 = 3915
 
-    var title *string = plexgo.String("<value>")
-
-    var summary *string = plexgo.String("<value>")
     ctx := context.Background()
-    res, err := s.Playlists.UpdatePlaylist(ctx, playlistID, title, summary)
+    res, err := s.Playlists.UpdatePlaylist(ctx, 3915, nil, nil)
     if err != nil {
         log.Fatal(err)
     }
@@ -268,21 +281,26 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `playlistID`                                          | *float64*                                             | :heavy_check_mark:                                    | the ID of the playlist                                |
-| `title`                                               | **string*                                             | :heavy_minus_sign:                                    | name of the playlist                                  |
-| `summary`                                             | **string*                                             | :heavy_minus_sign:                                    | summary description of the playlist                   |
-
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
+| `playlistID`                                             | *float64*                                                | :heavy_check_mark:                                       | the ID of the playlist                                   |
+| `title`                                                  | **string*                                                | :heavy_minus_sign:                                       | name of the playlist                                     |
+| `summary`                                                | **string*                                                | :heavy_minus_sign:                                       | summary description of the playlist                      |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
 ### Response
 
 **[*operations.UpdatePlaylistResponse](../../models/operations/updateplaylistresponse.md), error**
-| Error Object                         | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| sdkerrors.UpdatePlaylistResponseBody | 401                                  | application/json                     |
-| sdkerrors.SDKError                   | 4xx-5xx                              | */*                                  |
+
+### Errors
+
+| Error Object                                  | Status Code                                   | Content Type                                  |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| sdkerrors.UpdatePlaylistResponseBody          | 400                                           | application/json                              |
+| sdkerrors.UpdatePlaylistPlaylistsResponseBody | 401                                           | application/json                              |
+| sdkerrors.SDKError                            | 4xx-5xx                                       | */*                                           |
+
 
 ## GetPlaylistContents
 
@@ -300,19 +318,18 @@ package main
 import(
 	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var playlistID float64 = 5004.46
 
-    var type_ float64 = 9403.59
     ctx := context.Background()
-    res, err := s.Playlists.GetPlaylistContents(ctx, playlistID, type_)
+    res, err := s.Playlists.GetPlaylistContents(ctx, 5004.46, operations.GetPlaylistContentsQueryParamTypeTwo)
     if err != nil {
         log.Fatal(err)
     }
@@ -324,20 +341,25 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `playlistID`                                          | *float64*                                             | :heavy_check_mark:                                    | the ID of the playlist                                |
-| `type_`                                               | *float64*                                             | :heavy_check_mark:                                    | the metadata type of the item to return               |
-
+| Parameter                                                                                                                                                                       | Type                                                                                                                                                                            | Required                                                                                                                                                                        | Description                                                                                                                                                                     | Example                                                                                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                                                                           | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                           | :heavy_check_mark:                                                                                                                                                              | The context to use for the request.                                                                                                                                             |                                                                                                                                                                                 |
+| `playlistID`                                                                                                                                                                    | *float64*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                              | the ID of the playlist                                                                                                                                                          |                                                                                                                                                                                 |
+| `type_`                                                                                                                                                                         | [operations.GetPlaylistContentsQueryParamType](../../models/operations/getplaylistcontentsqueryparamtype.md)                                                                    | :heavy_check_mark:                                                                                                                                                              | The type of media to retrieve.<br/>1 = movie<br/>2 = show<br/>3 = season<br/>4 = episode<br/>E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries<br/> | 2                                                                                                                                                                               |
+| `opts`                                                                                                                                                                          | [][operations.Option](../../models/operations/option.md)                                                                                                                        | :heavy_minus_sign:                                                                                                                                                              | The options for this request.                                                                                                                                                   |                                                                                                                                                                                 |
 
 ### Response
 
 **[*operations.GetPlaylistContentsResponse](../../models/operations/getplaylistcontentsresponse.md), error**
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| sdkerrors.GetPlaylistContentsResponseBody | 401                                       | application/json                          |
-| sdkerrors.SDKError                        | 4xx-5xx                                   | */*                                       |
+
+### Errors
+
+| Error Object                                       | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| sdkerrors.GetPlaylistContentsResponseBody          | 400                                                | application/json                                   |
+| sdkerrors.GetPlaylistContentsPlaylistsResponseBody | 401                                                | application/json                                   |
+| sdkerrors.SDKError                                 | 4xx-5xx                                            | */*                                                |
+
 
 ## ClearPlaylistContents
 
@@ -358,11 +380,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var playlistID float64 = 1893.18
+
     ctx := context.Background()
-    res, err := s.Playlists.ClearPlaylistContents(ctx, playlistID)
+    res, err := s.Playlists.ClearPlaylistContents(ctx, 1893.18)
     if err != nil {
         log.Fatal(err)
     }
@@ -374,19 +396,24 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `playlistID`                                          | *float64*                                             | :heavy_check_mark:                                    | the ID of the playlist                                |
-
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
+| `playlistID`                                             | *float64*                                                | :heavy_check_mark:                                       | the ID of the playlist                                   |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
 ### Response
 
 **[*operations.ClearPlaylistContentsResponse](../../models/operations/clearplaylistcontentsresponse.md), error**
-| Error Object                                | Status Code                                 | Content Type                                |
-| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| sdkerrors.ClearPlaylistContentsResponseBody | 401                                         | application/json                            |
-| sdkerrors.SDKError                          | 4xx-5xx                                     | */*                                         |
+
+### Errors
+
+| Error Object                                         | Status Code                                          | Content Type                                         |
+| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
+| sdkerrors.ClearPlaylistContentsResponseBody          | 400                                                  | application/json                                     |
+| sdkerrors.ClearPlaylistContentsPlaylistsResponseBody | 401                                                  | application/json                                     |
+| sdkerrors.SDKError                                   | 4xx-5xx                                              | */*                                                  |
+
 
 ## AddPlaylistContents
 
@@ -408,15 +435,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var playlistID float64 = 8502.01
 
-    var uri string = "server://12345/com.plexapp.plugins.library/library/metadata/1"
-
-    var playQueueID *float64 = plexgo.Float64(123)
     ctx := context.Background()
-    res, err := s.Playlists.AddPlaylistContents(ctx, playlistID, uri, playQueueID)
+    res, err := s.Playlists.AddPlaylistContents(ctx, 8502.01, "server://12345/com.plexapp.plugins.library/library/metadata/1", plexgo.Float64(123))
     if err != nil {
         log.Fatal(err)
     }
@@ -434,15 +457,20 @@ func main() {
 | `playlistID`                                                  | *float64*                                                     | :heavy_check_mark:                                            | the ID of the playlist                                        |                                                               |
 | `uri`                                                         | *string*                                                      | :heavy_check_mark:                                            | the content URI for the playlist                              | server://12345/com.plexapp.plugins.library/library/metadata/1 |
 | `playQueueID`                                                 | **float64*                                                    | :heavy_minus_sign:                                            | the play queue to add to a playlist                           | 123                                                           |
-
+| `opts`                                                        | [][operations.Option](../../models/operations/option.md)      | :heavy_minus_sign:                                            | The options for this request.                                 |                                                               |
 
 ### Response
 
 **[*operations.AddPlaylistContentsResponse](../../models/operations/addplaylistcontentsresponse.md), error**
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| sdkerrors.AddPlaylistContentsResponseBody | 401                                       | application/json                          |
-| sdkerrors.SDKError                        | 4xx-5xx                                   | */*                                       |
+
+### Errors
+
+| Error Object                                       | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| sdkerrors.AddPlaylistContentsResponseBody          | 400                                                | application/json                                   |
+| sdkerrors.AddPlaylistContentsPlaylistsResponseBody | 401                                                | application/json                                   |
+| sdkerrors.SDKError                                 | 4xx-5xx                                            | */*                                                |
+
 
 ## UploadPlaylist
 
@@ -456,21 +484,19 @@ package main
 
 import(
 	"github.com/LukeHagar/plexgo"
-	"github.com/LukeHagar/plexgo/models/operations"
 	"context"
+	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var path string = "/home/barkley/playlist.m3u"
 
-    var force operations.Force = operations.ForceZero
     ctx := context.Background()
-    res, err := s.Playlists.UploadPlaylist(ctx, path, force)
+    res, err := s.Playlists.UploadPlaylist(ctx, "/home/barkley/playlist.m3u", operations.QueryParamForceZero)
     if err != nil {
         log.Fatal(err)
     }
@@ -486,13 +512,17 @@ func main() {
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | The context to use for the request.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | `path`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | *string*                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | absolute path to a directory on the server where m3u files are stored, or the absolute path to a playlist file on the server. <br/>If the `path` argument is a directory, that path will be scanned for playlist files to be processed. <br/>Each file in that directory creates a separate playlist, with a name based on the filename of the file that created it. <br/>The GUID of each playlist is based on the filename. <br/>If the `path` argument is a file, that file will be used to create a new playlist, with the name based on the filename of the file that created it. <br/>The GUID of each playlist is based on the filename.<br/> | /home/barkley/playlist.m3u                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `force`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | [operations.Force](../../models/operations/force.md)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Force overwriting of duplicate playlists.  <br/>By default, a playlist file uploaded with the same path will overwrite the existing playlist. <br/>The `force` argument is used to disable overwriting.  <br/>If the `force` argument is set to 0, a new playlist will be created suffixed with the date and time that the duplicate was uploaded.<br/>                                                                                                                                                                                                                                                                      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-
+| `force`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | [operations.QueryParamForce](../../models/operations/queryparamforce.md)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Force overwriting of duplicate playlists.  <br/>By default, a playlist file uploaded with the same path will overwrite the existing playlist. <br/>The `force` argument is used to disable overwriting.  <br/>If the `force` argument is set to 0, a new playlist will be created suffixed with the date and time that the duplicate was uploaded.<br/>                                                                                                                                                                                                                                                                      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `opts`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | [][operations.Option](../../models/operations/option.md)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | The options for this request.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 
 ### Response
 
 **[*operations.UploadPlaylistResponse](../../models/operations/uploadplaylistresponse.md), error**
-| Error Object                         | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| sdkerrors.UploadPlaylistResponseBody | 401                                  | application/json                     |
-| sdkerrors.SDKError                   | 4xx-5xx                              | */*                                  |
+
+### Errors
+
+| Error Object                                  | Status Code                                   | Content Type                                  |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| sdkerrors.UploadPlaylistResponseBody          | 400                                           | application/json                              |
+| sdkerrors.UploadPlaylistPlaylistsResponseBody | 401                                           | application/json                              |
+| sdkerrors.SDKError                            | 4xx-5xx                                       | */*                                           |

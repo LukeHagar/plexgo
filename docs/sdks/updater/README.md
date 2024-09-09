@@ -31,7 +31,7 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
 
     ctx := context.Background()
@@ -47,18 +47,23 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
 ### Response
 
 **[*operations.GetUpdateStatusResponse](../../models/operations/getupdatestatusresponse.md), error**
-| Error Object                          | Status Code                           | Content Type                          |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| sdkerrors.GetUpdateStatusResponseBody | 401                                   | application/json                      |
-| sdkerrors.SDKError                    | 4xx-5xx                               | */*                                   |
+
+### Errors
+
+| Error Object                                 | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| sdkerrors.GetUpdateStatusResponseBody        | 400                                          | application/json                             |
+| sdkerrors.GetUpdateStatusUpdaterResponseBody | 401                                          | application/json                             |
+| sdkerrors.SDKError                           | 4xx-5xx                                      | */*                                          |
+
 
 ## CheckForUpdates
 
@@ -71,19 +76,19 @@ package main
 
 import(
 	"github.com/LukeHagar/plexgo"
-	"github.com/LukeHagar/plexgo/models/operations"
 	"context"
+	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var download *operations.Download = operations.DownloadOne.ToPointer()
+
     ctx := context.Background()
-    res, err := s.Updater.CheckForUpdates(ctx, download)
+    res, err := s.Updater.CheckForUpdates(ctx, operations.DownloadOne.ToPointer())
     if err != nil {
         log.Fatal(err)
     }
@@ -99,15 +104,20 @@ func main() {
 | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
 | `ctx`                                                       | [context.Context](https://pkg.go.dev/context#Context)       | :heavy_check_mark:                                          | The context to use for the request.                         |                                                             |
 | `download`                                                  | [*operations.Download](../../models/operations/download.md) | :heavy_minus_sign:                                          | Indicate that you want to start download any updates found. | 1                                                           |
-
+| `opts`                                                      | [][operations.Option](../../models/operations/option.md)    | :heavy_minus_sign:                                          | The options for this request.                               |                                                             |
 
 ### Response
 
 **[*operations.CheckForUpdatesResponse](../../models/operations/checkforupdatesresponse.md), error**
-| Error Object                          | Status Code                           | Content Type                          |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| sdkerrors.CheckForUpdatesResponseBody | 401                                   | application/json                      |
-| sdkerrors.SDKError                    | 4xx-5xx                               | */*                                   |
+
+### Errors
+
+| Error Object                                 | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| sdkerrors.CheckForUpdatesResponseBody        | 400                                          | application/json                             |
+| sdkerrors.CheckForUpdatesUpdaterResponseBody | 401                                          | application/json                             |
+| sdkerrors.SDKError                           | 4xx-5xx                                      | */*                                          |
+
 
 ## ApplyUpdates
 
@@ -121,21 +131,19 @@ package main
 
 import(
 	"github.com/LukeHagar/plexgo"
-	"github.com/LukeHagar/plexgo/models/operations"
 	"context"
+	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var tonight *operations.Tonight = operations.TonightOne.ToPointer()
 
-    var skip *operations.Skip = operations.SkipOne.ToPointer()
     ctx := context.Background()
-    res, err := s.Updater.ApplyUpdates(ctx, tonight, skip)
+    res, err := s.Updater.ApplyUpdates(ctx, operations.TonightOne.ToPointer(), operations.SkipOne.ToPointer())
     if err != nil {
         log.Fatal(err)
     }
@@ -151,13 +159,17 @@ func main() {
 | -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                                                                    | :heavy_check_mark:                                                                                                                                       | The context to use for the request.                                                                                                                      |                                                                                                                                                          |
 | `tonight`                                                                                                                                                | [*operations.Tonight](../../models/operations/tonight.md)                                                                                                | :heavy_minus_sign:                                                                                                                                       | Indicate that you want the update to run during the next Butler execution. Omitting this or setting it to false indicates that the update should install | 1                                                                                                                                                        |
-| `skip`                                                                                                                                                   | [*operations.Skip](../../models/operations/skip.md)                                                                                                      | :heavy_minus_sign:                                                                                                                                       | Indicate that the latest version should be marked as skipped. The <Release> entry for this version will have the `state` set to `skipped`.               | 1                                                                                                                                                        |
-
+| `skip`                                                                                                                                                   | [*operations.Skip](../../models/operations/skip.md)                                                                                                      | :heavy_minus_sign:                                                                                                                                       | Indicate that the latest version should be marked as skipped. The [Release] entry for this version will have the `state` set to `skipped`.               | 1                                                                                                                                                        |
+| `opts`                                                                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                                                                 | :heavy_minus_sign:                                                                                                                                       | The options for this request.                                                                                                                            |                                                                                                                                                          |
 
 ### Response
 
 **[*operations.ApplyUpdatesResponse](../../models/operations/applyupdatesresponse.md), error**
-| Error Object                       | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| sdkerrors.ApplyUpdatesResponseBody | 401                                | application/json                   |
-| sdkerrors.SDKError                 | 4xx-5xx                            | */*                                |
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| sdkerrors.ApplyUpdatesResponseBody        | 400                                       | application/json                          |
+| sdkerrors.ApplyUpdatesUpdaterResponseBody | 401                                       | application/json                          |
+| sdkerrors.SDKError                        | 4xx-5xx                                   | */*                                       |

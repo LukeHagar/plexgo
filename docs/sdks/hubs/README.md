@@ -22,7 +22,6 @@ package main
 
 import(
 	"github.com/LukeHagar/plexgo"
-	"github.com/LukeHagar/plexgo/models/operations"
 	"context"
 	"log"
 )
@@ -30,13 +29,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var count *float64 = plexgo.Float64(1262.49)
 
-    var onlyTransient *operations.OnlyTransient = operations.OnlyTransientOne.ToPointer()
     ctx := context.Background()
-    res, err := s.Hubs.GetGlobalHubs(ctx, count, onlyTransient)
+    res, err := s.Hubs.GetGlobalHubs(ctx, nil, nil)
     if err != nil {
         log.Fatal(err)
     }
@@ -53,15 +50,20 @@ func main() {
 | `ctx`                                                                                                                                                 | [context.Context](https://pkg.go.dev/context#Context)                                                                                                 | :heavy_check_mark:                                                                                                                                    | The context to use for the request.                                                                                                                   |
 | `count`                                                                                                                                               | **float64*                                                                                                                                            | :heavy_minus_sign:                                                                                                                                    | The number of items to return with each hub.                                                                                                          |
 | `onlyTransient`                                                                                                                                       | [*operations.OnlyTransient](../../models/operations/onlytransient.md)                                                                                 | :heavy_minus_sign:                                                                                                                                    | Only return hubs which are "transient", meaning those which are prone to changing after media playback or addition (e.g. On Deck, or Recently Added). |
-
+| `opts`                                                                                                                                                | [][operations.Option](../../models/operations/option.md)                                                                                              | :heavy_minus_sign:                                                                                                                                    | The options for this request.                                                                                                                         |
 
 ### Response
 
 **[*operations.GetGlobalHubsResponse](../../models/operations/getglobalhubsresponse.md), error**
-| Error Object                        | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| sdkerrors.GetGlobalHubsResponseBody | 401                                 | application/json                    |
-| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
+
+### Errors
+
+| Error Object                            | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| sdkerrors.GetGlobalHubsResponseBody     | 400                                     | application/json                        |
+| sdkerrors.GetGlobalHubsHubsResponseBody | 401                                     | application/json                        |
+| sdkerrors.SDKError                      | 4xx-5xx                                 | */*                                     |
+
 
 ## GetLibraryHubs
 
@@ -75,7 +77,6 @@ package main
 
 import(
 	"github.com/LukeHagar/plexgo"
-	"github.com/LukeHagar/plexgo/models/operations"
 	"context"
 	"log"
 )
@@ -83,15 +84,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var sectionID float64 = 6728.76
 
-    var count *float64 = plexgo.Float64(9010.22)
-
-    var onlyTransient *operations.QueryParamOnlyTransient = operations.QueryParamOnlyTransientZero.ToPointer()
     ctx := context.Background()
-    res, err := s.Hubs.GetLibraryHubs(ctx, sectionID, count, onlyTransient)
+    res, err := s.Hubs.GetLibraryHubs(ctx, 6728.76, nil, nil)
     if err != nil {
         log.Fatal(err)
     }
@@ -109,12 +106,16 @@ func main() {
 | `sectionID`                                                                                                                                           | *float64*                                                                                                                                             | :heavy_check_mark:                                                                                                                                    | the Id of the library to query                                                                                                                        |
 | `count`                                                                                                                                               | **float64*                                                                                                                                            | :heavy_minus_sign:                                                                                                                                    | The number of items to return with each hub.                                                                                                          |
 | `onlyTransient`                                                                                                                                       | [*operations.QueryParamOnlyTransient](../../models/operations/queryparamonlytransient.md)                                                             | :heavy_minus_sign:                                                                                                                                    | Only return hubs which are "transient", meaning those which are prone to changing after media playback or addition (e.g. On Deck, or Recently Added). |
-
+| `opts`                                                                                                                                                | [][operations.Option](../../models/operations/option.md)                                                                                              | :heavy_minus_sign:                                                                                                                                    | The options for this request.                                                                                                                         |
 
 ### Response
 
 **[*operations.GetLibraryHubsResponse](../../models/operations/getlibraryhubsresponse.md), error**
-| Error Object                         | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| sdkerrors.GetLibraryHubsResponseBody | 401                                  | application/json                     |
-| sdkerrors.SDKError                   | 4xx-5xx                              | */*                                  |
+
+### Errors
+
+| Error Object                             | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| sdkerrors.GetLibraryHubsResponseBody     | 400                                      | application/json                         |
+| sdkerrors.GetLibraryHubsHubsResponseBody | 401                                      | application/json                         |
+| sdkerrors.SDKError                       | 4xx-5xx                                  | */*                                      |

@@ -7,9 +7,31 @@
     </a>
 </div>
 
+<!-- Start Summary [summary] -->
+## Summary
+
+Plex-API: An Open API Spec for interacting with Plex.tv and Plex Media Server
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+
+* [SDK Installation](#sdk-installation)
+* [SDK Example Usage](#sdk-example-usage)
+* [Available Resources and Operations](#available-resources-and-operations)
+* [Global Parameters](#global-parameters)
+* [Retries](#retries)
+* [Error Handling](#error-handling)
+* [Server Selection](#server-selection)
+* [Custom HTTP Client](#custom-http-client)
+* [Authentication](#authentication)
+* [Special Types](#special-types)
+<!-- End Table of Contents [toc] -->
+
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
+To add the SDK as a dependency to your project:
 ```bash
 go get github.com/LukeHagar/plexgo
 ```
@@ -32,7 +54,7 @@ import (
 func main() {
 	s := plexgo.New(
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithXPlexClientIdentifier("Postman"),
+		plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
 	)
 
 	ctx := context.Background()
@@ -60,6 +82,7 @@ func main() {
 * [GetServerIdentity](docs/sdks/server/README.md#getserveridentity) - Get Server Identity
 * [GetMyPlexAccount](docs/sdks/server/README.md#getmyplexaccount) - Get MyPlex Account
 * [GetResizedPhoto](docs/sdks/server/README.md#getresizedphoto) - Get a Resized Photo
+* [GetMediaProviders](docs/sdks/server/README.md#getmediaproviders) - Get Media Providers
 * [GetServerList](docs/sdks/server/README.md#getserverlist) - Get Server List
 
 ### [Media](docs/sdks/media/README.md)
@@ -67,6 +90,8 @@ func main() {
 * [MarkPlayed](docs/sdks/media/README.md#markplayed) - Mark Media Played
 * [MarkUnplayed](docs/sdks/media/README.md#markunplayed) - Mark Media Unplayed
 * [UpdatePlayProgress](docs/sdks/media/README.md#updateplayprogress) - Update Media Play Progress
+* [GetBannerImage](docs/sdks/media/README.md#getbannerimage) - Get Banner Image
+* [GetThumbImage](docs/sdks/media/README.md#getthumbimage) - Get Thumb Image
 
 ### [Video](docs/sdks/video/README.md)
 
@@ -88,9 +113,13 @@ func main() {
 
 ### [Plex](docs/sdks/plex/README.md)
 
+* [GetCompanionsData](docs/sdks/plex/README.md#getcompanionsdata) - Get Companions Data
+* [GetUserFriends](docs/sdks/plex/README.md#getuserfriends) - Get list of friends of the user logged in
+* [GetGeoData](docs/sdks/plex/README.md#getgeodata) - Get Geo Data
 * [GetHomeData](docs/sdks/plex/README.md#gethomedata) - Get Plex Home Data
+* [GetServerResources](docs/sdks/plex/README.md#getserverresources) - Get Server Resources
 * [GetPin](docs/sdks/plex/README.md#getpin) - Get a Pin
-* [GetToken](docs/sdks/plex/README.md#gettoken) - Get Access Token
+* [GetTokenByPinID](docs/sdks/plex/README.md#gettokenbypinid) - Get Access Token by PinId
 
 ### [Hubs](docs/sdks/hubs/README.md)
 
@@ -107,16 +136,20 @@ func main() {
 
 * [GetFileHash](docs/sdks/library/README.md#getfilehash) - Get Hash Value
 * [GetRecentlyAdded](docs/sdks/library/README.md#getrecentlyadded) - Get Recently Added
-* [GetLibraries](docs/sdks/library/README.md#getlibraries) - Get All Libraries
-* [GetLibrary](docs/sdks/library/README.md#getlibrary) - Get Library Details
+* [GetAllLibraries](docs/sdks/library/README.md#getalllibraries) - Get All Libraries
+* [GetLibraryDetails](docs/sdks/library/README.md#getlibrarydetails) - Get Library Details
 * [DeleteLibrary](docs/sdks/library/README.md#deletelibrary) - Delete Library Section
 * [GetLibraryItems](docs/sdks/library/README.md#getlibraryitems) - Get Library Items
-* [RefreshLibrary](docs/sdks/library/README.md#refreshlibrary) - Refresh Library
-* [SearchLibrary](docs/sdks/library/README.md#searchlibrary) - Search Library
-* [GetMetadata](docs/sdks/library/README.md#getmetadata) - Get Items Metadata
+* [GetRefreshLibraryMetadata](docs/sdks/library/README.md#getrefreshlibrarymetadata) - Refresh Metadata Of The Library
+* [GetSearchLibrary](docs/sdks/library/README.md#getsearchlibrary) - Search Library
+* [GetMetaDataByRatingKey](docs/sdks/library/README.md#getmetadatabyratingkey) - Get Metadata by RatingKey
 * [GetMetadataChildren](docs/sdks/library/README.md#getmetadatachildren) - Get Items Children
 * [GetTopWatchedContent](docs/sdks/library/README.md#gettopwatchedcontent) - Get Top Watched Content
 * [GetOnDeck](docs/sdks/library/README.md#getondeck) - Get On Deck
+
+### [Watchlist](docs/sdks/watchlist/README.md)
+
+* [GetWatchList](docs/sdks/watchlist/README.md#getwatchlist) - Get User Watchlist
 
 ### [Log](docs/sdks/log/README.md)
 
@@ -140,6 +173,8 @@ func main() {
 
 * [GetTransientToken](docs/sdks/authentication/README.md#gettransienttoken) - Get a Transient Token.
 * [GetSourceConnectionInformation](docs/sdks/authentication/README.md#getsourceconnectioninformation) - Get Source Connection Information
+* [GetUserDetails](docs/sdks/authentication/README.md#getuserdetails) - Get User Data By Token
+* [PostUsersSignInData](docs/sdks/authentication/README.md#postuserssignindata) - Get User Sign In Data
 
 ### [Statistics](docs/sdks/statistics/README.md)
 
@@ -159,21 +194,104 @@ func main() {
 * [GetUpdateStatus](docs/sdks/updater/README.md#getupdatestatus) - Querying status of updates
 * [CheckForUpdates](docs/sdks/updater/README.md#checkforupdates) - Checking for updates
 * [ApplyUpdates](docs/sdks/updater/README.md#applyupdates) - Apply Updates
-
-### [Watchlist](docs/sdks/watchlist/README.md)
-
-* [GetWatchlist](docs/sdks/watchlist/README.md#getwatchlist) - Get User Watchlist
 <!-- End Available Resources and Operations [operations] -->
+
+<!-- Start Retries [retries] -->
+## Retries
+
+Some of the endpoints in this SDK support retries. If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API. However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
+
+To change the default retry strategy for a single API call, simply provide a `retry.Config` object to the call by using the `WithRetries` option:
+```go
+package main
+
+import (
+	"context"
+	"github.com/LukeHagar/plexgo"
+	"github.com/LukeHagar/plexgo/retry"
+	"log"
+	"models/operations"
+)
+
+func main() {
+	s := plexgo.New(
+		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+		plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
+	)
+
+	ctx := context.Background()
+	res, err := s.Server.GetServerCapabilities(ctx, operations.WithRetries(
+		retry.Config{
+			Strategy: "backoff",
+			Backoff: &retry.BackoffStrategy{
+				InitialInterval: 1,
+				MaxInterval:     50,
+				Exponent:        1.1,
+				MaxElapsedTime:  100,
+			},
+			RetryConnectionErrors: false,
+		}))
+	if err != nil {
+		log.Fatal(err)
+	}
+	if res.Object != nil {
+		// handle response
+	}
+}
+
+```
+
+If you'd like to override the default retry strategy for all operations that support retries, you can use the `WithRetryConfig` option at SDK initialization:
+```go
+package main
+
+import (
+	"context"
+	"github.com/LukeHagar/plexgo"
+	"github.com/LukeHagar/plexgo/retry"
+	"log"
+)
+
+func main() {
+	s := plexgo.New(
+		plexgo.WithRetryConfig(
+			retry.Config{
+				Strategy: "backoff",
+				Backoff: &retry.BackoffStrategy{
+					InitialInterval: 1,
+					MaxInterval:     50,
+					Exponent:        1.1,
+					MaxElapsedTime:  100,
+				},
+				RetryConnectionErrors: false,
+			}),
+		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+		plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
+	)
+
+	ctx := context.Background()
+	res, err := s.Server.GetServerCapabilities(ctx)
+	if err != nil {
+		log.Fatal(err)
+	}
+	if res.Object != nil {
+		// handle response
+	}
+}
+
+```
+<!-- End Retries [retries] -->
 
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
 Handling errors in this SDK should largely match your expectations.  All operations return a response object or an error, they will never return both.  When specified by the OpenAPI spec document, the SDK will return the appropriate subclass.
 
-| Error Object                                | Status Code                                 | Content Type                                |
-| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| sdkerrors.GetServerCapabilitiesResponseBody | 401                                         | application/json                            |
-| sdkerrors.SDKError                          | 4xx-5xx                                     | */*                                         |
+| Error Object                                      | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| sdkerrors.GetServerCapabilitiesResponseBody       | 400                                               | application/json                                  |
+| sdkerrors.GetServerCapabilitiesServerResponseBody | 401                                               | application/json                                  |
+| sdkerrors.SDKError                                | 4xx-5xx                                           | */*                                               |
 
 ### Example
 
@@ -191,7 +309,7 @@ import (
 func main() {
 	s := plexgo.New(
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithXPlexClientIdentifier("Postman"),
+		plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
 	)
 
 	ctx := context.Background()
@@ -199,6 +317,12 @@ func main() {
 	if err != nil {
 
 		var e *sdkerrors.GetServerCapabilitiesResponseBody
+		if errors.As(err, &e) {
+			// handle error
+			log.Fatal(e.Error())
+		}
+
+		var e *sdkerrors.GetServerCapabilitiesServerResponseBody
 		if errors.As(err, &e) {
 			// handle error
 			log.Fatal(e.Error())
@@ -224,7 +348,7 @@ You can override the default server globally using the `WithServerIndex` option 
 
 | # | Server | Variables |
 | - | ------ | --------- |
-| 0 | `{protocol}://{ip}:{port}` | `protocol` (default is `http`), `ip` (default is `10.10.10.47`), `port` (default is `32400`) |
+| 0 | `{protocol}://{ip}:{port}` | `protocol` (default is `https`), `ip` (default is `10.10.10.47`), `port` (default is `32400`) |
 
 #### Example
 
@@ -241,7 +365,7 @@ func main() {
 	s := plexgo.New(
 		plexgo.WithServerIndex(0),
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithXPlexClientIdentifier("Postman"),
+		plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
 	)
 
 	ctx := context.Background()
@@ -279,7 +403,7 @@ func main() {
 	s := plexgo.New(
 		plexgo.WithServerURL("{protocol}://{ip}:{port}"),
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithXPlexClientIdentifier("Postman"),
+		plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
 	)
 
 	ctx := context.Background()
@@ -309,19 +433,16 @@ import (
 
 func main() {
 	s := plexgo.New(
-		plexgo.WithXPlexClientIdentifier("Postman"),
+		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+		plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
 	)
-	var xPlexProduct string = "Postman"
 
-	var strong *bool = plexgo.Bool(false)
-
-	var xPlexClientIdentifier *string = plexgo.String("Postman")
 	ctx := context.Background()
-	res, err := s.Plex.GetPin(ctx, xPlexProduct, strong, xPlexClientIdentifier, operations.WithServerURL("https://plex.tv/api/v2"))
+	res, err := s.Plex.GetCompanionsData(ctx, operations.WithServerURL("https://plex.tv/api/v2/"))
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.Object != nil {
+	if res.ResponseBodies != nil {
 		// handle response
 	}
 }
@@ -382,7 +503,7 @@ import (
 func main() {
 	s := plexgo.New(
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithXPlexClientIdentifier("Postman"),
+		plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
 	)
 
 	ctx := context.Background()
@@ -429,7 +550,7 @@ d6 := types.MustDateFromString("2019-01-01") // returns types.Date and panics on
 
 A parameter is configured globally. This parameter may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, This global value will be used as the default on the operations that use it. When such operations are called, there is a place in each to override the global value, if needed.
 
-For example, you can set `X-Plex-Client-Identifier` to `"Postman"` at SDK initialization and then you do not have to pass the same value on calls to operations like `GetPin`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
+For example, you can set `X-Plex-Client-Identifier` to `"gcgzw5rz2xovp84b4vha3a40"` at SDK initialization and then you do not have to pass the same value on calls to operations like `GetServerResources`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
 
 
 ### Available Globals
@@ -452,24 +573,27 @@ package main
 import (
 	"context"
 	"github.com/LukeHagar/plexgo"
+	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
 func main() {
 	s := plexgo.New(
-		plexgo.WithXPlexClientIdentifier("Postman"),
+		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+		plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
 	)
-	var xPlexProduct string = "Postman"
 
-	var strong *bool = plexgo.Bool(false)
-
-	var xPlexClientIdentifier *string = plexgo.String("Postman")
 	ctx := context.Background()
-	res, err := s.Plex.GetPin(ctx, xPlexProduct, strong, xPlexClientIdentifier)
+	res, err := s.Plex.GetServerResources(ctx, operations.GetServerResourcesRequest{
+		XPlexToken:   "CV5xoxjTpFKUzBTShsaf",
+		IncludeHTTPS: operations.IncludeHTTPSOne.ToPointer(),
+		IncludeRelay: operations.IncludeRelayOne.ToPointer(),
+		IncludeIPv6:  operations.IncludeIPv6One.ToPointer(),
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.Object != nil {
+	if res.PlexDevices != nil {
 		// handle response
 	}
 }

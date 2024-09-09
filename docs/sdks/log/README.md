@@ -24,23 +24,19 @@ package main
 
 import(
 	"github.com/LukeHagar/plexgo"
-	"github.com/LukeHagar/plexgo/models/operations"
 	"context"
+	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var level operations.Level = operations.LevelThree
 
-    var message string = "Test log message"
-
-    var source string = "Postman"
     ctx := context.Background()
-    res, err := s.Log.LogLine(ctx, level, message, source)
+    res, err := s.Log.LogLine(ctx, operations.LevelThree, "Test log message", "Postman")
     if err != nil {
         log.Fatal(err)
     }
@@ -58,15 +54,20 @@ func main() {
 | `level`                                                                                                       | [operations.Level](../../models/operations/level.md)                                                          | :heavy_check_mark:                                                                                            | An integer log level to write to the PMS log with.  <br/>0: Error  <br/>1: Warning  <br/>2: Info  <br/>3: Debug  <br/>4: Verbose<br/> |                                                                                                               |
 | `message`                                                                                                     | *string*                                                                                                      | :heavy_check_mark:                                                                                            | The text of the message to write to the log.                                                                  | Test log message                                                                                              |
 | `source`                                                                                                      | *string*                                                                                                      | :heavy_check_mark:                                                                                            | a string indicating the source of the message.                                                                | Postman                                                                                                       |
-
+| `opts`                                                                                                        | [][operations.Option](../../models/operations/option.md)                                                      | :heavy_minus_sign:                                                                                            | The options for this request.                                                                                 |                                                                                                               |
 
 ### Response
 
 **[*operations.LogLineResponse](../../models/operations/loglineresponse.md), error**
-| Error Object                  | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| sdkerrors.LogLineResponseBody | 401                           | application/json              |
-| sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
+
+### Errors
+
+| Error Object                     | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| sdkerrors.LogLineResponseBody    | 400                              | application/json                 |
+| sdkerrors.LogLineLogResponseBody | 401                              | application/json                 |
+| sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
+
 
 ## LogMultiLine
 
@@ -107,13 +108,13 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var request string = "level=4&message=Test%20message%201&source=postman
-level=3&message=Test%20message%202&source=postman
-level=1&message=Test%20message%203&source=postman"
+
     ctx := context.Background()
-    res, err := s.Log.LogMultiLine(ctx, request)
+    res, err := s.Log.LogMultiLine(ctx, "level=4&message=Test%20message%201&source=postman\n" +
+"level=3&message=Test%20message%202&source=postman\n" +
+"level=1&message=Test%20message%203&source=postman")
     if err != nil {
         log.Fatal(err)
     }
@@ -125,19 +126,24 @@ level=1&message=Test%20message%203&source=postman"
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `request`                                             | [string](../../.md)                                   | :heavy_check_mark:                                    | The request object to use for the request.            |
-
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
+| `request`                                                | [string](../../.md)                                      | :heavy_check_mark:                                       | The request object to use for the request.               |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
 ### Response
 
 **[*operations.LogMultiLineResponse](../../models/operations/logmultilineresponse.md), error**
-| Error Object                       | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| sdkerrors.LogMultiLineResponseBody | 401                                | application/json                   |
-| sdkerrors.SDKError                 | 4xx-5xx                            | */*                                |
+
+### Errors
+
+| Error Object                          | Status Code                           | Content Type                          |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| sdkerrors.LogMultiLineResponseBody    | 400                                   | application/json                      |
+| sdkerrors.LogMultiLineLogResponseBody | 401                                   | application/json                      |
+| sdkerrors.SDKError                    | 4xx-5xx                               | */*                                   |
+
 
 ## EnablePaperTrail
 
@@ -158,7 +164,7 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
 
     ctx := context.Background()
@@ -174,15 +180,19 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
 ### Response
 
 **[*operations.EnablePaperTrailResponse](../../models/operations/enablepapertrailresponse.md), error**
-| Error Object                           | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| sdkerrors.EnablePaperTrailResponseBody | 401                                    | application/json                       |
-| sdkerrors.SDKError                     | 4xx-5xx                                | */*                                    |
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| sdkerrors.EnablePaperTrailResponseBody    | 400                                       | application/json                          |
+| sdkerrors.EnablePaperTrailLogResponseBody | 401                                       | application/json                          |
+| sdkerrors.SDKError                        | 4xx-5xx                                   | */*                                       |

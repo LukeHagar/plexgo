@@ -11,6 +11,8 @@ API Calls interacting with Plex Media Server Media
 * [MarkPlayed](#markplayed) - Mark Media Played
 * [MarkUnplayed](#markunplayed) - Mark Media Unplayed
 * [UpdatePlayProgress](#updateplayprogress) - Update Media Play Progress
+* [GetBannerImage](#getbannerimage) - Get Banner Image
+* [GetThumbImage](#getthumbimage) - Get Thumb Image
 
 ## MarkPlayed
 
@@ -30,11 +32,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var key float64 = 59398
+
     ctx := context.Background()
-    res, err := s.Media.MarkPlayed(ctx, key)
+    res, err := s.Media.MarkPlayed(ctx, 59398)
     if err != nil {
         log.Fatal(err)
     }
@@ -46,19 +48,24 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           | Example                                               |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |                                                       |
-| `key`                                                 | *float64*                                             | :heavy_check_mark:                                    | The media key to mark as played                       | 59398                                                 |
-
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              | Example                                                  |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
+| `key`                                                    | *float64*                                                | :heavy_check_mark:                                       | The media key to mark as played                          | 59398                                                    |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
 
 ### Response
 
 **[*operations.MarkPlayedResponse](../../models/operations/markplayedresponse.md), error**
-| Error Object                     | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| sdkerrors.MarkPlayedResponseBody | 401                              | application/json                 |
-| sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
+
+### Errors
+
+| Error Object                          | Status Code                           | Content Type                          |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| sdkerrors.MarkPlayedResponseBody      | 400                                   | application/json                      |
+| sdkerrors.MarkPlayedMediaResponseBody | 401                                   | application/json                      |
+| sdkerrors.SDKError                    | 4xx-5xx                               | */*                                   |
+
 
 ## MarkUnplayed
 
@@ -78,11 +85,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var key float64 = 59398
+
     ctx := context.Background()
-    res, err := s.Media.MarkUnplayed(ctx, key)
+    res, err := s.Media.MarkUnplayed(ctx, 59398)
     if err != nil {
         log.Fatal(err)
     }
@@ -94,19 +101,24 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           | Example                                               |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |                                                       |
-| `key`                                                 | *float64*                                             | :heavy_check_mark:                                    | The media key to mark as Unplayed                     | 59398                                                 |
-
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              | Example                                                  |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
+| `key`                                                    | *float64*                                                | :heavy_check_mark:                                       | The media key to mark as Unplayed                        | 59398                                                    |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
 
 ### Response
 
 **[*operations.MarkUnplayedResponse](../../models/operations/markunplayedresponse.md), error**
-| Error Object                       | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| sdkerrors.MarkUnplayedResponseBody | 401                                | application/json                   |
-| sdkerrors.SDKError                 | 4xx-5xx                            | */*                                |
+
+### Errors
+
+| Error Object                            | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| sdkerrors.MarkUnplayedResponseBody      | 400                                     | application/json                        |
+| sdkerrors.MarkUnplayedMediaResponseBody | 401                                     | application/json                        |
+| sdkerrors.SDKError                      | 4xx-5xx                                 | */*                                     |
+
 
 ## UpdatePlayProgress
 
@@ -127,15 +139,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var key string = "<value>"
 
-    var time float64 = 90000
-
-    var state string = "played"
     ctx := context.Background()
-    res, err := s.Media.UpdatePlayProgress(ctx, key, time, state)
+    res, err := s.Media.UpdatePlayProgress(ctx, "<key>", 90000, "played")
     if err != nil {
         log.Fatal(err)
     }
@@ -153,12 +161,138 @@ func main() {
 | `key`                                                               | *string*                                                            | :heavy_check_mark:                                                  | the media key                                                       |                                                                     |
 | `time`                                                              | *float64*                                                           | :heavy_check_mark:                                                  | The time, in milliseconds, used to set the media playback progress. | 90000                                                               |
 | `state`                                                             | *string*                                                            | :heavy_check_mark:                                                  | The playback state of the media item.                               | played                                                              |
-
+| `opts`                                                              | [][operations.Option](../../models/operations/option.md)            | :heavy_minus_sign:                                                  | The options for this request.                                       |                                                                     |
 
 ### Response
 
 **[*operations.UpdatePlayProgressResponse](../../models/operations/updateplayprogressresponse.md), error**
+
+### Errors
+
+| Error Object                                  | Status Code                                   | Content Type                                  |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| sdkerrors.UpdatePlayProgressResponseBody      | 400                                           | application/json                              |
+| sdkerrors.UpdatePlayProgressMediaResponseBody | 401                                           | application/json                              |
+| sdkerrors.SDKError                            | 4xx-5xx                                       | */*                                           |
+
+
+## GetBannerImage
+
+Gets the banner image of the media item
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"github.com/LukeHagar/plexgo"
+	"context"
+	"github.com/LukeHagar/plexgo/models/operations"
+	"log"
+)
+
+func main() {
+    s := plexgo.New(
+        plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
+    )
+
+    ctx := context.Background()
+    res, err := s.Media.GetBannerImage(ctx, operations.GetBannerImageRequest{
+        RatingKey: 9518,
+        Width: 396,
+        Height: 396,
+        MinSize: 1,
+        Upscale: 1,
+        XPlexToken: "CV5xoxjTpFKUzBTShsaf",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.ResponseStream != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
+| `request`                                                                            | [operations.GetBannerImageRequest](../../models/operations/getbannerimagerequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `opts`                                                                               | [][operations.Option](../../models/operations/option.md)                             | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
+
+### Response
+
+**[*operations.GetBannerImageResponse](../../models/operations/getbannerimageresponse.md), error**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| sdkerrors.GetBannerImageResponseBody      | 400                                       | application/json                          |
+| sdkerrors.GetBannerImageMediaResponseBody | 401                                       | application/json                          |
+| sdkerrors.SDKError                        | 4xx-5xx                                   | */*                                       |
+
+
+## GetThumbImage
+
+Gets the thumbnail image of the media item
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"github.com/LukeHagar/plexgo"
+	"context"
+	"github.com/LukeHagar/plexgo/models/operations"
+	"log"
+)
+
+func main() {
+    s := plexgo.New(
+        plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
+    )
+
+    ctx := context.Background()
+    res, err := s.Media.GetThumbImage(ctx, operations.GetThumbImageRequest{
+        RatingKey: 9518,
+        Width: 396,
+        Height: 396,
+        MinSize: 1,
+        Upscale: 1,
+        XPlexToken: "CV5xoxjTpFKUzBTShsaf",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.ResponseStream != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `request`                                                                          | [operations.GetThumbImageRequest](../../models/operations/getthumbimagerequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
+
+### Response
+
+**[*operations.GetThumbImageResponse](../../models/operations/getthumbimageresponse.md), error**
+
+### Errors
+
 | Error Object                             | Status Code                              | Content Type                             |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| sdkerrors.UpdatePlayProgressResponseBody | 401                                      | application/json                         |
+| sdkerrors.GetThumbImageResponseBody      | 400                                      | application/json                         |
+| sdkerrors.GetThumbImageMediaResponseBody | 401                                      | application/json                         |
 | sdkerrors.SDKError                       | 4xx-5xx                                  | */*                                      |

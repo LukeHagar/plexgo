@@ -24,9 +24,9 @@ operations.WithTemplatedServerURL("http://{host}:{port}", map[string]string{
 WithRetries allows customizing the default retry configuration. Only usable with methods that mention they support retries.
 
 ```go
-operations.WithRetries(utils.RetryConfig{
+operations.WithRetries(retry.Config{
     Strategy: "backoff",
-    Backoff: utils.BackoffStrategy{
+    Backoff: retry.BackoffStrategy{
         InitialInterval: 500 * time.Millisecond,
         MaxInterval: 60 * time.Second,
         Exponent: 1.5,

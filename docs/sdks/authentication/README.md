@@ -10,6 +10,8 @@ API Calls regarding authentication for Plex Media Server
 
 * [GetTransientToken](#gettransienttoken) - Get a Transient Token.
 * [GetSourceConnectionInformation](#getsourceconnectioninformation) - Get Source Connection Information
+* [GetUserDetails](#getuserdetails) - Get User Data By Token
+* [PostUsersSignInData](#postuserssignindata) - Get User Sign In Data
 
 ## GetTransientToken
 
@@ -23,21 +25,19 @@ package main
 
 import(
 	"github.com/LukeHagar/plexgo"
-	"github.com/LukeHagar/plexgo/models/operations"
 	"context"
+	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var type_ operations.GetTransientTokenQueryParamType = operations.GetTransientTokenQueryParamTypeDelegation
 
-    var scope operations.Scope = operations.ScopeAll
     ctx := context.Background()
-    res, err := s.Authentication.GetTransientToken(ctx, type_, scope)
+    res, err := s.Authentication.GetTransientToken(ctx, operations.GetTransientTokenQueryParamTypeDelegation, operations.ScopeAll)
     if err != nil {
         log.Fatal(err)
     }
@@ -54,15 +54,20 @@ func main() {
 | `ctx`                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                    | :heavy_check_mark:                                                                                       | The context to use for the request.                                                                      |
 | `type_`                                                                                                  | [operations.GetTransientTokenQueryParamType](../../models/operations/gettransienttokenqueryparamtype.md) | :heavy_check_mark:                                                                                       | `delegation` - This is the only supported `type` parameter.                                              |
 | `scope`                                                                                                  | [operations.Scope](../../models/operations/scope.md)                                                     | :heavy_check_mark:                                                                                       | `all` - This is the only supported `scope` parameter.                                                    |
-
+| `opts`                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
 
 ### Response
 
 **[*operations.GetTransientTokenResponse](../../models/operations/gettransienttokenresponse.md), error**
-| Error Object                            | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| sdkerrors.GetTransientTokenResponseBody | 401                                     | application/json                        |
-| sdkerrors.SDKError                      | 4xx-5xx                                 | */*                                     |
+
+### Errors
+
+| Error Object                                          | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| sdkerrors.GetTransientTokenResponseBody               | 400                                                   | application/json                                      |
+| sdkerrors.GetTransientTokenAuthenticationResponseBody | 401                                                   | application/json                                      |
+| sdkerrors.SDKError                                    | 4xx-5xx                                               | */*                                                   |
+
 
 ## GetSourceConnectionInformation
 
@@ -84,11 +89,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var source string = "server://client-identifier"
+
     ctx := context.Background()
-    res, err := s.Authentication.GetSourceConnectionInformation(ctx, source)
+    res, err := s.Authentication.GetSourceConnectionInformation(ctx, "server://client-identifier")
     if err != nil {
         log.Fatal(err)
     }
@@ -100,16 +105,131 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           | Example                                               |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |                                                       |
-| `source`                                              | *string*                                              | :heavy_check_mark:                                    | The source identifier with an included prefix.        | server://client-identifier                            |
-
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              | Example                                                  |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
+| `source`                                                 | *string*                                                 | :heavy_check_mark:                                       | The source identifier with an included prefix.           | server://client-identifier                               |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
 
 ### Response
 
 **[*operations.GetSourceConnectionInformationResponse](../../models/operations/getsourceconnectioninformationresponse.md), error**
-| Error Object                                         | Status Code                                          | Content Type                                         |
-| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
-| sdkerrors.GetSourceConnectionInformationResponseBody | 401                                                  | application/json                                     |
-| sdkerrors.SDKError                                   | 4xx-5xx                                              | */*                                                  |
+
+### Errors
+
+| Error Object                                                       | Status Code                                                        | Content Type                                                       |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| sdkerrors.GetSourceConnectionInformationResponseBody               | 400                                                                | application/json                                                   |
+| sdkerrors.GetSourceConnectionInformationAuthenticationResponseBody | 401                                                                | application/json                                                   |
+| sdkerrors.SDKError                                                 | 4xx-5xx                                                            | */*                                                                |
+
+
+## GetUserDetails
+
+Get the User data from the provided X-Plex-Token
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"github.com/LukeHagar/plexgo"
+	"context"
+	"log"
+)
+
+func main() {
+    s := plexgo.New(
+        plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
+    )
+
+    ctx := context.Background()
+    res, err := s.Authentication.GetUserDetails(ctx, "CV5xoxjTpFKUzBTShsaf")
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.UserPlexAccount != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              | Example                                                  |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
+| `xPlexToken`                                             | *string*                                                 | :heavy_check_mark:                                       | Plex Authentication Token                                | CV5xoxjTpFKUzBTShsaf                                     |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
+
+### Response
+
+**[*operations.GetUserDetailsResponse](../../models/operations/getuserdetailsresponse.md), error**
+
+### Errors
+
+| Error Object                                       | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| sdkerrors.GetUserDetailsResponseBody               | 400                                                | application/json                                   |
+| sdkerrors.GetUserDetailsAuthenticationResponseBody | 401                                                | application/json                                   |
+| sdkerrors.SDKError                                 | 4xx-5xx                                            | */*                                                |
+
+
+## PostUsersSignInData
+
+Sign in user with username and password and return user data with Plex authentication token
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"github.com/LukeHagar/plexgo"
+	"context"
+	"github.com/LukeHagar/plexgo/models/operations"
+	"log"
+)
+
+func main() {
+    s := plexgo.New(
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
+    )
+
+    ctx := context.Background()
+    res, err := s.Authentication.PostUsersSignInData(ctx, plexgo.String("gcgzw5rz2xovp84b4vha3a40"), &operations.PostUsersSignInDataRequestBody{
+        Login: "username@email.com",
+        Password: "password123",
+        VerificationCode: plexgo.String("123456"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.UserPlexAccount != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                             | Type                                                                                                                                                                  | Required                                                                                                                                                              | Description                                                                                                                                                           | Example                                                                                                                                                               |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                                                                 | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                 | :heavy_check_mark:                                                                                                                                                    | The context to use for the request.                                                                                                                                   |                                                                                                                                                                       |
+| `xPlexClientIdentifier`                                                                                                                                               | **string*                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                    | The unique identifier for the client application<br/>This is used to track the client application and its usage<br/>(UUID, serial number, or other number unique per device)<br/> | gcgzw5rz2xovp84b4vha3a40                                                                                                                                              |
+| `requestBody`                                                                                                                                                         | [*operations.PostUsersSignInDataRequestBody](../../models/operations/postuserssignindatarequestbody.md)                                                               | :heavy_minus_sign:                                                                                                                                                    | Login credentials                                                                                                                                                     |                                                                                                                                                                       |
+| `opts`                                                                                                                                                                | [][operations.Option](../../models/operations/option.md)                                                                                                              | :heavy_minus_sign:                                                                                                                                                    | The options for this request.                                                                                                                                         |                                                                                                                                                                       |
+
+### Response
+
+**[*operations.PostUsersSignInDataResponse](../../models/operations/postuserssignindataresponse.md), error**
+
+### Errors
+
+| Error Object                                            | Status Code                                             | Content Type                                            |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| sdkerrors.PostUsersSignInDataResponseBody               | 400                                                     | application/json                                        |
+| sdkerrors.PostUsersSignInDataAuthenticationResponseBody | 401                                                     | application/json                                        |
+| sdkerrors.SDKError                                      | 4xx-5xx                                                 | */*                                                     |

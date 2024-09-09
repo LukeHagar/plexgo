@@ -11,7 +11,7 @@ import (
 func main() {
 	s := plexgo.New(
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithXPlexClientIdentifier("Postman"),
+		plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
 	)
 
 	ctx := context.Background()

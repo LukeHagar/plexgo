@@ -30,11 +30,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var timespan *int64 = plexgo.Int64(4)
+
     ctx := context.Background()
-    res, err := s.Statistics.GetStatistics(ctx, timespan)
+    res, err := s.Statistics.GetStatistics(ctx, plexgo.Int64(4))
     if err != nil {
         log.Fatal(err)
     }
@@ -50,15 +50,20 @@ func main() {
 | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | `ctx`                                                                                     | [context.Context](https://pkg.go.dev/context#Context)                                     | :heavy_check_mark:                                                                        | The context to use for the request.                                                       |                                                                                           |
 | `timespan`                                                                                | **int64*                                                                                  | :heavy_minus_sign:                                                                        | The timespan to retrieve statistics for<br/>the exact meaning of this parameter is not known<br/> | 4                                                                                         |
-
+| `opts`                                                                                    | [][operations.Option](../../models/operations/option.md)                                  | :heavy_minus_sign:                                                                        | The options for this request.                                                             |                                                                                           |
 
 ### Response
 
 **[*operations.GetStatisticsResponse](../../models/operations/getstatisticsresponse.md), error**
-| Error Object                        | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| sdkerrors.GetStatisticsResponseBody | 401                                 | application/json                    |
-| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
+
+### Errors
+
+| Error Object                                  | Status Code                                   | Content Type                                  |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| sdkerrors.GetStatisticsResponseBody           | 400                                           | application/json                              |
+| sdkerrors.GetStatisticsStatisticsResponseBody | 401                                           | application/json                              |
+| sdkerrors.SDKError                            | 4xx-5xx                                       | */*                                           |
+
 
 ## GetResourcesStatistics
 
@@ -78,11 +83,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var timespan *int64 = plexgo.Int64(4)
+
     ctx := context.Background()
-    res, err := s.Statistics.GetResourcesStatistics(ctx, timespan)
+    res, err := s.Statistics.GetResourcesStatistics(ctx, plexgo.Int64(4))
     if err != nil {
         log.Fatal(err)
     }
@@ -98,15 +103,20 @@ func main() {
 | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | `ctx`                                                                                     | [context.Context](https://pkg.go.dev/context#Context)                                     | :heavy_check_mark:                                                                        | The context to use for the request.                                                       |                                                                                           |
 | `timespan`                                                                                | **int64*                                                                                  | :heavy_minus_sign:                                                                        | The timespan to retrieve statistics for<br/>the exact meaning of this parameter is not known<br/> | 4                                                                                         |
-
+| `opts`                                                                                    | [][operations.Option](../../models/operations/option.md)                                  | :heavy_minus_sign:                                                                        | The options for this request.                                                             |                                                                                           |
 
 ### Response
 
 **[*operations.GetResourcesStatisticsResponse](../../models/operations/getresourcesstatisticsresponse.md), error**
-| Error Object                                 | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| sdkerrors.GetResourcesStatisticsResponseBody | 401                                          | application/json                             |
-| sdkerrors.SDKError                           | 4xx-5xx                                      | */*                                          |
+
+### Errors
+
+| Error Object                                           | Status Code                                            | Content Type                                           |
+| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
+| sdkerrors.GetResourcesStatisticsResponseBody           | 400                                                    | application/json                                       |
+| sdkerrors.GetResourcesStatisticsStatisticsResponseBody | 401                                                    | application/json                                       |
+| sdkerrors.SDKError                                     | 4xx-5xx                                                | */*                                                    |
+
 
 ## GetBandwidthStatistics
 
@@ -126,11 +136,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var timespan *int64 = plexgo.Int64(4)
+
     ctx := context.Background()
-    res, err := s.Statistics.GetBandwidthStatistics(ctx, timespan)
+    res, err := s.Statistics.GetBandwidthStatistics(ctx, plexgo.Int64(4))
     if err != nil {
         log.Fatal(err)
     }
@@ -146,12 +156,16 @@ func main() {
 | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | `ctx`                                                                                     | [context.Context](https://pkg.go.dev/context#Context)                                     | :heavy_check_mark:                                                                        | The context to use for the request.                                                       |                                                                                           |
 | `timespan`                                                                                | **int64*                                                                                  | :heavy_minus_sign:                                                                        | The timespan to retrieve statistics for<br/>the exact meaning of this parameter is not known<br/> | 4                                                                                         |
-
+| `opts`                                                                                    | [][operations.Option](../../models/operations/option.md)                                  | :heavy_minus_sign:                                                                        | The options for this request.                                                             |                                                                                           |
 
 ### Response
 
 **[*operations.GetBandwidthStatisticsResponse](../../models/operations/getbandwidthstatisticsresponse.md), error**
-| Error Object                                 | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| sdkerrors.GetBandwidthStatisticsResponseBody | 401                                          | application/json                             |
-| sdkerrors.SDKError                           | 4xx-5xx                                      | */*                                          |
+
+### Errors
+
+| Error Object                                           | Status Code                                            | Content Type                                           |
+| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
+| sdkerrors.GetBandwidthStatisticsResponseBody           | 400                                                    | application/json                                       |
+| sdkerrors.GetBandwidthStatisticsStatisticsResponseBody | 401                                                    | application/json                                       |
+| sdkerrors.SDKError                                     | 4xx-5xx                                                | */*                                                    |

@@ -42,15 +42,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var query string = "dylan"
 
-    var sectionID *float64 = plexgo.Float64(1516.53)
-
-    var limit *float64 = plexgo.Float64(5)
     ctx := context.Background()
-    res, err := s.Search.PerformSearch(ctx, query, sectionID, limit)
+    res, err := s.Search.PerformSearch(ctx, "dylan", nil, plexgo.Float64(5))
     if err != nil {
         log.Fatal(err)
     }
@@ -68,15 +64,20 @@ func main() {
 | `query`                                                                               | *string*                                                                              | :heavy_check_mark:                                                                    | The query term                                                                        | arnold                                                                                |
 | `sectionID`                                                                           | **float64*                                                                            | :heavy_minus_sign:                                                                    | This gives context to the search, and can result in re-ordering of search result hubs |                                                                                       |
 | `limit`                                                                               | **float64*                                                                            | :heavy_minus_sign:                                                                    | The number of items to return per hub                                                 | 5                                                                                     |
-
+| `opts`                                                                                | [][operations.Option](../../models/operations/option.md)                              | :heavy_minus_sign:                                                                    | The options for this request.                                                         |                                                                                       |
 
 ### Response
 
 **[*operations.PerformSearchResponse](../../models/operations/performsearchresponse.md), error**
-| Error Object                        | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| sdkerrors.PerformSearchResponseBody | 401                                 | application/json                    |
-| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| sdkerrors.PerformSearchResponseBody       | 400                                       | application/json                          |
+| sdkerrors.PerformSearchSearchResponseBody | 401                                       | application/json                          |
+| sdkerrors.SDKError                        | 4xx-5xx                                   | */*                                       |
+
 
 ## PerformVoiceSearch
 
@@ -100,15 +101,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var query string = "dead+poop"
 
-    var sectionID *float64 = plexgo.Float64(4094.8)
-
-    var limit *float64 = plexgo.Float64(5)
     ctx := context.Background()
-    res, err := s.Search.PerformVoiceSearch(ctx, query, sectionID, limit)
+    res, err := s.Search.PerformVoiceSearch(ctx, "dead+poop", nil, plexgo.Float64(5))
     if err != nil {
         log.Fatal(err)
     }
@@ -126,15 +123,20 @@ func main() {
 | `query`                                                                               | *string*                                                                              | :heavy_check_mark:                                                                    | The query term                                                                        | dead+poop                                                                             |
 | `sectionID`                                                                           | **float64*                                                                            | :heavy_minus_sign:                                                                    | This gives context to the search, and can result in re-ordering of search result hubs |                                                                                       |
 | `limit`                                                                               | **float64*                                                                            | :heavy_minus_sign:                                                                    | The number of items to return per hub                                                 | 5                                                                                     |
-
+| `opts`                                                                                | [][operations.Option](../../models/operations/option.md)                              | :heavy_minus_sign:                                                                    | The options for this request.                                                         |                                                                                       |
 
 ### Response
 
 **[*operations.PerformVoiceSearchResponse](../../models/operations/performvoicesearchresponse.md), error**
-| Error Object                             | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| sdkerrors.PerformVoiceSearchResponseBody | 401                                      | application/json                         |
-| sdkerrors.SDKError                       | 4xx-5xx                                  | */*                                      |
+
+### Errors
+
+| Error Object                                   | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| sdkerrors.PerformVoiceSearchResponseBody       | 400                                            | application/json                               |
+| sdkerrors.PerformVoiceSearchSearchResponseBody | 401                                            | application/json                               |
+| sdkerrors.SDKError                             | 4xx-5xx                                        | */*                                            |
+
 
 ## GetSearchResults
 
@@ -154,11 +156,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("Postman"),
+        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
     )
-    var query string = "110"
+
     ctx := context.Background()
-    res, err := s.Search.GetSearchResults(ctx, query)
+    res, err := s.Search.GetSearchResults(ctx, "110")
     if err != nil {
         log.Fatal(err)
     }
@@ -170,16 +172,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           | Example                                               |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |                                                       |
-| `query`                                               | *string*                                              | :heavy_check_mark:                                    | The search query string to use                        | 110                                                   |
-
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              | Example                                                  |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
+| `query`                                                  | *string*                                                 | :heavy_check_mark:                                       | The search query string to use                           | 110                                                      |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
 
 ### Response
 
 **[*operations.GetSearchResultsResponse](../../models/operations/getsearchresultsresponse.md), error**
-| Error Object                           | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| sdkerrors.GetSearchResultsResponseBody | 401                                    | application/json                       |
-| sdkerrors.SDKError                     | 4xx-5xx                                | */*                                    |
+
+### Errors
+
+| Error Object                                 | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| sdkerrors.GetSearchResultsResponseBody       | 400                                          | application/json                             |
+| sdkerrors.GetSearchResultsSearchResponseBody | 401                                          | application/json                             |
+| sdkerrors.SDKError                           | 4xx-5xx                                      | */*                                          |

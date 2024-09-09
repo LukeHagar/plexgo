@@ -1,30 +1,27 @@
-speakeasyVersion: 1.323.0
+speakeasyVersion: 1.393.0
 sources:
     my-source:
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:ff9779ff7b4bdff35d146a962e94b766578532ac129d6adff9883756f1e4e8ed
-        sourceBlobDigest: sha256:f5d953ec4a6fb0e4fc2a8fa79009d6d5c818c97394020a744172870ea27a0e32
+        sourceRevisionDigest: sha256:44184fe64938a688d21d58aa0e390471812eda6f10c9ca0145a7328cf31a4f0a
+        sourceBlobDigest: sha256:7257c51225e1fb6fa7de445fbe2f31151dc89771894c9b731a29ab01b504f503
         tags:
             - latest
-            - main
 targets:
     plexgo:
         source: my-source
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:ff9779ff7b4bdff35d146a962e94b766578532ac129d6adff9883756f1e4e8ed
-        sourceBlobDigest: sha256:f5d953ec4a6fb0e4fc2a8fa79009d6d5c818c97394020a744172870ea27a0e32
+        sourceRevisionDigest: sha256:44184fe64938a688d21d58aa0e390471812eda6f10c9ca0145a7328cf31a4f0a
+        sourceBlobDigest: sha256:7257c51225e1fb6fa7de445fbe2f31151dc89771894c9b731a29ab01b504f503
         codeSamplesNamespace: code-samples-go-plexgo
-        codeSamplesRevisionDigest: sha256:2ba78526af38dcbc157c79a2ffe44ed0a6746610f0fa145e806ad99d3f45dacb
-        outLocation: /github/workspace/repo
+        codeSamplesRevisionDigest: sha256:b29eb2b86eda1395b8ef060fcde42040e9f2865d4212aaa69ec7d96597da23c5
+        outLocation: /home/luke/github/plexgo
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
     sources:
         my-source:
             inputs:
-                - location: https://raw.githubusercontent.com/LukeHagar/plex-api-spec/main/plex-media-server-spec-dereferenced.yaml
-            registry:
-                location: registry.speakeasyapi.dev/lukehagar/lukehagar/my-source
+                - location: registry.speakeasyapi.dev/lukehagar/lukehagar/plex-api:main
     targets:
         plexgo:
             target: go
