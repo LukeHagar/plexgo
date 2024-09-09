@@ -3,10 +3,10 @@ id: dfa99515-01c0-42eb-9be5-ee212fd03eb3
 management:
   docChecksum: 06023774169418572a5ebabe14a70f3f
   docVersion: 0.0.3
-  speakeasyVersion: 1.393.0
+  speakeasyVersion: 1.393.1
   generationVersion: 2.413.0
-  releaseVersion: 0.11.0
-  configChecksum: a52d75eabaa4aca024abe40b1a5ceb64
+  releaseVersion: 0.11.1
+  configChecksum: 82d2664097fb7735d616a6cfb85ff21c
   repoURL: https://github.com/LukeHagar/plexgo.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexgo
@@ -945,6 +945,7 @@ examples:
           application/json: {"errors": []}
         "401":
           application/json: {"errors": []}
+        "200": {}
   getServerPreferences:
     speakeasy-default-get-server-preferences:
       responses:
@@ -1014,6 +1015,7 @@ examples:
           application/json: {"errors": []}
         "401":
           application/json: {"errors": []}
+        "200": {}
   getServerList:
     speakeasy-default-get-server-list:
       responses:
@@ -1071,6 +1073,7 @@ examples:
           application/json: {"errors": []}
         "401":
           application/json: {"errors": []}
+        "200": {}
   get-thumb-image:
     speakeasy-default-get-thumb-image:
       parameters:
@@ -1087,6 +1090,7 @@ examples:
           application/json: {"errors": []}
         "401":
           application/json: {"errors": []}
+        "200": {}
   getTimeline:
     "":
       parameters:
@@ -1138,6 +1142,7 @@ examples:
           application/json: {"errors": []}
         "401":
           application/json: {"errors": []}
+        "200": {}
   cancelServerActivities:
     "":
       parameters:
@@ -1505,6 +1510,7 @@ examples:
           application/json: {"errors": []}
         "401":
           application/json: {"errors": []}
+        "200": {}
   logLine:
     speakeasy-default-log-line:
       parameters:
