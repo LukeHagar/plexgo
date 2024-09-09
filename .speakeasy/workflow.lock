@@ -1,4 +1,4 @@
-speakeasyVersion: 1.393.0
+speakeasyVersion: 1.393.1
 sources:
     my-source:
         sourceNamespace: my-source
@@ -6,6 +6,7 @@ sources:
         sourceBlobDigest: sha256:7257c51225e1fb6fa7de445fbe2f31151dc89771894c9b731a29ab01b504f503
         tags:
             - latest
+            - main
 targets:
     plexgo:
         source: my-source
@@ -13,8 +14,8 @@ targets:
         sourceRevisionDigest: sha256:44184fe64938a688d21d58aa0e390471812eda6f10c9ca0145a7328cf31a4f0a
         sourceBlobDigest: sha256:7257c51225e1fb6fa7de445fbe2f31151dc89771894c9b731a29ab01b504f503
         codeSamplesNamespace: code-samples-go-plexgo
-        codeSamplesRevisionDigest: sha256:b29eb2b86eda1395b8ef060fcde42040e9f2865d4212aaa69ec7d96597da23c5
-        outLocation: /home/luke/github/plexgo
+        codeSamplesRevisionDigest: sha256:367216afa9fb24c1dc1897cadc3feb86418148d80ebe2f8263ec65dbba5f2cee
+        outLocation: /github/workspace/repo
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
