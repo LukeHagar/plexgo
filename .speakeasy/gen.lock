@@ -3,10 +3,10 @@ id: dfa99515-01c0-42eb-9be5-ee212fd03eb3
 management:
   docChecksum: a6fee1797b2da7ccbaf7743772a40b56
   docVersion: 0.0.3
-  speakeasyVersion: 1.395.1
+  speakeasyVersion: 1.396.2
   generationVersion: 2.415.0
-  releaseVersion: 0.11.4
-  configChecksum: c89bebf401f83264d93f92be796261de
+  releaseVersion: 0.11.5
+  configChecksum: 16637717afb4ca0b45934a614c19756d
   repoURL: https://github.com/LukeHagar/plexgo.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexgo
