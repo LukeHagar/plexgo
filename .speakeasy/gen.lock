@@ -3,10 +3,10 @@ id: dfa99515-01c0-42eb-9be5-ee212fd03eb3
 management:
   docChecksum: a6fee1797b2da7ccbaf7743772a40b56
   docVersion: 0.0.3
-  speakeasyVersion: 1.396.2
-  generationVersion: 2.415.0
-  releaseVersion: 0.11.5
-  configChecksum: 16637717afb4ca0b45934a614c19756d
+  speakeasyVersion: 1.396.6
+  generationVersion: 2.415.6
+  releaseVersion: 0.11.6
+  configChecksum: 284427da3d76fd704943a4c12e31047b
   repoURL: https://github.com/LukeHagar/plexgo.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexgo
@@ -15,7 +15,7 @@ features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.6
-    core: 3.5.6
+    core: 3.5.8
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.1
     downloadStreams: 0.1.2

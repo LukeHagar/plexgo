@@ -73,35 +73,20 @@ func main() {
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
-### [Server](docs/sdks/server/README.md)
-
-* [GetServerCapabilities](docs/sdks/server/README.md#getservercapabilities) - Get Server Capabilities
-* [GetServerPreferences](docs/sdks/server/README.md#getserverpreferences) - Get Server Preferences
-* [GetAvailableClients](docs/sdks/server/README.md#getavailableclients) - Get Available Clients
-* [GetDevices](docs/sdks/server/README.md#getdevices) - Get Devices
-* [GetServerIdentity](docs/sdks/server/README.md#getserveridentity) - Get Server Identity
-* [GetMyPlexAccount](docs/sdks/server/README.md#getmyplexaccount) - Get MyPlex Account
-* [GetResizedPhoto](docs/sdks/server/README.md#getresizedphoto) - Get a Resized Photo
-* [GetMediaProviders](docs/sdks/server/README.md#getmediaproviders) - Get Media Providers
-* [GetServerList](docs/sdks/server/README.md#getserverlist) - Get Server List
-
-### [Media](docs/sdks/media/README.md)
-
-* [MarkPlayed](docs/sdks/media/README.md#markplayed) - Mark Media Played
-* [MarkUnplayed](docs/sdks/media/README.md#markunplayed) - Mark Media Unplayed
-* [UpdatePlayProgress](docs/sdks/media/README.md#updateplayprogress) - Update Media Play Progress
-* [GetBannerImage](docs/sdks/media/README.md#getbannerimage) - Get Banner Image
-* [GetThumbImage](docs/sdks/media/README.md#getthumbimage) - Get Thumb Image
-
-### [Video](docs/sdks/video/README.md)
-
-* [GetTimeline](docs/sdks/video/README.md#gettimeline) - Get the timeline for a media item
-* [StartUniversalTranscode](docs/sdks/video/README.md#startuniversaltranscode) - Start Universal Transcode
+<details open>
+<summary>Available methods</summary>
 
 ### [Activities](docs/sdks/activities/README.md)
 
 * [GetServerActivities](docs/sdks/activities/README.md#getserveractivities) - Get Server Activities
 * [CancelServerActivities](docs/sdks/activities/README.md#cancelserveractivities) - Cancel Server Activities
+
+### [Authentication](docs/sdks/authentication/README.md)
+
+* [GetTransientToken](docs/sdks/authentication/README.md#gettransienttoken) - Get a Transient Token
+* [GetSourceConnectionInformation](docs/sdks/authentication/README.md#getsourceconnectioninformation) - Get Source Connection Information
+* [GetTokenDetails](docs/sdks/authentication/README.md#gettokendetails) - Get Token Details
+* [PostUsersSignInData](docs/sdks/authentication/README.md#postuserssignindata) - Get User Sign In Data
 
 ### [Butler](docs/sdks/butler/README.md)
 
@@ -111,26 +96,10 @@ func main() {
 * [StartTask](docs/sdks/butler/README.md#starttask) - Start a single Butler task
 * [StopTask](docs/sdks/butler/README.md#stoptask) - Stop a single Butler task
 
-### [Plex](docs/sdks/plex/README.md)
-
-* [GetCompanionsData](docs/sdks/plex/README.md#getcompanionsdata) - Get Companions Data
-* [GetUserFriends](docs/sdks/plex/README.md#getuserfriends) - Get list of friends of the user logged in
-* [GetGeoData](docs/sdks/plex/README.md#getgeodata) - Get Geo Data
-* [GetHomeData](docs/sdks/plex/README.md#gethomedata) - Get Plex Home Data
-* [GetServerResources](docs/sdks/plex/README.md#getserverresources) - Get Server Resources
-* [GetPin](docs/sdks/plex/README.md#getpin) - Get a Pin
-* [GetTokenByPinID](docs/sdks/plex/README.md#gettokenbypinid) - Get Access Token by PinId
-
 ### [Hubs](docs/sdks/hubs/README.md)
 
 * [GetGlobalHubs](docs/sdks/hubs/README.md#getglobalhubs) - Get Global Hubs
 * [GetLibraryHubs](docs/sdks/hubs/README.md#getlibraryhubs) - Get library specific hubs
-
-### [Search](docs/sdks/search/README.md)
-
-* [PerformSearch](docs/sdks/search/README.md#performsearch) - Perform a search
-* [PerformVoiceSearch](docs/sdks/search/README.md#performvoicesearch) - Perform a voice search
-* [GetSearchResults](docs/sdks/search/README.md#getsearchresults) - Get Search Results
 
 ### [Library](docs/sdks/library/README.md)
 
@@ -147,15 +116,19 @@ func main() {
 * [GetTopWatchedContent](docs/sdks/library/README.md#gettopwatchedcontent) - Get Top Watched Content
 * [GetOnDeck](docs/sdks/library/README.md#getondeck) - Get On Deck
 
-### [Watchlist](docs/sdks/watchlist/README.md)
-
-* [GetWatchList](docs/sdks/watchlist/README.md#getwatchlist) - Get User Watchlist
-
 ### [Log](docs/sdks/log/README.md)
 
 * [LogLine](docs/sdks/log/README.md#logline) - Logging a single line message.
 * [LogMultiLine](docs/sdks/log/README.md#logmultiline) - Logging a multi-line message
 * [EnablePaperTrail](docs/sdks/log/README.md#enablepapertrail) - Enabling Papertrail
+
+### [Media](docs/sdks/media/README.md)
+
+* [MarkPlayed](docs/sdks/media/README.md#markplayed) - Mark Media Played
+* [MarkUnplayed](docs/sdks/media/README.md#markunplayed) - Mark Media Unplayed
+* [UpdatePlayProgress](docs/sdks/media/README.md#updateplayprogress) - Update Media Play Progress
+* [GetBannerImage](docs/sdks/media/README.md#getbannerimage) - Get Banner Image
+* [GetThumbImage](docs/sdks/media/README.md#getthumbimage) - Get Thumb Image
 
 ### [Playlists](docs/sdks/playlists/README.md)
 
@@ -169,18 +142,34 @@ func main() {
 * [AddPlaylistContents](docs/sdks/playlists/README.md#addplaylistcontents) - Adding to a Playlist
 * [UploadPlaylist](docs/sdks/playlists/README.md#uploadplaylist) - Upload Playlist
 
-### [Authentication](docs/sdks/authentication/README.md)
+### [Plex](docs/sdks/plex/README.md)
 
-* [GetTransientToken](docs/sdks/authentication/README.md#gettransienttoken) - Get a Transient Token
-* [GetSourceConnectionInformation](docs/sdks/authentication/README.md#getsourceconnectioninformation) - Get Source Connection Information
-* [GetTokenDetails](docs/sdks/authentication/README.md#gettokendetails) - Get Token Details
-* [PostUsersSignInData](docs/sdks/authentication/README.md#postuserssignindata) - Get User Sign In Data
+* [GetCompanionsData](docs/sdks/plex/README.md#getcompanionsdata) - Get Companions Data
+* [GetUserFriends](docs/sdks/plex/README.md#getuserfriends) - Get list of friends of the user logged in
+* [GetGeoData](docs/sdks/plex/README.md#getgeodata) - Get Geo Data
+* [GetHomeData](docs/sdks/plex/README.md#gethomedata) - Get Plex Home Data
+* [GetServerResources](docs/sdks/plex/README.md#getserverresources) - Get Server Resources
+* [GetPin](docs/sdks/plex/README.md#getpin) - Get a Pin
+* [GetTokenByPinID](docs/sdks/plex/README.md#gettokenbypinid) - Get Access Token by PinId
 
-### [Statistics](docs/sdks/statistics/README.md)
 
-* [GetStatistics](docs/sdks/statistics/README.md#getstatistics) - Get Media Statistics
-* [GetResourcesStatistics](docs/sdks/statistics/README.md#getresourcesstatistics) - Get Resources Statistics
-* [GetBandwidthStatistics](docs/sdks/statistics/README.md#getbandwidthstatistics) - Get Bandwidth Statistics
+### [Search](docs/sdks/search/README.md)
+
+* [PerformSearch](docs/sdks/search/README.md#performsearch) - Perform a search
+* [PerformVoiceSearch](docs/sdks/search/README.md#performvoicesearch) - Perform a voice search
+* [GetSearchResults](docs/sdks/search/README.md#getsearchresults) - Get Search Results
+
+### [Server](docs/sdks/server/README.md)
+
+* [GetServerCapabilities](docs/sdks/server/README.md#getservercapabilities) - Get Server Capabilities
+* [GetServerPreferences](docs/sdks/server/README.md#getserverpreferences) - Get Server Preferences
+* [GetAvailableClients](docs/sdks/server/README.md#getavailableclients) - Get Available Clients
+* [GetDevices](docs/sdks/server/README.md#getdevices) - Get Devices
+* [GetServerIdentity](docs/sdks/server/README.md#getserveridentity) - Get Server Identity
+* [GetMyPlexAccount](docs/sdks/server/README.md#getmyplexaccount) - Get MyPlex Account
+* [GetResizedPhoto](docs/sdks/server/README.md#getresizedphoto) - Get a Resized Photo
+* [GetMediaProviders](docs/sdks/server/README.md#getmediaproviders) - Get Media Providers
+* [GetServerList](docs/sdks/server/README.md#getserverlist) - Get Server List
 
 ### [Sessions](docs/sdks/sessions/README.md)
 
@@ -189,11 +178,28 @@ func main() {
 * [GetTranscodeSessions](docs/sdks/sessions/README.md#gettranscodesessions) - Get Transcode Sessions
 * [StopTranscodeSession](docs/sdks/sessions/README.md#stoptranscodesession) - Stop a Transcode Session
 
+### [Statistics](docs/sdks/statistics/README.md)
+
+* [GetStatistics](docs/sdks/statistics/README.md#getstatistics) - Get Media Statistics
+* [GetResourcesStatistics](docs/sdks/statistics/README.md#getresourcesstatistics) - Get Resources Statistics
+* [GetBandwidthStatistics](docs/sdks/statistics/README.md#getbandwidthstatistics) - Get Bandwidth Statistics
+
 ### [Updater](docs/sdks/updater/README.md)
 
 * [GetUpdateStatus](docs/sdks/updater/README.md#getupdatestatus) - Querying status of updates
 * [CheckForUpdates](docs/sdks/updater/README.md#checkforupdates) - Checking for updates
 * [ApplyUpdates](docs/sdks/updater/README.md#applyupdates) - Apply Updates
+
+### [Video](docs/sdks/video/README.md)
+
+* [GetTimeline](docs/sdks/video/README.md#gettimeline) - Get the timeline for a media item
+* [StartUniversalTranscode](docs/sdks/video/README.md#startuniversaltranscode) - Start Universal Transcode
+
+### [Watchlist](docs/sdks/watchlist/README.md)
+
+* [GetWatchList](docs/sdks/watchlist/README.md#getwatchlist) - Get User Watchlist
+
+</details>
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Retries [retries] -->

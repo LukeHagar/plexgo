@@ -113,8 +113,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Log.LogMultiLine(ctx, "level=4&message=Test%20message%201&source=postman\n" +
-"level=3&message=Test%20message%202&source=postman\n" +
-"level=1&message=Test%20message%203&source=postman")
+    "level=3&message=Test%20message%202&source=postman\n" +
+    "level=1&message=Test%20message%203&source=postman")
     if err != nil {
         log.Fatal(err)
     }

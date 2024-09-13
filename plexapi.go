@@ -44,6 +44,9 @@ func Float32(f float32) *float32 { return &f }
 // Float64 provides a helper function to return a pointer to a float64
 func Float64(f float64) *float64 { return &f }
 
+// Pointer provides a helper function to return a pointer to a type
+func Pointer[T any](v T) *T { return &v }
+
 type sdkConfiguration struct {
 	Client            HTTPClient
 	Security          func(context.Context) (interface{}, error)
@@ -280,9 +283,9 @@ func New(opts ...SDKOption) *PlexAPI {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.3",
-			SDKVersion:        "0.11.5",
-			GenVersion:        "2.415.0",
-			UserAgent:         "speakeasy-sdk/go 0.11.5 2.415.0 0.0.3 github.com/LukeHagar/plexgo",
+			SDKVersion:        "0.11.6",
+			GenVersion:        "2.415.6",
+			UserAgent:         "speakeasy-sdk/go 0.11.6 2.415.6 0.0.3 github.com/LukeHagar/plexgo",
 			Globals:           globals.Globals{},
 			ServerDefaults: []map[string]string{
 				{
