@@ -5,8 +5,8 @@ management:
   docVersion: 0.0.3
   speakeasyVersion: 1.396.9
   generationVersion: 2.415.7
-  releaseVersion: 0.11.8
-  configChecksum: 87b1b01281a9ead088c34edd6729abf1
+  releaseVersion: 0.11.9
+  configChecksum: ade06c23c7d79e99209e20f452d832bf
   repoURL: https://github.com/LukeHagar/plexgo.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexgo

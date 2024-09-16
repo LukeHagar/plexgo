@@ -2,7 +2,7 @@ speakeasyVersion: 1.396.9
 sources:
     my-source:
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:6b8ecb85ac3892ce1c244c57469baf7d67f0cd87ca24a33ab403fb7863b00fe4
+        sourceRevisionDigest: sha256:92a2a2049bfbf67bea601a6b1b77d274e83a2d3b6968a0bc02dc290b21c7689d
         sourceBlobDigest: sha256:f7e2709f52370dff16c1851a7a4e44a89f2e978e9cae335bffc10625950b3bd9
         tags:
             - latest
@@ -11,10 +11,10 @@ targets:
     plexgo:
         source: my-source
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:6b8ecb85ac3892ce1c244c57469baf7d67f0cd87ca24a33ab403fb7863b00fe4
+        sourceRevisionDigest: sha256:92a2a2049bfbf67bea601a6b1b77d274e83a2d3b6968a0bc02dc290b21c7689d
         sourceBlobDigest: sha256:f7e2709f52370dff16c1851a7a4e44a89f2e978e9cae335bffc10625950b3bd9
         codeSamplesNamespace: code-samples-go-plexgo
-        codeSamplesRevisionDigest: sha256:2b3128e49bca325c20def110619bc1cb5921fb3ed201860407b1c5f92d9dc5a0
+        codeSamplesRevisionDigest: sha256:6ab85c732d9eaf72d5f8fb16fe7796d27784b843ae11f7c4b95f9c3682769777
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
