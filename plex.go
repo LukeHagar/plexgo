@@ -1279,11 +1279,11 @@ func (s *Plex) GetPin(ctx context.Context, request operations.GetPinRequest, opt
 	}
 
 	globals := operations.GetPinGlobals{
-		ClientID:      s.sdkConfiguration.Globals.ClientID,
-		ClientName:    s.sdkConfiguration.Globals.ClientName,
-		DeviceName:    s.sdkConfiguration.Globals.DeviceName,
-		ClientVersion: s.sdkConfiguration.Globals.ClientVersion,
-		XPlexPlatform: s.sdkConfiguration.Globals.XPlexPlatform,
+		ClientID:       s.sdkConfiguration.Globals.ClientID,
+		ClientName:     s.sdkConfiguration.Globals.ClientName,
+		DeviceName:     s.sdkConfiguration.Globals.DeviceName,
+		ClientVersion:  s.sdkConfiguration.Globals.ClientVersion,
+		ClientPlatform: s.sdkConfiguration.Globals.ClientPlatform,
 	}
 
 	o := operations.Options{}

@@ -34,9 +34,9 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
         plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
         plexgo.WithClientName("Plex Web"),
-        plexgo.WithDeviceName("Linux"),
         plexgo.WithClientVersion("4.133.0"),
-        plexgo.WithXPlexPlatform("Chrome"),
+        plexgo.WithClientPlatform("Chrome"),
+        plexgo.WithDeviceName("Linux"),
     )
 
     ctx := context.Background()
@@ -95,9 +95,9 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
         plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
         plexgo.WithClientName("Plex Web"),
-        plexgo.WithDeviceName("Linux"),
         plexgo.WithClientVersion("4.133.0"),
-        plexgo.WithXPlexPlatform("Chrome"),
+        plexgo.WithClientPlatform("Chrome"),
+        plexgo.WithDeviceName("Linux"),
     )
 
     ctx := context.Background()
@@ -152,9 +152,9 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
         plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
         plexgo.WithClientName("Plex Web"),
-        plexgo.WithDeviceName("Linux"),
         plexgo.WithClientVersion("4.133.0"),
-        plexgo.WithXPlexPlatform("Chrome"),
+        plexgo.WithClientPlatform("Chrome"),
+        plexgo.WithDeviceName("Linux"),
     )
 
     ctx := context.Background()
@@ -214,9 +214,9 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
         plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
         plexgo.WithClientName("Plex Web"),
-        plexgo.WithDeviceName("Linux"),
         plexgo.WithClientVersion("4.133.0"),
-        plexgo.WithXPlexPlatform("Chrome"),
+        plexgo.WithClientPlatform("Chrome"),
+        plexgo.WithDeviceName("Linux"),
     )
 
     ctx := context.Background()
@@ -273,9 +273,9 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
         plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
         plexgo.WithClientName("Plex Web"),
-        plexgo.WithDeviceName("Linux"),
         plexgo.WithClientVersion("4.133.0"),
-        plexgo.WithXPlexPlatform("Chrome"),
+        plexgo.WithClientPlatform("Chrome"),
+        plexgo.WithDeviceName("Linux"),
     )
 
     ctx := context.Background()

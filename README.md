@@ -56,9 +56,9 @@ func main() {
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
 		plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
 		plexgo.WithClientName("Plex Web"),
-		plexgo.WithDeviceName("Linux"),
 		plexgo.WithClientVersion("4.133.0"),
-		plexgo.WithXPlexPlatform("Chrome"),
+		plexgo.WithClientPlatform("Chrome"),
+		plexgo.WithDeviceName("Linux"),
 	)
 
 	ctx := context.Background()
@@ -228,9 +228,9 @@ func main() {
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
 		plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
 		plexgo.WithClientName("Plex Web"),
-		plexgo.WithDeviceName("Linux"),
 		plexgo.WithClientVersion("4.133.0"),
-		plexgo.WithXPlexPlatform("Chrome"),
+		plexgo.WithClientPlatform("Chrome"),
+		plexgo.WithDeviceName("Linux"),
 	)
 
 	ctx := context.Background()
@@ -282,9 +282,9 @@ func main() {
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
 		plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
 		plexgo.WithClientName("Plex Web"),
-		plexgo.WithDeviceName("Linux"),
 		plexgo.WithClientVersion("4.133.0"),
-		plexgo.WithXPlexPlatform("Chrome"),
+		plexgo.WithClientPlatform("Chrome"),
+		plexgo.WithDeviceName("Linux"),
 	)
 
 	ctx := context.Background()
@@ -329,9 +329,9 @@ func main() {
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
 		plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
 		plexgo.WithClientName("Plex Web"),
-		plexgo.WithDeviceName("Linux"),
 		plexgo.WithClientVersion("4.133.0"),
-		plexgo.WithXPlexPlatform("Chrome"),
+		plexgo.WithClientPlatform("Chrome"),
+		plexgo.WithDeviceName("Linux"),
 	)
 
 	ctx := context.Background()
@@ -389,9 +389,9 @@ func main() {
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
 		plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
 		plexgo.WithClientName("Plex Web"),
-		plexgo.WithDeviceName("Linux"),
 		plexgo.WithClientVersion("4.133.0"),
-		plexgo.WithXPlexPlatform("Chrome"),
+		plexgo.WithClientPlatform("Chrome"),
+		plexgo.WithDeviceName("Linux"),
 	)
 
 	ctx := context.Background()
@@ -431,9 +431,9 @@ func main() {
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
 		plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
 		plexgo.WithClientName("Plex Web"),
-		plexgo.WithDeviceName("Linux"),
 		plexgo.WithClientVersion("4.133.0"),
-		plexgo.WithXPlexPlatform("Chrome"),
+		plexgo.WithClientPlatform("Chrome"),
+		plexgo.WithDeviceName("Linux"),
 	)
 
 	ctx := context.Background()
@@ -466,9 +466,9 @@ func main() {
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
 		plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
 		plexgo.WithClientName("Plex Web"),
-		plexgo.WithDeviceName("Linux"),
 		plexgo.WithClientVersion("4.133.0"),
-		plexgo.WithXPlexPlatform("Chrome"),
+		plexgo.WithClientPlatform("Chrome"),
+		plexgo.WithDeviceName("Linux"),
 	)
 
 	ctx := context.Background()
@@ -539,9 +539,9 @@ func main() {
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
 		plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
 		plexgo.WithClientName("Plex Web"),
-		plexgo.WithDeviceName("Linux"),
 		plexgo.WithClientVersion("4.133.0"),
-		plexgo.WithXPlexPlatform("Chrome"),
+		plexgo.WithClientPlatform("Chrome"),
+		plexgo.WithDeviceName("Linux"),
 	)
 
 	ctx := context.Background()
@@ -602,9 +602,9 @@ This is used to track the client application and its usage
 (UUID, serial number, or other number unique per device)
  |
 | ClientName | string |  | The ClientName parameter. |
-| DeviceName | string |  | The DeviceName parameter. |
 | ClientVersion | string |  | The ClientVersion parameter. |
-| XPlexPlatform | string |  | The XPlexPlatform parameter. |
+| ClientPlatform | string |  | The ClientPlatform parameter. |
+| DeviceName | string |  | The DeviceName parameter. |
 
 
 ### Example
@@ -624,9 +624,9 @@ func main() {
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
 		plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
 		plexgo.WithClientName("Plex Web"),
-		plexgo.WithDeviceName("Linux"),
 		plexgo.WithClientVersion("4.133.0"),
-		plexgo.WithXPlexPlatform("Chrome"),
+		plexgo.WithClientPlatform("Chrome"),
+		plexgo.WithDeviceName("Linux"),
 	)
 
 	ctx := context.Background()
