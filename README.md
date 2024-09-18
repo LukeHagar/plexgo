@@ -54,7 +54,11 @@ import (
 func main() {
 	s := plexgo.New(
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
+		plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
+		plexgo.WithClientName("Plex Web"),
+		plexgo.WithDeviceName("Linux"),
+		plexgo.WithClientVersion("4.133.0"),
+		plexgo.WithXPlexPlatform("Chrome"),
 	)
 
 	ctx := context.Background()
@@ -222,7 +226,11 @@ import (
 func main() {
 	s := plexgo.New(
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
+		plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
+		plexgo.WithClientName("Plex Web"),
+		plexgo.WithDeviceName("Linux"),
+		plexgo.WithClientVersion("4.133.0"),
+		plexgo.WithXPlexPlatform("Chrome"),
 	)
 
 	ctx := context.Background()
@@ -272,7 +280,11 @@ func main() {
 				RetryConnectionErrors: false,
 			}),
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
+		plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
+		plexgo.WithClientName("Plex Web"),
+		plexgo.WithDeviceName("Linux"),
+		plexgo.WithClientVersion("4.133.0"),
+		plexgo.WithXPlexPlatform("Chrome"),
 	)
 
 	ctx := context.Background()
@@ -315,7 +327,11 @@ import (
 func main() {
 	s := plexgo.New(
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
+		plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
+		plexgo.WithClientName("Plex Web"),
+		plexgo.WithDeviceName("Linux"),
+		plexgo.WithClientVersion("4.133.0"),
+		plexgo.WithXPlexPlatform("Chrome"),
 	)
 
 	ctx := context.Background()
@@ -371,7 +387,11 @@ func main() {
 	s := plexgo.New(
 		plexgo.WithServerIndex(0),
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
+		plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
+		plexgo.WithClientName("Plex Web"),
+		plexgo.WithDeviceName("Linux"),
+		plexgo.WithClientVersion("4.133.0"),
+		plexgo.WithXPlexPlatform("Chrome"),
 	)
 
 	ctx := context.Background()
@@ -409,7 +429,11 @@ func main() {
 	s := plexgo.New(
 		plexgo.WithServerURL("{protocol}://{ip}:{port}"),
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
+		plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
+		plexgo.WithClientName("Plex Web"),
+		plexgo.WithDeviceName("Linux"),
+		plexgo.WithClientVersion("4.133.0"),
+		plexgo.WithXPlexPlatform("Chrome"),
 	)
 
 	ctx := context.Background()
@@ -440,7 +464,11 @@ import (
 func main() {
 	s := plexgo.New(
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
+		plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
+		plexgo.WithClientName("Plex Web"),
+		plexgo.WithDeviceName("Linux"),
+		plexgo.WithClientVersion("4.133.0"),
+		plexgo.WithXPlexPlatform("Chrome"),
 	)
 
 	ctx := context.Background()
@@ -509,7 +537,11 @@ import (
 func main() {
 	s := plexgo.New(
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
+		plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
+		plexgo.WithClientName("Plex Web"),
+		plexgo.WithDeviceName("Linux"),
+		plexgo.WithClientVersion("4.133.0"),
+		plexgo.WithXPlexPlatform("Chrome"),
 	)
 
 	ctx := context.Background()
@@ -554,21 +586,25 @@ d6 := types.MustDateFromString("2019-01-01") // returns types.Date and panics on
 <!-- Start Global Parameters [global-parameters] -->
 ## Global Parameters
 
-A parameter is configured globally. This parameter may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, This global value will be used as the default on the operations that use it. When such operations are called, there is a place in each to override the global value, if needed.
+Certain parameters are configured globally. These parameters may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, These global values will be used as defaults on the operations that use them. When such operations are called, there is a place in each to override the global value, if needed.
 
-For example, you can set `X-Plex-Client-Identifier` to `"gcgzw5rz2xovp84b4vha3a40"` at SDK initialization and then you do not have to pass the same value on calls to operations like `GetServerResources`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
+For example, you can set `ClientID` to `"gcgzw5rz2xovp84b4vha3a40"` at SDK initialization and then you do not have to pass the same value on calls to operations like `GetServerResources`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
 
 
 ### Available Globals
 
-The following global parameter is available.
+The following global parameters are available.
 
 | Name | Type | Required | Description |
 | ---- | ---- |:--------:| ----------- |
-| XPlexClientIdentifier | string |  | The unique identifier for the client application
+| ClientID | string |  | The unique identifier for the client application
 This is used to track the client application and its usage
 (UUID, serial number, or other number unique per device)
  |
+| ClientName | string |  | The ClientName parameter. |
+| DeviceName | string |  | The DeviceName parameter. |
+| ClientVersion | string |  | The ClientVersion parameter. |
+| XPlexPlatform | string |  | The XPlexPlatform parameter. |
 
 
 ### Example
@@ -586,7 +622,11 @@ import (
 func main() {
 	s := plexgo.New(
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
+		plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
+		plexgo.WithClientName("Plex Web"),
+		plexgo.WithDeviceName("Linux"),
+		plexgo.WithClientVersion("4.133.0"),
+		plexgo.WithXPlexPlatform("Chrome"),
 	)
 
 	ctx := context.Background()

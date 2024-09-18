@@ -17,14 +17,14 @@ type GetTokenByPinIDGlobals struct {
 	// This is used to track the client application and its usage
 	// (UUID, serial number, or other number unique per device)
 	//
-	XPlexClientIdentifier *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
+	ClientID *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
 }
 
-func (o *GetTokenByPinIDGlobals) GetXPlexClientIdentifier() *string {
+func (o *GetTokenByPinIDGlobals) GetClientID() *string {
 	if o == nil {
 		return nil
 	}
-	return o.XPlexClientIdentifier
+	return o.ClientID
 }
 
 type GetTokenByPinIDRequest struct {
@@ -32,16 +32,16 @@ type GetTokenByPinIDRequest struct {
 	// This is used to track the client application and its usage
 	// (UUID, serial number, or other number unique per device)
 	//
-	XPlexClientIdentifier *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
+	ClientID *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
 	// The PinID to retrieve an access token for
 	PinID int64 `pathParam:"style=simple,explode=false,name=pinID"`
 }
 
-func (o *GetTokenByPinIDRequest) GetXPlexClientIdentifier() *string {
+func (o *GetTokenByPinIDRequest) GetClientID() *string {
 	if o == nil {
 		return nil
 	}
-	return o.XPlexClientIdentifier
+	return o.ClientID
 }
 
 func (o *GetTokenByPinIDRequest) GetPinID() int64 {

@@ -736,7 +736,7 @@ func (s *Authentication) GetTokenDetails(ctx context.Context, opts ...operations
 
 // PostUsersSignInData - Get User Sign In Data
 // Sign in user with username and password and return user data with Plex authentication token
-func (s *Authentication) PostUsersSignInData(ctx context.Context, xPlexClientIdentifier *string, requestBody *operations.PostUsersSignInDataRequestBody, opts ...operations.Option) (*operations.PostUsersSignInDataResponse, error) {
+func (s *Authentication) PostUsersSignInData(ctx context.Context, clientID *string, requestBody *operations.PostUsersSignInDataRequestBody, opts ...operations.Option) (*operations.PostUsersSignInDataResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "post-users-sign-in-data",
@@ -745,12 +745,12 @@ func (s *Authentication) PostUsersSignInData(ctx context.Context, xPlexClientIde
 	}
 
 	request := operations.PostUsersSignInDataRequest{
-		XPlexClientIdentifier: xPlexClientIdentifier,
-		RequestBody:           requestBody,
+		ClientID:    clientID,
+		RequestBody: requestBody,
 	}
 
 	globals := operations.PostUsersSignInDataGlobals{
-		XPlexClientIdentifier: s.sdkConfiguration.Globals.XPlexClientIdentifier,
+		ClientID: s.sdkConfiguration.Globals.ClientID,
 	}
 
 	o := operations.Options{}

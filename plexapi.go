@@ -257,10 +257,38 @@ func WithSecuritySource(security func(context.Context) (components.Security, err
 	}
 }
 
-// WithXPlexClientIdentifier allows setting the XPlexClientIdentifier parameter for all supported operations
-func WithXPlexClientIdentifier(xPlexClientIdentifier string) SDKOption {
+// WithClientID allows setting the ClientID parameter for all supported operations
+func WithClientID(clientID string) SDKOption {
 	return func(sdk *PlexAPI) {
-		sdk.sdkConfiguration.Globals.XPlexClientIdentifier = &xPlexClientIdentifier
+		sdk.sdkConfiguration.Globals.ClientID = &clientID
+	}
+}
+
+// WithClientName allows setting the ClientName parameter for all supported operations
+func WithClientName(clientName string) SDKOption {
+	return func(sdk *PlexAPI) {
+		sdk.sdkConfiguration.Globals.ClientName = &clientName
+	}
+}
+
+// WithDeviceName allows setting the DeviceName parameter for all supported operations
+func WithDeviceName(deviceName string) SDKOption {
+	return func(sdk *PlexAPI) {
+		sdk.sdkConfiguration.Globals.DeviceName = &deviceName
+	}
+}
+
+// WithClientVersion allows setting the ClientVersion parameter for all supported operations
+func WithClientVersion(clientVersion string) SDKOption {
+	return func(sdk *PlexAPI) {
+		sdk.sdkConfiguration.Globals.ClientVersion = &clientVersion
+	}
+}
+
+// WithXPlexPlatform allows setting the XPlexPlatform parameter for all supported operations
+func WithXPlexPlatform(xPlexPlatform string) SDKOption {
+	return func(sdk *PlexAPI) {
+		sdk.sdkConfiguration.Globals.XPlexPlatform = &xPlexPlatform
 	}
 }
 
@@ -283,9 +311,9 @@ func New(opts ...SDKOption) *PlexAPI {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.3",
-			SDKVersion:        "0.11.10",
+			SDKVersion:        "0.11.11",
 			GenVersion:        "2.415.8",
-			UserAgent:         "speakeasy-sdk/go 0.11.10 2.415.8 0.0.3 github.com/LukeHagar/plexgo",
+			UserAgent:         "speakeasy-sdk/go 0.11.11 2.415.8 0.0.3 github.com/LukeHagar/plexgo",
 			Globals:           globals.Globals{},
 			ServerDefaults: []map[string]string{
 				{

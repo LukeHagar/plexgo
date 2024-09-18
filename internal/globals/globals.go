@@ -7,12 +7,44 @@ type Globals struct {
 	// This is used to track the client application and its usage
 	// (UUID, serial number, or other number unique per device)
 	//
-	XPlexClientIdentifier *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
+	ClientID      *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
+	ClientName    *string `queryParam:"style=form,explode=true,name=X-Plex-Product"`
+	DeviceName    *string `queryParam:"style=form,explode=true,name=X-Plex-Device"`
+	ClientVersion *string `queryParam:"style=form,explode=true,name=X-Plex-Version"`
+	XPlexPlatform *string `queryParam:"style=form,explode=true,name=X-Plex-Platform"`
 }
 
-func (o *Globals) GetXPlexClientIdentifier() *string {
+func (o *Globals) GetClientID() *string {
 	if o == nil {
 		return nil
 	}
-	return o.XPlexClientIdentifier
+	return o.ClientID
+}
+
+func (o *Globals) GetClientName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientName
+}
+
+func (o *Globals) GetDeviceName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DeviceName
+}
+
+func (o *Globals) GetClientVersion() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientVersion
+}
+
+func (o *Globals) GetXPlexPlatform() *string {
+	if o == nil {
+		return nil
+	}
+	return o.XPlexPlatform
 }

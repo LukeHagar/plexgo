@@ -33,7 +33,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
+        plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
+        plexgo.WithClientName("Plex Web"),
+        plexgo.WithDeviceName("Linux"),
+        plexgo.WithClientVersion("4.133.0"),
+        plexgo.WithXPlexPlatform("Chrome"),
     )
 
     ctx := context.Background()
@@ -89,7 +93,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
+        plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
+        plexgo.WithClientName("Plex Web"),
+        plexgo.WithDeviceName("Linux"),
+        plexgo.WithClientVersion("4.133.0"),
+        plexgo.WithXPlexPlatform("Chrome"),
     )
 
     ctx := context.Background()
@@ -142,7 +150,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
+        plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
+        plexgo.WithClientName("Plex Web"),
+        plexgo.WithDeviceName("Linux"),
+        plexgo.WithClientVersion("4.133.0"),
+        plexgo.WithXPlexPlatform("Chrome"),
     )
 
     ctx := context.Background()
@@ -194,7 +206,11 @@ import(
 
 func main() {
     s := plexgo.New(
-        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
+        plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
+        plexgo.WithClientName("Plex Web"),
+        plexgo.WithDeviceName("Linux"),
+        plexgo.WithClientVersion("4.133.0"),
+        plexgo.WithXPlexPlatform("Chrome"),
     )
 
     ctx := context.Background()
@@ -217,7 +233,7 @@ func main() {
 | Parameter                                                                                                                                                             | Type                                                                                                                                                                  | Required                                                                                                                                                              | Description                                                                                                                                                           | Example                                                                                                                                                               |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                                                                                 | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                 | :heavy_check_mark:                                                                                                                                                    | The context to use for the request.                                                                                                                                   |                                                                                                                                                                       |
-| `xPlexClientIdentifier`                                                                                                                                               | **string*                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                    | The unique identifier for the client application<br/>This is used to track the client application and its usage<br/>(UUID, serial number, or other number unique per device)<br/> | gcgzw5rz2xovp84b4vha3a40                                                                                                                                              |
+| `clientID`                                                                                                                                                            | **string*                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                    | The unique identifier for the client application<br/>This is used to track the client application and its usage<br/>(UUID, serial number, or other number unique per device)<br/> | gcgzw5rz2xovp84b4vha3a40                                                                                                                                              |
 | `requestBody`                                                                                                                                                         | [*operations.PostUsersSignInDataRequestBody](../../models/operations/postuserssignindatarequestbody.md)                                                               | :heavy_minus_sign:                                                                                                                                                    | Login credentials                                                                                                                                                     |                                                                                                                                                                       |
 | `opts`                                                                                                                                                                | [][operations.Option](../../models/operations/option.md)                                                                                                              | :heavy_minus_sign:                                                                                                                                                    | The options for this request.                                                                                                                                         |                                                                                                                                                                       |
 

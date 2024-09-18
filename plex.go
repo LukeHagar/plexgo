@@ -1008,7 +1008,7 @@ func (s *Plex) GetHomeData(ctx context.Context, opts ...operations.Option) (*ope
 
 // GetServerResources - Get Server Resources
 // Get Plex server access tokens and server connections
-func (s *Plex) GetServerResources(ctx context.Context, xPlexClientIdentifier *string, includeHTTPS *operations.IncludeHTTPS, includeRelay *operations.IncludeRelay, includeIPv6 *operations.IncludeIPv6, opts ...operations.Option) (*operations.GetServerResourcesResponse, error) {
+func (s *Plex) GetServerResources(ctx context.Context, clientID *string, includeHTTPS *operations.IncludeHTTPS, includeRelay *operations.IncludeRelay, includeIPv6 *operations.IncludeIPv6, opts ...operations.Option) (*operations.GetServerResourcesResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "get-server-resources",
@@ -1017,14 +1017,14 @@ func (s *Plex) GetServerResources(ctx context.Context, xPlexClientIdentifier *st
 	}
 
 	request := operations.GetServerResourcesRequest{
-		XPlexClientIdentifier: xPlexClientIdentifier,
-		IncludeHTTPS:          includeHTTPS,
-		IncludeRelay:          includeRelay,
-		IncludeIPv6:           includeIPv6,
+		ClientID:     clientID,
+		IncludeHTTPS: includeHTTPS,
+		IncludeRelay: includeRelay,
+		IncludeIPv6:  includeIPv6,
 	}
 
 	globals := operations.GetServerResourcesGlobals{
-		XPlexClientIdentifier: s.sdkConfiguration.Globals.XPlexClientIdentifier,
+		ClientID: s.sdkConfiguration.Globals.ClientID,
 	}
 
 	o := operations.Options{}
@@ -1269,8 +1269,8 @@ func (s *Plex) GetServerResources(ctx context.Context, xPlexClientIdentifier *st
 }
 
 // GetPin - Get a Pin
-// Retrieve a Pin from Plex.tv for authentication flows
-func (s *Plex) GetPin(ctx context.Context, strong *bool, xPlexClientIdentifier *string, xPlexProduct *string, opts ...operations.Option) (*operations.GetPinResponse, error) {
+// Retrieve a Pin ID from Plex.tv to use for authentication flows
+func (s *Plex) GetPin(ctx context.Context, request operations.GetPinRequest, opts ...operations.Option) (*operations.GetPinResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "getPin",
@@ -1278,14 +1278,12 @@ func (s *Plex) GetPin(ctx context.Context, strong *bool, xPlexClientIdentifier *
 		SecuritySource: nil,
 	}
 
-	request := operations.GetPinRequest{
-		Strong:                strong,
-		XPlexClientIdentifier: xPlexClientIdentifier,
-		XPlexProduct:          xPlexProduct,
-	}
-
 	globals := operations.GetPinGlobals{
-		XPlexClientIdentifier: s.sdkConfiguration.Globals.XPlexClientIdentifier,
+		ClientID:      s.sdkConfiguration.Globals.ClientID,
+		ClientName:    s.sdkConfiguration.Globals.ClientName,
+		DeviceName:    s.sdkConfiguration.Globals.DeviceName,
+		ClientVersion: s.sdkConfiguration.Globals.ClientVersion,
+		XPlexPlatform: s.sdkConfiguration.Globals.XPlexPlatform,
 	}
 
 	o := operations.Options{}
@@ -1504,7 +1502,7 @@ func (s *Plex) GetPin(ctx context.Context, strong *bool, xPlexClientIdentifier *
 
 // GetTokenByPinID - Get Access Token by PinId
 // Retrieve an Access Token from Plex.tv after the Pin has been authenticated
-func (s *Plex) GetTokenByPinID(ctx context.Context, pinID int64, xPlexClientIdentifier *string, opts ...operations.Option) (*operations.GetTokenByPinIDResponse, error) {
+func (s *Plex) GetTokenByPinID(ctx context.Context, pinID int64, clientID *string, opts ...operations.Option) (*operations.GetTokenByPinIDResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "getTokenByPinId",
@@ -1513,12 +1511,12 @@ func (s *Plex) GetTokenByPinID(ctx context.Context, pinID int64, xPlexClientIden
 	}
 
 	request := operations.GetTokenByPinIDRequest{
-		XPlexClientIdentifier: xPlexClientIdentifier,
-		PinID:                 pinID,
+		ClientID: clientID,
+		PinID:    pinID,
 	}
 
 	globals := operations.GetTokenByPinIDGlobals{
-		XPlexClientIdentifier: s.sdkConfiguration.Globals.XPlexClientIdentifier,
+		ClientID: s.sdkConfiguration.Globals.ClientID,
 	}
 
 	o := operations.Options{}

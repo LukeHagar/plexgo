@@ -19,14 +19,14 @@ type GetServerResourcesGlobals struct {
 	// This is used to track the client application and its usage
 	// (UUID, serial number, or other number unique per device)
 	//
-	XPlexClientIdentifier *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
+	ClientID *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
 }
 
-func (o *GetServerResourcesGlobals) GetXPlexClientIdentifier() *string {
+func (o *GetServerResourcesGlobals) GetClientID() *string {
 	if o == nil {
 		return nil
 	}
-	return o.XPlexClientIdentifier
+	return o.ClientID
 }
 
 // IncludeHTTPS - Include Https entries in the results
@@ -116,7 +116,7 @@ type GetServerResourcesRequest struct {
 	// This is used to track the client application and its usage
 	// (UUID, serial number, or other number unique per device)
 	//
-	XPlexClientIdentifier *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
+	ClientID *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
 	// Include Https entries in the results
 	IncludeHTTPS *IncludeHTTPS `default:"0" queryParam:"style=form,explode=true,name=includeHttps"`
 	// Include Relay addresses in the results
@@ -138,11 +138,11 @@ func (g *GetServerResourcesRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetServerResourcesRequest) GetXPlexClientIdentifier() *string {
+func (o *GetServerResourcesRequest) GetClientID() *string {
 	if o == nil {
 		return nil
 	}
-	return o.XPlexClientIdentifier
+	return o.ClientID
 }
 
 func (o *GetServerResourcesRequest) GetIncludeHTTPS() *IncludeHTTPS {

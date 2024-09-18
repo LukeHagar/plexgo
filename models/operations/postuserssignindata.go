@@ -19,14 +19,14 @@ type PostUsersSignInDataGlobals struct {
 	// This is used to track the client application and its usage
 	// (UUID, serial number, or other number unique per device)
 	//
-	XPlexClientIdentifier *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
+	ClientID *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
 }
 
-func (o *PostUsersSignInDataGlobals) GetXPlexClientIdentifier() *string {
+func (o *PostUsersSignInDataGlobals) GetClientID() *string {
 	if o == nil {
 		return nil
 	}
-	return o.XPlexClientIdentifier
+	return o.ClientID
 }
 
 // PostUsersSignInDataRequestBody - Login credentials
@@ -81,16 +81,16 @@ type PostUsersSignInDataRequest struct {
 	// This is used to track the client application and its usage
 	// (UUID, serial number, or other number unique per device)
 	//
-	XPlexClientIdentifier *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
+	ClientID *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
 	// Login credentials
 	RequestBody *PostUsersSignInDataRequestBody `request:"mediaType=application/x-www-form-urlencoded"`
 }
 
-func (o *PostUsersSignInDataRequest) GetXPlexClientIdentifier() *string {
+func (o *PostUsersSignInDataRequest) GetClientID() *string {
 	if o == nil {
 		return nil
 	}
-	return o.XPlexClientIdentifier
+	return o.ClientID
 }
 
 func (o *PostUsersSignInDataRequest) GetRequestBody() *PostUsersSignInDataRequestBody {

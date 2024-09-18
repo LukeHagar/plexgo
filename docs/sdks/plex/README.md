@@ -34,7 +34,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
+        plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
+        plexgo.WithClientName("Plex Web"),
+        plexgo.WithDeviceName("Linux"),
+        plexgo.WithClientVersion("4.133.0"),
+        plexgo.WithXPlexPlatform("Chrome"),
     )
 
     ctx := context.Background()
@@ -86,7 +90,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
+        plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
+        plexgo.WithClientName("Plex Web"),
+        plexgo.WithDeviceName("Linux"),
+        plexgo.WithClientVersion("4.133.0"),
+        plexgo.WithXPlexPlatform("Chrome"),
     )
 
     ctx := context.Background()
@@ -137,7 +145,11 @@ import(
 
 func main() {
     s := plexgo.New(
-        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
+        plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
+        plexgo.WithClientName("Plex Web"),
+        plexgo.WithDeviceName("Linux"),
+        plexgo.WithClientVersion("4.133.0"),
+        plexgo.WithXPlexPlatform("Chrome"),
     )
 
     ctx := context.Background()
@@ -189,7 +201,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
+        plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
+        plexgo.WithClientName("Plex Web"),
+        plexgo.WithDeviceName("Linux"),
+        plexgo.WithClientVersion("4.133.0"),
+        plexgo.WithXPlexPlatform("Chrome"),
     )
 
     ctx := context.Background()
@@ -242,7 +258,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
+        plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
+        plexgo.WithClientName("Plex Web"),
+        plexgo.WithDeviceName("Linux"),
+        plexgo.WithClientVersion("4.133.0"),
+        plexgo.WithXPlexPlatform("Chrome"),
     )
 
     ctx := context.Background()
@@ -261,7 +281,7 @@ func main() {
 | Parameter                                                                                                                                                             | Type                                                                                                                                                                  | Required                                                                                                                                                              | Description                                                                                                                                                           | Example                                                                                                                                                               |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                                                                                 | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                 | :heavy_check_mark:                                                                                                                                                    | The context to use for the request.                                                                                                                                   |                                                                                                                                                                       |
-| `xPlexClientIdentifier`                                                                                                                                               | **string*                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                    | The unique identifier for the client application<br/>This is used to track the client application and its usage<br/>(UUID, serial number, or other number unique per device)<br/> | gcgzw5rz2xovp84b4vha3a40                                                                                                                                              |
+| `clientID`                                                                                                                                                            | **string*                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                    | The unique identifier for the client application<br/>This is used to track the client application and its usage<br/>(UUID, serial number, or other number unique per device)<br/> | gcgzw5rz2xovp84b4vha3a40                                                                                                                                              |
 | `includeHTTPS`                                                                                                                                                        | [*operations.IncludeHTTPS](../../models/operations/includehttps.md)                                                                                                   | :heavy_minus_sign:                                                                                                                                                    | Include Https entries in the results                                                                                                                                  | 1                                                                                                                                                                     |
 | `includeRelay`                                                                                                                                                        | [*operations.IncludeRelay](../../models/operations/includerelay.md)                                                                                                   | :heavy_minus_sign:                                                                                                                                                    | Include Relay addresses in the results <br/>E.g: https://10-0-0-25.bbf8e10c7fa20447cacee74cd9914cde.plex.direct:32400<br/>                                            | 1                                                                                                                                                                     |
 | `includeIPv6`                                                                                                                                                         | [*operations.IncludeIPv6](../../models/operations/includeipv6.md)                                                                                                     | :heavy_minus_sign:                                                                                                                                                    | Include IPv6 entries in the results                                                                                                                                   | 1                                                                                                                                                                     |
@@ -282,7 +302,7 @@ func main() {
 
 ## GetPin
 
-Retrieve a Pin from Plex.tv for authentication flows
+Retrieve a Pin ID from Plex.tv to use for authentication flows
 
 ### Example Usage
 
@@ -292,16 +312,21 @@ package main
 import(
 	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
 func main() {
     s := plexgo.New(
-        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
+        plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
+        plexgo.WithClientName("Plex Web"),
+        plexgo.WithDeviceName("Linux"),
+        plexgo.WithClientVersion("4.133.0"),
+        plexgo.WithXPlexPlatform("Chrome"),
     )
 
     ctx := context.Background()
-    res, err := s.Plex.GetPin(ctx, nil, plexgo.String("gcgzw5rz2xovp84b4vha3a40"), plexgo.String("Plex Web"))
+    res, err := s.Plex.GetPin(ctx, operations.GetPinRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -313,13 +338,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                                                                             | Type                                                                                                                                                                  | Required                                                                                                                                                              | Description                                                                                                                                                           | Example                                                                                                                                                               |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                                                                                 | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                 | :heavy_check_mark:                                                                                                                                                    | The context to use for the request.                                                                                                                                   |                                                                                                                                                                       |
-| `strong`                                                                                                                                                              | **bool*                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                    | Determines the kind of code returned by the API call<br/>Strong codes are used for Pin authentication flows<br/>Non-Strong codes are used for `Plex.tv/link`<br/>     |                                                                                                                                                                       |
-| `xPlexClientIdentifier`                                                                                                                                               | **string*                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                    | The unique identifier for the client application<br/>This is used to track the client application and its usage<br/>(UUID, serial number, or other number unique per device)<br/> | gcgzw5rz2xovp84b4vha3a40                                                                                                                                              |
-| `xPlexProduct`                                                                                                                                                        | **string*                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                    | N/A                                                                                                                                                                   | Plex Web                                                                                                                                                              |
-| `opts`                                                                                                                                                                | [][operations.Option](../../models/operations/option.md)                                                                                                              | :heavy_minus_sign:                                                                                                                                                    | The options for this request.                                                                                                                                         |                                                                                                                                                                       |
+| Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `ctx`                                                                | [context.Context](https://pkg.go.dev/context#Context)                | :heavy_check_mark:                                                   | The context to use for the request.                                  |
+| `request`                                                            | [operations.GetPinRequest](../../models/operations/getpinrequest.md) | :heavy_check_mark:                                                   | The request object to use for the request.                           |
+| `opts`                                                               | [][operations.Option](../../models/operations/option.md)             | :heavy_minus_sign:                                                   | The options for this request.                                        |
 
 ### Response
 
@@ -350,7 +373,11 @@ import(
 
 func main() {
     s := plexgo.New(
-        plexgo.WithXPlexClientIdentifier("gcgzw5rz2xovp84b4vha3a40"),
+        plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
+        plexgo.WithClientName("Plex Web"),
+        plexgo.WithDeviceName("Linux"),
+        plexgo.WithClientVersion("4.133.0"),
+        plexgo.WithXPlexPlatform("Chrome"),
     )
 
     ctx := context.Background()
@@ -370,7 +397,7 @@ func main() {
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                                                                                 | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                 | :heavy_check_mark:                                                                                                                                                    | The context to use for the request.                                                                                                                                   |                                                                                                                                                                       |
 | `pinID`                                                                                                                                                               | *int64*                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                    | The PinID to retrieve an access token for                                                                                                                             |                                                                                                                                                                       |
-| `xPlexClientIdentifier`                                                                                                                                               | **string*                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                    | The unique identifier for the client application<br/>This is used to track the client application and its usage<br/>(UUID, serial number, or other number unique per device)<br/> | gcgzw5rz2xovp84b4vha3a40                                                                                                                                              |
+| `clientID`                                                                                                                                                            | **string*                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                    | The unique identifier for the client application<br/>This is used to track the client application and its usage<br/>(UUID, serial number, or other number unique per device)<br/> | gcgzw5rz2xovp84b4vha3a40                                                                                                                                              |
 | `opts`                                                                                                                                                                | [][operations.Option](../../models/operations/option.md)                                                                                                              | :heavy_minus_sign:                                                                                                                                                    | The options for this request.                                                                                                                                         |                                                                                                                                                                       |
 
 ### Response

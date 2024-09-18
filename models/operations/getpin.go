@@ -17,14 +17,46 @@ type GetPinGlobals struct {
 	// This is used to track the client application and its usage
 	// (UUID, serial number, or other number unique per device)
 	//
-	XPlexClientIdentifier *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
+	ClientID      *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
+	ClientName    *string `queryParam:"style=form,explode=true,name=X-Plex-Product"`
+	DeviceName    *string `queryParam:"style=form,explode=true,name=X-Plex-Device"`
+	ClientVersion *string `queryParam:"style=form,explode=true,name=X-Plex-Version"`
+	XPlexPlatform *string `queryParam:"style=form,explode=true,name=X-Plex-Platform"`
 }
 
-func (o *GetPinGlobals) GetXPlexClientIdentifier() *string {
+func (o *GetPinGlobals) GetClientID() *string {
 	if o == nil {
 		return nil
 	}
-	return o.XPlexClientIdentifier
+	return o.ClientID
+}
+
+func (o *GetPinGlobals) GetClientName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientName
+}
+
+func (o *GetPinGlobals) GetDeviceName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DeviceName
+}
+
+func (o *GetPinGlobals) GetClientVersion() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientVersion
+}
+
+func (o *GetPinGlobals) GetXPlexPlatform() *string {
+	if o == nil {
+		return nil
+	}
+	return o.XPlexPlatform
 }
 
 type GetPinRequest struct {
@@ -37,8 +69,11 @@ type GetPinRequest struct {
 	// This is used to track the client application and its usage
 	// (UUID, serial number, or other number unique per device)
 	//
-	XPlexClientIdentifier *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
-	XPlexProduct          *string `queryParam:"style=form,explode=true,name=X-Plex-Product"`
+	ClientID      *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
+	ClientName    *string `queryParam:"style=form,explode=true,name=X-Plex-Product"`
+	DeviceName    *string `queryParam:"style=form,explode=true,name=X-Plex-Device"`
+	ClientVersion *string `queryParam:"style=form,explode=true,name=X-Plex-Version"`
+	XPlexPlatform *string `queryParam:"style=form,explode=true,name=X-Plex-Platform"`
 }
 
 func (g GetPinRequest) MarshalJSON() ([]byte, error) {
@@ -59,18 +94,39 @@ func (o *GetPinRequest) GetStrong() *bool {
 	return o.Strong
 }
 
-func (o *GetPinRequest) GetXPlexClientIdentifier() *string {
+func (o *GetPinRequest) GetClientID() *string {
 	if o == nil {
 		return nil
 	}
-	return o.XPlexClientIdentifier
+	return o.ClientID
 }
 
-func (o *GetPinRequest) GetXPlexProduct() *string {
+func (o *GetPinRequest) GetClientName() *string {
 	if o == nil {
 		return nil
 	}
-	return o.XPlexProduct
+	return o.ClientName
+}
+
+func (o *GetPinRequest) GetDeviceName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DeviceName
+}
+
+func (o *GetPinRequest) GetClientVersion() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientVersion
+}
+
+func (o *GetPinRequest) GetXPlexPlatform() *string {
+	if o == nil {
+		return nil
+	}
+	return o.XPlexPlatform
 }
 
 // GeoData - Geo location data
