@@ -1433,7 +1433,7 @@ func (s *Plex) GetPin(ctx context.Context, request operations.GetPinRequest, opt
 	}
 
 	switch {
-	case httpRes.StatusCode == 200:
+	case httpRes.StatusCode == 201:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
 			rawBody, err := getRawBody()
