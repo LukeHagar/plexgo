@@ -26,7 +26,7 @@ type GetGeoDataGeoData struct {
 	// The time zone of the country.
 	TimeZone string `json:"time_zone"`
 	// The postal code of the location.
-	PostalCode int64 `json:"postal_code"`
+	PostalCode string `json:"postal_code"`
 	// Indicates if the country has privacy restrictions.
 	InPrivacyRestrictedCountry *bool `default:"false" json:"in_privacy_restricted_country"`
 	// Indicates if the region has privacy restrictions.
@@ -90,9 +90,9 @@ func (o *GetGeoDataGeoData) GetTimeZone() string {
 	return o.TimeZone
 }
 
-func (o *GetGeoDataGeoData) GetPostalCode() int64 {
+func (o *GetGeoDataGeoData) GetPostalCode() string {
 	if o == nil {
-		return 0
+		return ""
 	}
 	return o.PostalCode
 }

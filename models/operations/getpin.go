@@ -144,7 +144,7 @@ type GeoData struct {
 	// The time zone of the country.
 	TimeZone string `json:"time_zone"`
 	// The postal code of the location.
-	PostalCode int64 `json:"postal_code"`
+	PostalCode string `json:"postal_code"`
 	// Indicates if the country has privacy restrictions.
 	InPrivacyRestrictedCountry *bool `default:"false" json:"in_privacy_restricted_country"`
 	// Indicates if the region has privacy restrictions.
@@ -208,9 +208,9 @@ func (o *GeoData) GetTimeZone() string {
 	return o.TimeZone
 }
 
-func (o *GeoData) GetPostalCode() int64 {
+func (o *GeoData) GetPostalCode() string {
 	if o == nil {
-		return 0
+		return ""
 	}
 	return o.PostalCode
 }
@@ -258,7 +258,7 @@ type GetPinAuthPinContainer struct {
 	ExpiresIn       *int64    `default:"900" json:"expiresIn"`
 	CreatedAt       time.Time `json:"createdAt"`
 	ExpiresAt       time.Time `json:"expiresAt"`
-	AuthToken       any       `json:"authToken,omitempty"`
+	AuthToken       *string   `json:"authToken,omitempty"`
 	NewRegistration any       `json:"newRegistration,omitempty"`
 }
 
@@ -343,7 +343,7 @@ func (o *GetPinAuthPinContainer) GetExpiresAt() time.Time {
 	return o.ExpiresAt
 }
 
-func (o *GetPinAuthPinContainer) GetAuthToken() any {
+func (o *GetPinAuthPinContainer) GetAuthToken() *string {
 	if o == nil {
 		return nil
 	}
