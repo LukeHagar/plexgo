@@ -5,7 +5,7 @@ Include Https entries in the results
 
 ## Values
 
-| Name               | Value              |
-| ------------------ | ------------------ |
-| `IncludeHTTPSZero` | 0                  |
-| `IncludeHTTPSOne`  | 1                  |
+| Name                  | Value                 |
+| --------------------- | --------------------- |
+| `IncludeHTTPSDisable` | 0                     |
+| `IncludeHTTPSEnable`  | 1                     |

@@ -11,9 +11,9 @@ E.g. A movie library will not return anything with type 3 as there are no season
 
 ## Values
 
-| Name        | Value       |
-| ----------- | ----------- |
-| `TypeOne`   | 1           |
-| `TypeTwo`   | 2           |
-| `TypeThree` | 3           |
-| `TypeFour`  | 4           |
+| Name          | Value         |
+| ------------- | ------------- |
+| `TypeMovie`   | 1             |
+| `TypeShow`    | 2             |
+| `TypeSeason`  | 3             |
+| `TypeEpisode` | 4             |

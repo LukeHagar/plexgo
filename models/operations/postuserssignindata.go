@@ -14,21 +14,6 @@ var PostUsersSignInDataServerList = []string{
 	"https://plex.tv/api/v2/",
 }
 
-type PostUsersSignInDataGlobals struct {
-	// The unique identifier for the client application
-	// This is used to track the client application and its usage
-	// (UUID, serial number, or other number unique per device)
-	//
-	ClientID *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
-}
-
-func (o *PostUsersSignInDataGlobals) GetClientID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ClientID
-}
-
 // PostUsersSignInDataRequestBody - Login credentials
 type PostUsersSignInDataRequestBody struct {
 	Login            string  `form:"name=login"`
@@ -76,30 +61,6 @@ func (o *PostUsersSignInDataRequestBody) GetVerificationCode() *string {
 	return o.VerificationCode
 }
 
-type PostUsersSignInDataRequest struct {
-	// The unique identifier for the client application
-	// This is used to track the client application and its usage
-	// (UUID, serial number, or other number unique per device)
-	//
-	ClientID *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
-	// Login credentials
-	RequestBody *PostUsersSignInDataRequestBody `request:"mediaType=application/x-www-form-urlencoded"`
-}
-
-func (o *PostUsersSignInDataRequest) GetClientID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ClientID
-}
-
-func (o *PostUsersSignInDataRequest) GetRequestBody() *PostUsersSignInDataRequestBody {
-	if o == nil {
-		return nil
-	}
-	return o.RequestBody
-}
-
 // PostUsersSignInDataMailingListStatus - Your current mailing list status
 type PostUsersSignInDataMailingListStatus string
 
@@ -128,25 +89,25 @@ func (e *PostUsersSignInDataMailingListStatus) UnmarshalJSON(data []byte) error 
 }
 
 // PostUsersSignInDataAutoSelectSubtitle - The auto-select subtitle mode (0 = Manually selected, 1 = Shown with foreign audio, 2 = Always enabled)
-type PostUsersSignInDataAutoSelectSubtitle string
+type PostUsersSignInDataAutoSelectSubtitle int
 
 const (
-	PostUsersSignInDataAutoSelectSubtitleZero PostUsersSignInDataAutoSelectSubtitle = "0"
-	PostUsersSignInDataAutoSelectSubtitleOne  PostUsersSignInDataAutoSelectSubtitle = "1"
+	PostUsersSignInDataAutoSelectSubtitleDisable PostUsersSignInDataAutoSelectSubtitle = 0
+	PostUsersSignInDataAutoSelectSubtitleEnable  PostUsersSignInDataAutoSelectSubtitle = 1
 )
 
 func (e PostUsersSignInDataAutoSelectSubtitle) ToPointer() *PostUsersSignInDataAutoSelectSubtitle {
 	return &e
 }
 func (e *PostUsersSignInDataAutoSelectSubtitle) UnmarshalJSON(data []byte) error {
-	var v string
+	var v int
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
-	case "0":
+	case 0:
 		fallthrough
-	case "1":
+	case 1:
 		*e = PostUsersSignInDataAutoSelectSubtitle(v)
 		return nil
 	default:
@@ -154,26 +115,26 @@ func (e *PostUsersSignInDataAutoSelectSubtitle) UnmarshalJSON(data []byte) error
 	}
 }
 
-// PostUsersSignInDataDefaultSubtitleAccessibility - The subtitles for the deaf or hard-of-hearing (SDH) searches mode (0 = Prefer non-SDH subtitles, 1 = Prefer SDH subtitles, 2 = Only show SDH subtitles, 3 = Only shown non-SDH subtitles)
-type PostUsersSignInDataDefaultSubtitleAccessibility string
+// PostUsersSignInDataDefaultSubtitleAccessibility - The subtitles for the deaf or hard-of-hearing (SDH) searches mode (0 = Prefer non-SDH subtitles, 1 = Prefer SDH subtitles, 2 = Only show SDH subtitles, 3 = Only show non-SDH subtitles)
+type PostUsersSignInDataDefaultSubtitleAccessibility int
 
 const (
-	PostUsersSignInDataDefaultSubtitleAccessibilityZero PostUsersSignInDataDefaultSubtitleAccessibility = "0"
-	PostUsersSignInDataDefaultSubtitleAccessibilityOne  PostUsersSignInDataDefaultSubtitleAccessibility = "1"
+	PostUsersSignInDataDefaultSubtitleAccessibilityDisable PostUsersSignInDataDefaultSubtitleAccessibility = 0
+	PostUsersSignInDataDefaultSubtitleAccessibilityEnable  PostUsersSignInDataDefaultSubtitleAccessibility = 1
 )
 
 func (e PostUsersSignInDataDefaultSubtitleAccessibility) ToPointer() *PostUsersSignInDataDefaultSubtitleAccessibility {
 	return &e
 }
 func (e *PostUsersSignInDataDefaultSubtitleAccessibility) UnmarshalJSON(data []byte) error {
-	var v string
+	var v int
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
-	case "0":
+	case 0:
 		fallthrough
-	case "1":
+	case 1:
 		*e = PostUsersSignInDataDefaultSubtitleAccessibility(v)
 		return nil
 	default:
@@ -182,25 +143,25 @@ func (e *PostUsersSignInDataDefaultSubtitleAccessibility) UnmarshalJSON(data []b
 }
 
 // PostUsersSignInDataDefaultSubtitleForced - The forced subtitles searches mode (0 = Prefer non-forced subtitles, 1 = Prefer forced subtitles, 2 = Only show forced subtitles, 3 = Only show non-forced subtitles)
-type PostUsersSignInDataDefaultSubtitleForced string
+type PostUsersSignInDataDefaultSubtitleForced int
 
 const (
-	PostUsersSignInDataDefaultSubtitleForcedZero PostUsersSignInDataDefaultSubtitleForced = "0"
-	PostUsersSignInDataDefaultSubtitleForcedOne  PostUsersSignInDataDefaultSubtitleForced = "1"
+	PostUsersSignInDataDefaultSubtitleForcedDisable PostUsersSignInDataDefaultSubtitleForced = 0
+	PostUsersSignInDataDefaultSubtitleForcedEnable  PostUsersSignInDataDefaultSubtitleForced = 1
 )
 
 func (e PostUsersSignInDataDefaultSubtitleForced) ToPointer() *PostUsersSignInDataDefaultSubtitleForced {
 	return &e
 }
 func (e *PostUsersSignInDataDefaultSubtitleForced) UnmarshalJSON(data []byte) error {
-	var v string
+	var v int
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
-	case "0":
+	case 0:
 		fallthrough
-	case "1":
+	case 1:
 		*e = PostUsersSignInDataDefaultSubtitleForced(v)
 		return nil
 	default:
@@ -208,25 +169,26 @@ func (e *PostUsersSignInDataDefaultSubtitleForced) UnmarshalJSON(data []byte) er
 	}
 }
 
-type PostUsersSignInDataWatchedIndicator string
+// PostUsersSignInDataWatchedIndicator - Whether or not media watched indicators are enabled (little orange dot on media)
+type PostUsersSignInDataWatchedIndicator int
 
 const (
-	PostUsersSignInDataWatchedIndicatorZero PostUsersSignInDataWatchedIndicator = "0"
-	PostUsersSignInDataWatchedIndicatorOne  PostUsersSignInDataWatchedIndicator = "1"
+	PostUsersSignInDataWatchedIndicatorDisable PostUsersSignInDataWatchedIndicator = 0
+	PostUsersSignInDataWatchedIndicatorEnable  PostUsersSignInDataWatchedIndicator = 1
 )
 
 func (e PostUsersSignInDataWatchedIndicator) ToPointer() *PostUsersSignInDataWatchedIndicator {
 	return &e
 }
 func (e *PostUsersSignInDataWatchedIndicator) UnmarshalJSON(data []byte) error {
-	var v string
+	var v int
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
-	case "0":
+	case 0:
 		fallthrough
-	case "1":
+	case 1:
 		*e = PostUsersSignInDataWatchedIndicator(v)
 		return nil
 	default:
@@ -234,18 +196,19 @@ func (e *PostUsersSignInDataWatchedIndicator) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type PostUsersSignInDataMediaReviewsVisibility int64
+// PostUsersSignInDataMediaReviewsVisibility - Whether or not the account has media reviews visibility enabled
+type PostUsersSignInDataMediaReviewsVisibility int
 
 const (
-	PostUsersSignInDataMediaReviewsVisibilityZero PostUsersSignInDataMediaReviewsVisibility = 0
-	PostUsersSignInDataMediaReviewsVisibilityOne  PostUsersSignInDataMediaReviewsVisibility = 1
+	PostUsersSignInDataMediaReviewsVisibilityDisable PostUsersSignInDataMediaReviewsVisibility = 0
+	PostUsersSignInDataMediaReviewsVisibilityEnable  PostUsersSignInDataMediaReviewsVisibility = 1
 )
 
 func (e PostUsersSignInDataMediaReviewsVisibility) ToPointer() *PostUsersSignInDataMediaReviewsVisibility {
 	return &e
 }
 func (e *PostUsersSignInDataMediaReviewsVisibility) UnmarshalJSON(data []byte) error {
-	var v int64
+	var v int
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
@@ -266,15 +229,12 @@ type PostUsersSignInDataUserProfile struct {
 	// The preferred audio language for the account
 	DefaultAudioLanguage *string `json:"defaultAudioLanguage"`
 	// The preferred subtitle language for the account
-	DefaultSubtitleLanguage *string `json:"defaultSubtitleLanguage"`
-	// The auto-select subtitle mode (0 = Manually selected, 1 = Shown with foreign audio, 2 = Always enabled)
-	AutoSelectSubtitle *PostUsersSignInDataAutoSelectSubtitle `json:"autoSelectSubtitle,omitempty"`
-	// The subtitles for the deaf or hard-of-hearing (SDH) searches mode (0 = Prefer non-SDH subtitles, 1 = Prefer SDH subtitles, 2 = Only show SDH subtitles, 3 = Only shown non-SDH subtitles)
-	DefaultSubtitleAccessibility *PostUsersSignInDataDefaultSubtitleAccessibility `json:"defaultSubtitleAccessibility,omitempty"`
-	// The forced subtitles searches mode (0 = Prefer non-forced subtitles, 1 = Prefer forced subtitles, 2 = Only show forced subtitles, 3 = Only show non-forced subtitles)
-	DefaultSubtitleForced  *PostUsersSignInDataDefaultSubtitleForced  `json:"defaultSubtitleForced,omitempty"`
-	WatchedIndicator       *PostUsersSignInDataWatchedIndicator       `json:"watchedIndicator,omitempty"`
-	MediaReviewsVisibility *PostUsersSignInDataMediaReviewsVisibility `json:"mediaReviewsVisibility,omitempty"`
+	DefaultSubtitleLanguage      *string                                          `json:"defaultSubtitleLanguage"`
+	AutoSelectSubtitle           *PostUsersSignInDataAutoSelectSubtitle           `default:"0" json:"autoSelectSubtitle"`
+	DefaultSubtitleAccessibility *PostUsersSignInDataDefaultSubtitleAccessibility `default:"0" json:"defaultSubtitleAccessibility"`
+	DefaultSubtitleForced        *PostUsersSignInDataDefaultSubtitleForced        `default:"0" json:"defaultSubtitleForced"`
+	WatchedIndicator             *PostUsersSignInDataWatchedIndicator             `default:"0" json:"watchedIndicator"`
+	MediaReviewsVisibility       *PostUsersSignInDataMediaReviewsVisibility       `default:"0" json:"mediaReviewsVisibility"`
 }
 
 func (p PostUsersSignInDataUserProfile) MarshalJSON() ([]byte, error) {
@@ -1198,7 +1158,7 @@ type PostUsersSignInDataUserPlexAccount struct {
 	HomeSize int `json:"homeSize"`
 	// The Plex account ID
 	ID int `json:"id"`
-	// Unix epoch datetime
+	// Unix epoch datetime in seconds
 	JoinedAt int64 `json:"joinedAt"`
 	// The account locale
 	Locale *string `json:"locale"`
@@ -1215,7 +1175,7 @@ type PostUsersSignInDataUserPlexAccount struct {
 	Profile PostUsersSignInDataUserProfile `json:"profile"`
 	// If the account has a Plex Home PIN enabled
 	Protected *bool `default:"false" json:"protected"`
-	// Unix epoch datetime
+	// Unix epoch datetime in seconds
 	RememberExpiresAt int64 `json:"rememberExpiresAt"`
 	// If the account is a Plex Home managed user
 	Restricted *bool `default:"false" json:"restricted"`

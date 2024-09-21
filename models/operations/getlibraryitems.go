@@ -90,18 +90,18 @@ func (e *Tag) UnmarshalJSON(data []byte) error {
 }
 
 // IncludeGuids - Adds the Guids object to the response
-type IncludeGuids int64
+type IncludeGuids int
 
 const (
-	IncludeGuidsZero IncludeGuids = 0
-	IncludeGuidsOne  IncludeGuids = 1
+	IncludeGuidsDisable IncludeGuids = 0
+	IncludeGuidsEnable  IncludeGuids = 1
 )
 
 func (e IncludeGuids) ToPointer() *IncludeGuids {
 	return &e
 }
 func (e *IncludeGuids) UnmarshalJSON(data []byte) error {
-	var v int64
+	var v int
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
@@ -117,18 +117,18 @@ func (e *IncludeGuids) UnmarshalJSON(data []byte) error {
 }
 
 // IncludeMeta - Adds the Meta object to the response
-type IncludeMeta int64
+type IncludeMeta int
 
 const (
-	IncludeMetaZero IncludeMeta = 0
-	IncludeMetaOne  IncludeMeta = 1
+	IncludeMetaDisable IncludeMeta = 0
+	IncludeMetaEnable  IncludeMeta = 1
 )
 
 func (e IncludeMeta) ToPointer() *IncludeMeta {
 	return &e
 }
 func (e *IncludeMeta) UnmarshalJSON(data []byte) error {
-	var v int64
+	var v int
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
@@ -152,10 +152,10 @@ func (e *IncludeMeta) UnmarshalJSON(data []byte) error {
 type Type int64
 
 const (
-	TypeOne   Type = 1
-	TypeTwo   Type = 2
-	TypeThree Type = 3
-	TypeFour  Type = 4
+	TypeMovie   Type = 1
+	TypeShow    Type = 2
+	TypeSeason  Type = 3
+	TypeEpisode Type = 4
 )
 
 func (e Type) ToPointer() *Type {
@@ -190,10 +190,10 @@ type GetLibraryItemsRequest struct {
 	Tag Tag `pathParam:"style=simple,explode=false,name=tag"`
 	// Adds the Guids object to the response
 	//
-	IncludeGuids *IncludeGuids `queryParam:"style=form,explode=true,name=includeGuids"`
+	IncludeGuids *IncludeGuids `default:"0" queryParam:"style=form,explode=true,name=includeGuids"`
 	// Adds the Meta object to the response
 	//
-	IncludeMeta *IncludeMeta `queryParam:"style=form,explode=true,name=includeMeta"`
+	IncludeMeta *IncludeMeta `default:"0" queryParam:"style=form,explode=true,name=includeMeta"`
 	// The type of media to retrieve.
 	// 1 = movie
 	// 2 = show
@@ -566,64 +566,81 @@ func (o *GetLibraryItemsRole) GetTag() *string {
 	return o.Tag
 }
 
+type MediaGUID struct {
+	// Can be one of the following formats:
+	// imdb://tt13015952, tmdb://2434012, tvdb://7945991
+	//
+	ID string `json:"id"`
+}
+
+func (o *MediaGUID) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
 type GetLibraryItemsMetadata struct {
-	RatingKey              *string                   `json:"ratingKey,omitempty"`
-	Key                    *string                   `json:"key,omitempty"`
-	GUID                   *string                   `json:"guid,omitempty"`
-	Studio                 *string                   `json:"studio,omitempty"`
-	Type                   *string                   `json:"type,omitempty"`
-	Title                  *string                   `json:"title,omitempty"`
-	ContentRating          *string                   `json:"contentRating,omitempty"`
-	Summary                *string                   `json:"summary,omitempty"`
-	Rating                 *float64                  `json:"rating,omitempty"`
-	AudienceRating         *float64                  `json:"audienceRating,omitempty"`
-	Year                   *int                      `json:"year,omitempty"`
-	Tagline                *string                   `json:"tagline,omitempty"`
-	Thumb                  *string                   `json:"thumb,omitempty"`
-	Art                    *string                   `json:"art,omitempty"`
-	Duration               *int                      `json:"duration,omitempty"`
-	OriginallyAvailableAt  *types.Date               `json:"originallyAvailableAt,omitempty"`
-	AddedAt                *int                      `json:"addedAt,omitempty"`
-	UpdatedAt              *int                      `json:"updatedAt,omitempty"`
-	AudienceRatingImage    *string                   `json:"audienceRatingImage,omitempty"`
-	ChapterSource          *string                   `json:"chapterSource,omitempty"`
-	PrimaryExtraKey        *string                   `json:"primaryExtraKey,omitempty"`
-	RatingImage            *string                   `json:"ratingImage,omitempty"`
-	GrandparentRatingKey   *string                   `json:"grandparentRatingKey,omitempty"`
-	GrandparentGUID        *string                   `json:"grandparentGuid,omitempty"`
-	GrandparentKey         *string                   `json:"grandparentKey,omitempty"`
-	GrandparentTitle       *string                   `json:"grandparentTitle,omitempty"`
-	GrandparentThumb       *string                   `json:"grandparentThumb,omitempty"`
-	GrandparentArt         *string                   `json:"grandparentArt,omitempty"`
-	GrandparentTheme       *string                   `json:"grandparentTheme,omitempty"`
-	Media                  []GetLibraryItemsMedia    `json:"Media,omitempty"`
-	Genre                  []GetLibraryItemsGenre    `json:"Genre,omitempty"`
-	Country                []GetLibraryItemsCountry  `json:"Country,omitempty"`
-	Director               []GetLibraryItemsDirector `json:"Director,omitempty"`
-	Writer                 []GetLibraryItemsWriter   `json:"Writer,omitempty"`
-	Role                   []GetLibraryItemsRole     `json:"Role,omitempty"`
-	TitleSort              *string                   `json:"titleSort,omitempty"`
-	ViewCount              *int                      `json:"viewCount,omitempty"`
-	LastViewedAt           *int                      `json:"lastViewedAt,omitempty"`
-	OriginalTitle          *string                   `json:"originalTitle,omitempty"`
-	ViewOffset             *int                      `json:"viewOffset,omitempty"`
-	SkipCount              *int                      `json:"skipCount,omitempty"`
-	Index                  *int                      `json:"index,omitempty"`
-	Theme                  *string                   `json:"theme,omitempty"`
-	LeafCount              *int                      `json:"leafCount,omitempty"`
-	ViewedLeafCount        *int                      `json:"viewedLeafCount,omitempty"`
-	ChildCount             *int                      `json:"childCount,omitempty"`
-	HasPremiumExtras       *string                   `json:"hasPremiumExtras,omitempty"`
-	HasPremiumPrimaryExtra *string                   `json:"hasPremiumPrimaryExtra,omitempty"`
-	ParentRatingKey        *string                   `json:"parentRatingKey,omitempty"`
-	ParentGUID             *string                   `json:"parentGuid,omitempty"`
-	ParentStudio           *string                   `json:"parentStudio,omitempty"`
-	ParentKey              *string                   `json:"parentKey,omitempty"`
-	ParentTitle            *string                   `json:"parentTitle,omitempty"`
-	ParentIndex            *int                      `json:"parentIndex,omitempty"`
-	ParentYear             *int                      `json:"parentYear,omitempty"`
-	ParentThumb            *string                   `json:"parentThumb,omitempty"`
-	ParentTheme            *string                   `json:"parentTheme,omitempty"`
+	RatingKey             string                    `json:"ratingKey"`
+	Key                   string                    `json:"key"`
+	GUID                  string                    `json:"guid"`
+	Studio                *string                   `json:"studio,omitempty"`
+	Type                  string                    `json:"type"`
+	Title                 string                    `json:"title"`
+	ContentRating         *string                   `json:"contentRating,omitempty"`
+	Summary               *string                   `json:"summary,omitempty"`
+	Rating                *float64                  `json:"rating,omitempty"`
+	AudienceRating        *float64                  `json:"audienceRating,omitempty"`
+	Year                  int                       `json:"year"`
+	Tagline               *string                   `json:"tagline,omitempty"`
+	Thumb                 *string                   `json:"thumb,omitempty"`
+	Art                   *string                   `json:"art,omitempty"`
+	Duration              int                       `json:"duration"`
+	OriginallyAvailableAt *types.Date               `json:"originallyAvailableAt,omitempty"`
+	AddedAt               *int                      `json:"addedAt,omitempty"`
+	UpdatedAt             *int                      `json:"updatedAt,omitempty"`
+	AudienceRatingImage   *string                   `json:"audienceRatingImage,omitempty"`
+	ChapterSource         *string                   `json:"chapterSource,omitempty"`
+	PrimaryExtraKey       *string                   `json:"primaryExtraKey,omitempty"`
+	RatingImage           *string                   `json:"ratingImage,omitempty"`
+	GrandparentRatingKey  *string                   `json:"grandparentRatingKey,omitempty"`
+	GrandparentGUID       *string                   `json:"grandparentGuid,omitempty"`
+	GrandparentKey        *string                   `json:"grandparentKey,omitempty"`
+	GrandparentTitle      *string                   `json:"grandparentTitle,omitempty"`
+	GrandparentThumb      *string                   `json:"grandparentThumb,omitempty"`
+	GrandparentArt        *string                   `json:"grandparentArt,omitempty"`
+	GrandparentTheme      *string                   `json:"grandparentTheme,omitempty"`
+	Media                 []GetLibraryItemsMedia    `json:"Media"`
+	Genre                 []GetLibraryItemsGenre    `json:"Genre,omitempty"`
+	Country               []GetLibraryItemsCountry  `json:"Country,omitempty"`
+	Director              []GetLibraryItemsDirector `json:"Director,omitempty"`
+	Writer                []GetLibraryItemsWriter   `json:"Writer,omitempty"`
+	Role                  []GetLibraryItemsRole     `json:"Role,omitempty"`
+	// The Guid object is only included in the response if the `includeGuids` parameter is set to `1`.
+	//
+	MediaGUID              []MediaGUID `json:"Guid,omitempty"`
+	TitleSort              *string     `json:"titleSort,omitempty"`
+	ViewCount              *int        `json:"viewCount,omitempty"`
+	LastViewedAt           *int        `json:"lastViewedAt,omitempty"`
+	OriginalTitle          *string     `json:"originalTitle,omitempty"`
+	ViewOffset             *int        `json:"viewOffset,omitempty"`
+	SkipCount              *int        `json:"skipCount,omitempty"`
+	Index                  *int        `json:"index,omitempty"`
+	Theme                  *string     `json:"theme,omitempty"`
+	LeafCount              *int        `json:"leafCount,omitempty"`
+	ViewedLeafCount        *int        `json:"viewedLeafCount,omitempty"`
+	ChildCount             *int        `json:"childCount,omitempty"`
+	HasPremiumExtras       *string     `json:"hasPremiumExtras,omitempty"`
+	HasPremiumPrimaryExtra *string     `json:"hasPremiumPrimaryExtra,omitempty"`
+	ParentRatingKey        *string     `json:"parentRatingKey,omitempty"`
+	ParentGUID             *string     `json:"parentGuid,omitempty"`
+	ParentStudio           *string     `json:"parentStudio,omitempty"`
+	ParentKey              *string     `json:"parentKey,omitempty"`
+	ParentTitle            *string     `json:"parentTitle,omitempty"`
+	ParentIndex            *int        `json:"parentIndex,omitempty"`
+	ParentYear             *int        `json:"parentYear,omitempty"`
+	ParentThumb            *string     `json:"parentThumb,omitempty"`
+	ParentTheme            *string     `json:"parentTheme,omitempty"`
 }
 
 func (g GetLibraryItemsMetadata) MarshalJSON() ([]byte, error) {
@@ -637,23 +654,23 @@ func (g *GetLibraryItemsMetadata) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetLibraryItemsMetadata) GetRatingKey() *string {
+func (o *GetLibraryItemsMetadata) GetRatingKey() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.RatingKey
 }
 
-func (o *GetLibraryItemsMetadata) GetKey() *string {
+func (o *GetLibraryItemsMetadata) GetKey() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.Key
 }
 
-func (o *GetLibraryItemsMetadata) GetGUID() *string {
+func (o *GetLibraryItemsMetadata) GetGUID() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.GUID
 }
@@ -665,16 +682,16 @@ func (o *GetLibraryItemsMetadata) GetStudio() *string {
 	return o.Studio
 }
 
-func (o *GetLibraryItemsMetadata) GetType() *string {
+func (o *GetLibraryItemsMetadata) GetType() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.Type
 }
 
-func (o *GetLibraryItemsMetadata) GetTitle() *string {
+func (o *GetLibraryItemsMetadata) GetTitle() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.Title
 }
@@ -707,9 +724,9 @@ func (o *GetLibraryItemsMetadata) GetAudienceRating() *float64 {
 	return o.AudienceRating
 }
 
-func (o *GetLibraryItemsMetadata) GetYear() *int {
+func (o *GetLibraryItemsMetadata) GetYear() int {
 	if o == nil {
-		return nil
+		return 0
 	}
 	return o.Year
 }
@@ -735,9 +752,9 @@ func (o *GetLibraryItemsMetadata) GetArt() *string {
 	return o.Art
 }
 
-func (o *GetLibraryItemsMetadata) GetDuration() *int {
+func (o *GetLibraryItemsMetadata) GetDuration() int {
 	if o == nil {
-		return nil
+		return 0
 	}
 	return o.Duration
 }
@@ -842,7 +859,7 @@ func (o *GetLibraryItemsMetadata) GetGrandparentTheme() *string {
 
 func (o *GetLibraryItemsMetadata) GetMedia() []GetLibraryItemsMedia {
 	if o == nil {
-		return nil
+		return []GetLibraryItemsMedia{}
 	}
 	return o.Media
 }
@@ -880,6 +897,13 @@ func (o *GetLibraryItemsMetadata) GetRole() []GetLibraryItemsRole {
 		return nil
 	}
 	return o.Role
+}
+
+func (o *GetLibraryItemsMetadata) GetMediaGUID() []MediaGUID {
+	if o == nil {
+		return nil
+	}
+	return o.MediaGUID
 }
 
 func (o *GetLibraryItemsMetadata) GetTitleSort() *string {
@@ -1036,112 +1060,361 @@ func (o *GetLibraryItemsMetadata) GetParentTheme() *string {
 	return o.ParentTheme
 }
 
+type GetLibraryItemsFilter struct {
+	Filter     string `json:"filter"`
+	FilterType string `json:"filterType"`
+	Key        string `json:"key"`
+	Title      string `json:"title"`
+	Type       string `json:"type"`
+}
+
+func (o *GetLibraryItemsFilter) GetFilter() string {
+	if o == nil {
+		return ""
+	}
+	return o.Filter
+}
+
+func (o *GetLibraryItemsFilter) GetFilterType() string {
+	if o == nil {
+		return ""
+	}
+	return o.FilterType
+}
+
+func (o *GetLibraryItemsFilter) GetKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.Key
+}
+
+func (o *GetLibraryItemsFilter) GetTitle() string {
+	if o == nil {
+		return ""
+	}
+	return o.Title
+}
+
+func (o *GetLibraryItemsFilter) GetType() string {
+	if o == nil {
+		return ""
+	}
+	return o.Type
+}
+
+type GetLibraryItemsSort struct {
+	Default           *string `json:"default,omitempty"`
+	DefaultDirection  string  `json:"defaultDirection"`
+	DescKey           *string `json:"descKey,omitempty"`
+	FirstCharacterKey *string `json:"firstCharacterKey,omitempty"`
+	Key               string  `json:"key"`
+	Title             string  `json:"title"`
+}
+
+func (o *GetLibraryItemsSort) GetDefault() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Default
+}
+
+func (o *GetLibraryItemsSort) GetDefaultDirection() string {
+	if o == nil {
+		return ""
+	}
+	return o.DefaultDirection
+}
+
+func (o *GetLibraryItemsSort) GetDescKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DescKey
+}
+
+func (o *GetLibraryItemsSort) GetFirstCharacterKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FirstCharacterKey
+}
+
+func (o *GetLibraryItemsSort) GetKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.Key
+}
+
+func (o *GetLibraryItemsSort) GetTitle() string {
+	if o == nil {
+		return ""
+	}
+	return o.Title
+}
+
+type GetLibraryItemsField struct {
+	Key     string  `json:"key"`
+	Title   string  `json:"title"`
+	Type    string  `json:"type"`
+	SubType *string `json:"subType,omitempty"`
+}
+
+func (o *GetLibraryItemsField) GetKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.Key
+}
+
+func (o *GetLibraryItemsField) GetTitle() string {
+	if o == nil {
+		return ""
+	}
+	return o.Title
+}
+
+func (o *GetLibraryItemsField) GetType() string {
+	if o == nil {
+		return ""
+	}
+	return o.Type
+}
+
+func (o *GetLibraryItemsField) GetSubType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SubType
+}
+
+type GetLibraryItemsType struct {
+	Key    string                  `json:"key"`
+	Type   string                  `json:"type"`
+	Title  string                  `json:"title"`
+	Active bool                    `json:"active"`
+	Filter []GetLibraryItemsFilter `json:"Filter,omitempty"`
+	Sort   []GetLibraryItemsSort   `json:"Sort,omitempty"`
+	Field  []GetLibraryItemsField  `json:"Field,omitempty"`
+}
+
+func (o *GetLibraryItemsType) GetKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.Key
+}
+
+func (o *GetLibraryItemsType) GetType() string {
+	if o == nil {
+		return ""
+	}
+	return o.Type
+}
+
+func (o *GetLibraryItemsType) GetTitle() string {
+	if o == nil {
+		return ""
+	}
+	return o.Title
+}
+
+func (o *GetLibraryItemsType) GetActive() bool {
+	if o == nil {
+		return false
+	}
+	return o.Active
+}
+
+func (o *GetLibraryItemsType) GetFilter() []GetLibraryItemsFilter {
+	if o == nil {
+		return nil
+	}
+	return o.Filter
+}
+
+func (o *GetLibraryItemsType) GetSort() []GetLibraryItemsSort {
+	if o == nil {
+		return nil
+	}
+	return o.Sort
+}
+
+func (o *GetLibraryItemsType) GetField() []GetLibraryItemsField {
+	if o == nil {
+		return nil
+	}
+	return o.Field
+}
+
+type GetLibraryItemsOperator struct {
+	Key   string `json:"key"`
+	Title string `json:"title"`
+}
+
+func (o *GetLibraryItemsOperator) GetKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.Key
+}
+
+func (o *GetLibraryItemsOperator) GetTitle() string {
+	if o == nil {
+		return ""
+	}
+	return o.Title
+}
+
+type GetLibraryItemsFieldType struct {
+	Type     string                    `json:"type"`
+	Operator []GetLibraryItemsOperator `json:"Operator"`
+}
+
+func (o *GetLibraryItemsFieldType) GetType() string {
+	if o == nil {
+		return ""
+	}
+	return o.Type
+}
+
+func (o *GetLibraryItemsFieldType) GetOperator() []GetLibraryItemsOperator {
+	if o == nil {
+		return []GetLibraryItemsOperator{}
+	}
+	return o.Operator
+}
+
+// The Meta object is only included in the response if the `includeMeta` parameter is set to `1`.
+type Meta struct {
+	Type      []GetLibraryItemsType      `json:"Type,omitempty"`
+	FieldType []GetLibraryItemsFieldType `json:"FieldType,omitempty"`
+}
+
+func (o *Meta) GetType() []GetLibraryItemsType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
+func (o *Meta) GetFieldType() []GetLibraryItemsFieldType {
+	if o == nil {
+		return nil
+	}
+	return o.FieldType
+}
+
 type GetLibraryItemsMediaContainer struct {
-	Size                *int                      `json:"size,omitempty"`
-	AllowSync           *bool                     `json:"allowSync,omitempty"`
-	Art                 *string                   `json:"art,omitempty"`
-	Identifier          *string                   `json:"identifier,omitempty"`
-	LibrarySectionID    *LibrarySectionID         `json:"librarySectionID,omitempty"`
-	LibrarySectionTitle *string                   `json:"librarySectionTitle,omitempty"`
-	LibrarySectionUUID  *string                   `json:"librarySectionUUID,omitempty"`
-	MediaTagPrefix      *string                   `json:"mediaTagPrefix,omitempty"`
-	MediaTagVersion     *int                      `json:"mediaTagVersion,omitempty"`
-	Thumb               *string                   `json:"thumb,omitempty"`
-	Title1              *string                   `json:"title1,omitempty"`
-	Title2              *string                   `json:"title2,omitempty"`
-	ViewGroup           *string                   `json:"viewGroup,omitempty"`
+	Size                int                       `json:"size"`
+	AllowSync           bool                      `json:"allowSync"`
+	Art                 string                    `json:"art"`
+	Identifier          string                    `json:"identifier"`
+	LibrarySectionID    LibrarySectionID          `json:"librarySectionID"`
+	LibrarySectionTitle string                    `json:"librarySectionTitle"`
+	LibrarySectionUUID  string                    `json:"librarySectionUUID"`
+	MediaTagPrefix      string                    `json:"mediaTagPrefix"`
+	MediaTagVersion     int                       `json:"mediaTagVersion"`
+	Thumb               string                    `json:"thumb"`
+	Title1              string                    `json:"title1"`
+	Title2              string                    `json:"title2"`
+	ViewGroup           string                    `json:"viewGroup"`
 	ViewMode            *int                      `json:"viewMode,omitempty"`
 	MixedParents        *bool                     `json:"mixedParents,omitempty"`
 	Metadata            []GetLibraryItemsMetadata `json:"Metadata,omitempty"`
+	// The Meta object is only included in the response if the `includeMeta` parameter is set to `1`.
+	//
+	Meta *Meta `json:"Meta,omitempty"`
 }
 
-func (o *GetLibraryItemsMediaContainer) GetSize() *int {
+func (o *GetLibraryItemsMediaContainer) GetSize() int {
 	if o == nil {
-		return nil
+		return 0
 	}
 	return o.Size
 }
 
-func (o *GetLibraryItemsMediaContainer) GetAllowSync() *bool {
+func (o *GetLibraryItemsMediaContainer) GetAllowSync() bool {
 	if o == nil {
-		return nil
+		return false
 	}
 	return o.AllowSync
 }
 
-func (o *GetLibraryItemsMediaContainer) GetArt() *string {
+func (o *GetLibraryItemsMediaContainer) GetArt() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.Art
 }
 
-func (o *GetLibraryItemsMediaContainer) GetIdentifier() *string {
+func (o *GetLibraryItemsMediaContainer) GetIdentifier() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.Identifier
 }
 
-func (o *GetLibraryItemsMediaContainer) GetLibrarySectionID() *LibrarySectionID {
+func (o *GetLibraryItemsMediaContainer) GetLibrarySectionID() LibrarySectionID {
 	if o == nil {
-		return nil
+		return LibrarySectionID{}
 	}
 	return o.LibrarySectionID
 }
 
-func (o *GetLibraryItemsMediaContainer) GetLibrarySectionTitle() *string {
+func (o *GetLibraryItemsMediaContainer) GetLibrarySectionTitle() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.LibrarySectionTitle
 }
 
-func (o *GetLibraryItemsMediaContainer) GetLibrarySectionUUID() *string {
+func (o *GetLibraryItemsMediaContainer) GetLibrarySectionUUID() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.LibrarySectionUUID
 }
 
-func (o *GetLibraryItemsMediaContainer) GetMediaTagPrefix() *string {
+func (o *GetLibraryItemsMediaContainer) GetMediaTagPrefix() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.MediaTagPrefix
 }
 
-func (o *GetLibraryItemsMediaContainer) GetMediaTagVersion() *int {
+func (o *GetLibraryItemsMediaContainer) GetMediaTagVersion() int {
 	if o == nil {
-		return nil
+		return 0
 	}
 	return o.MediaTagVersion
 }
 
-func (o *GetLibraryItemsMediaContainer) GetThumb() *string {
+func (o *GetLibraryItemsMediaContainer) GetThumb() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.Thumb
 }
 
-func (o *GetLibraryItemsMediaContainer) GetTitle1() *string {
+func (o *GetLibraryItemsMediaContainer) GetTitle1() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.Title1
 }
 
-func (o *GetLibraryItemsMediaContainer) GetTitle2() *string {
+func (o *GetLibraryItemsMediaContainer) GetTitle2() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.Title2
 }
 
-func (o *GetLibraryItemsMediaContainer) GetViewGroup() *string {
+func (o *GetLibraryItemsMediaContainer) GetViewGroup() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.ViewGroup
 }
@@ -1165,6 +1438,13 @@ func (o *GetLibraryItemsMediaContainer) GetMetadata() []GetLibraryItemsMetadata 
 		return nil
 	}
 	return o.Metadata
+}
+
+func (o *GetLibraryItemsMediaContainer) GetMeta() *Meta {
+	if o == nil {
+		return nil
+	}
+	return o.Meta
 }
 
 // GetLibraryItemsResponseBody - The contents of the library by section and tag

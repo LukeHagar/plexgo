@@ -7,194 +7,194 @@ import (
 )
 
 type Location struct {
-	ID   *int    `json:"id,omitempty"`
-	Path *string `json:"path,omitempty"`
+	ID   int    `json:"id"`
+	Path string `json:"path"`
 }
 
-func (o *Location) GetID() *int {
+func (o *Location) GetID() int {
 	if o == nil {
-		return nil
+		return 0
 	}
 	return o.ID
 }
 
-func (o *Location) GetPath() *string {
+func (o *Location) GetPath() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.Path
 }
 
 type GetAllLibrariesDirectory struct {
-	AllowSync  *bool   `json:"allowSync,omitempty"`
-	Art        *string `json:"art,omitempty"`
-	Composite  *string `json:"composite,omitempty"`
-	Filters    *bool   `json:"filters,omitempty"`
-	Refreshing *bool   `json:"refreshing,omitempty"`
-	Thumb      *string `json:"thumb,omitempty"`
-	Key        *string `json:"key,omitempty"`
-	Type       *string `json:"type,omitempty"`
-	Title      *string `json:"title,omitempty"`
-	Agent      *string `json:"agent,omitempty"`
-	Scanner    *string `json:"scanner,omitempty"`
-	Language   *string `json:"language,omitempty"`
-	UUID       *string `json:"uuid,omitempty"`
-	// Unix epoch datetime
-	UpdatedAt *int64 `json:"updatedAt,omitempty"`
-	// Unix epoch datetime
-	CreatedAt *int64 `json:"createdAt,omitempty"`
-	// Unix epoch datetime
-	ScannedAt        *int64     `json:"scannedAt,omitempty"`
-	Content          *bool      `json:"content,omitempty"`
-	Directory        *bool      `json:"directory,omitempty"`
-	ContentChangedAt *int       `json:"contentChangedAt,omitempty"`
-	Hidden           *int       `json:"hidden,omitempty"`
-	Location         []Location `json:"Location,omitempty"`
+	AllowSync  bool   `json:"allowSync"`
+	Art        string `json:"art"`
+	Composite  string `json:"composite"`
+	Filters    bool   `json:"filters"`
+	Refreshing bool   `json:"refreshing"`
+	Thumb      string `json:"thumb"`
+	Key        string `json:"key"`
+	Type       string `json:"type"`
+	Title      string `json:"title"`
+	Agent      string `json:"agent"`
+	Scanner    string `json:"scanner"`
+	Language   string `json:"language"`
+	UUID       string `json:"uuid"`
+	// Unix epoch datetime in seconds
+	UpdatedAt int64 `json:"updatedAt"`
+	// Unix epoch datetime in seconds
+	CreatedAt int64 `json:"createdAt"`
+	// Unix epoch datetime in seconds
+	ScannedAt        int64      `json:"scannedAt"`
+	Content          bool       `json:"content"`
+	Directory        bool       `json:"directory"`
+	ContentChangedAt int        `json:"contentChangedAt"`
+	Hidden           int        `json:"hidden"`
+	Location         []Location `json:"Location"`
 }
 
-func (o *GetAllLibrariesDirectory) GetAllowSync() *bool {
+func (o *GetAllLibrariesDirectory) GetAllowSync() bool {
 	if o == nil {
-		return nil
+		return false
 	}
 	return o.AllowSync
 }
 
-func (o *GetAllLibrariesDirectory) GetArt() *string {
+func (o *GetAllLibrariesDirectory) GetArt() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.Art
 }
 
-func (o *GetAllLibrariesDirectory) GetComposite() *string {
+func (o *GetAllLibrariesDirectory) GetComposite() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.Composite
 }
 
-func (o *GetAllLibrariesDirectory) GetFilters() *bool {
+func (o *GetAllLibrariesDirectory) GetFilters() bool {
 	if o == nil {
-		return nil
+		return false
 	}
 	return o.Filters
 }
 
-func (o *GetAllLibrariesDirectory) GetRefreshing() *bool {
+func (o *GetAllLibrariesDirectory) GetRefreshing() bool {
 	if o == nil {
-		return nil
+		return false
 	}
 	return o.Refreshing
 }
 
-func (o *GetAllLibrariesDirectory) GetThumb() *string {
+func (o *GetAllLibrariesDirectory) GetThumb() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.Thumb
 }
 
-func (o *GetAllLibrariesDirectory) GetKey() *string {
+func (o *GetAllLibrariesDirectory) GetKey() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.Key
 }
 
-func (o *GetAllLibrariesDirectory) GetType() *string {
+func (o *GetAllLibrariesDirectory) GetType() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.Type
 }
 
-func (o *GetAllLibrariesDirectory) GetTitle() *string {
+func (o *GetAllLibrariesDirectory) GetTitle() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.Title
 }
 
-func (o *GetAllLibrariesDirectory) GetAgent() *string {
+func (o *GetAllLibrariesDirectory) GetAgent() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.Agent
 }
 
-func (o *GetAllLibrariesDirectory) GetScanner() *string {
+func (o *GetAllLibrariesDirectory) GetScanner() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.Scanner
 }
 
-func (o *GetAllLibrariesDirectory) GetLanguage() *string {
+func (o *GetAllLibrariesDirectory) GetLanguage() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.Language
 }
 
-func (o *GetAllLibrariesDirectory) GetUUID() *string {
+func (o *GetAllLibrariesDirectory) GetUUID() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.UUID
 }
 
-func (o *GetAllLibrariesDirectory) GetUpdatedAt() *int64 {
+func (o *GetAllLibrariesDirectory) GetUpdatedAt() int64 {
 	if o == nil {
-		return nil
+		return 0
 	}
 	return o.UpdatedAt
 }
 
-func (o *GetAllLibrariesDirectory) GetCreatedAt() *int64 {
+func (o *GetAllLibrariesDirectory) GetCreatedAt() int64 {
 	if o == nil {
-		return nil
+		return 0
 	}
 	return o.CreatedAt
 }
 
-func (o *GetAllLibrariesDirectory) GetScannedAt() *int64 {
+func (o *GetAllLibrariesDirectory) GetScannedAt() int64 {
 	if o == nil {
-		return nil
+		return 0
 	}
 	return o.ScannedAt
 }
 
-func (o *GetAllLibrariesDirectory) GetContent() *bool {
+func (o *GetAllLibrariesDirectory) GetContent() bool {
 	if o == nil {
-		return nil
+		return false
 	}
 	return o.Content
 }
 
-func (o *GetAllLibrariesDirectory) GetDirectory() *bool {
+func (o *GetAllLibrariesDirectory) GetDirectory() bool {
 	if o == nil {
-		return nil
+		return false
 	}
 	return o.Directory
 }
 
-func (o *GetAllLibrariesDirectory) GetContentChangedAt() *int {
+func (o *GetAllLibrariesDirectory) GetContentChangedAt() int {
 	if o == nil {
-		return nil
+		return 0
 	}
 	return o.ContentChangedAt
 }
 
-func (o *GetAllLibrariesDirectory) GetHidden() *int {
+func (o *GetAllLibrariesDirectory) GetHidden() int {
 	if o == nil {
-		return nil
+		return 0
 	}
 	return o.Hidden
 }
 
 func (o *GetAllLibrariesDirectory) GetLocation() []Location {
 	if o == nil {
-		return nil
+		return []Location{}
 	}
 	return o.Location
 }
@@ -203,7 +203,7 @@ type GetAllLibrariesMediaContainer struct {
 	Size      int                        `json:"size"`
 	AllowSync bool                       `json:"allowSync"`
 	Title1    string                     `json:"title1"`
-	Directory []GetAllLibrariesDirectory `json:"Directory,omitempty"`
+	Directory []GetAllLibrariesDirectory `json:"Directory"`
 }
 
 func (o *GetAllLibrariesMediaContainer) GetSize() int {
@@ -229,19 +229,19 @@ func (o *GetAllLibrariesMediaContainer) GetTitle1() string {
 
 func (o *GetAllLibrariesMediaContainer) GetDirectory() []GetAllLibrariesDirectory {
 	if o == nil {
-		return nil
+		return []GetAllLibrariesDirectory{}
 	}
 	return o.Directory
 }
 
 // GetAllLibrariesResponseBody - The libraries available on the Server
 type GetAllLibrariesResponseBody struct {
-	MediaContainer *GetAllLibrariesMediaContainer `json:"MediaContainer,omitempty"`
+	MediaContainer GetAllLibrariesMediaContainer `json:"MediaContainer"`
 }
 
-func (o *GetAllLibrariesResponseBody) GetMediaContainer() *GetAllLibrariesMediaContainer {
+func (o *GetAllLibrariesResponseBody) GetMediaContainer() GetAllLibrariesMediaContainer {
 	if o == nil {
-		return nil
+		return GetAllLibrariesMediaContainer{}
 	}
 	return o.MediaContainer
 }

@@ -6,7 +6,7 @@ Adds the Guids object to the response
 
 ## Values
 
-| Name               | Value              |
-| ------------------ | ------------------ |
-| `IncludeGuidsZero` | 0                  |
-| `IncludeGuidsOne`  | 1                  |
+| Name                  | Value                 |
+| --------------------- | --------------------- |
+| `IncludeGuidsDisable` | 0                     |
+| `IncludeGuidsEnable`  | 1                     |

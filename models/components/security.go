@@ -3,7 +3,7 @@
 package components
 
 type Security struct {
-	AccessToken *string `security:"scheme,type=apiKey,subtype=query,name=X-Plex-Token"`
+	AccessToken *string `security:"scheme,type=apiKey,subtype=header,name=X-Plex-Token"`
 }
 
 func (o *Security) GetAccessToken() *string {

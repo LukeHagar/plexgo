@@ -833,7 +833,7 @@ actions:
                 )
 
                 ctx := context.Background()
-                res, err := s.Library.GetTopWatchedContent(ctx, operations.GetTopWatchedContentQueryParamTypeTwo, plexgo.Int64(1))
+                res, err := s.Library.GetTopWatchedContent(ctx, operations.GetTopWatchedContentQueryParamTypeShow, plexgo.Int64(1))
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -973,7 +973,7 @@ actions:
                 )
 
                 ctx := context.Background()
-                res, err := s.Library.GetMetadataChildren(ctx, 1539.14, plexgo.String("Stream"))
+                res, err := s.Library.GetMetadataChildren(ctx, 1539.15, plexgo.String("Stream"))
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -1286,7 +1286,7 @@ actions:
                 )
 
                 ctx := context.Background()
-                res, err := s.Library.GetSearchLibrary(ctx, 9518, operations.QueryParamTypeTwo)
+                res, err := s.Library.GetSearchLibrary(ctx, 9518, operations.QueryParamTypeShow)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -1323,9 +1323,9 @@ actions:
                 res, err := s.Library.GetLibraryItems(ctx, operations.GetLibraryItemsRequest{
                     SectionKey: 9518,
                     Tag: operations.TagEdition,
-                    IncludeGuids: operations.IncludeGuidsOne.ToPointer(),
-                    IncludeMeta: operations.IncludeMetaOne.ToPointer(),
-                    Type: operations.TypeTwo,
+                    IncludeGuids: operations.IncludeGuidsEnable.ToPointer(),
+                    IncludeMeta: operations.IncludeMetaEnable.ToPointer(),
+                    Type: operations.TypeShow,
                     XPlexContainerStart: plexgo.Int(0),
                     XPlexContainerSize: plexgo.Int(50),
                 })
@@ -1534,7 +1534,7 @@ actions:
                     Width: 110,
                     Height: 165,
                     Opacity: 100,
-                    Blur: 20,
+                    Blur: 0,
                     MinSize: operations.MinSizeOne,
                     Upscale: operations.UpscaleOne,
                     URL: "/library/metadata/49564/thumb/1654258204",
@@ -1603,7 +1603,7 @@ actions:
                 )
 
                 ctx := context.Background()
-                res, err := s.Plex.GetTokenByPinID(ctx, 408895, plexgo.String("gcgzw5rz2xovp84b4vha3a40"))
+                res, err := s.Plex.GetTokenByPinID(ctx, 408895)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -1674,7 +1674,7 @@ actions:
                     Title: "<value>",
                     Type: operations.CreatePlaylistQueryParamTypePhoto,
                     Smart: operations.SmartOne,
-                    URI: "https://inborn-brochure.biz",
+                    URI: "https://hoarse-testing.info/",
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -1709,7 +1709,7 @@ actions:
                 )
 
                 ctx := context.Background()
-                res, err := s.Playlists.UploadPlaylist(ctx, "/home/barkley/playlist.m3u", operations.QueryParamForceZero)
+                res, err := s.Playlists.UploadPlaylist(ctx, "/home/barkley/playlist.m3u", operations.QueryParamForceZero, 1)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -1808,7 +1808,7 @@ actions:
                 )
 
                 ctx := context.Background()
-                res, err := s.Playlists.UpdatePlaylist(ctx, 3915, nil, nil)
+                res, err := s.Playlists.UpdatePlaylist(ctx, 3915.00, nil, nil)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -1875,7 +1875,7 @@ actions:
                 )
 
                 ctx := context.Background()
-                res, err := s.Playlists.GetPlaylistContents(ctx, 5004.46, operations.GetPlaylistContentsQueryParamTypeTwo)
+                res, err := s.Playlists.GetPlaylistContents(ctx, 5004.46, operations.GetPlaylistContentsQueryParamTypeShow)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -1908,7 +1908,7 @@ actions:
                 )
 
                 ctx := context.Background()
-                res, err := s.Playlists.AddPlaylistContents(ctx, 8502.01, "server://12345/com.plexapp.plugins.library/library/metadata/1", plexgo.Float64(123))
+                res, err := s.Playlists.AddPlaylistContents(ctx, 8502.00, "server://12345/com.plexapp.plugins.library/library/metadata/1", plexgo.Float64(123))
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -1942,7 +1942,7 @@ actions:
                 )
 
                 ctx := context.Background()
-                res, err := s.Plex.GetServerResources(ctx, plexgo.String("gcgzw5rz2xovp84b4vha3a40"), operations.IncludeHTTPSOne.ToPointer(), operations.IncludeRelayOne.ToPointer(), operations.IncludeIPv6One.ToPointer())
+                res, err := s.Plex.GetServerResources(ctx, operations.IncludeHTTPSEnable.ToPointer(), operations.IncludeRelayEnable.ToPointer(), operations.IncludeIPv6Enable.ToPointer())
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -2008,7 +2008,7 @@ actions:
                 )
 
                 ctx := context.Background()
-                res, err := s.Authentication.GetSourceConnectionInformation(ctx, "server://client-identifier")
+                res, err := s.Authentication.GetSourceConnectionInformation(ctx, "provider://provider-identifier")
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -2474,7 +2474,7 @@ actions:
                 )
 
                 ctx := context.Background()
-                res, err := s.Authentication.PostUsersSignInData(ctx, plexgo.String("gcgzw5rz2xovp84b4vha3a40"), &operations.PostUsersSignInDataRequestBody{
+                res, err := s.Authentication.PostUsersSignInData(ctx, &operations.PostUsersSignInDataRequestBody{
                     Login: "username@email.com",
                     Password: "password123",
                     VerificationCode: plexgo.String("123456"),

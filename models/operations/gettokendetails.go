@@ -42,25 +42,25 @@ func (e *MailingListStatus) UnmarshalJSON(data []byte) error {
 }
 
 // AutoSelectSubtitle - The auto-select subtitle mode (0 = Manually selected, 1 = Shown with foreign audio, 2 = Always enabled)
-type AutoSelectSubtitle string
+type AutoSelectSubtitle int
 
 const (
-	AutoSelectSubtitleZero AutoSelectSubtitle = "0"
-	AutoSelectSubtitleOne  AutoSelectSubtitle = "1"
+	AutoSelectSubtitleDisable AutoSelectSubtitle = 0
+	AutoSelectSubtitleEnable  AutoSelectSubtitle = 1
 )
 
 func (e AutoSelectSubtitle) ToPointer() *AutoSelectSubtitle {
 	return &e
 }
 func (e *AutoSelectSubtitle) UnmarshalJSON(data []byte) error {
-	var v string
+	var v int
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
-	case "0":
+	case 0:
 		fallthrough
-	case "1":
+	case 1:
 		*e = AutoSelectSubtitle(v)
 		return nil
 	default:
@@ -68,26 +68,26 @@ func (e *AutoSelectSubtitle) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// DefaultSubtitleAccessibility - The subtitles for the deaf or hard-of-hearing (SDH) searches mode (0 = Prefer non-SDH subtitles, 1 = Prefer SDH subtitles, 2 = Only show SDH subtitles, 3 = Only shown non-SDH subtitles)
-type DefaultSubtitleAccessibility string
+// DefaultSubtitleAccessibility - The subtitles for the deaf or hard-of-hearing (SDH) searches mode (0 = Prefer non-SDH subtitles, 1 = Prefer SDH subtitles, 2 = Only show SDH subtitles, 3 = Only show non-SDH subtitles)
+type DefaultSubtitleAccessibility int
 
 const (
-	DefaultSubtitleAccessibilityZero DefaultSubtitleAccessibility = "0"
-	DefaultSubtitleAccessibilityOne  DefaultSubtitleAccessibility = "1"
+	DefaultSubtitleAccessibilityDisable DefaultSubtitleAccessibility = 0
+	DefaultSubtitleAccessibilityEnable  DefaultSubtitleAccessibility = 1
 )
 
 func (e DefaultSubtitleAccessibility) ToPointer() *DefaultSubtitleAccessibility {
 	return &e
 }
 func (e *DefaultSubtitleAccessibility) UnmarshalJSON(data []byte) error {
-	var v string
+	var v int
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
-	case "0":
+	case 0:
 		fallthrough
-	case "1":
+	case 1:
 		*e = DefaultSubtitleAccessibility(v)
 		return nil
 	default:
@@ -96,25 +96,25 @@ func (e *DefaultSubtitleAccessibility) UnmarshalJSON(data []byte) error {
 }
 
 // DefaultSubtitleForced - The forced subtitles searches mode (0 = Prefer non-forced subtitles, 1 = Prefer forced subtitles, 2 = Only show forced subtitles, 3 = Only show non-forced subtitles)
-type DefaultSubtitleForced string
+type DefaultSubtitleForced int
 
 const (
-	DefaultSubtitleForcedZero DefaultSubtitleForced = "0"
-	DefaultSubtitleForcedOne  DefaultSubtitleForced = "1"
+	DefaultSubtitleForcedDisable DefaultSubtitleForced = 0
+	DefaultSubtitleForcedEnable  DefaultSubtitleForced = 1
 )
 
 func (e DefaultSubtitleForced) ToPointer() *DefaultSubtitleForced {
 	return &e
 }
 func (e *DefaultSubtitleForced) UnmarshalJSON(data []byte) error {
-	var v string
+	var v int
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
-	case "0":
+	case 0:
 		fallthrough
-	case "1":
+	case 1:
 		*e = DefaultSubtitleForced(v)
 		return nil
 	default:
@@ -122,25 +122,26 @@ func (e *DefaultSubtitleForced) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type WatchedIndicator string
+// WatchedIndicator - Whether or not media watched indicators are enabled (little orange dot on media)
+type WatchedIndicator int
 
 const (
-	WatchedIndicatorZero WatchedIndicator = "0"
-	WatchedIndicatorOne  WatchedIndicator = "1"
+	WatchedIndicatorDisable WatchedIndicator = 0
+	WatchedIndicatorEnable  WatchedIndicator = 1
 )
 
 func (e WatchedIndicator) ToPointer() *WatchedIndicator {
 	return &e
 }
 func (e *WatchedIndicator) UnmarshalJSON(data []byte) error {
-	var v string
+	var v int
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
-	case "0":
+	case 0:
 		fallthrough
-	case "1":
+	case 1:
 		*e = WatchedIndicator(v)
 		return nil
 	default:
@@ -148,18 +149,19 @@ func (e *WatchedIndicator) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type MediaReviewsVisibility int64
+// MediaReviewsVisibility - Whether or not the account has media reviews visibility enabled
+type MediaReviewsVisibility int
 
 const (
-	MediaReviewsVisibilityZero MediaReviewsVisibility = 0
-	MediaReviewsVisibilityOne  MediaReviewsVisibility = 1
+	MediaReviewsVisibilityDisable MediaReviewsVisibility = 0
+	MediaReviewsVisibilityEnable  MediaReviewsVisibility = 1
 )
 
 func (e MediaReviewsVisibility) ToPointer() *MediaReviewsVisibility {
 	return &e
 }
 func (e *MediaReviewsVisibility) UnmarshalJSON(data []byte) error {
-	var v int64
+	var v int
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
@@ -180,15 +182,12 @@ type UserProfile struct {
 	// The preferred audio language for the account
 	DefaultAudioLanguage *string `json:"defaultAudioLanguage"`
 	// The preferred subtitle language for the account
-	DefaultSubtitleLanguage *string `json:"defaultSubtitleLanguage"`
-	// The auto-select subtitle mode (0 = Manually selected, 1 = Shown with foreign audio, 2 = Always enabled)
-	AutoSelectSubtitle *AutoSelectSubtitle `json:"autoSelectSubtitle,omitempty"`
-	// The subtitles for the deaf or hard-of-hearing (SDH) searches mode (0 = Prefer non-SDH subtitles, 1 = Prefer SDH subtitles, 2 = Only show SDH subtitles, 3 = Only shown non-SDH subtitles)
-	DefaultSubtitleAccessibility *DefaultSubtitleAccessibility `json:"defaultSubtitleAccessibility,omitempty"`
-	// The forced subtitles searches mode (0 = Prefer non-forced subtitles, 1 = Prefer forced subtitles, 2 = Only show forced subtitles, 3 = Only show non-forced subtitles)
-	DefaultSubtitleForced  *DefaultSubtitleForced  `json:"defaultSubtitleForced,omitempty"`
-	WatchedIndicator       *WatchedIndicator       `json:"watchedIndicator,omitempty"`
-	MediaReviewsVisibility *MediaReviewsVisibility `json:"mediaReviewsVisibility,omitempty"`
+	DefaultSubtitleLanguage      *string                       `json:"defaultSubtitleLanguage"`
+	AutoSelectSubtitle           *AutoSelectSubtitle           `default:"0" json:"autoSelectSubtitle"`
+	DefaultSubtitleAccessibility *DefaultSubtitleAccessibility `default:"0" json:"defaultSubtitleAccessibility"`
+	DefaultSubtitleForced        *DefaultSubtitleForced        `default:"0" json:"defaultSubtitleForced"`
+	WatchedIndicator             *WatchedIndicator             `default:"0" json:"watchedIndicator"`
+	MediaReviewsVisibility       *MediaReviewsVisibility       `default:"0" json:"mediaReviewsVisibility"`
 }
 
 func (u UserProfile) MarshalJSON() ([]byte, error) {
@@ -930,7 +929,7 @@ type GetTokenDetailsUserPlexAccount struct {
 	HomeSize int `json:"homeSize"`
 	// The Plex account ID
 	ID int `json:"id"`
-	// Unix epoch datetime
+	// Unix epoch datetime in seconds
 	JoinedAt int64 `json:"joinedAt"`
 	// The account locale
 	Locale *string `json:"locale"`
@@ -947,7 +946,7 @@ type GetTokenDetailsUserPlexAccount struct {
 	Profile UserProfile `json:"profile"`
 	// If the account has a Plex Home PIN enabled
 	Protected *bool `default:"false" json:"protected"`
-	// Unix epoch datetime
+	// Unix epoch datetime in seconds
 	RememberExpiresAt int64 `json:"rememberExpiresAt"`
 	// If the account is a Plex Home managed user
 	Restricted *bool `default:"false" json:"restricted"`

@@ -1008,7 +1008,7 @@ func (s *Plex) GetHomeData(ctx context.Context, opts ...operations.Option) (*ope
 
 // GetServerResources - Get Server Resources
 // Get Plex server access tokens and server connections
-func (s *Plex) GetServerResources(ctx context.Context, clientID *string, includeHTTPS *operations.IncludeHTTPS, includeRelay *operations.IncludeRelay, includeIPv6 *operations.IncludeIPv6, opts ...operations.Option) (*operations.GetServerResourcesResponse, error) {
+func (s *Plex) GetServerResources(ctx context.Context, includeHTTPS *operations.IncludeHTTPS, includeRelay *operations.IncludeRelay, includeIPv6 *operations.IncludeIPv6, opts ...operations.Option) (*operations.GetServerResourcesResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "get-server-resources",
@@ -1017,14 +1017,9 @@ func (s *Plex) GetServerResources(ctx context.Context, clientID *string, include
 	}
 
 	request := operations.GetServerResourcesRequest{
-		ClientID:     clientID,
 		IncludeHTTPS: includeHTTPS,
 		IncludeRelay: includeRelay,
 		IncludeIPv6:  includeIPv6,
-	}
-
-	globals := operations.GetServerResourcesGlobals{
-		ClientID: s.sdkConfiguration.Globals.ClientID,
 	}
 
 	o := operations.Options{}
@@ -1068,7 +1063,7 @@ func (s *Plex) GetServerResources(ctx context.Context, clientID *string, include
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -1279,7 +1274,6 @@ func (s *Plex) GetPin(ctx context.Context, request operations.GetPinRequest, opt
 	}
 
 	globals := operations.GetPinGlobals{
-		ClientID:       s.sdkConfiguration.Globals.ClientID,
 		ClientName:     s.sdkConfiguration.Globals.ClientName,
 		DeviceName:     s.sdkConfiguration.Globals.DeviceName,
 		ClientVersion:  s.sdkConfiguration.Globals.ClientVersion,
@@ -1502,7 +1496,7 @@ func (s *Plex) GetPin(ctx context.Context, request operations.GetPinRequest, opt
 
 // GetTokenByPinID - Get Access Token by PinId
 // Retrieve an Access Token from Plex.tv after the Pin has been authenticated
-func (s *Plex) GetTokenByPinID(ctx context.Context, pinID int64, clientID *string, opts ...operations.Option) (*operations.GetTokenByPinIDResponse, error) {
+func (s *Plex) GetTokenByPinID(ctx context.Context, pinID int64, opts ...operations.Option) (*operations.GetTokenByPinIDResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "getTokenByPinId",
@@ -1511,12 +1505,7 @@ func (s *Plex) GetTokenByPinID(ctx context.Context, pinID int64, clientID *strin
 	}
 
 	request := operations.GetTokenByPinIDRequest{
-		ClientID: clientID,
-		PinID:    pinID,
-	}
-
-	globals := operations.GetTokenByPinIDGlobals{
-		ClientID: s.sdkConfiguration.Globals.ClientID,
+		PinID: pinID,
 	}
 
 	o := operations.Options{}
@@ -1537,7 +1526,7 @@ func (s *Plex) GetTokenByPinID(ctx context.Context, pinID int64, clientID *strin
 		baseURL = *o.ServerURL
 	}
 
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/pins/{pinID}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/pins/{pinID}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1559,10 +1548,6 @@ func (s *Plex) GetTokenByPinID(ctx context.Context, pinID int64, clientID *strin
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-
-	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries

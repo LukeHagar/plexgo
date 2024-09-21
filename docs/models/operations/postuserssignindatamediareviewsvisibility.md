@@ -1,9 +1,11 @@
 # PostUsersSignInDataMediaReviewsVisibility
 
+Whether or not the account has media reviews visibility enabled
+
 
 ## Values
 
-| Name                                            | Value                                           |
-| ----------------------------------------------- | ----------------------------------------------- |
-| `PostUsersSignInDataMediaReviewsVisibilityZero` | 0                                               |
-| `PostUsersSignInDataMediaReviewsVisibilityOne`  | 1                                               |
+| Name                                               | Value                                              |
+| -------------------------------------------------- | -------------------------------------------------- |
+| `PostUsersSignInDataMediaReviewsVisibilityDisable` | 0                                                  |
+| `PostUsersSignInDataMediaReviewsVisibilityEnable`  | 1                                                  |

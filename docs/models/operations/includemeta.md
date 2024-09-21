@@ -6,7 +6,7 @@ Adds the Meta object to the response
 
 ## Values
 
-| Name              | Value             |
-| ----------------- | ----------------- |
-| `IncludeMetaZero` | 0                 |
-| `IncludeMetaOne`  | 1                 |
+| Name                 | Value                |
+| -------------------- | -------------------- |
+| `IncludeMetaDisable` | 0                    |
+| `IncludeMetaEnable`  | 1                    |

@@ -588,7 +588,7 @@ d6 := types.MustDateFromString("2019-01-01") // returns types.Date and panics on
 
 Certain parameters are configured globally. These parameters may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, These global values will be used as defaults on the operations that use them. When such operations are called, there is a place in each to override the global value, if needed.
 
-For example, you can set `ClientID` to `"gcgzw5rz2xovp84b4vha3a40"` at SDK initialization and then you do not have to pass the same value on calls to operations like `GetServerResources`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
+For example, you can set `ClientID` to `"gcgzw5rz2xovp84b4vha3a40"` at SDK initialization and then you do not have to pass the same value on calls to operations like `GetPin`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
 
 
 ### Available Globals
@@ -621,7 +621,6 @@ import (
 
 func main() {
 	s := plexgo.New(
-		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
 		plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
 		plexgo.WithClientName("Plex Web"),
 		plexgo.WithClientVersion("4.133.0"),
@@ -630,11 +629,11 @@ func main() {
 	)
 
 	ctx := context.Background()
-	res, err := s.Plex.GetServerResources(ctx, plexgo.String("gcgzw5rz2xovp84b4vha3a40"), operations.IncludeHTTPSOne.ToPointer(), operations.IncludeRelayOne.ToPointer(), operations.IncludeIPv6One.ToPointer())
+	res, err := s.Plex.GetPin(ctx, operations.GetPinRequest{})
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.PlexDevices != nil {
+	if res.AuthPinContainer != nil {
 		// handle response
 	}
 }

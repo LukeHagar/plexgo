@@ -736,21 +736,12 @@ func (s *Authentication) GetTokenDetails(ctx context.Context, opts ...operations
 
 // PostUsersSignInData - Get User Sign In Data
 // Sign in user with username and password and return user data with Plex authentication token
-func (s *Authentication) PostUsersSignInData(ctx context.Context, clientID *string, requestBody *operations.PostUsersSignInDataRequestBody, opts ...operations.Option) (*operations.PostUsersSignInDataResponse, error) {
+func (s *Authentication) PostUsersSignInData(ctx context.Context, request *operations.PostUsersSignInDataRequestBody, opts ...operations.Option) (*operations.PostUsersSignInDataResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "post-users-sign-in-data",
 		OAuth2Scopes:   []string{},
 		SecuritySource: nil,
-	}
-
-	request := operations.PostUsersSignInDataRequest{
-		ClientID:    clientID,
-		RequestBody: requestBody,
-	}
-
-	globals := operations.PostUsersSignInDataGlobals{
-		ClientID: s.sdkConfiguration.Globals.ClientID,
 	}
 
 	o := operations.Options{}
@@ -776,7 +767,7 @@ func (s *Authentication) PostUsersSignInData(ctx context.Context, clientID *stri
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "form", `request:"mediaType=application/x-www-form-urlencoded"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "form", `request:"mediaType=application/x-www-form-urlencoded"`)
 	if err != nil {
 		return nil, err
 	}
@@ -799,10 +790,6 @@ func (s *Authentication) PostUsersSignInData(ctx context.Context, clientID *stri
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 	req.Header.Set("Content-Type", reqContentType)
-
-	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries

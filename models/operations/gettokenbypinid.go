@@ -12,36 +12,9 @@ var GetTokenByPinIDServerList = []string{
 	"https://plex.tv/api/v2/",
 }
 
-type GetTokenByPinIDGlobals struct {
-	// The unique identifier for the client application
-	// This is used to track the client application and its usage
-	// (UUID, serial number, or other number unique per device)
-	//
-	ClientID *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
-}
-
-func (o *GetTokenByPinIDGlobals) GetClientID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ClientID
-}
-
 type GetTokenByPinIDRequest struct {
-	// The unique identifier for the client application
-	// This is used to track the client application and its usage
-	// (UUID, serial number, or other number unique per device)
-	//
-	ClientID *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
 	// The PinID to retrieve an access token for
 	PinID int64 `pathParam:"style=simple,explode=false,name=pinID"`
-}
-
-func (o *GetTokenByPinIDRequest) GetClientID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ClientID
 }
 
 func (o *GetTokenByPinIDRequest) GetPinID() int64 {

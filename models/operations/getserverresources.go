@@ -14,27 +14,12 @@ var GetServerResourcesServerList = []string{
 	"https://plex.tv/api/v2/",
 }
 
-type GetServerResourcesGlobals struct {
-	// The unique identifier for the client application
-	// This is used to track the client application and its usage
-	// (UUID, serial number, or other number unique per device)
-	//
-	ClientID *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
-}
-
-func (o *GetServerResourcesGlobals) GetClientID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ClientID
-}
-
 // IncludeHTTPS - Include Https entries in the results
 type IncludeHTTPS int
 
 const (
-	IncludeHTTPSZero IncludeHTTPS = 0
-	IncludeHTTPSOne  IncludeHTTPS = 1
+	IncludeHTTPSDisable IncludeHTTPS = 0
+	IncludeHTTPSEnable  IncludeHTTPS = 1
 )
 
 func (e IncludeHTTPS) ToPointer() *IncludeHTTPS {
@@ -61,8 +46,8 @@ func (e *IncludeHTTPS) UnmarshalJSON(data []byte) error {
 type IncludeRelay int
 
 const (
-	IncludeRelayZero IncludeRelay = 0
-	IncludeRelayOne  IncludeRelay = 1
+	IncludeRelayDisable IncludeRelay = 0
+	IncludeRelayEnable  IncludeRelay = 1
 )
 
 func (e IncludeRelay) ToPointer() *IncludeRelay {
@@ -88,8 +73,8 @@ func (e *IncludeRelay) UnmarshalJSON(data []byte) error {
 type IncludeIPv6 int
 
 const (
-	IncludeIPv6Zero IncludeIPv6 = 0
-	IncludeIPv6One  IncludeIPv6 = 1
+	IncludeIPv6Disable IncludeIPv6 = 0
+	IncludeIPv6Enable  IncludeIPv6 = 1
 )
 
 func (e IncludeIPv6) ToPointer() *IncludeIPv6 {
@@ -112,11 +97,6 @@ func (e *IncludeIPv6) UnmarshalJSON(data []byte) error {
 }
 
 type GetServerResourcesRequest struct {
-	// The unique identifier for the client application
-	// This is used to track the client application and its usage
-	// (UUID, serial number, or other number unique per device)
-	//
-	ClientID *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
 	// Include Https entries in the results
 	IncludeHTTPS *IncludeHTTPS `default:"0" queryParam:"style=form,explode=true,name=includeHttps"`
 	// Include Relay addresses in the results
@@ -136,13 +116,6 @@ func (g *GetServerResourcesRequest) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
-}
-
-func (o *GetServerResourcesRequest) GetClientID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ClientID
 }
 
 func (o *GetServerResourcesRequest) GetIncludeHTTPS() *IncludeHTTPS {
@@ -166,19 +139,53 @@ func (o *GetServerResourcesRequest) GetIncludeIPv6() *IncludeIPv6 {
 	return o.IncludeIPv6
 }
 
-type Connections struct {
-	Protocol string  `json:"protocol"`
-	Address  string  `json:"address"`
-	Port     float64 `json:"port"`
-	URI      string  `json:"uri"`
-	Local    bool    `json:"local"`
-	Relay    bool    `json:"relay"`
-	IPv6     bool    `json:"IPv6"`
+// Protocol - The protocol used for the connection (http, https, etc)
+type Protocol string
+
+const (
+	ProtocolHTTP  Protocol = "http"
+	ProtocolHTTPS Protocol = "https"
+)
+
+func (e Protocol) ToPointer() *Protocol {
+	return &e
+}
+func (e *Protocol) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "http":
+		fallthrough
+	case "https":
+		*e = Protocol(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Protocol: %v", v)
+	}
 }
 
-func (o *Connections) GetProtocol() string {
+type Connections struct {
+	// The protocol used for the connection (http, https, etc)
+	Protocol Protocol `json:"protocol"`
+	// The (ip) address or domain name used for the connection
+	Address string `json:"address"`
+	// The port used for the connection
+	Port int `json:"port"`
+	// The full URI of the connection
+	URI string `json:"uri"`
+	// If the connection is local address
+	Local bool `json:"local"`
+	// If the connection is relayed through plex.direct
+	Relay bool `json:"relay"`
+	// If the connection is using IPv6
+	IPv6 bool `json:"IPv6"`
+}
+
+func (o *Connections) GetProtocol() Protocol {
 	if o == nil {
-		return ""
+		return Protocol("")
 	}
 	return o.Protocol
 }
@@ -190,9 +197,9 @@ func (o *Connections) GetAddress() string {
 	return o.Address
 }
 
-func (o *Connections) GetPort() float64 {
+func (o *Connections) GetPort() int {
 	if o == nil {
-		return 0.0
+		return 0
 	}
 	return o.Port
 }

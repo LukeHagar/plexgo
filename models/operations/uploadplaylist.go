@@ -5,6 +5,7 @@ package operations
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/LukeHagar/plexgo/internal/utils"
 	"net/http"
 )
 
@@ -53,6 +54,19 @@ type UploadPlaylistRequest struct {
 	// If the `force` argument is set to 0, a new playlist will be created suffixed with the date and time that the duplicate was uploaded.
 	//
 	Force QueryParamForce `queryParam:"style=form,explode=true,name=force"`
+	// Possibly the section ID to upload the playlist to, we are not certain.
+	SectionID int64 `default:"1" queryParam:"style=form,explode=true,name=sectionID"`
+}
+
+func (u UploadPlaylistRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UploadPlaylistRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *UploadPlaylistRequest) GetPath() string {
@@ -67,6 +81,13 @@ func (o *UploadPlaylistRequest) GetForce() QueryParamForce {
 		return QueryParamForce(0)
 	}
 	return o.Force
+}
+
+func (o *UploadPlaylistRequest) GetSectionID() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.SectionID
 }
 
 type UploadPlaylistResponse struct {

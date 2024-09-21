@@ -19,10 +19,10 @@ import (
 type GetTopWatchedContentQueryParamType int64
 
 const (
-	GetTopWatchedContentQueryParamTypeOne   GetTopWatchedContentQueryParamType = 1
-	GetTopWatchedContentQueryParamTypeTwo   GetTopWatchedContentQueryParamType = 2
-	GetTopWatchedContentQueryParamTypeThree GetTopWatchedContentQueryParamType = 3
-	GetTopWatchedContentQueryParamTypeFour  GetTopWatchedContentQueryParamType = 4
+	GetTopWatchedContentQueryParamTypeMovie   GetTopWatchedContentQueryParamType = 1
+	GetTopWatchedContentQueryParamTypeShow    GetTopWatchedContentQueryParamType = 2
+	GetTopWatchedContentQueryParamTypeSeason  GetTopWatchedContentQueryParamType = 3
+	GetTopWatchedContentQueryParamTypeEpisode GetTopWatchedContentQueryParamType = 4
 )
 
 func (e GetTopWatchedContentQueryParamType) ToPointer() *GetTopWatchedContentQueryParamType {

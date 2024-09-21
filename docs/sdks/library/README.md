@@ -404,9 +404,9 @@ func main() {
     res, err := s.Library.GetLibraryItems(ctx, operations.GetLibraryItemsRequest{
         SectionKey: 9518,
         Tag: operations.TagEdition,
-        IncludeGuids: operations.IncludeGuidsOne.ToPointer(),
-        IncludeMeta: operations.IncludeMetaOne.ToPointer(),
-        Type: operations.TypeTwo,
+        IncludeGuids: operations.IncludeGuidsEnable.ToPointer(),
+        IncludeMeta: operations.IncludeMetaEnable.ToPointer(),
+        Type: operations.TypeShow,
         XPlexContainerStart: plexgo.Int(0),
         XPlexContainerSize: plexgo.Int(50),
     })
@@ -545,7 +545,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Library.GetSearchLibrary(ctx, 9518, operations.QueryParamTypeTwo)
+    res, err := s.Library.GetSearchLibrary(ctx, 9518, operations.QueryParamTypeShow)
     if err != nil {
         log.Fatal(err)
     }
@@ -722,7 +722,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Library.GetTopWatchedContent(ctx, operations.GetTopWatchedContentQueryParamTypeTwo, plexgo.Int64(1))
+    res, err := s.Library.GetTopWatchedContent(ctx, operations.GetTopWatchedContentQueryParamTypeShow, plexgo.Int64(1))
     if err != nil {
         log.Fatal(err)
     }

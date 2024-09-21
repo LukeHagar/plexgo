@@ -1966,7 +1966,7 @@ func (s *Playlists) AddPlaylistContents(ctx context.Context, playlistID float64,
 
 // UploadPlaylist - Upload Playlist
 // Imports m3u playlists by passing a path on the server to scan for m3u-formatted playlist files, or a path to a single playlist file.
-func (s *Playlists) UploadPlaylist(ctx context.Context, path string, force operations.QueryParamForce, opts ...operations.Option) (*operations.UploadPlaylistResponse, error) {
+func (s *Playlists) UploadPlaylist(ctx context.Context, path string, force operations.QueryParamForce, sectionID int64, opts ...operations.Option) (*operations.UploadPlaylistResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "uploadPlaylist",
@@ -1975,8 +1975,9 @@ func (s *Playlists) UploadPlaylist(ctx context.Context, path string, force opera
 	}
 
 	request := operations.UploadPlaylistRequest{
-		Path:  path,
-		Force: force,
+		Path:      path,
+		Force:     force,
+		SectionID: sectionID,
 	}
 
 	o := operations.Options{}

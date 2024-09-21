@@ -5,7 +5,7 @@ The forced subtitles searches mode (0 = Prefer non-forced subtitles, 1 = Prefer 
 
 ## Values
 
-| Name                        | Value                       |
-| --------------------------- | --------------------------- |
-| `DefaultSubtitleForcedZero` | 0                           |
-| `DefaultSubtitleForcedOne`  | 1                           |
+| Name                           | Value                          |
+| ------------------------------ | ------------------------------ |
+| `DefaultSubtitleForcedDisable` | 0                              |
+| `DefaultSubtitleForcedEnable`  | 1                              |

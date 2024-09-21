@@ -5,7 +5,7 @@ The forced subtitles searches mode (0 = Prefer non-forced subtitles, 1 = Prefer 
 
 ## Values
 
-| Name                                           | Value                                          |
-| ---------------------------------------------- | ---------------------------------------------- |
-| `PostUsersSignInDataDefaultSubtitleForcedZero` | 0                                              |
-| `PostUsersSignInDataDefaultSubtitleForcedOne`  | 1                                              |
+| Name                                              | Value                                             |
+| ------------------------------------------------- | ------------------------------------------------- |
+| `PostUsersSignInDataDefaultSubtitleForcedDisable` | 0                                                 |
+| `PostUsersSignInDataDefaultSubtitleForcedEnable`  | 1                                                 |

@@ -17,10 +17,10 @@ import (
 type QueryParamType int64
 
 const (
-	QueryParamTypeOne   QueryParamType = 1
-	QueryParamTypeTwo   QueryParamType = 2
-	QueryParamTypeThree QueryParamType = 3
-	QueryParamTypeFour  QueryParamType = 4
+	QueryParamTypeMovie   QueryParamType = 1
+	QueryParamTypeShow    QueryParamType = 2
+	QueryParamTypeSeason  QueryParamType = 3
+	QueryParamTypeEpisode QueryParamType = 4
 )
 
 func (e QueryParamType) ToPointer() *QueryParamType {

@@ -384,7 +384,7 @@ func main() {
         Width: 110,
         Height: 165,
         Opacity: 100,
-        Blur: 20,
+        Blur: 0,
         MinSize: operations.MinSizeOne,
         Upscale: operations.UpscaleOne,
         URL: "/library/metadata/49564/thumb/1654258204",

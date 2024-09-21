@@ -11,9 +11,9 @@ E.g. A movie library will not return anything with type 3 as there are no season
 
 ## Values
 
-| Name                                     | Value                                    |
-| ---------------------------------------- | ---------------------------------------- |
-| `GetPlaylistContentsQueryParamTypeOne`   | 1                                        |
-| `GetPlaylistContentsQueryParamTypeTwo`   | 2                                        |
-| `GetPlaylistContentsQueryParamTypeThree` | 3                                        |
-| `GetPlaylistContentsQueryParamTypeFour`  | 4                                        |
+| Name                                       | Value                                      |
+| ------------------------------------------ | ------------------------------------------ |
+| `GetPlaylistContentsQueryParamTypeMovie`   | 1                                          |
+| `GetPlaylistContentsQueryParamTypeShow`    | 2                                          |
+| `GetPlaylistContentsQueryParamTypeSeason`  | 3                                          |
+| `GetPlaylistContentsQueryParamTypeEpisode` | 4                                          |
