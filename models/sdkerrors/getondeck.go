@@ -8,12 +8,12 @@ import (
 )
 
 type GetOnDeckLibraryErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetOnDeckLibraryErrors) GetCode() *int64 {
+func (o *GetOnDeckLibraryErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *GetOnDeckLibraryErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetOnDeckLibraryErrors) GetStatus() *int64 {
+func (o *GetOnDeckLibraryErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *GetOnDeckUnauthorized) Error() string {
 }
 
 type GetOnDeckErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetOnDeckErrors) GetCode() *int64 {
+func (o *GetOnDeckErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *GetOnDeckErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetOnDeckErrors) GetStatus() *int64 {
+func (o *GetOnDeckErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

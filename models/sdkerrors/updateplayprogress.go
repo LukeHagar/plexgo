@@ -8,12 +8,12 @@ import (
 )
 
 type UpdatePlayProgressMediaErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *UpdatePlayProgressMediaErrors) GetCode() *int64 {
+func (o *UpdatePlayProgressMediaErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *UpdatePlayProgressMediaErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *UpdatePlayProgressMediaErrors) GetStatus() *int64 {
+func (o *UpdatePlayProgressMediaErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *UpdatePlayProgressUnauthorized) Error() string {
 }
 
 type UpdatePlayProgressErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *UpdatePlayProgressErrors) GetCode() *int64 {
+func (o *UpdatePlayProgressErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *UpdatePlayProgressErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *UpdatePlayProgressErrors) GetStatus() *int64 {
+func (o *UpdatePlayProgressErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

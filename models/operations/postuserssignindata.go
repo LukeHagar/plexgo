@@ -1198,9 +1198,10 @@ type PostUsersSignInDataUserPlexAccount struct {
 	// The account username
 	Username string `json:"username"`
 	// The account UUID
-	UUID              string             `json:"uuid"`
-	PastSubscriptions []PastSubscription `json:"pastSubscriptions"`
-	Trials            []Trials           `json:"trials"`
+	UUID               string             `json:"uuid"`
+	AttributionPartner *string            `json:"attributionPartner"`
+	PastSubscriptions  []PastSubscription `json:"pastSubscriptions"`
+	Trials             []Trials           `json:"trials"`
 }
 
 func (p PostUsersSignInDataUserPlexAccount) MarshalJSON() ([]byte, error) {
@@ -1492,6 +1493,13 @@ func (o *PostUsersSignInDataUserPlexAccount) GetUUID() string {
 		return ""
 	}
 	return o.UUID
+}
+
+func (o *PostUsersSignInDataUserPlexAccount) GetAttributionPartner() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AttributionPartner
 }
 
 func (o *PostUsersSignInDataUserPlexAccount) GetPastSubscriptions() []PastSubscription {

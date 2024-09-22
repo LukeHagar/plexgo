@@ -8,12 +8,12 @@ import (
 )
 
 type GetResizedPhotoServerErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetResizedPhotoServerErrors) GetCode() *int64 {
+func (o *GetResizedPhotoServerErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *GetResizedPhotoServerErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetResizedPhotoServerErrors) GetStatus() *int64 {
+func (o *GetResizedPhotoServerErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *GetResizedPhotoUnauthorized) Error() string {
 }
 
 type GetResizedPhotoErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetResizedPhotoErrors) GetCode() *int64 {
+func (o *GetResizedPhotoErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *GetResizedPhotoErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetResizedPhotoErrors) GetStatus() *int64 {
+func (o *GetResizedPhotoErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

@@ -41,12 +41,12 @@ func (e *GetTokenByPinIDResponseBody) Error() string {
 }
 
 type GetTokenByPinIDErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetTokenByPinIDErrors) GetCode() *int64 {
+func (o *GetTokenByPinIDErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -60,7 +60,7 @@ func (o *GetTokenByPinIDErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetTokenByPinIDErrors) GetStatus() *int64 {
+func (o *GetTokenByPinIDErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

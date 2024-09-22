@@ -8,12 +8,12 @@ import (
 )
 
 type PerformSearchSearchErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *PerformSearchSearchErrors) GetCode() *int64 {
+func (o *PerformSearchSearchErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *PerformSearchSearchErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *PerformSearchSearchErrors) GetStatus() *int64 {
+func (o *PerformSearchSearchErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *PerformSearchUnauthorized) Error() string {
 }
 
 type PerformSearchErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *PerformSearchErrors) GetCode() *int64 {
+func (o *PerformSearchErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *PerformSearchErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *PerformSearchErrors) GetStatus() *int64 {
+func (o *PerformSearchErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

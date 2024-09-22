@@ -8,12 +8,12 @@ import (
 )
 
 type DeletePlaylistPlaylistsErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *DeletePlaylistPlaylistsErrors) GetCode() *int64 {
+func (o *DeletePlaylistPlaylistsErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *DeletePlaylistPlaylistsErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *DeletePlaylistPlaylistsErrors) GetStatus() *int64 {
+func (o *DeletePlaylistPlaylistsErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *DeletePlaylistUnauthorized) Error() string {
 }
 
 type DeletePlaylistErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *DeletePlaylistErrors) GetCode() *int64 {
+func (o *DeletePlaylistErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *DeletePlaylistErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *DeletePlaylistErrors) GetStatus() *int64 {
+func (o *DeletePlaylistErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

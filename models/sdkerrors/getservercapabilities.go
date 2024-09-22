@@ -8,12 +8,12 @@ import (
 )
 
 type GetServerCapabilitiesErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetServerCapabilitiesErrors) GetCode() *int64 {
+func (o *GetServerCapabilitiesErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *GetServerCapabilitiesErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetServerCapabilitiesErrors) GetStatus() *int64 {
+func (o *GetServerCapabilitiesErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *GetServerCapabilitiesUnauthorized) Error() string {
 }
 
 type Errors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *Errors) GetCode() *int64 {
+func (o *Errors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *Errors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *Errors) GetStatus() *int64 {
+func (o *Errors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

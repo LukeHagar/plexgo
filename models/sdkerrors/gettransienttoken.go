@@ -8,12 +8,12 @@ import (
 )
 
 type GetTransientTokenAuthenticationErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetTransientTokenAuthenticationErrors) GetCode() *int64 {
+func (o *GetTransientTokenAuthenticationErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *GetTransientTokenAuthenticationErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetTransientTokenAuthenticationErrors) GetStatus() *int64 {
+func (o *GetTransientTokenAuthenticationErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *GetTransientTokenUnauthorized) Error() string {
 }
 
 type GetTransientTokenErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetTransientTokenErrors) GetCode() *int64 {
+func (o *GetTransientTokenErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *GetTransientTokenErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetTransientTokenErrors) GetStatus() *int64 {
+func (o *GetTransientTokenErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

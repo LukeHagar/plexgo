@@ -14,6 +14,6 @@ E.g. A movie library will not return anything with type 3 as there are no season
 | Name                    | Value                   |
 | ----------------------- | ----------------------- |
 | `QueryParamTypeMovie`   | 1                       |
-| `QueryParamTypeShow`    | 2                       |
+| `QueryParamTypeTvShow`  | 2                       |
 | `QueryParamTypeSeason`  | 3                       |
 | `QueryParamTypeEpisode` | 4                       |

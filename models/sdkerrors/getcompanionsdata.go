@@ -8,12 +8,12 @@ import (
 )
 
 type GetCompanionsDataPlexErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetCompanionsDataPlexErrors) GetCode() *int64 {
+func (o *GetCompanionsDataPlexErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *GetCompanionsDataPlexErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetCompanionsDataPlexErrors) GetStatus() *int64 {
+func (o *GetCompanionsDataPlexErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *GetCompanionsDataUnauthorized) Error() string {
 }
 
 type GetCompanionsDataErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetCompanionsDataErrors) GetCode() *int64 {
+func (o *GetCompanionsDataErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *GetCompanionsDataErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetCompanionsDataErrors) GetStatus() *int64 {
+func (o *GetCompanionsDataErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

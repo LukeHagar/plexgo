@@ -8,12 +8,12 @@ import (
 )
 
 type PerformVoiceSearchSearchErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *PerformVoiceSearchSearchErrors) GetCode() *int64 {
+func (o *PerformVoiceSearchSearchErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *PerformVoiceSearchSearchErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *PerformVoiceSearchSearchErrors) GetStatus() *int64 {
+func (o *PerformVoiceSearchSearchErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *PerformVoiceSearchUnauthorized) Error() string {
 }
 
 type PerformVoiceSearchErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *PerformVoiceSearchErrors) GetCode() *int64 {
+func (o *PerformVoiceSearchErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *PerformVoiceSearchErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *PerformVoiceSearchErrors) GetStatus() *int64 {
+func (o *PerformVoiceSearchErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

@@ -8,12 +8,12 @@ import (
 )
 
 type GetServerPreferencesServerErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetServerPreferencesServerErrors) GetCode() *int64 {
+func (o *GetServerPreferencesServerErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *GetServerPreferencesServerErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetServerPreferencesServerErrors) GetStatus() *int64 {
+func (o *GetServerPreferencesServerErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *GetServerPreferencesUnauthorized) Error() string {
 }
 
 type GetServerPreferencesErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetServerPreferencesErrors) GetCode() *int64 {
+func (o *GetServerPreferencesErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *GetServerPreferencesErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetServerPreferencesErrors) GetStatus() *int64 {
+func (o *GetServerPreferencesErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

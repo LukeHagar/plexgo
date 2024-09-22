@@ -969,7 +969,8 @@ type GetTokenDetailsUserPlexAccount struct {
 	// The account username
 	Username string `json:"username"`
 	// The account UUID
-	UUID string `json:"uuid"`
+	UUID               string  `json:"uuid"`
+	AttributionPartner *string `json:"attributionPartner"`
 }
 
 func (g GetTokenDetailsUserPlexAccount) MarshalJSON() ([]byte, error) {
@@ -1261,6 +1262,13 @@ func (o *GetTokenDetailsUserPlexAccount) GetUUID() string {
 		return ""
 	}
 	return o.UUID
+}
+
+func (o *GetTokenDetailsUserPlexAccount) GetAttributionPartner() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AttributionPartner
 }
 
 type GetTokenDetailsResponse struct {

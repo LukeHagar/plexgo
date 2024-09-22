@@ -8,12 +8,12 @@ import (
 )
 
 type GetMetadataChildrenLibraryErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetMetadataChildrenLibraryErrors) GetCode() *int64 {
+func (o *GetMetadataChildrenLibraryErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *GetMetadataChildrenLibraryErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetMetadataChildrenLibraryErrors) GetStatus() *int64 {
+func (o *GetMetadataChildrenLibraryErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *GetMetadataChildrenUnauthorized) Error() string {
 }
 
 type GetMetadataChildrenErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetMetadataChildrenErrors) GetCode() *int64 {
+func (o *GetMetadataChildrenErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *GetMetadataChildrenErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetMetadataChildrenErrors) GetStatus() *int64 {
+func (o *GetMetadataChildrenErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

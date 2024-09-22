@@ -184,10 +184,33 @@ func (o *GetMediaProvidersDirectory) GetPivot() []Pivot {
 	return o.Pivot
 }
 
+type Action struct {
+	ID  string `json:"id"`
+	Key string `json:"key"`
+}
+
+func (o *Action) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *Action) GetKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.Key
+}
+
 type Feature struct {
-	Key       *string                      `json:"key,omitempty"`
-	Type      *string                      `json:"type,omitempty"`
-	Directory []GetMediaProvidersDirectory `json:"Directory,omitempty"`
+	Key           *string                      `json:"key,omitempty"`
+	Type          string                       `json:"type"`
+	Flavor        *string                      `json:"flavor,omitempty"`
+	ScrobbleKey   *string                      `json:"scrobbleKey,omitempty"`
+	UnscrobbleKey *string                      `json:"unscrobbleKey,omitempty"`
+	Directory     []GetMediaProvidersDirectory `json:"Directory,omitempty"`
+	Action        []Action                     `json:"Action,omitempty"`
 }
 
 func (o *Feature) GetKey() *string {
@@ -197,11 +220,32 @@ func (o *Feature) GetKey() *string {
 	return o.Key
 }
 
-func (o *Feature) GetType() *string {
+func (o *Feature) GetType() string {
+	if o == nil {
+		return ""
+	}
+	return o.Type
+}
+
+func (o *Feature) GetFlavor() *string {
 	if o == nil {
 		return nil
 	}
-	return o.Type
+	return o.Flavor
+}
+
+func (o *Feature) GetScrobbleKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ScrobbleKey
+}
+
+func (o *Feature) GetUnscrobbleKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UnscrobbleKey
 }
 
 func (o *Feature) GetDirectory() []GetMediaProvidersDirectory {
@@ -209,6 +253,13 @@ func (o *Feature) GetDirectory() []GetMediaProvidersDirectory {
 		return nil
 	}
 	return o.Directory
+}
+
+func (o *Feature) GetAction() []Action {
+	if o == nil {
+		return nil
+	}
+	return o.Action
 }
 
 type MediaProvider struct {

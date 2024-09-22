@@ -8,12 +8,12 @@ import (
 )
 
 type GetThumbImageMediaErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetThumbImageMediaErrors) GetCode() *int64 {
+func (o *GetThumbImageMediaErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *GetThumbImageMediaErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetThumbImageMediaErrors) GetStatus() *int64 {
+func (o *GetThumbImageMediaErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *GetThumbImageUnauthorized) Error() string {
 }
 
 type GetThumbImageErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetThumbImageErrors) GetCode() *int64 {
+func (o *GetThumbImageErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *GetThumbImageErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetThumbImageErrors) GetStatus() *int64 {
+func (o *GetThumbImageErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

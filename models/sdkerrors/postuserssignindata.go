@@ -8,12 +8,12 @@ import (
 )
 
 type PostUsersSignInDataAuthenticationErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *PostUsersSignInDataAuthenticationErrors) GetCode() *int64 {
+func (o *PostUsersSignInDataAuthenticationErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *PostUsersSignInDataAuthenticationErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *PostUsersSignInDataAuthenticationErrors) GetStatus() *int64 {
+func (o *PostUsersSignInDataAuthenticationErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *PostUsersSignInDataUnauthorized) Error() string {
 }
 
 type PostUsersSignInDataErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *PostUsersSignInDataErrors) GetCode() *int64 {
+func (o *PostUsersSignInDataErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *PostUsersSignInDataErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *PostUsersSignInDataErrors) GetStatus() *int64 {
+func (o *PostUsersSignInDataErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

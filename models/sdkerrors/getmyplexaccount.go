@@ -8,12 +8,12 @@ import (
 )
 
 type GetMyPlexAccountServerErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetMyPlexAccountServerErrors) GetCode() *int64 {
+func (o *GetMyPlexAccountServerErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *GetMyPlexAccountServerErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetMyPlexAccountServerErrors) GetStatus() *int64 {
+func (o *GetMyPlexAccountServerErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *GetMyPlexAccountUnauthorized) Error() string {
 }
 
 type GetMyPlexAccountErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetMyPlexAccountErrors) GetCode() *int64 {
+func (o *GetMyPlexAccountErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *GetMyPlexAccountErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetMyPlexAccountErrors) GetStatus() *int64 {
+func (o *GetMyPlexAccountErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

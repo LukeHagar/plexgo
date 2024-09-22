@@ -8,12 +8,12 @@ import (
 )
 
 type GetBandwidthStatisticsStatisticsErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetBandwidthStatisticsStatisticsErrors) GetCode() *int64 {
+func (o *GetBandwidthStatisticsStatisticsErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *GetBandwidthStatisticsStatisticsErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetBandwidthStatisticsStatisticsErrors) GetStatus() *int64 {
+func (o *GetBandwidthStatisticsStatisticsErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *GetBandwidthStatisticsUnauthorized) Error() string {
 }
 
 type GetBandwidthStatisticsErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetBandwidthStatisticsErrors) GetCode() *int64 {
+func (o *GetBandwidthStatisticsErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *GetBandwidthStatisticsErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetBandwidthStatisticsErrors) GetStatus() *int64 {
+func (o *GetBandwidthStatisticsErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

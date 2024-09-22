@@ -8,12 +8,12 @@ import (
 )
 
 type GetHomeDataPlexErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetHomeDataPlexErrors) GetCode() *int64 {
+func (o *GetHomeDataPlexErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *GetHomeDataPlexErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetHomeDataPlexErrors) GetStatus() *int64 {
+func (o *GetHomeDataPlexErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *GetHomeDataUnauthorized) Error() string {
 }
 
 type GetHomeDataErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetHomeDataErrors) GetCode() *int64 {
+func (o *GetHomeDataErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *GetHomeDataErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetHomeDataErrors) GetStatus() *int64 {
+func (o *GetHomeDataErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

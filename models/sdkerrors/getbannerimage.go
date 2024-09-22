@@ -8,12 +8,12 @@ import (
 )
 
 type GetBannerImageMediaErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetBannerImageMediaErrors) GetCode() *int64 {
+func (o *GetBannerImageMediaErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *GetBannerImageMediaErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetBannerImageMediaErrors) GetStatus() *int64 {
+func (o *GetBannerImageMediaErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *GetBannerImageUnauthorized) Error() string {
 }
 
 type GetBannerImageErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetBannerImageErrors) GetCode() *int64 {
+func (o *GetBannerImageErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *GetBannerImageErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetBannerImageErrors) GetStatus() *int64 {
+func (o *GetBannerImageErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

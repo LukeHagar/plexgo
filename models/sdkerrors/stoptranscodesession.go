@@ -8,12 +8,12 @@ import (
 )
 
 type StopTranscodeSessionSessionsErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *StopTranscodeSessionSessionsErrors) GetCode() *int64 {
+func (o *StopTranscodeSessionSessionsErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *StopTranscodeSessionSessionsErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *StopTranscodeSessionSessionsErrors) GetStatus() *int64 {
+func (o *StopTranscodeSessionSessionsErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *StopTranscodeSessionUnauthorized) Error() string {
 }
 
 type StopTranscodeSessionErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *StopTranscodeSessionErrors) GetCode() *int64 {
+func (o *StopTranscodeSessionErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *StopTranscodeSessionErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *StopTranscodeSessionErrors) GetStatus() *int64 {
+func (o *StopTranscodeSessionErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

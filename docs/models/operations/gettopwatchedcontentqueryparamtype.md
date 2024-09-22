@@ -14,6 +14,6 @@ E.g. A movie library will not return anything with type 3 as there are no season
 | Name                                        | Value                                       |
 | ------------------------------------------- | ------------------------------------------- |
 | `GetTopWatchedContentQueryParamTypeMovie`   | 1                                           |
-| `GetTopWatchedContentQueryParamTypeShow`    | 2                                           |
+| `GetTopWatchedContentQueryParamTypeTvShow`  | 2                                           |
 | `GetTopWatchedContentQueryParamTypeSeason`  | 3                                           |
 | `GetTopWatchedContentQueryParamTypeEpisode` | 4                                           |

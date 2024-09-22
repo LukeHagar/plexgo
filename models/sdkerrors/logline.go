@@ -8,12 +8,12 @@ import (
 )
 
 type LogLineLogErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *LogLineLogErrors) GetCode() *int64 {
+func (o *LogLineLogErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *LogLineLogErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *LogLineLogErrors) GetStatus() *int64 {
+func (o *LogLineLogErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *LogLineUnauthorized) Error() string {
 }
 
 type LogLineErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *LogLineErrors) GetCode() *int64 {
+func (o *LogLineErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *LogLineErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *LogLineErrors) GetStatus() *int64 {
+func (o *LogLineErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

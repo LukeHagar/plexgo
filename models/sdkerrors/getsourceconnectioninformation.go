@@ -8,12 +8,12 @@ import (
 )
 
 type GetSourceConnectionInformationAuthenticationErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetSourceConnectionInformationAuthenticationErrors) GetCode() *int64 {
+func (o *GetSourceConnectionInformationAuthenticationErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *GetSourceConnectionInformationAuthenticationErrors) GetMessage() *strin
 	return o.Message
 }
 
-func (o *GetSourceConnectionInformationAuthenticationErrors) GetStatus() *int64 {
+func (o *GetSourceConnectionInformationAuthenticationErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *GetSourceConnectionInformationUnauthorized) Error() string {
 }
 
 type GetSourceConnectionInformationErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetSourceConnectionInformationErrors) GetCode() *int64 {
+func (o *GetSourceConnectionInformationErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *GetSourceConnectionInformationErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetSourceConnectionInformationErrors) GetStatus() *int64 {
+func (o *GetSourceConnectionInformationErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

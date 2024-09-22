@@ -8,12 +8,12 @@ import (
 )
 
 type CreatePlaylistPlaylistsErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *CreatePlaylistPlaylistsErrors) GetCode() *int64 {
+func (o *CreatePlaylistPlaylistsErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *CreatePlaylistPlaylistsErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *CreatePlaylistPlaylistsErrors) GetStatus() *int64 {
+func (o *CreatePlaylistPlaylistsErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *CreatePlaylistUnauthorized) Error() string {
 }
 
 type CreatePlaylistErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *CreatePlaylistErrors) GetCode() *int64 {
+func (o *CreatePlaylistErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *CreatePlaylistErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *CreatePlaylistErrors) GetStatus() *int64 {
+func (o *CreatePlaylistErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

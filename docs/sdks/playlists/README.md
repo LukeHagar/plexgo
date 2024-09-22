@@ -353,7 +353,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Playlists.GetPlaylistContents(ctx, 5004.46, operations.GetPlaylistContentsQueryParamTypeShow)
+    res, err := s.Playlists.GetPlaylistContents(ctx, 5004.46, operations.GetPlaylistContentsQueryParamTypeTvShow)
     if err != nil {
         log.Fatal(err)
     }

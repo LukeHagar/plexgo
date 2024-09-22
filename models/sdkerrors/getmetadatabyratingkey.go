@@ -8,12 +8,12 @@ import (
 )
 
 type GetMetaDataByRatingKeyLibraryErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetMetaDataByRatingKeyLibraryErrors) GetCode() *int64 {
+func (o *GetMetaDataByRatingKeyLibraryErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *GetMetaDataByRatingKeyLibraryErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetMetaDataByRatingKeyLibraryErrors) GetStatus() *int64 {
+func (o *GetMetaDataByRatingKeyLibraryErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *GetMetaDataByRatingKeyUnauthorized) Error() string {
 }
 
 type GetMetaDataByRatingKeyErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetMetaDataByRatingKeyErrors) GetCode() *int64 {
+func (o *GetMetaDataByRatingKeyErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *GetMetaDataByRatingKeyErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetMetaDataByRatingKeyErrors) GetStatus() *int64 {
+func (o *GetMetaDataByRatingKeyErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

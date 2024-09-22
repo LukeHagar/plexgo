@@ -18,7 +18,7 @@ type QueryParamType int64
 
 const (
 	QueryParamTypeMovie   QueryParamType = 1
-	QueryParamTypeShow    QueryParamType = 2
+	QueryParamTypeTvShow  QueryParamType = 2
 	QueryParamTypeSeason  QueryParamType = 3
 	QueryParamTypeEpisode QueryParamType = 4
 )

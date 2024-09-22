@@ -8,12 +8,12 @@ import (
 )
 
 type GetWatchListWatchlistErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetWatchListWatchlistErrors) GetCode() *int64 {
+func (o *GetWatchListWatchlistErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *GetWatchListWatchlistErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetWatchListWatchlistErrors) GetStatus() *int64 {
+func (o *GetWatchListWatchlistErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *GetWatchListUnauthorized) Error() string {
 }
 
 type GetWatchListErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetWatchListErrors) GetCode() *int64 {
+func (o *GetWatchListErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *GetWatchListErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetWatchListErrors) GetStatus() *int64 {
+func (o *GetWatchListErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

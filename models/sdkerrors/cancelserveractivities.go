@@ -8,12 +8,12 @@ import (
 )
 
 type CancelServerActivitiesActivitiesErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *CancelServerActivitiesActivitiesErrors) GetCode() *int64 {
+func (o *CancelServerActivitiesActivitiesErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *CancelServerActivitiesActivitiesErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *CancelServerActivitiesActivitiesErrors) GetStatus() *int64 {
+func (o *CancelServerActivitiesActivitiesErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *CancelServerActivitiesUnauthorized) Error() string {
 }
 
 type CancelServerActivitiesErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *CancelServerActivitiesErrors) GetCode() *int64 {
+func (o *CancelServerActivitiesErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *CancelServerActivitiesErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *CancelServerActivitiesErrors) GetStatus() *int64 {
+func (o *CancelServerActivitiesErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

@@ -8,12 +8,12 @@ import (
 )
 
 type MarkPlayedMediaErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *MarkPlayedMediaErrors) GetCode() *int64 {
+func (o *MarkPlayedMediaErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *MarkPlayedMediaErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *MarkPlayedMediaErrors) GetStatus() *int64 {
+func (o *MarkPlayedMediaErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *MarkPlayedUnauthorized) Error() string {
 }
 
 type MarkPlayedErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *MarkPlayedErrors) GetCode() *int64 {
+func (o *MarkPlayedErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *MarkPlayedErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *MarkPlayedErrors) GetStatus() *int64 {
+func (o *MarkPlayedErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

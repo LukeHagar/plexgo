@@ -8,12 +8,12 @@ import (
 )
 
 type GetRefreshLibraryMetadataLibraryErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetRefreshLibraryMetadataLibraryErrors) GetCode() *int64 {
+func (o *GetRefreshLibraryMetadataLibraryErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *GetRefreshLibraryMetadataLibraryErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetRefreshLibraryMetadataLibraryErrors) GetStatus() *int64 {
+func (o *GetRefreshLibraryMetadataLibraryErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *GetRefreshLibraryMetadataUnauthorized) Error() string {
 }
 
 type GetRefreshLibraryMetadataErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetRefreshLibraryMetadataErrors) GetCode() *int64 {
+func (o *GetRefreshLibraryMetadataErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *GetRefreshLibraryMetadataErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetRefreshLibraryMetadataErrors) GetStatus() *int64 {
+func (o *GetRefreshLibraryMetadataErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

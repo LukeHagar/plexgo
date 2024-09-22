@@ -8,7 +8,7 @@ import (
 
 // GetServerIdentityRequestTimeout - Request Timeout
 type GetServerIdentityRequestTimeout struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response `json:"-"`

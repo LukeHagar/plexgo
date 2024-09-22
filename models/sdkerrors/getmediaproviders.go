@@ -8,12 +8,12 @@ import (
 )
 
 type GetMediaProvidersServerErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetMediaProvidersServerErrors) GetCode() *int64 {
+func (o *GetMediaProvidersServerErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *GetMediaProvidersServerErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetMediaProvidersServerErrors) GetStatus() *int64 {
+func (o *GetMediaProvidersServerErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *GetMediaProvidersUnauthorized) Error() string {
 }
 
 type GetMediaProvidersErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetMediaProvidersErrors) GetCode() *int64 {
+func (o *GetMediaProvidersErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *GetMediaProvidersErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetMediaProvidersErrors) GetStatus() *int64 {
+func (o *GetMediaProvidersErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

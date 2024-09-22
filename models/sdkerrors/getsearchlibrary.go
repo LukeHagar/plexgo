@@ -8,12 +8,12 @@ import (
 )
 
 type GetSearchLibraryLibraryErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetSearchLibraryLibraryErrors) GetCode() *int64 {
+func (o *GetSearchLibraryLibraryErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *GetSearchLibraryLibraryErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetSearchLibraryLibraryErrors) GetStatus() *int64 {
+func (o *GetSearchLibraryLibraryErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *GetSearchLibraryUnauthorized) Error() string {
 }
 
 type GetSearchLibraryErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetSearchLibraryErrors) GetCode() *int64 {
+func (o *GetSearchLibraryErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *GetSearchLibraryErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetSearchLibraryErrors) GetStatus() *int64 {
+func (o *GetSearchLibraryErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

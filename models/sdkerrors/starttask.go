@@ -8,12 +8,12 @@ import (
 )
 
 type StartTaskButlerErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *StartTaskButlerErrors) GetCode() *int64 {
+func (o *StartTaskButlerErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *StartTaskButlerErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *StartTaskButlerErrors) GetStatus() *int64 {
+func (o *StartTaskButlerErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *StartTaskUnauthorized) Error() string {
 }
 
 type StartTaskErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *StartTaskErrors) GetCode() *int64 {
+func (o *StartTaskErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *StartTaskErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *StartTaskErrors) GetStatus() *int64 {
+func (o *StartTaskErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

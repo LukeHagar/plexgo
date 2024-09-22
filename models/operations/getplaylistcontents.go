@@ -20,7 +20,7 @@ type GetPlaylistContentsQueryParamType int64
 
 const (
 	GetPlaylistContentsQueryParamTypeMovie   GetPlaylistContentsQueryParamType = 1
-	GetPlaylistContentsQueryParamTypeShow    GetPlaylistContentsQueryParamType = 2
+	GetPlaylistContentsQueryParamTypeTvShow  GetPlaylistContentsQueryParamType = 2
 	GetPlaylistContentsQueryParamTypeSeason  GetPlaylistContentsQueryParamType = 3
 	GetPlaylistContentsQueryParamTypeEpisode GetPlaylistContentsQueryParamType = 4
 )

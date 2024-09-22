@@ -8,12 +8,12 @@ import (
 )
 
 type GetGeoDataPlexErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetGeoDataPlexErrors) GetCode() *int64 {
+func (o *GetGeoDataPlexErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *GetGeoDataPlexErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetGeoDataPlexErrors) GetStatus() *int64 {
+func (o *GetGeoDataPlexErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *GetGeoDataUnauthorized) Error() string {
 }
 
 type GetGeoDataErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetGeoDataErrors) GetCode() *int64 {
+func (o *GetGeoDataErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *GetGeoDataErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetGeoDataErrors) GetStatus() *int64 {
+func (o *GetGeoDataErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

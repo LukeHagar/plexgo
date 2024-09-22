@@ -8,12 +8,12 @@ import (
 )
 
 type LogMultiLineLogErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *LogMultiLineLogErrors) GetCode() *int64 {
+func (o *LogMultiLineLogErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *LogMultiLineLogErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *LogMultiLineLogErrors) GetStatus() *int64 {
+func (o *LogMultiLineLogErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *LogMultiLineUnauthorized) Error() string {
 }
 
 type LogMultiLineErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *LogMultiLineErrors) GetCode() *int64 {
+func (o *LogMultiLineErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *LogMultiLineErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *LogMultiLineErrors) GetStatus() *int64 {
+func (o *LogMultiLineErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

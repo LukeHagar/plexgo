@@ -8,12 +8,12 @@ import (
 )
 
 type GetFileHashLibraryErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetFileHashLibraryErrors) GetCode() *int64 {
+func (o *GetFileHashLibraryErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *GetFileHashLibraryErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetFileHashLibraryErrors) GetStatus() *int64 {
+func (o *GetFileHashLibraryErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *GetFileHashUnauthorized) Error() string {
 }
 
 type GetFileHashErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetFileHashErrors) GetCode() *int64 {
+func (o *GetFileHashErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *GetFileHashErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetFileHashErrors) GetStatus() *int64 {
+func (o *GetFileHashErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

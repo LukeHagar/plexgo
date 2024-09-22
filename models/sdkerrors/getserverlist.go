@@ -8,12 +8,12 @@ import (
 )
 
 type GetServerListServerErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetServerListServerErrors) GetCode() *int64 {
+func (o *GetServerListServerErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *GetServerListServerErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetServerListServerErrors) GetStatus() *int64 {
+func (o *GetServerListServerErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *GetServerListUnauthorized) Error() string {
 }
 
 type GetServerListErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetServerListErrors) GetCode() *int64 {
+func (o *GetServerListErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *GetServerListErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetServerListErrors) GetStatus() *int64 {
+func (o *GetServerListErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

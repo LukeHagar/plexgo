@@ -8,12 +8,12 @@ import (
 )
 
 type GetDevicesServerErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetDevicesServerErrors) GetCode() *int64 {
+func (o *GetDevicesServerErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *GetDevicesServerErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetDevicesServerErrors) GetStatus() *int64 {
+func (o *GetDevicesServerErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *GetDevicesUnauthorized) Error() string {
 }
 
 type GetDevicesErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetDevicesErrors) GetCode() *int64 {
+func (o *GetDevicesErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *GetDevicesErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetDevicesErrors) GetStatus() *int64 {
+func (o *GetDevicesErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

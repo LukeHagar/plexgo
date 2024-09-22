@@ -8,12 +8,12 @@ import (
 )
 
 type GetAvailableClientsServerErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetAvailableClientsServerErrors) GetCode() *int64 {
+func (o *GetAvailableClientsServerErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *GetAvailableClientsServerErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetAvailableClientsServerErrors) GetStatus() *int64 {
+func (o *GetAvailableClientsServerErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *GetAvailableClientsUnauthorized) Error() string {
 }
 
 type GetAvailableClientsErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetAvailableClientsErrors) GetCode() *int64 {
+func (o *GetAvailableClientsErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *GetAvailableClientsErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetAvailableClientsErrors) GetStatus() *int64 {
+func (o *GetAvailableClientsErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

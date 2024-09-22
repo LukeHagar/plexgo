@@ -833,7 +833,7 @@ actions:
                 )
 
                 ctx := context.Background()
-                res, err := s.Library.GetTopWatchedContent(ctx, operations.GetTopWatchedContentQueryParamTypeShow, plexgo.Int64(1))
+                res, err := s.Library.GetTopWatchedContent(ctx, operations.GetTopWatchedContentQueryParamTypeTvShow, plexgo.Int64(1))
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -1286,7 +1286,7 @@ actions:
                 )
 
                 ctx := context.Background()
-                res, err := s.Library.GetSearchLibrary(ctx, 9518, operations.QueryParamTypeShow)
+                res, err := s.Library.GetSearchLibrary(ctx, 9518, operations.QueryParamTypeTvShow)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -1325,7 +1325,7 @@ actions:
                     Tag: operations.TagEdition,
                     IncludeGuids: operations.IncludeGuidsEnable.ToPointer(),
                     IncludeMeta: operations.IncludeMetaEnable.ToPointer(),
-                    Type: operations.TypeShow,
+                    Type: operations.TypeTvShow.ToPointer(),
                     XPlexContainerStart: plexgo.Int(0),
                     XPlexContainerSize: plexgo.Int(50),
                 })
@@ -1875,7 +1875,7 @@ actions:
                 )
 
                 ctx := context.Background()
-                res, err := s.Playlists.GetPlaylistContents(ctx, 5004.46, operations.GetPlaylistContentsQueryParamTypeShow)
+                res, err := s.Playlists.GetPlaylistContents(ctx, 5004.46, operations.GetPlaylistContentsQueryParamTypeTvShow)
                 if err != nil {
                     log.Fatal(err)
                 }

@@ -8,12 +8,12 @@ import (
 )
 
 type MarkUnplayedMediaErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *MarkUnplayedMediaErrors) GetCode() *int64 {
+func (o *MarkUnplayedMediaErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *MarkUnplayedMediaErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *MarkUnplayedMediaErrors) GetStatus() *int64 {
+func (o *MarkUnplayedMediaErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *MarkUnplayedUnauthorized) Error() string {
 }
 
 type MarkUnplayedErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *MarkUnplayedErrors) GetCode() *int64 {
+func (o *MarkUnplayedErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *MarkUnplayedErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *MarkUnplayedErrors) GetStatus() *int64 {
+func (o *MarkUnplayedErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

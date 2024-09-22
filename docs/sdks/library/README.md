@@ -406,7 +406,7 @@ func main() {
         Tag: operations.TagEdition,
         IncludeGuids: operations.IncludeGuidsEnable.ToPointer(),
         IncludeMeta: operations.IncludeMetaEnable.ToPointer(),
-        Type: operations.TypeShow,
+        Type: operations.TypeTvShow.ToPointer(),
         XPlexContainerStart: plexgo.Int(0),
         XPlexContainerSize: plexgo.Int(50),
     })
@@ -545,7 +545,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Library.GetSearchLibrary(ctx, 9518, operations.QueryParamTypeShow)
+    res, err := s.Library.GetSearchLibrary(ctx, 9518, operations.QueryParamTypeTvShow)
     if err != nil {
         log.Fatal(err)
     }
@@ -722,7 +722,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Library.GetTopWatchedContent(ctx, operations.GetTopWatchedContentQueryParamTypeShow, plexgo.Int64(1))
+    res, err := s.Library.GetTopWatchedContent(ctx, operations.GetTopWatchedContentQueryParamTypeTvShow, plexgo.Int64(1))
     if err != nil {
         log.Fatal(err)
     }

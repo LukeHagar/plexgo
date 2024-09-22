@@ -311,9 +311,9 @@ func New(opts ...SDKOption) *PlexAPI {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.3",
-			SDKVersion:        "0.12.0",
+			SDKVersion:        "0.12.1",
 			GenVersion:        "2.421.3",
-			UserAgent:         "speakeasy-sdk/go 0.12.0 2.421.3 0.0.3 github.com/LukeHagar/plexgo",
+			UserAgent:         "speakeasy-sdk/go 0.12.1 2.421.3 0.0.3 github.com/LukeHagar/plexgo",
 			Globals:           globals.Globals{},
 			ServerDefaults: []map[string]string{
 				{

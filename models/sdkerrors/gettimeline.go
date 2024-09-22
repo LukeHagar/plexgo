@@ -8,12 +8,12 @@ import (
 )
 
 type GetTimelineVideoErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetTimelineVideoErrors) GetCode() *int64 {
+func (o *GetTimelineVideoErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *GetTimelineVideoErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetTimelineVideoErrors) GetStatus() *int64 {
+func (o *GetTimelineVideoErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *GetTimelineUnauthorized) Error() string {
 }
 
 type GetTimelineErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetTimelineErrors) GetCode() *int64 {
+func (o *GetTimelineErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *GetTimelineErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetTimelineErrors) GetStatus() *int64 {
+func (o *GetTimelineErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

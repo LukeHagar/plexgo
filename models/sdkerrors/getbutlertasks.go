@@ -8,12 +8,12 @@ import (
 )
 
 type GetButlerTasksButlerErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetButlerTasksButlerErrors) GetCode() *int64 {
+func (o *GetButlerTasksButlerErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *GetButlerTasksButlerErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetButlerTasksButlerErrors) GetStatus() *int64 {
+func (o *GetButlerTasksButlerErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *GetButlerTasksUnauthorized) Error() string {
 }
 
 type GetButlerTasksErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetButlerTasksErrors) GetCode() *int64 {
+func (o *GetButlerTasksErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *GetButlerTasksErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetButlerTasksErrors) GetStatus() *int64 {
+func (o *GetButlerTasksErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

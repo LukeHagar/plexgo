@@ -20,7 +20,7 @@ type GetTopWatchedContentQueryParamType int64
 
 const (
 	GetTopWatchedContentQueryParamTypeMovie   GetTopWatchedContentQueryParamType = 1
-	GetTopWatchedContentQueryParamTypeShow    GetTopWatchedContentQueryParamType = 2
+	GetTopWatchedContentQueryParamTypeTvShow  GetTopWatchedContentQueryParamType = 2
 	GetTopWatchedContentQueryParamTypeSeason  GetTopWatchedContentQueryParamType = 3
 	GetTopWatchedContentQueryParamTypeEpisode GetTopWatchedContentQueryParamType = 4
 )

@@ -8,12 +8,12 @@ import (
 )
 
 type GetUserFriendsPlexErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetUserFriendsPlexErrors) GetCode() *int64 {
+func (o *GetUserFriendsPlexErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *GetUserFriendsPlexErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetUserFriendsPlexErrors) GetStatus() *int64 {
+func (o *GetUserFriendsPlexErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *GetUserFriendsUnauthorized) Error() string {
 }
 
 type GetUserFriendsErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetUserFriendsErrors) GetCode() *int64 {
+func (o *GetUserFriendsErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *GetUserFriendsErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetUserFriendsErrors) GetStatus() *int64 {
+func (o *GetUserFriendsErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

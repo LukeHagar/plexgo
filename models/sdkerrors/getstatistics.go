@@ -8,12 +8,12 @@ import (
 )
 
 type GetStatisticsStatisticsErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetStatisticsStatisticsErrors) GetCode() *int64 {
+func (o *GetStatisticsStatisticsErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *GetStatisticsStatisticsErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetStatisticsStatisticsErrors) GetStatus() *int64 {
+func (o *GetStatisticsStatisticsErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *GetStatisticsUnauthorized) Error() string {
 }
 
 type GetStatisticsErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetStatisticsErrors) GetCode() *int64 {
+func (o *GetStatisticsErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *GetStatisticsErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetStatisticsErrors) GetStatus() *int64 {
+func (o *GetStatisticsErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

@@ -8,12 +8,12 @@ import (
 )
 
 type StartUniversalTranscodeVideoErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *StartUniversalTranscodeVideoErrors) GetCode() *int64 {
+func (o *StartUniversalTranscodeVideoErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *StartUniversalTranscodeVideoErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *StartUniversalTranscodeVideoErrors) GetStatus() *int64 {
+func (o *StartUniversalTranscodeVideoErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *StartUniversalTranscodeUnauthorized) Error() string {
 }
 
 type StartUniversalTranscodeErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *StartUniversalTranscodeErrors) GetCode() *int64 {
+func (o *StartUniversalTranscodeErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *StartUniversalTranscodeErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *StartUniversalTranscodeErrors) GetStatus() *int64 {
+func (o *StartUniversalTranscodeErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

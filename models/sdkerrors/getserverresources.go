@@ -8,12 +8,12 @@ import (
 )
 
 type GetServerResourcesPlexErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetServerResourcesPlexErrors) GetCode() *int64 {
+func (o *GetServerResourcesPlexErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *GetServerResourcesPlexErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetServerResourcesPlexErrors) GetStatus() *int64 {
+func (o *GetServerResourcesPlexErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *GetServerResourcesUnauthorized) Error() string {
 }
 
 type GetServerResourcesErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetServerResourcesErrors) GetCode() *int64 {
+func (o *GetServerResourcesErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *GetServerResourcesErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetServerResourcesErrors) GetStatus() *int64 {
+func (o *GetServerResourcesErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

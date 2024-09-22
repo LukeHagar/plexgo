@@ -8,12 +8,12 @@ import (
 )
 
 type EnablePaperTrailLogErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *EnablePaperTrailLogErrors) GetCode() *int64 {
+func (o *EnablePaperTrailLogErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *EnablePaperTrailLogErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *EnablePaperTrailLogErrors) GetStatus() *int64 {
+func (o *EnablePaperTrailLogErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *EnablePaperTrailUnauthorized) Error() string {
 }
 
 type EnablePaperTrailErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *EnablePaperTrailErrors) GetCode() *int64 {
+func (o *EnablePaperTrailErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *EnablePaperTrailErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *EnablePaperTrailErrors) GetStatus() *int64 {
+func (o *EnablePaperTrailErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

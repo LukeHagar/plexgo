@@ -8,12 +8,12 @@ import (
 )
 
 type GetTopWatchedContentLibraryErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetTopWatchedContentLibraryErrors) GetCode() *int64 {
+func (o *GetTopWatchedContentLibraryErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *GetTopWatchedContentLibraryErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetTopWatchedContentLibraryErrors) GetStatus() *int64 {
+func (o *GetTopWatchedContentLibraryErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *GetTopWatchedContentUnauthorized) Error() string {
 }
 
 type GetTopWatchedContentErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetTopWatchedContentErrors) GetCode() *int64 {
+func (o *GetTopWatchedContentErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *GetTopWatchedContentErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetTopWatchedContentErrors) GetStatus() *int64 {
+func (o *GetTopWatchedContentErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

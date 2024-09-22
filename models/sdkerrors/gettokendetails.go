@@ -8,12 +8,12 @@ import (
 )
 
 type GetTokenDetailsAuthenticationErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetTokenDetailsAuthenticationErrors) GetCode() *int64 {
+func (o *GetTokenDetailsAuthenticationErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *GetTokenDetailsAuthenticationErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetTokenDetailsAuthenticationErrors) GetStatus() *int64 {
+func (o *GetTokenDetailsAuthenticationErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *GetTokenDetailsUnauthorized) Error() string {
 }
 
 type GetTokenDetailsErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetTokenDetailsErrors) GetCode() *int64 {
+func (o *GetTokenDetailsErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *GetTokenDetailsErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetTokenDetailsErrors) GetStatus() *int64 {
+func (o *GetTokenDetailsErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

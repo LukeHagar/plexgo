@@ -8,12 +8,12 @@ import (
 )
 
 type GetLibraryDetailsLibraryErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetLibraryDetailsLibraryErrors) GetCode() *int64 {
+func (o *GetLibraryDetailsLibraryErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *GetLibraryDetailsLibraryErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetLibraryDetailsLibraryErrors) GetStatus() *int64 {
+func (o *GetLibraryDetailsLibraryErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *GetLibraryDetailsUnauthorized) Error() string {
 }
 
 type GetLibraryDetailsErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetLibraryDetailsErrors) GetCode() *int64 {
+func (o *GetLibraryDetailsErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *GetLibraryDetailsErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetLibraryDetailsErrors) GetStatus() *int64 {
+func (o *GetLibraryDetailsErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}

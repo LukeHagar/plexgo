@@ -8,12 +8,12 @@ import (
 )
 
 type GetSessionHistorySessionsErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetSessionHistorySessionsErrors) GetCode() *int64 {
+func (o *GetSessionHistorySessionsErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func (o *GetSessionHistorySessionsErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetSessionHistorySessionsErrors) GetStatus() *int64 {
+func (o *GetSessionHistorySessionsErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
@@ -49,12 +49,12 @@ func (e *GetSessionHistoryUnauthorized) Error() string {
 }
 
 type GetSessionHistoryErrors struct {
-	Code    *int64  `json:"code,omitempty"`
+	Code    *int    `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Status  *int64  `json:"status,omitempty"`
+	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetSessionHistoryErrors) GetCode() *int64 {
+func (o *GetSessionHistoryErrors) GetCode() *int {
 	if o == nil {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (o *GetSessionHistoryErrors) GetMessage() *string {
 	return o.Message
 }
 
-func (o *GetSessionHistoryErrors) GetStatus() *int64 {
+func (o *GetSessionHistoryErrors) GetStatus() *int {
 	if o == nil {
 		return nil
 	}
