@@ -44,10 +44,11 @@ type GetAllLibrariesDirectory struct {
 	// Unix epoch datetime in seconds
 	CreatedAt int64 `json:"createdAt"`
 	// Unix epoch datetime in seconds
-	ScannedAt        int64      `json:"scannedAt"`
-	Content          bool       `json:"content"`
-	Directory        bool       `json:"directory"`
-	ContentChangedAt int        `json:"contentChangedAt"`
+	ScannedAt int64 `json:"scannedAt"`
+	Content   bool  `json:"content"`
+	Directory bool  `json:"directory"`
+	// Unix epoch datetime in seconds
+	ContentChangedAt int64      `json:"contentChangedAt"`
 	Hidden           int        `json:"hidden"`
 	Location         []Location `json:"Location"`
 }
@@ -178,7 +179,7 @@ func (o *GetAllLibrariesDirectory) GetDirectory() bool {
 	return o.Directory
 }
 
-func (o *GetAllLibrariesDirectory) GetContentChangedAt() int {
+func (o *GetAllLibrariesDirectory) GetContentChangedAt() int64 {
 	if o == nil {
 		return 0
 	}

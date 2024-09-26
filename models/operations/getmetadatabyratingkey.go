@@ -20,7 +20,7 @@ func (o *GetMetaDataByRatingKeyRequest) GetRatingKey() int64 {
 	return o.RatingKey
 }
 
-type Stream struct {
+type GetMetaDataByRatingKeyStream struct {
 	ID                   *int    `json:"id,omitempty"`
 	StreamType           *int    `json:"streamType,omitempty"`
 	Default              *bool   `json:"default,omitempty"`
@@ -55,224 +55,224 @@ type Stream struct {
 	SamplingRate         *int    `json:"samplingRate,omitempty"`
 }
 
-func (o *Stream) GetID() *int {
+func (o *GetMetaDataByRatingKeyStream) GetID() *int {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *Stream) GetStreamType() *int {
+func (o *GetMetaDataByRatingKeyStream) GetStreamType() *int {
 	if o == nil {
 		return nil
 	}
 	return o.StreamType
 }
 
-func (o *Stream) GetDefault() *bool {
+func (o *GetMetaDataByRatingKeyStream) GetDefault() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Default
 }
 
-func (o *Stream) GetCodec() *string {
+func (o *GetMetaDataByRatingKeyStream) GetCodec() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Codec
 }
 
-func (o *Stream) GetIndex() *int {
+func (o *GetMetaDataByRatingKeyStream) GetIndex() *int {
 	if o == nil {
 		return nil
 	}
 	return o.Index
 }
 
-func (o *Stream) GetBitrate() *int {
+func (o *GetMetaDataByRatingKeyStream) GetBitrate() *int {
 	if o == nil {
 		return nil
 	}
 	return o.Bitrate
 }
 
-func (o *Stream) GetBitDepth() *int {
+func (o *GetMetaDataByRatingKeyStream) GetBitDepth() *int {
 	if o == nil {
 		return nil
 	}
 	return o.BitDepth
 }
 
-func (o *Stream) GetChromaLocation() *string {
+func (o *GetMetaDataByRatingKeyStream) GetChromaLocation() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ChromaLocation
 }
 
-func (o *Stream) GetChromaSubsampling() *string {
+func (o *GetMetaDataByRatingKeyStream) GetChromaSubsampling() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ChromaSubsampling
 }
 
-func (o *Stream) GetCodedHeight() *int {
+func (o *GetMetaDataByRatingKeyStream) GetCodedHeight() *int {
 	if o == nil {
 		return nil
 	}
 	return o.CodedHeight
 }
 
-func (o *Stream) GetCodedWidth() *int {
+func (o *GetMetaDataByRatingKeyStream) GetCodedWidth() *int {
 	if o == nil {
 		return nil
 	}
 	return o.CodedWidth
 }
 
-func (o *Stream) GetColorPrimaries() *string {
+func (o *GetMetaDataByRatingKeyStream) GetColorPrimaries() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ColorPrimaries
 }
 
-func (o *Stream) GetColorRange() *string {
+func (o *GetMetaDataByRatingKeyStream) GetColorRange() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ColorRange
 }
 
-func (o *Stream) GetColorSpace() *string {
+func (o *GetMetaDataByRatingKeyStream) GetColorSpace() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ColorSpace
 }
 
-func (o *Stream) GetColorTrc() *string {
+func (o *GetMetaDataByRatingKeyStream) GetColorTrc() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ColorTrc
 }
 
-func (o *Stream) GetFrameRate() *int {
+func (o *GetMetaDataByRatingKeyStream) GetFrameRate() *int {
 	if o == nil {
 		return nil
 	}
 	return o.FrameRate
 }
 
-func (o *Stream) GetHasScalingMatrix() *bool {
+func (o *GetMetaDataByRatingKeyStream) GetHasScalingMatrix() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.HasScalingMatrix
 }
 
-func (o *Stream) GetHeight() *int {
+func (o *GetMetaDataByRatingKeyStream) GetHeight() *int {
 	if o == nil {
 		return nil
 	}
 	return o.Height
 }
 
-func (o *Stream) GetLevel() *int {
+func (o *GetMetaDataByRatingKeyStream) GetLevel() *int {
 	if o == nil {
 		return nil
 	}
 	return o.Level
 }
 
-func (o *Stream) GetProfile() *string {
+func (o *GetMetaDataByRatingKeyStream) GetProfile() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Profile
 }
 
-func (o *Stream) GetRefFrames() *int {
+func (o *GetMetaDataByRatingKeyStream) GetRefFrames() *int {
 	if o == nil {
 		return nil
 	}
 	return o.RefFrames
 }
 
-func (o *Stream) GetScanType() *string {
+func (o *GetMetaDataByRatingKeyStream) GetScanType() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ScanType
 }
 
-func (o *Stream) GetStreamIdentifier() *string {
+func (o *GetMetaDataByRatingKeyStream) GetStreamIdentifier() *string {
 	if o == nil {
 		return nil
 	}
 	return o.StreamIdentifier
 }
 
-func (o *Stream) GetWidth() *int {
+func (o *GetMetaDataByRatingKeyStream) GetWidth() *int {
 	if o == nil {
 		return nil
 	}
 	return o.Width
 }
 
-func (o *Stream) GetDisplayTitle() *string {
+func (o *GetMetaDataByRatingKeyStream) GetDisplayTitle() *string {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayTitle
 }
 
-func (o *Stream) GetExtendedDisplayTitle() *string {
+func (o *GetMetaDataByRatingKeyStream) GetExtendedDisplayTitle() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ExtendedDisplayTitle
 }
 
-func (o *Stream) GetSelected() *bool {
+func (o *GetMetaDataByRatingKeyStream) GetSelected() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Selected
 }
 
-func (o *Stream) GetChannels() *int {
+func (o *GetMetaDataByRatingKeyStream) GetChannels() *int {
 	if o == nil {
 		return nil
 	}
 	return o.Channels
 }
 
-func (o *Stream) GetLanguage() *string {
+func (o *GetMetaDataByRatingKeyStream) GetLanguage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Language
 }
 
-func (o *Stream) GetLanguageTag() *string {
+func (o *GetMetaDataByRatingKeyStream) GetLanguageTag() *string {
 	if o == nil {
 		return nil
 	}
 	return o.LanguageTag
 }
 
-func (o *Stream) GetLanguageCode() *string {
+func (o *GetMetaDataByRatingKeyStream) GetLanguageCode() *string {
 	if o == nil {
 		return nil
 	}
 	return o.LanguageCode
 }
 
-func (o *Stream) GetSamplingRate() *int {
+func (o *GetMetaDataByRatingKeyStream) GetSamplingRate() *int {
 	if o == nil {
 		return nil
 	}
@@ -280,17 +280,17 @@ func (o *Stream) GetSamplingRate() *int {
 }
 
 type GetMetaDataByRatingKeyPart struct {
-	ID                    *int     `json:"id,omitempty"`
-	Key                   *string  `json:"key,omitempty"`
-	Duration              *int     `json:"duration,omitempty"`
-	File                  *string  `json:"file,omitempty"`
-	Size                  *int     `json:"size,omitempty"`
-	AudioProfile          *string  `json:"audioProfile,omitempty"`
-	Container             *string  `json:"container,omitempty"`
-	Has64bitOffsets       *bool    `json:"has64bitOffsets,omitempty"`
-	OptimizedForStreaming *bool    `json:"optimizedForStreaming,omitempty"`
-	VideoProfile          *string  `json:"videoProfile,omitempty"`
-	Stream                []Stream `json:"Stream,omitempty"`
+	ID                    *int                           `json:"id,omitempty"`
+	Key                   *string                        `json:"key,omitempty"`
+	Duration              *int                           `json:"duration,omitempty"`
+	File                  *string                        `json:"file,omitempty"`
+	Size                  *int                           `json:"size,omitempty"`
+	AudioProfile          *string                        `json:"audioProfile,omitempty"`
+	Container             *string                        `json:"container,omitempty"`
+	Has64bitOffsets       *bool                          `json:"has64bitOffsets,omitempty"`
+	OptimizedForStreaming *bool                          `json:"optimizedForStreaming,omitempty"`
+	VideoProfile          *string                        `json:"videoProfile,omitempty"`
+	Stream                []GetMetaDataByRatingKeyStream `json:"Stream,omitempty"`
 }
 
 func (o *GetMetaDataByRatingKeyPart) GetID() *int {
@@ -363,7 +363,7 @@ func (o *GetMetaDataByRatingKeyPart) GetVideoProfile() *string {
 	return o.VideoProfile
 }
 
-func (o *GetMetaDataByRatingKeyPart) GetStream() []Stream {
+func (o *GetMetaDataByRatingKeyPart) GetStream() []GetMetaDataByRatingKeyStream {
 	if o == nil {
 		return nil
 	}

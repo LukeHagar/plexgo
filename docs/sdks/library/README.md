@@ -9,7 +9,7 @@ API Calls interacting with Plex Media Server Libraries
 ### Available Operations
 
 * [GetFileHash](#getfilehash) - Get Hash Value
-* [GetRecentlyAdded](#getrecentlyadded) - Get Recently Added
+* [GetRecentlyAddedLibrary](#getrecentlyaddedlibrary) - Get Recently Added
 * [GetAllLibraries](#getalllibraries) - Get All Libraries
 * [GetLibraryDetails](#getlibrarydetails) - Get Library Details
 * [DeleteLibrary](#deletelibrary) - Delete Library Section
@@ -79,7 +79,7 @@ func main() {
 | sdkerrors.SDKError                | 4xx-5xx                           | */*                               |
 
 
-## GetRecentlyAdded
+## GetRecentlyAddedLibrary
 
 This endpoint will return the recently added content.
 
@@ -92,6 +92,7 @@ package main
 import(
 	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
@@ -106,7 +107,28 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Library.GetRecentlyAdded(ctx, plexgo.Int(0), plexgo.Int(50))
+    res, err := s.Library.GetRecentlyAddedLibrary(ctx, operations.GetRecentlyAddedLibraryRequest{
+        ContentDirectoryID: plexgo.Int64(2),
+        PinnedContentDirectoryID: []int64{
+            3,
+            5,
+            7,
+            13,
+            12,
+            1,
+            6,
+            14,
+            2,
+            10,
+            16,
+            17,
+        },
+        SectionID: plexgo.Int64(2),
+        Type: operations.QueryParamTypeTvShow,
+        IncludeMeta: operations.QueryParamIncludeMetaEnable.ToPointer(),
+        XPlexContainerStart: plexgo.Int(0),
+        XPlexContainerSize: plexgo.Int(50),
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -118,24 +140,23 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                 | Type                                                                                                                                                                                      | Required                                                                                                                                                                                  | Description                                                                                                                                                                               | Example                                                                                                                                                                                   |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                                                                                                     | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                                     | :heavy_check_mark:                                                                                                                                                                        | The context to use for the request.                                                                                                                                                       |                                                                                                                                                                                           |
-| `xPlexContainerStart`                                                                                                                                                                     | **int*                                                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                                        | The index of the first item to return. If not specified, the first item will be returned.<br/>If the number of items exceeds the limit, the response will be paginated.<br/>By default this is 0<br/> | 0                                                                                                                                                                                         |
-| `xPlexContainerSize`                                                                                                                                                                      | **int*                                                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                                        | The number of items to return. If not specified, all items will be returned.<br/>If the number of items exceeds the limit, the response will be paginated.<br/>By default this is 50<br/> | 50                                                                                                                                                                                        |
-| `opts`                                                                                                                                                                                    | [][operations.Option](../../models/operations/option.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                                        | The options for this request.                                                                                                                                                             |                                                                                                                                                                                           |
+| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                  | :heavy_check_mark:                                                                                     | The context to use for the request.                                                                    |
+| `request`                                                                                              | [operations.GetRecentlyAddedLibraryRequest](../../models/operations/getrecentlyaddedlibraryrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `opts`                                                                                                 | [][operations.Option](../../models/operations/option.md)                                               | :heavy_minus_sign:                                                                                     | The options for this request.                                                                          |
 
 ### Response
 
-**[*operations.GetRecentlyAddedResponse](../../models/operations/getrecentlyaddedresponse.md), error**
+**[*operations.GetRecentlyAddedLibraryResponse](../../models/operations/getrecentlyaddedlibraryresponse.md), error**
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| sdkerrors.GetRecentlyAddedBadRequest   | 400                                    | application/json                       |
-| sdkerrors.GetRecentlyAddedUnauthorized | 401                                    | application/json                       |
-| sdkerrors.SDKError                     | 4xx-5xx                                | */*                                    |
+| Error Object                                  | Status Code                                   | Content Type                                  |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| sdkerrors.GetRecentlyAddedLibraryBadRequest   | 400                                           | application/json                              |
+| sdkerrors.GetRecentlyAddedLibraryUnauthorized | 401                                           | application/json                              |
+| sdkerrors.SDKError                            | 4xx-5xx                                       | */*                                           |
 
 
 ## GetAllLibraries
@@ -405,8 +426,8 @@ func main() {
         SectionKey: 9518,
         Tag: operations.TagEdition,
         IncludeGuids: operations.IncludeGuidsEnable.ToPointer(),
-        IncludeMeta: operations.IncludeMetaEnable.ToPointer(),
-        Type: operations.TypeTvShow.ToPointer(),
+        Type: operations.GetLibraryItemsQueryParamTypeTvShow.ToPointer(),
+        IncludeMeta: operations.GetLibraryItemsQueryParamIncludeMetaEnable.ToPointer(),
         XPlexContainerStart: plexgo.Int(0),
         XPlexContainerSize: plexgo.Int(50),
     })
@@ -545,7 +566,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Library.GetSearchLibrary(ctx, 9518, operations.QueryParamTypeTvShow)
+    res, err := s.Library.GetSearchLibrary(ctx, 9518, operations.GetSearchLibraryQueryParamTypeTvShow)
     if err != nil {
         log.Fatal(err)
     }
@@ -561,7 +582,7 @@ func main() {
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                                                                                           | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                           | :heavy_check_mark:                                                                                                                                                              | The context to use for the request.                                                                                                                                             |                                                                                                                                                                                 |
 | `sectionKey`                                                                                                                                                                    | *int*                                                                                                                                                                           | :heavy_check_mark:                                                                                                                                                              | The unique key of the Plex library. <br/>Note: This is unique in the context of the Plex server.<br/>                                                                           | 9518                                                                                                                                                                            |
-| `type_`                                                                                                                                                                         | [operations.QueryParamType](../../models/operations/queryparamtype.md)                                                                                                          | :heavy_check_mark:                                                                                                                                                              | The type of media to retrieve.<br/>1 = movie<br/>2 = show<br/>3 = season<br/>4 = episode<br/>E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries<br/> | 2                                                                                                                                                                               |
+| `type_`                                                                                                                                                                         | [operations.GetSearchLibraryQueryParamType](../../models/operations/getsearchlibraryqueryparamtype.md)                                                                          | :heavy_check_mark:                                                                                                                                                              | The type of media to retrieve.<br/>1 = movie<br/>2 = show<br/>3 = season<br/>4 = episode<br/>E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries<br/> | 2                                                                                                                                                                               |
 | `opts`                                                                                                                                                                          | [][operations.Option](../../models/operations/option.md)                                                                                                                        | :heavy_minus_sign:                                                                                                                                                              | The options for this request.                                                                                                                                                   |                                                                                                                                                                                 |
 
 ### Response

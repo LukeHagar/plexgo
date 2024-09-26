@@ -14,6 +14,53 @@ var PostUsersSignInDataServerList = []string{
 	"https://plex.tv/api/v2/",
 }
 
+type PostUsersSignInDataGlobals struct {
+	// The unique identifier for the client application
+	// This is used to track the client application and its usage
+	// (UUID, serial number, or other number unique per device)
+	//
+	ClientID       *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
+	ClientName     *string `queryParam:"style=form,explode=true,name=X-Plex-Product"`
+	DeviceName     *string `queryParam:"style=form,explode=true,name=X-Plex-Device"`
+	ClientVersion  *string `queryParam:"style=form,explode=true,name=X-Plex-Version"`
+	ClientPlatform *string `queryParam:"style=form,explode=true,name=X-Plex-Platform"`
+}
+
+func (o *PostUsersSignInDataGlobals) GetClientID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientID
+}
+
+func (o *PostUsersSignInDataGlobals) GetClientName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientName
+}
+
+func (o *PostUsersSignInDataGlobals) GetDeviceName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DeviceName
+}
+
+func (o *PostUsersSignInDataGlobals) GetClientVersion() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientVersion
+}
+
+func (o *PostUsersSignInDataGlobals) GetClientPlatform() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientPlatform
+}
+
 // PostUsersSignInDataRequestBody - Login credentials
 type PostUsersSignInDataRequestBody struct {
 	Login            string  `form:"name=login"`
@@ -59,6 +106,62 @@ func (o *PostUsersSignInDataRequestBody) GetVerificationCode() *string {
 		return nil
 	}
 	return o.VerificationCode
+}
+
+type PostUsersSignInDataRequest struct {
+	// The unique identifier for the client application
+	// This is used to track the client application and its usage
+	// (UUID, serial number, or other number unique per device)
+	//
+	ClientID       *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
+	ClientName     *string `queryParam:"style=form,explode=true,name=X-Plex-Product"`
+	DeviceName     *string `queryParam:"style=form,explode=true,name=X-Plex-Device"`
+	ClientVersion  *string `queryParam:"style=form,explode=true,name=X-Plex-Version"`
+	ClientPlatform *string `queryParam:"style=form,explode=true,name=X-Plex-Platform"`
+	// Login credentials
+	RequestBody *PostUsersSignInDataRequestBody `request:"mediaType=application/x-www-form-urlencoded"`
+}
+
+func (o *PostUsersSignInDataRequest) GetClientID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientID
+}
+
+func (o *PostUsersSignInDataRequest) GetClientName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientName
+}
+
+func (o *PostUsersSignInDataRequest) GetDeviceName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DeviceName
+}
+
+func (o *PostUsersSignInDataRequest) GetClientVersion() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientVersion
+}
+
+func (o *PostUsersSignInDataRequest) GetClientPlatform() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientPlatform
+}
+
+func (o *PostUsersSignInDataRequest) GetRequestBody() *PostUsersSignInDataRequestBody {
+	if o == nil {
+		return nil
+	}
+	return o.RequestBody
 }
 
 // PostUsersSignInDataMailingListStatus - Your current mailing list status

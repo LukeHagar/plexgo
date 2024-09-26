@@ -257,19 +257,14 @@ func (s *Library) GetFileHash(ctx context.Context, url_ string, type_ *float64, 
 
 }
 
-// GetRecentlyAdded - Get Recently Added
+// GetRecentlyAddedLibrary - Get Recently Added
 // This endpoint will return the recently added content.
-func (s *Library) GetRecentlyAdded(ctx context.Context, xPlexContainerStart *int, xPlexContainerSize *int, opts ...operations.Option) (*operations.GetRecentlyAddedResponse, error) {
+func (s *Library) GetRecentlyAddedLibrary(ctx context.Context, request operations.GetRecentlyAddedLibraryRequest, opts ...operations.Option) (*operations.GetRecentlyAddedLibraryResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
-		OperationID:    "getRecentlyAdded",
+		OperationID:    "get-recently-added-library",
 		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
-	}
-
-	request := operations.GetRecentlyAddedRequest{
-		XPlexContainerStart: xPlexContainerStart,
-		XPlexContainerSize:  xPlexContainerSize,
 	}
 
 	o := operations.Options{}
@@ -401,7 +396,7 @@ func (s *Library) GetRecentlyAdded(ctx context.Context, xPlexContainerStart *int
 		}
 	}
 
-	res := &operations.GetRecentlyAddedResponse{
+	res := &operations.GetRecentlyAddedLibraryResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: httpRes.Header.Get("Content-Type"),
 		RawResponse: httpRes,
@@ -426,7 +421,7 @@ func (s *Library) GetRecentlyAdded(ctx context.Context, xPlexContainerStart *int
 				return nil, err
 			}
 
-			var out operations.GetRecentlyAddedResponseBody
+			var out operations.GetRecentlyAddedLibraryResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -448,7 +443,7 @@ func (s *Library) GetRecentlyAdded(ctx context.Context, xPlexContainerStart *int
 				return nil, err
 			}
 
-			var out sdkerrors.GetRecentlyAddedBadRequest
+			var out sdkerrors.GetRecentlyAddedLibraryBadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -471,7 +466,7 @@ func (s *Library) GetRecentlyAdded(ctx context.Context, xPlexContainerStart *int
 				return nil, err
 			}
 
-			var out sdkerrors.GetRecentlyAddedUnauthorized
+			var out sdkerrors.GetRecentlyAddedLibraryUnauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1783,7 +1778,7 @@ func (s *Library) GetRefreshLibraryMetadata(ctx context.Context, sectionKey int,
 //   - Attributes include `defaultDirection` (asc/desc), `descKey` and `key` (sort parameters), and `title`.
 //
 // > **Note**: Filters and sorts are optional; without them, no filtering controls are rendered.
-func (s *Library) GetSearchLibrary(ctx context.Context, sectionKey int, type_ operations.QueryParamType, opts ...operations.Option) (*operations.GetSearchLibraryResponse, error) {
+func (s *Library) GetSearchLibrary(ctx context.Context, sectionKey int, type_ operations.GetSearchLibraryQueryParamType, opts ...operations.Option) (*operations.GetSearchLibraryResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "get-search-library",

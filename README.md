@@ -103,12 +103,13 @@ func main() {
 ### [Hubs](docs/sdks/hubs/README.md)
 
 * [GetGlobalHubs](docs/sdks/hubs/README.md#getglobalhubs) - Get Global Hubs
+* [GetRecentlyAdded](docs/sdks/hubs/README.md#getrecentlyadded) - Get Recently Added
 * [GetLibraryHubs](docs/sdks/hubs/README.md#getlibraryhubs) - Get library specific hubs
 
 ### [Library](docs/sdks/library/README.md)
 
 * [GetFileHash](docs/sdks/library/README.md#getfilehash) - Get Hash Value
-* [GetRecentlyAdded](docs/sdks/library/README.md#getrecentlyadded) - Get Recently Added
+* [GetRecentlyAddedLibrary](docs/sdks/library/README.md#getrecentlyaddedlibrary) - Get Recently Added
 * [GetAllLibraries](docs/sdks/library/README.md#getalllibraries) - Get All Libraries
 * [GetLibraryDetails](docs/sdks/library/README.md#getlibrarydetails) - Get Library Details
 * [DeleteLibrary](docs/sdks/library/README.md#deletelibrary) - Delete Library Section

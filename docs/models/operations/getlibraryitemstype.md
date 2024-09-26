@@ -1,14 +1,14 @@
 # GetLibraryItemsType
 
-The type of media content
 
+## Fields
 
-
-## Values
-
-| Name                         | Value                        |
-| ---------------------------- | ---------------------------- |
-| `GetLibraryItemsTypeMovie`   | movie                        |
-| `GetLibraryItemsTypeTvShow`  | show                         |
-| `GetLibraryItemsTypeSeason`  | season                       |
-| `GetLibraryItemsTypeEpisode` | episode                      |
+| Field                                                                                  | Type                                                                                   | Required                                                                               | Description                                                                            | Example                                                                                |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `Key`                                                                                  | *string*                                                                               | :heavy_check_mark:                                                                     | N/A                                                                                    | /library/sections/2/all?type=2                                                         |
+| `Type`                                                                                 | *string*                                                                               | :heavy_check_mark:                                                                     | N/A                                                                                    | show                                                                                   |
+| `Title`                                                                                | *string*                                                                               | :heavy_check_mark:                                                                     | N/A                                                                                    | TV Shows                                                                               |
+| `Active`                                                                               | *bool*                                                                                 | :heavy_check_mark:                                                                     | N/A                                                                                    | false                                                                                  |
+| `Filter`                                                                               | [][operations.GetLibraryItemsFilter](../../models/operations/getlibraryitemsfilter.md) | :heavy_minus_sign:                                                                     | N/A                                                                                    |                                                                                        |
+| `Sort`                                                                                 | [][operations.GetLibraryItemsSort](../../models/operations/getlibraryitemssort.md)     | :heavy_minus_sign:                                                                     | N/A                                                                                    |                                                                                        |
+| `Field`                                                                                | [][operations.GetLibraryItemsField](../../models/operations/getlibraryitemsfield.md)   | :heavy_minus_sign:                                                                     | N/A                                                                                    |                                                                                        |

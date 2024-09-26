@@ -8,25 +8,25 @@ import (
 	"net/http"
 )
 
-// QueryParamType - The type of media to retrieve.
+// GetSearchLibraryQueryParamType - The type of media to retrieve.
 // 1 = movie
 // 2 = show
 // 3 = season
 // 4 = episode
 // E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
-type QueryParamType int64
+type GetSearchLibraryQueryParamType int64
 
 const (
-	QueryParamTypeMovie   QueryParamType = 1
-	QueryParamTypeTvShow  QueryParamType = 2
-	QueryParamTypeSeason  QueryParamType = 3
-	QueryParamTypeEpisode QueryParamType = 4
+	GetSearchLibraryQueryParamTypeMovie   GetSearchLibraryQueryParamType = 1
+	GetSearchLibraryQueryParamTypeTvShow  GetSearchLibraryQueryParamType = 2
+	GetSearchLibraryQueryParamTypeSeason  GetSearchLibraryQueryParamType = 3
+	GetSearchLibraryQueryParamTypeEpisode GetSearchLibraryQueryParamType = 4
 )
 
-func (e QueryParamType) ToPointer() *QueryParamType {
+func (e GetSearchLibraryQueryParamType) ToPointer() *GetSearchLibraryQueryParamType {
 	return &e
 }
-func (e *QueryParamType) UnmarshalJSON(data []byte) error {
+func (e *GetSearchLibraryQueryParamType) UnmarshalJSON(data []byte) error {
 	var v int64
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -39,10 +39,10 @@ func (e *QueryParamType) UnmarshalJSON(data []byte) error {
 	case 3:
 		fallthrough
 	case 4:
-		*e = QueryParamType(v)
+		*e = GetSearchLibraryQueryParamType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for QueryParamType: %v", v)
+		return fmt.Errorf("invalid value for GetSearchLibraryQueryParamType: %v", v)
 	}
 }
 
@@ -58,7 +58,7 @@ type GetSearchLibraryRequest struct {
 	// 4 = episode
 	// E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
 	//
-	Type QueryParamType `queryParam:"style=form,explode=true,name=type"`
+	Type GetSearchLibraryQueryParamType `queryParam:"style=form,explode=true,name=type"`
 }
 
 func (o *GetSearchLibraryRequest) GetSectionKey() int {
@@ -68,9 +68,9 @@ func (o *GetSearchLibraryRequest) GetSectionKey() int {
 	return o.SectionKey
 }
 
-func (o *GetSearchLibraryRequest) GetType() QueryParamType {
+func (o *GetSearchLibraryRequest) GetType() GetSearchLibraryQueryParamType {
 	if o == nil {
-		return QueryParamType(0)
+		return GetSearchLibraryQueryParamType(0)
 	}
 	return o.Type
 }

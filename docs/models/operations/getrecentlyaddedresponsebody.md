@@ -1,6 +1,6 @@
 # GetRecentlyAddedResponseBody
 
-The recently added content
+A successful response with recently added content.
 
 
 ## Fields

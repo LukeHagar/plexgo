@@ -676,6 +676,47 @@ actions:
                     // handle response
                 }
             }
+  - target: $["paths"]["/hubs/home/recentlyAdded"]["get"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: added
+          source: |-
+            package main
+
+            import(
+            	"github.com/LukeHagar/plexgo"
+            	"context"
+            	"github.com/LukeHagar/plexgo/models/operations"
+            	"log"
+            )
+
+            func main() {
+                s := plexgo.New(
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                    plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
+                    plexgo.WithClientName("Plex Web"),
+                    plexgo.WithClientVersion("4.133.0"),
+                    plexgo.WithClientPlatform("Chrome"),
+                    plexgo.WithDeviceName("Linux"),
+                )
+
+                ctx := context.Background()
+                res, err := s.Hubs.GetRecentlyAdded(ctx, operations.GetRecentlyAddedRequest{
+                    ContentDirectoryID: 470161,
+                    SectionID: plexgo.Int64(2),
+                    Type: operations.TypeTvShow,
+                    IncludeMeta: operations.IncludeMetaEnable.ToPointer(),
+                    XPlexContainerStart: plexgo.Int(0),
+                    XPlexContainerSize: plexgo.Int(50),
+                })
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res.Object != nil {
+                    // handle response
+                }
+            }
   - target: $["paths"]["/hubs/search"]["get"]
     update:
       x-codeSamples:
@@ -1059,13 +1100,14 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getRecentlyAdded
+          label: library
           source: |-
             package main
 
             import(
             	"github.com/LukeHagar/plexgo"
             	"context"
+            	"github.com/LukeHagar/plexgo/models/operations"
             	"log"
             )
 
@@ -1080,7 +1122,28 @@ actions:
                 )
 
                 ctx := context.Background()
-                res, err := s.Library.GetRecentlyAdded(ctx, plexgo.Int(0), plexgo.Int(50))
+                res, err := s.Library.GetRecentlyAddedLibrary(ctx, operations.GetRecentlyAddedLibraryRequest{
+                    ContentDirectoryID: plexgo.Int64(2),
+                    PinnedContentDirectoryID: []int64{
+                        3,
+                        5,
+                        7,
+                        13,
+                        12,
+                        1,
+                        6,
+                        14,
+                        2,
+                        10,
+                        16,
+                        17,
+                    },
+                    SectionID: plexgo.Int64(2),
+                    Type: operations.QueryParamTypeTvShow,
+                    IncludeMeta: operations.QueryParamIncludeMetaEnable.ToPointer(),
+                    XPlexContainerStart: plexgo.Int(0),
+                    XPlexContainerSize: plexgo.Int(50),
+                })
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -1286,7 +1349,7 @@ actions:
                 )
 
                 ctx := context.Background()
-                res, err := s.Library.GetSearchLibrary(ctx, 9518, operations.QueryParamTypeTvShow)
+                res, err := s.Library.GetSearchLibrary(ctx, 9518, operations.GetSearchLibraryQueryParamTypeTvShow)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -1324,8 +1387,8 @@ actions:
                     SectionKey: 9518,
                     Tag: operations.TagEdition,
                     IncludeGuids: operations.IncludeGuidsEnable.ToPointer(),
-                    IncludeMeta: operations.IncludeMetaEnable.ToPointer(),
-                    Type: operations.TypeTvShow.ToPointer(),
+                    Type: operations.GetLibraryItemsQueryParamTypeTvShow.ToPointer(),
+                    IncludeMeta: operations.GetLibraryItemsQueryParamIncludeMetaEnable.ToPointer(),
                     XPlexContainerStart: plexgo.Int(0),
                     XPlexContainerSize: plexgo.Int(50),
                 })
@@ -2474,10 +2537,12 @@ actions:
                 )
 
                 ctx := context.Background()
-                res, err := s.Authentication.PostUsersSignInData(ctx, &operations.PostUsersSignInDataRequestBody{
-                    Login: "username@email.com",
-                    Password: "password123",
-                    VerificationCode: plexgo.String("123456"),
+                res, err := s.Authentication.PostUsersSignInData(ctx, operations.PostUsersSignInDataRequest{
+                    RequestBody: &operations.PostUsersSignInDataRequestBody{
+                        Login: "username@email.com",
+                        Password: "password123",
+                        VerificationCode: plexgo.String("123456"),
+                    },
                 })
                 if err != nil {
                     log.Fatal(err)

@@ -159,7 +159,7 @@ func (o *GetLibraryDetailsFilter) GetType() *string {
 	return o.Type
 }
 
-type Sort struct {
+type GetLibraryDetailsSort struct {
 	Default           *string `json:"default,omitempty"`
 	DefaultDirection  *string `json:"defaultDirection,omitempty"`
 	DescKey           *string `json:"descKey,omitempty"`
@@ -168,77 +168,77 @@ type Sort struct {
 	Title             *string `json:"title,omitempty"`
 }
 
-func (o *Sort) GetDefault() *string {
+func (o *GetLibraryDetailsSort) GetDefault() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Default
 }
 
-func (o *Sort) GetDefaultDirection() *string {
+func (o *GetLibraryDetailsSort) GetDefaultDirection() *string {
 	if o == nil {
 		return nil
 	}
 	return o.DefaultDirection
 }
 
-func (o *Sort) GetDescKey() *string {
+func (o *GetLibraryDetailsSort) GetDescKey() *string {
 	if o == nil {
 		return nil
 	}
 	return o.DescKey
 }
 
-func (o *Sort) GetFirstCharacterKey() *string {
+func (o *GetLibraryDetailsSort) GetFirstCharacterKey() *string {
 	if o == nil {
 		return nil
 	}
 	return o.FirstCharacterKey
 }
 
-func (o *Sort) GetKey() *string {
+func (o *GetLibraryDetailsSort) GetKey() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Key
 }
 
-func (o *Sort) GetTitle() *string {
+func (o *GetLibraryDetailsSort) GetTitle() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Title
 }
 
-type Field struct {
+type GetLibraryDetailsField struct {
 	Key     *string `json:"key,omitempty"`
 	Title   *string `json:"title,omitempty"`
 	Type    *string `json:"type,omitempty"`
 	SubType *string `json:"subType,omitempty"`
 }
 
-func (o *Field) GetKey() *string {
+func (o *GetLibraryDetailsField) GetKey() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Key
 }
 
-func (o *Field) GetTitle() *string {
+func (o *GetLibraryDetailsField) GetTitle() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Title
 }
 
-func (o *Field) GetType() *string {
+func (o *GetLibraryDetailsField) GetType() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *Field) GetSubType() *string {
+func (o *GetLibraryDetailsField) GetSubType() *string {
 	if o == nil {
 		return nil
 	}
@@ -251,8 +251,8 @@ type GetLibraryDetailsType struct {
 	Title  *string                   `json:"title,omitempty"`
 	Active *bool                     `json:"active,omitempty"`
 	Filter []GetLibraryDetailsFilter `json:"Filter,omitempty"`
-	Sort   []Sort                    `json:"Sort,omitempty"`
-	Field  []Field                   `json:"Field,omitempty"`
+	Sort   []GetLibraryDetailsSort   `json:"Sort,omitempty"`
+	Field  []GetLibraryDetailsField  `json:"Field,omitempty"`
 }
 
 func (o *GetLibraryDetailsType) GetKey() *string {
@@ -290,52 +290,52 @@ func (o *GetLibraryDetailsType) GetFilter() []GetLibraryDetailsFilter {
 	return o.Filter
 }
 
-func (o *GetLibraryDetailsType) GetSort() []Sort {
+func (o *GetLibraryDetailsType) GetSort() []GetLibraryDetailsSort {
 	if o == nil {
 		return nil
 	}
 	return o.Sort
 }
 
-func (o *GetLibraryDetailsType) GetField() []Field {
+func (o *GetLibraryDetailsType) GetField() []GetLibraryDetailsField {
 	if o == nil {
 		return nil
 	}
 	return o.Field
 }
 
-type Operator struct {
+type GetLibraryDetailsOperator struct {
 	Key   *string `json:"key,omitempty"`
 	Title *string `json:"title,omitempty"`
 }
 
-func (o *Operator) GetKey() *string {
+func (o *GetLibraryDetailsOperator) GetKey() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Key
 }
 
-func (o *Operator) GetTitle() *string {
+func (o *GetLibraryDetailsOperator) GetTitle() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Title
 }
 
-type FieldType struct {
-	Type     *string    `json:"type,omitempty"`
-	Operator []Operator `json:"Operator,omitempty"`
+type GetLibraryDetailsFieldType struct {
+	Type     *string                     `json:"type,omitempty"`
+	Operator []GetLibraryDetailsOperator `json:"Operator,omitempty"`
 }
 
-func (o *FieldType) GetType() *string {
+func (o *GetLibraryDetailsFieldType) GetType() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *FieldType) GetOperator() []Operator {
+func (o *GetLibraryDetailsFieldType) GetOperator() []GetLibraryDetailsOperator {
 	if o == nil {
 		return nil
 	}
@@ -357,7 +357,7 @@ type GetLibraryDetailsMediaContainer struct {
 	ViewMode         *int                         `json:"viewMode,omitempty"`
 	Directory        []GetLibraryDetailsDirectory `json:"Directory,omitempty"`
 	Type             []GetLibraryDetailsType      `json:"Type,omitempty"`
-	FieldType        []FieldType                  `json:"FieldType,omitempty"`
+	FieldType        []GetLibraryDetailsFieldType `json:"FieldType,omitempty"`
 }
 
 func (o *GetLibraryDetailsMediaContainer) GetSize() *int {
@@ -458,7 +458,7 @@ func (o *GetLibraryDetailsMediaContainer) GetType() []GetLibraryDetailsType {
 	return o.Type
 }
 
-func (o *GetLibraryDetailsMediaContainer) GetFieldType() []FieldType {
+func (o *GetLibraryDetailsMediaContainer) GetFieldType() []GetLibraryDetailsFieldType {
 	if o == nil {
 		return nil
 	}

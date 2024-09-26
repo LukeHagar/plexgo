@@ -214,10 +214,12 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Authentication.PostUsersSignInData(ctx, &operations.PostUsersSignInDataRequestBody{
-        Login: "username@email.com",
-        Password: "password123",
-        VerificationCode: plexgo.String("123456"),
+    res, err := s.Authentication.PostUsersSignInData(ctx, operations.PostUsersSignInDataRequest{
+        RequestBody: &operations.PostUsersSignInDataRequestBody{
+            Login: "username@email.com",
+            Password: "password123",
+            VerificationCode: plexgo.String("123456"),
+        },
     })
     if err != nil {
         log.Fatal(err)
@@ -230,11 +232,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
-| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                  | :heavy_check_mark:                                                                                     | The context to use for the request.                                                                    |
-| `request`                                                                                              | [operations.PostUsersSignInDataRequestBody](../../models/operations/postuserssignindatarequestbody.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
-| `opts`                                                                                                 | [][operations.Option](../../models/operations/option.md)                                               | :heavy_minus_sign:                                                                                     | The options for this request.                                                                          |
+| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
+| `request`                                                                                      | [operations.PostUsersSignInDataRequest](../../models/operations/postuserssignindatarequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
+| `opts`                                                                                         | [][operations.Option](../../models/operations/option.md)                                       | :heavy_minus_sign:                                                                             | The options for this request.                                                                  |
 
 ### Response
 
