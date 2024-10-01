@@ -11,7 +11,19 @@ import (
 )
 
 var GetServerResourcesServerList = []string{
-	"https://plex.tv/api/v2/",
+	"https://plex.tv/api/v2",
+}
+
+type GetServerResourcesGlobals struct {
+	// The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device)
+	ClientID *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
+}
+
+func (o *GetServerResourcesGlobals) GetClientID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientID
 }
 
 // IncludeHTTPS - Include Https entries in the results
@@ -105,6 +117,8 @@ type GetServerResourcesRequest struct {
 	IncludeRelay *IncludeRelay `default:"0" queryParam:"style=form,explode=true,name=includeRelay"`
 	// Include IPv6 entries in the results
 	IncludeIPv6 *IncludeIPv6 `default:"0" queryParam:"style=form,explode=true,name=includeIPv6"`
+	// The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device)
+	ClientID *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
 }
 
 func (g GetServerResourcesRequest) MarshalJSON() ([]byte, error) {
@@ -137,6 +151,13 @@ func (o *GetServerResourcesRequest) GetIncludeIPv6() *IncludeIPv6 {
 		return nil
 	}
 	return o.IncludeIPv6
+}
+
+func (o *GetServerResourcesRequest) GetClientID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientID
 }
 
 // Protocol - The protocol used for the connection (http, https, etc)

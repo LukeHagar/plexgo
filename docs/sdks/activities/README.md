@@ -66,12 +66,11 @@ func main() {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
+| Error Type                                | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | sdkerrors.GetServerActivitiesBadRequest   | 400                                       | application/json                          |
 | sdkerrors.GetServerActivitiesUnauthorized | 401                                       | application/json                          |
-| sdkerrors.SDKError                        | 4xx-5xx                                   | */*                                       |
-
+| sdkerrors.SDKError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## CancelServerActivities
 
@@ -123,8 +122,8 @@ func main() {
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | sdkerrors.CancelServerActivitiesBadRequest   | 400                                          | application/json                             |
 | sdkerrors.CancelServerActivitiesUnauthorized | 401                                          | application/json                             |
-| sdkerrors.SDKError                           | 4xx-5xx                                      | */*                                          |
+| sdkerrors.SDKError                           | 4XX, 5XX                                     | \*/\*                                        |

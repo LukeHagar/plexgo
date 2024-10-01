@@ -66,12 +66,11 @@ func main() {
 
 ### Errors
 
-| Error Object                            | Status Code                             | Content Type                            |
+| Error Type                              | Status Code                             | Content Type                            |
 | --------------------------------------- | --------------------------------------- | --------------------------------------- |
 | sdkerrors.GetTransientTokenBadRequest   | 400                                     | application/json                        |
 | sdkerrors.GetTransientTokenUnauthorized | 401                                     | application/json                        |
-| sdkerrors.SDKError                      | 4xx-5xx                                 | */*                                     |
-
+| sdkerrors.SDKError                      | 4XX, 5XX                                | \*/\*                                   |
 
 ## GetSourceConnectionInformation
 
@@ -125,12 +124,11 @@ func main() {
 
 ### Errors
 
-| Error Object                                         | Status Code                                          | Content Type                                         |
+| Error Type                                           | Status Code                                          | Content Type                                         |
 | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
 | sdkerrors.GetSourceConnectionInformationBadRequest   | 400                                                  | application/json                                     |
 | sdkerrors.GetSourceConnectionInformationUnauthorized | 401                                                  | application/json                                     |
-| sdkerrors.SDKError                                   | 4xx-5xx                                              | */*                                                  |
-
+| sdkerrors.SDKError                                   | 4XX, 5XX                                             | \*/\*                                                |
 
 ## GetTokenDetails
 
@@ -181,12 +179,11 @@ func main() {
 
 ### Errors
 
-| Error Object                          | Status Code                           | Content Type                          |
+| Error Type                            | Status Code                           | Content Type                          |
 | ------------------------------------- | ------------------------------------- | ------------------------------------- |
 | sdkerrors.GetTokenDetailsBadRequest   | 400                                   | application/json                      |
 | sdkerrors.GetTokenDetailsUnauthorized | 401                                   | application/json                      |
-| sdkerrors.SDKError                    | 4xx-5xx                               | */*                                   |
-
+| sdkerrors.SDKError                    | 4XX, 5XX                              | \*/\*                                 |
 
 ## PostUsersSignInData
 
@@ -244,8 +241,8 @@ func main() {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
+| Error Type                                | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | sdkerrors.PostUsersSignInDataBadRequest   | 400                                       | application/json                          |
 | sdkerrors.PostUsersSignInDataUnauthorized | 401                                       | application/json                          |
-| sdkerrors.SDKError                        | 4xx-5xx                                   | */*                                       |
+| sdkerrors.SDKError                        | 4XX, 5XX                                  | \*/\*                                     |

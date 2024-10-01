@@ -8,7 +8,7 @@ import (
 )
 
 var GetGeoDataServerList = []string{
-	"https://plex.tv/api/v2/",
+	"https://plex.tv/api/v2",
 }
 
 // GetGeoDataGeoData - Geo location data

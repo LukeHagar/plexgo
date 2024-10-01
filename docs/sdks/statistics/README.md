@@ -62,12 +62,11 @@ func main() {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | sdkerrors.GetStatisticsBadRequest   | 400                                 | application/json                    |
 | sdkerrors.GetStatisticsUnauthorized | 401                                 | application/json                    |
-| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
-
+| sdkerrors.SDKError                  | 4XX, 5XX                            | \*/\*                               |
 
 ## GetResourcesStatistics
 
@@ -119,12 +118,11 @@ func main() {
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | sdkerrors.GetResourcesStatisticsBadRequest   | 400                                          | application/json                             |
 | sdkerrors.GetResourcesStatisticsUnauthorized | 401                                          | application/json                             |
-| sdkerrors.SDKError                           | 4xx-5xx                                      | */*                                          |
-
+| sdkerrors.SDKError                           | 4XX, 5XX                                     | \*/\*                                        |
 
 ## GetBandwidthStatistics
 
@@ -176,8 +174,8 @@ func main() {
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | sdkerrors.GetBandwidthStatisticsBadRequest   | 400                                          | application/json                             |
 | sdkerrors.GetBandwidthStatisticsUnauthorized | 401                                          | application/json                             |
-| sdkerrors.SDKError                           | 4xx-5xx                                      | */*                                          |
+| sdkerrors.SDKError                           | 4XX, 5XX                                     | \*/\*                                        |

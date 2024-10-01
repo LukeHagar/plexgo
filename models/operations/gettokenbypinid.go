@@ -9,12 +9,62 @@ import (
 )
 
 var GetTokenByPinIDServerList = []string{
-	"https://plex.tv/api/v2/",
+	"https://plex.tv/api/v2",
+}
+
+type GetTokenByPinIDGlobals struct {
+	// The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device)
+	ClientID       *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
+	ClientName     *string `queryParam:"style=form,explode=true,name=X-Plex-Product"`
+	DeviceName     *string `queryParam:"style=form,explode=true,name=X-Plex-Device"`
+	ClientVersion  *string `queryParam:"style=form,explode=true,name=X-Plex-Version"`
+	ClientPlatform *string `queryParam:"style=form,explode=true,name=X-Plex-Platform"`
+}
+
+func (o *GetTokenByPinIDGlobals) GetClientID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientID
+}
+
+func (o *GetTokenByPinIDGlobals) GetClientName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientName
+}
+
+func (o *GetTokenByPinIDGlobals) GetDeviceName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DeviceName
+}
+
+func (o *GetTokenByPinIDGlobals) GetClientVersion() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientVersion
+}
+
+func (o *GetTokenByPinIDGlobals) GetClientPlatform() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientPlatform
 }
 
 type GetTokenByPinIDRequest struct {
 	// The PinID to retrieve an access token for
 	PinID int64 `pathParam:"style=simple,explode=false,name=pinID"`
+	// The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device)
+	ClientID       *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
+	ClientName     *string `queryParam:"style=form,explode=true,name=X-Plex-Product"`
+	DeviceName     *string `queryParam:"style=form,explode=true,name=X-Plex-Device"`
+	ClientVersion  *string `queryParam:"style=form,explode=true,name=X-Plex-Version"`
+	ClientPlatform *string `queryParam:"style=form,explode=true,name=X-Plex-Platform"`
 }
 
 func (o *GetTokenByPinIDRequest) GetPinID() int64 {
@@ -22,6 +72,41 @@ func (o *GetTokenByPinIDRequest) GetPinID() int64 {
 		return 0
 	}
 	return o.PinID
+}
+
+func (o *GetTokenByPinIDRequest) GetClientID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientID
+}
+
+func (o *GetTokenByPinIDRequest) GetClientName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientName
+}
+
+func (o *GetTokenByPinIDRequest) GetDeviceName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DeviceName
+}
+
+func (o *GetTokenByPinIDRequest) GetClientVersion() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientVersion
+}
+
+func (o *GetTokenByPinIDRequest) GetClientPlatform() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientPlatform
 }
 
 // GetTokenByPinIDGeoData - Geo location data

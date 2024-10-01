@@ -62,12 +62,11 @@ func main() {
 
 ### Errors
 
-| Error Object                          | Status Code                           | Content Type                          |
+| Error Type                            | Status Code                           | Content Type                          |
 | ------------------------------------- | ------------------------------------- | ------------------------------------- |
 | sdkerrors.GetUpdateStatusBadRequest   | 400                                   | application/json                      |
 | sdkerrors.GetUpdateStatusUnauthorized | 401                                   | application/json                      |
-| sdkerrors.SDKError                    | 4xx-5xx                               | */*                                   |
-
+| sdkerrors.SDKError                    | 4XX, 5XX                              | \*/\*                                 |
 
 ## CheckForUpdates
 
@@ -120,12 +119,11 @@ func main() {
 
 ### Errors
 
-| Error Object                          | Status Code                           | Content Type                          |
+| Error Type                            | Status Code                           | Content Type                          |
 | ------------------------------------- | ------------------------------------- | ------------------------------------- |
 | sdkerrors.CheckForUpdatesBadRequest   | 400                                   | application/json                      |
 | sdkerrors.CheckForUpdatesUnauthorized | 401                                   | application/json                      |
-| sdkerrors.SDKError                    | 4xx-5xx                               | */*                                   |
-
+| sdkerrors.SDKError                    | 4XX, 5XX                              | \*/\*                                 |
 
 ## ApplyUpdates
 
@@ -180,8 +178,8 @@ func main() {
 
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
+| Error Type                         | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | sdkerrors.ApplyUpdatesBadRequest   | 400                                | application/json                   |
 | sdkerrors.ApplyUpdatesUnauthorized | 401                                | application/json                   |
-| sdkerrors.SDKError                 | 4xx-5xx                            | */*                                |
+| sdkerrors.SDKError                 | 4XX, 5XX                           | \*/\*                              |

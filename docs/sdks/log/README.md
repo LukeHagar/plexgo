@@ -66,12 +66,11 @@ func main() {
 
 ### Errors
 
-| Error Object                  | Status Code                   | Content Type                  |
+| Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.LogLineBadRequest   | 400                           | application/json              |
 | sdkerrors.LogLineUnauthorized | 401                           | application/json              |
-| sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
-
+| sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
 
 ## LogMultiLine
 
@@ -146,12 +145,11 @@ func main() {
 
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
+| Error Type                         | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | sdkerrors.LogMultiLineBadRequest   | 400                                | application/json                   |
 | sdkerrors.LogMultiLineUnauthorized | 401                                | application/json                   |
-| sdkerrors.SDKError                 | 4xx-5xx                            | */*                                |
-
+| sdkerrors.SDKError                 | 4XX, 5XX                           | \*/\*                              |
 
 ## EnablePaperTrail
 
@@ -203,8 +201,8 @@ func main() {
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
+| Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | sdkerrors.EnablePaperTrailBadRequest   | 400                                    | application/json                       |
 | sdkerrors.EnablePaperTrailUnauthorized | 401                                    | application/json                       |
-| sdkerrors.SDKError                     | 4xx-5xx                                | */*                                    |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |

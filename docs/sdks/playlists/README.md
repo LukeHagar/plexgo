@@ -80,12 +80,11 @@ func main() {
 
 ### Errors
 
-| Error Object                         | Status Code                          | Content Type                         |
+| Error Type                           | Status Code                          | Content Type                         |
 | ------------------------------------ | ------------------------------------ | ------------------------------------ |
 | sdkerrors.CreatePlaylistBadRequest   | 400                                  | application/json                     |
 | sdkerrors.CreatePlaylistUnauthorized | 401                                  | application/json                     |
-| sdkerrors.SDKError                   | 4xx-5xx                              | */*                                  |
-
+| sdkerrors.SDKError                   | 4XX, 5XX                             | \*/\*                                |
 
 ## GetPlaylists
 
@@ -138,12 +137,11 @@ func main() {
 
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
+| Error Type                         | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | sdkerrors.GetPlaylistsBadRequest   | 400                                | application/json                   |
 | sdkerrors.GetPlaylistsUnauthorized | 401                                | application/json                   |
-| sdkerrors.SDKError                 | 4xx-5xx                            | */*                                |
-
+| sdkerrors.SDKError                 | 4XX, 5XX                           | \*/\*                              |
 
 ## GetPlaylist
 
@@ -197,12 +195,11 @@ func main() {
 
 ### Errors
 
-| Error Object                      | Status Code                       | Content Type                      |
+| Error Type                        | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
 | sdkerrors.GetPlaylistBadRequest   | 400                               | application/json                  |
 | sdkerrors.GetPlaylistUnauthorized | 401                               | application/json                  |
-| sdkerrors.SDKError                | 4xx-5xx                           | */*                               |
-
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
 
 ## DeletePlaylist
 
@@ -255,12 +252,11 @@ func main() {
 
 ### Errors
 
-| Error Object                         | Status Code                          | Content Type                         |
+| Error Type                           | Status Code                          | Content Type                         |
 | ------------------------------------ | ------------------------------------ | ------------------------------------ |
 | sdkerrors.DeletePlaylistBadRequest   | 400                                  | application/json                     |
 | sdkerrors.DeletePlaylistUnauthorized | 401                                  | application/json                     |
-| sdkerrors.SDKError                   | 4xx-5xx                              | */*                                  |
-
+| sdkerrors.SDKError                   | 4XX, 5XX                             | \*/\*                                |
 
 ## UpdatePlaylist
 
@@ -315,12 +311,11 @@ func main() {
 
 ### Errors
 
-| Error Object                         | Status Code                          | Content Type                         |
+| Error Type                           | Status Code                          | Content Type                         |
 | ------------------------------------ | ------------------------------------ | ------------------------------------ |
 | sdkerrors.UpdatePlaylistBadRequest   | 400                                  | application/json                     |
 | sdkerrors.UpdatePlaylistUnauthorized | 401                                  | application/json                     |
-| sdkerrors.SDKError                   | 4xx-5xx                              | */*                                  |
-
+| sdkerrors.SDKError                   | 4XX, 5XX                             | \*/\*                                |
 
 ## GetPlaylistContents
 
@@ -378,12 +373,11 @@ func main() {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
+| Error Type                                | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | sdkerrors.GetPlaylistContentsBadRequest   | 400                                       | application/json                          |
 | sdkerrors.GetPlaylistContentsUnauthorized | 401                                       | application/json                          |
-| sdkerrors.SDKError                        | 4xx-5xx                                   | */*                                       |
-
+| sdkerrors.SDKError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## ClearPlaylistContents
 
@@ -436,12 +430,11 @@ func main() {
 
 ### Errors
 
-| Error Object                                | Status Code                                 | Content Type                                |
+| Error Type                                  | Status Code                                 | Content Type                                |
 | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
 | sdkerrors.ClearPlaylistContentsBadRequest   | 400                                         | application/json                            |
 | sdkerrors.ClearPlaylistContentsUnauthorized | 401                                         | application/json                            |
-| sdkerrors.SDKError                          | 4xx-5xx                                     | */*                                         |
-
+| sdkerrors.SDKError                          | 4XX, 5XX                                    | \*/\*                                       |
 
 ## AddPlaylistContents
 
@@ -497,12 +490,11 @@ func main() {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
+| Error Type                                | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | sdkerrors.AddPlaylistContentsBadRequest   | 400                                       | application/json                          |
 | sdkerrors.AddPlaylistContentsUnauthorized | 401                                       | application/json                          |
-| sdkerrors.SDKError                        | 4xx-5xx                                   | */*                                       |
-
+| sdkerrors.SDKError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## UploadPlaylist
 
@@ -558,8 +550,8 @@ func main() {
 
 ### Errors
 
-| Error Object                         | Status Code                          | Content Type                         |
+| Error Type                           | Status Code                          | Content Type                         |
 | ------------------------------------ | ------------------------------------ | ------------------------------------ |
 | sdkerrors.UploadPlaylistBadRequest   | 400                                  | application/json                     |
 | sdkerrors.UploadPlaylistUnauthorized | 401                                  | application/json                     |
-| sdkerrors.SDKError                   | 4xx-5xx                              | */*                                  |
+| sdkerrors.SDKError                   | 4XX, 5XX                             | \*/\*                                |

@@ -9,14 +9,11 @@ import (
 )
 
 var GetPinServerList = []string{
-	"https://plex.tv/api/v2/",
+	"https://plex.tv/api/v2",
 }
 
 type GetPinGlobals struct {
-	// The unique identifier for the client application
-	// This is used to track the client application and its usage
-	// (UUID, serial number, or other number unique per device)
-	//
+	// The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device)
 	ClientID       *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
 	ClientName     *string `queryParam:"style=form,explode=true,name=X-Plex-Product"`
 	DeviceName     *string `queryParam:"style=form,explode=true,name=X-Plex-Device"`
@@ -65,10 +62,7 @@ type GetPinRequest struct {
 	// Non-Strong codes are used for `Plex.tv/link`
 	//
 	Strong *bool `default:"false" queryParam:"style=form,explode=true,name=strong"`
-	// The unique identifier for the client application
-	// This is used to track the client application and its usage
-	// (UUID, serial number, or other number unique per device)
-	//
+	// The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device)
 	ClientID       *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
 	ClientName     *string `queryParam:"style=form,explode=true,name=X-Plex-Product"`
 	DeviceName     *string `queryParam:"style=form,explode=true,name=X-Plex-Device"`

@@ -66,8 +66,8 @@ func main() {
 
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
+| Error Type                         | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | sdkerrors.GetWatchListBadRequest   | 400                                | application/json                   |
 | sdkerrors.GetWatchListUnauthorized | 401                                | application/json                   |
-| sdkerrors.SDKError                 | 4xx-5xx                            | */*                                |
+| sdkerrors.SDKError                 | 4XX, 5XX                           | \*/\*                              |

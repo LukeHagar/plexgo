@@ -10,7 +10,7 @@ import (
 )
 
 var GetUserFriendsServerList = []string{
-	"https://plex.tv/api/v2/",
+	"https://plex.tv/api/v2",
 }
 
 type SharedServers struct {

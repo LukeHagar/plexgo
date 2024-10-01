@@ -923,3 +923,13 @@ Based on:
 - [go v0.13.0] .
 ### Releases
 - [Go v0.13.0] https://github.com/LukeHagar/plexgo/releases/tag/v0.13.0 - .
+
+## 2024-10-01 00:10:01
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.405.6 (2.428.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v0.14.0] .
+### Releases
+- [Go v0.14.0] https://github.com/LukeHagar/plexgo/releases/tag/v0.14.0 - .

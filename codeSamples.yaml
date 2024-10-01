@@ -1653,6 +1653,7 @@ actions:
             import(
             	"github.com/LukeHagar/plexgo"
             	"context"
+            	"github.com/LukeHagar/plexgo/models/operations"
             	"log"
             )
 
@@ -1666,7 +1667,9 @@ actions:
                 )
 
                 ctx := context.Background()
-                res, err := s.Plex.GetTokenByPinID(ctx, 408895)
+                res, err := s.Plex.GetTokenByPinID(ctx, operations.GetTokenByPinIDRequest{
+                    PinID: 408895,
+                })
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -2005,7 +2008,7 @@ actions:
                 )
 
                 ctx := context.Background()
-                res, err := s.Plex.GetServerResources(ctx, operations.IncludeHTTPSEnable.ToPointer(), operations.IncludeRelayEnable.ToPointer(), operations.IncludeIPv6Enable.ToPointer())
+                res, err := s.Plex.GetServerResources(ctx, operations.IncludeHTTPSEnable.ToPointer(), operations.IncludeRelayEnable.ToPointer(), operations.IncludeIPv6Enable.ToPointer(), plexgo.String("gcgzw5rz2xovp84b4vha3a40"))
                 if err != nil {
                     log.Fatal(err)
                 }

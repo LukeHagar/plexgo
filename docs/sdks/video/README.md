@@ -73,12 +73,11 @@ func main() {
 
 ### Errors
 
-| Error Object                      | Status Code                       | Content Type                      |
+| Error Type                        | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
 | sdkerrors.GetTimelineBadRequest   | 400                               | application/json                  |
 | sdkerrors.GetTimelineUnauthorized | 401                               | application/json                  |
-| sdkerrors.SDKError                | 4xx-5xx                           | */*                               |
-
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
 
 ## StartUniversalTranscode
 
@@ -148,8 +147,8 @@ func main() {
 
 ### Errors
 
-| Error Object                                  | Status Code                                   | Content Type                                  |
+| Error Type                                    | Status Code                                   | Content Type                                  |
 | --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
 | sdkerrors.StartUniversalTranscodeBadRequest   | 400                                           | application/json                              |
 | sdkerrors.StartUniversalTranscodeUnauthorized | 401                                           | application/json                              |
-| sdkerrors.SDKError                            | 4xx-5xx                                       | */*                                           |
+| sdkerrors.SDKError                            | 4XX, 5XX                                      | \*/\*                                         |

@@ -63,12 +63,11 @@ func main() {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | sdkerrors.GetGlobalHubsBadRequest   | 400                                 | application/json                    |
 | sdkerrors.GetGlobalHubsUnauthorized | 401                                 | application/json                    |
-| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
-
+| sdkerrors.SDKError                  | 4XX, 5XX                            | \*/\*                               |
 
 ## GetRecentlyAdded
 
@@ -129,10 +128,9 @@ func main() {
 
 ### Errors
 
-| Error Object       | Status Code        | Content Type       |
+| Error Type         | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 4xx-5xx            | */*                |
-
+| sdkerrors.SDKError | 4XX, 5XX           | \*/\*              |
 
 ## GetLibraryHubs
 
@@ -187,8 +185,8 @@ func main() {
 
 ### Errors
 
-| Error Object                         | Status Code                          | Content Type                         |
+| Error Type                           | Status Code                          | Content Type                         |
 | ------------------------------------ | ------------------------------------ | ------------------------------------ |
 | sdkerrors.GetLibraryHubsBadRequest   | 400                                  | application/json                     |
 | sdkerrors.GetLibraryHubsUnauthorized | 401                                  | application/json                     |
-| sdkerrors.SDKError                   | 4xx-5xx                              | */*                                  |
+| sdkerrors.SDKError                   | 4XX, 5XX                             | \*/\*                                |

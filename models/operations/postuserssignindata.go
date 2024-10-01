@@ -11,14 +11,11 @@ import (
 )
 
 var PostUsersSignInDataServerList = []string{
-	"https://plex.tv/api/v2/",
+	"https://plex.tv/api/v2",
 }
 
 type PostUsersSignInDataGlobals struct {
-	// The unique identifier for the client application
-	// This is used to track the client application and its usage
-	// (UUID, serial number, or other number unique per device)
-	//
+	// The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device)
 	ClientID       *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
 	ClientName     *string `queryParam:"style=form,explode=true,name=X-Plex-Product"`
 	DeviceName     *string `queryParam:"style=form,explode=true,name=X-Plex-Device"`
@@ -109,10 +106,7 @@ func (o *PostUsersSignInDataRequestBody) GetVerificationCode() *string {
 }
 
 type PostUsersSignInDataRequest struct {
-	// The unique identifier for the client application
-	// This is used to track the client application and its usage
-	// (UUID, serial number, or other number unique per device)
-	//
+	// The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device)
 	ClientID       *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
 	ClientName     *string `queryParam:"style=form,explode=true,name=X-Plex-Product"`
 	DeviceName     *string `queryParam:"style=form,explode=true,name=X-Plex-Device"`
@@ -164,7 +158,7 @@ func (o *PostUsersSignInDataRequest) GetRequestBody() *PostUsersSignInDataReques
 	return o.RequestBody
 }
 
-// PostUsersSignInDataMailingListStatus - Your current mailing list status
+// PostUsersSignInDataMailingListStatus - Your current mailing list status (active or unsubscribed)
 type PostUsersSignInDataMailingListStatus string
 
 const (
@@ -486,28 +480,43 @@ const (
 	PostUsersSignInDataFeaturesTrebleShowFeatures                  PostUsersSignInDataFeatures = "TREBLE-show-features"
 	PostUsersSignInDataFeaturesAdCountdownTimer                    PostUsersSignInDataFeatures = "ad-countdown-timer"
 	PostUsersSignInDataFeaturesAdaptiveBitrate                     PostUsersSignInDataFeatures = "adaptive_bitrate"
+	PostUsersSignInDataFeaturesAlbumTypes                          PostUsersSignInDataFeatures = "album-types"
+	PostUsersSignInDataFeaturesAllowDvr                            PostUsersSignInDataFeatures = "allow_dvr"
 	PostUsersSignInDataFeaturesAmazonLoopDebug                     PostUsersSignInDataFeatures = "amazon-loop-debug"
 	PostUsersSignInDataFeaturesAvodAdAnalysis                      PostUsersSignInDataFeatures = "avod-ad-analysis"
 	PostUsersSignInDataFeaturesAvodNewMedia                        PostUsersSignInDataFeatures = "avod-new-media"
 	PostUsersSignInDataFeaturesBlacklistGetSignin                  PostUsersSignInDataFeatures = "blacklist_get_signin"
+	PostUsersSignInDataFeaturesBoostVoices                         PostUsersSignInDataFeatures = "boost-voices"
+	PostUsersSignInDataFeaturesCameraUpload                        PostUsersSignInDataFeatures = "camera_upload"
 	PostUsersSignInDataFeaturesClientRadioStations                 PostUsersSignInDataFeatures = "client-radio-stations"
 	PostUsersSignInDataFeaturesCloudflareTurnstileRequired         PostUsersSignInDataFeatures = "cloudflare-turnstile-required"
+	PostUsersSignInDataFeaturesCloudsync                           PostUsersSignInDataFeatures = "cloudsync"
 	PostUsersSignInDataFeaturesCollections                         PostUsersSignInDataFeatures = "collections"
 	PostUsersSignInDataFeaturesCommentsAndRepliesPushNotifications PostUsersSignInDataFeatures = "comments_and_replies_push_notifications"
 	PostUsersSignInDataFeaturesCommunityAccessPlexTv               PostUsersSignInDataFeatures = "community_access_plex_tv"
 	PostUsersSignInDataFeaturesCompanionsSonos                     PostUsersSignInDataFeatures = "companions_sonos"
+	PostUsersSignInDataFeaturesContentFilter                       PostUsersSignInDataFeatures = "content_filter"
 	PostUsersSignInDataFeaturesCustomHomeRemoval                   PostUsersSignInDataFeatures = "custom-home-removal"
 	PostUsersSignInDataFeaturesDisableHomeUserFriendships          PostUsersSignInDataFeatures = "disable_home_user_friendships"
 	PostUsersSignInDataFeaturesDisableSharingFriendships           PostUsersSignInDataFeatures = "disable_sharing_friendships"
+	PostUsersSignInDataFeaturesDownloadsGating                     PostUsersSignInDataFeatures = "downloads-gating"
 	PostUsersSignInDataFeaturesDrmSupport                          PostUsersSignInDataFeatures = "drm_support"
+	PostUsersSignInDataFeaturesDvr                                 PostUsersSignInDataFeatures = "dvr"
+	PostUsersSignInDataFeaturesDvrBlockUnsupportedCountries        PostUsersSignInDataFeatures = "dvr-block-unsupported-countries"
+	PostUsersSignInDataFeaturesEpgRecentChannels                   PostUsersSignInDataFeatures = "epg-recent-channels"
 	PostUsersSignInDataFeaturesExcludeRestrictions                 PostUsersSignInDataFeatures = "exclude restrictions"
 	PostUsersSignInDataFeaturesFederatedAuth                       PostUsersSignInDataFeatures = "federated-auth"
 	PostUsersSignInDataFeaturesFriendRequestPushNotifications      PostUsersSignInDataFeatures = "friend_request_push_notifications"
+	PostUsersSignInDataFeaturesGrandfatherSync                     PostUsersSignInDataFeatures = "grandfather-sync"
 	PostUsersSignInDataFeaturesGuidedUpgrade                       PostUsersSignInDataFeatures = "guided-upgrade"
+	PostUsersSignInDataFeaturesHardwareTranscoding                 PostUsersSignInDataFeatures = "hardware_transcoding"
 	PostUsersSignInDataFeaturesHome                                PostUsersSignInDataFeatures = "home"
+	PostUsersSignInDataFeaturesHwtranscode                         PostUsersSignInDataFeatures = "hwtranscode"
+	PostUsersSignInDataFeaturesImaggaV2                            PostUsersSignInDataFeatures = "imagga-v2"
 	PostUsersSignInDataFeaturesIncreasePasswordComplexity          PostUsersSignInDataFeatures = "increase-password-complexity"
 	PostUsersSignInDataFeaturesIos14PrivacyBanner                  PostUsersSignInDataFeatures = "ios14-privacy-banner"
 	PostUsersSignInDataFeaturesIterableNotificationTokens          PostUsersSignInDataFeatures = "iterable-notification-tokens"
+	PostUsersSignInDataFeaturesItemClusters                        PostUsersSignInDataFeatures = "item_clusters"
 	PostUsersSignInDataFeaturesKeepPaymentMethod                   PostUsersSignInDataFeatures = "keep-payment-method"
 	PostUsersSignInDataFeaturesKevinBacon                          PostUsersSignInDataFeatures = "kevin-bacon"
 	PostUsersSignInDataFeaturesKoreaConsent                        PostUsersSignInDataFeatures = "korea-consent"
@@ -516,161 +525,53 @@ const (
 	PostUsersSignInDataFeaturesLightningDvrPivot                   PostUsersSignInDataFeatures = "lightning-dvr-pivot"
 	PostUsersSignInDataFeaturesLiveTvSupportIncompleteSegments     PostUsersSignInDataFeatures = "live-tv-support-incomplete-segments"
 	PostUsersSignInDataFeaturesLivetv                              PostUsersSignInDataFeatures = "livetv"
+	PostUsersSignInDataFeaturesLyrics                              PostUsersSignInDataFeatures = "lyrics"
 	PostUsersSignInDataFeaturesMetadataSearch                      PostUsersSignInDataFeatures = "metadata_search"
+	PostUsersSignInDataFeaturesMusicAnalysis                       PostUsersSignInDataFeatures = "music-analysis"
+	PostUsersSignInDataFeaturesMusicVideos                         PostUsersSignInDataFeatures = "music_videos"
 	PostUsersSignInDataFeaturesNewPlexPassPrices                   PostUsersSignInDataFeatures = "new_plex_pass_prices"
 	PostUsersSignInDataFeaturesNewsProviderSunsetModal             PostUsersSignInDataFeatures = "news-provider-sunset-modal"
+	PostUsersSignInDataFeaturesNominatim                           PostUsersSignInDataFeatures = "nominatim"
+	PostUsersSignInDataFeaturesPass                                PostUsersSignInDataFeatures = "pass"
 	PostUsersSignInDataFeaturesPhotosFavorites                     PostUsersSignInDataFeatures = "photos-favorites"
 	PostUsersSignInDataFeaturesPhotosMetadataEdition               PostUsersSignInDataFeatures = "photos-metadata-edition"
+	PostUsersSignInDataFeaturesPhotosV6Edit                        PostUsersSignInDataFeatures = "photosV6-edit"
+	PostUsersSignInDataFeaturesPhotosV6TvAlbums                    PostUsersSignInDataFeatures = "photosV6-tv-albums"
 	PostUsersSignInDataFeaturesPmsHealth                           PostUsersSignInDataFeatures = "pms_health"
+	PostUsersSignInDataFeaturesPremiumDashboard                    PostUsersSignInDataFeatures = "premium-dashboard"
+	PostUsersSignInDataFeaturesPremiumMusicMetadata                PostUsersSignInDataFeatures = "premium_music_metadata"
 	PostUsersSignInDataFeaturesRadio                               PostUsersSignInDataFeatures = "radio"
 	PostUsersSignInDataFeaturesRateLimitClientToken                PostUsersSignInDataFeatures = "rate-limit-client-token"
 	PostUsersSignInDataFeaturesScrobblingServicePlexTv             PostUsersSignInDataFeatures = "scrobbling-service-plex-tv"
+	PostUsersSignInDataFeaturesSessionBandwidthRestrictions        PostUsersSignInDataFeatures = "session_bandwidth_restrictions"
+	PostUsersSignInDataFeaturesSessionKick                         PostUsersSignInDataFeatures = "session_kick"
 	PostUsersSignInDataFeaturesSharedServerNotification            PostUsersSignInDataFeatures = "shared_server_notification"
 	PostUsersSignInDataFeaturesSharedSourceNotification            PostUsersSignInDataFeatures = "shared_source_notification"
+	PostUsersSignInDataFeaturesSigninNotification                  PostUsersSignInDataFeatures = "signin_notification"
 	PostUsersSignInDataFeaturesSigninWithApple                     PostUsersSignInDataFeatures = "signin_with_apple"
+	PostUsersSignInDataFeaturesSilenceRemoval                      PostUsersSignInDataFeatures = "silence-removal"
+	PostUsersSignInDataFeaturesSleepTimer                          PostUsersSignInDataFeatures = "sleep-timer"
 	PostUsersSignInDataFeaturesSpringServeAdProvider               PostUsersSignInDataFeatures = "spring_serve_ad_provider"
+	PostUsersSignInDataFeaturesSync                                PostUsersSignInDataFeatures = "sync"
+	PostUsersSignInDataFeaturesSweetFades                          PostUsersSignInDataFeatures = "sweet-fades"
 	PostUsersSignInDataFeaturesTranscoderCache                     PostUsersSignInDataFeatures = "transcoder_cache"
+	PostUsersSignInDataFeaturesTrailers                            PostUsersSignInDataFeatures = "trailers"
 	PostUsersSignInDataFeaturesTunerSharing                        PostUsersSignInDataFeatures = "tuner-sharing"
 	PostUsersSignInDataFeaturesTwoFactorAuthentication             PostUsersSignInDataFeatures = "two-factor-authentication"
 	PostUsersSignInDataFeaturesUnsupportedtuners                   PostUsersSignInDataFeatures = "unsupportedtuners"
 	PostUsersSignInDataFeaturesUpgrade3ds2                         PostUsersSignInDataFeatures = "upgrade-3ds2"
+	PostUsersSignInDataFeaturesVisualizers                         PostUsersSignInDataFeatures = "visualizers"
 	PostUsersSignInDataFeaturesVodSchema                           PostUsersSignInDataFeatures = "vod-schema"
 	PostUsersSignInDataFeaturesVodCloudflare                       PostUsersSignInDataFeatures = "vod_cloudflare"
+	PostUsersSignInDataFeaturesVolumeLeveling                      PostUsersSignInDataFeatures = "volume-leveling"
 	PostUsersSignInDataFeaturesWatchTogetherInvite                 PostUsersSignInDataFeatures = "watch-together-invite"
+	PostUsersSignInDataFeaturesWatchlistRss                        PostUsersSignInDataFeatures = "watchlist-rss"
 	PostUsersSignInDataFeaturesWebServerDashboard                  PostUsersSignInDataFeatures = "web_server_dashboard"
+	PostUsersSignInDataFeaturesWebhooks                            PostUsersSignInDataFeatures = "webhooks"
 )
 
 func (e PostUsersSignInDataFeatures) ToPointer() *PostUsersSignInDataFeatures {
 	return &e
-}
-func (e *PostUsersSignInDataFeatures) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Android - Dolby Vision":
-		fallthrough
-	case "Android - PiP":
-		fallthrough
-	case "CU Sunset":
-		fallthrough
-	case "HRK_enable_EUR":
-		fallthrough
-	case "TREBLE-show-features":
-		fallthrough
-	case "ad-countdown-timer":
-		fallthrough
-	case "adaptive_bitrate":
-		fallthrough
-	case "amazon-loop-debug":
-		fallthrough
-	case "avod-ad-analysis":
-		fallthrough
-	case "avod-new-media":
-		fallthrough
-	case "blacklist_get_signin":
-		fallthrough
-	case "client-radio-stations":
-		fallthrough
-	case "cloudflare-turnstile-required":
-		fallthrough
-	case "collections":
-		fallthrough
-	case "comments_and_replies_push_notifications":
-		fallthrough
-	case "community_access_plex_tv":
-		fallthrough
-	case "companions_sonos":
-		fallthrough
-	case "custom-home-removal":
-		fallthrough
-	case "disable_home_user_friendships":
-		fallthrough
-	case "disable_sharing_friendships":
-		fallthrough
-	case "drm_support":
-		fallthrough
-	case "exclude restrictions":
-		fallthrough
-	case "federated-auth":
-		fallthrough
-	case "friend_request_push_notifications":
-		fallthrough
-	case "guided-upgrade":
-		fallthrough
-	case "home":
-		fallthrough
-	case "increase-password-complexity":
-		fallthrough
-	case "ios14-privacy-banner":
-		fallthrough
-	case "iterable-notification-tokens":
-		fallthrough
-	case "keep-payment-method":
-		fallthrough
-	case "kevin-bacon":
-		fallthrough
-	case "korea-consent":
-		fallthrough
-	case "le_isrg_root_x1":
-		fallthrough
-	case "lets_encrypt":
-		fallthrough
-	case "lightning-dvr-pivot":
-		fallthrough
-	case "live-tv-support-incomplete-segments":
-		fallthrough
-	case "livetv":
-		fallthrough
-	case "metadata_search":
-		fallthrough
-	case "new_plex_pass_prices":
-		fallthrough
-	case "news-provider-sunset-modal":
-		fallthrough
-	case "photos-favorites":
-		fallthrough
-	case "photos-metadata-edition":
-		fallthrough
-	case "pms_health":
-		fallthrough
-	case "radio":
-		fallthrough
-	case "rate-limit-client-token":
-		fallthrough
-	case "scrobbling-service-plex-tv":
-		fallthrough
-	case "shared_server_notification":
-		fallthrough
-	case "shared_source_notification":
-		fallthrough
-	case "signin_with_apple":
-		fallthrough
-	case "spring_serve_ad_provider":
-		fallthrough
-	case "transcoder_cache":
-		fallthrough
-	case "tuner-sharing":
-		fallthrough
-	case "two-factor-authentication":
-		fallthrough
-	case "unsupportedtuners":
-		fallthrough
-	case "upgrade-3ds2":
-		fallthrough
-	case "vod-schema":
-		fallthrough
-	case "vod_cloudflare":
-		fallthrough
-	case "watch-together-invite":
-		fallthrough
-	case "web_server_dashboard":
-		*e = PostUsersSignInDataFeatures(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PostUsersSignInDataFeatures: %v", v)
-	}
 }
 
 // PostUsersSignInDataAuthenticationStatus - String representation of subscriptionActive
@@ -768,28 +669,43 @@ const (
 	PostUsersSignInDataAuthenticationFeaturesTrebleShowFeatures                  PostUsersSignInDataAuthenticationFeatures = "TREBLE-show-features"
 	PostUsersSignInDataAuthenticationFeaturesAdCountdownTimer                    PostUsersSignInDataAuthenticationFeatures = "ad-countdown-timer"
 	PostUsersSignInDataAuthenticationFeaturesAdaptiveBitrate                     PostUsersSignInDataAuthenticationFeatures = "adaptive_bitrate"
+	PostUsersSignInDataAuthenticationFeaturesAlbumTypes                          PostUsersSignInDataAuthenticationFeatures = "album-types"
+	PostUsersSignInDataAuthenticationFeaturesAllowDvr                            PostUsersSignInDataAuthenticationFeatures = "allow_dvr"
 	PostUsersSignInDataAuthenticationFeaturesAmazonLoopDebug                     PostUsersSignInDataAuthenticationFeatures = "amazon-loop-debug"
 	PostUsersSignInDataAuthenticationFeaturesAvodAdAnalysis                      PostUsersSignInDataAuthenticationFeatures = "avod-ad-analysis"
 	PostUsersSignInDataAuthenticationFeaturesAvodNewMedia                        PostUsersSignInDataAuthenticationFeatures = "avod-new-media"
 	PostUsersSignInDataAuthenticationFeaturesBlacklistGetSignin                  PostUsersSignInDataAuthenticationFeatures = "blacklist_get_signin"
+	PostUsersSignInDataAuthenticationFeaturesBoostVoices                         PostUsersSignInDataAuthenticationFeatures = "boost-voices"
+	PostUsersSignInDataAuthenticationFeaturesCameraUpload                        PostUsersSignInDataAuthenticationFeatures = "camera_upload"
 	PostUsersSignInDataAuthenticationFeaturesClientRadioStations                 PostUsersSignInDataAuthenticationFeatures = "client-radio-stations"
 	PostUsersSignInDataAuthenticationFeaturesCloudflareTurnstileRequired         PostUsersSignInDataAuthenticationFeatures = "cloudflare-turnstile-required"
+	PostUsersSignInDataAuthenticationFeaturesCloudsync                           PostUsersSignInDataAuthenticationFeatures = "cloudsync"
 	PostUsersSignInDataAuthenticationFeaturesCollections                         PostUsersSignInDataAuthenticationFeatures = "collections"
 	PostUsersSignInDataAuthenticationFeaturesCommentsAndRepliesPushNotifications PostUsersSignInDataAuthenticationFeatures = "comments_and_replies_push_notifications"
 	PostUsersSignInDataAuthenticationFeaturesCommunityAccessPlexTv               PostUsersSignInDataAuthenticationFeatures = "community_access_plex_tv"
 	PostUsersSignInDataAuthenticationFeaturesCompanionsSonos                     PostUsersSignInDataAuthenticationFeatures = "companions_sonos"
+	PostUsersSignInDataAuthenticationFeaturesContentFilter                       PostUsersSignInDataAuthenticationFeatures = "content_filter"
 	PostUsersSignInDataAuthenticationFeaturesCustomHomeRemoval                   PostUsersSignInDataAuthenticationFeatures = "custom-home-removal"
 	PostUsersSignInDataAuthenticationFeaturesDisableHomeUserFriendships          PostUsersSignInDataAuthenticationFeatures = "disable_home_user_friendships"
 	PostUsersSignInDataAuthenticationFeaturesDisableSharingFriendships           PostUsersSignInDataAuthenticationFeatures = "disable_sharing_friendships"
+	PostUsersSignInDataAuthenticationFeaturesDownloadsGating                     PostUsersSignInDataAuthenticationFeatures = "downloads-gating"
 	PostUsersSignInDataAuthenticationFeaturesDrmSupport                          PostUsersSignInDataAuthenticationFeatures = "drm_support"
+	PostUsersSignInDataAuthenticationFeaturesDvr                                 PostUsersSignInDataAuthenticationFeatures = "dvr"
+	PostUsersSignInDataAuthenticationFeaturesDvrBlockUnsupportedCountries        PostUsersSignInDataAuthenticationFeatures = "dvr-block-unsupported-countries"
+	PostUsersSignInDataAuthenticationFeaturesEpgRecentChannels                   PostUsersSignInDataAuthenticationFeatures = "epg-recent-channels"
 	PostUsersSignInDataAuthenticationFeaturesExcludeRestrictions                 PostUsersSignInDataAuthenticationFeatures = "exclude restrictions"
 	PostUsersSignInDataAuthenticationFeaturesFederatedAuth                       PostUsersSignInDataAuthenticationFeatures = "federated-auth"
 	PostUsersSignInDataAuthenticationFeaturesFriendRequestPushNotifications      PostUsersSignInDataAuthenticationFeatures = "friend_request_push_notifications"
+	PostUsersSignInDataAuthenticationFeaturesGrandfatherSync                     PostUsersSignInDataAuthenticationFeatures = "grandfather-sync"
 	PostUsersSignInDataAuthenticationFeaturesGuidedUpgrade                       PostUsersSignInDataAuthenticationFeatures = "guided-upgrade"
+	PostUsersSignInDataAuthenticationFeaturesHardwareTranscoding                 PostUsersSignInDataAuthenticationFeatures = "hardware_transcoding"
 	PostUsersSignInDataAuthenticationFeaturesHome                                PostUsersSignInDataAuthenticationFeatures = "home"
+	PostUsersSignInDataAuthenticationFeaturesHwtranscode                         PostUsersSignInDataAuthenticationFeatures = "hwtranscode"
+	PostUsersSignInDataAuthenticationFeaturesImaggaV2                            PostUsersSignInDataAuthenticationFeatures = "imagga-v2"
 	PostUsersSignInDataAuthenticationFeaturesIncreasePasswordComplexity          PostUsersSignInDataAuthenticationFeatures = "increase-password-complexity"
 	PostUsersSignInDataAuthenticationFeaturesIos14PrivacyBanner                  PostUsersSignInDataAuthenticationFeatures = "ios14-privacy-banner"
 	PostUsersSignInDataAuthenticationFeaturesIterableNotificationTokens          PostUsersSignInDataAuthenticationFeatures = "iterable-notification-tokens"
+	PostUsersSignInDataAuthenticationFeaturesItemClusters                        PostUsersSignInDataAuthenticationFeatures = "item_clusters"
 	PostUsersSignInDataAuthenticationFeaturesKeepPaymentMethod                   PostUsersSignInDataAuthenticationFeatures = "keep-payment-method"
 	PostUsersSignInDataAuthenticationFeaturesKevinBacon                          PostUsersSignInDataAuthenticationFeatures = "kevin-bacon"
 	PostUsersSignInDataAuthenticationFeaturesKoreaConsent                        PostUsersSignInDataAuthenticationFeatures = "korea-consent"
@@ -798,161 +714,53 @@ const (
 	PostUsersSignInDataAuthenticationFeaturesLightningDvrPivot                   PostUsersSignInDataAuthenticationFeatures = "lightning-dvr-pivot"
 	PostUsersSignInDataAuthenticationFeaturesLiveTvSupportIncompleteSegments     PostUsersSignInDataAuthenticationFeatures = "live-tv-support-incomplete-segments"
 	PostUsersSignInDataAuthenticationFeaturesLivetv                              PostUsersSignInDataAuthenticationFeatures = "livetv"
+	PostUsersSignInDataAuthenticationFeaturesLyrics                              PostUsersSignInDataAuthenticationFeatures = "lyrics"
 	PostUsersSignInDataAuthenticationFeaturesMetadataSearch                      PostUsersSignInDataAuthenticationFeatures = "metadata_search"
+	PostUsersSignInDataAuthenticationFeaturesMusicAnalysis                       PostUsersSignInDataAuthenticationFeatures = "music-analysis"
+	PostUsersSignInDataAuthenticationFeaturesMusicVideos                         PostUsersSignInDataAuthenticationFeatures = "music_videos"
 	PostUsersSignInDataAuthenticationFeaturesNewPlexPassPrices                   PostUsersSignInDataAuthenticationFeatures = "new_plex_pass_prices"
 	PostUsersSignInDataAuthenticationFeaturesNewsProviderSunsetModal             PostUsersSignInDataAuthenticationFeatures = "news-provider-sunset-modal"
+	PostUsersSignInDataAuthenticationFeaturesNominatim                           PostUsersSignInDataAuthenticationFeatures = "nominatim"
+	PostUsersSignInDataAuthenticationFeaturesPass                                PostUsersSignInDataAuthenticationFeatures = "pass"
 	PostUsersSignInDataAuthenticationFeaturesPhotosFavorites                     PostUsersSignInDataAuthenticationFeatures = "photos-favorites"
 	PostUsersSignInDataAuthenticationFeaturesPhotosMetadataEdition               PostUsersSignInDataAuthenticationFeatures = "photos-metadata-edition"
+	PostUsersSignInDataAuthenticationFeaturesPhotosV6Edit                        PostUsersSignInDataAuthenticationFeatures = "photosV6-edit"
+	PostUsersSignInDataAuthenticationFeaturesPhotosV6TvAlbums                    PostUsersSignInDataAuthenticationFeatures = "photosV6-tv-albums"
 	PostUsersSignInDataAuthenticationFeaturesPmsHealth                           PostUsersSignInDataAuthenticationFeatures = "pms_health"
+	PostUsersSignInDataAuthenticationFeaturesPremiumDashboard                    PostUsersSignInDataAuthenticationFeatures = "premium-dashboard"
+	PostUsersSignInDataAuthenticationFeaturesPremiumMusicMetadata                PostUsersSignInDataAuthenticationFeatures = "premium_music_metadata"
 	PostUsersSignInDataAuthenticationFeaturesRadio                               PostUsersSignInDataAuthenticationFeatures = "radio"
 	PostUsersSignInDataAuthenticationFeaturesRateLimitClientToken                PostUsersSignInDataAuthenticationFeatures = "rate-limit-client-token"
 	PostUsersSignInDataAuthenticationFeaturesScrobblingServicePlexTv             PostUsersSignInDataAuthenticationFeatures = "scrobbling-service-plex-tv"
+	PostUsersSignInDataAuthenticationFeaturesSessionBandwidthRestrictions        PostUsersSignInDataAuthenticationFeatures = "session_bandwidth_restrictions"
+	PostUsersSignInDataAuthenticationFeaturesSessionKick                         PostUsersSignInDataAuthenticationFeatures = "session_kick"
 	PostUsersSignInDataAuthenticationFeaturesSharedServerNotification            PostUsersSignInDataAuthenticationFeatures = "shared_server_notification"
 	PostUsersSignInDataAuthenticationFeaturesSharedSourceNotification            PostUsersSignInDataAuthenticationFeatures = "shared_source_notification"
+	PostUsersSignInDataAuthenticationFeaturesSigninNotification                  PostUsersSignInDataAuthenticationFeatures = "signin_notification"
 	PostUsersSignInDataAuthenticationFeaturesSigninWithApple                     PostUsersSignInDataAuthenticationFeatures = "signin_with_apple"
+	PostUsersSignInDataAuthenticationFeaturesSilenceRemoval                      PostUsersSignInDataAuthenticationFeatures = "silence-removal"
+	PostUsersSignInDataAuthenticationFeaturesSleepTimer                          PostUsersSignInDataAuthenticationFeatures = "sleep-timer"
 	PostUsersSignInDataAuthenticationFeaturesSpringServeAdProvider               PostUsersSignInDataAuthenticationFeatures = "spring_serve_ad_provider"
+	PostUsersSignInDataAuthenticationFeaturesSync                                PostUsersSignInDataAuthenticationFeatures = "sync"
+	PostUsersSignInDataAuthenticationFeaturesSweetFades                          PostUsersSignInDataAuthenticationFeatures = "sweet-fades"
 	PostUsersSignInDataAuthenticationFeaturesTranscoderCache                     PostUsersSignInDataAuthenticationFeatures = "transcoder_cache"
+	PostUsersSignInDataAuthenticationFeaturesTrailers                            PostUsersSignInDataAuthenticationFeatures = "trailers"
 	PostUsersSignInDataAuthenticationFeaturesTunerSharing                        PostUsersSignInDataAuthenticationFeatures = "tuner-sharing"
 	PostUsersSignInDataAuthenticationFeaturesTwoFactorAuthentication             PostUsersSignInDataAuthenticationFeatures = "two-factor-authentication"
 	PostUsersSignInDataAuthenticationFeaturesUnsupportedtuners                   PostUsersSignInDataAuthenticationFeatures = "unsupportedtuners"
 	PostUsersSignInDataAuthenticationFeaturesUpgrade3ds2                         PostUsersSignInDataAuthenticationFeatures = "upgrade-3ds2"
+	PostUsersSignInDataAuthenticationFeaturesVisualizers                         PostUsersSignInDataAuthenticationFeatures = "visualizers"
 	PostUsersSignInDataAuthenticationFeaturesVodSchema                           PostUsersSignInDataAuthenticationFeatures = "vod-schema"
 	PostUsersSignInDataAuthenticationFeaturesVodCloudflare                       PostUsersSignInDataAuthenticationFeatures = "vod_cloudflare"
+	PostUsersSignInDataAuthenticationFeaturesVolumeLeveling                      PostUsersSignInDataAuthenticationFeatures = "volume-leveling"
 	PostUsersSignInDataAuthenticationFeaturesWatchTogetherInvite                 PostUsersSignInDataAuthenticationFeatures = "watch-together-invite"
+	PostUsersSignInDataAuthenticationFeaturesWatchlistRss                        PostUsersSignInDataAuthenticationFeatures = "watchlist-rss"
 	PostUsersSignInDataAuthenticationFeaturesWebServerDashboard                  PostUsersSignInDataAuthenticationFeatures = "web_server_dashboard"
+	PostUsersSignInDataAuthenticationFeaturesWebhooks                            PostUsersSignInDataAuthenticationFeatures = "webhooks"
 )
 
 func (e PostUsersSignInDataAuthenticationFeatures) ToPointer() *PostUsersSignInDataAuthenticationFeatures {
 	return &e
-}
-func (e *PostUsersSignInDataAuthenticationFeatures) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Android - Dolby Vision":
-		fallthrough
-	case "Android - PiP":
-		fallthrough
-	case "CU Sunset":
-		fallthrough
-	case "HRK_enable_EUR":
-		fallthrough
-	case "TREBLE-show-features":
-		fallthrough
-	case "ad-countdown-timer":
-		fallthrough
-	case "adaptive_bitrate":
-		fallthrough
-	case "amazon-loop-debug":
-		fallthrough
-	case "avod-ad-analysis":
-		fallthrough
-	case "avod-new-media":
-		fallthrough
-	case "blacklist_get_signin":
-		fallthrough
-	case "client-radio-stations":
-		fallthrough
-	case "cloudflare-turnstile-required":
-		fallthrough
-	case "collections":
-		fallthrough
-	case "comments_and_replies_push_notifications":
-		fallthrough
-	case "community_access_plex_tv":
-		fallthrough
-	case "companions_sonos":
-		fallthrough
-	case "custom-home-removal":
-		fallthrough
-	case "disable_home_user_friendships":
-		fallthrough
-	case "disable_sharing_friendships":
-		fallthrough
-	case "drm_support":
-		fallthrough
-	case "exclude restrictions":
-		fallthrough
-	case "federated-auth":
-		fallthrough
-	case "friend_request_push_notifications":
-		fallthrough
-	case "guided-upgrade":
-		fallthrough
-	case "home":
-		fallthrough
-	case "increase-password-complexity":
-		fallthrough
-	case "ios14-privacy-banner":
-		fallthrough
-	case "iterable-notification-tokens":
-		fallthrough
-	case "keep-payment-method":
-		fallthrough
-	case "kevin-bacon":
-		fallthrough
-	case "korea-consent":
-		fallthrough
-	case "le_isrg_root_x1":
-		fallthrough
-	case "lets_encrypt":
-		fallthrough
-	case "lightning-dvr-pivot":
-		fallthrough
-	case "live-tv-support-incomplete-segments":
-		fallthrough
-	case "livetv":
-		fallthrough
-	case "metadata_search":
-		fallthrough
-	case "new_plex_pass_prices":
-		fallthrough
-	case "news-provider-sunset-modal":
-		fallthrough
-	case "photos-favorites":
-		fallthrough
-	case "photos-metadata-edition":
-		fallthrough
-	case "pms_health":
-		fallthrough
-	case "radio":
-		fallthrough
-	case "rate-limit-client-token":
-		fallthrough
-	case "scrobbling-service-plex-tv":
-		fallthrough
-	case "shared_server_notification":
-		fallthrough
-	case "shared_source_notification":
-		fallthrough
-	case "signin_with_apple":
-		fallthrough
-	case "spring_serve_ad_provider":
-		fallthrough
-	case "transcoder_cache":
-		fallthrough
-	case "tuner-sharing":
-		fallthrough
-	case "two-factor-authentication":
-		fallthrough
-	case "unsupportedtuners":
-		fallthrough
-	case "upgrade-3ds2":
-		fallthrough
-	case "vod-schema":
-		fallthrough
-	case "vod_cloudflare":
-		fallthrough
-	case "watch-together-invite":
-		fallthrough
-	case "web_server_dashboard":
-		*e = PostUsersSignInDataAuthenticationFeatures(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PostUsersSignInDataAuthenticationFeatures: %v", v)
-	}
 }
 
 // PostUsersSignInDataAuthenticationResponseStatus - String representation of subscriptionActive
@@ -1267,7 +1075,7 @@ type PostUsersSignInDataUserPlexAccount struct {
 	Locale *string `json:"locale"`
 	// If you are subscribed to the Plex newsletter
 	MailingListActive *bool `default:"false" json:"mailingListActive"`
-	// Your current mailing list status
+	// Your current mailing list status (active or unsubscribed)
 	MailingListStatus PostUsersSignInDataMailingListStatus `json:"mailingListStatus"`
 	// The maximum number of accounts allowed in the Plex Home
 	MaxHomeSize int `json:"maxHomeSize"`

@@ -63,12 +63,11 @@ func main() {
 
 ### Errors
 
-| Error Object                         | Status Code                          | Content Type                         |
+| Error Type                           | Status Code                          | Content Type                         |
 | ------------------------------------ | ------------------------------------ | ------------------------------------ |
 | sdkerrors.GetButlerTasksBadRequest   | 400                                  | application/json                     |
 | sdkerrors.GetButlerTasksUnauthorized | 401                                  | application/json                     |
-| sdkerrors.SDKError                   | 4xx-5xx                              | */*                                  |
-
+| sdkerrors.SDKError                   | 4XX, 5XX                             | \*/\*                                |
 
 ## StartAllTasks
 
@@ -124,12 +123,11 @@ func main() {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | sdkerrors.StartAllTasksBadRequest   | 400                                 | application/json                    |
 | sdkerrors.StartAllTasksUnauthorized | 401                                 | application/json                    |
-| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
-
+| sdkerrors.SDKError                  | 4XX, 5XX                            | \*/\*                               |
 
 ## StopAllTasks
 
@@ -181,12 +179,11 @@ func main() {
 
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
+| Error Type                         | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | sdkerrors.StopAllTasksBadRequest   | 400                                | application/json                   |
 | sdkerrors.StopAllTasksUnauthorized | 401                                | application/json                   |
-| sdkerrors.SDKError                 | 4xx-5xx                            | */*                                |
-
+| sdkerrors.SDKError                 | 4XX, 5XX                           | \*/\*                              |
 
 ## StartTask
 
@@ -244,12 +241,11 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
+| Error Type                      | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.StartTaskBadRequest   | 400                             | application/json                |
 | sdkerrors.StartTaskUnauthorized | 401                             | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
-
+| sdkerrors.SDKError              | 4XX, 5XX                        | \*/\*                           |
 
 ## StopTask
 
@@ -303,8 +299,8 @@ func main() {
 
 ### Errors
 
-| Error Object                   | Status Code                    | Content Type                   |
+| Error Type                     | Status Code                    | Content Type                   |
 | ------------------------------ | ------------------------------ | ------------------------------ |
 | sdkerrors.StopTaskBadRequest   | 400                            | application/json               |
 | sdkerrors.StopTaskUnauthorized | 401                            | application/json               |
-| sdkerrors.SDKError             | 4xx-5xx                        | */*                            |
+| sdkerrors.SDKError             | 4XX, 5XX                       | \*/\*                          |

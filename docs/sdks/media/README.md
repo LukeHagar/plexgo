@@ -64,12 +64,11 @@ func main() {
 
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
+| Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.MarkPlayedBadRequest   | 400                              | application/json                 |
 | sdkerrors.MarkPlayedUnauthorized | 401                              | application/json                 |
-| sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
-
+| sdkerrors.SDKError               | 4XX, 5XX                         | \*/\*                            |
 
 ## MarkUnplayed
 
@@ -121,12 +120,11 @@ func main() {
 
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
+| Error Type                         | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | sdkerrors.MarkUnplayedBadRequest   | 400                                | application/json                   |
 | sdkerrors.MarkUnplayedUnauthorized | 401                                | application/json                   |
-| sdkerrors.SDKError                 | 4xx-5xx                            | */*                                |
-
+| sdkerrors.SDKError                 | 4XX, 5XX                           | \*/\*                              |
 
 ## UpdatePlayProgress
 
@@ -181,12 +179,11 @@ func main() {
 
 ### Errors
 
-| Error Object                             | Status Code                              | Content Type                             |
+| Error Type                               | Status Code                              | Content Type                             |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | sdkerrors.UpdatePlayProgressBadRequest   | 400                                      | application/json                         |
 | sdkerrors.UpdatePlayProgressUnauthorized | 401                                      | application/json                         |
-| sdkerrors.SDKError                       | 4xx-5xx                                  | */*                                      |
-
+| sdkerrors.SDKError                       | 4XX, 5XX                                 | \*/\*                                    |
 
 ## GetBannerImage
 
@@ -246,12 +243,11 @@ func main() {
 
 ### Errors
 
-| Error Object                         | Status Code                          | Content Type                         |
+| Error Type                           | Status Code                          | Content Type                         |
 | ------------------------------------ | ------------------------------------ | ------------------------------------ |
 | sdkerrors.GetBannerImageBadRequest   | 400                                  | application/json                     |
 | sdkerrors.GetBannerImageUnauthorized | 401                                  | application/json                     |
-| sdkerrors.SDKError                   | 4xx-5xx                              | */*                                  |
-
+| sdkerrors.SDKError                   | 4XX, 5XX                             | \*/\*                                |
 
 ## GetThumbImage
 
@@ -311,8 +307,8 @@ func main() {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | sdkerrors.GetThumbImageBadRequest   | 400                                 | application/json                    |
 | sdkerrors.GetThumbImageUnauthorized | 401                                 | application/json                    |
-| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
+| sdkerrors.SDKError                  | 4XX, 5XX                            | \*/\*                               |

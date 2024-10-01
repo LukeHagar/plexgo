@@ -76,12 +76,11 @@ func main() {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | sdkerrors.PerformSearchBadRequest   | 400                                 | application/json                    |
 | sdkerrors.PerformSearchUnauthorized | 401                                 | application/json                    |
-| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
-
+| sdkerrors.SDKError                  | 4XX, 5XX                            | \*/\*                               |
 
 ## PerformVoiceSearch
 
@@ -139,12 +138,11 @@ func main() {
 
 ### Errors
 
-| Error Object                             | Status Code                              | Content Type                             |
+| Error Type                               | Status Code                              | Content Type                             |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | sdkerrors.PerformVoiceSearchBadRequest   | 400                                      | application/json                         |
 | sdkerrors.PerformVoiceSearchUnauthorized | 401                                      | application/json                         |
-| sdkerrors.SDKError                       | 4xx-5xx                                  | */*                                      |
-
+| sdkerrors.SDKError                       | 4XX, 5XX                                 | \*/\*                                    |
 
 ## GetSearchResults
 
@@ -196,8 +194,8 @@ func main() {
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
+| Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | sdkerrors.GetSearchResultsBadRequest   | 400                                    | application/json                       |
 | sdkerrors.GetSearchResultsUnauthorized | 401                                    | application/json                       |
-| sdkerrors.SDKError                     | 4xx-5xx                                | */*                                    |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |

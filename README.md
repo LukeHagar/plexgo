@@ -11,6 +11,31 @@
 ## Summary
 
 Plex-API: An Open API Spec for interacting with Plex.tv and Plex Media Server
+
+# Plex Media Server OpenAPI Specification
+
+An Open Source OpenAPI Specification for Plex Media Server
+
+Automation and SDKs provided by [Speakeasy](https://speakeasyapi.dev/)
+
+## Documentation
+
+[API Documentation](https://plexapi.dev)
+
+## SDKs
+
+The following SDKs are generated from the OpenAPI Specification. They are automatically generated and may not be fully tested. If you find any issues, please open an issue on the [main specification Repository](https://github.com/LukeHagar/plex-api-spec).
+
+| Language              | Repository                                        | Releases                                                                                         | Other                                                   |
+| --------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------- |
+| Python                | [GitHub](https://github.com/LukeHagar/plexpy)     | [PyPI](https://pypi.org/project/plex-api-client/)                                                | -                                                       |
+| JavaScript/TypeScript | [GitHub](https://github.com/LukeHagar/plexjs)     | [NPM](https://www.npmjs.com/package/@lukehagar/plexjs) \ [JSR](https://jsr.io/@lukehagar/plexjs) | -                                                       |
+| Go                    | [GitHub](https://github.com/LukeHagar/plexgo)     | [Releases](https://github.com/LukeHagar/plexgo/releases)                                         | [GoDoc](https://pkg.go.dev/github.com/LukeHagar/plexgo) |
+| Ruby                  | [GitHub](https://github.com/LukeHagar/plexruby)   | [Releases](https://github.com/LukeHagar/plexruby/releases)                                       | -                                                       |
+| Swift                 | [GitHub](https://github.com/LukeHagar/plexswift)  | [Releases](https://github.com/LukeHagar/plexswift/releases)                                      | -                                                       |
+| PHP                   | [GitHub](https://github.com/LukeHagar/plexphp)    | [Releases](https://github.com/LukeHagar/plexphp/releases)                                        | -                                                       |
+| Java                  | [GitHub](https://github.com/LukeHagar/plexjava)   | [Releases](https://github.com/LukeHagar/plexjava/releases)                                       | -                                                       |
+| C#                    | [GitHub](https://github.com/LukeHagar/plexcsharp) | [Releases](https://github.com/LukeHagar/plexcsharp/releases)                                     | -
 <!-- End Summary [summary] -->
 
 <!-- Start Table of Contents [toc] -->
@@ -304,13 +329,17 @@ func main() {
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-Handling errors in this SDK should largely match your expectations.  All operations return a response object or an error, they will never return both.  When specified by the OpenAPI spec document, the SDK will return the appropriate subclass.
+Handling errors in this SDK should largely match your expectations. All operations return a response object or an error, they will never return both.
 
-| Error Object                                | Status Code                                 | Content Type                                |
+By Default, an API error will return `sdkerrors.SDKError`. When custom error responses are specified for an operation, the SDK may also return their associated error. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation.
+
+For example, the `GetServerCapabilities` function may return the following errors:
+
+| Error Type                                  | Status Code                                 | Content Type                                |
 | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
 | sdkerrors.GetServerCapabilitiesBadRequest   | 400                                         | application/json                            |
 | sdkerrors.GetServerCapabilitiesUnauthorized | 401                                         | application/json                            |
-| sdkerrors.SDKError                          | 4xx-5xx                                     | */*                                         |
+| sdkerrors.SDKError                          | 4XX, 5XX                                    | \*/\*                                       |
 
 ### Example
 
@@ -473,7 +502,7 @@ func main() {
 	)
 
 	ctx := context.Background()
-	res, err := s.Plex.GetCompanionsData(ctx, operations.WithServerURL("https://plex.tv/api/v2/"))
+	res, err := s.Plex.GetCompanionsData(ctx, operations.WithServerURL("https://plex.tv/api/v2"))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -589,7 +618,7 @@ d6 := types.MustDateFromString("2019-01-01") // returns types.Date and panics on
 
 Certain parameters are configured globally. These parameters may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, These global values will be used as defaults on the operations that use them. When such operations are called, there is a place in each to override the global value, if needed.
 
-For example, you can set `ClientID` to `"gcgzw5rz2xovp84b4vha3a40"` at SDK initialization and then you do not have to pass the same value on calls to operations like `GetPin`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
+For example, you can set `ClientID` to `"gcgzw5rz2xovp84b4vha3a40"` at SDK initialization and then you do not have to pass the same value on calls to operations like `GetServerResources`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
 
 
 ### Available Globals
@@ -598,10 +627,7 @@ The following global parameters are available.
 
 | Name | Type | Required | Description |
 | ---- | ---- |:--------:| ----------- |
-| ClientID | string |  | The unique identifier for the client application
-This is used to track the client application and its usage
-(UUID, serial number, or other number unique per device)
- |
+| ClientID | string |  | The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device) |
 | ClientName | string |  | The ClientName parameter. |
 | ClientVersion | string |  | The ClientVersion parameter. |
 | ClientPlatform | string |  | The ClientPlatform parameter. |
@@ -622,6 +648,7 @@ import (
 
 func main() {
 	s := plexgo.New(
+		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
 		plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
 		plexgo.WithClientName("Plex Web"),
 		plexgo.WithClientVersion("4.133.0"),
@@ -630,11 +657,11 @@ func main() {
 	)
 
 	ctx := context.Background()
-	res, err := s.Plex.GetPin(ctx, operations.GetPinRequest{})
+	res, err := s.Plex.GetServerResources(ctx, operations.IncludeHTTPSEnable.ToPointer(), operations.IncludeRelayEnable.ToPointer(), operations.IncludeIPv6Enable.ToPointer(), plexgo.String("gcgzw5rz2xovp84b4vha3a40"))
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.AuthPinContainer != nil {
+	if res.PlexDevices != nil {
 		// handle response
 	}
 }

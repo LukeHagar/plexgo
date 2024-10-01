@@ -3,10 +3,7 @@
 package globals
 
 type Globals struct {
-	// The unique identifier for the client application
-	// This is used to track the client application and its usage
-	// (UUID, serial number, or other number unique per device)
-	//
+	// The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device)
 	ClientID       *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
 	ClientName     *string `queryParam:"style=form,explode=true,name=X-Plex-Product"`
 	ClientVersion  *string `queryParam:"style=form,explode=true,name=X-Plex-Version"`
