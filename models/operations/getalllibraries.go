@@ -6,19 +6,19 @@ import (
 	"net/http"
 )
 
-type Location struct {
+type GetAllLibrariesLocation struct {
 	ID   int    `json:"id"`
 	Path string `json:"path"`
 }
 
-func (o *Location) GetID() int {
+func (o *GetAllLibrariesLocation) GetID() int {
 	if o == nil {
 		return 0
 	}
 	return o.ID
 }
 
-func (o *Location) GetPath() string {
+func (o *GetAllLibrariesLocation) GetPath() string {
 	if o == nil {
 		return ""
 	}
@@ -48,9 +48,9 @@ type GetAllLibrariesDirectory struct {
 	Content   bool  `json:"content"`
 	Directory bool  `json:"directory"`
 	// Unix epoch datetime in seconds
-	ContentChangedAt int64      `json:"contentChangedAt"`
-	Hidden           int        `json:"hidden"`
-	Location         []Location `json:"Location"`
+	ContentChangedAt int64                     `json:"contentChangedAt"`
+	Hidden           int                       `json:"hidden"`
+	Location         []GetAllLibrariesLocation `json:"Location"`
 }
 
 func (o *GetAllLibrariesDirectory) GetAllowSync() bool {
@@ -193,9 +193,9 @@ func (o *GetAllLibrariesDirectory) GetHidden() int {
 	return o.Hidden
 }
 
-func (o *GetAllLibrariesDirectory) GetLocation() []Location {
+func (o *GetAllLibrariesDirectory) GetLocation() []GetAllLibrariesLocation {
 	if o == nil {
-		return []Location{}
+		return []GetAllLibrariesLocation{}
 	}
 	return o.Location
 }

@@ -15,8 +15,8 @@ var GetServerResourcesServerList = []string{
 }
 
 type GetServerResourcesGlobals struct {
-	// The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device)
-	ClientID *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
+	// An opaque identifier unique to the client (UUID, serial number, or other unique device ID)
+	ClientID *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
 }
 
 func (o *GetServerResourcesGlobals) GetClientID() *string {
@@ -117,8 +117,8 @@ type GetServerResourcesRequest struct {
 	IncludeRelay *IncludeRelay `default:"0" queryParam:"style=form,explode=true,name=includeRelay"`
 	// Include IPv6 entries in the results
 	IncludeIPv6 *IncludeIPv6 `default:"0" queryParam:"style=form,explode=true,name=includeIPv6"`
-	// The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device)
-	ClientID *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
+	// An opaque identifier unique to the client (UUID, serial number, or other unique device ID)
+	ClientID *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
 }
 
 func (g GetServerResourcesRequest) MarshalJSON() ([]byte, error) {

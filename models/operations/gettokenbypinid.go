@@ -13,12 +13,16 @@ var GetTokenByPinIDServerList = []string{
 }
 
 type GetTokenByPinIDGlobals struct {
-	// The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device)
-	ClientID       *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
-	ClientName     *string `queryParam:"style=form,explode=true,name=X-Plex-Product"`
-	DeviceName     *string `queryParam:"style=form,explode=true,name=X-Plex-Device"`
-	ClientVersion  *string `queryParam:"style=form,explode=true,name=X-Plex-Version"`
-	ClientPlatform *string `queryParam:"style=form,explode=true,name=X-Plex-Platform"`
+	// An opaque identifier unique to the client (UUID, serial number, or other unique device ID)
+	ClientID *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+	// The name of the client application. (Plex Web, Plex Media Server, etc.)
+	ClientName *string `header:"style=simple,explode=false,name=X-Plex-Product"`
+	// A relatively friendly name for the client device
+	DeviceNickname *string `header:"style=simple,explode=false,name=X-Plex-Device"`
+	// The version of the client application.
+	ClientVersion *string `header:"style=simple,explode=false,name=X-Plex-Version"`
+	// The platform of the client application.
+	Platform *string `header:"style=simple,explode=false,name=X-Plex-Platform"`
 }
 
 func (o *GetTokenByPinIDGlobals) GetClientID() *string {
@@ -35,11 +39,11 @@ func (o *GetTokenByPinIDGlobals) GetClientName() *string {
 	return o.ClientName
 }
 
-func (o *GetTokenByPinIDGlobals) GetDeviceName() *string {
+func (o *GetTokenByPinIDGlobals) GetDeviceNickname() *string {
 	if o == nil {
 		return nil
 	}
-	return o.DeviceName
+	return o.DeviceNickname
 }
 
 func (o *GetTokenByPinIDGlobals) GetClientVersion() *string {
@@ -49,22 +53,26 @@ func (o *GetTokenByPinIDGlobals) GetClientVersion() *string {
 	return o.ClientVersion
 }
 
-func (o *GetTokenByPinIDGlobals) GetClientPlatform() *string {
+func (o *GetTokenByPinIDGlobals) GetPlatform() *string {
 	if o == nil {
 		return nil
 	}
-	return o.ClientPlatform
+	return o.Platform
 }
 
 type GetTokenByPinIDRequest struct {
 	// The PinID to retrieve an access token for
 	PinID int64 `pathParam:"style=simple,explode=false,name=pinID"`
-	// The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device)
-	ClientID       *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
-	ClientName     *string `queryParam:"style=form,explode=true,name=X-Plex-Product"`
-	DeviceName     *string `queryParam:"style=form,explode=true,name=X-Plex-Device"`
-	ClientVersion  *string `queryParam:"style=form,explode=true,name=X-Plex-Version"`
-	ClientPlatform *string `queryParam:"style=form,explode=true,name=X-Plex-Platform"`
+	// An opaque identifier unique to the client (UUID, serial number, or other unique device ID)
+	ClientID *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+	// The name of the client application. (Plex Web, Plex Media Server, etc.)
+	ClientName *string `header:"style=simple,explode=false,name=X-Plex-Product"`
+	// A relatively friendly name for the client device
+	DeviceNickname *string `header:"style=simple,explode=false,name=X-Plex-Device"`
+	// The version of the client application.
+	ClientVersion *string `header:"style=simple,explode=false,name=X-Plex-Version"`
+	// The platform of the client application.
+	Platform *string `header:"style=simple,explode=false,name=X-Plex-Platform"`
 }
 
 func (o *GetTokenByPinIDRequest) GetPinID() int64 {
@@ -88,11 +96,11 @@ func (o *GetTokenByPinIDRequest) GetClientName() *string {
 	return o.ClientName
 }
 
-func (o *GetTokenByPinIDRequest) GetDeviceName() *string {
+func (o *GetTokenByPinIDRequest) GetDeviceNickname() *string {
 	if o == nil {
 		return nil
 	}
-	return o.DeviceName
+	return o.DeviceNickname
 }
 
 func (o *GetTokenByPinIDRequest) GetClientVersion() *string {
@@ -102,11 +110,11 @@ func (o *GetTokenByPinIDRequest) GetClientVersion() *string {
 	return o.ClientVersion
 }
 
-func (o *GetTokenByPinIDRequest) GetClientPlatform() *string {
+func (o *GetTokenByPinIDRequest) GetPlatform() *string {
 	if o == nil {
 		return nil
 	}
-	return o.ClientPlatform
+	return o.Platform
 }
 
 // GetTokenByPinIDGeoData - Geo location data

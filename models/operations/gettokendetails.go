@@ -326,110 +326,6 @@ func (o *Services) GetStatus() GetTokenDetailsStatus {
 	return o.Status
 }
 
-type Features string
-
-const (
-	FeaturesAndroidDolbyVision                  Features = "Android - Dolby Vision"
-	FeaturesAndroidPiP                          Features = "Android - PiP"
-	FeaturesCuSunset                            Features = "CU Sunset"
-	FeaturesHrkEnableEur                        Features = "HRK_enable_EUR"
-	FeaturesTrebleShowFeatures                  Features = "TREBLE-show-features"
-	FeaturesAdCountdownTimer                    Features = "ad-countdown-timer"
-	FeaturesAdaptiveBitrate                     Features = "adaptive_bitrate"
-	FeaturesAlbumTypes                          Features = "album-types"
-	FeaturesAllowDvr                            Features = "allow_dvr"
-	FeaturesAmazonLoopDebug                     Features = "amazon-loop-debug"
-	FeaturesAvodAdAnalysis                      Features = "avod-ad-analysis"
-	FeaturesAvodNewMedia                        Features = "avod-new-media"
-	FeaturesBlacklistGetSignin                  Features = "blacklist_get_signin"
-	FeaturesBoostVoices                         Features = "boost-voices"
-	FeaturesCameraUpload                        Features = "camera_upload"
-	FeaturesClientRadioStations                 Features = "client-radio-stations"
-	FeaturesCloudflareTurnstileRequired         Features = "cloudflare-turnstile-required"
-	FeaturesCloudsync                           Features = "cloudsync"
-	FeaturesCollections                         Features = "collections"
-	FeaturesCommentsAndRepliesPushNotifications Features = "comments_and_replies_push_notifications"
-	FeaturesCommunityAccessPlexTv               Features = "community_access_plex_tv"
-	FeaturesCompanionsSonos                     Features = "companions_sonos"
-	FeaturesContentFilter                       Features = "content_filter"
-	FeaturesCustomHomeRemoval                   Features = "custom-home-removal"
-	FeaturesDisableHomeUserFriendships          Features = "disable_home_user_friendships"
-	FeaturesDisableSharingFriendships           Features = "disable_sharing_friendships"
-	FeaturesDownloadsGating                     Features = "downloads-gating"
-	FeaturesDrmSupport                          Features = "drm_support"
-	FeaturesDvr                                 Features = "dvr"
-	FeaturesDvrBlockUnsupportedCountries        Features = "dvr-block-unsupported-countries"
-	FeaturesEpgRecentChannels                   Features = "epg-recent-channels"
-	FeaturesExcludeRestrictions                 Features = "exclude restrictions"
-	FeaturesFederatedAuth                       Features = "federated-auth"
-	FeaturesFriendRequestPushNotifications      Features = "friend_request_push_notifications"
-	FeaturesGrandfatherSync                     Features = "grandfather-sync"
-	FeaturesGuidedUpgrade                       Features = "guided-upgrade"
-	FeaturesHardwareTranscoding                 Features = "hardware_transcoding"
-	FeaturesHome                                Features = "home"
-	FeaturesHwtranscode                         Features = "hwtranscode"
-	FeaturesImaggaV2                            Features = "imagga-v2"
-	FeaturesIncreasePasswordComplexity          Features = "increase-password-complexity"
-	FeaturesIos14PrivacyBanner                  Features = "ios14-privacy-banner"
-	FeaturesIterableNotificationTokens          Features = "iterable-notification-tokens"
-	FeaturesItemClusters                        Features = "item_clusters"
-	FeaturesKeepPaymentMethod                   Features = "keep-payment-method"
-	FeaturesKevinBacon                          Features = "kevin-bacon"
-	FeaturesKoreaConsent                        Features = "korea-consent"
-	FeaturesLeIsrgRootX1                        Features = "le_isrg_root_x1"
-	FeaturesLetsEncrypt                         Features = "lets_encrypt"
-	FeaturesLightningDvrPivot                   Features = "lightning-dvr-pivot"
-	FeaturesLiveTvSupportIncompleteSegments     Features = "live-tv-support-incomplete-segments"
-	FeaturesLivetv                              Features = "livetv"
-	FeaturesLyrics                              Features = "lyrics"
-	FeaturesMetadataSearch                      Features = "metadata_search"
-	FeaturesMusicAnalysis                       Features = "music-analysis"
-	FeaturesMusicVideos                         Features = "music_videos"
-	FeaturesNewPlexPassPrices                   Features = "new_plex_pass_prices"
-	FeaturesNewsProviderSunsetModal             Features = "news-provider-sunset-modal"
-	FeaturesNominatim                           Features = "nominatim"
-	FeaturesPass                                Features = "pass"
-	FeaturesPhotosFavorites                     Features = "photos-favorites"
-	FeaturesPhotosMetadataEdition               Features = "photos-metadata-edition"
-	FeaturesPhotosV6Edit                        Features = "photosV6-edit"
-	FeaturesPhotosV6TvAlbums                    Features = "photosV6-tv-albums"
-	FeaturesPmsHealth                           Features = "pms_health"
-	FeaturesPremiumDashboard                    Features = "premium-dashboard"
-	FeaturesPremiumMusicMetadata                Features = "premium_music_metadata"
-	FeaturesRadio                               Features = "radio"
-	FeaturesRateLimitClientToken                Features = "rate-limit-client-token"
-	FeaturesScrobblingServicePlexTv             Features = "scrobbling-service-plex-tv"
-	FeaturesSessionBandwidthRestrictions        Features = "session_bandwidth_restrictions"
-	FeaturesSessionKick                         Features = "session_kick"
-	FeaturesSharedServerNotification            Features = "shared_server_notification"
-	FeaturesSharedSourceNotification            Features = "shared_source_notification"
-	FeaturesSigninNotification                  Features = "signin_notification"
-	FeaturesSigninWithApple                     Features = "signin_with_apple"
-	FeaturesSilenceRemoval                      Features = "silence-removal"
-	FeaturesSleepTimer                          Features = "sleep-timer"
-	FeaturesSpringServeAdProvider               Features = "spring_serve_ad_provider"
-	FeaturesSync                                Features = "sync"
-	FeaturesSweetFades                          Features = "sweet-fades"
-	FeaturesTranscoderCache                     Features = "transcoder_cache"
-	FeaturesTrailers                            Features = "trailers"
-	FeaturesTunerSharing                        Features = "tuner-sharing"
-	FeaturesTwoFactorAuthentication             Features = "two-factor-authentication"
-	FeaturesUnsupportedtuners                   Features = "unsupportedtuners"
-	FeaturesUpgrade3ds2                         Features = "upgrade-3ds2"
-	FeaturesVisualizers                         Features = "visualizers"
-	FeaturesVodSchema                           Features = "vod-schema"
-	FeaturesVodCloudflare                       Features = "vod_cloudflare"
-	FeaturesVolumeLeveling                      Features = "volume-leveling"
-	FeaturesWatchTogetherInvite                 Features = "watch-together-invite"
-	FeaturesWatchlistRss                        Features = "watchlist-rss"
-	FeaturesWebServerDashboard                  Features = "web_server_dashboard"
-	FeaturesWebhooks                            Features = "webhooks"
-)
-
-func (e Features) ToPointer() *Features {
-	return &e
-}
-
 // GetTokenDetailsAuthenticationStatus - String representation of subscriptionActive
 type GetTokenDetailsAuthenticationStatus string
 
@@ -460,7 +356,7 @@ func (e *GetTokenDetailsAuthenticationStatus) UnmarshalJSON(data []byte) error {
 // Subscription - If the account’s Plex Pass subscription is active
 type Subscription struct {
 	// List of features allowed on your Plex Pass subscription
-	Features []Features `json:"features,omitempty"`
+	Features []string `json:"features,omitempty"`
 	// If the account's Plex Pass subscription is active
 	Active *bool `json:"active,omitempty"`
 	// Date the account subscribed to Plex Pass
@@ -473,7 +369,7 @@ type Subscription struct {
 	Plan *string `json:"plan,omitempty"`
 }
 
-func (o *Subscription) GetFeatures() []Features {
+func (o *Subscription) GetFeatures() []string {
 	if o == nil {
 		return nil
 	}
@@ -515,110 +411,6 @@ func (o *Subscription) GetPlan() *string {
 	return o.Plan
 }
 
-type GetTokenDetailsFeatures string
-
-const (
-	GetTokenDetailsFeaturesAndroidDolbyVision                  GetTokenDetailsFeatures = "Android - Dolby Vision"
-	GetTokenDetailsFeaturesAndroidPiP                          GetTokenDetailsFeatures = "Android - PiP"
-	GetTokenDetailsFeaturesCuSunset                            GetTokenDetailsFeatures = "CU Sunset"
-	GetTokenDetailsFeaturesHrkEnableEur                        GetTokenDetailsFeatures = "HRK_enable_EUR"
-	GetTokenDetailsFeaturesTrebleShowFeatures                  GetTokenDetailsFeatures = "TREBLE-show-features"
-	GetTokenDetailsFeaturesAdCountdownTimer                    GetTokenDetailsFeatures = "ad-countdown-timer"
-	GetTokenDetailsFeaturesAdaptiveBitrate                     GetTokenDetailsFeatures = "adaptive_bitrate"
-	GetTokenDetailsFeaturesAlbumTypes                          GetTokenDetailsFeatures = "album-types"
-	GetTokenDetailsFeaturesAllowDvr                            GetTokenDetailsFeatures = "allow_dvr"
-	GetTokenDetailsFeaturesAmazonLoopDebug                     GetTokenDetailsFeatures = "amazon-loop-debug"
-	GetTokenDetailsFeaturesAvodAdAnalysis                      GetTokenDetailsFeatures = "avod-ad-analysis"
-	GetTokenDetailsFeaturesAvodNewMedia                        GetTokenDetailsFeatures = "avod-new-media"
-	GetTokenDetailsFeaturesBlacklistGetSignin                  GetTokenDetailsFeatures = "blacklist_get_signin"
-	GetTokenDetailsFeaturesBoostVoices                         GetTokenDetailsFeatures = "boost-voices"
-	GetTokenDetailsFeaturesCameraUpload                        GetTokenDetailsFeatures = "camera_upload"
-	GetTokenDetailsFeaturesClientRadioStations                 GetTokenDetailsFeatures = "client-radio-stations"
-	GetTokenDetailsFeaturesCloudflareTurnstileRequired         GetTokenDetailsFeatures = "cloudflare-turnstile-required"
-	GetTokenDetailsFeaturesCloudsync                           GetTokenDetailsFeatures = "cloudsync"
-	GetTokenDetailsFeaturesCollections                         GetTokenDetailsFeatures = "collections"
-	GetTokenDetailsFeaturesCommentsAndRepliesPushNotifications GetTokenDetailsFeatures = "comments_and_replies_push_notifications"
-	GetTokenDetailsFeaturesCommunityAccessPlexTv               GetTokenDetailsFeatures = "community_access_plex_tv"
-	GetTokenDetailsFeaturesCompanionsSonos                     GetTokenDetailsFeatures = "companions_sonos"
-	GetTokenDetailsFeaturesContentFilter                       GetTokenDetailsFeatures = "content_filter"
-	GetTokenDetailsFeaturesCustomHomeRemoval                   GetTokenDetailsFeatures = "custom-home-removal"
-	GetTokenDetailsFeaturesDisableHomeUserFriendships          GetTokenDetailsFeatures = "disable_home_user_friendships"
-	GetTokenDetailsFeaturesDisableSharingFriendships           GetTokenDetailsFeatures = "disable_sharing_friendships"
-	GetTokenDetailsFeaturesDownloadsGating                     GetTokenDetailsFeatures = "downloads-gating"
-	GetTokenDetailsFeaturesDrmSupport                          GetTokenDetailsFeatures = "drm_support"
-	GetTokenDetailsFeaturesDvr                                 GetTokenDetailsFeatures = "dvr"
-	GetTokenDetailsFeaturesDvrBlockUnsupportedCountries        GetTokenDetailsFeatures = "dvr-block-unsupported-countries"
-	GetTokenDetailsFeaturesEpgRecentChannels                   GetTokenDetailsFeatures = "epg-recent-channels"
-	GetTokenDetailsFeaturesExcludeRestrictions                 GetTokenDetailsFeatures = "exclude restrictions"
-	GetTokenDetailsFeaturesFederatedAuth                       GetTokenDetailsFeatures = "federated-auth"
-	GetTokenDetailsFeaturesFriendRequestPushNotifications      GetTokenDetailsFeatures = "friend_request_push_notifications"
-	GetTokenDetailsFeaturesGrandfatherSync                     GetTokenDetailsFeatures = "grandfather-sync"
-	GetTokenDetailsFeaturesGuidedUpgrade                       GetTokenDetailsFeatures = "guided-upgrade"
-	GetTokenDetailsFeaturesHardwareTranscoding                 GetTokenDetailsFeatures = "hardware_transcoding"
-	GetTokenDetailsFeaturesHome                                GetTokenDetailsFeatures = "home"
-	GetTokenDetailsFeaturesHwtranscode                         GetTokenDetailsFeatures = "hwtranscode"
-	GetTokenDetailsFeaturesImaggaV2                            GetTokenDetailsFeatures = "imagga-v2"
-	GetTokenDetailsFeaturesIncreasePasswordComplexity          GetTokenDetailsFeatures = "increase-password-complexity"
-	GetTokenDetailsFeaturesIos14PrivacyBanner                  GetTokenDetailsFeatures = "ios14-privacy-banner"
-	GetTokenDetailsFeaturesIterableNotificationTokens          GetTokenDetailsFeatures = "iterable-notification-tokens"
-	GetTokenDetailsFeaturesItemClusters                        GetTokenDetailsFeatures = "item_clusters"
-	GetTokenDetailsFeaturesKeepPaymentMethod                   GetTokenDetailsFeatures = "keep-payment-method"
-	GetTokenDetailsFeaturesKevinBacon                          GetTokenDetailsFeatures = "kevin-bacon"
-	GetTokenDetailsFeaturesKoreaConsent                        GetTokenDetailsFeatures = "korea-consent"
-	GetTokenDetailsFeaturesLeIsrgRootX1                        GetTokenDetailsFeatures = "le_isrg_root_x1"
-	GetTokenDetailsFeaturesLetsEncrypt                         GetTokenDetailsFeatures = "lets_encrypt"
-	GetTokenDetailsFeaturesLightningDvrPivot                   GetTokenDetailsFeatures = "lightning-dvr-pivot"
-	GetTokenDetailsFeaturesLiveTvSupportIncompleteSegments     GetTokenDetailsFeatures = "live-tv-support-incomplete-segments"
-	GetTokenDetailsFeaturesLivetv                              GetTokenDetailsFeatures = "livetv"
-	GetTokenDetailsFeaturesLyrics                              GetTokenDetailsFeatures = "lyrics"
-	GetTokenDetailsFeaturesMetadataSearch                      GetTokenDetailsFeatures = "metadata_search"
-	GetTokenDetailsFeaturesMusicAnalysis                       GetTokenDetailsFeatures = "music-analysis"
-	GetTokenDetailsFeaturesMusicVideos                         GetTokenDetailsFeatures = "music_videos"
-	GetTokenDetailsFeaturesNewPlexPassPrices                   GetTokenDetailsFeatures = "new_plex_pass_prices"
-	GetTokenDetailsFeaturesNewsProviderSunsetModal             GetTokenDetailsFeatures = "news-provider-sunset-modal"
-	GetTokenDetailsFeaturesNominatim                           GetTokenDetailsFeatures = "nominatim"
-	GetTokenDetailsFeaturesPass                                GetTokenDetailsFeatures = "pass"
-	GetTokenDetailsFeaturesPhotosFavorites                     GetTokenDetailsFeatures = "photos-favorites"
-	GetTokenDetailsFeaturesPhotosMetadataEdition               GetTokenDetailsFeatures = "photos-metadata-edition"
-	GetTokenDetailsFeaturesPhotosV6Edit                        GetTokenDetailsFeatures = "photosV6-edit"
-	GetTokenDetailsFeaturesPhotosV6TvAlbums                    GetTokenDetailsFeatures = "photosV6-tv-albums"
-	GetTokenDetailsFeaturesPmsHealth                           GetTokenDetailsFeatures = "pms_health"
-	GetTokenDetailsFeaturesPremiumDashboard                    GetTokenDetailsFeatures = "premium-dashboard"
-	GetTokenDetailsFeaturesPremiumMusicMetadata                GetTokenDetailsFeatures = "premium_music_metadata"
-	GetTokenDetailsFeaturesRadio                               GetTokenDetailsFeatures = "radio"
-	GetTokenDetailsFeaturesRateLimitClientToken                GetTokenDetailsFeatures = "rate-limit-client-token"
-	GetTokenDetailsFeaturesScrobblingServicePlexTv             GetTokenDetailsFeatures = "scrobbling-service-plex-tv"
-	GetTokenDetailsFeaturesSessionBandwidthRestrictions        GetTokenDetailsFeatures = "session_bandwidth_restrictions"
-	GetTokenDetailsFeaturesSessionKick                         GetTokenDetailsFeatures = "session_kick"
-	GetTokenDetailsFeaturesSharedServerNotification            GetTokenDetailsFeatures = "shared_server_notification"
-	GetTokenDetailsFeaturesSharedSourceNotification            GetTokenDetailsFeatures = "shared_source_notification"
-	GetTokenDetailsFeaturesSigninNotification                  GetTokenDetailsFeatures = "signin_notification"
-	GetTokenDetailsFeaturesSigninWithApple                     GetTokenDetailsFeatures = "signin_with_apple"
-	GetTokenDetailsFeaturesSilenceRemoval                      GetTokenDetailsFeatures = "silence-removal"
-	GetTokenDetailsFeaturesSleepTimer                          GetTokenDetailsFeatures = "sleep-timer"
-	GetTokenDetailsFeaturesSpringServeAdProvider               GetTokenDetailsFeatures = "spring_serve_ad_provider"
-	GetTokenDetailsFeaturesSync                                GetTokenDetailsFeatures = "sync"
-	GetTokenDetailsFeaturesSweetFades                          GetTokenDetailsFeatures = "sweet-fades"
-	GetTokenDetailsFeaturesTranscoderCache                     GetTokenDetailsFeatures = "transcoder_cache"
-	GetTokenDetailsFeaturesTrailers                            GetTokenDetailsFeatures = "trailers"
-	GetTokenDetailsFeaturesTunerSharing                        GetTokenDetailsFeatures = "tuner-sharing"
-	GetTokenDetailsFeaturesTwoFactorAuthentication             GetTokenDetailsFeatures = "two-factor-authentication"
-	GetTokenDetailsFeaturesUnsupportedtuners                   GetTokenDetailsFeatures = "unsupportedtuners"
-	GetTokenDetailsFeaturesUpgrade3ds2                         GetTokenDetailsFeatures = "upgrade-3ds2"
-	GetTokenDetailsFeaturesVisualizers                         GetTokenDetailsFeatures = "visualizers"
-	GetTokenDetailsFeaturesVodSchema                           GetTokenDetailsFeatures = "vod-schema"
-	GetTokenDetailsFeaturesVodCloudflare                       GetTokenDetailsFeatures = "vod_cloudflare"
-	GetTokenDetailsFeaturesVolumeLeveling                      GetTokenDetailsFeatures = "volume-leveling"
-	GetTokenDetailsFeaturesWatchTogetherInvite                 GetTokenDetailsFeatures = "watch-together-invite"
-	GetTokenDetailsFeaturesWatchlistRss                        GetTokenDetailsFeatures = "watchlist-rss"
-	GetTokenDetailsFeaturesWebServerDashboard                  GetTokenDetailsFeatures = "web_server_dashboard"
-	GetTokenDetailsFeaturesWebhooks                            GetTokenDetailsFeatures = "webhooks"
-)
-
-func (e GetTokenDetailsFeatures) ToPointer() *GetTokenDetailsFeatures {
-	return &e
-}
-
 // GetTokenDetailsAuthenticationResponseStatus - String representation of subscriptionActive
 type GetTokenDetailsAuthenticationResponseStatus string
 
@@ -648,7 +440,7 @@ func (e *GetTokenDetailsAuthenticationResponseStatus) UnmarshalJSON(data []byte)
 
 type GetTokenDetailsSubscription struct {
 	// List of features allowed on your Plex Pass subscription
-	Features []GetTokenDetailsFeatures `json:"features,omitempty"`
+	Features []string `json:"features,omitempty"`
 	// If the account's Plex Pass subscription is active
 	Active *bool `json:"active,omitempty"`
 	// Date the account subscribed to Plex Pass
@@ -661,7 +453,7 @@ type GetTokenDetailsSubscription struct {
 	Plan *string `json:"plan,omitempty"`
 }
 
-func (o *GetTokenDetailsSubscription) GetFeatures() []GetTokenDetailsFeatures {
+func (o *GetTokenDetailsSubscription) GetFeatures() []string {
 	if o == nil {
 		return nil
 	}

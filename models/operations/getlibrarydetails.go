@@ -38,14 +38,14 @@ func (e *IncludeDetails) UnmarshalJSON(data []byte) error {
 }
 
 type GetLibraryDetailsRequest struct {
-	// The unique key of the Plex library.
-	// Note: This is unique in the context of the Plex server.
-	//
-	SectionKey int `pathParam:"style=simple,explode=false,name=sectionKey"`
 	// Whether or not to include details for a section (types, filters, and sorts).
 	// Only exists for backwards compatibility, media providers other than the server libraries have it on always.
 	//
 	IncludeDetails *IncludeDetails `default:"0" queryParam:"style=form,explode=true,name=includeDetails"`
+	// The unique key of the Plex library.
+	// Note: This is unique in the context of the Plex server.
+	//
+	SectionKey int `pathParam:"style=simple,explode=false,name=sectionKey"`
 }
 
 func (g GetLibraryDetailsRequest) MarshalJSON() ([]byte, error) {
@@ -59,18 +59,18 @@ func (g *GetLibraryDetailsRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetLibraryDetailsRequest) GetSectionKey() int {
-	if o == nil {
-		return 0
-	}
-	return o.SectionKey
-}
-
 func (o *GetLibraryDetailsRequest) GetIncludeDetails() *IncludeDetails {
 	if o == nil {
 		return nil
 	}
 	return o.IncludeDetails
+}
+
+func (o *GetLibraryDetailsRequest) GetSectionKey() int {
+	if o == nil {
+		return 0
+	}
+	return o.SectionKey
 }
 
 type GetLibraryDetailsDirectory struct {

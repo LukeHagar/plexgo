@@ -302,17 +302,17 @@ func WithClientVersion(clientVersion string) SDKOption {
 	}
 }
 
-// WithClientPlatform allows setting the ClientPlatform parameter for all supported operations
-func WithClientPlatform(clientPlatform string) SDKOption {
+// WithPlatform allows setting the Platform parameter for all supported operations
+func WithPlatform(platform string) SDKOption {
 	return func(sdk *PlexAPI) {
-		sdk.sdkConfiguration.Globals.ClientPlatform = &clientPlatform
+		sdk.sdkConfiguration.Globals.Platform = &platform
 	}
 }
 
-// WithDeviceName allows setting the DeviceName parameter for all supported operations
-func WithDeviceName(deviceName string) SDKOption {
+// WithDeviceNickname allows setting the DeviceNickname parameter for all supported operations
+func WithDeviceNickname(deviceNickname string) SDKOption {
 	return func(sdk *PlexAPI) {
-		sdk.sdkConfiguration.Globals.DeviceName = &deviceName
+		sdk.sdkConfiguration.Globals.DeviceNickname = &deviceNickname
 	}
 }
 
@@ -335,9 +335,9 @@ func New(opts ...SDKOption) *PlexAPI {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.3",
-			SDKVersion:        "0.14.0",
-			GenVersion:        "2.428.1",
-			UserAgent:         "speakeasy-sdk/go 0.14.0 2.428.1 0.0.3 github.com/LukeHagar/plexgo",
+			SDKVersion:        "0.15.0",
+			GenVersion:        "2.429.0",
+			UserAgent:         "speakeasy-sdk/go 0.15.0 2.429.0 0.0.3 github.com/LukeHagar/plexgo",
 			Globals:           globals.Globals{},
 			ServerDefaults: []map[string]string{
 				{

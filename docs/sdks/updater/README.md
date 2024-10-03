@@ -31,11 +31,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
-        plexgo.WithClientName("Plex Web"),
-        plexgo.WithClientVersion("4.133.0"),
-        plexgo.WithClientPlatform("Chrome"),
-        plexgo.WithDeviceName("Linux"),
+        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
+        plexgo.WithClientName("Plex for Roku"),
+        plexgo.WithClientVersion("2.4.1"),
+        plexgo.WithPlatform("Roku"),
+        plexgo.WithDeviceNickname("Roku 3"),
     )
 
     ctx := context.Background()
@@ -87,11 +87,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
-        plexgo.WithClientName("Plex Web"),
-        plexgo.WithClientVersion("4.133.0"),
-        plexgo.WithClientPlatform("Chrome"),
-        plexgo.WithDeviceName("Linux"),
+        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
+        plexgo.WithClientName("Plex for Roku"),
+        plexgo.WithClientVersion("2.4.1"),
+        plexgo.WithPlatform("Roku"),
+        plexgo.WithDeviceNickname("Roku 3"),
     )
 
     ctx := context.Background()
@@ -145,11 +145,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
-        plexgo.WithClientName("Plex Web"),
-        plexgo.WithClientVersion("4.133.0"),
-        plexgo.WithClientPlatform("Chrome"),
-        plexgo.WithDeviceName("Linux"),
+        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
+        plexgo.WithClientName("Plex for Roku"),
+        plexgo.WithClientVersion("2.4.1"),
+        plexgo.WithPlatform("Roku"),
+        plexgo.WithDeviceNickname("Roku 3"),
     )
 
     ctx := context.Background()

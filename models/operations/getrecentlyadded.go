@@ -992,7 +992,7 @@ func (o *Stream) GetCanAutoSync() *bool {
 type Part struct {
 	ID       int    `json:"id"`
 	Key      string `json:"key"`
-	Duration int    `json:"duration"`
+	Duration *int   `json:"duration,omitempty"`
 	File     string `json:"file"`
 	Size     int64  `json:"size"`
 	// The container format of the media file.
@@ -1001,7 +1001,7 @@ type Part struct {
 	AudioProfile          *string       `json:"audioProfile,omitempty"`
 	Has64bitOffsets       *bool         `json:"has64bitOffsets,omitempty"`
 	OptimizedForStreaming *bool         `json:"optimizedForStreaming,omitempty"`
-	VideoProfile          string        `json:"videoProfile"`
+	VideoProfile          *string       `json:"videoProfile,omitempty"`
 	Indexes               *string       `json:"indexes,omitempty"`
 	HasThumbnail          *HasThumbnail `default:"0" json:"hasThumbnail"`
 	Stream                []Stream      `json:"Stream,omitempty"`
@@ -1032,9 +1032,9 @@ func (o *Part) GetKey() string {
 	return o.Key
 }
 
-func (o *Part) GetDuration() int {
+func (o *Part) GetDuration() *int {
 	if o == nil {
-		return 0
+		return nil
 	}
 	return o.Duration
 }
@@ -1081,9 +1081,9 @@ func (o *Part) GetOptimizedForStreaming() *bool {
 	return o.OptimizedForStreaming
 }
 
-func (o *Part) GetVideoProfile() string {
+func (o *Part) GetVideoProfile() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.VideoProfile
 }
@@ -1111,19 +1111,19 @@ func (o *Part) GetStream() []Stream {
 
 type Media struct {
 	ID                    int                    `json:"id"`
-	Duration              int                    `json:"duration"`
-	Bitrate               int                    `json:"bitrate"`
-	Width                 int                    `json:"width"`
-	Height                int                    `json:"height"`
-	AspectRatio           float64                `json:"aspectRatio"`
+	Duration              *int                   `json:"duration,omitempty"`
+	Bitrate               *int                   `json:"bitrate,omitempty"`
+	Width                 *int                   `json:"width,omitempty"`
+	Height                *int                   `json:"height,omitempty"`
+	AspectRatio           *float64               `json:"aspectRatio,omitempty"`
 	AudioProfile          *string                `json:"audioProfile,omitempty"`
-	AudioChannels         int                    `json:"audioChannels"`
-	AudioCodec            string                 `json:"audioCodec"`
-	VideoCodec            string                 `json:"videoCodec"`
-	VideoResolution       string                 `json:"videoResolution"`
+	AudioChannels         *int                   `json:"audioChannels,omitempty"`
+	AudioCodec            *string                `json:"audioCodec,omitempty"`
+	VideoCodec            *string                `json:"videoCodec,omitempty"`
+	VideoResolution       *string                `json:"videoResolution,omitempty"`
 	Container             string                 `json:"container"`
-	VideoFrameRate        string                 `json:"videoFrameRate"`
-	VideoProfile          string                 `json:"videoProfile"`
+	VideoFrameRate        *string                `json:"videoFrameRate,omitempty"`
+	VideoProfile          *string                `json:"videoProfile,omitempty"`
 	HasVoiceActivity      *bool                  `json:"hasVoiceActivity,omitempty"`
 	OptimizedForStreaming *OptimizedForStreaming `default:"0" json:"optimizedForStreaming"`
 	Has64bitOffsets       *bool                  `json:"has64bitOffsets,omitempty"`
@@ -1148,37 +1148,37 @@ func (o *Media) GetID() int {
 	return o.ID
 }
 
-func (o *Media) GetDuration() int {
+func (o *Media) GetDuration() *int {
 	if o == nil {
-		return 0
+		return nil
 	}
 	return o.Duration
 }
 
-func (o *Media) GetBitrate() int {
+func (o *Media) GetBitrate() *int {
 	if o == nil {
-		return 0
+		return nil
 	}
 	return o.Bitrate
 }
 
-func (o *Media) GetWidth() int {
+func (o *Media) GetWidth() *int {
 	if o == nil {
-		return 0
+		return nil
 	}
 	return o.Width
 }
 
-func (o *Media) GetHeight() int {
+func (o *Media) GetHeight() *int {
 	if o == nil {
-		return 0
+		return nil
 	}
 	return o.Height
 }
 
-func (o *Media) GetAspectRatio() float64 {
+func (o *Media) GetAspectRatio() *float64 {
 	if o == nil {
-		return 0.0
+		return nil
 	}
 	return o.AspectRatio
 }
@@ -1190,30 +1190,30 @@ func (o *Media) GetAudioProfile() *string {
 	return o.AudioProfile
 }
 
-func (o *Media) GetAudioChannels() int {
+func (o *Media) GetAudioChannels() *int {
 	if o == nil {
-		return 0
+		return nil
 	}
 	return o.AudioChannels
 }
 
-func (o *Media) GetAudioCodec() string {
+func (o *Media) GetAudioCodec() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.AudioCodec
 }
 
-func (o *Media) GetVideoCodec() string {
+func (o *Media) GetVideoCodec() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.VideoCodec
 }
 
-func (o *Media) GetVideoResolution() string {
+func (o *Media) GetVideoResolution() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.VideoResolution
 }
@@ -1225,16 +1225,16 @@ func (o *Media) GetContainer() string {
 	return o.Container
 }
 
-func (o *Media) GetVideoFrameRate() string {
+func (o *Media) GetVideoFrameRate() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.VideoFrameRate
 }
 
-func (o *Media) GetVideoProfile() string {
+func (o *Media) GetVideoProfile() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.VideoProfile
 }
@@ -1377,6 +1377,17 @@ func (o *Role) GetRole() *string {
 		return nil
 	}
 	return o.Role
+}
+
+type Location struct {
+	Path *string `json:"path,omitempty"`
+}
+
+func (o *Location) GetPath() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Path
 }
 
 type MediaGUID struct {
@@ -1581,6 +1592,7 @@ type GetRecentlyAddedMetadata struct {
 	Writer     []Writer     `json:"Writer,omitempty"`
 	Collection []Collection `json:"Collection,omitempty"`
 	Role       []Role       `json:"Role,omitempty"`
+	Location   []Location   `json:"Location,omitempty"`
 	// The Guid object is only included in the response if the `includeGuids` parameter is set to `1`.
 	//
 	MediaGUID              []MediaGUID             `json:"Guid,omitempty"`
@@ -1951,6 +1963,13 @@ func (o *GetRecentlyAddedMetadata) GetRole() []Role {
 		return nil
 	}
 	return o.Role
+}
+
+func (o *GetRecentlyAddedMetadata) GetLocation() []Location {
+	if o == nil {
+		return nil
+	}
+	return o.Location
 }
 
 func (o *GetRecentlyAddedMetadata) GetMediaGUID() []MediaGUID {

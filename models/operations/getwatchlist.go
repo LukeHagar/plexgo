@@ -156,8 +156,8 @@ type GetWatchListRequest struct {
 	// By default this is 50
 	//
 	XPlexContainerSize *int `default:"50" queryParam:"style=form,explode=true,name=X-Plex-Container-Size"`
-	// Plex Authentication Token
-	XPlexToken string `queryParam:"style=form,explode=true,name=X-Plex-Token"`
+	// An authentication token, obtained from plex.tv
+	XPlexToken string `header:"style=simple,explode=false,name=X-Plex-Token"`
 }
 
 func (g GetWatchListRequest) MarshalJSON() ([]byte, error) {

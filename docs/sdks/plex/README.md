@@ -34,11 +34,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
-        plexgo.WithClientName("Plex Web"),
-        plexgo.WithClientVersion("4.133.0"),
-        plexgo.WithClientPlatform("Chrome"),
-        plexgo.WithDeviceName("Linux"),
+        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
+        plexgo.WithClientName("Plex for Roku"),
+        plexgo.WithClientVersion("2.4.1"),
+        plexgo.WithPlatform("Roku"),
+        plexgo.WithDeviceNickname("Roku 3"),
     )
 
     ctx := context.Background()
@@ -89,11 +89,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
-        plexgo.WithClientName("Plex Web"),
-        plexgo.WithClientVersion("4.133.0"),
-        plexgo.WithClientPlatform("Chrome"),
-        plexgo.WithDeviceName("Linux"),
+        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
+        plexgo.WithClientName("Plex for Roku"),
+        plexgo.WithClientVersion("2.4.1"),
+        plexgo.WithPlatform("Roku"),
+        plexgo.WithDeviceNickname("Roku 3"),
     )
 
     ctx := context.Background()
@@ -143,11 +143,11 @@ import(
 
 func main() {
     s := plexgo.New(
-        plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
-        plexgo.WithClientName("Plex Web"),
-        plexgo.WithClientVersion("4.133.0"),
-        plexgo.WithClientPlatform("Chrome"),
-        plexgo.WithDeviceName("Linux"),
+        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
+        plexgo.WithClientName("Plex for Roku"),
+        plexgo.WithClientVersion("2.4.1"),
+        plexgo.WithPlatform("Roku"),
+        plexgo.WithDeviceNickname("Roku 3"),
     )
 
     ctx := context.Background()
@@ -198,11 +198,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
-        plexgo.WithClientName("Plex Web"),
-        plexgo.WithClientVersion("4.133.0"),
-        plexgo.WithClientPlatform("Chrome"),
-        plexgo.WithDeviceName("Linux"),
+        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
+        plexgo.WithClientName("Plex for Roku"),
+        plexgo.WithClientVersion("2.4.1"),
+        plexgo.WithPlatform("Roku"),
+        plexgo.WithDeviceNickname("Roku 3"),
     )
 
     ctx := context.Background()
@@ -254,15 +254,15 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
-        plexgo.WithClientName("Plex Web"),
-        plexgo.WithClientVersion("4.133.0"),
-        plexgo.WithClientPlatform("Chrome"),
-        plexgo.WithDeviceName("Linux"),
+        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
+        plexgo.WithClientName("Plex for Roku"),
+        plexgo.WithClientVersion("2.4.1"),
+        plexgo.WithPlatform("Roku"),
+        plexgo.WithDeviceNickname("Roku 3"),
     )
 
     ctx := context.Background()
-    res, err := s.Plex.GetServerResources(ctx, operations.IncludeHTTPSEnable.ToPointer(), operations.IncludeRelayEnable.ToPointer(), operations.IncludeIPv6Enable.ToPointer(), plexgo.String("gcgzw5rz2xovp84b4vha3a40"))
+    res, err := s.Plex.GetServerResources(ctx, operations.IncludeHTTPSEnable.ToPointer(), operations.IncludeRelayEnable.ToPointer(), operations.IncludeIPv6Enable.ToPointer(), plexgo.String("3381b62b-9ab7-4e37-827b-203e9809eb58"))
     if err != nil {
         log.Fatal(err)
     }
@@ -274,14 +274,14 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                                                                              | Type                                                                                                                                                                   | Required                                                                                                                                                               | Description                                                                                                                                                            | Example                                                                                                                                                                |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                  | :heavy_check_mark:                                                                                                                                                     | The context to use for the request.                                                                                                                                    |                                                                                                                                                                        |
-| `includeHTTPS`                                                                                                                                                         | [*operations.IncludeHTTPS](../../models/operations/includehttps.md)                                                                                                    | :heavy_minus_sign:                                                                                                                                                     | Include Https entries in the results                                                                                                                                   | 1                                                                                                                                                                      |
-| `includeRelay`                                                                                                                                                         | [*operations.IncludeRelay](../../models/operations/includerelay.md)                                                                                                    | :heavy_minus_sign:                                                                                                                                                     | Include Relay addresses in the results <br/>E.g: https://10-0-0-25.bbf8e10c7fa20447cacee74cd9914cde.plex.direct:32400<br/>                                             | 1                                                                                                                                                                      |
-| `includeIPv6`                                                                                                                                                          | [*operations.IncludeIPv6](../../models/operations/includeipv6.md)                                                                                                      | :heavy_minus_sign:                                                                                                                                                     | Include IPv6 entries in the results                                                                                                                                    | 1                                                                                                                                                                      |
-| `clientID`                                                                                                                                                             | **string*                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                     | The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device) | gcgzw5rz2xovp84b4vha3a40                                                                                                                                               |
-| `opts`                                                                                                                                                                 | [][operations.Option](../../models/operations/option.md)                                                                                                               | :heavy_minus_sign:                                                                                                                                                     | The options for this request.                                                                                                                                          |                                                                                                                                                                        |
+| Parameter                                                                                                          | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        | Example                                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                                              | :heavy_check_mark:                                                                                                 | The context to use for the request.                                                                                |                                                                                                                    |
+| `includeHTTPS`                                                                                                     | [*operations.IncludeHTTPS](../../models/operations/includehttps.md)                                                | :heavy_minus_sign:                                                                                                 | Include Https entries in the results                                                                               | 1                                                                                                                  |
+| `includeRelay`                                                                                                     | [*operations.IncludeRelay](../../models/operations/includerelay.md)                                                | :heavy_minus_sign:                                                                                                 | Include Relay addresses in the results <br/>E.g: https://10-0-0-25.bbf8e10c7fa20447cacee74cd9914cde.plex.direct:32400<br/> | 1                                                                                                                  |
+| `includeIPv6`                                                                                                      | [*operations.IncludeIPv6](../../models/operations/includeipv6.md)                                                  | :heavy_minus_sign:                                                                                                 | Include IPv6 entries in the results                                                                                | 1                                                                                                                  |
+| `clientID`                                                                                                         | **string*                                                                                                          | :heavy_minus_sign:                                                                                                 | An opaque identifier unique to the client (UUID, serial number, or other unique device ID)                         | 3381b62b-9ab7-4e37-827b-203e9809eb58                                                                               |
+| `opts`                                                                                                             | [][operations.Option](../../models/operations/option.md)                                                           | :heavy_minus_sign:                                                                                                 | The options for this request.                                                                                      |                                                                                                                    |
 
 ### Response
 
@@ -313,11 +313,11 @@ import(
 
 func main() {
     s := plexgo.New(
-        plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
-        plexgo.WithClientName("Plex Web"),
-        plexgo.WithClientVersion("4.133.0"),
-        plexgo.WithClientPlatform("Chrome"),
-        plexgo.WithDeviceName("Linux"),
+        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
+        plexgo.WithClientName("Plex for Roku"),
+        plexgo.WithClientVersion("2.4.1"),
+        plexgo.WithPlatform("Roku"),
+        plexgo.WithDeviceNickname("Roku 3"),
     )
 
     ctx := context.Background()
@@ -368,11 +368,11 @@ import(
 
 func main() {
     s := plexgo.New(
-        plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
-        plexgo.WithClientName("Plex Web"),
-        plexgo.WithClientVersion("4.133.0"),
-        plexgo.WithClientPlatform("Chrome"),
-        plexgo.WithDeviceName("Linux"),
+        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
+        plexgo.WithClientName("Plex for Roku"),
+        plexgo.WithClientVersion("2.4.1"),
+        plexgo.WithPlatform("Roku"),
+        plexgo.WithDeviceNickname("Roku 3"),
     )
 
     ctx := context.Background()

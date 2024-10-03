@@ -49,6 +49,9 @@ func (e *GetTopWatchedContentQueryParamType) UnmarshalJSON(data []byte) error {
 }
 
 type GetTopWatchedContentRequest struct {
+	// Adds the Guids object to the response
+	//
+	IncludeGuids *int64 `queryParam:"style=form,explode=true,name=includeGuids"`
 	// The type of media to retrieve.
 	// 1 = movie
 	// 2 = show
@@ -57,16 +60,6 @@ type GetTopWatchedContentRequest struct {
 	// E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
 	//
 	Type GetTopWatchedContentQueryParamType `queryParam:"style=form,explode=true,name=type"`
-	// Adds the Guids object to the response
-	//
-	IncludeGuids *int64 `queryParam:"style=form,explode=true,name=includeGuids"`
-}
-
-func (o *GetTopWatchedContentRequest) GetType() GetTopWatchedContentQueryParamType {
-	if o == nil {
-		return GetTopWatchedContentQueryParamType(0)
-	}
-	return o.Type
 }
 
 func (o *GetTopWatchedContentRequest) GetIncludeGuids() *int64 {
@@ -74,6 +67,13 @@ func (o *GetTopWatchedContentRequest) GetIncludeGuids() *int64 {
 		return nil
 	}
 	return o.IncludeGuids
+}
+
+func (o *GetTopWatchedContentRequest) GetType() GetTopWatchedContentQueryParamType {
+	if o == nil {
+		return GetTopWatchedContentQueryParamType(0)
+	}
+	return o.Type
 }
 
 type GetTopWatchedContentGenre struct {

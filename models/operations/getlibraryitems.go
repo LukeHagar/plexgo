@@ -181,10 +181,6 @@ func (e *GetLibraryItemsQueryParamIncludeMeta) UnmarshalJSON(data []byte) error 
 }
 
 type GetLibraryItemsRequest struct {
-	// The unique key of the Plex library.
-	// Note: This is unique in the context of the Plex server.
-	//
-	SectionKey int `pathParam:"style=simple,explode=false,name=sectionKey"`
 	// A key representing a specific tag within the section.
 	Tag Tag `pathParam:"style=simple,explode=false,name=tag"`
 	// Adds the Guids object to the response
@@ -198,6 +194,10 @@ type GetLibraryItemsRequest struct {
 	// E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
 	//
 	Type *GetLibraryItemsQueryParamType `queryParam:"style=form,explode=true,name=type"`
+	// The unique key of the Plex library.
+	// Note: This is unique in the context of the Plex server.
+	//
+	SectionKey int `pathParam:"style=simple,explode=false,name=sectionKey"`
 	// Adds the Meta object to the response
 	//
 	IncludeMeta *GetLibraryItemsQueryParamIncludeMeta `default:"0" queryParam:"style=form,explode=true,name=includeMeta"`
@@ -224,13 +224,6 @@ func (g *GetLibraryItemsRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetLibraryItemsRequest) GetSectionKey() int {
-	if o == nil {
-		return 0
-	}
-	return o.SectionKey
-}
-
 func (o *GetLibraryItemsRequest) GetTag() Tag {
 	if o == nil {
 		return Tag("")
@@ -250,6 +243,13 @@ func (o *GetLibraryItemsRequest) GetType() *GetLibraryItemsQueryParamType {
 		return nil
 	}
 	return o.Type
+}
+
+func (o *GetLibraryItemsRequest) GetSectionKey() int {
+	if o == nil {
+		return 0
+	}
+	return o.SectionKey
 }
 
 func (o *GetLibraryItemsRequest) GetIncludeMeta() *GetLibraryItemsQueryParamIncludeMeta {
@@ -1080,7 +1080,7 @@ func (o *GetLibraryItemsStream) GetCanAutoSync() *bool {
 type GetLibraryItemsPart struct {
 	ID       int    `json:"id"`
 	Key      string `json:"key"`
-	Duration int    `json:"duration"`
+	Duration *int   `json:"duration,omitempty"`
 	File     string `json:"file"`
 	Size     int64  `json:"size"`
 	// The container format of the media file.
@@ -1089,7 +1089,7 @@ type GetLibraryItemsPart struct {
 	AudioProfile          *string                      `json:"audioProfile,omitempty"`
 	Has64bitOffsets       *bool                        `json:"has64bitOffsets,omitempty"`
 	OptimizedForStreaming *bool                        `json:"optimizedForStreaming,omitempty"`
-	VideoProfile          string                       `json:"videoProfile"`
+	VideoProfile          *string                      `json:"videoProfile,omitempty"`
 	Indexes               *string                      `json:"indexes,omitempty"`
 	HasThumbnail          *GetLibraryItemsHasThumbnail `default:"0" json:"hasThumbnail"`
 	Stream                []GetLibraryItemsStream      `json:"Stream,omitempty"`
@@ -1120,9 +1120,9 @@ func (o *GetLibraryItemsPart) GetKey() string {
 	return o.Key
 }
 
-func (o *GetLibraryItemsPart) GetDuration() int {
+func (o *GetLibraryItemsPart) GetDuration() *int {
 	if o == nil {
-		return 0
+		return nil
 	}
 	return o.Duration
 }
@@ -1169,9 +1169,9 @@ func (o *GetLibraryItemsPart) GetOptimizedForStreaming() *bool {
 	return o.OptimizedForStreaming
 }
 
-func (o *GetLibraryItemsPart) GetVideoProfile() string {
+func (o *GetLibraryItemsPart) GetVideoProfile() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.VideoProfile
 }
@@ -1199,19 +1199,19 @@ func (o *GetLibraryItemsPart) GetStream() []GetLibraryItemsStream {
 
 type GetLibraryItemsMedia struct {
 	ID                    int                                   `json:"id"`
-	Duration              int                                   `json:"duration"`
-	Bitrate               int                                   `json:"bitrate"`
-	Width                 int                                   `json:"width"`
-	Height                int                                   `json:"height"`
-	AspectRatio           float64                               `json:"aspectRatio"`
+	Duration              *int                                  `json:"duration,omitempty"`
+	Bitrate               *int                                  `json:"bitrate,omitempty"`
+	Width                 *int                                  `json:"width,omitempty"`
+	Height                *int                                  `json:"height,omitempty"`
+	AspectRatio           *float64                              `json:"aspectRatio,omitempty"`
 	AudioProfile          *string                               `json:"audioProfile,omitempty"`
-	AudioChannels         int                                   `json:"audioChannels"`
-	AudioCodec            string                                `json:"audioCodec"`
-	VideoCodec            string                                `json:"videoCodec"`
-	VideoResolution       string                                `json:"videoResolution"`
+	AudioChannels         *int                                  `json:"audioChannels,omitempty"`
+	AudioCodec            *string                               `json:"audioCodec,omitempty"`
+	VideoCodec            *string                               `json:"videoCodec,omitempty"`
+	VideoResolution       *string                               `json:"videoResolution,omitempty"`
 	Container             string                                `json:"container"`
-	VideoFrameRate        string                                `json:"videoFrameRate"`
-	VideoProfile          string                                `json:"videoProfile"`
+	VideoFrameRate        *string                               `json:"videoFrameRate,omitempty"`
+	VideoProfile          *string                               `json:"videoProfile,omitempty"`
 	HasVoiceActivity      *bool                                 `json:"hasVoiceActivity,omitempty"`
 	OptimizedForStreaming *GetLibraryItemsOptimizedForStreaming `default:"0" json:"optimizedForStreaming"`
 	Has64bitOffsets       *bool                                 `json:"has64bitOffsets,omitempty"`
@@ -1236,37 +1236,37 @@ func (o *GetLibraryItemsMedia) GetID() int {
 	return o.ID
 }
 
-func (o *GetLibraryItemsMedia) GetDuration() int {
+func (o *GetLibraryItemsMedia) GetDuration() *int {
 	if o == nil {
-		return 0
+		return nil
 	}
 	return o.Duration
 }
 
-func (o *GetLibraryItemsMedia) GetBitrate() int {
+func (o *GetLibraryItemsMedia) GetBitrate() *int {
 	if o == nil {
-		return 0
+		return nil
 	}
 	return o.Bitrate
 }
 
-func (o *GetLibraryItemsMedia) GetWidth() int {
+func (o *GetLibraryItemsMedia) GetWidth() *int {
 	if o == nil {
-		return 0
+		return nil
 	}
 	return o.Width
 }
 
-func (o *GetLibraryItemsMedia) GetHeight() int {
+func (o *GetLibraryItemsMedia) GetHeight() *int {
 	if o == nil {
-		return 0
+		return nil
 	}
 	return o.Height
 }
 
-func (o *GetLibraryItemsMedia) GetAspectRatio() float64 {
+func (o *GetLibraryItemsMedia) GetAspectRatio() *float64 {
 	if o == nil {
-		return 0.0
+		return nil
 	}
 	return o.AspectRatio
 }
@@ -1278,30 +1278,30 @@ func (o *GetLibraryItemsMedia) GetAudioProfile() *string {
 	return o.AudioProfile
 }
 
-func (o *GetLibraryItemsMedia) GetAudioChannels() int {
+func (o *GetLibraryItemsMedia) GetAudioChannels() *int {
 	if o == nil {
-		return 0
+		return nil
 	}
 	return o.AudioChannels
 }
 
-func (o *GetLibraryItemsMedia) GetAudioCodec() string {
+func (o *GetLibraryItemsMedia) GetAudioCodec() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.AudioCodec
 }
 
-func (o *GetLibraryItemsMedia) GetVideoCodec() string {
+func (o *GetLibraryItemsMedia) GetVideoCodec() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.VideoCodec
 }
 
-func (o *GetLibraryItemsMedia) GetVideoResolution() string {
+func (o *GetLibraryItemsMedia) GetVideoResolution() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.VideoResolution
 }
@@ -1313,16 +1313,16 @@ func (o *GetLibraryItemsMedia) GetContainer() string {
 	return o.Container
 }
 
-func (o *GetLibraryItemsMedia) GetVideoFrameRate() string {
+func (o *GetLibraryItemsMedia) GetVideoFrameRate() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.VideoFrameRate
 }
 
-func (o *GetLibraryItemsMedia) GetVideoProfile() string {
+func (o *GetLibraryItemsMedia) GetVideoProfile() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.VideoProfile
 }
@@ -1465,6 +1465,17 @@ func (o *GetLibraryItemsRole) GetRole() *string {
 		return nil
 	}
 	return o.Role
+}
+
+type GetLibraryItemsLocation struct {
+	Path *string `json:"path,omitempty"`
+}
+
+func (o *GetLibraryItemsLocation) GetPath() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Path
 }
 
 type GetLibraryItemsMediaGUID struct {
@@ -1669,6 +1680,7 @@ type GetLibraryItemsMetadata struct {
 	Writer     []GetLibraryItemsWriter     `json:"Writer,omitempty"`
 	Collection []GetLibraryItemsCollection `json:"Collection,omitempty"`
 	Role       []GetLibraryItemsRole       `json:"Role,omitempty"`
+	Location   []GetLibraryItemsLocation   `json:"Location,omitempty"`
 	// The Guid object is only included in the response if the `includeGuids` parameter is set to `1`.
 	//
 	MediaGUID              []GetLibraryItemsMediaGUID      `json:"Guid,omitempty"`
@@ -2039,6 +2051,13 @@ func (o *GetLibraryItemsMetadata) GetRole() []GetLibraryItemsRole {
 		return nil
 	}
 	return o.Role
+}
+
+func (o *GetLibraryItemsMetadata) GetLocation() []GetLibraryItemsLocation {
+	if o == nil {
+		return nil
+	}
+	return o.Location
 }
 
 func (o *GetLibraryItemsMetadata) GetMediaGUID() []GetLibraryItemsMediaGUID {

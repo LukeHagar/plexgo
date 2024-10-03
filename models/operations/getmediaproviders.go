@@ -7,8 +7,8 @@ import (
 )
 
 type GetMediaProvidersRequest struct {
-	// Plex Authentication Token
-	XPlexToken string `queryParam:"style=form,explode=true,name=X-Plex-Token"`
+	// An authentication token, obtained from plex.tv
+	XPlexToken string `header:"style=simple,explode=false,name=X-Plex-Token"`
 }
 
 func (o *GetMediaProvidersRequest) GetXPlexToken() string {

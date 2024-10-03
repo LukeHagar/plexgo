@@ -3,12 +3,16 @@
 package globals
 
 type Globals struct {
-	// The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device)
-	ClientID       *string `queryParam:"style=form,explode=true,name=X-Plex-Client-Identifier"`
-	ClientName     *string `queryParam:"style=form,explode=true,name=X-Plex-Product"`
-	ClientVersion  *string `queryParam:"style=form,explode=true,name=X-Plex-Version"`
-	ClientPlatform *string `queryParam:"style=form,explode=true,name=X-Plex-Platform"`
-	DeviceName     *string `queryParam:"style=form,explode=true,name=X-Plex-Device"`
+	// An opaque identifier unique to the client (UUID, serial number, or other unique device ID)
+	ClientID *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+	// The name of the client application. (Plex Web, Plex Media Server, etc.)
+	ClientName *string `header:"style=simple,explode=false,name=X-Plex-Product"`
+	// The version of the client application.
+	ClientVersion *string `header:"style=simple,explode=false,name=X-Plex-Version"`
+	// The platform of the client application.
+	Platform *string `header:"style=simple,explode=false,name=X-Plex-Platform"`
+	// A relatively friendly name for the client device
+	DeviceNickname *string `header:"style=simple,explode=false,name=X-Plex-Device"`
 }
 
 func (o *Globals) GetClientID() *string {
@@ -32,16 +36,16 @@ func (o *Globals) GetClientVersion() *string {
 	return o.ClientVersion
 }
 
-func (o *Globals) GetClientPlatform() *string {
+func (o *Globals) GetPlatform() *string {
 	if o == nil {
 		return nil
 	}
-	return o.ClientPlatform
+	return o.Platform
 }
 
-func (o *Globals) GetDeviceName() *string {
+func (o *Globals) GetDeviceNickname() *string {
 	if o == nil {
 		return nil
 	}
-	return o.DeviceName
+	return o.DeviceNickname
 }

@@ -5,5 +5,4 @@
 
 | Field              | Type               | Required           | Description        | Example            |
 | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `ID`               | *int*              | :heavy_check_mark: | N/A                | 1                  |
-| `Path`             | *string*           | :heavy_check_mark: | N/A                | /movies            |
+| `Path`             | **string*          | :heavy_minus_sign: | N/A                | /TV Shows/House    |

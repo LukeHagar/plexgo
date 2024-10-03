@@ -16,6 +16,7 @@ API Calls interacting with Plex Media Server Libraries
 * [GetLibraryItems](#getlibraryitems) - Get Library Items
 * [GetRefreshLibraryMetadata](#getrefreshlibrarymetadata) - Refresh Metadata Of The Library
 * [GetSearchLibrary](#getsearchlibrary) - Search Library
+* [GetSearchAllLibraries](#getsearchalllibraries) - Search All Libraries
 * [GetMetaDataByRatingKey](#getmetadatabyratingkey) - Get Metadata by RatingKey
 * [GetMetadataChildren](#getmetadatachildren) - Get Items Children
 * [GetTopWatchedContent](#gettopwatchedcontent) - Get Top Watched Content
@@ -39,11 +40,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
-        plexgo.WithClientName("Plex Web"),
-        plexgo.WithClientVersion("4.133.0"),
-        plexgo.WithClientPlatform("Chrome"),
-        plexgo.WithDeviceName("Linux"),
+        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
+        plexgo.WithClientName("Plex for Roku"),
+        plexgo.WithClientVersion("2.4.1"),
+        plexgo.WithPlatform("Roku"),
+        plexgo.WithDeviceNickname("Roku 3"),
     )
 
     ctx := context.Background()
@@ -98,11 +99,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
-        plexgo.WithClientName("Plex Web"),
-        plexgo.WithClientVersion("4.133.0"),
-        plexgo.WithClientPlatform("Chrome"),
-        plexgo.WithDeviceName("Linux"),
+        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
+        plexgo.WithClientName("Plex for Roku"),
+        plexgo.WithClientVersion("2.4.1"),
+        plexgo.WithPlatform("Roku"),
+        plexgo.WithDeviceNickname("Roku 3"),
     )
 
     ctx := context.Background()
@@ -181,11 +182,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
-        plexgo.WithClientName("Plex Web"),
-        plexgo.WithClientVersion("4.133.0"),
-        plexgo.WithClientPlatform("Chrome"),
-        plexgo.WithDeviceName("Linux"),
+        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
+        plexgo.WithClientName("Plex for Roku"),
+        plexgo.WithClientVersion("2.4.1"),
+        plexgo.WithPlatform("Roku"),
+        plexgo.WithDeviceNickname("Roku 3"),
     )
 
     ctx := context.Background()
@@ -275,11 +276,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
-        plexgo.WithClientName("Plex Web"),
-        plexgo.WithClientVersion("4.133.0"),
-        plexgo.WithClientPlatform("Chrome"),
-        plexgo.WithDeviceName("Linux"),
+        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
+        plexgo.WithClientName("Plex for Roku"),
+        plexgo.WithClientVersion("2.4.1"),
+        plexgo.WithPlatform("Roku"),
+        plexgo.WithDeviceNickname("Roku 3"),
     )
 
     ctx := context.Background()
@@ -332,11 +333,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
-        plexgo.WithClientName("Plex Web"),
-        plexgo.WithClientVersion("4.133.0"),
-        plexgo.WithClientPlatform("Chrome"),
-        plexgo.WithDeviceName("Linux"),
+        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
+        plexgo.WithClientName("Plex for Roku"),
+        plexgo.WithClientVersion("2.4.1"),
+        plexgo.WithPlatform("Roku"),
+        plexgo.WithDeviceNickname("Roku 3"),
     )
 
     ctx := context.Background()
@@ -409,19 +410,19 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
-        plexgo.WithClientName("Plex Web"),
-        plexgo.WithClientVersion("4.133.0"),
-        plexgo.WithClientPlatform("Chrome"),
-        plexgo.WithDeviceName("Linux"),
+        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
+        plexgo.WithClientName("Plex for Roku"),
+        plexgo.WithClientVersion("2.4.1"),
+        plexgo.WithPlatform("Roku"),
+        plexgo.WithDeviceNickname("Roku 3"),
     )
 
     ctx := context.Background()
     res, err := s.Library.GetLibraryItems(ctx, operations.GetLibraryItemsRequest{
-        SectionKey: 9518,
         Tag: operations.TagEdition,
         IncludeGuids: operations.IncludeGuidsEnable.ToPointer(),
         Type: operations.GetLibraryItemsQueryParamTypeTvShow.ToPointer(),
+        SectionKey: 9518,
         IncludeMeta: operations.GetLibraryItemsQueryParamIncludeMetaEnable.ToPointer(),
         XPlexContainerStart: plexgo.Int(0),
         XPlexContainerSize: plexgo.Int(50),
@@ -475,11 +476,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
-        plexgo.WithClientName("Plex Web"),
-        plexgo.WithClientVersion("4.133.0"),
-        plexgo.WithClientPlatform("Chrome"),
-        plexgo.WithDeviceName("Linux"),
+        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
+        plexgo.WithClientName("Plex for Roku"),
+        plexgo.WithClientVersion("2.4.1"),
+        plexgo.WithPlatform("Roku"),
+        plexgo.WithDeviceNickname("Roku 3"),
     )
 
     ctx := context.Background()
@@ -551,11 +552,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
-        plexgo.WithClientName("Plex Web"),
-        plexgo.WithClientVersion("4.133.0"),
-        plexgo.WithClientPlatform("Chrome"),
-        plexgo.WithDeviceName("Linux"),
+        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
+        plexgo.WithClientName("Plex for Roku"),
+        plexgo.WithClientVersion("2.4.1"),
+        plexgo.WithPlatform("Roku"),
+        plexgo.WithDeviceNickname("Roku 3"),
     )
 
     ctx := context.Background()
@@ -590,6 +591,71 @@ func main() {
 | sdkerrors.GetSearchLibraryUnauthorized | 401                                    | application/json                       |
 | sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
 
+## GetSearchAllLibraries
+
+Search the provided query across all library sections, or a single section, and return matches as hubs, split up by type.
+
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"github.com/LukeHagar/plexgo"
+	"context"
+	"github.com/LukeHagar/plexgo/models/operations"
+	"log"
+)
+
+func main() {
+    s := plexgo.New(
+        plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
+        plexgo.WithClientName("Plex for Roku"),
+        plexgo.WithClientVersion("2.4.1"),
+        plexgo.WithPlatform("Roku"),
+        plexgo.WithDeviceNickname("Roku 3"),
+    )
+
+    ctx := context.Background()
+    res, err := s.Library.GetSearchAllLibraries(ctx, operations.GetSearchAllLibrariesRequest{
+        Query: "<value>",
+        SearchTypes: []operations.SearchTypes{
+            operations.SearchTypesPeople,
+        },
+        IncludeCollections: operations.QueryParamIncludeCollectionsEnable.ToPointer(),
+        IncludeExternalMedia: operations.QueryParamIncludeExternalMediaEnable.ToPointer(),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
+| `request`                                                                                          | [operations.GetSearchAllLibrariesRequest](../../models/operations/getsearchalllibrariesrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+| `opts`                                                                                             | [][operations.Option](../../models/operations/option.md)                                           | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
+
+### Response
+
+**[*operations.GetSearchAllLibrariesResponse](../../models/operations/getsearchalllibrariesresponse.md), error**
+
+### Errors
+
+| Error Type                                  | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| sdkerrors.GetSearchAllLibrariesBadRequest   | 400                                         | application/json                            |
+| sdkerrors.GetSearchAllLibrariesUnauthorized | 401                                         | application/json                            |
+| sdkerrors.SDKError                          | 4XX, 5XX                                    | \*/\*                                       |
+
 ## GetMetaDataByRatingKey
 
 This endpoint will return the metadata of a library item specified with the ratingKey.
@@ -609,11 +675,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
-        plexgo.WithClientName("Plex Web"),
-        plexgo.WithClientVersion("4.133.0"),
-        plexgo.WithClientPlatform("Chrome"),
-        plexgo.WithDeviceName("Linux"),
+        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
+        plexgo.WithClientName("Plex for Roku"),
+        plexgo.WithClientVersion("2.4.1"),
+        plexgo.WithPlatform("Roku"),
+        plexgo.WithDeviceNickname("Roku 3"),
     )
 
     ctx := context.Background()
@@ -666,11 +732,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
-        plexgo.WithClientName("Plex Web"),
-        plexgo.WithClientVersion("4.133.0"),
-        plexgo.WithClientPlatform("Chrome"),
-        plexgo.WithDeviceName("Linux"),
+        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
+        plexgo.WithClientName("Plex for Roku"),
+        plexgo.WithClientVersion("2.4.1"),
+        plexgo.WithPlatform("Roku"),
+        plexgo.WithDeviceNickname("Roku 3"),
     )
 
     ctx := context.Background()
@@ -725,11 +791,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
-        plexgo.WithClientName("Plex Web"),
-        plexgo.WithClientVersion("4.133.0"),
-        plexgo.WithClientPlatform("Chrome"),
-        plexgo.WithDeviceName("Linux"),
+        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
+        plexgo.WithClientName("Plex for Roku"),
+        plexgo.WithClientVersion("2.4.1"),
+        plexgo.WithPlatform("Roku"),
+        plexgo.WithDeviceNickname("Roku 3"),
     )
 
     ctx := context.Background()
@@ -783,11 +849,11 @@ import(
 func main() {
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
-        plexgo.WithClientName("Plex Web"),
-        plexgo.WithClientVersion("4.133.0"),
-        plexgo.WithClientPlatform("Chrome"),
-        plexgo.WithDeviceName("Linux"),
+        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
+        plexgo.WithClientName("Plex for Roku"),
+        plexgo.WithClientVersion("2.4.1"),
+        plexgo.WithPlatform("Roku"),
+        plexgo.WithDeviceNickname("Roku 3"),
     )
 
     ctx := context.Background()

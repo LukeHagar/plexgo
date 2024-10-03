@@ -36,19 +36,12 @@ func (e *Force) UnmarshalJSON(data []byte) error {
 }
 
 type GetRefreshLibraryMetadataRequest struct {
+	// Force the refresh even if the library is already being refreshed.
+	Force *Force `queryParam:"style=form,explode=true,name=force"`
 	// The unique key of the Plex library.
 	// Note: This is unique in the context of the Plex server.
 	//
 	SectionKey int `pathParam:"style=simple,explode=false,name=sectionKey"`
-	// Force the refresh even if the library is already being refreshed.
-	Force *Force `queryParam:"style=form,explode=true,name=force"`
-}
-
-func (o *GetRefreshLibraryMetadataRequest) GetSectionKey() int {
-	if o == nil {
-		return 0
-	}
-	return o.SectionKey
 }
 
 func (o *GetRefreshLibraryMetadataRequest) GetForce() *Force {
@@ -56,6 +49,13 @@ func (o *GetRefreshLibraryMetadataRequest) GetForce() *Force {
 		return nil
 	}
 	return o.Force
+}
+
+func (o *GetRefreshLibraryMetadataRequest) GetSectionKey() int {
+	if o == nil {
+		return 0
+	}
+	return o.SectionKey
 }
 
 type GetRefreshLibraryMetadataResponse struct {

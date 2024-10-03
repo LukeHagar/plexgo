@@ -10,6 +10,7 @@ import (
 	"github.com/LukeHagar/plexgo/internal/utils"
 	"github.com/LukeHagar/plexgo/models/operations"
 	"github.com/LukeHagar/plexgo/models/sdkerrors"
+	"github.com/LukeHagar/plexgo/retry"
 	"github.com/cenkalti/backoff/v4"
 	"io"
 	"net/http"
@@ -87,6 +88,16 @@ func (s *Plex) GetCompanionsData(ctx context.Context, opts ...operations.Option)
 	if retryConfig == nil {
 		if globalRetryConfig != nil {
 			retryConfig = globalRetryConfig
+		} else {
+			retryConfig = &retry.Config{
+				Strategy: "backoff", Backoff: &retry.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
 		}
 	}
 
@@ -95,11 +106,7 @@ func (s *Plex) GetCompanionsData(ctx context.Context, opts ...operations.Option)
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
-				"429",
-				"500",
-				"502",
-				"503",
-				"504",
+				"5XX",
 			},
 		}, func() (*http.Response, error) {
 			if req.Body != nil {
@@ -334,6 +341,16 @@ func (s *Plex) GetUserFriends(ctx context.Context, opts ...operations.Option) (*
 	if retryConfig == nil {
 		if globalRetryConfig != nil {
 			retryConfig = globalRetryConfig
+		} else {
+			retryConfig = &retry.Config{
+				Strategy: "backoff", Backoff: &retry.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
 		}
 	}
 
@@ -342,11 +359,7 @@ func (s *Plex) GetUserFriends(ctx context.Context, opts ...operations.Option) (*
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
-				"429",
-				"500",
-				"502",
-				"503",
-				"504",
+				"5XX",
 			},
 		}, func() (*http.Response, error) {
 			if req.Body != nil {
@@ -577,6 +590,16 @@ func (s *Plex) GetGeoData(ctx context.Context, opts ...operations.Option) (*oper
 	if retryConfig == nil {
 		if globalRetryConfig != nil {
 			retryConfig = globalRetryConfig
+		} else {
+			retryConfig = &retry.Config{
+				Strategy: "backoff", Backoff: &retry.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
 		}
 	}
 
@@ -585,11 +608,7 @@ func (s *Plex) GetGeoData(ctx context.Context, opts ...operations.Option) (*oper
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
-				"429",
-				"500",
-				"502",
-				"503",
-				"504",
+				"5XX",
 			},
 		}, func() (*http.Response, error) {
 			if req.Body != nil {
@@ -819,6 +838,16 @@ func (s *Plex) GetHomeData(ctx context.Context, opts ...operations.Option) (*ope
 	if retryConfig == nil {
 		if globalRetryConfig != nil {
 			retryConfig = globalRetryConfig
+		} else {
+			retryConfig = &retry.Config{
+				Strategy: "backoff", Backoff: &retry.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
 		}
 	}
 
@@ -827,11 +856,7 @@ func (s *Plex) GetHomeData(ctx context.Context, opts ...operations.Option) (*ope
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
-				"429",
-				"500",
-				"502",
-				"503",
-				"504",
+				"5XX",
 			},
 		}, func() (*http.Response, error) {
 			if req.Body != nil {
@@ -1068,6 +1093,8 @@ func (s *Plex) GetServerResources(ctx context.Context, includeHTTPS *operations.
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
+	utils.PopulateHeaders(ctx, req, request, globals)
+
 	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
@@ -1081,6 +1108,16 @@ func (s *Plex) GetServerResources(ctx context.Context, includeHTTPS *operations.
 	if retryConfig == nil {
 		if globalRetryConfig != nil {
 			retryConfig = globalRetryConfig
+		} else {
+			retryConfig = &retry.Config{
+				Strategy: "backoff", Backoff: &retry.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
 		}
 	}
 
@@ -1089,11 +1126,7 @@ func (s *Plex) GetServerResources(ctx context.Context, includeHTTPS *operations.
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
-				"429",
-				"500",
-				"502",
-				"503",
-				"504",
+				"5XX",
 			},
 		}, func() (*http.Response, error) {
 			if req.Body != nil {
@@ -1281,9 +1314,9 @@ func (s *Plex) GetPin(ctx context.Context, request operations.GetPinRequest, opt
 	globals := operations.GetPinGlobals{
 		ClientID:       s.sdkConfiguration.Globals.ClientID,
 		ClientName:     s.sdkConfiguration.Globals.ClientName,
-		DeviceName:     s.sdkConfiguration.Globals.DeviceName,
+		DeviceNickname: s.sdkConfiguration.Globals.DeviceNickname,
 		ClientVersion:  s.sdkConfiguration.Globals.ClientVersion,
-		ClientPlatform: s.sdkConfiguration.Globals.ClientPlatform,
+		Platform:       s.sdkConfiguration.Globals.Platform,
 	}
 
 	o := operations.Options{}
@@ -1327,6 +1360,8 @@ func (s *Plex) GetPin(ctx context.Context, request operations.GetPinRequest, opt
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
+	utils.PopulateHeaders(ctx, req, request, globals)
+
 	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
@@ -1336,6 +1371,16 @@ func (s *Plex) GetPin(ctx context.Context, request operations.GetPinRequest, opt
 	if retryConfig == nil {
 		if globalRetryConfig != nil {
 			retryConfig = globalRetryConfig
+		} else {
+			retryConfig = &retry.Config{
+				Strategy: "backoff", Backoff: &retry.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
 		}
 	}
 
@@ -1344,11 +1389,7 @@ func (s *Plex) GetPin(ctx context.Context, request operations.GetPinRequest, opt
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
-				"429",
-				"500",
-				"502",
-				"503",
-				"504",
+				"5XX",
 			},
 		}, func() (*http.Response, error) {
 			if req.Body != nil {
@@ -1513,9 +1554,9 @@ func (s *Plex) GetTokenByPinID(ctx context.Context, request operations.GetTokenB
 	globals := operations.GetTokenByPinIDGlobals{
 		ClientID:       s.sdkConfiguration.Globals.ClientID,
 		ClientName:     s.sdkConfiguration.Globals.ClientName,
-		DeviceName:     s.sdkConfiguration.Globals.DeviceName,
+		DeviceNickname: s.sdkConfiguration.Globals.DeviceNickname,
 		ClientVersion:  s.sdkConfiguration.Globals.ClientVersion,
-		ClientPlatform: s.sdkConfiguration.Globals.ClientPlatform,
+		Platform:       s.sdkConfiguration.Globals.Platform,
 	}
 
 	o := operations.Options{}
@@ -1559,15 +1600,23 @@ func (s *Plex) GetTokenByPinID(ctx context.Context, request operations.GetTokenB
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
+	utils.PopulateHeaders(ctx, req, request, globals)
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
 		if globalRetryConfig != nil {
 			retryConfig = globalRetryConfig
+		} else {
+			retryConfig = &retry.Config{
+				Strategy: "backoff", Backoff: &retry.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
 		}
 	}
 
@@ -1576,11 +1625,7 @@ func (s *Plex) GetTokenByPinID(ctx context.Context, request operations.GetTokenB
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
-				"429",
-				"500",
-				"502",
-				"503",
-				"504",
+				"5XX",
 			},
 		}, func() (*http.Response, error) {
 			if req.Body != nil {

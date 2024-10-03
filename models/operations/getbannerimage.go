@@ -14,8 +14,8 @@ type GetBannerImageRequest struct {
 	Height    int64 `queryParam:"style=form,explode=true,name=height"`
 	MinSize   int64 `queryParam:"style=form,explode=true,name=minSize"`
 	Upscale   int64 `queryParam:"style=form,explode=true,name=upscale"`
-	// Plex Authentication Token
-	XPlexToken string `queryParam:"style=form,explode=true,name=X-Plex-Token"`
+	// An authentication token, obtained from plex.tv
+	XPlexToken string `header:"style=simple,explode=false,name=X-Plex-Token"`
 }
 
 func (o *GetBannerImageRequest) GetRatingKey() int64 {

@@ -44,7 +44,6 @@ The following SDKs are generated from the OpenAPI Specification. They are automa
 * [SDK Installation](#sdk-installation)
 * [SDK Example Usage](#sdk-example-usage)
 * [Available Resources and Operations](#available-resources-and-operations)
-* [Global Parameters](#global-parameters)
 * [Retries](#retries)
 * [Error Handling](#error-handling)
 * [Server Selection](#server-selection)
@@ -79,11 +78,11 @@ import (
 func main() {
 	s := plexgo.New(
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
-		plexgo.WithClientName("Plex Web"),
-		plexgo.WithClientVersion("4.133.0"),
-		plexgo.WithClientPlatform("Chrome"),
-		plexgo.WithDeviceName("Linux"),
+		plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
+		plexgo.WithClientName("Plex for Roku"),
+		plexgo.WithClientVersion("2.4.1"),
+		plexgo.WithPlatform("Roku"),
+		plexgo.WithDeviceNickname("Roku 3"),
 	)
 
 	ctx := context.Background()
@@ -141,6 +140,7 @@ func main() {
 * [GetLibraryItems](docs/sdks/library/README.md#getlibraryitems) - Get Library Items
 * [GetRefreshLibraryMetadata](docs/sdks/library/README.md#getrefreshlibrarymetadata) - Refresh Metadata Of The Library
 * [GetSearchLibrary](docs/sdks/library/README.md#getsearchlibrary) - Search Library
+* [GetSearchAllLibraries](docs/sdks/library/README.md#getsearchalllibraries) - Search All Libraries
 * [GetMetaDataByRatingKey](docs/sdks/library/README.md#getmetadatabyratingkey) - Get Metadata by RatingKey
 * [GetMetadataChildren](docs/sdks/library/README.md#getmetadatachildren) - Get Items Children
 * [GetTopWatchedContent](docs/sdks/library/README.md#gettopwatchedcontent) - Get Top Watched Content
@@ -252,11 +252,11 @@ import (
 func main() {
 	s := plexgo.New(
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
-		plexgo.WithClientName("Plex Web"),
-		plexgo.WithClientVersion("4.133.0"),
-		plexgo.WithClientPlatform("Chrome"),
-		plexgo.WithDeviceName("Linux"),
+		plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
+		plexgo.WithClientName("Plex for Roku"),
+		plexgo.WithClientVersion("2.4.1"),
+		plexgo.WithPlatform("Roku"),
+		plexgo.WithDeviceNickname("Roku 3"),
 	)
 
 	ctx := context.Background()
@@ -306,11 +306,11 @@ func main() {
 				RetryConnectionErrors: false,
 			}),
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
-		plexgo.WithClientName("Plex Web"),
-		plexgo.WithClientVersion("4.133.0"),
-		plexgo.WithClientPlatform("Chrome"),
-		plexgo.WithDeviceName("Linux"),
+		plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
+		plexgo.WithClientName("Plex for Roku"),
+		plexgo.WithClientVersion("2.4.1"),
+		plexgo.WithPlatform("Roku"),
+		plexgo.WithDeviceNickname("Roku 3"),
 	)
 
 	ctx := context.Background()
@@ -357,11 +357,11 @@ import (
 func main() {
 	s := plexgo.New(
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
-		plexgo.WithClientName("Plex Web"),
-		plexgo.WithClientVersion("4.133.0"),
-		plexgo.WithClientPlatform("Chrome"),
-		plexgo.WithDeviceName("Linux"),
+		plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
+		plexgo.WithClientName("Plex for Roku"),
+		plexgo.WithClientVersion("2.4.1"),
+		plexgo.WithPlatform("Roku"),
+		plexgo.WithDeviceNickname("Roku 3"),
 	)
 
 	ctx := context.Background()
@@ -417,11 +417,11 @@ func main() {
 	s := plexgo.New(
 		plexgo.WithServerIndex(0),
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
-		plexgo.WithClientName("Plex Web"),
-		plexgo.WithClientVersion("4.133.0"),
-		plexgo.WithClientPlatform("Chrome"),
-		plexgo.WithDeviceName("Linux"),
+		plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
+		plexgo.WithClientName("Plex for Roku"),
+		plexgo.WithClientVersion("2.4.1"),
+		plexgo.WithPlatform("Roku"),
+		plexgo.WithDeviceNickname("Roku 3"),
 	)
 
 	ctx := context.Background()
@@ -459,11 +459,11 @@ func main() {
 	s := plexgo.New(
 		plexgo.WithServerURL("{protocol}://{ip}:{port}"),
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
-		plexgo.WithClientName("Plex Web"),
-		plexgo.WithClientVersion("4.133.0"),
-		plexgo.WithClientPlatform("Chrome"),
-		plexgo.WithDeviceName("Linux"),
+		plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
+		plexgo.WithClientName("Plex for Roku"),
+		plexgo.WithClientVersion("2.4.1"),
+		plexgo.WithPlatform("Roku"),
+		plexgo.WithDeviceNickname("Roku 3"),
 	)
 
 	ctx := context.Background()
@@ -494,11 +494,11 @@ import (
 func main() {
 	s := plexgo.New(
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
-		plexgo.WithClientName("Plex Web"),
-		plexgo.WithClientVersion("4.133.0"),
-		plexgo.WithClientPlatform("Chrome"),
-		plexgo.WithDeviceName("Linux"),
+		plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
+		plexgo.WithClientName("Plex for Roku"),
+		plexgo.WithClientVersion("2.4.1"),
+		plexgo.WithPlatform("Roku"),
+		plexgo.WithDeviceNickname("Roku 3"),
 	)
 
 	ctx := context.Background()
@@ -567,11 +567,11 @@ import (
 func main() {
 	s := plexgo.New(
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
-		plexgo.WithClientName("Plex Web"),
-		plexgo.WithClientVersion("4.133.0"),
-		plexgo.WithClientPlatform("Chrome"),
-		plexgo.WithDeviceName("Linux"),
+		plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
+		plexgo.WithClientName("Plex for Roku"),
+		plexgo.WithClientVersion("2.4.1"),
+		plexgo.WithPlatform("Roku"),
+		plexgo.WithDeviceNickname("Roku 3"),
 	)
 
 	ctx := context.Background()
@@ -612,62 +612,6 @@ d5 := types.MustNewDateFromString("2019-01-01") // returns *types.Date and panic
 d6 := types.MustDateFromString("2019-01-01") // returns types.Date and panics on error
 ```
 <!-- End Special Types [types] -->
-
-<!-- Start Global Parameters [global-parameters] -->
-## Global Parameters
-
-Certain parameters are configured globally. These parameters may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, These global values will be used as defaults on the operations that use them. When such operations are called, there is a place in each to override the global value, if needed.
-
-For example, you can set `ClientID` to `"gcgzw5rz2xovp84b4vha3a40"` at SDK initialization and then you do not have to pass the same value on calls to operations like `GetServerResources`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
-
-
-### Available Globals
-
-The following global parameters are available.
-
-| Name | Type | Required | Description |
-| ---- | ---- |:--------:| ----------- |
-| ClientID | string |  | The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device) |
-| ClientName | string |  | The ClientName parameter. |
-| ClientVersion | string |  | The ClientVersion parameter. |
-| ClientPlatform | string |  | The ClientPlatform parameter. |
-| DeviceName | string |  | The DeviceName parameter. |
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"github.com/LukeHagar/plexgo"
-	"github.com/LukeHagar/plexgo/models/operations"
-	"log"
-)
-
-func main() {
-	s := plexgo.New(
-		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithClientID("gcgzw5rz2xovp84b4vha3a40"),
-		plexgo.WithClientName("Plex Web"),
-		plexgo.WithClientVersion("4.133.0"),
-		plexgo.WithClientPlatform("Chrome"),
-		plexgo.WithDeviceName("Linux"),
-	)
-
-	ctx := context.Background()
-	res, err := s.Plex.GetServerResources(ctx, operations.IncludeHTTPSEnable.ToPointer(), operations.IncludeRelayEnable.ToPointer(), operations.IncludeIPv6Enable.ToPointer(), plexgo.String("gcgzw5rz2xovp84b4vha3a40"))
-	if err != nil {
-		log.Fatal(err)
-	}
-	if res.PlexDevices != nil {
-		// handle response
-	}
-}
-
-```
-<!-- End Global Parameters [global-parameters] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 
