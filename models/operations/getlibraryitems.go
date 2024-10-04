@@ -2596,7 +2596,7 @@ type GetLibraryItemsMediaContainer struct {
 	ViewGroup           string                     `json:"viewGroup"`
 	ViewMode            *int                       `json:"viewMode,omitempty"`
 	MixedParents        *bool                      `json:"mixedParents,omitempty"`
-	Metadata            []GetLibraryItemsMetadata  `json:"Metadata"`
+	Metadata            []GetLibraryItemsMetadata  `json:"Metadata,omitempty"`
 	// The Meta object is only included in the response if the `includeMeta` parameter is set to `1`.
 	//
 	Meta *GetLibraryItemsMeta `json:"Meta,omitempty"`
@@ -2751,7 +2751,7 @@ func (o *GetLibraryItemsMediaContainer) GetMixedParents() *bool {
 
 func (o *GetLibraryItemsMediaContainer) GetMetadata() []GetLibraryItemsMetadata {
 	if o == nil {
-		return []GetLibraryItemsMetadata{}
+		return nil
 	}
 	return o.Metadata
 }

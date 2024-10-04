@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"github.com/LukeHagar/plexgo/internal/utils"
 	"net/http"
-	"time"
 )
 
 var GetTokenDetailsServerList = []string{
@@ -498,11 +497,9 @@ func (o *GetTokenDetailsSubscription) GetPlan() *string {
 // GetTokenDetailsUserPlexAccount - Logged in user details
 type GetTokenDetailsUserPlexAccount struct {
 	// Unknown
-	AdsConsent *bool `json:"adsConsent"`
-	// Unknown
-	AdsConsentReminderAt *time.Time `json:"adsConsentReminderAt"`
-	// Unknown
-	AdsConsentSetAt *time.Time `json:"adsConsentSetAt"`
+	AdsConsent           *bool  `json:"adsConsent"`
+	AdsConsentReminderAt *int64 `json:"adsConsentReminderAt"`
+	AdsConsentSetAt      *int64 `json:"adsConsentSetAt"`
 	// Unknown
 	Anonymous *bool `default:"false" json:"anonymous"`
 	// The account token
@@ -597,14 +594,14 @@ func (o *GetTokenDetailsUserPlexAccount) GetAdsConsent() *bool {
 	return o.AdsConsent
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetAdsConsentReminderAt() *time.Time {
+func (o *GetTokenDetailsUserPlexAccount) GetAdsConsentReminderAt() *int64 {
 	if o == nil {
 		return nil
 	}
 	return o.AdsConsentReminderAt
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetAdsConsentSetAt() *time.Time {
+func (o *GetTokenDetailsUserPlexAccount) GetAdsConsentSetAt() *int64 {
 	if o == nil {
 		return nil
 	}

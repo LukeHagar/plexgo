@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"github.com/LukeHagar/plexgo/internal/utils"
 	"net/http"
-	"time"
 )
 
 var PostUsersSignInDataServerList = []string{
@@ -832,11 +831,9 @@ type Trials struct {
 // PostUsersSignInDataUserPlexAccount - Returns the user account data with a valid auth token
 type PostUsersSignInDataUserPlexAccount struct {
 	// Unknown
-	AdsConsent *bool `json:"adsConsent"`
-	// Unknown
-	AdsConsentReminderAt *time.Time `json:"adsConsentReminderAt"`
-	// Unknown
-	AdsConsentSetAt *time.Time `json:"adsConsentSetAt"`
+	AdsConsent           *bool  `json:"adsConsent"`
+	AdsConsentReminderAt *int64 `json:"adsConsentReminderAt"`
+	AdsConsentSetAt      *int64 `json:"adsConsentSetAt"`
 	// Unknown
 	Anonymous *bool `default:"false" json:"anonymous"`
 	// The account token
@@ -933,14 +930,14 @@ func (o *PostUsersSignInDataUserPlexAccount) GetAdsConsent() *bool {
 	return o.AdsConsent
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetAdsConsentReminderAt() *time.Time {
+func (o *PostUsersSignInDataUserPlexAccount) GetAdsConsentReminderAt() *int64 {
 	if o == nil {
 		return nil
 	}
 	return o.AdsConsentReminderAt
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetAdsConsentSetAt() *time.Time {
+func (o *PostUsersSignInDataUserPlexAccount) GetAdsConsentSetAt() *int64 {
 	if o == nil {
 		return nil
 	}
