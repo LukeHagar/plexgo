@@ -128,6 +128,7 @@ const (
 	GetLibraryItemsQueryParamTypeTvShow  GetLibraryItemsQueryParamType = 2
 	GetLibraryItemsQueryParamTypeSeason  GetLibraryItemsQueryParamType = 3
 	GetLibraryItemsQueryParamTypeEpisode GetLibraryItemsQueryParamType = 4
+	GetLibraryItemsQueryParamTypeAudio   GetLibraryItemsQueryParamType = 8
 )
 
 func (e GetLibraryItemsQueryParamType) ToPointer() *GetLibraryItemsQueryParamType {
@@ -146,6 +147,8 @@ func (e *GetLibraryItemsQueryParamType) UnmarshalJSON(data []byte) error {
 	case 3:
 		fallthrough
 	case 4:
+		fallthrough
+	case 8:
 		*e = GetLibraryItemsQueryParamType(v)
 		return nil
 	default:

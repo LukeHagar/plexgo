@@ -23,6 +23,7 @@ const (
 	TypeTvShow  Type = 2
 	TypeSeason  Type = 3
 	TypeEpisode Type = 4
+	TypeAudio   Type = 8
 )
 
 func (e Type) ToPointer() *Type {
@@ -41,6 +42,8 @@ func (e *Type) UnmarshalJSON(data []byte) error {
 	case 3:
 		fallthrough
 	case 4:
+		fallthrough
+	case 8:
 		*e = Type(v)
 		return nil
 	default:

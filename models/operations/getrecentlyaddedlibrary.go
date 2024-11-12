@@ -23,6 +23,7 @@ const (
 	QueryParamTypeTvShow  QueryParamType = 2
 	QueryParamTypeSeason  QueryParamType = 3
 	QueryParamTypeEpisode QueryParamType = 4
+	QueryParamTypeAudio   QueryParamType = 8
 )
 
 func (e QueryParamType) ToPointer() *QueryParamType {
@@ -41,6 +42,8 @@ func (e *QueryParamType) UnmarshalJSON(data []byte) error {
 	case 3:
 		fallthrough
 	case 4:
+		fallthrough
+	case 8:
 		*e = QueryParamType(v)
 		return nil
 	default:

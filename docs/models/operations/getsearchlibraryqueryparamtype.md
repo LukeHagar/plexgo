@@ -17,3 +17,4 @@ E.g. A movie library will not return anything with type 3 as there are no season
 | `GetSearchLibraryQueryParamTypeTvShow`  | 2                                       |
 | `GetSearchLibraryQueryParamTypeSeason`  | 3                                       |
 | `GetSearchLibraryQueryParamTypeEpisode` | 4                                       |
+| `GetSearchLibraryQueryParamTypeAudio`   | 8                                       |
