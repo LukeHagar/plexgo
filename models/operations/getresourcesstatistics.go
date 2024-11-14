@@ -10,7 +10,7 @@ type GetResourcesStatisticsRequest struct {
 	// The timespan to retrieve statistics for
 	// the exact meaning of this parameter is not known
 	//
-	Timespan *int64 `queryParam:"style=form,explode=true,name=Timespan"`
+	Timespan *int64 `queryParam:"style=form,explode=true,name=timespan"`
 }
 
 func (o *GetResourcesStatisticsRequest) GetTimespan() *int64 {
