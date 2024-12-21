@@ -10,7 +10,7 @@ import (
 	"github.com/LukeHagar/plexgo/internal/utils"
 	"github.com/LukeHagar/plexgo/models/operations"
 	"github.com/LukeHagar/plexgo/models/sdkerrors"
-	"github.com/cenkalti/backoff/v4"
+	"github.com/LukeHagar/plexgo/retry"
 	"net/http"
 	"net/url"
 )
@@ -66,7 +66,12 @@ func (s *Search) PerformSearch(ctx context.Context, query string, sectionID *flo
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/hubs/search")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -96,6 +101,10 @@ func (s *Search) PerformSearch(ctx context.Context, query string, sectionID *flo
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -128,7 +137,11 @@ func (s *Search) PerformSearch(ctx context.Context, query string, sectionID *flo
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -286,7 +299,12 @@ func (s *Search) PerformVoiceSearch(ctx context.Context, query string, sectionID
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/hubs/search/voice")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -316,6 +334,10 @@ func (s *Search) PerformVoiceSearch(ctx context.Context, query string, sectionID
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -348,7 +370,11 @@ func (s *Search) PerformVoiceSearch(ctx context.Context, query string, sectionID
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -501,7 +527,12 @@ func (s *Search) GetSearchResults(ctx context.Context, query string, opts ...ope
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/search")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -531,6 +562,10 @@ func (s *Search) GetSearchResults(ctx context.Context, query string, opts ...ope
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -563,7 +598,11 @@ func (s *Search) GetSearchResults(ctx context.Context, query string, opts ...ope
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)

@@ -23,23 +23,19 @@ This endpoint will write a single-line log message, including a level and source
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Log.LogLine(ctx, operations.LevelThree, "Test log message", "Postman")
     if err != nil {
         log.Fatal(err)
@@ -103,22 +99,18 @@ Ensure each parameter is properly URL-encoded to avoid interpretation issues.
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Log.LogMultiLine(ctx, "level=4&message=Test%20message%201&source=postman\n" +
     "level=3&message=Test%20message%202&source=postman\n" +
     "level=1&message=Test%20message%203&source=postman")
@@ -162,22 +154,18 @@ This endpoint will enable all Plex Media Serverlogs to be sent to the Papertrail
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Log.EnablePaperTrail(ctx)
     if err != nil {
         log.Fatal(err)

@@ -6,7 +6,6 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/LukeHagar/plexgo/internal/globals"
 	"github.com/LukeHagar/plexgo/internal/hooks"
 	"github.com/LukeHagar/plexgo/internal/utils"
 	"github.com/LukeHagar/plexgo/models/components"
@@ -58,7 +57,6 @@ type sdkConfiguration struct {
 	SDKVersion        string
 	GenVersion        string
 	UserAgent         string
-	Globals           globals.Globals
 	RetryConfig       *retry.Config
 	Hooks             *hooks.Hooks
 	Timeout           *time.Duration
@@ -281,41 +279,6 @@ func WithSecuritySource(security func(context.Context) (components.Security, err
 	}
 }
 
-// WithClientID allows setting the ClientID parameter for all supported operations
-func WithClientID(clientID string) SDKOption {
-	return func(sdk *PlexAPI) {
-		sdk.sdkConfiguration.Globals.ClientID = &clientID
-	}
-}
-
-// WithClientName allows setting the ClientName parameter for all supported operations
-func WithClientName(clientName string) SDKOption {
-	return func(sdk *PlexAPI) {
-		sdk.sdkConfiguration.Globals.ClientName = &clientName
-	}
-}
-
-// WithClientVersion allows setting the ClientVersion parameter for all supported operations
-func WithClientVersion(clientVersion string) SDKOption {
-	return func(sdk *PlexAPI) {
-		sdk.sdkConfiguration.Globals.ClientVersion = &clientVersion
-	}
-}
-
-// WithPlatform allows setting the Platform parameter for all supported operations
-func WithPlatform(platform string) SDKOption {
-	return func(sdk *PlexAPI) {
-		sdk.sdkConfiguration.Globals.Platform = &platform
-	}
-}
-
-// WithDeviceNickname allows setting the DeviceNickname parameter for all supported operations
-func WithDeviceNickname(deviceNickname string) SDKOption {
-	return func(sdk *PlexAPI) {
-		sdk.sdkConfiguration.Globals.DeviceNickname = &deviceNickname
-	}
-}
-
 func WithRetryConfig(retryConfig retry.Config) SDKOption {
 	return func(sdk *PlexAPI) {
 		sdk.sdkConfiguration.RetryConfig = &retryConfig
@@ -335,10 +298,9 @@ func New(opts ...SDKOption) *PlexAPI {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.3",
-			SDKVersion:        "0.16.1",
-			GenVersion:        "2.457.9",
-			UserAgent:         "speakeasy-sdk/go 0.16.1 2.457.9 0.0.3 github.com/LukeHagar/plexgo",
-			Globals:           globals.Globals{},
+			SDKVersion:        "0.17.0",
+			GenVersion:        "2.483.1",
+			UserAgent:         "speakeasy-sdk/go 0.17.0 2.483.1 0.0.3 github.com/LukeHagar/plexgo",
 			ServerDefaults: []map[string]string{
 				{
 					"protocol": "https",

@@ -32,22 +32,18 @@ This resource returns hash values for local files
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Library.GetFileHash(ctx, "file://C:\Image.png&type=13", nil)
     if err != nil {
         log.Fatal(err)
@@ -90,23 +86,19 @@ This endpoint will return the recently added content.
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Library.GetRecentlyAddedLibrary(ctx, operations.GetRecentlyAddedLibraryRequest{
         ContentDirectoryID: plexgo.Int64(2),
         PinnedContentDirectoryID: []int64{
@@ -174,22 +166,18 @@ This allows a client to provide a rich interface around the media (e.g. allow so
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Library.GetAllLibraries(ctx)
     if err != nil {
         log.Fatal(err)
@@ -268,22 +256,18 @@ Each type in the library comes with a set of filters and sorts, aiding in buildi
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Library.GetLibraryDetails(ctx, 9518, nil)
     if err != nil {
         log.Fatal(err)
@@ -325,22 +309,18 @@ Delete a library using a specific section id
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Library.DeleteLibrary(ctx, 9518)
     if err != nil {
         log.Fatal(err)
@@ -393,6 +373,7 @@ Fetches details from a specific section of the library identified by a section k
 - `resolution`: Items categorized by resolution.
 - `firstCharacter`: Items categorized by the first letter.
 - `folder`: Items categorized by folder.
+- `albums`: Items categorized by album.
 
 
 ### Example Usage
@@ -401,23 +382,19 @@ Fetches details from a specific section of the library identified by a section k
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Library.GetLibraryItems(ctx, operations.GetLibraryItemsRequest{
         Tag: operations.TagEdition,
         IncludeGuids: operations.IncludeGuidsEnable.ToPointer(),
@@ -467,23 +444,19 @@ This endpoint Refreshes all the Metadata of the library.
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Library.GetRefreshLibraryMetadata(ctx, 9518, operations.ForceOne.ToPointer())
     if err != nil {
         log.Fatal(err)
@@ -543,23 +516,19 @@ Each type in the library comes with a set of filters and sorts, aiding in buildi
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Library.GetSearchLibrary(ctx, 9518, operations.GetSearchLibraryQueryParamTypeTvShow)
     if err != nil {
         log.Fatal(err)
@@ -602,25 +571,22 @@ Search the provided query across all library sections, or a single section, and 
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Library.GetSearchAllLibraries(ctx, operations.GetSearchAllLibrariesRequest{
         Query: "<value>",
+        ClientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
         SearchTypes: []operations.SearchTypes{
             operations.SearchTypesPeople,
         },
@@ -667,22 +633,18 @@ This endpoint will return the metadata of a library item specified with the rati
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Library.GetMetaDataByRatingKey(ctx, 9518)
     if err != nil {
         log.Fatal(err)
@@ -724,22 +686,18 @@ This endpoint will return the children of of a library item specified with the r
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Library.GetMetadataChildren(ctx, 1539.14, plexgo.String("Stream"))
     if err != nil {
         log.Fatal(err)
@@ -782,23 +740,19 @@ This endpoint will return the top watched content from libraries of a certain ty
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Library.GetTopWatchedContent(ctx, operations.GetTopWatchedContentQueryParamTypeTvShow, plexgo.Int64(1))
     if err != nil {
         log.Fatal(err)
@@ -841,22 +795,18 @@ This endpoint will return the on deck content.
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Library.GetOnDeck(ctx)
     if err != nil {
         log.Fatal(err)

@@ -28,22 +28,18 @@ Get Server Capabilities
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Server.GetServerCapabilities(ctx)
     if err != nil {
         log.Fatal(err)
@@ -83,22 +79,18 @@ Get Server Preferences
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Server.GetServerPreferences(ctx)
     if err != nil {
         log.Fatal(err)
@@ -138,22 +130,18 @@ Get Available Clients
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Server.GetAvailableClients(ctx)
     if err != nil {
         log.Fatal(err)
@@ -193,22 +181,18 @@ Get Devices
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Server.GetDevices(ctx)
     if err != nil {
         log.Fatal(err)
@@ -248,21 +232,16 @@ This request is useful to determine if the server is online or offline
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"log"
 )
 
 func main() {
-    s := plexgo.New(
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
-    )
-
     ctx := context.Background()
+    
+    s := plexgo.New()
+
     res, err := s.Server.GetServerIdentity(ctx)
     if err != nil {
         log.Fatal(err)
@@ -301,22 +280,18 @@ Returns MyPlex Account Information
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Server.GetMyPlexAccount(ctx)
     if err != nil {
         log.Fatal(err)
@@ -357,30 +332,26 @@ Plex's Photo transcoder is used throughout the service to serve images at specif
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Server.GetResizedPhoto(ctx, operations.GetResizedPhotoRequest{
         Width: 110,
         Height: 165,
         Opacity: 100,
         Blur: 0,
         MinSize: operations.MinSizeOne,
-        Upscale: operations.UpscaleOne,
+        Upscale: operations.UpscaleZero,
         URL: "/library/metadata/49564/thumb/1654258204",
     })
     if err != nil {
@@ -422,22 +393,18 @@ Retrieves media providers and their features from the Plex server.
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Server.GetMediaProviders(ctx, "CV5xoxjTpFKUzBTShsaf")
     if err != nil {
         log.Fatal(err)
@@ -478,22 +445,18 @@ Get Server List
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Server.GetServerList(ctx)
     if err != nil {
         log.Fatal(err)

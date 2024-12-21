@@ -24,6 +24,8 @@ const (
 	GetTopWatchedContentQueryParamTypeSeason  GetTopWatchedContentQueryParamType = 3
 	GetTopWatchedContentQueryParamTypeEpisode GetTopWatchedContentQueryParamType = 4
 	GetTopWatchedContentQueryParamTypeAudio   GetTopWatchedContentQueryParamType = 8
+	GetTopWatchedContentQueryParamTypeAlbum   GetTopWatchedContentQueryParamType = 9
+	GetTopWatchedContentQueryParamTypeTrack   GetTopWatchedContentQueryParamType = 10
 )
 
 func (e GetTopWatchedContentQueryParamType) ToPointer() *GetTopWatchedContentQueryParamType {
@@ -44,6 +46,10 @@ func (e *GetTopWatchedContentQueryParamType) UnmarshalJSON(data []byte) error {
 	case 4:
 		fallthrough
 	case 8:
+		fallthrough
+	case 9:
+		fallthrough
+	case 10:
 		*e = GetTopWatchedContentQueryParamType(v)
 		return nil
 	default:

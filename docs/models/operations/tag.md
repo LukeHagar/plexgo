@@ -26,3 +26,4 @@ A key representing a specific tag within the section.
 | `TagResolution`     | resolution          |
 | `TagFirstCharacter` | firstCharacter      |
 | `TagFolder`         | folder              |
+| `TagAlbums`         | albums              |

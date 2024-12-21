@@ -14,18 +14,6 @@ var GetServerResourcesServerList = []string{
 	"https://plex.tv/api/v2",
 }
 
-type GetServerResourcesGlobals struct {
-	// An opaque identifier unique to the client (UUID, serial number, or other unique device ID)
-	ClientID *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
-}
-
-func (o *GetServerResourcesGlobals) GetClientID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ClientID
-}
-
 // IncludeHTTPS - Include Https entries in the results
 type IncludeHTTPS int
 
@@ -118,7 +106,7 @@ type GetServerResourcesRequest struct {
 	// Include IPv6 entries in the results
 	IncludeIPv6 *IncludeIPv6 `default:"0" queryParam:"style=form,explode=true,name=includeIPv6"`
 	// An opaque identifier unique to the client (UUID, serial number, or other unique device ID)
-	ClientID *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+	ClientID string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
 }
 
 func (g GetServerResourcesRequest) MarshalJSON() ([]byte, error) {
@@ -153,9 +141,9 @@ func (o *GetServerResourcesRequest) GetIncludeIPv6() *IncludeIPv6 {
 	return o.IncludeIPv6
 }
 
-func (o *GetServerResourcesRequest) GetClientID() *string {
+func (o *GetServerResourcesRequest) GetClientID() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.ClientID
 }

@@ -34,22 +34,18 @@ This request is intended to be very fast, and called as the user types.
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Search.PerformSearch(ctx, "dylan", nil, plexgo.Float64(5))
     if err != nil {
         log.Fatal(err)
@@ -96,22 +92,18 @@ Results, as well as their containing per-type hubs, contain a `distance` attribu
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Search.PerformVoiceSearch(ctx, "dead+poop", nil, plexgo.Float64(5))
     if err != nil {
         log.Fatal(err)
@@ -154,22 +146,18 @@ This will search the database for the string provided.
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Search.GetSearchResults(ctx, "110")
     if err != nil {
         log.Fatal(err)

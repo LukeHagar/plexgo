@@ -24,22 +24,18 @@ Returns a list of butler tasks
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Butler.GetButlerTasks(ctx)
     if err != nil {
         log.Fatal(err)
@@ -84,22 +80,18 @@ This endpoint will attempt to start all Butler tasks that are enabled in the set
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Butler.StartAllTasks(ctx)
     if err != nil {
         log.Fatal(err)
@@ -140,22 +132,18 @@ This endpoint will stop all currently running tasks and remove any scheduled tas
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Butler.StopAllTasks(ctx)
     if err != nil {
         log.Fatal(err)
@@ -200,23 +188,19 @@ This endpoint will attempt to start a single Butler task that is enabled in the 
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Butler.StartTask(ctx, operations.TaskNameCleanOldBundles)
     if err != nil {
         log.Fatal(err)
@@ -258,23 +242,19 @@ This endpoint will stop a currently running task by name, or remove it from the 
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Butler.StopTask(ctx, operations.PathParamTaskNameBackupDatabase)
     if err != nil {
         log.Fatal(err)

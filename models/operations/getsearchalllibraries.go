@@ -10,18 +10,6 @@ import (
 	"net/http"
 )
 
-type GetSearchAllLibrariesGlobals struct {
-	// An opaque identifier unique to the client (UUID, serial number, or other unique device ID)
-	ClientID *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
-}
-
-func (o *GetSearchAllLibrariesGlobals) GetClientID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ClientID
-}
-
 type SearchTypes string
 
 const (
@@ -115,7 +103,7 @@ type GetSearchAllLibrariesRequest struct {
 	// The search query term.
 	Query string `queryParam:"style=form,explode=true,name=query"`
 	// An opaque identifier unique to the client (UUID, serial number, or other unique device ID)
-	ClientID *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+	ClientID string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
 	// Limit the number of results returned.
 	Limit *int64 `queryParam:"style=form,explode=true,name=limit"`
 	// A comma-separated list of search types to include. Valid values are: movies, music, otherVideos, people, tv.
@@ -145,9 +133,9 @@ func (o *GetSearchAllLibrariesRequest) GetQuery() string {
 	return o.Query
 }
 
-func (o *GetSearchAllLibrariesRequest) GetClientID() *string {
+func (o *GetSearchAllLibrariesRequest) GetClientID() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.ClientID
 }
@@ -242,17 +230,17 @@ func (e *GetSearchAllLibrariesFlattenSeasons) UnmarshalJSON(data []byte) error {
 // GetSearchAllLibrariesShowOrdering - Setting that indicates the episode ordering for the show
 // None = Library default,
 // tmdbAiring = The Movie Database (Aired),
-// aired = TheTVDB (Aired),
-// dvd = TheTVDB (DVD),
-// absolute = TheTVDB (Absolute)).
+// tvdbAiring = TheTVDB (Aired),
+// tvdbDvd = TheTVDB (DVD),
+// tvdbAbsolute = TheTVDB (Absolute)).
 type GetSearchAllLibrariesShowOrdering string
 
 const (
-	GetSearchAllLibrariesShowOrderingNone       GetSearchAllLibrariesShowOrdering = "None"
-	GetSearchAllLibrariesShowOrderingTmdbAiring GetSearchAllLibrariesShowOrdering = "tmdbAiring"
-	GetSearchAllLibrariesShowOrderingAired      GetSearchAllLibrariesShowOrdering = "aired"
-	GetSearchAllLibrariesShowOrderingDvd        GetSearchAllLibrariesShowOrdering = "dvd"
-	GetSearchAllLibrariesShowOrderingAbsolute   GetSearchAllLibrariesShowOrdering = "absolute"
+	GetSearchAllLibrariesShowOrderingNone         GetSearchAllLibrariesShowOrdering = "None"
+	GetSearchAllLibrariesShowOrderingTmdbAiring   GetSearchAllLibrariesShowOrdering = "tmdbAiring"
+	GetSearchAllLibrariesShowOrderingTvdbAiring   GetSearchAllLibrariesShowOrdering = "tvdbAiring"
+	GetSearchAllLibrariesShowOrderingTvdbDvd      GetSearchAllLibrariesShowOrdering = "tvdbDvd"
+	GetSearchAllLibrariesShowOrderingTvdbAbsolute GetSearchAllLibrariesShowOrdering = "tvdbAbsolute"
 )
 
 func (e GetSearchAllLibrariesShowOrdering) ToPointer() *GetSearchAllLibrariesShowOrdering {
@@ -268,11 +256,11 @@ func (e *GetSearchAllLibrariesShowOrdering) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "tmdbAiring":
 		fallthrough
-	case "aired":
+	case "tvdbAiring":
 		fallthrough
-	case "dvd":
+	case "tvdbDvd":
 		fallthrough
-	case "absolute":
+	case "tvdbAbsolute":
 		*e = GetSearchAllLibrariesShowOrdering(v)
 		return nil
 	default:
@@ -1240,9 +1228,9 @@ type GetSearchAllLibrariesMetadata struct {
 	// Setting that indicates the episode ordering for the show
 	// None = Library default,
 	// tmdbAiring = The Movie Database (Aired),
-	// aired = TheTVDB (Aired),
-	// dvd = TheTVDB (DVD),
-	// absolute = TheTVDB (Absolute)).
+	// tvdbAiring = TheTVDB (Aired),
+	// tvdbDvd = TheTVDB (DVD),
+	// tvdbAbsolute = TheTVDB (Absolute)).
 	//
 	ShowOrdering          *GetSearchAllLibrariesShowOrdering `json:"showOrdering,omitempty"`
 	Thumb                 *string                            `json:"thumb,omitempty"`

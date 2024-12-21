@@ -12,59 +12,11 @@ var GetTokenByPinIDServerList = []string{
 	"https://plex.tv/api/v2",
 }
 
-type GetTokenByPinIDGlobals struct {
-	// An opaque identifier unique to the client (UUID, serial number, or other unique device ID)
-	ClientID *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
-	// The name of the client application. (Plex Web, Plex Media Server, etc.)
-	ClientName *string `header:"style=simple,explode=false,name=X-Plex-Product"`
-	// A relatively friendly name for the client device
-	DeviceNickname *string `header:"style=simple,explode=false,name=X-Plex-Device"`
-	// The version of the client application.
-	ClientVersion *string `header:"style=simple,explode=false,name=X-Plex-Version"`
-	// The platform of the client application.
-	Platform *string `header:"style=simple,explode=false,name=X-Plex-Platform"`
-}
-
-func (o *GetTokenByPinIDGlobals) GetClientID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ClientID
-}
-
-func (o *GetTokenByPinIDGlobals) GetClientName() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ClientName
-}
-
-func (o *GetTokenByPinIDGlobals) GetDeviceNickname() *string {
-	if o == nil {
-		return nil
-	}
-	return o.DeviceNickname
-}
-
-func (o *GetTokenByPinIDGlobals) GetClientVersion() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ClientVersion
-}
-
-func (o *GetTokenByPinIDGlobals) GetPlatform() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Platform
-}
-
 type GetTokenByPinIDRequest struct {
 	// The PinID to retrieve an access token for
 	PinID int64 `pathParam:"style=simple,explode=false,name=pinID"`
 	// An opaque identifier unique to the client (UUID, serial number, or other unique device ID)
-	ClientID *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+	ClientID string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
 	// The name of the client application. (Plex Web, Plex Media Server, etc.)
 	ClientName *string `header:"style=simple,explode=false,name=X-Plex-Product"`
 	// A relatively friendly name for the client device
@@ -82,9 +34,9 @@ func (o *GetTokenByPinIDRequest) GetPinID() int64 {
 	return o.PinID
 }
 
-func (o *GetTokenByPinIDRequest) GetClientID() *string {
+func (o *GetTokenByPinIDRequest) GetClientID() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.ClientID
 }

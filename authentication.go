@@ -10,7 +10,7 @@ import (
 	"github.com/LukeHagar/plexgo/internal/utils"
 	"github.com/LukeHagar/plexgo/models/operations"
 	"github.com/LukeHagar/plexgo/models/sdkerrors"
-	"github.com/cenkalti/backoff/v4"
+	"github.com/LukeHagar/plexgo/retry"
 	"net/http"
 	"net/url"
 )
@@ -53,7 +53,12 @@ func (s *Authentication) GetTransientToken(ctx context.Context, type_ operations
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/security/token")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -83,6 +88,10 @@ func (s *Authentication) GetTransientToken(ctx context.Context, type_ operations
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -115,7 +124,11 @@ func (s *Authentication) GetTransientToken(ctx context.Context, type_ operations
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -269,7 +282,12 @@ func (s *Authentication) GetSourceConnectionInformation(ctx context.Context, sou
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/security/resources")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -299,6 +317,10 @@ func (s *Authentication) GetSourceConnectionInformation(ctx context.Context, sou
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -331,7 +353,11 @@ func (s *Authentication) GetSourceConnectionInformation(ctx context.Context, sou
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -470,7 +496,6 @@ func (s *Authentication) GetTokenDetails(ctx context.Context, opts ...operations
 
 	o := operations.Options{}
 	supportedOptions := []string{
-		operations.SupportedOptionServerURL,
 		operations.SupportedOptionRetries,
 		operations.SupportedOptionTimeout,
 	}
@@ -513,6 +538,10 @@ func (s *Authentication) GetTokenDetails(ctx context.Context, opts ...operations
 		return nil, err
 	}
 
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
+	}
+
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
@@ -543,7 +572,11 @@ func (s *Authentication) GetTokenDetails(ctx context.Context, opts ...operations
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -700,17 +733,8 @@ func (s *Authentication) PostUsersSignInData(ctx context.Context, request operat
 		SecuritySource: nil,
 	}
 
-	globals := operations.PostUsersSignInDataGlobals{
-		ClientID:       s.sdkConfiguration.Globals.ClientID,
-		ClientName:     s.sdkConfiguration.Globals.ClientName,
-		DeviceNickname: s.sdkConfiguration.Globals.DeviceNickname,
-		ClientVersion:  s.sdkConfiguration.Globals.ClientVersion,
-		Platform:       s.sdkConfiguration.Globals.Platform,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
-		operations.SupportedOptionServerURL,
 		operations.SupportedOptionRetries,
 		operations.SupportedOptionTimeout,
 	}
@@ -755,7 +779,11 @@ func (s *Authentication) PostUsersSignInData(ctx context.Context, request operat
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 	req.Header.Set("Content-Type", reqContentType)
 
-	utils.PopulateHeaders(ctx, req, request, globals)
+	utils.PopulateHeaders(ctx, req, request, nil)
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
+	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
@@ -787,7 +815,11 @@ func (s *Authentication) PostUsersSignInData(ctx context.Context, request operat
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)

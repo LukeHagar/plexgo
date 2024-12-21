@@ -782,15 +782,25 @@ func (o *Producer) GetThumb() *string {
 }
 
 type GetMetaDataByRatingKeyMetadata struct {
-	RatingKey              *string                          `json:"ratingKey,omitempty"`
-	Key                    *string                          `json:"key,omitempty"`
-	GUID                   *string                          `json:"guid,omitempty"`
-	Studio                 *string                          `json:"studio,omitempty"`
-	Type                   *string                          `json:"type,omitempty"`
-	Title                  *string                          `json:"title,omitempty"`
-	LibrarySectionTitle    *string                          `json:"librarySectionTitle,omitempty"`
-	LibrarySectionID       *int                             `json:"librarySectionID,omitempty"`
-	LibrarySectionKey      *string                          `json:"librarySectionKey,omitempty"`
+	RatingKey           *string `json:"ratingKey,omitempty"`
+	Key                 *string `json:"key,omitempty"`
+	GUID                *string `json:"guid,omitempty"`
+	Studio              *string `json:"studio,omitempty"`
+	Type                *string `json:"type,omitempty"`
+	Title               *string `json:"title,omitempty"`
+	LibrarySectionTitle *string `json:"librarySectionTitle,omitempty"`
+	LibrarySectionID    *int    `json:"librarySectionID,omitempty"`
+	LibrarySectionKey   *string `json:"librarySectionKey,omitempty"`
+	// The name of the album artist for the track when audio, and the name of the TV show for the episode when video.
+	GrandparentTitle *string `json:"grandparentTitle,omitempty"`
+	// The name of the album for the track when audio, and the name of the season for the episode when TV show.
+	ParentTitle *string `json:"parentTitle,omitempty"`
+	// The orginal untranslated name of the media item when non-english.
+	OriginalTitle *string `json:"originalTitle,omitempty"`
+	// The index starting from 0 of this media item in the MetaData array.
+	Index *int64 `json:"index,omitempty"`
+	// The parent index starting from 0 of this media item in the parent MetaData array.
+	ParentIndex            *int64                           `json:"parentIndex,omitempty"`
 	ContentRating          *string                          `json:"contentRating,omitempty"`
 	Summary                *string                          `json:"summary,omitempty"`
 	Rating                 *float64                         `json:"rating,omitempty"`
@@ -889,6 +899,41 @@ func (o *GetMetaDataByRatingKeyMetadata) GetLibrarySectionKey() *string {
 		return nil
 	}
 	return o.LibrarySectionKey
+}
+
+func (o *GetMetaDataByRatingKeyMetadata) GetGrandparentTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.GrandparentTitle
+}
+
+func (o *GetMetaDataByRatingKeyMetadata) GetParentTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ParentTitle
+}
+
+func (o *GetMetaDataByRatingKeyMetadata) GetOriginalTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.OriginalTitle
+}
+
+func (o *GetMetaDataByRatingKeyMetadata) GetIndex() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Index
+}
+
+func (o *GetMetaDataByRatingKeyMetadata) GetParentIndex() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.ParentIndex
 }
 
 func (o *GetMetaDataByRatingKeyMetadata) GetContentRating() *string {

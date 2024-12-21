@@ -40,16 +40,24 @@ The following SDKs are generated from the OpenAPI Specification. They are automa
 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
+<!-- $toc-max-depth=2 -->
+* [github.com/LukeHagar/plexgo](#githubcomlukehagarplexgo)
+* [Plex Media Server OpenAPI Specification](#plex-media-server-openapi-specification)
+  * [Documentation](#documentation)
+  * [SDKs](#sdks)
+  * [SDK Installation](#sdk-installation)
+  * [SDK Example Usage](#sdk-example-usage)
+  * [Available Resources and Operations](#available-resources-and-operations)
+  * [Retries](#retries)
+  * [Error Handling](#error-handling)
+  * [Server Selection](#server-selection)
+  * [Custom HTTP Client](#custom-http-client)
+  * [Authentication](#authentication)
+  * [Special Types](#special-types)
+* [Development](#development)
+  * [Maturity](#maturity)
+  * [Contributions](#contributions)
 
-* [SDK Installation](#sdk-installation)
-* [SDK Example Usage](#sdk-example-usage)
-* [Available Resources and Operations](#available-resources-and-operations)
-* [Retries](#retries)
-* [Error Handling](#error-handling)
-* [Server Selection](#server-selection)
-* [Custom HTTP Client](#custom-http-client)
-* [Authentication](#authentication)
-* [Special Types](#special-types)
 <!-- End Table of Contents [toc] -->
 
 <!-- Start SDK Installation [installation] -->
@@ -76,16 +84,12 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := plexgo.New(
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-		plexgo.WithClientName("Plex for Roku"),
-		plexgo.WithClientVersion("2.4.1"),
-		plexgo.WithPlatform("Roku"),
-		plexgo.WithDeviceNickname("Roku 3"),
 	)
 
-	ctx := context.Background()
 	res, err := s.Server.GetServerCapabilities(ctx)
 	if err != nil {
 		log.Fatal(err)
@@ -250,16 +254,12 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := plexgo.New(
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-		plexgo.WithClientName("Plex for Roku"),
-		plexgo.WithClientVersion("2.4.1"),
-		plexgo.WithPlatform("Roku"),
-		plexgo.WithDeviceNickname("Roku 3"),
 	)
 
-	ctx := context.Background()
 	res, err := s.Server.GetServerCapabilities(ctx, operations.WithRetries(
 		retry.Config{
 			Strategy: "backoff",
@@ -293,6 +293,8 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := plexgo.New(
 		plexgo.WithRetryConfig(
 			retry.Config{
@@ -306,14 +308,8 @@ func main() {
 				RetryConnectionErrors: false,
 			}),
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-		plexgo.WithClientName("Plex for Roku"),
-		plexgo.WithClientVersion("2.4.1"),
-		plexgo.WithPlatform("Roku"),
-		plexgo.WithDeviceNickname("Roku 3"),
 	)
 
-	ctx := context.Background()
 	res, err := s.Server.GetServerCapabilities(ctx)
 	if err != nil {
 		log.Fatal(err)
@@ -355,16 +351,12 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := plexgo.New(
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-		plexgo.WithClientName("Plex for Roku"),
-		plexgo.WithClientVersion("2.4.1"),
-		plexgo.WithPlatform("Roku"),
-		plexgo.WithDeviceNickname("Roku 3"),
 	)
 
-	ctx := context.Background()
 	res, err := s.Server.GetServerCapabilities(ctx)
 	if err != nil {
 
@@ -414,17 +406,13 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := plexgo.New(
 		plexgo.WithServerURL("https://10.10.10.47:32400"),
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-		plexgo.WithClientName("Plex for Roku"),
-		plexgo.WithClientVersion("2.4.1"),
-		plexgo.WithPlatform("Roku"),
-		plexgo.WithDeviceNickname("Roku 3"),
 	)
 
-	ctx := context.Background()
 	res, err := s.Server.GetServerCapabilities(ctx)
 	if err != nil {
 		log.Fatal(err)
@@ -450,16 +438,12 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := plexgo.New(
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-		plexgo.WithClientName("Plex for Roku"),
-		plexgo.WithClientVersion("2.4.1"),
-		plexgo.WithPlatform("Roku"),
-		plexgo.WithDeviceNickname("Roku 3"),
 	)
 
-	ctx := context.Background()
 	res, err := s.Plex.GetCompanionsData(ctx, operations.WithServerURL("https://plex.tv/api/v2"))
 	if err != nil {
 		log.Fatal(err)
@@ -523,16 +507,12 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := plexgo.New(
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-		plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-		plexgo.WithClientName("Plex for Roku"),
-		plexgo.WithClientVersion("2.4.1"),
-		plexgo.WithPlatform("Roku"),
-		plexgo.WithDeviceNickname("Roku 3"),
 	)
 
-	ctx := context.Background()
 	res, err := s.Server.GetServerCapabilities(ctx)
 	if err != nil {
 		log.Fatal(err)

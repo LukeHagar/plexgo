@@ -24,6 +24,8 @@ const (
 	TypeSeason  Type = 3
 	TypeEpisode Type = 4
 	TypeAudio   Type = 8
+	TypeAlbum   Type = 9
+	TypeTrack   Type = 10
 )
 
 func (e Type) ToPointer() *Type {
@@ -44,6 +46,10 @@ func (e *Type) UnmarshalJSON(data []byte) error {
 	case 4:
 		fallthrough
 	case 8:
+		fallthrough
+	case 9:
+		fallthrough
+	case 10:
 		*e = Type(v)
 		return nil
 	default:
@@ -561,17 +567,17 @@ func (e *FlattenSeasons) UnmarshalJSON(data []byte) error {
 // ShowOrdering - Setting that indicates the episode ordering for the show
 // None = Library default,
 // tmdbAiring = The Movie Database (Aired),
-// aired = TheTVDB (Aired),
-// dvd = TheTVDB (DVD),
-// absolute = TheTVDB (Absolute)).
+// tvdbAiring = TheTVDB (Aired),
+// tvdbDvd = TheTVDB (DVD),
+// tvdbAbsolute = TheTVDB (Absolute)).
 type ShowOrdering string
 
 const (
-	ShowOrderingNone       ShowOrdering = "None"
-	ShowOrderingTmdbAiring ShowOrdering = "tmdbAiring"
-	ShowOrderingAired      ShowOrdering = "aired"
-	ShowOrderingDvd        ShowOrdering = "dvd"
-	ShowOrderingAbsolute   ShowOrdering = "absolute"
+	ShowOrderingNone         ShowOrdering = "None"
+	ShowOrderingTmdbAiring   ShowOrdering = "tmdbAiring"
+	ShowOrderingTvdbAiring   ShowOrdering = "tvdbAiring"
+	ShowOrderingTvdbDvd      ShowOrdering = "tvdbDvd"
+	ShowOrderingTvdbAbsolute ShowOrdering = "tvdbAbsolute"
 )
 
 func (e ShowOrdering) ToPointer() *ShowOrdering {
@@ -587,11 +593,11 @@ func (e *ShowOrdering) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "tmdbAiring":
 		fallthrough
-	case "aired":
+	case "tvdbAiring":
 		fallthrough
-	case "dvd":
+	case "tvdbDvd":
 		fallthrough
-	case "absolute":
+	case "tvdbAbsolute":
 		*e = ShowOrdering(v)
 		return nil
 	default:
@@ -1559,9 +1565,9 @@ type GetRecentlyAddedMetadata struct {
 	// Setting that indicates the episode ordering for the show
 	// None = Library default,
 	// tmdbAiring = The Movie Database (Aired),
-	// aired = TheTVDB (Aired),
-	// dvd = TheTVDB (DVD),
-	// absolute = TheTVDB (Absolute)).
+	// tvdbAiring = TheTVDB (Aired),
+	// tvdbDvd = TheTVDB (DVD),
+	// tvdbAbsolute = TheTVDB (Absolute)).
 	//
 	ShowOrdering          *ShowOrdering `json:"showOrdering,omitempty"`
 	Thumb                 *string       `json:"thumb,omitempty"`

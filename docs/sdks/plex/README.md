@@ -26,22 +26,18 @@ Get Companions Data
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Plex.GetCompanionsData(ctx)
     if err != nil {
         log.Fatal(err)
@@ -81,22 +77,18 @@ Get friends of provided auth token.
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Plex.GetUserFriends(ctx)
     if err != nil {
         log.Fatal(err)
@@ -136,21 +128,16 @@ Returns the geolocation and locale data of the caller
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"log"
 )
 
 func main() {
-    s := plexgo.New(
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
-    )
-
     ctx := context.Background()
+    
+    s := plexgo.New()
+
     res, err := s.Plex.GetGeoData(ctx)
     if err != nil {
         log.Fatal(err)
@@ -190,22 +177,18 @@ Retrieves the home data for the authenticated user, including details like home 
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Plex.GetHomeData(ctx)
     if err != nil {
         log.Fatal(err)
@@ -245,24 +228,20 @@ Get Plex server access tokens and server connections
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
-    res, err := s.Plex.GetServerResources(ctx, operations.IncludeHTTPSEnable.ToPointer(), operations.IncludeRelayEnable.ToPointer(), operations.IncludeIPv6Enable.ToPointer(), plexgo.String("3381b62b-9ab7-4e37-827b-203e9809eb58"))
+    res, err := s.Plex.GetServerResources(ctx, "3381b62b-9ab7-4e37-827b-203e9809eb58", operations.IncludeHTTPSEnable.ToPointer(), operations.IncludeRelayEnable.ToPointer(), operations.IncludeIPv6Enable.ToPointer())
     if err != nil {
         log.Fatal(err)
     }
@@ -277,10 +256,10 @@ func main() {
 | Parameter                                                                                                          | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        | Example                                                                                                            |
 | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
 | `ctx`                                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                                              | :heavy_check_mark:                                                                                                 | The context to use for the request.                                                                                |                                                                                                                    |
+| `clientID`                                                                                                         | *string*                                                                                                           | :heavy_check_mark:                                                                                                 | An opaque identifier unique to the client (UUID, serial number, or other unique device ID)                         | 3381b62b-9ab7-4e37-827b-203e9809eb58                                                                               |
 | `includeHTTPS`                                                                                                     | [*operations.IncludeHTTPS](../../models/operations/includehttps.md)                                                | :heavy_minus_sign:                                                                                                 | Include Https entries in the results                                                                               | 1                                                                                                                  |
 | `includeRelay`                                                                                                     | [*operations.IncludeRelay](../../models/operations/includerelay.md)                                                | :heavy_minus_sign:                                                                                                 | Include Relay addresses in the results <br/>E.g: https://10-0-0-25.bbf8e10c7fa20447cacee74cd9914cde.plex.direct:32400<br/> | 1                                                                                                                  |
 | `includeIPv6`                                                                                                      | [*operations.IncludeIPv6](../../models/operations/includeipv6.md)                                                  | :heavy_minus_sign:                                                                                                 | Include IPv6 entries in the results                                                                                | 1                                                                                                                  |
-| `clientID`                                                                                                         | **string*                                                                                                          | :heavy_minus_sign:                                                                                                 | An opaque identifier unique to the client (UUID, serial number, or other unique device ID)                         | 3381b62b-9ab7-4e37-827b-203e9809eb58                                                                               |
 | `opts`                                                                                                             | [][operations.Option](../../models/operations/option.md)                                                           | :heavy_minus_sign:                                                                                                 | The options for this request.                                                                                      |                                                                                                                    |
 
 ### Response
@@ -305,23 +284,24 @@ Retrieve a Pin ID from Plex.tv to use for authentication flows
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
 func main() {
-    s := plexgo.New(
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
-    )
-
     ctx := context.Background()
-    res, err := s.Plex.GetPin(ctx, operations.GetPinRequest{})
+    
+    s := plexgo.New()
+
+    res, err := s.Plex.GetPin(ctx, operations.GetPinRequest{
+        ClientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+        ClientName: plexgo.String("Plex for Roku"),
+        DeviceNickname: plexgo.String("Roku 3"),
+        ClientVersion: plexgo.String("2.4.1"),
+        Platform: plexgo.String("Roku"),
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -360,24 +340,24 @@ Retrieve an Access Token from Plex.tv after the Pin has been authenticated
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
 func main() {
-    s := plexgo.New(
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
-    )
-
     ctx := context.Background()
+    
+    s := plexgo.New()
+
     res, err := s.Plex.GetTokenByPinID(ctx, operations.GetTokenByPinIDRequest{
         PinID: 408895,
+        ClientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+        ClientName: plexgo.String("Plex for Roku"),
+        DeviceNickname: plexgo.String("Roku 3"),
+        ClientVersion: plexgo.String("2.4.1"),
+        Platform: plexgo.String("Roku"),
     })
     if err != nil {
         log.Fatal(err)

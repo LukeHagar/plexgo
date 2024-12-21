@@ -10,7 +10,7 @@ import (
 	"github.com/LukeHagar/plexgo/internal/utils"
 	"github.com/LukeHagar/plexgo/models/operations"
 	"github.com/LukeHagar/plexgo/models/sdkerrors"
-	"github.com/cenkalti/backoff/v4"
+	"github.com/LukeHagar/plexgo/retry"
 	"net/http"
 	"net/url"
 )
@@ -38,7 +38,6 @@ func (s *Plex) GetCompanionsData(ctx context.Context, opts ...operations.Option)
 
 	o := operations.Options{}
 	supportedOptions := []string{
-		operations.SupportedOptionServerURL,
 		operations.SupportedOptionRetries,
 		operations.SupportedOptionTimeout,
 	}
@@ -81,6 +80,10 @@ func (s *Plex) GetCompanionsData(ctx context.Context, opts ...operations.Option)
 		return nil, err
 	}
 
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
+	}
+
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
@@ -111,7 +114,11 @@ func (s *Plex) GetCompanionsData(ctx context.Context, opts ...operations.Option)
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -270,7 +277,6 @@ func (s *Plex) GetUserFriends(ctx context.Context, opts ...operations.Option) (*
 
 	o := operations.Options{}
 	supportedOptions := []string{
-		operations.SupportedOptionServerURL,
 		operations.SupportedOptionRetries,
 		operations.SupportedOptionTimeout,
 	}
@@ -313,6 +319,10 @@ func (s *Plex) GetUserFriends(ctx context.Context, opts ...operations.Option) (*
 		return nil, err
 	}
 
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
+	}
+
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
@@ -343,7 +353,11 @@ func (s *Plex) GetUserFriends(ctx context.Context, opts ...operations.Option) (*
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -502,7 +516,6 @@ func (s *Plex) GetGeoData(ctx context.Context, opts ...operations.Option) (*oper
 
 	o := operations.Options{}
 	supportedOptions := []string{
-		operations.SupportedOptionServerURL,
 		operations.SupportedOptionRetries,
 		operations.SupportedOptionTimeout,
 	}
@@ -541,6 +554,10 @@ func (s *Plex) GetGeoData(ctx context.Context, opts ...operations.Option) (*oper
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
+	}
+
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
@@ -571,7 +588,11 @@ func (s *Plex) GetGeoData(ctx context.Context, opts ...operations.Option) (*oper
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -740,7 +761,12 @@ func (s *Plex) GetHomeData(ctx context.Context, opts ...operations.Option) (*ope
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/home")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -766,6 +792,10 @@ func (s *Plex) GetHomeData(ctx context.Context, opts ...operations.Option) (*ope
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -798,7 +828,11 @@ func (s *Plex) GetHomeData(ctx context.Context, opts ...operations.Option) (*ope
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -947,7 +981,7 @@ func (s *Plex) GetHomeData(ctx context.Context, opts ...operations.Option) (*ope
 
 // GetServerResources - Get Server Resources
 // Get Plex server access tokens and server connections
-func (s *Plex) GetServerResources(ctx context.Context, includeHTTPS *operations.IncludeHTTPS, includeRelay *operations.IncludeRelay, includeIPv6 *operations.IncludeIPv6, clientID *string, opts ...operations.Option) (*operations.GetServerResourcesResponse, error) {
+func (s *Plex) GetServerResources(ctx context.Context, clientID string, includeHTTPS *operations.IncludeHTTPS, includeRelay *operations.IncludeRelay, includeIPv6 *operations.IncludeIPv6, opts ...operations.Option) (*operations.GetServerResourcesResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "get-server-resources",
@@ -962,13 +996,8 @@ func (s *Plex) GetServerResources(ctx context.Context, includeHTTPS *operations.
 		ClientID:     clientID,
 	}
 
-	globals := operations.GetServerResourcesGlobals{
-		ClientID: s.sdkConfiguration.Globals.ClientID,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
-		operations.SupportedOptionServerURL,
 		operations.SupportedOptionRetries,
 		operations.SupportedOptionTimeout,
 	}
@@ -1007,14 +1036,18 @@ func (s *Plex) GetServerResources(ctx context.Context, includeHTTPS *operations.
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, globals)
+	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -1047,7 +1080,11 @@ func (s *Plex) GetServerResources(ctx context.Context, includeHTTPS *operations.
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -1204,17 +1241,8 @@ func (s *Plex) GetPin(ctx context.Context, request operations.GetPinRequest, opt
 		SecuritySource: nil,
 	}
 
-	globals := operations.GetPinGlobals{
-		ClientID:       s.sdkConfiguration.Globals.ClientID,
-		ClientName:     s.sdkConfiguration.Globals.ClientName,
-		DeviceNickname: s.sdkConfiguration.Globals.DeviceNickname,
-		ClientVersion:  s.sdkConfiguration.Globals.ClientVersion,
-		Platform:       s.sdkConfiguration.Globals.Platform,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
-		operations.SupportedOptionServerURL,
 		operations.SupportedOptionRetries,
 		operations.SupportedOptionTimeout,
 	}
@@ -1253,10 +1281,14 @@ func (s *Plex) GetPin(ctx context.Context, request operations.GetPinRequest, opt
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, globals)
+	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -1289,7 +1321,11 @@ func (s *Plex) GetPin(ctx context.Context, request operations.GetPinRequest, opt
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -1424,17 +1460,8 @@ func (s *Plex) GetTokenByPinID(ctx context.Context, request operations.GetTokenB
 		SecuritySource: nil,
 	}
 
-	globals := operations.GetTokenByPinIDGlobals{
-		ClientID:       s.sdkConfiguration.Globals.ClientID,
-		ClientName:     s.sdkConfiguration.Globals.ClientName,
-		DeviceNickname: s.sdkConfiguration.Globals.DeviceNickname,
-		ClientVersion:  s.sdkConfiguration.Globals.ClientVersion,
-		Platform:       s.sdkConfiguration.Globals.Platform,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
-		operations.SupportedOptionServerURL,
 		operations.SupportedOptionRetries,
 		operations.SupportedOptionTimeout,
 	}
@@ -1450,7 +1477,7 @@ func (s *Plex) GetTokenByPinID(ctx context.Context, request operations.GetTokenB
 		baseURL = *o.ServerURL
 	}
 
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/pins/{pinID}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/pins/{pinID}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1473,7 +1500,11 @@ func (s *Plex) GetTokenByPinID(ctx context.Context, request operations.GetTokenB
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, globals)
+	utils.PopulateHeaders(ctx, req, request, nil)
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
+	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
@@ -1505,7 +1536,11 @@ func (s *Plex) GetTokenByPinID(ctx context.Context, request operations.GetTokenB
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)

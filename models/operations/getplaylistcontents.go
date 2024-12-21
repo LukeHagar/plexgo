@@ -24,6 +24,8 @@ const (
 	GetPlaylistContentsQueryParamTypeSeason  GetPlaylistContentsQueryParamType = 3
 	GetPlaylistContentsQueryParamTypeEpisode GetPlaylistContentsQueryParamType = 4
 	GetPlaylistContentsQueryParamTypeAudio   GetPlaylistContentsQueryParamType = 8
+	GetPlaylistContentsQueryParamTypeAlbum   GetPlaylistContentsQueryParamType = 9
+	GetPlaylistContentsQueryParamTypeTrack   GetPlaylistContentsQueryParamType = 10
 )
 
 func (e GetPlaylistContentsQueryParamType) ToPointer() *GetPlaylistContentsQueryParamType {
@@ -44,6 +46,10 @@ func (e *GetPlaylistContentsQueryParamType) UnmarshalJSON(data []byte) error {
 	case 4:
 		fallthrough
 	case 8:
+		fallthrough
+	case 9:
+		fallthrough
+	case 10:
 		*e = GetPlaylistContentsQueryParamType(v)
 		return nil
 	default:

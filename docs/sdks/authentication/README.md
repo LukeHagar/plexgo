@@ -24,23 +24,19 @@ This endpoint provides the caller with a temporary token with the same access le
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Authentication.GetTransientToken(ctx, operations.GetTransientTokenQueryParamTypeDelegation, operations.ScopeAll)
     if err != nil {
         log.Fatal(err)
@@ -84,22 +80,18 @@ Note: requires Plex Media Server >= 1.15.4.
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Authentication.GetSourceConnectionInformation(ctx, "provider://provider-identifier")
     if err != nil {
         log.Fatal(err)
@@ -140,22 +132,18 @@ Get the User data from the provided X-Plex-Token
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
     )
 
-    ctx := context.Background()
     res, err := s.Authentication.GetTokenDetails(ctx)
     if err != nil {
         log.Fatal(err)
@@ -195,23 +183,23 @@ Sign in user with username and password and return user data with Plex authentic
 package main
 
 import(
-	"github.com/LukeHagar/plexgo"
 	"context"
+	"github.com/LukeHagar/plexgo"
 	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
 func main() {
-    s := plexgo.New(
-        plexgo.WithClientID("3381b62b-9ab7-4e37-827b-203e9809eb58"),
-        plexgo.WithClientName("Plex for Roku"),
-        plexgo.WithClientVersion("2.4.1"),
-        plexgo.WithPlatform("Roku"),
-        plexgo.WithDeviceNickname("Roku 3"),
-    )
-
     ctx := context.Background()
+    
+    s := plexgo.New()
+
     res, err := s.Authentication.PostUsersSignInData(ctx, operations.PostUsersSignInDataRequest{
+        ClientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+        ClientName: plexgo.String("Plex for Roku"),
+        DeviceNickname: plexgo.String("Roku 3"),
+        ClientVersion: plexgo.String("2.4.1"),
+        Platform: plexgo.String("Roku"),
         RequestBody: &operations.PostUsersSignInDataRequestBody{
             Login: "username@email.com",
             Password: "password123",

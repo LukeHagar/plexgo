@@ -12,54 +12,6 @@ var GetPinServerList = []string{
 	"https://plex.tv/api/v2",
 }
 
-type GetPinGlobals struct {
-	// An opaque identifier unique to the client (UUID, serial number, or other unique device ID)
-	ClientID *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
-	// The name of the client application. (Plex Web, Plex Media Server, etc.)
-	ClientName *string `header:"style=simple,explode=false,name=X-Plex-Product"`
-	// A relatively friendly name for the client device
-	DeviceNickname *string `header:"style=simple,explode=false,name=X-Plex-Device"`
-	// The version of the client application.
-	ClientVersion *string `header:"style=simple,explode=false,name=X-Plex-Version"`
-	// The platform of the client application.
-	Platform *string `header:"style=simple,explode=false,name=X-Plex-Platform"`
-}
-
-func (o *GetPinGlobals) GetClientID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ClientID
-}
-
-func (o *GetPinGlobals) GetClientName() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ClientName
-}
-
-func (o *GetPinGlobals) GetDeviceNickname() *string {
-	if o == nil {
-		return nil
-	}
-	return o.DeviceNickname
-}
-
-func (o *GetPinGlobals) GetClientVersion() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ClientVersion
-}
-
-func (o *GetPinGlobals) GetPlatform() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Platform
-}
-
 type GetPinRequest struct {
 	// Determines the kind of code returned by the API call
 	// Strong codes are used for Pin authentication flows
@@ -67,7 +19,7 @@ type GetPinRequest struct {
 	//
 	Strong *bool `default:"false" queryParam:"style=form,explode=true,name=strong"`
 	// An opaque identifier unique to the client (UUID, serial number, or other unique device ID)
-	ClientID *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+	ClientID string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
 	// The name of the client application. (Plex Web, Plex Media Server, etc.)
 	ClientName *string `header:"style=simple,explode=false,name=X-Plex-Product"`
 	// A relatively friendly name for the client device
@@ -96,9 +48,9 @@ func (o *GetPinRequest) GetStrong() *bool {
 	return o.Strong
 }
 
-func (o *GetPinRequest) GetClientID() *string {
+func (o *GetPinRequest) GetClientID() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.ClientID
 }

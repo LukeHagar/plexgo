@@ -13,54 +13,6 @@ var PostUsersSignInDataServerList = []string{
 	"https://plex.tv/api/v2",
 }
 
-type PostUsersSignInDataGlobals struct {
-	// An opaque identifier unique to the client (UUID, serial number, or other unique device ID)
-	ClientID *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
-	// The name of the client application. (Plex Web, Plex Media Server, etc.)
-	ClientName *string `header:"style=simple,explode=false,name=X-Plex-Product"`
-	// A relatively friendly name for the client device
-	DeviceNickname *string `header:"style=simple,explode=false,name=X-Plex-Device"`
-	// The version of the client application.
-	ClientVersion *string `header:"style=simple,explode=false,name=X-Plex-Version"`
-	// The platform of the client application.
-	Platform *string `header:"style=simple,explode=false,name=X-Plex-Platform"`
-}
-
-func (o *PostUsersSignInDataGlobals) GetClientID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ClientID
-}
-
-func (o *PostUsersSignInDataGlobals) GetClientName() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ClientName
-}
-
-func (o *PostUsersSignInDataGlobals) GetDeviceNickname() *string {
-	if o == nil {
-		return nil
-	}
-	return o.DeviceNickname
-}
-
-func (o *PostUsersSignInDataGlobals) GetClientVersion() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ClientVersion
-}
-
-func (o *PostUsersSignInDataGlobals) GetPlatform() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Platform
-}
-
 // PostUsersSignInDataRequestBody - Login credentials
 type PostUsersSignInDataRequestBody struct {
 	Login            string  `form:"name=login"`
@@ -110,7 +62,7 @@ func (o *PostUsersSignInDataRequestBody) GetVerificationCode() *string {
 
 type PostUsersSignInDataRequest struct {
 	// An opaque identifier unique to the client (UUID, serial number, or other unique device ID)
-	ClientID *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+	ClientID string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
 	// The name of the client application. (Plex Web, Plex Media Server, etc.)
 	ClientName *string `header:"style=simple,explode=false,name=X-Plex-Product"`
 	// A relatively friendly name for the client device
@@ -123,9 +75,9 @@ type PostUsersSignInDataRequest struct {
 	RequestBody *PostUsersSignInDataRequestBody `request:"mediaType=application/x-www-form-urlencoded"`
 }
 
-func (o *PostUsersSignInDataRequest) GetClientID() *string {
+func (o *PostUsersSignInDataRequest) GetClientID() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.ClientID
 }

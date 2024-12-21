@@ -10,7 +10,7 @@ import (
 	"github.com/LukeHagar/plexgo/internal/utils"
 	"github.com/LukeHagar/plexgo/models/operations"
 	"github.com/LukeHagar/plexgo/models/sdkerrors"
-	"github.com/cenkalti/backoff/v4"
+	"github.com/LukeHagar/plexgo/retry"
 	"net/http"
 )
 
@@ -37,7 +37,6 @@ func (s *Watchlist) GetWatchList(ctx context.Context, request operations.GetWatc
 
 	o := operations.Options{}
 	supportedOptions := []string{
-		operations.SupportedOptionServerURL,
 		operations.SupportedOptionRetries,
 		operations.SupportedOptionTimeout,
 	}
@@ -86,6 +85,10 @@ func (s *Watchlist) GetWatchList(ctx context.Context, request operations.GetWatc
 		return nil, err
 	}
 
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
+	}
+
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
@@ -116,7 +119,11 @@ func (s *Watchlist) GetWatchList(ctx context.Context, request operations.GetWatc
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)

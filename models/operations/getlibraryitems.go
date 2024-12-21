@@ -33,6 +33,7 @@ const (
 	TagResolution     Tag = "resolution"
 	TagFirstCharacter Tag = "firstCharacter"
 	TagFolder         Tag = "folder"
+	TagAlbums         Tag = "albums"
 )
 
 func (e Tag) ToPointer() *Tag {
@@ -81,6 +82,8 @@ func (e *Tag) UnmarshalJSON(data []byte) error {
 	case "firstCharacter":
 		fallthrough
 	case "folder":
+		fallthrough
+	case "albums":
 		*e = Tag(v)
 		return nil
 	default:
@@ -129,6 +132,8 @@ const (
 	GetLibraryItemsQueryParamTypeSeason  GetLibraryItemsQueryParamType = 3
 	GetLibraryItemsQueryParamTypeEpisode GetLibraryItemsQueryParamType = 4
 	GetLibraryItemsQueryParamTypeAudio   GetLibraryItemsQueryParamType = 8
+	GetLibraryItemsQueryParamTypeAlbum   GetLibraryItemsQueryParamType = 9
+	GetLibraryItemsQueryParamTypeTrack   GetLibraryItemsQueryParamType = 10
 )
 
 func (e GetLibraryItemsQueryParamType) ToPointer() *GetLibraryItemsQueryParamType {
@@ -149,6 +154,10 @@ func (e *GetLibraryItemsQueryParamType) UnmarshalJSON(data []byte) error {
 	case 4:
 		fallthrough
 	case 8:
+		fallthrough
+	case 9:
+		fallthrough
+	case 10:
 		*e = GetLibraryItemsQueryParamType(v)
 		return nil
 	default:
@@ -649,17 +658,17 @@ func (e *GetLibraryItemsFlattenSeasons) UnmarshalJSON(data []byte) error {
 // GetLibraryItemsShowOrdering - Setting that indicates the episode ordering for the show
 // None = Library default,
 // tmdbAiring = The Movie Database (Aired),
-// aired = TheTVDB (Aired),
-// dvd = TheTVDB (DVD),
-// absolute = TheTVDB (Absolute)).
+// tvdbAiring = TheTVDB (Aired),
+// tvdbDvd = TheTVDB (DVD),
+// tvdbAbsolute = TheTVDB (Absolute)).
 type GetLibraryItemsShowOrdering string
 
 const (
-	GetLibraryItemsShowOrderingNone       GetLibraryItemsShowOrdering = "None"
-	GetLibraryItemsShowOrderingTmdbAiring GetLibraryItemsShowOrdering = "tmdbAiring"
-	GetLibraryItemsShowOrderingAired      GetLibraryItemsShowOrdering = "aired"
-	GetLibraryItemsShowOrderingDvd        GetLibraryItemsShowOrdering = "dvd"
-	GetLibraryItemsShowOrderingAbsolute   GetLibraryItemsShowOrdering = "absolute"
+	GetLibraryItemsShowOrderingNone         GetLibraryItemsShowOrdering = "None"
+	GetLibraryItemsShowOrderingTmdbAiring   GetLibraryItemsShowOrdering = "tmdbAiring"
+	GetLibraryItemsShowOrderingTvdbAiring   GetLibraryItemsShowOrdering = "tvdbAiring"
+	GetLibraryItemsShowOrderingTvdbDvd      GetLibraryItemsShowOrdering = "tvdbDvd"
+	GetLibraryItemsShowOrderingTvdbAbsolute GetLibraryItemsShowOrdering = "tvdbAbsolute"
 )
 
 func (e GetLibraryItemsShowOrdering) ToPointer() *GetLibraryItemsShowOrdering {
@@ -675,11 +684,11 @@ func (e *GetLibraryItemsShowOrdering) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "tmdbAiring":
 		fallthrough
-	case "aired":
+	case "tvdbAiring":
 		fallthrough
-	case "dvd":
+	case "tvdbDvd":
 		fallthrough
-	case "absolute":
+	case "tvdbAbsolute":
 		*e = GetLibraryItemsShowOrdering(v)
 		return nil
 	default:
@@ -1647,9 +1656,9 @@ type GetLibraryItemsMetadata struct {
 	// Setting that indicates the episode ordering for the show
 	// None = Library default,
 	// tmdbAiring = The Movie Database (Aired),
-	// aired = TheTVDB (Aired),
-	// dvd = TheTVDB (DVD),
-	// absolute = TheTVDB (Absolute)).
+	// tvdbAiring = TheTVDB (Aired),
+	// tvdbDvd = TheTVDB (DVD),
+	// tvdbAbsolute = TheTVDB (Absolute)).
 	//
 	ShowOrdering          *GetLibraryItemsShowOrdering `json:"showOrdering,omitempty"`
 	Thumb                 *string                      `json:"thumb,omitempty"`
