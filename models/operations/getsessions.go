@@ -497,43 +497,45 @@ func (o *Session) GetLocation() *string {
 }
 
 type GetSessionsMetadata struct {
-	AddedAt              *int               `json:"addedAt,omitempty"`
-	Art                  *string            `json:"art,omitempty"`
-	Duration             *int               `json:"duration,omitempty"`
-	GrandparentArt       *string            `json:"grandparentArt,omitempty"`
-	GrandparentGUID      *string            `json:"grandparentGuid,omitempty"`
-	GrandparentKey       *string            `json:"grandparentKey,omitempty"`
-	GrandparentRatingKey *string            `json:"grandparentRatingKey,omitempty"`
-	GrandparentThumb     *string            `json:"grandparentThumb,omitempty"`
-	GrandparentTitle     *string            `json:"grandparentTitle,omitempty"`
-	GUID                 *string            `json:"guid,omitempty"`
-	Index                *int               `json:"index,omitempty"`
-	Key                  *string            `json:"key,omitempty"`
-	LibrarySectionID     *string            `json:"librarySectionID,omitempty"`
-	LibrarySectionKey    *string            `json:"librarySectionKey,omitempty"`
-	LibrarySectionTitle  *string            `json:"librarySectionTitle,omitempty"`
-	MusicAnalysisVersion *string            `json:"musicAnalysisVersion,omitempty"`
-	ParentGUID           *string            `json:"parentGuid,omitempty"`
-	ParentIndex          *int               `json:"parentIndex,omitempty"`
-	ParentKey            *string            `json:"parentKey,omitempty"`
-	ParentRatingKey      *string            `json:"parentRatingKey,omitempty"`
-	ParentStudio         *string            `json:"parentStudio,omitempty"`
-	ParentThumb          *string            `json:"parentThumb,omitempty"`
-	ParentTitle          *string            `json:"parentTitle,omitempty"`
-	ParentYear           *int               `json:"parentYear,omitempty"`
-	RatingCount          *int               `json:"ratingCount,omitempty"`
-	RatingKey            *string            `json:"ratingKey,omitempty"`
-	SessionKey           *string            `json:"sessionKey,omitempty"`
-	Thumb                *string            `json:"thumb,omitempty"`
-	Title                *string            `json:"title,omitempty"`
-	TitleSort            *string            `json:"titleSort,omitempty"`
-	Type                 *string            `json:"type,omitempty"`
-	UpdatedAt            *int               `json:"updatedAt,omitempty"`
-	ViewOffset           *int               `json:"viewOffset,omitempty"`
-	Media                []GetSessionsMedia `json:"Media,omitempty"`
-	User                 *GetSessionsUser   `json:"User,omitempty"`
-	Player               *Player            `json:"Player,omitempty"`
-	Session              *Session           `json:"Session,omitempty"`
+	AddedAt              *int    `json:"addedAt,omitempty"`
+	Art                  *string `json:"art,omitempty"`
+	Duration             *int    `json:"duration,omitempty"`
+	GrandparentArt       *string `json:"grandparentArt,omitempty"`
+	GrandparentGUID      *string `json:"grandparentGuid,omitempty"`
+	GrandparentKey       *string `json:"grandparentKey,omitempty"`
+	GrandparentRatingKey *string `json:"grandparentRatingKey,omitempty"`
+	GrandparentThumb     *string `json:"grandparentThumb,omitempty"`
+	GrandparentTitle     *string `json:"grandparentTitle,omitempty"`
+	GUID                 *string `json:"guid,omitempty"`
+	Index                *int    `json:"index,omitempty"`
+	Key                  *string `json:"key,omitempty"`
+	LibrarySectionID     *string `json:"librarySectionID,omitempty"`
+	LibrarySectionKey    *string `json:"librarySectionKey,omitempty"`
+	LibrarySectionTitle  *string `json:"librarySectionTitle,omitempty"`
+	MusicAnalysisVersion *string `json:"musicAnalysisVersion,omitempty"`
+	// The original untranslated name of the media item when non-english, or the track artist if an audio Item has an album artist
+	OriginalTitle   *string            `json:"originalTitle,omitempty"`
+	ParentGUID      *string            `json:"parentGuid,omitempty"`
+	ParentIndex     *int               `json:"parentIndex,omitempty"`
+	ParentKey       *string            `json:"parentKey,omitempty"`
+	ParentRatingKey *string            `json:"parentRatingKey,omitempty"`
+	ParentStudio    *string            `json:"parentStudio,omitempty"`
+	ParentThumb     *string            `json:"parentThumb,omitempty"`
+	ParentTitle     *string            `json:"parentTitle,omitempty"`
+	ParentYear      *int               `json:"parentYear,omitempty"`
+	RatingCount     *int               `json:"ratingCount,omitempty"`
+	RatingKey       *string            `json:"ratingKey,omitempty"`
+	SessionKey      *string            `json:"sessionKey,omitempty"`
+	Thumb           *string            `json:"thumb,omitempty"`
+	Title           *string            `json:"title,omitempty"`
+	TitleSort       *string            `json:"titleSort,omitempty"`
+	Type            *string            `json:"type,omitempty"`
+	UpdatedAt       *int               `json:"updatedAt,omitempty"`
+	ViewOffset      *int               `json:"viewOffset,omitempty"`
+	Media           []GetSessionsMedia `json:"Media,omitempty"`
+	User            *GetSessionsUser   `json:"User,omitempty"`
+	Player          *Player            `json:"Player,omitempty"`
+	Session         *Session           `json:"Session,omitempty"`
 }
 
 func (o *GetSessionsMetadata) GetAddedAt() *int {
@@ -646,6 +648,13 @@ func (o *GetSessionsMetadata) GetMusicAnalysisVersion() *string {
 		return nil
 	}
 	return o.MusicAnalysisVersion
+}
+
+func (o *GetSessionsMetadata) GetOriginalTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.OriginalTitle
 }
 
 func (o *GetSessionsMetadata) GetParentGUID() *string {
