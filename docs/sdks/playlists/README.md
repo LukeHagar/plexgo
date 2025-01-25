@@ -51,7 +51,7 @@ func main() {
         Title: "<value>",
         Type: operations.CreatePlaylistQueryParamTypePhoto,
         Smart: operations.SmartOne,
-        URI: "https://inborn-brochure.biz",
+        URI: "https://hoarse-testing.info/",
     })
     if err != nil {
         log.Fatal(err)

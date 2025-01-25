@@ -201,11 +201,13 @@ func (e *GetSearchAllLibrariesType) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// GetSearchAllLibrariesFlattenSeasons - Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
 type GetSearchAllLibrariesFlattenSeasons string
 
 const (
-	GetSearchAllLibrariesFlattenSeasonsFalse GetSearchAllLibrariesFlattenSeasons = "0"
-	GetSearchAllLibrariesFlattenSeasonsTrue  GetSearchAllLibrariesFlattenSeasons = "1"
+	GetSearchAllLibrariesFlattenSeasonsLibraryDefault GetSearchAllLibrariesFlattenSeasons = "-1"
+	GetSearchAllLibrariesFlattenSeasonsHide           GetSearchAllLibrariesFlattenSeasons = "0"
+	GetSearchAllLibrariesFlattenSeasonsShow           GetSearchAllLibrariesFlattenSeasons = "1"
 )
 
 func (e GetSearchAllLibrariesFlattenSeasons) ToPointer() *GetSearchAllLibrariesFlattenSeasons {
@@ -217,6 +219,8 @@ func (e *GetSearchAllLibrariesFlattenSeasons) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	switch v {
+	case "-1":
+		fallthrough
 	case "0":
 		fallthrough
 	case "1":
@@ -224,6 +228,63 @@ func (e *GetSearchAllLibrariesFlattenSeasons) UnmarshalJSON(data []byte) error {
 		return nil
 	default:
 		return fmt.Errorf("invalid value for GetSearchAllLibrariesFlattenSeasons: %v", v)
+	}
+}
+
+// GetSearchAllLibrariesEpisodeSort - Setting that indicates how episodes are sorted for the show. (-1 = Library default, 0 = Oldest first, 1 = Newest first).
+type GetSearchAllLibrariesEpisodeSort string
+
+const (
+	GetSearchAllLibrariesEpisodeSortLibraryDefault GetSearchAllLibrariesEpisodeSort = "-1"
+	GetSearchAllLibrariesEpisodeSortOldestFirst    GetSearchAllLibrariesEpisodeSort = "0"
+	GetSearchAllLibrariesEpisodeSortNewestFirst    GetSearchAllLibrariesEpisodeSort = "1"
+)
+
+func (e GetSearchAllLibrariesEpisodeSort) ToPointer() *GetSearchAllLibrariesEpisodeSort {
+	return &e
+}
+func (e *GetSearchAllLibrariesEpisodeSort) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "-1":
+		fallthrough
+	case "0":
+		fallthrough
+	case "1":
+		*e = GetSearchAllLibrariesEpisodeSort(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetSearchAllLibrariesEpisodeSort: %v", v)
+	}
+}
+
+// GetSearchAllLibrariesEnableCreditsMarkerGeneration - Setting that indicates if credits markers detection is enabled. (-1 = Library default, 0 = Disabled).
+type GetSearchAllLibrariesEnableCreditsMarkerGeneration string
+
+const (
+	GetSearchAllLibrariesEnableCreditsMarkerGenerationLibraryDefault GetSearchAllLibrariesEnableCreditsMarkerGeneration = "-1"
+	GetSearchAllLibrariesEnableCreditsMarkerGenerationDisabled       GetSearchAllLibrariesEnableCreditsMarkerGeneration = "0"
+)
+
+func (e GetSearchAllLibrariesEnableCreditsMarkerGeneration) ToPointer() *GetSearchAllLibrariesEnableCreditsMarkerGeneration {
+	return &e
+}
+func (e *GetSearchAllLibrariesEnableCreditsMarkerGeneration) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "-1":
+		fallthrough
+	case "0":
+		*e = GetSearchAllLibrariesEnableCreditsMarkerGeneration(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetSearchAllLibrariesEnableCreditsMarkerGeneration: %v", v)
 	}
 }
 
@@ -1214,17 +1275,22 @@ type GetSearchAllLibrariesMetadata struct {
 	LibrarySectionKey   *string `json:"librarySectionKey,omitempty"`
 	// The type of media content
 	//
-	Type           GetSearchAllLibrariesType            `json:"type"`
-	Title          string                               `json:"title"`
-	Slug           *string                              `json:"slug,omitempty"`
-	ContentRating  *string                              `json:"contentRating,omitempty"`
-	Summary        string                               `json:"summary"`
-	Rating         *float64                             `json:"rating,omitempty"`
-	AudienceRating *float64                             `json:"audienceRating,omitempty"`
-	Year           *int                                 `json:"year,omitempty"`
-	SeasonCount    *int                                 `json:"seasonCount,omitempty"`
-	Tagline        *string                              `json:"tagline,omitempty"`
-	FlattenSeasons *GetSearchAllLibrariesFlattenSeasons `default:"0" json:"flattenSeasons"`
+	Type           GetSearchAllLibrariesType `json:"type"`
+	Title          string                    `json:"title"`
+	Slug           *string                   `json:"slug,omitempty"`
+	ContentRating  *string                   `json:"contentRating,omitempty"`
+	Summary        string                    `json:"summary"`
+	Rating         *float64                  `json:"rating,omitempty"`
+	AudienceRating *float64                  `json:"audienceRating,omitempty"`
+	Year           *int                      `json:"year,omitempty"`
+	SeasonCount    *int                      `json:"seasonCount,omitempty"`
+	Tagline        *string                   `json:"tagline,omitempty"`
+	// Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
+	FlattenSeasons *GetSearchAllLibrariesFlattenSeasons `json:"flattenSeasons,omitempty"`
+	// Setting that indicates how episodes are sorted for the show. (-1 = Library default, 0 = Oldest first, 1 = Newest first).
+	EpisodeSort *GetSearchAllLibrariesEpisodeSort `json:"episodeSort,omitempty"`
+	// Setting that indicates if credits markers detection is enabled. (-1 = Library default, 0 = Disabled).
+	EnableCreditsMarkerGeneration *GetSearchAllLibrariesEnableCreditsMarkerGeneration `json:"enableCreditsMarkerGeneration,omitempty"`
 	// Setting that indicates the episode ordering for the show
 	// None = Library default,
 	// tmdbAiring = The Movie Database (Aired),
@@ -1439,6 +1505,20 @@ func (o *GetSearchAllLibrariesMetadata) GetFlattenSeasons() *GetSearchAllLibrari
 		return nil
 	}
 	return o.FlattenSeasons
+}
+
+func (o *GetSearchAllLibrariesMetadata) GetEpisodeSort() *GetSearchAllLibrariesEpisodeSort {
+	if o == nil {
+		return nil
+	}
+	return o.EpisodeSort
+}
+
+func (o *GetSearchAllLibrariesMetadata) GetEnableCreditsMarkerGeneration() *GetSearchAllLibrariesEnableCreditsMarkerGeneration {
+	if o == nil {
+		return nil
+	}
+	return o.EnableCreditsMarkerGeneration
 }
 
 func (o *GetSearchAllLibrariesMetadata) GetShowOrdering() *GetSearchAllLibrariesShowOrdering {

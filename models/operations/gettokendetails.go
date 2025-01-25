@@ -544,7 +544,7 @@ type GetTokenDetailsUserPlexAccount struct {
 	MaxHomeSize int `json:"maxHomeSize"`
 	// [Might be removed] The hashed Plex Home PIN
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	Pin     *string     `json:"pin,omitempty"`
 	Profile UserProfile `json:"profile"`
 	// If the account has a Plex Home PIN enabled

@@ -258,6 +258,7 @@ package main
 import(
 	"context"
 	"github.com/LukeHagar/plexgo"
+	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
@@ -268,7 +269,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Library.GetLibraryDetails(ctx, 9518, nil)
+    res, err := s.Library.GetLibraryDetails(ctx, 9518, operations.IncludeDetailsZero.ToPointer())
     if err != nil {
         log.Fatal(err)
     }

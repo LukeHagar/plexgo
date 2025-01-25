@@ -296,6 +296,7 @@ func main() {
     s := plexgo.New()
 
     res, err := s.Plex.GetPin(ctx, operations.GetPinRequest{
+        Strong: plexgo.Bool(false),
         ClientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
         ClientName: plexgo.String("Plex for Roku"),
         DeviceNickname: plexgo.String("Roku 3"),

@@ -538,11 +538,13 @@ func (e *GetRecentlyAddedHubsType) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// FlattenSeasons - Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
 type FlattenSeasons string
 
 const (
-	FlattenSeasonsFalse FlattenSeasons = "0"
-	FlattenSeasonsTrue  FlattenSeasons = "1"
+	FlattenSeasonsLibraryDefault FlattenSeasons = "-1"
+	FlattenSeasonsHide           FlattenSeasons = "0"
+	FlattenSeasonsShow           FlattenSeasons = "1"
 )
 
 func (e FlattenSeasons) ToPointer() *FlattenSeasons {
@@ -554,6 +556,8 @@ func (e *FlattenSeasons) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	switch v {
+	case "-1":
+		fallthrough
 	case "0":
 		fallthrough
 	case "1":
@@ -561,6 +565,63 @@ func (e *FlattenSeasons) UnmarshalJSON(data []byte) error {
 		return nil
 	default:
 		return fmt.Errorf("invalid value for FlattenSeasons: %v", v)
+	}
+}
+
+// EpisodeSort - Setting that indicates how episodes are sorted for the show. (-1 = Library default, 0 = Oldest first, 1 = Newest first).
+type EpisodeSort string
+
+const (
+	EpisodeSortLibraryDefault EpisodeSort = "-1"
+	EpisodeSortOldestFirst    EpisodeSort = "0"
+	EpisodeSortNewestFirst    EpisodeSort = "1"
+)
+
+func (e EpisodeSort) ToPointer() *EpisodeSort {
+	return &e
+}
+func (e *EpisodeSort) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "-1":
+		fallthrough
+	case "0":
+		fallthrough
+	case "1":
+		*e = EpisodeSort(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for EpisodeSort: %v", v)
+	}
+}
+
+// EnableCreditsMarkerGeneration - Setting that indicates if credits markers detection is enabled. (-1 = Library default, 0 = Disabled).
+type EnableCreditsMarkerGeneration string
+
+const (
+	EnableCreditsMarkerGenerationLibraryDefault EnableCreditsMarkerGeneration = "-1"
+	EnableCreditsMarkerGenerationDisabled       EnableCreditsMarkerGeneration = "0"
+)
+
+func (e EnableCreditsMarkerGeneration) ToPointer() *EnableCreditsMarkerGeneration {
+	return &e
+}
+func (e *EnableCreditsMarkerGeneration) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "-1":
+		fallthrough
+	case "0":
+		*e = EnableCreditsMarkerGeneration(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for EnableCreditsMarkerGeneration: %v", v)
 	}
 }
 
@@ -1561,7 +1622,12 @@ type GetRecentlyAddedMetadata struct {
 	Year           *int                     `json:"year,omitempty"`
 	SeasonCount    *int                     `json:"seasonCount,omitempty"`
 	Tagline        *string                  `json:"tagline,omitempty"`
-	FlattenSeasons *FlattenSeasons          `default:"0" json:"flattenSeasons"`
+	// Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
+	FlattenSeasons *FlattenSeasons `json:"flattenSeasons,omitempty"`
+	// Setting that indicates how episodes are sorted for the show. (-1 = Library default, 0 = Oldest first, 1 = Newest first).
+	EpisodeSort *EpisodeSort `json:"episodeSort,omitempty"`
+	// Setting that indicates if credits markers detection is enabled. (-1 = Library default, 0 = Disabled).
+	EnableCreditsMarkerGeneration *EnableCreditsMarkerGeneration `json:"enableCreditsMarkerGeneration,omitempty"`
 	// Setting that indicates the episode ordering for the show
 	// None = Library default,
 	// tmdbAiring = The Movie Database (Aired),
@@ -1776,6 +1842,20 @@ func (o *GetRecentlyAddedMetadata) GetFlattenSeasons() *FlattenSeasons {
 		return nil
 	}
 	return o.FlattenSeasons
+}
+
+func (o *GetRecentlyAddedMetadata) GetEpisodeSort() *EpisodeSort {
+	if o == nil {
+		return nil
+	}
+	return o.EpisodeSort
+}
+
+func (o *GetRecentlyAddedMetadata) GetEnableCreditsMarkerGeneration() *EnableCreditsMarkerGeneration {
+	if o == nil {
+		return nil
+	}
+	return o.EnableCreditsMarkerGeneration
 }
 
 func (o *GetRecentlyAddedMetadata) GetShowOrdering() *ShowOrdering {

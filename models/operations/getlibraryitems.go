@@ -629,11 +629,13 @@ func (e *GetLibraryItemsLibraryType) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// GetLibraryItemsFlattenSeasons - Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
 type GetLibraryItemsFlattenSeasons string
 
 const (
-	GetLibraryItemsFlattenSeasonsFalse GetLibraryItemsFlattenSeasons = "0"
-	GetLibraryItemsFlattenSeasonsTrue  GetLibraryItemsFlattenSeasons = "1"
+	GetLibraryItemsFlattenSeasonsLibraryDefault GetLibraryItemsFlattenSeasons = "-1"
+	GetLibraryItemsFlattenSeasonsHide           GetLibraryItemsFlattenSeasons = "0"
+	GetLibraryItemsFlattenSeasonsShow           GetLibraryItemsFlattenSeasons = "1"
 )
 
 func (e GetLibraryItemsFlattenSeasons) ToPointer() *GetLibraryItemsFlattenSeasons {
@@ -645,6 +647,8 @@ func (e *GetLibraryItemsFlattenSeasons) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	switch v {
+	case "-1":
+		fallthrough
 	case "0":
 		fallthrough
 	case "1":
@@ -652,6 +656,63 @@ func (e *GetLibraryItemsFlattenSeasons) UnmarshalJSON(data []byte) error {
 		return nil
 	default:
 		return fmt.Errorf("invalid value for GetLibraryItemsFlattenSeasons: %v", v)
+	}
+}
+
+// GetLibraryItemsEpisodeSort - Setting that indicates how episodes are sorted for the show. (-1 = Library default, 0 = Oldest first, 1 = Newest first).
+type GetLibraryItemsEpisodeSort string
+
+const (
+	GetLibraryItemsEpisodeSortLibraryDefault GetLibraryItemsEpisodeSort = "-1"
+	GetLibraryItemsEpisodeSortOldestFirst    GetLibraryItemsEpisodeSort = "0"
+	GetLibraryItemsEpisodeSortNewestFirst    GetLibraryItemsEpisodeSort = "1"
+)
+
+func (e GetLibraryItemsEpisodeSort) ToPointer() *GetLibraryItemsEpisodeSort {
+	return &e
+}
+func (e *GetLibraryItemsEpisodeSort) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "-1":
+		fallthrough
+	case "0":
+		fallthrough
+	case "1":
+		*e = GetLibraryItemsEpisodeSort(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetLibraryItemsEpisodeSort: %v", v)
+	}
+}
+
+// GetLibraryItemsEnableCreditsMarkerGeneration - Setting that indicates if credits markers detection is enabled. (-1 = Library default, 0 = Disabled).
+type GetLibraryItemsEnableCreditsMarkerGeneration string
+
+const (
+	GetLibraryItemsEnableCreditsMarkerGenerationLibraryDefault GetLibraryItemsEnableCreditsMarkerGeneration = "-1"
+	GetLibraryItemsEnableCreditsMarkerGenerationDisabled       GetLibraryItemsEnableCreditsMarkerGeneration = "0"
+)
+
+func (e GetLibraryItemsEnableCreditsMarkerGeneration) ToPointer() *GetLibraryItemsEnableCreditsMarkerGeneration {
+	return &e
+}
+func (e *GetLibraryItemsEnableCreditsMarkerGeneration) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "-1":
+		fallthrough
+	case "0":
+		*e = GetLibraryItemsEnableCreditsMarkerGeneration(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetLibraryItemsEnableCreditsMarkerGeneration: %v", v)
 	}
 }
 
@@ -1642,17 +1703,22 @@ type GetLibraryItemsMetadata struct {
 	LibrarySectionKey   *string `json:"librarySectionKey,omitempty"`
 	// The type of media content
 	//
-	Type           GetLibraryItemsLibraryType     `json:"type"`
-	Title          string                         `json:"title"`
-	Slug           *string                        `json:"slug,omitempty"`
-	ContentRating  *string                        `json:"contentRating,omitempty"`
-	Summary        string                         `json:"summary"`
-	Rating         *float64                       `json:"rating,omitempty"`
-	AudienceRating *float64                       `json:"audienceRating,omitempty"`
-	Year           *int                           `json:"year,omitempty"`
-	SeasonCount    *int                           `json:"seasonCount,omitempty"`
-	Tagline        *string                        `json:"tagline,omitempty"`
-	FlattenSeasons *GetLibraryItemsFlattenSeasons `default:"0" json:"flattenSeasons"`
+	Type           GetLibraryItemsLibraryType `json:"type"`
+	Title          string                     `json:"title"`
+	Slug           *string                    `json:"slug,omitempty"`
+	ContentRating  *string                    `json:"contentRating,omitempty"`
+	Summary        string                     `json:"summary"`
+	Rating         *float64                   `json:"rating,omitempty"`
+	AudienceRating *float64                   `json:"audienceRating,omitempty"`
+	Year           *int                       `json:"year,omitempty"`
+	SeasonCount    *int                       `json:"seasonCount,omitempty"`
+	Tagline        *string                    `json:"tagline,omitempty"`
+	// Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
+	FlattenSeasons *GetLibraryItemsFlattenSeasons `json:"flattenSeasons,omitempty"`
+	// Setting that indicates how episodes are sorted for the show. (-1 = Library default, 0 = Oldest first, 1 = Newest first).
+	EpisodeSort *GetLibraryItemsEpisodeSort `json:"episodeSort,omitempty"`
+	// Setting that indicates if credits markers detection is enabled. (-1 = Library default, 0 = Disabled).
+	EnableCreditsMarkerGeneration *GetLibraryItemsEnableCreditsMarkerGeneration `json:"enableCreditsMarkerGeneration,omitempty"`
 	// Setting that indicates the episode ordering for the show
 	// None = Library default,
 	// tmdbAiring = The Movie Database (Aired),
@@ -1867,6 +1933,20 @@ func (o *GetLibraryItemsMetadata) GetFlattenSeasons() *GetLibraryItemsFlattenSea
 		return nil
 	}
 	return o.FlattenSeasons
+}
+
+func (o *GetLibraryItemsMetadata) GetEpisodeSort() *GetLibraryItemsEpisodeSort {
+	if o == nil {
+		return nil
+	}
+	return o.EpisodeSort
+}
+
+func (o *GetLibraryItemsMetadata) GetEnableCreditsMarkerGeneration() *GetLibraryItemsEnableCreditsMarkerGeneration {
+	if o == nil {
+		return nil
+	}
+	return o.EnableCreditsMarkerGeneration
 }
 
 func (o *GetLibraryItemsMetadata) GetShowOrdering() *GetLibraryItemsShowOrdering {

@@ -351,7 +351,7 @@ func main() {
         Opacity: 100,
         Blur: 0,
         MinSize: operations.MinSizeOne,
-        Upscale: operations.UpscaleZero,
+        Upscale: operations.UpscaleOne,
         URL: "/library/metadata/49564/thumb/1654258204",
     })
     if err != nil {
