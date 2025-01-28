@@ -625,20 +625,20 @@ func (e *EnableCreditsMarkerGeneration) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// ShowOrdering - Setting that indicates the episode ordering for the show
+// ShowOrdering - Setting that indicates the episode ordering for the show.
 // None = Library default,
 // tmdbAiring = The Movie Database (Aired),
-// tvdbAiring = TheTVDB (Aired),
-// tvdbDvd = TheTVDB (DVD),
-// tvdbAbsolute = TheTVDB (Absolute)).
+// aired = TheTVDB (Aired),
+// dvd = TheTVDB (DVD),
+// absolute = TheTVDB (Absolute)).
 type ShowOrdering string
 
 const (
 	ShowOrderingNone         ShowOrdering = "None"
 	ShowOrderingTmdbAiring   ShowOrdering = "tmdbAiring"
-	ShowOrderingTvdbAiring   ShowOrdering = "tvdbAiring"
-	ShowOrderingTvdbDvd      ShowOrdering = "tvdbDvd"
-	ShowOrderingTvdbAbsolute ShowOrdering = "tvdbAbsolute"
+	ShowOrderingTvdbAired    ShowOrdering = "aired"
+	ShowOrderingTvdbDvd      ShowOrdering = "dvd"
+	ShowOrderingTvdbAbsolute ShowOrdering = "absolute"
 )
 
 func (e ShowOrdering) ToPointer() *ShowOrdering {
@@ -654,11 +654,11 @@ func (e *ShowOrdering) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "tmdbAiring":
 		fallthrough
-	case "tvdbAiring":
+	case "aired":
 		fallthrough
-	case "tvdbDvd":
+	case "dvd":
 		fallthrough
-	case "tvdbAbsolute":
+	case "absolute":
 		*e = ShowOrdering(v)
 		return nil
 	default:
@@ -1628,12 +1628,12 @@ type GetRecentlyAddedMetadata struct {
 	EpisodeSort *EpisodeSort `json:"episodeSort,omitempty"`
 	// Setting that indicates if credits markers detection is enabled. (-1 = Library default, 0 = Disabled).
 	EnableCreditsMarkerGeneration *EnableCreditsMarkerGeneration `json:"enableCreditsMarkerGeneration,omitempty"`
-	// Setting that indicates the episode ordering for the show
+	// Setting that indicates the episode ordering for the show.
 	// None = Library default,
 	// tmdbAiring = The Movie Database (Aired),
-	// tvdbAiring = TheTVDB (Aired),
-	// tvdbDvd = TheTVDB (DVD),
-	// tvdbAbsolute = TheTVDB (Absolute)).
+	// aired = TheTVDB (Aired),
+	// dvd = TheTVDB (DVD),
+	// absolute = TheTVDB (Absolute)).
 	//
 	ShowOrdering          *ShowOrdering `json:"showOrdering,omitempty"`
 	Thumb                 *string       `json:"thumb,omitempty"`

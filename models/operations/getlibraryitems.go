@@ -716,20 +716,20 @@ func (e *GetLibraryItemsEnableCreditsMarkerGeneration) UnmarshalJSON(data []byte
 	}
 }
 
-// GetLibraryItemsShowOrdering - Setting that indicates the episode ordering for the show
+// GetLibraryItemsShowOrdering - Setting that indicates the episode ordering for the show.
 // None = Library default,
 // tmdbAiring = The Movie Database (Aired),
-// tvdbAiring = TheTVDB (Aired),
-// tvdbDvd = TheTVDB (DVD),
-// tvdbAbsolute = TheTVDB (Absolute)).
+// aired = TheTVDB (Aired),
+// dvd = TheTVDB (DVD),
+// absolute = TheTVDB (Absolute)).
 type GetLibraryItemsShowOrdering string
 
 const (
 	GetLibraryItemsShowOrderingNone         GetLibraryItemsShowOrdering = "None"
 	GetLibraryItemsShowOrderingTmdbAiring   GetLibraryItemsShowOrdering = "tmdbAiring"
-	GetLibraryItemsShowOrderingTvdbAiring   GetLibraryItemsShowOrdering = "tvdbAiring"
-	GetLibraryItemsShowOrderingTvdbDvd      GetLibraryItemsShowOrdering = "tvdbDvd"
-	GetLibraryItemsShowOrderingTvdbAbsolute GetLibraryItemsShowOrdering = "tvdbAbsolute"
+	GetLibraryItemsShowOrderingTvdbAired    GetLibraryItemsShowOrdering = "aired"
+	GetLibraryItemsShowOrderingTvdbDvd      GetLibraryItemsShowOrdering = "dvd"
+	GetLibraryItemsShowOrderingTvdbAbsolute GetLibraryItemsShowOrdering = "absolute"
 )
 
 func (e GetLibraryItemsShowOrdering) ToPointer() *GetLibraryItemsShowOrdering {
@@ -745,11 +745,11 @@ func (e *GetLibraryItemsShowOrdering) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "tmdbAiring":
 		fallthrough
-	case "tvdbAiring":
+	case "aired":
 		fallthrough
-	case "tvdbDvd":
+	case "dvd":
 		fallthrough
-	case "tvdbAbsolute":
+	case "absolute":
 		*e = GetLibraryItemsShowOrdering(v)
 		return nil
 	default:
@@ -1719,12 +1719,12 @@ type GetLibraryItemsMetadata struct {
 	EpisodeSort *GetLibraryItemsEpisodeSort `json:"episodeSort,omitempty"`
 	// Setting that indicates if credits markers detection is enabled. (-1 = Library default, 0 = Disabled).
 	EnableCreditsMarkerGeneration *GetLibraryItemsEnableCreditsMarkerGeneration `json:"enableCreditsMarkerGeneration,omitempty"`
-	// Setting that indicates the episode ordering for the show
+	// Setting that indicates the episode ordering for the show.
 	// None = Library default,
 	// tmdbAiring = The Movie Database (Aired),
-	// tvdbAiring = TheTVDB (Aired),
-	// tvdbDvd = TheTVDB (DVD),
-	// tvdbAbsolute = TheTVDB (Absolute)).
+	// aired = TheTVDB (Aired),
+	// dvd = TheTVDB (DVD),
+	// absolute = TheTVDB (Absolute)).
 	//
 	ShowOrdering          *GetLibraryItemsShowOrdering `json:"showOrdering,omitempty"`
 	Thumb                 *string                      `json:"thumb,omitempty"`

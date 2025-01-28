@@ -288,20 +288,20 @@ func (e *GetSearchAllLibrariesEnableCreditsMarkerGeneration) UnmarshalJSON(data 
 	}
 }
 
-// GetSearchAllLibrariesShowOrdering - Setting that indicates the episode ordering for the show
+// GetSearchAllLibrariesShowOrdering - Setting that indicates the episode ordering for the show.
 // None = Library default,
 // tmdbAiring = The Movie Database (Aired),
-// tvdbAiring = TheTVDB (Aired),
-// tvdbDvd = TheTVDB (DVD),
-// tvdbAbsolute = TheTVDB (Absolute)).
+// aired = TheTVDB (Aired),
+// dvd = TheTVDB (DVD),
+// absolute = TheTVDB (Absolute)).
 type GetSearchAllLibrariesShowOrdering string
 
 const (
 	GetSearchAllLibrariesShowOrderingNone         GetSearchAllLibrariesShowOrdering = "None"
 	GetSearchAllLibrariesShowOrderingTmdbAiring   GetSearchAllLibrariesShowOrdering = "tmdbAiring"
-	GetSearchAllLibrariesShowOrderingTvdbAiring   GetSearchAllLibrariesShowOrdering = "tvdbAiring"
-	GetSearchAllLibrariesShowOrderingTvdbDvd      GetSearchAllLibrariesShowOrdering = "tvdbDvd"
-	GetSearchAllLibrariesShowOrderingTvdbAbsolute GetSearchAllLibrariesShowOrdering = "tvdbAbsolute"
+	GetSearchAllLibrariesShowOrderingTvdbAired    GetSearchAllLibrariesShowOrdering = "aired"
+	GetSearchAllLibrariesShowOrderingTvdbDvd      GetSearchAllLibrariesShowOrdering = "dvd"
+	GetSearchAllLibrariesShowOrderingTvdbAbsolute GetSearchAllLibrariesShowOrdering = "absolute"
 )
 
 func (e GetSearchAllLibrariesShowOrdering) ToPointer() *GetSearchAllLibrariesShowOrdering {
@@ -317,11 +317,11 @@ func (e *GetSearchAllLibrariesShowOrdering) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "tmdbAiring":
 		fallthrough
-	case "tvdbAiring":
+	case "aired":
 		fallthrough
-	case "tvdbDvd":
+	case "dvd":
 		fallthrough
-	case "tvdbAbsolute":
+	case "absolute":
 		*e = GetSearchAllLibrariesShowOrdering(v)
 		return nil
 	default:
@@ -1291,12 +1291,12 @@ type GetSearchAllLibrariesMetadata struct {
 	EpisodeSort *GetSearchAllLibrariesEpisodeSort `json:"episodeSort,omitempty"`
 	// Setting that indicates if credits markers detection is enabled. (-1 = Library default, 0 = Disabled).
 	EnableCreditsMarkerGeneration *GetSearchAllLibrariesEnableCreditsMarkerGeneration `json:"enableCreditsMarkerGeneration,omitempty"`
-	// Setting that indicates the episode ordering for the show
+	// Setting that indicates the episode ordering for the show.
 	// None = Library default,
 	// tmdbAiring = The Movie Database (Aired),
-	// tvdbAiring = TheTVDB (Aired),
-	// tvdbDvd = TheTVDB (DVD),
-	// tvdbAbsolute = TheTVDB (Absolute)).
+	// aired = TheTVDB (Aired),
+	// dvd = TheTVDB (DVD),
+	// absolute = TheTVDB (Absolute)).
 	//
 	ShowOrdering          *GetSearchAllLibrariesShowOrdering `json:"showOrdering,omitempty"`
 	Thumb                 *string                            `json:"thumb,omitempty"`
