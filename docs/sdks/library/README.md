@@ -16,6 +16,8 @@ API Calls interacting with Plex Media Server Libraries
 * [GetLibraryItems](#getlibraryitems) - Get Library Items
 * [GetRefreshLibraryMetadata](#getrefreshlibrarymetadata) - Refresh Metadata Of The Library
 * [GetSearchLibrary](#getsearchlibrary) - Search Library
+* [GetGenresLibrary](#getgenreslibrary) - Get Genres of library media
+* [GetCountriesLibrary](#getcountrieslibrary) - Get Countries of library media
 * [GetSearchAllLibraries](#getsearchalllibraries) - Search All Libraries
 * [GetMetaDataByRatingKey](#getmetadatabyratingkey) - Get Metadata by RatingKey
 * [GetMetadataChildren](#getmetadatachildren) - Get Items Children
@@ -117,9 +119,6 @@ func main() {
         },
         SectionID: plexgo.Int64(2),
         Type: operations.QueryParamTypeTvShow,
-        IncludeMeta: operations.QueryParamIncludeMetaEnable.ToPointer(),
-        XPlexContainerStart: plexgo.Int(0),
-        XPlexContainerSize: plexgo.Int(50),
     })
     if err != nil {
         log.Fatal(err)
@@ -258,7 +257,6 @@ package main
 import(
 	"context"
 	"github.com/LukeHagar/plexgo"
-	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
@@ -269,7 +267,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Library.GetLibraryDetails(ctx, 9518, operations.IncludeDetailsZero.ToPointer())
+    res, err := s.Library.GetLibraryDetails(ctx, 9518, nil)
     if err != nil {
         log.Fatal(err)
     }
@@ -398,12 +396,8 @@ func main() {
 
     res, err := s.Library.GetLibraryItems(ctx, operations.GetLibraryItemsRequest{
         Tag: operations.TagEdition,
-        IncludeGuids: operations.IncludeGuidsEnable.ToPointer(),
         Type: operations.GetLibraryItemsQueryParamTypeTvShow.ToPointer(),
         SectionKey: 9518,
-        IncludeMeta: operations.GetLibraryItemsQueryParamIncludeMetaEnable.ToPointer(),
-        XPlexContainerStart: plexgo.Int(0),
-        XPlexContainerSize: plexgo.Int(50),
     })
     if err != nil {
         log.Fatal(err)
@@ -561,6 +555,112 @@ func main() {
 | sdkerrors.GetSearchLibraryUnauthorized | 401                                    | application/json                       |
 | sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
 
+## GetGenresLibrary
+
+Retrieves a list of all the genres that are found for the media in this library.
+
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"github.com/LukeHagar/plexgo"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+    
+    s := plexgo.New(
+        plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Library.GetGenresLibrary(ctx, 9518)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   | Example                                                                                       |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                         | [context.Context](https://pkg.go.dev/context#Context)                                         | :heavy_check_mark:                                                                            | The context to use for the request.                                                           |                                                                                               |
+| `sectionKey`                                                                                  | *int*                                                                                         | :heavy_check_mark:                                                                            | The unique key of the Plex library. <br/>Note: This is unique in the context of the Plex server.<br/> | 9518                                                                                          |
+| `opts`                                                                                        | [][operations.Option](../../models/operations/option.md)                                      | :heavy_minus_sign:                                                                            | The options for this request.                                                                 |                                                                                               |
+
+### Response
+
+**[*operations.GetGenresLibraryResponse](../../models/operations/getgenreslibraryresponse.md), error**
+
+### Errors
+
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.GetGenresLibraryBadRequest   | 400                                    | application/json                       |
+| sdkerrors.GetGenresLibraryUnauthorized | 401                                    | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
+
+## GetCountriesLibrary
+
+Retrieves a list of all the countries that are found for the media in this library.
+
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"github.com/LukeHagar/plexgo"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+    
+    s := plexgo.New(
+        plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Library.GetCountriesLibrary(ctx, 9518)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   | Example                                                                                       |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                         | [context.Context](https://pkg.go.dev/context#Context)                                         | :heavy_check_mark:                                                                            | The context to use for the request.                                                           |                                                                                               |
+| `sectionKey`                                                                                  | *int*                                                                                         | :heavy_check_mark:                                                                            | The unique key of the Plex library. <br/>Note: This is unique in the context of the Plex server.<br/> | 9518                                                                                          |
+| `opts`                                                                                        | [][operations.Option](../../models/operations/option.md)                                      | :heavy_minus_sign:                                                                            | The options for this request.                                                                 |                                                                                               |
+
+### Response
+
+**[*operations.GetCountriesLibraryResponse](../../models/operations/getcountrieslibraryresponse.md), error**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| sdkerrors.GetCountriesLibraryBadRequest   | 400                                       | application/json                          |
+| sdkerrors.GetCountriesLibraryUnauthorized | 401                                       | application/json                          |
+| sdkerrors.SDKError                        | 4XX, 5XX                                  | \*/\*                                     |
+
 ## GetSearchAllLibraries
 
 Search the provided query across all library sections, or a single section, and return matches as hubs, split up by type.
@@ -591,8 +691,6 @@ func main() {
         SearchTypes: []operations.SearchTypes{
             operations.SearchTypesPeople,
         },
-        IncludeCollections: operations.QueryParamIncludeCollectionsEnable.ToPointer(),
-        IncludeExternalMedia: operations.QueryParamIncludeExternalMediaEnable.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)

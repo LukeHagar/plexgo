@@ -35,8 +35,6 @@ func main() {
 
     res, err := s.Watchlist.GetWatchList(ctx, operations.GetWatchListRequest{
         Filter: operations.FilterAvailable,
-        XPlexContainerStart: plexgo.Int(0),
-        XPlexContainerSize: plexgo.Int(50),
         XPlexToken: "CV5xoxjTpFKUzBTShsaf",
     })
     if err != nil {

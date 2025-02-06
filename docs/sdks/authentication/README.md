@@ -203,7 +203,6 @@ func main() {
         RequestBody: &operations.PostUsersSignInDataRequestBody{
             Login: "username@email.com",
             Password: "password123",
-            RememberMe: plexgo.Bool(false),
             VerificationCode: plexgo.String("123456"),
         },
     })

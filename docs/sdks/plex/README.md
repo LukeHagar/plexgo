@@ -230,7 +230,6 @@ package main
 import(
 	"context"
 	"github.com/LukeHagar/plexgo"
-	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
@@ -241,7 +240,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Plex.GetServerResources(ctx, "3381b62b-9ab7-4e37-827b-203e9809eb58", operations.IncludeHTTPSEnable.ToPointer(), operations.IncludeRelayEnable.ToPointer(), operations.IncludeIPv6Enable.ToPointer())
+    res, err := s.Plex.GetServerResources(ctx, "3381b62b-9ab7-4e37-827b-203e9809eb58", nil, nil, nil)
     if err != nil {
         log.Fatal(err)
     }
@@ -296,7 +295,6 @@ func main() {
     s := plexgo.New()
 
     res, err := s.Plex.GetPin(ctx, operations.GetPinRequest{
-        Strong: plexgo.Bool(false),
         ClientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
         ClientName: plexgo.String("Plex for Roku"),
         DeviceNickname: plexgo.String("Roku 3"),

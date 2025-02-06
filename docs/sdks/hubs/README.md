@@ -93,9 +93,6 @@ func main() {
         ContentDirectoryID: 470161,
         SectionID: plexgo.Int64(2),
         Type: operations.TypeTvShow,
-        IncludeMeta: operations.IncludeMetaEnable.ToPointer(),
-        XPlexContainerStart: plexgo.Int(0),
-        XPlexContainerSize: plexgo.Int(50),
     })
     if err != nil {
         log.Fatal(err)

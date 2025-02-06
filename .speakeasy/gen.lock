@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: dfa99515-01c0-42eb-9be5-ee212fd03eb3
 management:
-  docChecksum: a643a64d282d705e3e24f61ed6f068c6
+  docChecksum: 14b35829d4be91a88269761c3ed01426
   docVersion: 0.0.3
-  speakeasyVersion: 1.476.2
-  generationVersion: 2.495.1
-  releaseVersion: 0.17.3
-  configChecksum: b217b6f314764baeb1666f2a287fd80a
+  speakeasyVersion: 1.484.1
+  generationVersion: 2.503.2
+  releaseVersion: 0.17.4
+  configChecksum: 03b930c277a60bb2913235285cab5b77
   repoURL: https://github.com/LukeHagar/plexgo.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexgo
@@ -15,7 +15,7 @@ features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.6
-    core: 3.6.9
+    core: 3.6.12
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.2
     downloadStreams: 0.1.2
@@ -52,8 +52,10 @@ generatedFiles:
   - /models/operations/getbannerimage.go
   - /models/operations/getbutlertasks.go
   - /models/operations/getcompanionsdata.go
+  - /models/operations/getcountrieslibrary.go
   - /models/operations/getdevices.go
   - /models/operations/getfilehash.go
+  - /models/operations/getgenreslibrary.go
   - /models/operations/getgeodata.go
   - /models/operations/getglobalhubs.go
   - /models/operations/gethomedata.go
@@ -128,8 +130,10 @@ generatedFiles:
   - /models/sdkerrors/getbannerimage.go
   - /models/sdkerrors/getbutlertasks.go
   - /models/sdkerrors/getcompanionsdata.go
+  - /models/sdkerrors/getcountrieslibrary.go
   - /models/sdkerrors/getdevices.go
   - /models/sdkerrors/getfilehash.go
+  - /models/sdkerrors/getgenreslibrary.go
   - /models/sdkerrors/getgeodata.go
   - /models/sdkerrors/getglobalhubs.go
   - /models/sdkerrors/gethomedata.go
@@ -266,11 +270,21 @@ generatedFiles:
   - docs/models/operations/getbutlertasksresponse.md
   - docs/models/operations/getbutlertasksresponsebody.md
   - docs/models/operations/getcompanionsdataresponse.md
+  - docs/models/operations/getcountrieslibrarydirectory.md
+  - docs/models/operations/getcountrieslibrarymediacontainer.md
+  - docs/models/operations/getcountrieslibraryrequest.md
+  - docs/models/operations/getcountrieslibraryresponse.md
+  - docs/models/operations/getcountrieslibraryresponsebody.md
   - docs/models/operations/getdevicesmediacontainer.md
   - docs/models/operations/getdevicesresponse.md
   - docs/models/operations/getdevicesresponsebody.md
   - docs/models/operations/getfilehashrequest.md
   - docs/models/operations/getfilehashresponse.md
+  - docs/models/operations/getgenreslibrarydirectory.md
+  - docs/models/operations/getgenreslibrarymediacontainer.md
+  - docs/models/operations/getgenreslibraryrequest.md
+  - docs/models/operations/getgenreslibraryresponse.md
+  - docs/models/operations/getgenreslibraryresponsebody.md
   - docs/models/operations/getgeodatageodata.md
   - docs/models/operations/getgeodataresponse.md
   - docs/models/operations/getglobalhubsmediacontainer.md
@@ -758,6 +772,10 @@ generatedFiles:
   - docs/models/sdkerrors/getcompanionsdataerrors.md
   - docs/models/sdkerrors/getcompanionsdataplexerrors.md
   - docs/models/sdkerrors/getcompanionsdataunauthorized.md
+  - docs/models/sdkerrors/getcountrieslibrarybadrequest.md
+  - docs/models/sdkerrors/getcountrieslibraryerrors.md
+  - docs/models/sdkerrors/getcountrieslibrarylibraryerrors.md
+  - docs/models/sdkerrors/getcountrieslibraryunauthorized.md
   - docs/models/sdkerrors/getdevicesbadrequest.md
   - docs/models/sdkerrors/getdeviceserrors.md
   - docs/models/sdkerrors/getdevicesservererrors.md
@@ -766,6 +784,10 @@ generatedFiles:
   - docs/models/sdkerrors/getfilehasherrors.md
   - docs/models/sdkerrors/getfilehashlibraryerrors.md
   - docs/models/sdkerrors/getfilehashunauthorized.md
+  - docs/models/sdkerrors/getgenreslibrarybadrequest.md
+  - docs/models/sdkerrors/getgenreslibraryerrors.md
+  - docs/models/sdkerrors/getgenreslibrarylibraryerrors.md
+  - docs/models/sdkerrors/getgenreslibraryunauthorized.md
   - docs/models/sdkerrors/getgeodatabadrequest.md
   - docs/models/sdkerrors/getgeodataerrors.md
   - docs/models/sdkerrors/getgeodataplexerrors.md
@@ -2031,5 +2053,29 @@ examples:
           application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}, {"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
         "401":
           application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}]}
+  get-genres-library:
+    speakeasy-default-get-genres-library:
+      parameters:
+        path:
+          sectionKey: 9518
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 50, "identifier": "com.plexapp.plugins.library", "allowSync": false, "art": "/:/resources/show-fanart.jpg", "content": "secondary", "mediaTagPrefix": "/system/bundle/media/flags/", "mediaTagVersion": 1734362201, "nocache": true, "thumb": "/:/resources/show.png", "title1": "TV Shows (Reality)", "title2": "By Genre", "viewGroup": "secondary", "Directory": [{"fastKey": "/library/sections/10/all?genre=89", "key": "89", "title": "Action", "type": "genre"}]}}
+        "400":
+          application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
+        "401":
+          application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}, {"code": 1001, "message": "User could not be authenticated", "status": 401}, {"code": 1001, "message": "User could not be authenticated", "status": 401}]}
+  get-countries-library:
+    speakeasy-default-get-countries-library:
+      parameters:
+        path:
+          sectionKey: 9518
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 50, "identifier": "com.plexapp.plugins.library", "allowSync": false, "art": "/:/resources/show-fanart.jpg", "content": "secondary", "mediaTagPrefix": "/system/bundle/media/flags/", "mediaTagVersion": 1734362201, "nocache": true, "thumb": "/:/resources/show.png", "title1": "TV Series", "title2": "By Country", "viewGroup": "secondary", "Directory": [{"fastKey": "/library/sections/2/all?country=15491", "key": "15491", "title": "Japan"}]}}
+        "400":
+          application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}, {"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
+        "401":
+          application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}, {"code": 1001, "message": "User could not be authenticated", "status": 401}, {"code": 1001, "message": "User could not be authenticated", "status": 401}]}
 examplesVersion: 1.0.0
 generatedTests: {}
