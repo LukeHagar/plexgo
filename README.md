@@ -226,6 +226,10 @@ func main() {
 * [CheckForUpdates](docs/sdks/updater/README.md#checkforupdates) - Checking for updates
 * [ApplyUpdates](docs/sdks/updater/README.md#applyupdates) - Apply Updates
 
+### [Users](docs/sdks/users/README.md)
+
+* [GetUsers](docs/sdks/users/README.md#getusers) - Get list of all connected users
+
 ### [Video](docs/sdks/video/README.md)
 
 * [GetTimeline](docs/sdks/video/README.md#gettimeline) - Get the timeline for a media item

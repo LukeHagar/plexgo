@@ -96,6 +96,16 @@ func AsSecuritySource(security interface{}) func(context.Context) (interface{}, 
 	}
 }
 
+func parseConstTag(field reflect.StructField) *string {
+	value := field.Tag.Get("const")
+
+	if value == "" {
+		return nil
+	}
+
+	return &value
+}
+
 func parseStructTag(tagKey string, field reflect.StructField) map[string]string {
 	tag := field.Tag.Get(tagKey)
 	if tag == "" {

@@ -459,6 +459,12 @@ actions:
         - lang: go
           label: getTokenDetails
           source: "package main\n\nimport(\n\t\"context\"\n\t\"github.com/LukeHagar/plexgo\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n    \n    s := plexgo.New(\n        plexgo.WithSecurity(\"<YOUR_API_KEY_HERE>\"),\n    )\n\n    res, err := s.Authentication.GetTokenDetails(ctx)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.UserPlexAccount != nil {\n        // handle response\n    }\n}"
+  - target: $["paths"]["/users"]["get"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: users
+          source: "package main\n\nimport(\n\t\"context\"\n\t\"github.com/LukeHagar/plexgo\"\n\t\"github.com/LukeHagar/plexgo/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n    \n    s := plexgo.New()\n\n    res, err := s.Users.GetUsers(ctx, operations.GetUsersRequest{\n        ClientID: \"3381b62b-9ab7-4e37-827b-203e9809eb58\",\n        ClientName: plexgo.String(\"Plex for Roku\"),\n        DeviceNickname: plexgo.String(\"Roku 3\"),\n        DeviceName: plexgo.String(\"Chrome\"),\n        DeviceScreenResolution: plexgo.String(\"1487x1165,2560x1440\"),\n        ClientVersion: plexgo.String(\"2.4.1\"),\n        Platform: plexgo.String(\"Roku\"),\n        ClientFeatures: plexgo.String(\"external-media,indirect-media,hub-style-list\"),\n        Model: plexgo.String(\"4200X\"),\n        XPlexSessionID: plexgo.String(\"97e136ef-4ddd-4ff3-89a7-a5820c96c2ca\"),\n        XPlexLanguage: plexgo.String(\"en\"),\n        PlatformVersion: plexgo.String(\"4.3 build 1057\"),\n        XPlexToken: \"CV5xoxjTpFKUzBTShsaf\",\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.Body != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/users/signin"]["post"]
     update:
       x-codeSamples:

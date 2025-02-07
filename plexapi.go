@@ -154,6 +154,7 @@ type PlexAPI struct {
 	// Updates to the status can be observed via the Event API.
 	//
 	Updater *Updater
+	Users   *Users
 
 	sdkConfiguration sdkConfiguration
 }
@@ -298,9 +299,9 @@ func New(opts ...SDKOption) *PlexAPI {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.3",
-			SDKVersion:        "0.17.4",
-			GenVersion:        "2.503.2",
-			UserAgent:         "speakeasy-sdk/go 0.17.4 2.503.2 0.0.3 github.com/LukeHagar/plexgo",
+			SDKVersion:        "0.18.0",
+			GenVersion:        "2.506.0",
+			UserAgent:         "speakeasy-sdk/go 0.18.0 2.506.0 0.0.3 github.com/LukeHagar/plexgo",
 			ServerDefaults: []map[string]string{
 				{
 					"protocol": "https",
@@ -358,6 +359,8 @@ func New(opts ...SDKOption) *PlexAPI {
 	sdk.Sessions = newSessions(sdk.sdkConfiguration)
 
 	sdk.Updater = newUpdater(sdk.sdkConfiguration)
+
+	sdk.Users = newUsers(sdk.sdkConfiguration)
 
 	return sdk
 }

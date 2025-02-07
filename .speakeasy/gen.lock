@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: dfa99515-01c0-42eb-9be5-ee212fd03eb3
 management:
-  docChecksum: 14b35829d4be91a88269761c3ed01426
+  docChecksum: 7dec92ab9151a1b5a35df5faa81811ba
   docVersion: 0.0.3
-  speakeasyVersion: 1.484.1
-  generationVersion: 2.503.2
-  releaseVersion: 0.17.4
-  configChecksum: 03b930c277a60bb2913235285cab5b77
+  speakeasyVersion: 1.487.0
+  generationVersion: 2.506.0
+  releaseVersion: 0.18.0
+  configChecksum: 2c67410bd5eed3f54f23e32506d938ab
   repoURL: https://github.com/LukeHagar/plexgo.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexgo
@@ -14,8 +14,8 @@ management:
 features:
   go:
     additionalDependencies: 0.1.0
-    constsAndDefaults: 0.1.6
-    core: 3.6.12
+    constsAndDefaults: 0.1.7
+    core: 3.7.0
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.2
     downloadStreams: 0.1.2
@@ -98,6 +98,7 @@ generatedFiles:
   - /models/operations/gettransienttoken.go
   - /models/operations/getupdatestatus.go
   - /models/operations/getuserfriends.go
+  - /models/operations/getusers.go
   - /models/operations/getwatchlist.go
   - /models/operations/logline.go
   - /models/operations/logmultiline.go
@@ -175,6 +176,7 @@ generatedFiles:
   - /models/sdkerrors/gettransienttoken.go
   - /models/sdkerrors/getupdatestatus.go
   - /models/sdkerrors/getuserfriends.go
+  - /models/sdkerrors/getusers.go
   - /models/sdkerrors/getwatchlist.go
   - /models/sdkerrors/logline.go
   - /models/sdkerrors/logmultiline.go
@@ -206,6 +208,12 @@ generatedFiles:
   - docs/models/operations/addplaylistcontentsrequest.md
   - docs/models/operations/addplaylistcontentsresponse.md
   - docs/models/operations/addplaylistcontentsresponsebody.md
+  - docs/models/operations/alllibraries.md
+  - docs/models/operations/allowcameraupload.md
+  - docs/models/operations/allowchannels.md
+  - docs/models/operations/allowsubtitleadmin.md
+  - docs/models/operations/allowsync.md
+  - docs/models/operations/allowtuners.md
   - docs/models/operations/applyupdatesrequest.md
   - docs/models/operations/applyupdatesresponse.md
   - docs/models/operations/autoselectsubtitle.md
@@ -568,6 +576,7 @@ generatedFiles:
   - docs/models/operations/gettopwatchedcontentresponse.md
   - docs/models/operations/gettopwatchedcontentresponsebody.md
   - docs/models/operations/gettopwatchedcontentrole.md
+  - docs/models/operations/gettopwatchedcontentuser.md
   - docs/models/operations/gettranscodesessionsmediacontainer.md
   - docs/models/operations/gettranscodesessionsresponse.md
   - docs/models/operations/gettranscodesessionsresponsebody.md
@@ -578,11 +587,17 @@ generatedFiles:
   - docs/models/operations/getupdatestatusresponse.md
   - docs/models/operations/getupdatestatusresponsebody.md
   - docs/models/operations/getuserfriendsresponse.md
+  - docs/models/operations/getusersmediacontainer.md
+  - docs/models/operations/getusersrequest.md
+  - docs/models/operations/getusersresponse.md
+  - docs/models/operations/getusersresponsebody.md
+  - docs/models/operations/getusersserver.md
   - docs/models/operations/getwatchlistrequest.md
   - docs/models/operations/getwatchlistresponse.md
   - docs/models/operations/getwatchlistresponsebody.md
   - docs/models/operations/guids.md
   - docs/models/operations/hasthumbnail.md
+  - docs/models/operations/home.md
   - docs/models/operations/hub.md
   - docs/models/operations/image.md
   - docs/models/operations/includecollections.md
@@ -619,9 +634,11 @@ generatedFiles:
   - docs/models/operations/operator.md
   - docs/models/operations/optimizedforstreaming.md
   - docs/models/operations/option.md
+  - docs/models/operations/owned.md
   - docs/models/operations/part.md
   - docs/models/operations/pastsubscription.md
   - docs/models/operations/pathparamtaskname.md
+  - docs/models/operations/pending.md
   - docs/models/operations/performsearchrequest.md
   - docs/models/operations/performsearchresponse.md
   - docs/models/operations/performvoicesearchrequest.md
@@ -649,6 +666,7 @@ generatedFiles:
   - docs/models/operations/postuserssignindatauserprofile.md
   - docs/models/operations/postuserssignindatawatchedindicator.md
   - docs/models/operations/producer.md
+  - docs/models/operations/protected.md
   - docs/models/operations/protocol.md
   - docs/models/operations/provider.md
   - docs/models/operations/queryparamfilter.md
@@ -662,6 +680,7 @@ generatedFiles:
   - docs/models/operations/ratings.md
   - docs/models/operations/release.md
   - docs/models/operations/responsebody.md
+  - docs/models/operations/restricted.md
   - docs/models/operations/role.md
   - docs/models/operations/scope.md
   - docs/models/operations/searchresult.md
@@ -946,6 +965,10 @@ generatedFiles:
   - docs/models/sdkerrors/getuserfriendserrors.md
   - docs/models/sdkerrors/getuserfriendsplexerrors.md
   - docs/models/sdkerrors/getuserfriendsunauthorized.md
+  - docs/models/sdkerrors/getusersbadrequest.md
+  - docs/models/sdkerrors/getuserserrors.md
+  - docs/models/sdkerrors/getusersunauthorized.md
+  - docs/models/sdkerrors/getusersuserserrors.md
   - docs/models/sdkerrors/getwatchlistbadrequest.md
   - docs/models/sdkerrors/getwatchlisterrors.md
   - docs/models/sdkerrors/getwatchlistunauthorized.md
@@ -1029,6 +1052,7 @@ generatedFiles:
   - docs/sdks/sessions/README.md
   - docs/sdks/statistics/README.md
   - docs/sdks/updater/README.md
+  - docs/sdks/users/README.md
   - docs/sdks/video/README.md
   - docs/sdks/watchlist/README.md
   - docs/types/date.md
@@ -1065,6 +1089,7 @@ generatedFiles:
   - types/decimal.go
   - types/pointers.go
   - updater.go
+  - users.go
   - video.go
   - watchlist.go
 examples:
@@ -2077,5 +2102,29 @@ examples:
           application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}, {"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
         "401":
           application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}, {"code": 1001, "message": "User could not be authenticated", "status": 401}, {"code": 1001, "message": "User could not be authenticated", "status": 401}]}
+  get-users:
+    "":
+      parameters:
+        header:
+          X-Plex-Client-Identifier: "3381b62b-9ab7-4e37-827b-203e9809eb58"
+          X-Plex-Product: "Plex for Roku"
+          X-Plex-Device: "Roku 3"
+          X-Plex-Device-Name: "Chrome"
+          X-Plex-Device-Screen-Resolution: "1487x1165,2560x1440"
+          X-Plex-Version: "2.4.1"
+          X-Plex-Platform: "Roku"
+          X-Plex-Features: "external-media,indirect-media,hub-style-list"
+          X-Plex-Model: "4200X"
+          X-Plex-Session-Id: "97e136ef-4ddd-4ff3-89a7-a5820c96c2ca"
+          X-Plex-Language: "en"
+          X-Plex-Platform-Version: "4.3 build 1057"
+          X-Plex-Token: "CV5xoxjTpFKUzBTShsaf"
+      responses:
+        "200":
+          application/xml: "0xa9CdebeF9E"
+        "400":
+          application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}, {"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
+        "401":
+          application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}, {"code": 1001, "message": "User could not be authenticated", "status": 401}]}
 examplesVersion: 1.0.0
 generatedTests: {}

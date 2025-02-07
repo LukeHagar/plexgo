@@ -23,6 +23,7 @@ type AcceptHeaderEnum string
 const (
 	AcceptHeaderEnumApplicationJson AcceptHeaderEnum = "application/json"
 	AcceptHeaderEnumImageJpeg       AcceptHeaderEnum = "image/jpeg"
+	AcceptHeaderEnumApplicationXml  AcceptHeaderEnum = "application/xml"
 )
 
 func (e AcceptHeaderEnum) ToPointer() *AcceptHeaderEnum {

@@ -201,11 +201,11 @@ func (o *GetTopWatchedContentRole) GetThumb() *string {
 	return o.Thumb
 }
 
-type User struct {
+type GetTopWatchedContentUser struct {
 	ID *int `json:"id,omitempty"`
 }
 
-func (o *User) GetID() *int {
+func (o *GetTopWatchedContentUser) GetID() *int {
 	if o == nil {
 		return nil
 	}
@@ -244,7 +244,7 @@ type GetTopWatchedContentMetadata struct {
 	Country               []GetTopWatchedContentCountry `json:"Country,omitempty"`
 	Guids                 []GetTopWatchedContentGuids   `json:"Guid,omitempty"`
 	Role                  []GetTopWatchedContentRole    `json:"Role,omitempty"`
-	User                  []User                        `json:"User,omitempty"`
+	User                  []GetTopWatchedContentUser    `json:"User,omitempty"`
 }
 
 func (g GetTopWatchedContentMetadata) MarshalJSON() ([]byte, error) {
@@ -475,7 +475,7 @@ func (o *GetTopWatchedContentMetadata) GetRole() []GetTopWatchedContentRole {
 	return o.Role
 }
 
-func (o *GetTopWatchedContentMetadata) GetUser() []User {
+func (o *GetTopWatchedContentMetadata) GetUser() []GetTopWatchedContentUser {
 	if o == nil {
 		return nil
 	}

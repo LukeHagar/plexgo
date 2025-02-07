@@ -65,6 +65,12 @@ func populateQueryParams(queryParams interface{}, globals interface{}, values ur
 			continue
 		}
 
+		constValue := parseConstTag(fieldType)
+		if constValue != nil {
+			values.Add(qpTag.ParamName, *constValue)
+			continue
+		}
+
 		if globals != nil {
 			var globalFound bool
 			fieldType, valType, globalFound = populateFromGlobals(fieldType, valType, queryParamTagKey, globals)
