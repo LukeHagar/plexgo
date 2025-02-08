@@ -3,14 +3,71 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
+
+// GetCountriesLibraryQueryParamType - The type of media to retrieve or filter by.
+// 1 = movie
+// 2 = show
+// 3 = season
+// 4 = episode
+// E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
+type GetCountriesLibraryQueryParamType int64
+
+const (
+	GetCountriesLibraryQueryParamTypeMovie   GetCountriesLibraryQueryParamType = 1
+	GetCountriesLibraryQueryParamTypeTvShow  GetCountriesLibraryQueryParamType = 2
+	GetCountriesLibraryQueryParamTypeSeason  GetCountriesLibraryQueryParamType = 3
+	GetCountriesLibraryQueryParamTypeEpisode GetCountriesLibraryQueryParamType = 4
+	GetCountriesLibraryQueryParamTypeAudio   GetCountriesLibraryQueryParamType = 8
+	GetCountriesLibraryQueryParamTypeAlbum   GetCountriesLibraryQueryParamType = 9
+	GetCountriesLibraryQueryParamTypeTrack   GetCountriesLibraryQueryParamType = 10
+)
+
+func (e GetCountriesLibraryQueryParamType) ToPointer() *GetCountriesLibraryQueryParamType {
+	return &e
+}
+func (e *GetCountriesLibraryQueryParamType) UnmarshalJSON(data []byte) error {
+	var v int64
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case 1:
+		fallthrough
+	case 2:
+		fallthrough
+	case 3:
+		fallthrough
+	case 4:
+		fallthrough
+	case 8:
+		fallthrough
+	case 9:
+		fallthrough
+	case 10:
+		*e = GetCountriesLibraryQueryParamType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCountriesLibraryQueryParamType: %v", v)
+	}
+}
 
 type GetCountriesLibraryRequest struct {
 	// The unique key of the Plex library.
 	// Note: This is unique in the context of the Plex server.
 	//
 	SectionKey int `pathParam:"style=simple,explode=false,name=sectionKey"`
+	// The type of media to retrieve or filter by.
+	// 1 = movie
+	// 2 = show
+	// 3 = season
+	// 4 = episode
+	// E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
+	//
+	Type GetCountriesLibraryQueryParamType `queryParam:"style=form,explode=true,name=type"`
 }
 
 func (o *GetCountriesLibraryRequest) GetSectionKey() int {
@@ -18,6 +75,13 @@ func (o *GetCountriesLibraryRequest) GetSectionKey() int {
 		return 0
 	}
 	return o.SectionKey
+}
+
+func (o *GetCountriesLibraryRequest) GetType() GetCountriesLibraryQueryParamType {
+	if o == nil {
+		return GetCountriesLibraryQueryParamType(0)
+	}
+	return o.Type
 }
 
 type GetCountriesLibraryDirectory struct {

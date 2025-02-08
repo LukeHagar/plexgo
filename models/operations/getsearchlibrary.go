@@ -8,7 +8,7 @@ import (
 	"net/http"
 )
 
-// GetSearchLibraryQueryParamType - The type of media to retrieve.
+// GetSearchLibraryQueryParamType - The type of media to retrieve or filter by.
 // 1 = movie
 // 2 = show
 // 3 = season
@@ -60,7 +60,7 @@ type GetSearchLibraryRequest struct {
 	// Note: This is unique in the context of the Plex server.
 	//
 	SectionKey int `pathParam:"style=simple,explode=false,name=sectionKey"`
-	// The type of media to retrieve.
+	// The type of media to retrieve or filter by.
 	// 1 = movie
 	// 2 = show
 	// 3 = season

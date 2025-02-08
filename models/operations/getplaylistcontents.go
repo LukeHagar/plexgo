@@ -10,7 +10,7 @@ import (
 	"net/http"
 )
 
-// GetPlaylistContentsQueryParamType - The type of media to retrieve.
+// GetPlaylistContentsQueryParamType - The type of media to retrieve or filter by.
 // 1 = movie
 // 2 = show
 // 3 = season
@@ -60,7 +60,7 @@ func (e *GetPlaylistContentsQueryParamType) UnmarshalJSON(data []byte) error {
 type GetPlaylistContentsRequest struct {
 	// the ID of the playlist
 	PlaylistID float64 `pathParam:"style=simple,explode=false,name=playlistID"`
-	// The type of media to retrieve.
+	// The type of media to retrieve or filter by.
 	// 1 = movie
 	// 2 = show
 	// 3 = season

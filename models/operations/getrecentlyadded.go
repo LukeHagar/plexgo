@@ -10,7 +10,7 @@ import (
 	"net/http"
 )
 
-// Type - The type of media to retrieve.
+// Type - The type of media to retrieve or filter by.
 // 1 = movie
 // 2 = show
 // 3 = season
@@ -91,7 +91,7 @@ type GetRecentlyAddedRequest struct {
 	PinnedContentDirectoryID *string `queryParam:"style=form,explode=true,name=pinnedContentDirectoryID"`
 	// The library section ID for filtering content.
 	SectionID *int64 `queryParam:"style=form,explode=true,name=sectionID"`
-	// The type of media to retrieve.
+	// The type of media to retrieve or filter by.
 	// 1 = movie
 	// 2 = show
 	// 3 = season

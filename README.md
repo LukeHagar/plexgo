@@ -146,8 +146,9 @@ func main() {
 * [GetSearchLibrary](docs/sdks/library/README.md#getsearchlibrary) - Search Library
 * [GetGenresLibrary](docs/sdks/library/README.md#getgenreslibrary) - Get Genres of library media
 * [GetCountriesLibrary](docs/sdks/library/README.md#getcountrieslibrary) - Get Countries of library media
+* [GetActorsLibrary](docs/sdks/library/README.md#getactorslibrary) - Get Actors of library media
 * [GetSearchAllLibraries](docs/sdks/library/README.md#getsearchalllibraries) - Search All Libraries
-* [GetMetaDataByRatingKey](docs/sdks/library/README.md#getmetadatabyratingkey) - Get Metadata by RatingKey
+* [GetMediaMetaData](docs/sdks/library/README.md#getmediametadata) - Get Media Metadata
 * [GetMetadataChildren](docs/sdks/library/README.md#getmetadatachildren) - Get Items Children
 * [GetTopWatchedContent](docs/sdks/library/README.md#gettopwatchedcontent) - Get Top Watched Content
 * [GetOnDeck](docs/sdks/library/README.md#getondeck) - Get On Deck

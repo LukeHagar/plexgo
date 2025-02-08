@@ -118,7 +118,7 @@ func (e *IncludeGuids) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// GetLibraryItemsQueryParamType - The type of media to retrieve.
+// GetLibraryItemsQueryParamType - The type of media to retrieve or filter by.
 // 1 = movie
 // 2 = show
 // 3 = season
@@ -198,14 +198,14 @@ type GetLibraryItemsRequest struct {
 	// Adds the Guids object to the response
 	//
 	IncludeGuids *IncludeGuids `default:"0" queryParam:"style=form,explode=true,name=includeGuids"`
-	// The type of media to retrieve.
+	// The type of media to retrieve or filter by.
 	// 1 = movie
 	// 2 = show
 	// 3 = season
 	// 4 = episode
 	// E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
 	//
-	Type *GetLibraryItemsQueryParamType `queryParam:"style=form,explode=true,name=type"`
+	Type GetLibraryItemsQueryParamType `queryParam:"style=form,explode=true,name=type"`
 	// The unique key of the Plex library.
 	// Note: This is unique in the context of the Plex server.
 	//
@@ -250,9 +250,9 @@ func (o *GetLibraryItemsRequest) GetIncludeGuids() *IncludeGuids {
 	return o.IncludeGuids
 }
 
-func (o *GetLibraryItemsRequest) GetType() *GetLibraryItemsQueryParamType {
+func (o *GetLibraryItemsRequest) GetType() GetLibraryItemsQueryParamType {
 	if o == nil {
-		return nil
+		return GetLibraryItemsQueryParamType(0)
 	}
 	return o.Type
 }

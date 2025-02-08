@@ -3,14 +3,71 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
+
+// GetGenresLibraryQueryParamType - The type of media to retrieve or filter by.
+// 1 = movie
+// 2 = show
+// 3 = season
+// 4 = episode
+// E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
+type GetGenresLibraryQueryParamType int64
+
+const (
+	GetGenresLibraryQueryParamTypeMovie   GetGenresLibraryQueryParamType = 1
+	GetGenresLibraryQueryParamTypeTvShow  GetGenresLibraryQueryParamType = 2
+	GetGenresLibraryQueryParamTypeSeason  GetGenresLibraryQueryParamType = 3
+	GetGenresLibraryQueryParamTypeEpisode GetGenresLibraryQueryParamType = 4
+	GetGenresLibraryQueryParamTypeAudio   GetGenresLibraryQueryParamType = 8
+	GetGenresLibraryQueryParamTypeAlbum   GetGenresLibraryQueryParamType = 9
+	GetGenresLibraryQueryParamTypeTrack   GetGenresLibraryQueryParamType = 10
+)
+
+func (e GetGenresLibraryQueryParamType) ToPointer() *GetGenresLibraryQueryParamType {
+	return &e
+}
+func (e *GetGenresLibraryQueryParamType) UnmarshalJSON(data []byte) error {
+	var v int64
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case 1:
+		fallthrough
+	case 2:
+		fallthrough
+	case 3:
+		fallthrough
+	case 4:
+		fallthrough
+	case 8:
+		fallthrough
+	case 9:
+		fallthrough
+	case 10:
+		*e = GetGenresLibraryQueryParamType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetGenresLibraryQueryParamType: %v", v)
+	}
+}
 
 type GetGenresLibraryRequest struct {
 	// The unique key of the Plex library.
 	// Note: This is unique in the context of the Plex server.
 	//
 	SectionKey int `pathParam:"style=simple,explode=false,name=sectionKey"`
+	// The type of media to retrieve or filter by.
+	// 1 = movie
+	// 2 = show
+	// 3 = season
+	// 4 = episode
+	// E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
+	//
+	Type GetGenresLibraryQueryParamType `queryParam:"style=form,explode=true,name=type"`
 }
 
 func (o *GetGenresLibraryRequest) GetSectionKey() int {
@@ -18,6 +75,13 @@ func (o *GetGenresLibraryRequest) GetSectionKey() int {
 		return 0
 	}
 	return o.SectionKey
+}
+
+func (o *GetGenresLibraryRequest) GetType() GetGenresLibraryQueryParamType {
+	if o == nil {
+		return GetGenresLibraryQueryParamType(0)
+	}
+	return o.Type
 }
 
 type GetGenresLibraryDirectory struct {

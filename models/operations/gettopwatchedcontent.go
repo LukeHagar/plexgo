@@ -10,7 +10,7 @@ import (
 	"net/http"
 )
 
-// GetTopWatchedContentQueryParamType - The type of media to retrieve.
+// GetTopWatchedContentQueryParamType - The type of media to retrieve or filter by.
 // 1 = movie
 // 2 = show
 // 3 = season
@@ -61,7 +61,7 @@ type GetTopWatchedContentRequest struct {
 	// Adds the Guids object to the response
 	//
 	IncludeGuids *int64 `queryParam:"style=form,explode=true,name=includeGuids"`
-	// The type of media to retrieve.
+	// The type of media to retrieve or filter by.
 	// 1 = movie
 	// 2 = show
 	// 3 = season

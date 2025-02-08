@@ -169,8 +169,8 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: key
-          source: "package main\n\nimport(\n\t\"context\"\n\t\"github.com/LukeHagar/plexgo\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n    \n    s := plexgo.New(\n        plexgo.WithSecurity(\"<YOUR_API_KEY_HERE>\"),\n    )\n\n    res, err := s.Library.GetMetaDataByRatingKey(ctx, 9518)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.Object != nil {\n        // handle response\n    }\n}"
+          label: data
+          source: "package main\n\nimport(\n\t\"context\"\n\t\"github.com/LukeHagar/plexgo\"\n\t\"github.com/LukeHagar/plexgo/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n    \n    s := plexgo.New(\n        plexgo.WithSecurity(\"<YOUR_API_KEY_HERE>\"),\n    )\n\n    res, err := s.Library.GetMediaMetaData(ctx, operations.GetMediaMetaDataRequest{\n        RatingKey: 9518,\n        IncludeConcerts: plexgo.Bool(true),\n        IncludeExtras: plexgo.Bool(true),\n        IncludeOnDeck: plexgo.Bool(true),\n        IncludePopularLeaves: plexgo.Bool(true),\n        IncludePreferences: plexgo.Bool(true),\n        IncludeReviews: plexgo.Bool(true),\n        IncludeChapters: plexgo.Bool(true),\n        IncludeStations: plexgo.Bool(true),\n        IncludeExternalMedia: plexgo.Bool(true),\n        AsyncAugmentMetadata: plexgo.Bool(true),\n        AsyncCheckFiles: plexgo.Bool(true),\n        AsyncRefreshAnalysis: plexgo.Bool(true),\n        AsyncRefreshLocalMediaAgent: plexgo.Bool(true),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.Object != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/library/metadata/{ratingKey}/banner"]["get"]
     update:
       x-codeSamples:
@@ -231,18 +231,24 @@ actions:
         - lang: go
           label: details
           source: "package main\n\nimport(\n\t\"context\"\n\t\"github.com/LukeHagar/plexgo\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n    \n    s := plexgo.New(\n        plexgo.WithSecurity(\"<YOUR_API_KEY_HERE>\"),\n    )\n\n    res, err := s.Library.GetLibraryDetails(ctx, 9518, nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.Object != nil {\n        // handle response\n    }\n}"
+  - target: $["paths"]["/library/sections/{sectionKey}/actor"]["get"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: library
+          source: "package main\n\nimport(\n\t\"context\"\n\t\"github.com/LukeHagar/plexgo\"\n\t\"github.com/LukeHagar/plexgo/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n    \n    s := plexgo.New(\n        plexgo.WithSecurity(\"<YOUR_API_KEY_HERE>\"),\n    )\n\n    res, err := s.Library.GetActorsLibrary(ctx, 9518, operations.GetActorsLibraryQueryParamTypeTvShow)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.Object != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/library/sections/{sectionKey}/country"]["get"]
     update:
       x-codeSamples:
         - lang: go
           label: library
-          source: "package main\n\nimport(\n\t\"context\"\n\t\"github.com/LukeHagar/plexgo\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n    \n    s := plexgo.New(\n        plexgo.WithSecurity(\"<YOUR_API_KEY_HERE>\"),\n    )\n\n    res, err := s.Library.GetCountriesLibrary(ctx, 9518)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.Object != nil {\n        // handle response\n    }\n}"
+          source: "package main\n\nimport(\n\t\"context\"\n\t\"github.com/LukeHagar/plexgo\"\n\t\"github.com/LukeHagar/plexgo/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n    \n    s := plexgo.New(\n        plexgo.WithSecurity(\"<YOUR_API_KEY_HERE>\"),\n    )\n\n    res, err := s.Library.GetCountriesLibrary(ctx, 9518, operations.GetCountriesLibraryQueryParamTypeTvShow)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.Object != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/library/sections/{sectionKey}/genre"]["get"]
     update:
       x-codeSamples:
         - lang: go
           label: library
-          source: "package main\n\nimport(\n\t\"context\"\n\t\"github.com/LukeHagar/plexgo\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n    \n    s := plexgo.New(\n        plexgo.WithSecurity(\"<YOUR_API_KEY_HERE>\"),\n    )\n\n    res, err := s.Library.GetGenresLibrary(ctx, 9518)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.Object != nil {\n        // handle response\n    }\n}"
+          source: "package main\n\nimport(\n\t\"context\"\n\t\"github.com/LukeHagar/plexgo\"\n\t\"github.com/LukeHagar/plexgo/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n    \n    s := plexgo.New(\n        plexgo.WithSecurity(\"<YOUR_API_KEY_HERE>\"),\n    )\n\n    res, err := s.Library.GetGenresLibrary(ctx, 9518, operations.GetGenresLibraryQueryParamTypeTvShow)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.Object != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/library/sections/{sectionKey}/refresh"]["get"]
     update:
       x-codeSamples:
@@ -260,7 +266,7 @@ actions:
       x-codeSamples:
         - lang: go
           label: items
-          source: "package main\n\nimport(\n\t\"context\"\n\t\"github.com/LukeHagar/plexgo\"\n\t\"github.com/LukeHagar/plexgo/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n    \n    s := plexgo.New(\n        plexgo.WithSecurity(\"<YOUR_API_KEY_HERE>\"),\n    )\n\n    res, err := s.Library.GetLibraryItems(ctx, operations.GetLibraryItemsRequest{\n        Tag: operations.TagEdition,\n        Type: operations.GetLibraryItemsQueryParamTypeTvShow.ToPointer(),\n        SectionKey: 9518,\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.Object != nil {\n        // handle response\n    }\n}"
+          source: "package main\n\nimport(\n\t\"context\"\n\t\"github.com/LukeHagar/plexgo\"\n\t\"github.com/LukeHagar/plexgo/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n    \n    s := plexgo.New(\n        plexgo.WithSecurity(\"<YOUR_API_KEY_HERE>\"),\n    )\n\n    res, err := s.Library.GetLibraryItems(ctx, operations.GetLibraryItemsRequest{\n        Tag: operations.TagEdition,\n        Type: operations.GetLibraryItemsQueryParamTypeTvShow,\n        SectionKey: 9518,\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.Object != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/log"]["get"]
     update:
       x-codeSamples:
