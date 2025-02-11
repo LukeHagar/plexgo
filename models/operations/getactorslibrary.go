@@ -124,7 +124,8 @@ func (o *GetActorsLibraryDirectory) GetTitle() string {
 }
 
 type GetActorsLibraryMediaContainer struct {
-	Size float64 `json:"size"`
+	// Number of media items returned in this response.
+	Size int `json:"size"`
 	// Indicates whether syncing is allowed.
 	AllowSync bool `json:"allowSync"`
 	// URL for the background artwork of the media container.
@@ -151,9 +152,9 @@ type GetActorsLibraryMediaContainer struct {
 	Directory []GetActorsLibraryDirectory `json:"Directory,omitempty"`
 }
 
-func (o *GetActorsLibraryMediaContainer) GetSize() float64 {
+func (o *GetActorsLibraryMediaContainer) GetSize() int {
 	if o == nil {
-		return 0.0
+		return 0
 	}
 	return o.Size
 }

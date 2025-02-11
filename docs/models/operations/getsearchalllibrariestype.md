@@ -12,3 +12,5 @@ The type of media content
 | `GetSearchAllLibrariesTypeTvShow`  | show                               |
 | `GetSearchAllLibrariesTypeSeason`  | season                             |
 | `GetSearchAllLibrariesTypeEpisode` | episode                            |
+| `GetSearchAllLibrariesTypeArtist`  | artist                             |
+| `GetSearchAllLibrariesTypeAlbum`   | album                              |

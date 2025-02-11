@@ -14,6 +14,7 @@ API Calls interacting with Plex Media Server Libraries
 * [GetLibraryDetails](#getlibrarydetails) - Get Library Details
 * [DeleteLibrary](#deletelibrary) - Delete Library Section
 * [GetLibraryItems](#getlibraryitems) - Get Library Items
+* [GetAllMediaLibrary](#getallmedialibrary) - Get all media of library
 * [GetRefreshLibraryMetadata](#getrefreshlibrarymetadata) - Refresh Metadata Of The Library
 * [GetSearchLibrary](#getsearchlibrary) - Search Library
 * [GetGenresLibrary](#getgenreslibrary) - Get Genres of library media
@@ -428,6 +429,63 @@ func main() {
 | sdkerrors.GetLibraryItemsBadRequest   | 400                                   | application/json                      |
 | sdkerrors.GetLibraryItemsUnauthorized | 401                                   | application/json                      |
 | sdkerrors.SDKError                    | 4XX, 5XX                              | \*/\*                                 |
+
+## GetAllMediaLibrary
+
+Retrieves a list of all general media data for this library.
+
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"github.com/LukeHagar/plexgo"
+	"github.com/LukeHagar/plexgo/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+    
+    s := plexgo.New(
+        plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Library.GetAllMediaLibrary(ctx, operations.GetAllMediaLibraryRequest{
+        SectionKey: 9518,
+        Type: operations.GetAllMediaLibraryQueryParamTypeTvShow,
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
+| `request`                                                                                    | [operations.GetAllMediaLibraryRequest](../../models/operations/getallmedialibraryrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `opts`                                                                                       | [][operations.Option](../../models/operations/option.md)                                     | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
+
+### Response
+
+**[*operations.GetAllMediaLibraryResponse](../../models/operations/getallmedialibraryresponse.md), error**
+
+### Errors
+
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| sdkerrors.GetAllMediaLibraryBadRequest   | 400                                      | application/json                         |
+| sdkerrors.GetAllMediaLibraryUnauthorized | 401                                      | application/json                         |
+| sdkerrors.SDKError                       | 4XX, 5XX                                 | \*/\*                                    |
 
 ## GetRefreshLibraryMetadata
 

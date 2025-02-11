@@ -10,3 +10,4 @@
 | `Key`                            | *string*                         | :heavy_check_mark:               | N/A                              | /library/sections/2/genre?type=2 |
 | `Title`                          | *string*                         | :heavy_check_mark:               | N/A                              | Genre                            |
 | `Type`                           | *string*                         | :heavy_check_mark:               | N/A                              | filter                           |
+| `Advanced`                       | **bool*                          | :heavy_minus_sign:               | N/A                              | true                             |

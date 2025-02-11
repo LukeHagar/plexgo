@@ -45,18 +45,18 @@ func (e *SearchTypes) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// QueryParamIncludeCollections - Whether to include collections in the search results.
-type QueryParamIncludeCollections int
+// GetSearchAllLibrariesQueryParamIncludeCollections - Whether to include collections in the search results.
+type GetSearchAllLibrariesQueryParamIncludeCollections int
 
 const (
-	QueryParamIncludeCollectionsDisable QueryParamIncludeCollections = 0
-	QueryParamIncludeCollectionsEnable  QueryParamIncludeCollections = 1
+	GetSearchAllLibrariesQueryParamIncludeCollectionsDisable GetSearchAllLibrariesQueryParamIncludeCollections = 0
+	GetSearchAllLibrariesQueryParamIncludeCollectionsEnable  GetSearchAllLibrariesQueryParamIncludeCollections = 1
 )
 
-func (e QueryParamIncludeCollections) ToPointer() *QueryParamIncludeCollections {
+func (e GetSearchAllLibrariesQueryParamIncludeCollections) ToPointer() *GetSearchAllLibrariesQueryParamIncludeCollections {
 	return &e
 }
-func (e *QueryParamIncludeCollections) UnmarshalJSON(data []byte) error {
+func (e *GetSearchAllLibrariesQueryParamIncludeCollections) UnmarshalJSON(data []byte) error {
 	var v int
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -65,25 +65,25 @@ func (e *QueryParamIncludeCollections) UnmarshalJSON(data []byte) error {
 	case 0:
 		fallthrough
 	case 1:
-		*e = QueryParamIncludeCollections(v)
+		*e = GetSearchAllLibrariesQueryParamIncludeCollections(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for QueryParamIncludeCollections: %v", v)
+		return fmt.Errorf("invalid value for GetSearchAllLibrariesQueryParamIncludeCollections: %v", v)
 	}
 }
 
-// QueryParamIncludeExternalMedia - Whether to include external media in the search results.
-type QueryParamIncludeExternalMedia int
+// GetSearchAllLibrariesQueryParamIncludeExternalMedia - Whether to include external media in the search results.
+type GetSearchAllLibrariesQueryParamIncludeExternalMedia int
 
 const (
-	QueryParamIncludeExternalMediaDisable QueryParamIncludeExternalMedia = 0
-	QueryParamIncludeExternalMediaEnable  QueryParamIncludeExternalMedia = 1
+	GetSearchAllLibrariesQueryParamIncludeExternalMediaDisable GetSearchAllLibrariesQueryParamIncludeExternalMedia = 0
+	GetSearchAllLibrariesQueryParamIncludeExternalMediaEnable  GetSearchAllLibrariesQueryParamIncludeExternalMedia = 1
 )
 
-func (e QueryParamIncludeExternalMedia) ToPointer() *QueryParamIncludeExternalMedia {
+func (e GetSearchAllLibrariesQueryParamIncludeExternalMedia) ToPointer() *GetSearchAllLibrariesQueryParamIncludeExternalMedia {
 	return &e
 }
-func (e *QueryParamIncludeExternalMedia) UnmarshalJSON(data []byte) error {
+func (e *GetSearchAllLibrariesQueryParamIncludeExternalMedia) UnmarshalJSON(data []byte) error {
 	var v int
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -92,10 +92,10 @@ func (e *QueryParamIncludeExternalMedia) UnmarshalJSON(data []byte) error {
 	case 0:
 		fallthrough
 	case 1:
-		*e = QueryParamIncludeExternalMedia(v)
+		*e = GetSearchAllLibrariesQueryParamIncludeExternalMedia(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for QueryParamIncludeExternalMedia: %v", v)
+		return fmt.Errorf("invalid value for GetSearchAllLibrariesQueryParamIncludeExternalMedia: %v", v)
 	}
 }
 
@@ -110,9 +110,9 @@ type GetSearchAllLibrariesRequest struct {
 	//
 	SearchTypes []SearchTypes `queryParam:"style=form,explode=false,name=searchTypes"`
 	// Whether to include collections in the search results.
-	IncludeCollections *QueryParamIncludeCollections `default:"0" queryParam:"style=form,explode=true,name=includeCollections"`
+	IncludeCollections *GetSearchAllLibrariesQueryParamIncludeCollections `default:"0" queryParam:"style=form,explode=true,name=includeCollections"`
 	// Whether to include external media in the search results.
-	IncludeExternalMedia *QueryParamIncludeExternalMedia `default:"0" queryParam:"style=form,explode=true,name=includeExternalMedia"`
+	IncludeExternalMedia *GetSearchAllLibrariesQueryParamIncludeExternalMedia `default:"0" queryParam:"style=form,explode=true,name=includeExternalMedia"`
 }
 
 func (g GetSearchAllLibrariesRequest) MarshalJSON() ([]byte, error) {
@@ -154,14 +154,14 @@ func (o *GetSearchAllLibrariesRequest) GetSearchTypes() []SearchTypes {
 	return o.SearchTypes
 }
 
-func (o *GetSearchAllLibrariesRequest) GetIncludeCollections() *QueryParamIncludeCollections {
+func (o *GetSearchAllLibrariesRequest) GetIncludeCollections() *GetSearchAllLibrariesQueryParamIncludeCollections {
 	if o == nil {
 		return nil
 	}
 	return o.IncludeCollections
 }
 
-func (o *GetSearchAllLibrariesRequest) GetIncludeExternalMedia() *QueryParamIncludeExternalMedia {
+func (o *GetSearchAllLibrariesRequest) GetIncludeExternalMedia() *GetSearchAllLibrariesQueryParamIncludeExternalMedia {
 	if o == nil {
 		return nil
 	}
@@ -176,6 +176,8 @@ const (
 	GetSearchAllLibrariesTypeTvShow  GetSearchAllLibrariesType = "show"
 	GetSearchAllLibrariesTypeSeason  GetSearchAllLibrariesType = "season"
 	GetSearchAllLibrariesTypeEpisode GetSearchAllLibrariesType = "episode"
+	GetSearchAllLibrariesTypeArtist  GetSearchAllLibrariesType = "artist"
+	GetSearchAllLibrariesTypeAlbum   GetSearchAllLibrariesType = "album"
 )
 
 func (e GetSearchAllLibrariesType) ToPointer() *GetSearchAllLibrariesType {
@@ -194,6 +196,10 @@ func (e *GetSearchAllLibrariesType) UnmarshalJSON(data []byte) error {
 	case "season":
 		fallthrough
 	case "episode":
+		fallthrough
+	case "artist":
+		fallthrough
+	case "album":
 		*e = GetSearchAllLibrariesType(v)
 		return nil
 	default:

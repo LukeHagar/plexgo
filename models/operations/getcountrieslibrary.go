@@ -112,49 +112,38 @@ func (o *GetCountriesLibraryDirectory) GetTitle() string {
 }
 
 type GetCountriesLibraryMediaContainer struct {
-	Size            float64                        `json:"size"`
-	Offset          *int                           `json:"offset,omitempty"`
-	TotalSize       *int                           `json:"totalSize,omitempty"`
-	Identifier      string                         `json:"identifier"`
-	AllowSync       bool                           `json:"allowSync"`
-	Art             string                         `json:"art"`
-	Content         string                         `json:"content"`
-	MediaTagPrefix  string                         `json:"mediaTagPrefix"`
-	MediaTagVersion int64                          `json:"mediaTagVersion"`
-	Nocache         bool                           `json:"nocache"`
-	Thumb           string                         `json:"thumb"`
-	Title1          string                         `json:"title1"`
-	Title2          string                         `json:"title2"`
-	ViewGroup       string                         `json:"viewGroup"`
-	Directory       []GetCountriesLibraryDirectory `json:"Directory,omitempty"`
+	// Number of media items returned in this response.
+	Size int `json:"size"`
+	// Indicates whether syncing is allowed.
+	AllowSync bool `json:"allowSync"`
+	// URL for the background artwork of the media container.
+	Art string `json:"art"`
+	// The content type or mode.
+	Content string `json:"content"`
+	// An plugin identifier for the media container.
+	Identifier string `json:"identifier"`
+	// The prefix used for media tag resource paths.
+	MediaTagPrefix string `json:"mediaTagPrefix"`
+	// The version number for media tags.
+	MediaTagVersion int64 `json:"mediaTagVersion"`
+	// Specifies whether caching is disabled.
+	Nocache bool `json:"nocache"`
+	// URL for the thumbnail image of the media container.
+	Thumb string `json:"thumb"`
+	// The primary title of the media container.
+	Title1 string `json:"title1"`
+	// The secondary title of the media container.
+	Title2 string `json:"title2"`
+	// Identifier for the view group layout.
+	ViewGroup string                         `json:"viewGroup"`
+	Directory []GetCountriesLibraryDirectory `json:"Directory,omitempty"`
 }
 
-func (o *GetCountriesLibraryMediaContainer) GetSize() float64 {
+func (o *GetCountriesLibraryMediaContainer) GetSize() int {
 	if o == nil {
-		return 0.0
+		return 0
 	}
 	return o.Size
-}
-
-func (o *GetCountriesLibraryMediaContainer) GetOffset() *int {
-	if o == nil {
-		return nil
-	}
-	return o.Offset
-}
-
-func (o *GetCountriesLibraryMediaContainer) GetTotalSize() *int {
-	if o == nil {
-		return nil
-	}
-	return o.TotalSize
-}
-
-func (o *GetCountriesLibraryMediaContainer) GetIdentifier() string {
-	if o == nil {
-		return ""
-	}
-	return o.Identifier
 }
 
 func (o *GetCountriesLibraryMediaContainer) GetAllowSync() bool {
@@ -176,6 +165,13 @@ func (o *GetCountriesLibraryMediaContainer) GetContent() string {
 		return ""
 	}
 	return o.Content
+}
+
+func (o *GetCountriesLibraryMediaContainer) GetIdentifier() string {
+	if o == nil {
+		return ""
+	}
+	return o.Identifier
 }
 
 func (o *GetCountriesLibraryMediaContainer) GetMediaTagPrefix() string {

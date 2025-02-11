@@ -178,6 +178,7 @@ type GetRecentlyAddedLibraryFilter struct {
 	Key        string `json:"key"`
 	Title      string `json:"title"`
 	Type       string `json:"type"`
+	Advanced   *bool  `json:"advanced,omitempty"`
 }
 
 func (o *GetRecentlyAddedLibraryFilter) GetFilter() string {
@@ -213,6 +214,13 @@ func (o *GetRecentlyAddedLibraryFilter) GetType() string {
 		return ""
 	}
 	return o.Type
+}
+
+func (o *GetRecentlyAddedLibraryFilter) GetAdvanced() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Advanced
 }
 
 // ActiveDirection - The direction of the sort. Can be either `asc` or `desc`.
@@ -387,13 +395,14 @@ func (o *Field) GetSubType() *string {
 }
 
 type GetRecentlyAddedLibraryType struct {
-	Key    string                          `json:"key"`
-	Type   string                          `json:"type"`
-	Title  string                          `json:"title"`
-	Active bool                            `json:"active"`
-	Filter []GetRecentlyAddedLibraryFilter `json:"Filter,omitempty"`
-	Sort   []Sort                          `json:"Sort,omitempty"`
-	Field  []Field                         `json:"Field,omitempty"`
+	Key     string                          `json:"key"`
+	Type    string                          `json:"type"`
+	Subtype *string                         `json:"subtype,omitempty"`
+	Title   string                          `json:"title"`
+	Active  bool                            `json:"active"`
+	Filter  []GetRecentlyAddedLibraryFilter `json:"Filter,omitempty"`
+	Sort    []Sort                          `json:"Sort,omitempty"`
+	Field   []Field                         `json:"Field,omitempty"`
 }
 
 func (o *GetRecentlyAddedLibraryType) GetKey() string {
@@ -408,6 +417,13 @@ func (o *GetRecentlyAddedLibraryType) GetType() string {
 		return ""
 	}
 	return o.Type
+}
+
+func (o *GetRecentlyAddedLibraryType) GetSubtype() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Subtype
 }
 
 func (o *GetRecentlyAddedLibraryType) GetTitle() string {

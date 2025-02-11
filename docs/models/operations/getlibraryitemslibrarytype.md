@@ -12,3 +12,5 @@ The type of media content
 | `GetLibraryItemsLibraryTypeTvShow`  | show                                |
 | `GetLibraryItemsLibraryTypeSeason`  | season                              |
 | `GetLibraryItemsLibraryTypeEpisode` | episode                             |
+| `GetLibraryItemsLibraryTypeArtist`  | artist                              |
+| `GetLibraryItemsLibraryTypeAlbum`   | album                               |

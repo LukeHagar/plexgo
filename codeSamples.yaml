@@ -237,6 +237,12 @@ actions:
         - lang: go
           label: library
           source: "package main\n\nimport(\n\t\"context\"\n\t\"github.com/LukeHagar/plexgo\"\n\t\"github.com/LukeHagar/plexgo/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n    \n    s := plexgo.New(\n        plexgo.WithSecurity(\"<YOUR_API_KEY_HERE>\"),\n    )\n\n    res, err := s.Library.GetActorsLibrary(ctx, 9518, operations.GetActorsLibraryQueryParamTypeTvShow)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.Object != nil {\n        // handle response\n    }\n}"
+  - target: $["paths"]["/library/sections/{sectionKey}/all"]["get"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: library
+          source: "package main\n\nimport(\n\t\"context\"\n\t\"github.com/LukeHagar/plexgo\"\n\t\"github.com/LukeHagar/plexgo/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n    \n    s := plexgo.New(\n        plexgo.WithSecurity(\"<YOUR_API_KEY_HERE>\"),\n    )\n\n    res, err := s.Library.GetAllMediaLibrary(ctx, operations.GetAllMediaLibraryRequest{\n        SectionKey: 9518,\n        Type: operations.GetAllMediaLibraryQueryParamTypeTvShow,\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res.Object != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/library/sections/{sectionKey}/country"]["get"]
     update:
       x-codeSamples:

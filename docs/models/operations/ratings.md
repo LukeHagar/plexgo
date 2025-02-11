@@ -1,4 +1,4 @@
-# Rating
+# Ratings
 
 
 ## Fields

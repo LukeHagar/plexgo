@@ -180,6 +180,7 @@ type GetRecentlyAddedFilter struct {
 	Key        string `json:"key"`
 	Title      string `json:"title"`
 	Type       string `json:"type"`
+	Advanced   *bool  `json:"advanced,omitempty"`
 }
 
 func (o *GetRecentlyAddedFilter) GetFilter() string {
@@ -215,6 +216,13 @@ func (o *GetRecentlyAddedFilter) GetType() string {
 		return ""
 	}
 	return o.Type
+}
+
+func (o *GetRecentlyAddedFilter) GetAdvanced() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Advanced
 }
 
 // GetRecentlyAddedActiveDirection - The direction of the sort. Can be either `asc` or `desc`.
@@ -389,13 +397,14 @@ func (o *GetRecentlyAddedField) GetSubType() *string {
 }
 
 type GetRecentlyAddedType struct {
-	Key    string                   `json:"key"`
-	Type   string                   `json:"type"`
-	Title  string                   `json:"title"`
-	Active bool                     `json:"active"`
-	Filter []GetRecentlyAddedFilter `json:"Filter,omitempty"`
-	Sort   []GetRecentlyAddedSort   `json:"Sort,omitempty"`
-	Field  []GetRecentlyAddedField  `json:"Field,omitempty"`
+	Key     string                   `json:"key"`
+	Type    string                   `json:"type"`
+	Subtype *string                  `json:"subtype,omitempty"`
+	Title   string                   `json:"title"`
+	Active  bool                     `json:"active"`
+	Filter  []GetRecentlyAddedFilter `json:"Filter,omitempty"`
+	Sort    []GetRecentlyAddedSort   `json:"Sort,omitempty"`
+	Field   []GetRecentlyAddedField  `json:"Field,omitempty"`
 }
 
 func (o *GetRecentlyAddedType) GetKey() string {
@@ -410,6 +419,13 @@ func (o *GetRecentlyAddedType) GetType() string {
 		return ""
 	}
 	return o.Type
+}
+
+func (o *GetRecentlyAddedType) GetSubtype() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Subtype
 }
 
 func (o *GetRecentlyAddedType) GetTitle() string {
@@ -513,6 +529,8 @@ const (
 	GetRecentlyAddedHubsTypeTvShow  GetRecentlyAddedHubsType = "show"
 	GetRecentlyAddedHubsTypeSeason  GetRecentlyAddedHubsType = "season"
 	GetRecentlyAddedHubsTypeEpisode GetRecentlyAddedHubsType = "episode"
+	GetRecentlyAddedHubsTypeArtist  GetRecentlyAddedHubsType = "artist"
+	GetRecentlyAddedHubsTypeAlbum   GetRecentlyAddedHubsType = "album"
 )
 
 func (e GetRecentlyAddedHubsType) ToPointer() *GetRecentlyAddedHubsType {
@@ -531,6 +549,10 @@ func (e *GetRecentlyAddedHubsType) UnmarshalJSON(data []byte) error {
 	case "season":
 		fallthrough
 	case "episode":
+		fallthrough
+	case "artist":
+		fallthrough
+	case "album":
 		*e = GetRecentlyAddedHubsType(v)
 		return nil
 	default:
@@ -2244,7 +2266,7 @@ func (o *GetRecentlyAddedMetadata) GetParentTheme() *string {
 }
 
 type GetRecentlyAddedMediaContainer struct {
-	Size       float64 `json:"size"`
+	Size       int64   `json:"size"`
 	Offset     *int    `json:"offset,omitempty"`
 	TotalSize  *int    `json:"totalSize,omitempty"`
 	Identifier *string `json:"identifier,omitempty"`
@@ -2255,9 +2277,9 @@ type GetRecentlyAddedMediaContainer struct {
 	Metadata []GetRecentlyAddedMetadata `json:"Metadata,omitempty"`
 }
 
-func (o *GetRecentlyAddedMediaContainer) GetSize() float64 {
+func (o *GetRecentlyAddedMediaContainer) GetSize() int64 {
 	if o == nil {
-		return 0.0
+		return 0
 	}
 	return o.Size
 }

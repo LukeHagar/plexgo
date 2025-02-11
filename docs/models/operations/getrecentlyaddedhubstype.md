@@ -12,3 +12,5 @@ The type of media content
 | `GetRecentlyAddedHubsTypeTvShow`  | show                              |
 | `GetRecentlyAddedHubsTypeSeason`  | season                            |
 | `GetRecentlyAddedHubsTypeEpisode` | episode                           |
+| `GetRecentlyAddedHubsTypeArtist`  | artist                            |
+| `GetRecentlyAddedHubsTypeAlbum`   | album                             |

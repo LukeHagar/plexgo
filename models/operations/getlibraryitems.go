@@ -14,7 +14,6 @@ import (
 type Tag string
 
 const (
-	TagAll            Tag = "all"
 	TagUnwatched      Tag = "unwatched"
 	TagNewest         Tag = "newest"
 	TagRecentlyAdded  Tag = "recentlyAdded"
@@ -22,12 +21,9 @@ const (
 	TagOnDeck         Tag = "onDeck"
 	TagCollection     Tag = "collection"
 	TagEdition        Tag = "edition"
-	TagGenre          Tag = "genre"
 	TagYear           Tag = "year"
 	TagDecade         Tag = "decade"
 	TagDirector       Tag = "director"
-	TagActor          Tag = "actor"
-	TagCountry        Tag = "country"
 	TagContentRating  Tag = "contentRating"
 	TagRating         Tag = "rating"
 	TagResolution     Tag = "resolution"
@@ -45,8 +41,6 @@ func (e *Tag) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	switch v {
-	case "all":
-		fallthrough
 	case "unwatched":
 		fallthrough
 	case "newest":
@@ -61,17 +55,11 @@ func (e *Tag) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "edition":
 		fallthrough
-	case "genre":
-		fallthrough
 	case "year":
 		fallthrough
 	case "decade":
 		fallthrough
 	case "director":
-		fallthrough
-	case "actor":
-		fallthrough
-	case "country":
 		fallthrough
 	case "contentRating":
 		fallthrough
@@ -291,6 +279,7 @@ type GetLibraryItemsFilter struct {
 	Key        string `json:"key"`
 	Title      string `json:"title"`
 	Type       string `json:"type"`
+	Advanced   *bool  `json:"advanced,omitempty"`
 }
 
 func (o *GetLibraryItemsFilter) GetFilter() string {
@@ -326,6 +315,13 @@ func (o *GetLibraryItemsFilter) GetType() string {
 		return ""
 	}
 	return o.Type
+}
+
+func (o *GetLibraryItemsFilter) GetAdvanced() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Advanced
 }
 
 // GetLibraryItemsActiveDirection - The direction of the sort. Can be either `asc` or `desc`.
@@ -500,13 +496,14 @@ func (o *GetLibraryItemsField) GetSubType() *string {
 }
 
 type GetLibraryItemsType struct {
-	Key    string                  `json:"key"`
-	Type   string                  `json:"type"`
-	Title  string                  `json:"title"`
-	Active bool                    `json:"active"`
-	Filter []GetLibraryItemsFilter `json:"Filter,omitempty"`
-	Sort   []GetLibraryItemsSort   `json:"Sort,omitempty"`
-	Field  []GetLibraryItemsField  `json:"Field,omitempty"`
+	Key     string                  `json:"key"`
+	Type    string                  `json:"type"`
+	Subtype *string                 `json:"subtype,omitempty"`
+	Title   string                  `json:"title"`
+	Active  bool                    `json:"active"`
+	Filter  []GetLibraryItemsFilter `json:"Filter,omitempty"`
+	Sort    []GetLibraryItemsSort   `json:"Sort,omitempty"`
+	Field   []GetLibraryItemsField  `json:"Field,omitempty"`
 }
 
 func (o *GetLibraryItemsType) GetKey() string {
@@ -521,6 +518,13 @@ func (o *GetLibraryItemsType) GetType() string {
 		return ""
 	}
 	return o.Type
+}
+
+func (o *GetLibraryItemsType) GetSubtype() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Subtype
 }
 
 func (o *GetLibraryItemsType) GetTitle() string {
@@ -604,6 +608,8 @@ const (
 	GetLibraryItemsLibraryTypeTvShow  GetLibraryItemsLibraryType = "show"
 	GetLibraryItemsLibraryTypeSeason  GetLibraryItemsLibraryType = "season"
 	GetLibraryItemsLibraryTypeEpisode GetLibraryItemsLibraryType = "episode"
+	GetLibraryItemsLibraryTypeArtist  GetLibraryItemsLibraryType = "artist"
+	GetLibraryItemsLibraryTypeAlbum   GetLibraryItemsLibraryType = "album"
 )
 
 func (e GetLibraryItemsLibraryType) ToPointer() *GetLibraryItemsLibraryType {
@@ -622,6 +628,10 @@ func (e *GetLibraryItemsLibraryType) UnmarshalJSON(data []byte) error {
 	case "season":
 		fallthrough
 	case "episode":
+		fallthrough
+	case "artist":
+		fallthrough
+	case "album":
 		*e = GetLibraryItemsLibraryType(v)
 		return nil
 	default:
