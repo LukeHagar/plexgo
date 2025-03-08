@@ -30,13 +30,6 @@ func newUpdater(sdkConfig sdkConfiguration) *Updater {
 // GetUpdateStatus - Querying status of updates
 // Querying status of updates
 func (s *Updater) GetUpdateStatus(ctx context.Context, opts ...operations.Option) (*operations.GetUpdateStatusResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getUpdateStatus",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -58,6 +51,14 @@ func (s *Updater) GetUpdateStatus(ctx context.Context, opts ...operations.Option
 	opURL, err := url.JoinPath(baseURL, "/updater/status")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getUpdateStatus",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -274,13 +275,6 @@ func (s *Updater) GetUpdateStatus(ctx context.Context, opts ...operations.Option
 // CheckForUpdates - Checking for updates
 // Checking for updates
 func (s *Updater) CheckForUpdates(ctx context.Context, download *operations.Download, opts ...operations.Option) (*operations.CheckForUpdatesResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "checkForUpdates",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.CheckForUpdatesRequest{
 		Download: download,
 	}
@@ -306,6 +300,14 @@ func (s *Updater) CheckForUpdates(ctx context.Context, download *operations.Down
 	opURL, err := url.JoinPath(baseURL, "/updater/check")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "checkForUpdates",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -506,13 +508,6 @@ func (s *Updater) CheckForUpdates(ctx context.Context, download *operations.Down
 // ApplyUpdates - Apply Updates
 // Note that these two parameters are effectively mutually exclusive. The `tonight` parameter takes precedence and `skip` will be ignored if `tonight` is also passed
 func (s *Updater) ApplyUpdates(ctx context.Context, tonight *operations.Tonight, skip *operations.Skip, opts ...operations.Option) (*operations.ApplyUpdatesResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "applyUpdates",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.ApplyUpdatesRequest{
 		Tonight: tonight,
 		Skip:    skip,
@@ -539,6 +534,14 @@ func (s *Updater) ApplyUpdates(ctx context.Context, tonight *operations.Tonight,
 	opURL, err := url.JoinPath(baseURL, "/updater/apply")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "applyUpdates",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout

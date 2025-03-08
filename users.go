@@ -28,13 +28,6 @@ func newUsers(sdkConfig sdkConfiguration) *Users {
 // GetUsers - Get list of all connected users
 // Get list of all users that are friends and have library access with the provided Plex authentication token
 func (s *Users) GetUsers(ctx context.Context, request operations.GetUsersRequest, opts ...operations.Option) (*operations.GetUsersResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "get-users",
-		OAuth2Scopes:   []string{},
-		SecuritySource: nil,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -55,6 +48,14 @@ func (s *Users) GetUsers(ctx context.Context, request operations.GetUsersRequest
 	opURL, err := url.JoinPath(baseURL, "/users")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "get-users",
+		OAuth2Scopes:   []string{},
+		SecuritySource: nil,
 	}
 
 	timeout := o.Timeout

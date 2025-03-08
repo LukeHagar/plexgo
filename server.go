@@ -29,13 +29,6 @@ func newServer(sdkConfig sdkConfiguration) *Server {
 // GetServerCapabilities - Get Server Capabilities
 // Get Server Capabilities
 func (s *Server) GetServerCapabilities(ctx context.Context, opts ...operations.Option) (*operations.GetServerCapabilitiesResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getServerCapabilities",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -57,6 +50,14 @@ func (s *Server) GetServerCapabilities(ctx context.Context, opts ...operations.O
 	opURL, err := url.JoinPath(baseURL, "/")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getServerCapabilities",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -273,13 +274,6 @@ func (s *Server) GetServerCapabilities(ctx context.Context, opts ...operations.O
 // GetServerPreferences - Get Server Preferences
 // Get Server Preferences
 func (s *Server) GetServerPreferences(ctx context.Context, opts ...operations.Option) (*operations.GetServerPreferencesResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getServerPreferences",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -301,6 +295,14 @@ func (s *Server) GetServerPreferences(ctx context.Context, opts ...operations.Op
 	opURL, err := url.JoinPath(baseURL, "/:/prefs")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getServerPreferences",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -517,13 +519,6 @@ func (s *Server) GetServerPreferences(ctx context.Context, opts ...operations.Op
 // GetAvailableClients - Get Available Clients
 // Get Available Clients
 func (s *Server) GetAvailableClients(ctx context.Context, opts ...operations.Option) (*operations.GetAvailableClientsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getAvailableClients",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -545,6 +540,14 @@ func (s *Server) GetAvailableClients(ctx context.Context, opts ...operations.Opt
 	opURL, err := url.JoinPath(baseURL, "/clients")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getAvailableClients",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -761,13 +764,6 @@ func (s *Server) GetAvailableClients(ctx context.Context, opts ...operations.Opt
 // GetDevices - Get Devices
 // Get Devices
 func (s *Server) GetDevices(ctx context.Context, opts ...operations.Option) (*operations.GetDevicesResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getDevices",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -789,6 +785,14 @@ func (s *Server) GetDevices(ctx context.Context, opts ...operations.Option) (*op
 	opURL, err := url.JoinPath(baseURL, "/devices")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getDevices",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1005,13 +1009,6 @@ func (s *Server) GetDevices(ctx context.Context, opts ...operations.Option) (*op
 // GetServerIdentity - Get Server Identity
 // This request is useful to determine if the server is online or offline
 func (s *Server) GetServerIdentity(ctx context.Context, opts ...operations.Option) (*operations.GetServerIdentityResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "get-server-identity",
-		OAuth2Scopes:   []string{},
-		SecuritySource: nil,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1033,6 +1030,14 @@ func (s *Server) GetServerIdentity(ctx context.Context, opts ...operations.Optio
 	opURL, err := url.JoinPath(baseURL, "/identity")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "get-server-identity",
+		OAuth2Scopes:   []string{},
+		SecuritySource: nil,
 	}
 
 	timeout := o.Timeout
@@ -1223,13 +1228,6 @@ func (s *Server) GetServerIdentity(ctx context.Context, opts ...operations.Optio
 // GetMyPlexAccount - Get MyPlex Account
 // Returns MyPlex Account Information
 func (s *Server) GetMyPlexAccount(ctx context.Context, opts ...operations.Option) (*operations.GetMyPlexAccountResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getMyPlexAccount",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1251,6 +1249,14 @@ func (s *Server) GetMyPlexAccount(ctx context.Context, opts ...operations.Option
 	opURL, err := url.JoinPath(baseURL, "/myplex/account")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getMyPlexAccount",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1467,13 +1473,6 @@ func (s *Server) GetMyPlexAccount(ctx context.Context, opts ...operations.Option
 // GetResizedPhoto - Get a Resized Photo
 // Plex's Photo transcoder is used throughout the service to serve images at specified sizes.
 func (s *Server) GetResizedPhoto(ctx context.Context, request operations.GetResizedPhotoRequest, opts ...operations.Option) (*operations.GetResizedPhotoResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getResizedPhoto",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1495,6 +1494,14 @@ func (s *Server) GetResizedPhoto(ctx context.Context, request operations.GetResi
 	opURL, err := url.JoinPath(baseURL, "/photo/:/transcode")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getResizedPhoto",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1695,13 +1702,6 @@ func (s *Server) GetResizedPhoto(ctx context.Context, request operations.GetResi
 // GetMediaProviders - Get Media Providers
 // Retrieves media providers and their features from the Plex server.
 func (s *Server) GetMediaProviders(ctx context.Context, xPlexToken string, opts ...operations.Option) (*operations.GetMediaProvidersResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "get-media-providers",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.GetMediaProvidersRequest{
 		XPlexToken: xPlexToken,
 	}
@@ -1727,6 +1727,14 @@ func (s *Server) GetMediaProviders(ctx context.Context, xPlexToken string, opts 
 	opURL, err := url.JoinPath(baseURL, "/media/providers")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "get-media-providers",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1945,13 +1953,6 @@ func (s *Server) GetMediaProviders(ctx context.Context, xPlexToken string, opts 
 // GetServerList - Get Server List
 // Get Server List
 func (s *Server) GetServerList(ctx context.Context, opts ...operations.Option) (*operations.GetServerListResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getServerList",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1973,6 +1974,14 @@ func (s *Server) GetServerList(ctx context.Context, opts ...operations.Option) (
 	opURL, err := url.JoinPath(baseURL, "/servers")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getServerList",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout

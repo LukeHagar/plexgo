@@ -29,13 +29,6 @@ func newVideo(sdkConfig sdkConfiguration) *Video {
 // GetTimeline - Get the timeline for a media item
 // Get the timeline for a media item
 func (s *Video) GetTimeline(ctx context.Context, request operations.GetTimelineRequest, opts ...operations.Option) (*operations.GetTimelineResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getTimeline",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -57,6 +50,14 @@ func (s *Video) GetTimeline(ctx context.Context, request operations.GetTimelineR
 	opURL, err := url.JoinPath(baseURL, "/:/timeline")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getTimeline",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -257,13 +258,6 @@ func (s *Video) GetTimeline(ctx context.Context, request operations.GetTimelineR
 // StartUniversalTranscode - Start Universal Transcode
 // Begin a Universal Transcode Session
 func (s *Video) StartUniversalTranscode(ctx context.Context, request operations.StartUniversalTranscodeRequest, opts ...operations.Option) (*operations.StartUniversalTranscodeResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "startUniversalTranscode",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -285,6 +279,14 @@ func (s *Video) StartUniversalTranscode(ctx context.Context, request operations.
 	opURL, err := url.JoinPath(baseURL, "/video/:/transcode/universal/start.mpd")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "startUniversalTranscode",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout

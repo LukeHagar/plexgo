@@ -562,7 +562,7 @@ type GetTokenDetailsUserPlexAccount struct {
 	Subscription Subscription `json:"subscription"`
 	// Description of the Plex Pass subscription
 	SubscriptionDescription *string                       `json:"subscriptionDescription"`
-	Subscriptions           []GetTokenDetailsSubscription `json:"subscriptions"`
+	Subscriptions           []GetTokenDetailsSubscription `json:"subscriptions,omitempty"`
 	// URL of the account thumbnail
 	Thumb string `json:"thumb"`
 	// The title of the account (username or friendly name)
@@ -827,7 +827,7 @@ func (o *GetTokenDetailsUserPlexAccount) GetSubscriptionDescription() *string {
 
 func (o *GetTokenDetailsUserPlexAccount) GetSubscriptions() []GetTokenDetailsSubscription {
 	if o == nil {
-		return []GetTokenDetailsSubscription{}
+		return nil
 	}
 	return o.Subscriptions
 }

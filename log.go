@@ -29,13 +29,6 @@ func newLog(sdkConfig sdkConfiguration) *Log {
 // LogLine - Logging a single line message.
 // This endpoint will write a single-line log message, including a level and source to the main Plex Media Server log.
 func (s *Log) LogLine(ctx context.Context, level operations.Level, message string, source string, opts ...operations.Option) (*operations.LogLineResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "logLine",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.LogLineRequest{
 		Level:   level,
 		Message: message,
@@ -63,6 +56,14 @@ func (s *Log) LogLine(ctx context.Context, level operations.Level, message strin
 	opURL, err := url.JoinPath(baseURL, "/log")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "logLine",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -283,13 +284,6 @@ func (s *Log) LogLine(ctx context.Context, level operations.Level, message strin
 //
 // Ensure each parameter is properly URL-encoded to avoid interpretation issues.
 func (s *Log) LogMultiLine(ctx context.Context, request string, opts ...operations.Option) (*operations.LogMultiLineResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "logMultiLine",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -313,6 +307,13 @@ func (s *Log) LogMultiLine(ctx context.Context, request string, opts ...operatio
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "logMultiLine",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "string", `request:"mediaType=text/plain"`)
 	if err != nil {
 		return nil, err
@@ -515,13 +516,6 @@ func (s *Log) LogMultiLine(ctx context.Context, request string, opts ...operatio
 // EnablePaperTrail - Enabling Papertrail
 // This endpoint will enable all Plex Media Serverlogs to be sent to the Papertrail networked logging site for a period of time.
 func (s *Log) EnablePaperTrail(ctx context.Context, opts ...operations.Option) (*operations.EnablePaperTrailResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "enablePaperTrail",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -543,6 +537,14 @@ func (s *Log) EnablePaperTrail(ctx context.Context, opts ...operations.Option) (
 	opURL, err := url.JoinPath(baseURL, "/log/networked")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "enablePaperTrail",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout

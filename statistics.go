@@ -29,13 +29,6 @@ func newStatistics(sdkConfig sdkConfiguration) *Statistics {
 // GetStatistics - Get Media Statistics
 // This will return the media statistics for the server
 func (s *Statistics) GetStatistics(ctx context.Context, timespan *int64, opts ...operations.Option) (*operations.GetStatisticsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getStatistics",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.GetStatisticsRequest{
 		Timespan: timespan,
 	}
@@ -61,6 +54,14 @@ func (s *Statistics) GetStatistics(ctx context.Context, timespan *int64, opts ..
 	opURL, err := url.JoinPath(baseURL, "/statistics/media")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getStatistics",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -281,13 +282,6 @@ func (s *Statistics) GetStatistics(ctx context.Context, timespan *int64, opts ..
 // GetResourcesStatistics - Get Resources Statistics
 // This will return the resources for the server
 func (s *Statistics) GetResourcesStatistics(ctx context.Context, timespan *int64, opts ...operations.Option) (*operations.GetResourcesStatisticsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getResourcesStatistics",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.GetResourcesStatisticsRequest{
 		Timespan: timespan,
 	}
@@ -313,6 +307,14 @@ func (s *Statistics) GetResourcesStatistics(ctx context.Context, timespan *int64
 	opURL, err := url.JoinPath(baseURL, "/statistics/resources")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getResourcesStatistics",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -533,13 +535,6 @@ func (s *Statistics) GetResourcesStatistics(ctx context.Context, timespan *int64
 // GetBandwidthStatistics - Get Bandwidth Statistics
 // This will return the bandwidth statistics for the server
 func (s *Statistics) GetBandwidthStatistics(ctx context.Context, timespan *int64, opts ...operations.Option) (*operations.GetBandwidthStatisticsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getBandwidthStatistics",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.GetBandwidthStatisticsRequest{
 		Timespan: timespan,
 	}
@@ -565,6 +560,14 @@ func (s *Statistics) GetBandwidthStatistics(ctx context.Context, timespan *int64
 	opURL, err := url.JoinPath(baseURL, "/statistics/bandwidth")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getBandwidthStatistics",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout

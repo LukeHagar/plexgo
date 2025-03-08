@@ -28,13 +28,6 @@ func newWatchlist(sdkConfig sdkConfiguration) *Watchlist {
 // GetWatchList - Get User Watchlist
 // Get User Watchlist
 func (s *Watchlist) GetWatchList(ctx context.Context, request operations.GetWatchListRequest, opts ...operations.Option) (*operations.GetWatchListResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "get-watch-list",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -55,6 +48,14 @@ func (s *Watchlist) GetWatchList(ctx context.Context, request operations.GetWatc
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/library/sections/watchlist/{filter}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "get-watch-list",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout

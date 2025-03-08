@@ -29,13 +29,6 @@ func newMedia(sdkConfig sdkConfiguration) *Media {
 // MarkPlayed - Mark Media Played
 // This will mark the provided media key as Played.
 func (s *Media) MarkPlayed(ctx context.Context, key float64, opts ...operations.Option) (*operations.MarkPlayedResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "markPlayed",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.MarkPlayedRequest{
 		Key: key,
 	}
@@ -61,6 +54,14 @@ func (s *Media) MarkPlayed(ctx context.Context, key float64, opts ...operations.
 	opURL, err := url.JoinPath(baseURL, "/:/scrobble")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "markPlayed",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -261,13 +262,6 @@ func (s *Media) MarkPlayed(ctx context.Context, key float64, opts ...operations.
 // MarkUnplayed - Mark Media Unplayed
 // This will mark the provided media key as Unplayed.
 func (s *Media) MarkUnplayed(ctx context.Context, key float64, opts ...operations.Option) (*operations.MarkUnplayedResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "markUnplayed",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.MarkUnplayedRequest{
 		Key: key,
 	}
@@ -293,6 +287,14 @@ func (s *Media) MarkUnplayed(ctx context.Context, key float64, opts ...operation
 	opURL, err := url.JoinPath(baseURL, "/:/unscrobble")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "markUnplayed",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -493,13 +495,6 @@ func (s *Media) MarkUnplayed(ctx context.Context, key float64, opts ...operation
 // UpdatePlayProgress - Update Media Play Progress
 // This API command can be used to update the play progress of a media item.
 func (s *Media) UpdatePlayProgress(ctx context.Context, key string, time float64, state string, opts ...operations.Option) (*operations.UpdatePlayProgressResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "updatePlayProgress",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.UpdatePlayProgressRequest{
 		Key:   key,
 		Time:  time,
@@ -527,6 +522,14 @@ func (s *Media) UpdatePlayProgress(ctx context.Context, key string, time float64
 	opURL, err := url.JoinPath(baseURL, "/:/progress")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "updatePlayProgress",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -727,13 +730,6 @@ func (s *Media) UpdatePlayProgress(ctx context.Context, key string, time float64
 // GetBannerImage - Get Banner Image
 // Gets the banner image of the media item
 func (s *Media) GetBannerImage(ctx context.Context, request operations.GetBannerImageRequest, opts ...operations.Option) (*operations.GetBannerImageResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "get-banner-image",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -755,6 +751,14 @@ func (s *Media) GetBannerImage(ctx context.Context, request operations.GetBanner
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/library/metadata/{ratingKey}/banner", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "get-banner-image",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -971,13 +975,6 @@ func (s *Media) GetBannerImage(ctx context.Context, request operations.GetBanner
 // GetThumbImage - Get Thumb Image
 // Gets the thumbnail image of the media item
 func (s *Media) GetThumbImage(ctx context.Context, request operations.GetThumbImageRequest, opts ...operations.Option) (*operations.GetThumbImageResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "get-thumb-image",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -999,6 +996,14 @@ func (s *Media) GetThumbImage(ctx context.Context, request operations.GetThumbIm
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/library/metadata/{ratingKey}/thumb", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "get-thumb-image",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout

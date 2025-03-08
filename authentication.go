@@ -29,13 +29,6 @@ func newAuthentication(sdkConfig sdkConfiguration) *Authentication {
 // GetTransientToken - Get a Transient Token
 // This endpoint provides the caller with a temporary token with the same access level as the caller's token. These tokens are valid for up to 48 hours and are destroyed if the server instance is restarted.
 func (s *Authentication) GetTransientToken(ctx context.Context, type_ operations.GetTransientTokenQueryParamType, scope operations.Scope, opts ...operations.Option) (*operations.GetTransientTokenResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getTransientToken",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.GetTransientTokenRequest{
 		Type:  type_,
 		Scope: scope,
@@ -62,6 +55,14 @@ func (s *Authentication) GetTransientToken(ctx context.Context, type_ operations
 	opURL, err := url.JoinPath(baseURL, "/security/token")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getTransientToken",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -263,13 +264,6 @@ func (s *Authentication) GetTransientToken(ctx context.Context, type_ operations
 // If a caller requires connection details and a transient token for a source that is known to the server, for example a cloud media provider or shared PMS, then this endpoint can be called. This endpoint is only accessible with either an admin token or a valid transient token generated from an admin token.
 // Note: requires Plex Media Server >= 1.15.4.
 func (s *Authentication) GetSourceConnectionInformation(ctx context.Context, source string, opts ...operations.Option) (*operations.GetSourceConnectionInformationResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getSourceConnectionInformation",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.GetSourceConnectionInformationRequest{
 		Source: source,
 	}
@@ -295,6 +289,14 @@ func (s *Authentication) GetSourceConnectionInformation(ctx context.Context, sou
 	opURL, err := url.JoinPath(baseURL, "/security/resources")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getSourceConnectionInformation",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -495,13 +497,6 @@ func (s *Authentication) GetSourceConnectionInformation(ctx context.Context, sou
 // GetTokenDetails - Get Token Details
 // Get the User data from the provided X-Plex-Token
 func (s *Authentication) GetTokenDetails(ctx context.Context, opts ...operations.Option) (*operations.GetTokenDetailsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getTokenDetails",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -522,6 +517,14 @@ func (s *Authentication) GetTokenDetails(ctx context.Context, opts ...operations
 	opURL, err := url.JoinPath(baseURL, "/user")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getTokenDetails",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -738,13 +741,6 @@ func (s *Authentication) GetTokenDetails(ctx context.Context, opts ...operations
 // PostUsersSignInData - Get User Sign In Data
 // Sign in user with username and password and return user data with Plex authentication token
 func (s *Authentication) PostUsersSignInData(ctx context.Context, request operations.PostUsersSignInDataRequest, opts ...operations.Option) (*operations.PostUsersSignInDataResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "post-users-sign-in-data",
-		OAuth2Scopes:   []string{},
-		SecuritySource: nil,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -767,6 +763,13 @@ func (s *Authentication) PostUsersSignInData(ctx context.Context, request operat
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "post-users-sign-in-data",
+		OAuth2Scopes:   []string{},
+		SecuritySource: nil,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "form", `request:"mediaType=application/x-www-form-urlencoded"`)
 	if err != nil {
 		return nil, err

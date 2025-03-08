@@ -35,13 +35,6 @@ func newActivities(sdkConfig sdkConfiguration) *Activities {
 // GetServerActivities - Get Server Activities
 // Get Server Activities
 func (s *Activities) GetServerActivities(ctx context.Context, opts ...operations.Option) (*operations.GetServerActivitiesResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getServerActivities",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -63,6 +56,14 @@ func (s *Activities) GetServerActivities(ctx context.Context, opts ...operations
 	opURL, err := url.JoinPath(baseURL, "/activities")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getServerActivities",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -279,13 +280,6 @@ func (s *Activities) GetServerActivities(ctx context.Context, opts ...operations
 // CancelServerActivities - Cancel Server Activities
 // Cancel Server Activities
 func (s *Activities) CancelServerActivities(ctx context.Context, activityUUID string, opts ...operations.Option) (*operations.CancelServerActivitiesResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "cancelServerActivities",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.CancelServerActivitiesRequest{
 		ActivityUUID: activityUUID,
 	}
@@ -311,6 +305,14 @@ func (s *Activities) CancelServerActivities(ctx context.Context, activityUUID st
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/activities/{activityUUID}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "cancelServerActivities",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout

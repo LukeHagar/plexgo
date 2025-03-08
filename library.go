@@ -29,13 +29,6 @@ func newLibrary(sdkConfig sdkConfiguration) *Library {
 // GetFileHash - Get Hash Value
 // This resource returns hash values for local files
 func (s *Library) GetFileHash(ctx context.Context, url_ string, type_ *float64, opts ...operations.Option) (*operations.GetFileHashResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getFileHash",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.GetFileHashRequest{
 		URL:  url_,
 		Type: type_,
@@ -62,6 +55,14 @@ func (s *Library) GetFileHash(ctx context.Context, url_ string, type_ *float64, 
 	opURL, err := url.JoinPath(baseURL, "/library/hashes")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getFileHash",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -262,13 +263,6 @@ func (s *Library) GetFileHash(ctx context.Context, url_ string, type_ *float64, 
 // GetRecentlyAddedLibrary - Get Recently Added
 // This endpoint will return the recently added content.
 func (s *Library) GetRecentlyAddedLibrary(ctx context.Context, request operations.GetRecentlyAddedLibraryRequest, opts ...operations.Option) (*operations.GetRecentlyAddedLibraryResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "get-recently-added-library",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -290,6 +284,14 @@ func (s *Library) GetRecentlyAddedLibrary(ctx context.Context, request operation
 	opURL, err := url.JoinPath(baseURL, "/library/recentlyAdded")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "get-recently-added-library",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -515,13 +517,6 @@ func (s *Library) GetRecentlyAddedLibrary(ctx context.Context, request operation
 // Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.
 // This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year).
 func (s *Library) GetAllLibraries(ctx context.Context, opts ...operations.Option) (*operations.GetAllLibrariesResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "get-all-libraries",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -543,6 +538,14 @@ func (s *Library) GetAllLibraries(ctx context.Context, opts ...operations.Option
 	opURL, err := url.JoinPath(baseURL, "/library/sections")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "get-all-libraries",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -797,13 +800,6 @@ func (s *Library) GetAllLibraries(ctx context.Context, opts ...operations.Option
 //
 // > **Note**: Filters and sorts are optional; without them, no filtering controls are rendered.
 func (s *Library) GetLibraryDetails(ctx context.Context, sectionKey int, includeDetails *operations.IncludeDetails, opts ...operations.Option) (*operations.GetLibraryDetailsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "get-library-details",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.GetLibraryDetailsRequest{
 		IncludeDetails: includeDetails,
 		SectionKey:     sectionKey,
@@ -830,6 +826,14 @@ func (s *Library) GetLibraryDetails(ctx context.Context, sectionKey int, include
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/library/sections/{sectionKey}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "get-library-details",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1050,13 +1054,6 @@ func (s *Library) GetLibraryDetails(ctx context.Context, sectionKey int, include
 // DeleteLibrary - Delete Library Section
 // Delete a library using a specific section id
 func (s *Library) DeleteLibrary(ctx context.Context, sectionKey int, opts ...operations.Option) (*operations.DeleteLibraryResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "deleteLibrary",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.DeleteLibraryRequest{
 		SectionKey: sectionKey,
 	}
@@ -1082,6 +1079,14 @@ func (s *Library) DeleteLibrary(ctx context.Context, sectionKey int, opts ...ope
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/library/sections/{sectionKey}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "deleteLibrary",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1298,13 +1303,6 @@ func (s *Library) DeleteLibrary(ctx context.Context, sectionKey int, opts ...ope
 // - `folder`: Items categorized by folder.
 // - `albums`: Items categorized by album.
 func (s *Library) GetLibraryItems(ctx context.Context, request operations.GetLibraryItemsRequest, opts ...operations.Option) (*operations.GetLibraryItemsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "get-library-items",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1326,6 +1324,14 @@ func (s *Library) GetLibraryItems(ctx context.Context, request operations.GetLib
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/library/sections/{sectionKey}/{tag}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "get-library-items",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1546,13 +1552,6 @@ func (s *Library) GetLibraryItems(ctx context.Context, request operations.GetLib
 // GetAllMediaLibrary - Get all media of library
 // Retrieves a list of all general media data for this library.
 func (s *Library) GetAllMediaLibrary(ctx context.Context, request operations.GetAllMediaLibraryRequest, opts ...operations.Option) (*operations.GetAllMediaLibraryResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "get-all-media-library",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1574,6 +1573,14 @@ func (s *Library) GetAllMediaLibrary(ctx context.Context, request operations.Get
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/library/sections/{sectionKey}/all", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "get-all-media-library",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1796,13 +1803,6 @@ func (s *Library) GetAllMediaLibrary(ctx context.Context, request operations.Get
 // GetRefreshLibraryMetadata - Refresh Metadata Of The Library
 // This endpoint Refreshes all the Metadata of the library.
 func (s *Library) GetRefreshLibraryMetadata(ctx context.Context, sectionKey int, force *operations.Force, opts ...operations.Option) (*operations.GetRefreshLibraryMetadataResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "get-refresh-library-metadata",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.GetRefreshLibraryMetadataRequest{
 		Force:      force,
 		SectionKey: sectionKey,
@@ -1829,6 +1829,14 @@ func (s *Library) GetRefreshLibraryMetadata(ctx context.Context, sectionKey int,
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/library/sections/{sectionKey}/refresh", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "get-refresh-library-metadata",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -2046,13 +2054,6 @@ func (s *Library) GetRefreshLibraryMetadata(ctx context.Context, sectionKey int,
 //
 // > **Note**: Filters and sorts are optional; without them, no filtering controls are rendered.
 func (s *Library) GetSearchLibrary(ctx context.Context, sectionKey int, type_ operations.GetSearchLibraryQueryParamType, opts ...operations.Option) (*operations.GetSearchLibraryResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "get-search-library",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.GetSearchLibraryRequest{
 		SectionKey: sectionKey,
 		Type:       type_,
@@ -2079,6 +2080,14 @@ func (s *Library) GetSearchLibrary(ctx context.Context, sectionKey int, type_ op
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/library/sections/{sectionKey}/search", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "get-search-library",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -2299,13 +2308,6 @@ func (s *Library) GetSearchLibrary(ctx context.Context, sectionKey int, type_ op
 // GetGenresLibrary - Get Genres of library media
 // Retrieves a list of all the genres that are found for the media in this library.
 func (s *Library) GetGenresLibrary(ctx context.Context, sectionKey int, type_ operations.GetGenresLibraryQueryParamType, opts ...operations.Option) (*operations.GetGenresLibraryResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "get-genres-library",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.GetGenresLibraryRequest{
 		SectionKey: sectionKey,
 		Type:       type_,
@@ -2332,6 +2334,14 @@ func (s *Library) GetGenresLibrary(ctx context.Context, sectionKey int, type_ op
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/library/sections/{sectionKey}/genre", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "get-genres-library",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -2554,13 +2564,6 @@ func (s *Library) GetGenresLibrary(ctx context.Context, sectionKey int, type_ op
 // GetCountriesLibrary - Get Countries of library media
 // Retrieves a list of all the countries that are found for the media in this library.
 func (s *Library) GetCountriesLibrary(ctx context.Context, sectionKey int, type_ operations.GetCountriesLibraryQueryParamType, opts ...operations.Option) (*operations.GetCountriesLibraryResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "get-countries-library",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.GetCountriesLibraryRequest{
 		SectionKey: sectionKey,
 		Type:       type_,
@@ -2587,6 +2590,14 @@ func (s *Library) GetCountriesLibrary(ctx context.Context, sectionKey int, type_
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/library/sections/{sectionKey}/country", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "get-countries-library",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -2809,13 +2820,6 @@ func (s *Library) GetCountriesLibrary(ctx context.Context, sectionKey int, type_
 // GetActorsLibrary - Get Actors of library media
 // Retrieves a list of all the actors that are found for the media in this library.
 func (s *Library) GetActorsLibrary(ctx context.Context, sectionKey int, type_ operations.GetActorsLibraryQueryParamType, opts ...operations.Option) (*operations.GetActorsLibraryResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "get-actors-library",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.GetActorsLibraryRequest{
 		SectionKey: sectionKey,
 		Type:       type_,
@@ -2842,6 +2846,14 @@ func (s *Library) GetActorsLibrary(ctx context.Context, sectionKey int, type_ op
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/library/sections/{sectionKey}/actor", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "get-actors-library",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -3064,13 +3076,6 @@ func (s *Library) GetActorsLibrary(ctx context.Context, sectionKey int, type_ op
 // GetSearchAllLibraries - Search All Libraries
 // Search the provided query across all library sections, or a single section, and return matches as hubs, split up by type.
 func (s *Library) GetSearchAllLibraries(ctx context.Context, request operations.GetSearchAllLibrariesRequest, opts ...operations.Option) (*operations.GetSearchAllLibrariesResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "get-search-all-libraries",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -3092,6 +3097,14 @@ func (s *Library) GetSearchAllLibraries(ctx context.Context, request operations.
 	opURL, err := url.JoinPath(baseURL, "/library/search")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "get-search-all-libraries",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -3314,13 +3327,6 @@ func (s *Library) GetSearchAllLibraries(ctx context.Context, request operations.
 // GetMediaMetaData - Get Media Metadata
 // This endpoint will return all the (meta)data of a library item specified with by the ratingKey.
 func (s *Library) GetMediaMetaData(ctx context.Context, request operations.GetMediaMetaDataRequest, opts ...operations.Option) (*operations.GetMediaMetaDataResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "get-media-meta-data",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -3342,6 +3348,14 @@ func (s *Library) GetMediaMetaData(ctx context.Context, request operations.GetMe
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/library/metadata/{ratingKey}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "get-media-meta-data",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -3564,13 +3578,6 @@ func (s *Library) GetMediaMetaData(ctx context.Context, request operations.GetMe
 // GetMetadataChildren - Get Items Children
 // This endpoint will return the children of of a library item specified with the ratingKey.
 func (s *Library) GetMetadataChildren(ctx context.Context, ratingKey float64, includeElements *string, opts ...operations.Option) (*operations.GetMetadataChildrenResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getMetadataChildren",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.GetMetadataChildrenRequest{
 		RatingKey:       ratingKey,
 		IncludeElements: includeElements,
@@ -3597,6 +3604,14 @@ func (s *Library) GetMetadataChildren(ctx context.Context, ratingKey float64, in
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/library/metadata/{ratingKey}/children", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getMetadataChildren",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -3817,13 +3832,6 @@ func (s *Library) GetMetadataChildren(ctx context.Context, ratingKey float64, in
 // GetTopWatchedContent - Get Top Watched Content
 // This endpoint will return the top watched content from libraries of a certain type
 func (s *Library) GetTopWatchedContent(ctx context.Context, type_ operations.GetTopWatchedContentQueryParamType, includeGuids *int64, opts ...operations.Option) (*operations.GetTopWatchedContentResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getTopWatchedContent",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.GetTopWatchedContentRequest{
 		IncludeGuids: includeGuids,
 		Type:         type_,
@@ -3850,6 +3858,14 @@ func (s *Library) GetTopWatchedContent(ctx context.Context, type_ operations.Get
 	opURL, err := url.JoinPath(baseURL, "/library/all/top")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getTopWatchedContent",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -4070,13 +4086,6 @@ func (s *Library) GetTopWatchedContent(ctx context.Context, type_ operations.Get
 // GetOnDeck - Get On Deck
 // This endpoint will return the on deck content.
 func (s *Library) GetOnDeck(ctx context.Context, opts ...operations.Option) (*operations.GetOnDeckResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getOnDeck",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -4098,6 +4107,14 @@ func (s *Library) GetOnDeck(ctx context.Context, opts ...operations.Option) (*op
 	opURL, err := url.JoinPath(baseURL, "/library/onDeck")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getOnDeck",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout

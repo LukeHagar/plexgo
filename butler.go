@@ -29,13 +29,6 @@ func newButler(sdkConfig sdkConfiguration) *Butler {
 // GetButlerTasks - Get Butler tasks
 // Returns a list of butler tasks
 func (s *Butler) GetButlerTasks(ctx context.Context, opts ...operations.Option) (*operations.GetButlerTasksResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getButlerTasks",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -57,6 +50,14 @@ func (s *Butler) GetButlerTasks(ctx context.Context, opts ...operations.Option) 
 	opURL, err := url.JoinPath(baseURL, "/butler")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getButlerTasks",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -277,13 +278,6 @@ func (s *Butler) GetButlerTasks(ctx context.Context, opts ...operations.Option) 
 // 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window.
 // 4. If we are outside the configured window, the task will start immediately.
 func (s *Butler) StartAllTasks(ctx context.Context, opts ...operations.Option) (*operations.StartAllTasksResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "startAllTasks",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -305,6 +299,14 @@ func (s *Butler) StartAllTasks(ctx context.Context, opts ...operations.Option) (
 	opURL, err := url.JoinPath(baseURL, "/butler")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "startAllTasks",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -501,13 +503,6 @@ func (s *Butler) StartAllTasks(ctx context.Context, opts ...operations.Option) (
 // StopAllTasks - Stop all Butler tasks
 // This endpoint will stop all currently running tasks and remove any scheduled tasks from the queue.
 func (s *Butler) StopAllTasks(ctx context.Context, opts ...operations.Option) (*operations.StopAllTasksResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "stopAllTasks",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -529,6 +524,14 @@ func (s *Butler) StopAllTasks(ctx context.Context, opts ...operations.Option) (*
 	opURL, err := url.JoinPath(baseURL, "/butler")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "stopAllTasks",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -729,13 +732,6 @@ func (s *Butler) StopAllTasks(ctx context.Context, opts ...operations.Option) (*
 // 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window.
 // 4. If we are outside the configured window, the task will start immediately.
 func (s *Butler) StartTask(ctx context.Context, taskName operations.TaskName, opts ...operations.Option) (*operations.StartTaskResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "startTask",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.StartTaskRequest{
 		TaskName: taskName,
 	}
@@ -761,6 +757,14 @@ func (s *Butler) StartTask(ctx context.Context, taskName operations.TaskName, op
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/butler/{taskName}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "startTask",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -959,13 +963,6 @@ func (s *Butler) StartTask(ctx context.Context, taskName operations.TaskName, op
 // StopTask - Stop a single Butler task
 // This endpoint will stop a currently running task by name, or remove it from the list of scheduled tasks if it exists. See the section above for a list of task names for this endpoint.
 func (s *Butler) StopTask(ctx context.Context, taskName operations.PathParamTaskName, opts ...operations.Option) (*operations.StopTaskResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "stopTask",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.StopTaskRequest{
 		TaskName: taskName,
 	}
@@ -991,6 +988,14 @@ func (s *Butler) StopTask(ctx context.Context, taskName operations.PathParamTask
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/butler/{taskName}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "stopTask",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout

@@ -29,13 +29,6 @@ func newSessions(sdkConfig sdkConfiguration) *Sessions {
 // GetSessions - Get Active Sessions
 // This will retrieve the "Now Playing" Information of the PMS.
 func (s *Sessions) GetSessions(ctx context.Context, opts ...operations.Option) (*operations.GetSessionsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getSessions",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -57,6 +50,14 @@ func (s *Sessions) GetSessions(ctx context.Context, opts ...operations.Option) (
 	opURL, err := url.JoinPath(baseURL, "/status/sessions")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getSessions",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -273,13 +274,6 @@ func (s *Sessions) GetSessions(ctx context.Context, opts ...operations.Option) (
 // GetSessionHistory - Get Session History
 // This will Retrieve a listing of all history views.
 func (s *Sessions) GetSessionHistory(ctx context.Context, sort *string, accountID *int64, filter *operations.QueryParamFilter, librarySectionID *int64, opts ...operations.Option) (*operations.GetSessionHistoryResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getSessionHistory",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.GetSessionHistoryRequest{
 		Sort:             sort,
 		AccountID:        accountID,
@@ -308,6 +302,14 @@ func (s *Sessions) GetSessionHistory(ctx context.Context, sort *string, accountI
 	opURL, err := url.JoinPath(baseURL, "/status/sessions/history/all")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getSessionHistory",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -528,13 +530,6 @@ func (s *Sessions) GetSessionHistory(ctx context.Context, sort *string, accountI
 // GetTranscodeSessions - Get Transcode Sessions
 // Get Transcode Sessions
 func (s *Sessions) GetTranscodeSessions(ctx context.Context, opts ...operations.Option) (*operations.GetTranscodeSessionsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getTranscodeSessions",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -556,6 +551,14 @@ func (s *Sessions) GetTranscodeSessions(ctx context.Context, opts ...operations.
 	opURL, err := url.JoinPath(baseURL, "/transcode/sessions")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getTranscodeSessions",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -772,13 +775,6 @@ func (s *Sessions) GetTranscodeSessions(ctx context.Context, opts ...operations.
 // StopTranscodeSession - Stop a Transcode Session
 // Stop a Transcode Session
 func (s *Sessions) StopTranscodeSession(ctx context.Context, sessionKey string, opts ...operations.Option) (*operations.StopTranscodeSessionResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "stopTranscodeSession",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.StopTranscodeSessionRequest{
 		SessionKey: sessionKey,
 	}
@@ -804,6 +800,14 @@ func (s *Sessions) StopTranscodeSession(ctx context.Context, sessionKey string, 
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/transcode/sessions/{sessionKey}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "stopTranscodeSession",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout

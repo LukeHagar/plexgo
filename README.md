@@ -397,13 +397,48 @@ func main() {
 ### Server Variables
 
 The default server `{protocol}://{ip}:{port}` contains variables and is set to `https://10.10.10.47:32400` by default. To override default values, the following options are available when initializing the SDK client instance:
- * `WithProtocol(protocol ServerProtocol)`
- * `WithIP(ip string)`
- * `WithPort(port string)`
+
+| Variable   | Option                                  | Supported Values           | Default         | Description                                    |
+| ---------- | --------------------------------------- | -------------------------- | --------------- | ---------------------------------------------- |
+| `protocol` | `WithProtocol(protocol ServerProtocol)` | - `"http"`<br/>- `"https"` | `"https"`       | The protocol to use for the server connection  |
+| `ip`       | `WithIP(ip string)`                     | string                     | `"10.10.10.47"` | The IP address or hostname of your Plex Server |
+| `port`     | `WithPort(port string)`                 | string                     | `"32400"`       | The port of your Plex Server                   |
+
+#### Example
+
+```go
+package main
+
+import (
+	"context"
+	"github.com/LukeHagar/plexgo"
+	"log"
+)
+
+func main() {
+	ctx := context.Background()
+
+	s := plexgo.New(
+		plexgo.WithProtocol("https"),
+		plexgo.WithIP("e0c3:bcc0:6bac:dccc:c4ec:34b1:ca98:4cb9"),
+		plexgo.WithPort("40311"),
+		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+	)
+
+	res, err := s.Server.GetServerCapabilities(ctx)
+	if err != nil {
+		log.Fatal(err)
+	}
+	if res.Object != nil {
+		// handle response
+	}
+}
+
+```
 
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally using the `WithServerURL(serverURL string)` option when initializing the SDK client instance. For example:
+The default server can be overridden globally using the `WithServerURL(serverURL string)` option when initializing the SDK client instance. For example:
 ```go
 package main
 

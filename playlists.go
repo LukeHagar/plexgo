@@ -34,13 +34,6 @@ func newPlaylists(sdkConfig sdkConfiguration) *Playlists {
 // - `uri` - The content URI for what we're playing (e.g. `server://1234/com.plexapp.plugins.library/library/metadata/1`).
 // - `playQueueID` - To create a playlist from an existing play queue.
 func (s *Playlists) CreatePlaylist(ctx context.Context, request operations.CreatePlaylistRequest, opts ...operations.Option) (*operations.CreatePlaylistResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "createPlaylist",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -62,6 +55,14 @@ func (s *Playlists) CreatePlaylist(ctx context.Context, request operations.Creat
 	opURL, err := url.JoinPath(baseURL, "/playlists")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "createPlaylist",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -282,13 +283,6 @@ func (s *Playlists) CreatePlaylist(ctx context.Context, request operations.Creat
 // GetPlaylists - Get All Playlists
 // Get All Playlists given the specified filters.
 func (s *Playlists) GetPlaylists(ctx context.Context, playlistType *operations.PlaylistType, smart *operations.QueryParamSmart, opts ...operations.Option) (*operations.GetPlaylistsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getPlaylists",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.GetPlaylistsRequest{
 		PlaylistType: playlistType,
 		Smart:        smart,
@@ -315,6 +309,14 @@ func (s *Playlists) GetPlaylists(ctx context.Context, playlistType *operations.P
 	opURL, err := url.JoinPath(baseURL, "/playlists")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getPlaylists",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -536,13 +538,6 @@ func (s *Playlists) GetPlaylists(ctx context.Context, playlistType *operations.P
 // Gets detailed metadata for a playlist. A playlist for many purposes (rating, editing metadata, tagging), can be treated like a regular metadata item:
 // Smart playlist details contain the `content` attribute. This is the content URI for the generator. This can then be parsed by a client to provide smart playlist editing.
 func (s *Playlists) GetPlaylist(ctx context.Context, playlistID float64, opts ...operations.Option) (*operations.GetPlaylistResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getPlaylist",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.GetPlaylistRequest{
 		PlaylistID: playlistID,
 	}
@@ -568,6 +563,14 @@ func (s *Playlists) GetPlaylist(ctx context.Context, playlistID float64, opts ..
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/playlists/{playlistID}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getPlaylist",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -784,13 +787,6 @@ func (s *Playlists) GetPlaylist(ctx context.Context, playlistID float64, opts ..
 // DeletePlaylist - Deletes a Playlist
 // This endpoint will delete a playlist
 func (s *Playlists) DeletePlaylist(ctx context.Context, playlistID float64, opts ...operations.Option) (*operations.DeletePlaylistResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "deletePlaylist",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.DeletePlaylistRequest{
 		PlaylistID: playlistID,
 	}
@@ -816,6 +812,14 @@ func (s *Playlists) DeletePlaylist(ctx context.Context, playlistID float64, opts
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/playlists/{playlistID}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "deletePlaylist",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1012,13 +1016,6 @@ func (s *Playlists) DeletePlaylist(ctx context.Context, playlistID float64, opts
 // UpdatePlaylist - Update a Playlist
 // From PMS version 1.9.1 clients can also edit playlist metadata using this endpoint as they would via `PUT /library/metadata/{playlistID}`
 func (s *Playlists) UpdatePlaylist(ctx context.Context, playlistID float64, title *string, summary *string, opts ...operations.Option) (*operations.UpdatePlaylistResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "updatePlaylist",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.UpdatePlaylistRequest{
 		PlaylistID: playlistID,
 		Title:      title,
@@ -1046,6 +1043,14 @@ func (s *Playlists) UpdatePlaylist(ctx context.Context, playlistID float64, titl
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/playlists/{playlistID}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "updatePlaylist",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1249,13 +1254,6 @@ func (s *Playlists) UpdatePlaylist(ctx context.Context, playlistID float64, titl
 // For example, you could use this to display a list of recently added albums vis a smart playlist.
 // Note that for dumb playlists, items have a `playlistItemID` attribute which is used for deleting or moving items.
 func (s *Playlists) GetPlaylistContents(ctx context.Context, playlistID float64, type_ operations.GetPlaylistContentsQueryParamType, opts ...operations.Option) (*operations.GetPlaylistContentsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getPlaylistContents",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.GetPlaylistContentsRequest{
 		PlaylistID: playlistID,
 		Type:       type_,
@@ -1282,6 +1280,14 @@ func (s *Playlists) GetPlaylistContents(ctx context.Context, playlistID float64,
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/playlists/{playlistID}/items", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getPlaylistContents",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1502,13 +1508,6 @@ func (s *Playlists) GetPlaylistContents(ctx context.Context, playlistID float64,
 // ClearPlaylistContents - Delete Playlist Contents
 // Clears a playlist, only works with dumb playlists. Returns the playlist.
 func (s *Playlists) ClearPlaylistContents(ctx context.Context, playlistID float64, opts ...operations.Option) (*operations.ClearPlaylistContentsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "clearPlaylistContents",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.ClearPlaylistContentsRequest{
 		PlaylistID: playlistID,
 	}
@@ -1534,6 +1533,14 @@ func (s *Playlists) ClearPlaylistContents(ctx context.Context, playlistID float6
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/playlists/{playlistID}/items", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "clearPlaylistContents",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1731,13 +1738,6 @@ func (s *Playlists) ClearPlaylistContents(ctx context.Context, playlistID float6
 // Adds a generator to a playlist, same parameters as the POST to create. With a dumb playlist, this adds the specified items to the playlist.
 // With a smart playlist, passing a new `uri` parameter replaces the rules for the playlist. Returns the playlist.
 func (s *Playlists) AddPlaylistContents(ctx context.Context, playlistID float64, uri string, playQueueID *float64, opts ...operations.Option) (*operations.AddPlaylistContentsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "addPlaylistContents",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.AddPlaylistContentsRequest{
 		PlaylistID:  playlistID,
 		URI:         uri,
@@ -1765,6 +1765,14 @@ func (s *Playlists) AddPlaylistContents(ctx context.Context, playlistID float64,
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/playlists/{playlistID}/items", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "addPlaylistContents",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1985,13 +1993,6 @@ func (s *Playlists) AddPlaylistContents(ctx context.Context, playlistID float64,
 // UploadPlaylist - Upload Playlist
 // Imports m3u playlists by passing a path on the server to scan for m3u-formatted playlist files, or a path to a single playlist file.
 func (s *Playlists) UploadPlaylist(ctx context.Context, path string, force operations.QueryParamForce, sectionID int64, opts ...operations.Option) (*operations.UploadPlaylistResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "uploadPlaylist",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.UploadPlaylistRequest{
 		Path:      path,
 		Force:     force,
@@ -2019,6 +2020,14 @@ func (s *Playlists) UploadPlaylist(ctx context.Context, path string, force opera
 	opURL, err := url.JoinPath(baseURL, "/playlists/upload")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "uploadPlaylist",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout

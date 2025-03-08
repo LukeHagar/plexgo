@@ -29,13 +29,6 @@ func newHubs(sdkConfig sdkConfiguration) *Hubs {
 // GetGlobalHubs - Get Global Hubs
 // Get Global Hubs filtered by the parameters provided.
 func (s *Hubs) GetGlobalHubs(ctx context.Context, count *float64, onlyTransient *operations.OnlyTransient, opts ...operations.Option) (*operations.GetGlobalHubsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getGlobalHubs",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.GetGlobalHubsRequest{
 		Count:         count,
 		OnlyTransient: onlyTransient,
@@ -62,6 +55,14 @@ func (s *Hubs) GetGlobalHubs(ctx context.Context, count *float64, onlyTransient 
 	opURL, err := url.JoinPath(baseURL, "/hubs")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getGlobalHubs",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -282,13 +283,6 @@ func (s *Hubs) GetGlobalHubs(ctx context.Context, count *float64, onlyTransient 
 // GetRecentlyAdded - Get Recently Added
 // This endpoint will return the recently added content.
 func (s *Hubs) GetRecentlyAdded(ctx context.Context, request operations.GetRecentlyAddedRequest, opts ...operations.Option) (*operations.GetRecentlyAddedResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "get-recently-added",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -310,6 +304,14 @@ func (s *Hubs) GetRecentlyAdded(ctx context.Context, request operations.GetRecen
 	opURL, err := url.JoinPath(baseURL, "/hubs/home/recentlyAdded")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "get-recently-added",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -490,13 +492,6 @@ func (s *Hubs) GetRecentlyAdded(ctx context.Context, request operations.GetRecen
 // GetLibraryHubs - Get library specific hubs
 // This endpoint will return a list of library specific hubs
 func (s *Hubs) GetLibraryHubs(ctx context.Context, sectionID float64, count *float64, onlyTransient *operations.QueryParamOnlyTransient, opts ...operations.Option) (*operations.GetLibraryHubsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getLibraryHubs",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.GetLibraryHubsRequest{
 		SectionID:     sectionID,
 		Count:         count,
@@ -524,6 +519,14 @@ func (s *Hubs) GetLibraryHubs(ctx context.Context, sectionID float64, count *flo
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/hubs/sections/{sectionId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getLibraryHubs",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout

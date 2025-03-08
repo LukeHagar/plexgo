@@ -41,7 +41,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
@@ -99,7 +99,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
@@ -153,7 +153,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := plexgo.New(
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )

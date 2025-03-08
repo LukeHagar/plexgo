@@ -41,13 +41,6 @@ func newSearch(sdkConfig sdkConfiguration) *Search {
 //
 // This request is intended to be very fast, and called as the user types.
 func (s *Search) PerformSearch(ctx context.Context, query string, sectionID *float64, limit *float64, opts ...operations.Option) (*operations.PerformSearchResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "performSearch",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.PerformSearchRequest{
 		Query:     query,
 		SectionID: sectionID,
@@ -75,6 +68,14 @@ func (s *Search) PerformSearch(ctx context.Context, query string, sectionID *flo
 	opURL, err := url.JoinPath(baseURL, "/hubs/search")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "performSearch",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -278,13 +279,6 @@ func (s *Search) PerformSearch(ctx context.Context, query string, sectionID *flo
 // Whenever possible, clients should limit the search to the appropriate type.
 // Results, as well as their containing per-type hubs, contain a `distance` attribute which can be used to judge result quality.
 func (s *Search) PerformVoiceSearch(ctx context.Context, query string, sectionID *float64, limit *float64, opts ...operations.Option) (*operations.PerformVoiceSearchResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "performVoiceSearch",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.PerformVoiceSearchRequest{
 		Query:     query,
 		SectionID: sectionID,
@@ -312,6 +306,14 @@ func (s *Search) PerformVoiceSearch(ctx context.Context, query string, sectionID
 	opURL, err := url.JoinPath(baseURL, "/hubs/search/voice")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "performVoiceSearch",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -512,13 +514,6 @@ func (s *Search) PerformVoiceSearch(ctx context.Context, query string, sectionID
 // GetSearchResults - Get Search Results
 // This will search the database for the string provided.
 func (s *Search) GetSearchResults(ctx context.Context, query string, opts ...operations.Option) (*operations.GetSearchResultsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getSearchResults",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.GetSearchResultsRequest{
 		Query: query,
 	}
@@ -544,6 +539,14 @@ func (s *Search) GetSearchResults(ctx context.Context, query string, opts ...ope
 	opURL, err := url.JoinPath(baseURL, "/search")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getSearchResults",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout

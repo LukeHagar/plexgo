@@ -29,13 +29,6 @@ func newPlex(sdkConfig sdkConfiguration) *Plex {
 // GetCompanionsData - Get Companions Data
 // Get Companions Data
 func (s *Plex) GetCompanionsData(ctx context.Context, opts ...operations.Option) (*operations.GetCompanionsDataResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getCompanionsData",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -56,6 +49,14 @@ func (s *Plex) GetCompanionsData(ctx context.Context, opts ...operations.Option)
 	opURL, err := url.JoinPath(baseURL, "/companions")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getCompanionsData",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -272,13 +273,6 @@ func (s *Plex) GetCompanionsData(ctx context.Context, opts ...operations.Option)
 // GetUserFriends - Get list of friends of the user logged in
 // Get friends of provided auth token.
 func (s *Plex) GetUserFriends(ctx context.Context, opts ...operations.Option) (*operations.GetUserFriendsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getUserFriends",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -299,6 +293,14 @@ func (s *Plex) GetUserFriends(ctx context.Context, opts ...operations.Option) (*
 	opURL, err := url.JoinPath(baseURL, "/friends")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getUserFriends",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -515,13 +517,6 @@ func (s *Plex) GetUserFriends(ctx context.Context, opts ...operations.Option) (*
 // GetGeoData - Get Geo Data
 // Returns the geolocation and locale data of the caller
 func (s *Plex) GetGeoData(ctx context.Context, opts ...operations.Option) (*operations.GetGeoDataResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getGeoData",
-		OAuth2Scopes:   []string{},
-		SecuritySource: nil,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -542,6 +537,14 @@ func (s *Plex) GetGeoData(ctx context.Context, opts ...operations.Option) (*oper
 	opURL, err := url.JoinPath(baseURL, "/geoip")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getGeoData",
+		OAuth2Scopes:   []string{},
+		SecuritySource: nil,
 	}
 
 	timeout := o.Timeout
@@ -754,13 +757,6 @@ func (s *Plex) GetGeoData(ctx context.Context, opts ...operations.Option) (*oper
 // GetHomeData - Get Plex Home Data
 // Retrieves the home data for the authenticated user, including details like home ID, name, guest access information, and subscription status.
 func (s *Plex) GetHomeData(ctx context.Context, opts ...operations.Option) (*operations.GetHomeDataResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getHomeData",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -782,6 +778,14 @@ func (s *Plex) GetHomeData(ctx context.Context, opts ...operations.Option) (*ope
 	opURL, err := url.JoinPath(baseURL, "/home")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getHomeData",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -998,13 +1002,6 @@ func (s *Plex) GetHomeData(ctx context.Context, opts ...operations.Option) (*ope
 // GetServerResources - Get Server Resources
 // Get Plex server access tokens and server connections
 func (s *Plex) GetServerResources(ctx context.Context, clientID string, includeHTTPS *operations.IncludeHTTPS, includeRelay *operations.IncludeRelay, includeIPv6 *operations.IncludeIPv6, opts ...operations.Option) (*operations.GetServerResourcesResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "get-server-resources",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.GetServerResourcesRequest{
 		IncludeHTTPS: includeHTTPS,
 		IncludeRelay: includeRelay,
@@ -1032,6 +1029,14 @@ func (s *Plex) GetServerResources(ctx context.Context, clientID string, includeH
 	opURL, err := url.JoinPath(baseURL, "/resources")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "get-server-resources",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1254,13 +1259,6 @@ func (s *Plex) GetServerResources(ctx context.Context, clientID string, includeH
 // GetPin - Get a Pin
 // Retrieve a Pin ID from Plex.tv to use for authentication flows
 func (s *Plex) GetPin(ctx context.Context, request operations.GetPinRequest, opts ...operations.Option) (*operations.GetPinResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getPin",
-		OAuth2Scopes:   []string{},
-		SecuritySource: nil,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1281,6 +1279,14 @@ func (s *Plex) GetPin(ctx context.Context, request operations.GetPinRequest, opt
 	opURL, err := url.JoinPath(baseURL, "/pins")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getPin",
+		OAuth2Scopes:   []string{},
+		SecuritySource: nil,
 	}
 
 	timeout := o.Timeout
@@ -1477,13 +1483,6 @@ func (s *Plex) GetPin(ctx context.Context, request operations.GetPinRequest, opt
 // GetTokenByPinID - Get Access Token by PinId
 // Retrieve an Access Token from Plex.tv after the Pin has been authenticated
 func (s *Plex) GetTokenByPinID(ctx context.Context, request operations.GetTokenByPinIDRequest, opts ...operations.Option) (*operations.GetTokenByPinIDResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getTokenByPinId",
-		OAuth2Scopes:   []string{},
-		SecuritySource: nil,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1504,6 +1503,14 @@ func (s *Plex) GetTokenByPinID(ctx context.Context, request operations.GetTokenB
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/pins/{pinID}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getTokenByPinId",
+		OAuth2Scopes:   []string{},
+		SecuritySource: nil,
 	}
 
 	timeout := o.Timeout

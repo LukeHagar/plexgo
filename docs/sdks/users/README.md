@@ -25,7 +25,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := plexgo.New()
 
     res, err := s.Users.GetUsers(ctx, operations.GetUsersRequest{

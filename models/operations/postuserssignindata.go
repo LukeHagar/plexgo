@@ -848,7 +848,7 @@ type PostUsersSignInDataUserPlexAccount struct {
 	Subscription PostUsersSignInDataSubscription `json:"subscription"`
 	// Description of the Plex Pass subscription
 	SubscriptionDescription *string                                         `json:"subscriptionDescription"`
-	Subscriptions           []PostUsersSignInDataAuthenticationSubscription `json:"subscriptions"`
+	Subscriptions           []PostUsersSignInDataAuthenticationSubscription `json:"subscriptions,omitempty"`
 	// URL of the account thumbnail
 	Thumb string `json:"thumb"`
 	// The title of the account (username or friendly name)
@@ -1115,7 +1115,7 @@ func (o *PostUsersSignInDataUserPlexAccount) GetSubscriptionDescription() *strin
 
 func (o *PostUsersSignInDataUserPlexAccount) GetSubscriptions() []PostUsersSignInDataAuthenticationSubscription {
 	if o == nil {
-		return []PostUsersSignInDataAuthenticationSubscription{}
+		return nil
 	}
 	return o.Subscriptions
 }
