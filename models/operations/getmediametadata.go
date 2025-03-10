@@ -140,96 +140,6 @@ func (o *GetMediaMetaDataRequest) GetAsyncRefreshLocalMediaAgent() *bool {
 	return o.AsyncRefreshLocalMediaAgent
 }
 
-type OptimizedForStreaming1 int
-
-const (
-	OptimizedForStreaming1Zero OptimizedForStreaming1 = 0
-	OptimizedForStreaming1One  OptimizedForStreaming1 = 1
-)
-
-func (e OptimizedForStreaming1) ToPointer() *OptimizedForStreaming1 {
-	return &e
-}
-func (e *OptimizedForStreaming1) UnmarshalJSON(data []byte) error {
-	var v int
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case 0:
-		fallthrough
-	case 1:
-		*e = OptimizedForStreaming1(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for OptimizedForStreaming1: %v", v)
-	}
-}
-
-type GetMediaMetaDataOptimizedForStreamingType string
-
-const (
-	GetMediaMetaDataOptimizedForStreamingTypeOptimizedForStreaming1 GetMediaMetaDataOptimizedForStreamingType = "optimizedForStreaming_1"
-	GetMediaMetaDataOptimizedForStreamingTypeBoolean                GetMediaMetaDataOptimizedForStreamingType = "boolean"
-)
-
-// GetMediaMetaDataOptimizedForStreaming - Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
-type GetMediaMetaDataOptimizedForStreaming struct {
-	OptimizedForStreaming1 *OptimizedForStreaming1 `queryParam:"inline"`
-	Boolean                *bool                   `queryParam:"inline"`
-
-	Type GetMediaMetaDataOptimizedForStreamingType
-}
-
-func CreateGetMediaMetaDataOptimizedForStreamingOptimizedForStreaming1(optimizedForStreaming1 OptimizedForStreaming1) GetMediaMetaDataOptimizedForStreaming {
-	typ := GetMediaMetaDataOptimizedForStreamingTypeOptimizedForStreaming1
-
-	return GetMediaMetaDataOptimizedForStreaming{
-		OptimizedForStreaming1: &optimizedForStreaming1,
-		Type:                   typ,
-	}
-}
-
-func CreateGetMediaMetaDataOptimizedForStreamingBoolean(boolean bool) GetMediaMetaDataOptimizedForStreaming {
-	typ := GetMediaMetaDataOptimizedForStreamingTypeBoolean
-
-	return GetMediaMetaDataOptimizedForStreaming{
-		Boolean: &boolean,
-		Type:    typ,
-	}
-}
-
-func (u *GetMediaMetaDataOptimizedForStreaming) UnmarshalJSON(data []byte) error {
-
-	var optimizedForStreaming1 OptimizedForStreaming1 = OptimizedForStreaming1(0)
-	if err := utils.UnmarshalJSON(data, &optimizedForStreaming1, "", true, true); err == nil {
-		u.OptimizedForStreaming1 = &optimizedForStreaming1
-		u.Type = GetMediaMetaDataOptimizedForStreamingTypeOptimizedForStreaming1
-		return nil
-	}
-
-	var boolean bool = false
-	if err := utils.UnmarshalJSON(data, &boolean, "", true, true); err == nil {
-		u.Boolean = &boolean
-		u.Type = GetMediaMetaDataOptimizedForStreamingTypeBoolean
-		return nil
-	}
-
-	return fmt.Errorf("could not unmarshal `%s` into any supported union types for GetMediaMetaDataOptimizedForStreaming", string(data))
-}
-
-func (u GetMediaMetaDataOptimizedForStreaming) MarshalJSON() ([]byte, error) {
-	if u.OptimizedForStreaming1 != nil {
-		return utils.MarshalJSON(u.OptimizedForStreaming1, "", true)
-	}
-
-	if u.Boolean != nil {
-		return utils.MarshalJSON(u.Boolean, "", true)
-	}
-
-	return nil, errors.New("could not marshal union type GetMediaMetaDataOptimizedForStreaming: all fields are null")
-}
-
 type GetMediaMetaDataOptimizedForStreaming1 int
 
 const (
@@ -256,27 +166,117 @@ func (e *GetMediaMetaDataOptimizedForStreaming1) UnmarshalJSON(data []byte) erro
 	}
 }
 
+type GetMediaMetaDataOptimizedForStreamingType string
+
+const (
+	GetMediaMetaDataOptimizedForStreamingTypeGetMediaMetaDataOptimizedForStreaming1 GetMediaMetaDataOptimizedForStreamingType = "get-media-meta-data_optimizedForStreaming_1"
+	GetMediaMetaDataOptimizedForStreamingTypeBoolean                                GetMediaMetaDataOptimizedForStreamingType = "boolean"
+)
+
+// GetMediaMetaDataOptimizedForStreaming - Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
+type GetMediaMetaDataOptimizedForStreaming struct {
+	GetMediaMetaDataOptimizedForStreaming1 *GetMediaMetaDataOptimizedForStreaming1 `queryParam:"inline"`
+	Boolean                                *bool                                   `queryParam:"inline"`
+
+	Type GetMediaMetaDataOptimizedForStreamingType
+}
+
+func CreateGetMediaMetaDataOptimizedForStreamingGetMediaMetaDataOptimizedForStreaming1(getMediaMetaDataOptimizedForStreaming1 GetMediaMetaDataOptimizedForStreaming1) GetMediaMetaDataOptimizedForStreaming {
+	typ := GetMediaMetaDataOptimizedForStreamingTypeGetMediaMetaDataOptimizedForStreaming1
+
+	return GetMediaMetaDataOptimizedForStreaming{
+		GetMediaMetaDataOptimizedForStreaming1: &getMediaMetaDataOptimizedForStreaming1,
+		Type:                                   typ,
+	}
+}
+
+func CreateGetMediaMetaDataOptimizedForStreamingBoolean(boolean bool) GetMediaMetaDataOptimizedForStreaming {
+	typ := GetMediaMetaDataOptimizedForStreamingTypeBoolean
+
+	return GetMediaMetaDataOptimizedForStreaming{
+		Boolean: &boolean,
+		Type:    typ,
+	}
+}
+
+func (u *GetMediaMetaDataOptimizedForStreaming) UnmarshalJSON(data []byte) error {
+
+	var getMediaMetaDataOptimizedForStreaming1 GetMediaMetaDataOptimizedForStreaming1 = GetMediaMetaDataOptimizedForStreaming1(0)
+	if err := utils.UnmarshalJSON(data, &getMediaMetaDataOptimizedForStreaming1, "", true, true); err == nil {
+		u.GetMediaMetaDataOptimizedForStreaming1 = &getMediaMetaDataOptimizedForStreaming1
+		u.Type = GetMediaMetaDataOptimizedForStreamingTypeGetMediaMetaDataOptimizedForStreaming1
+		return nil
+	}
+
+	var boolean bool = false
+	if err := utils.UnmarshalJSON(data, &boolean, "", true, true); err == nil {
+		u.Boolean = &boolean
+		u.Type = GetMediaMetaDataOptimizedForStreamingTypeBoolean
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for GetMediaMetaDataOptimizedForStreaming", string(data))
+}
+
+func (u GetMediaMetaDataOptimizedForStreaming) MarshalJSON() ([]byte, error) {
+	if u.GetMediaMetaDataOptimizedForStreaming1 != nil {
+		return utils.MarshalJSON(u.GetMediaMetaDataOptimizedForStreaming1, "", true)
+	}
+
+	if u.Boolean != nil {
+		return utils.MarshalJSON(u.Boolean, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type GetMediaMetaDataOptimizedForStreaming: all fields are null")
+}
+
+type GetMediaMetaDataOptimizedForStreamingLibrary1 int
+
+const (
+	GetMediaMetaDataOptimizedForStreamingLibrary1Zero GetMediaMetaDataOptimizedForStreamingLibrary1 = 0
+	GetMediaMetaDataOptimizedForStreamingLibrary1One  GetMediaMetaDataOptimizedForStreamingLibrary1 = 1
+)
+
+func (e GetMediaMetaDataOptimizedForStreamingLibrary1) ToPointer() *GetMediaMetaDataOptimizedForStreamingLibrary1 {
+	return &e
+}
+func (e *GetMediaMetaDataOptimizedForStreamingLibrary1) UnmarshalJSON(data []byte) error {
+	var v int
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case 0:
+		fallthrough
+	case 1:
+		*e = GetMediaMetaDataOptimizedForStreamingLibrary1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetMediaMetaDataOptimizedForStreamingLibrary1: %v", v)
+	}
+}
+
 type GetMediaMetaDataLibraryOptimizedForStreamingType string
 
 const (
-	GetMediaMetaDataLibraryOptimizedForStreamingTypeGetMediaMetaDataOptimizedForStreaming1 GetMediaMetaDataLibraryOptimizedForStreamingType = "get-media-meta-data_optimizedForStreaming_1"
-	GetMediaMetaDataLibraryOptimizedForStreamingTypeBoolean                                GetMediaMetaDataLibraryOptimizedForStreamingType = "boolean"
+	GetMediaMetaDataLibraryOptimizedForStreamingTypeGetMediaMetaDataOptimizedForStreamingLibrary1 GetMediaMetaDataLibraryOptimizedForStreamingType = "get-media-meta-data_optimizedForStreaming_Library_1"
+	GetMediaMetaDataLibraryOptimizedForStreamingTypeBoolean                                       GetMediaMetaDataLibraryOptimizedForStreamingType = "boolean"
 )
 
 // GetMediaMetaDataLibraryOptimizedForStreaming - Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
 type GetMediaMetaDataLibraryOptimizedForStreaming struct {
-	GetMediaMetaDataOptimizedForStreaming1 *GetMediaMetaDataOptimizedForStreaming1 `queryParam:"inline"`
-	Boolean                                *bool                                   `queryParam:"inline"`
+	GetMediaMetaDataOptimizedForStreamingLibrary1 *GetMediaMetaDataOptimizedForStreamingLibrary1 `queryParam:"inline"`
+	Boolean                                       *bool                                          `queryParam:"inline"`
 
 	Type GetMediaMetaDataLibraryOptimizedForStreamingType
 }
 
-func CreateGetMediaMetaDataLibraryOptimizedForStreamingGetMediaMetaDataOptimizedForStreaming1(getMediaMetaDataOptimizedForStreaming1 GetMediaMetaDataOptimizedForStreaming1) GetMediaMetaDataLibraryOptimizedForStreaming {
-	typ := GetMediaMetaDataLibraryOptimizedForStreamingTypeGetMediaMetaDataOptimizedForStreaming1
+func CreateGetMediaMetaDataLibraryOptimizedForStreamingGetMediaMetaDataOptimizedForStreamingLibrary1(getMediaMetaDataOptimizedForStreamingLibrary1 GetMediaMetaDataOptimizedForStreamingLibrary1) GetMediaMetaDataLibraryOptimizedForStreaming {
+	typ := GetMediaMetaDataLibraryOptimizedForStreamingTypeGetMediaMetaDataOptimizedForStreamingLibrary1
 
 	return GetMediaMetaDataLibraryOptimizedForStreaming{
-		GetMediaMetaDataOptimizedForStreaming1: &getMediaMetaDataOptimizedForStreaming1,
-		Type:                                   typ,
+		GetMediaMetaDataOptimizedForStreamingLibrary1: &getMediaMetaDataOptimizedForStreamingLibrary1,
+		Type: typ,
 	}
 }
 
@@ -291,10 +291,10 @@ func CreateGetMediaMetaDataLibraryOptimizedForStreamingBoolean(boolean bool) Get
 
 func (u *GetMediaMetaDataLibraryOptimizedForStreaming) UnmarshalJSON(data []byte) error {
 
-	var getMediaMetaDataOptimizedForStreaming1 GetMediaMetaDataOptimizedForStreaming1 = GetMediaMetaDataOptimizedForStreaming1(0)
-	if err := utils.UnmarshalJSON(data, &getMediaMetaDataOptimizedForStreaming1, "", true, true); err == nil {
-		u.GetMediaMetaDataOptimizedForStreaming1 = &getMediaMetaDataOptimizedForStreaming1
-		u.Type = GetMediaMetaDataLibraryOptimizedForStreamingTypeGetMediaMetaDataOptimizedForStreaming1
+	var getMediaMetaDataOptimizedForStreamingLibrary1 GetMediaMetaDataOptimizedForStreamingLibrary1 = GetMediaMetaDataOptimizedForStreamingLibrary1(0)
+	if err := utils.UnmarshalJSON(data, &getMediaMetaDataOptimizedForStreamingLibrary1, "", true, true); err == nil {
+		u.GetMediaMetaDataOptimizedForStreamingLibrary1 = &getMediaMetaDataOptimizedForStreamingLibrary1
+		u.Type = GetMediaMetaDataLibraryOptimizedForStreamingTypeGetMediaMetaDataOptimizedForStreamingLibrary1
 		return nil
 	}
 
@@ -309,8 +309,8 @@ func (u *GetMediaMetaDataLibraryOptimizedForStreaming) UnmarshalJSON(data []byte
 }
 
 func (u GetMediaMetaDataLibraryOptimizedForStreaming) MarshalJSON() ([]byte, error) {
-	if u.GetMediaMetaDataOptimizedForStreaming1 != nil {
-		return utils.MarshalJSON(u.GetMediaMetaDataOptimizedForStreaming1, "", true)
+	if u.GetMediaMetaDataOptimizedForStreamingLibrary1 != nil {
+		return utils.MarshalJSON(u.GetMediaMetaDataOptimizedForStreamingLibrary1, "", true)
 	}
 
 	if u.Boolean != nil {
@@ -361,11 +361,11 @@ type GetMediaMetaDataStream struct {
 	// Bitrate of the stream.
 	Bitrate *int `json:"bitrate,omitempty"`
 	// Language of the stream.
-	Language string `json:"language"`
+	Language *string `json:"language,omitempty"`
 	// Language tag (e.g., en).
-	LanguageTag string `json:"languageTag"`
+	LanguageTag *string `json:"languageTag,omitempty"`
 	// ISO language code.
-	LanguageCode string `json:"languageCode"`
+	LanguageCode *string `json:"languageCode,omitempty"`
 	// Indicates whether header compression is enabled.
 	HeaderCompression *bool `json:"headerCompression,omitempty"`
 	// Dolby Vision BL compatibility ID.
@@ -393,7 +393,8 @@ type GetMediaMetaDataStream struct {
 	// Coded video height.
 	CodedHeight *int `json:"codedHeight,omitempty"`
 	// Coded video width.
-	CodedWidth *int `json:"codedWidth,omitempty"`
+	CodedWidth     *int  `json:"codedWidth,omitempty"`
+	ClosedCaptions *bool `json:"closedCaptions,omitempty"`
 	// Color primaries used.
 	ColorPrimaries *string `json:"colorPrimaries,omitempty"`
 	// Color range (e.g., tv).
@@ -412,8 +413,9 @@ type GetMediaMetaDataStream struct {
 	Original         *bool `json:"original,omitempty"`
 	HasScalingMatrix *bool `json:"hasScalingMatrix,omitempty"`
 	// Video profile.
-	Profile  *string `json:"profile,omitempty"`
-	ScanType *string `json:"scanType,omitempty"`
+	Profile         *string `json:"profile,omitempty"`
+	ScanType        *string `json:"scanType,omitempty"`
+	EmbeddedInVideo *string `json:"embeddedInVideo,omitempty"`
 	// Number of reference frames.
 	RefFrames *int `json:"refFrames,omitempty"`
 	// Width of the video stream.
@@ -483,23 +485,23 @@ func (o *GetMediaMetaDataStream) GetBitrate() *int {
 	return o.Bitrate
 }
 
-func (o *GetMediaMetaDataStream) GetLanguage() string {
+func (o *GetMediaMetaDataStream) GetLanguage() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Language
 }
 
-func (o *GetMediaMetaDataStream) GetLanguageTag() string {
+func (o *GetMediaMetaDataStream) GetLanguageTag() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.LanguageTag
 }
 
-func (o *GetMediaMetaDataStream) GetLanguageCode() string {
+func (o *GetMediaMetaDataStream) GetLanguageCode() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.LanguageCode
 }
@@ -602,6 +604,13 @@ func (o *GetMediaMetaDataStream) GetCodedWidth() *int {
 	return o.CodedWidth
 }
 
+func (o *GetMediaMetaDataStream) GetClosedCaptions() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ClosedCaptions
+}
+
 func (o *GetMediaMetaDataStream) GetColorPrimaries() *string {
 	if o == nil {
 		return nil
@@ -677,6 +686,13 @@ func (o *GetMediaMetaDataStream) GetScanType() *string {
 		return nil
 	}
 	return o.ScanType
+}
+
+func (o *GetMediaMetaDataStream) GetEmbeddedInVideo() *string {
+	if o == nil {
+		return nil
+	}
+	return o.EmbeddedInVideo
 }
 
 func (o *GetMediaMetaDataStream) GetRefFrames() *int {
@@ -954,14 +970,14 @@ type GetMediaMetaDataMedia struct {
 	// Video profile (e.g., main 10).
 	VideoProfile *string `json:"videoProfile,omitempty"`
 	// Indicates whether voice activity is detected.
-	HasVoiceActivity bool `json:"hasVoiceActivity"`
+	HasVoiceActivity *bool `json:"hasVoiceActivity,omitempty"`
 	// The audio profile used for the media (e.g., DTS, Dolby Digital, etc.).
 	AudioProfile *string `json:"audioProfile,omitempty"`
 	// Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
 	OptimizedForStreaming *GetMediaMetaDataOptimizedForStreaming `json:"optimizedForStreaming,omitempty"`
 	Has64bitOffsets       *bool                                  `json:"has64bitOffsets,omitempty"`
 	// An array of parts for this media item.
-	Part []GetMediaMetaDataPart `json:"Part"`
+	Part []GetMediaMetaDataPart `json:"Part,omitempty"`
 }
 
 func (o *GetMediaMetaDataMedia) GetID() int64 {
@@ -1062,9 +1078,9 @@ func (o *GetMediaMetaDataMedia) GetVideoProfile() *string {
 	return o.VideoProfile
 }
 
-func (o *GetMediaMetaDataMedia) GetHasVoiceActivity() bool {
+func (o *GetMediaMetaDataMedia) GetHasVoiceActivity() *bool {
 	if o == nil {
-		return false
+		return nil
 	}
 	return o.HasVoiceActivity
 }
@@ -1092,7 +1108,7 @@ func (o *GetMediaMetaDataMedia) GetHas64bitOffsets() *bool {
 
 func (o *GetMediaMetaDataMedia) GetPart() []GetMediaMetaDataPart {
 	if o == nil {
-		return []GetMediaMetaDataPart{}
+		return nil
 	}
 	return o.Part
 }
@@ -1439,7 +1455,7 @@ func (o *GetMediaMetaDataWriter) GetThumb() *string {
 	return o.Thumb
 }
 
-type Producer struct {
+type GetMediaMetaDataProducer struct {
 	// The unique role identifier.
 	ID int64 `json:"id"`
 	// The filter string for the role.
@@ -1454,49 +1470,49 @@ type Producer struct {
 	Thumb *string `json:"thumb,omitempty"`
 }
 
-func (o *Producer) GetID() int64 {
+func (o *GetMediaMetaDataProducer) GetID() int64 {
 	if o == nil {
 		return 0
 	}
 	return o.ID
 }
 
-func (o *Producer) GetFilter() string {
+func (o *GetMediaMetaDataProducer) GetFilter() string {
 	if o == nil {
 		return ""
 	}
 	return o.Filter
 }
 
-func (o *Producer) GetTag() string {
+func (o *GetMediaMetaDataProducer) GetTag() string {
 	if o == nil {
 		return ""
 	}
 	return o.Tag
 }
 
-func (o *Producer) GetTagKey() string {
+func (o *GetMediaMetaDataProducer) GetTagKey() string {
 	if o == nil {
 		return ""
 	}
 	return o.TagKey
 }
 
-func (o *Producer) GetRole() *string {
+func (o *GetMediaMetaDataProducer) GetRole() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Role
 }
 
-func (o *Producer) GetThumb() *string {
+func (o *GetMediaMetaDataProducer) GetThumb() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Thumb
 }
 
-type Similar struct {
+type GetMediaMetaDataSimilar struct {
 	// The unique similar item identifier.
 	ID int64 `json:"id"`
 	// The filter string for similar items.
@@ -1505,21 +1521,21 @@ type Similar struct {
 	Tag string `json:"tag"`
 }
 
-func (o *Similar) GetID() int64 {
+func (o *GetMediaMetaDataSimilar) GetID() int64 {
 	if o == nil {
 		return 0
 	}
 	return o.ID
 }
 
-func (o *Similar) GetFilter() string {
+func (o *GetMediaMetaDataSimilar) GetFilter() string {
 	if o == nil {
 		return ""
 	}
 	return o.Filter
 }
 
-func (o *Similar) GetTag() string {
+func (o *GetMediaMetaDataSimilar) GetTag() string {
 	if o == nil {
 		return ""
 	}
@@ -1650,9 +1666,9 @@ type GetMediaMetaDataMetadata struct {
 	// An array of Writer roles.
 	Writer []GetMediaMetaDataWriter `json:"Writer,omitempty"`
 	// An array of Writer roles.
-	Producer []Producer `json:"Producer,omitempty"`
+	Producer []GetMediaMetaDataProducer `json:"Producer,omitempty"`
 	// An array of similar content objects.
-	Similar []Similar `json:"Similar,omitempty"`
+	Similar []GetMediaMetaDataSimilar `json:"Similar,omitempty"`
 	// An array of location objects.
 	Location []GetMediaMetaDataLocation `json:"Location,omitempty"`
 }
@@ -2074,14 +2090,14 @@ func (o *GetMediaMetaDataMetadata) GetWriter() []GetMediaMetaDataWriter {
 	return o.Writer
 }
 
-func (o *GetMediaMetaDataMetadata) GetProducer() []Producer {
+func (o *GetMediaMetaDataMetadata) GetProducer() []GetMediaMetaDataProducer {
 	if o == nil {
 		return nil
 	}
 	return o.Producer
 }
 
-func (o *GetMediaMetaDataMetadata) GetSimilar() []Similar {
+func (o *GetMediaMetaDataMetadata) GetSimilar() []GetMediaMetaDataSimilar {
 	if o == nil {
 		return nil
 	}

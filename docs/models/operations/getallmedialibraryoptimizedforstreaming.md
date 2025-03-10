@@ -5,10 +5,10 @@ Has this media been optimized for streaming. NOTE: This can be 0, 1, false or tr
 
 ## Supported Types
 
-### One
+### OptimizedForStreaming1
 
 ```go
-getAllMediaLibraryOptimizedForStreaming := operations.CreateGetAllMediaLibraryOptimizedForStreamingOne(operations.One{/* values here */})
+getAllMediaLibraryOptimizedForStreaming := operations.CreateGetAllMediaLibraryOptimizedForStreamingOptimizedForStreaming1(operations.OptimizedForStreaming1{/* values here */})
 ```
 
 ### 

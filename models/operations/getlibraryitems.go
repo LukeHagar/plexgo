@@ -639,19 +639,19 @@ func (e *GetLibraryItemsLibraryType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// GetLibraryItemsFlattenSeasons - Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
-type GetLibraryItemsFlattenSeasons string
+// FlattenSeasons - Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
+type FlattenSeasons string
 
 const (
-	GetLibraryItemsFlattenSeasonsLibraryDefault GetLibraryItemsFlattenSeasons = "-1"
-	GetLibraryItemsFlattenSeasonsHide           GetLibraryItemsFlattenSeasons = "0"
-	GetLibraryItemsFlattenSeasonsShow           GetLibraryItemsFlattenSeasons = "1"
+	FlattenSeasonsLibraryDefault FlattenSeasons = "-1"
+	FlattenSeasonsHide           FlattenSeasons = "0"
+	FlattenSeasonsShow           FlattenSeasons = "1"
 )
 
-func (e GetLibraryItemsFlattenSeasons) ToPointer() *GetLibraryItemsFlattenSeasons {
+func (e FlattenSeasons) ToPointer() *FlattenSeasons {
 	return &e
 }
-func (e *GetLibraryItemsFlattenSeasons) UnmarshalJSON(data []byte) error {
+func (e *FlattenSeasons) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -662,26 +662,26 @@ func (e *GetLibraryItemsFlattenSeasons) UnmarshalJSON(data []byte) error {
 	case "0":
 		fallthrough
 	case "1":
-		*e = GetLibraryItemsFlattenSeasons(v)
+		*e = FlattenSeasons(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for GetLibraryItemsFlattenSeasons: %v", v)
+		return fmt.Errorf("invalid value for FlattenSeasons: %v", v)
 	}
 }
 
-// GetLibraryItemsEpisodeSort - Setting that indicates how episodes are sorted for the show. (-1 = Library default, 0 = Oldest first, 1 = Newest first).
-type GetLibraryItemsEpisodeSort string
+// EpisodeSort - Setting that indicates how episodes are sorted for the show. (-1 = Library default, 0 = Oldest first, 1 = Newest first).
+type EpisodeSort string
 
 const (
-	GetLibraryItemsEpisodeSortLibraryDefault GetLibraryItemsEpisodeSort = "-1"
-	GetLibraryItemsEpisodeSortOldestFirst    GetLibraryItemsEpisodeSort = "0"
-	GetLibraryItemsEpisodeSortNewestFirst    GetLibraryItemsEpisodeSort = "1"
+	EpisodeSortLibraryDefault EpisodeSort = "-1"
+	EpisodeSortOldestFirst    EpisodeSort = "0"
+	EpisodeSortNewestFirst    EpisodeSort = "1"
 )
 
-func (e GetLibraryItemsEpisodeSort) ToPointer() *GetLibraryItemsEpisodeSort {
+func (e EpisodeSort) ToPointer() *EpisodeSort {
 	return &e
 }
-func (e *GetLibraryItemsEpisodeSort) UnmarshalJSON(data []byte) error {
+func (e *EpisodeSort) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -692,25 +692,25 @@ func (e *GetLibraryItemsEpisodeSort) UnmarshalJSON(data []byte) error {
 	case "0":
 		fallthrough
 	case "1":
-		*e = GetLibraryItemsEpisodeSort(v)
+		*e = EpisodeSort(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for GetLibraryItemsEpisodeSort: %v", v)
+		return fmt.Errorf("invalid value for EpisodeSort: %v", v)
 	}
 }
 
-// GetLibraryItemsEnableCreditsMarkerGeneration - Setting that indicates if credits markers detection is enabled. (-1 = Library default, 0 = Disabled).
-type GetLibraryItemsEnableCreditsMarkerGeneration string
+// EnableCreditsMarkerGeneration - Setting that indicates if credits markers detection is enabled. (-1 = Library default, 0 = Disabled).
+type EnableCreditsMarkerGeneration string
 
 const (
-	GetLibraryItemsEnableCreditsMarkerGenerationLibraryDefault GetLibraryItemsEnableCreditsMarkerGeneration = "-1"
-	GetLibraryItemsEnableCreditsMarkerGenerationDisabled       GetLibraryItemsEnableCreditsMarkerGeneration = "0"
+	EnableCreditsMarkerGenerationLibraryDefault EnableCreditsMarkerGeneration = "-1"
+	EnableCreditsMarkerGenerationDisabled       EnableCreditsMarkerGeneration = "0"
 )
 
-func (e GetLibraryItemsEnableCreditsMarkerGeneration) ToPointer() *GetLibraryItemsEnableCreditsMarkerGeneration {
+func (e EnableCreditsMarkerGeneration) ToPointer() *EnableCreditsMarkerGeneration {
 	return &e
 }
-func (e *GetLibraryItemsEnableCreditsMarkerGeneration) UnmarshalJSON(data []byte) error {
+func (e *EnableCreditsMarkerGeneration) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -719,33 +719,33 @@ func (e *GetLibraryItemsEnableCreditsMarkerGeneration) UnmarshalJSON(data []byte
 	case "-1":
 		fallthrough
 	case "0":
-		*e = GetLibraryItemsEnableCreditsMarkerGeneration(v)
+		*e = EnableCreditsMarkerGeneration(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for GetLibraryItemsEnableCreditsMarkerGeneration: %v", v)
+		return fmt.Errorf("invalid value for EnableCreditsMarkerGeneration: %v", v)
 	}
 }
 
-// GetLibraryItemsShowOrdering - Setting that indicates the episode ordering for the show.
+// ShowOrdering - Setting that indicates the episode ordering for the show.
 // None = Library default,
 // tmdbAiring = The Movie Database (Aired),
 // aired = TheTVDB (Aired),
 // dvd = TheTVDB (DVD),
 // absolute = TheTVDB (Absolute)).
-type GetLibraryItemsShowOrdering string
+type ShowOrdering string
 
 const (
-	GetLibraryItemsShowOrderingNone         GetLibraryItemsShowOrdering = "None"
-	GetLibraryItemsShowOrderingTmdbAiring   GetLibraryItemsShowOrdering = "tmdbAiring"
-	GetLibraryItemsShowOrderingTvdbAired    GetLibraryItemsShowOrdering = "aired"
-	GetLibraryItemsShowOrderingTvdbDvd      GetLibraryItemsShowOrdering = "dvd"
-	GetLibraryItemsShowOrderingTvdbAbsolute GetLibraryItemsShowOrdering = "absolute"
+	ShowOrderingNone         ShowOrdering = "None"
+	ShowOrderingTmdbAiring   ShowOrdering = "tmdbAiring"
+	ShowOrderingTvdbAired    ShowOrdering = "aired"
+	ShowOrderingTvdbDvd      ShowOrdering = "dvd"
+	ShowOrderingTvdbAbsolute ShowOrdering = "absolute"
 )
 
-func (e GetLibraryItemsShowOrdering) ToPointer() *GetLibraryItemsShowOrdering {
+func (e ShowOrdering) ToPointer() *ShowOrdering {
 	return &e
 }
-func (e *GetLibraryItemsShowOrdering) UnmarshalJSON(data []byte) error {
+func (e *ShowOrdering) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -760,10 +760,10 @@ func (e *GetLibraryItemsShowOrdering) UnmarshalJSON(data []byte) error {
 	case "dvd":
 		fallthrough
 	case "absolute":
-		*e = GetLibraryItemsShowOrdering(v)
+		*e = ShowOrdering(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for GetLibraryItemsShowOrdering: %v", v)
+		return fmt.Errorf("invalid value for ShowOrdering: %v", v)
 	}
 }
 
@@ -1561,14 +1561,14 @@ func (o *GetLibraryItemsLocation) GetPath() *string {
 	return o.Path
 }
 
-type GetLibraryItemsMediaGUID struct {
+type MediaGUID struct {
 	// Can be one of the following formats:
 	// imdb://tt13015952, tmdb://2434012, tvdb://7945991
 	//
 	ID string `json:"id"`
 }
 
-func (o *GetLibraryItemsMediaGUID) GetID() string {
+func (o *MediaGUID) GetID() string {
 	if o == nil {
 		return ""
 	}
@@ -1610,7 +1610,7 @@ func (o *GetLibraryItemsUltraBlurColors) GetBottomLeft() string {
 	return o.BottomLeft
 }
 
-type GetLibraryItemsMetaDataRating struct {
+type MetaDataRating struct {
 	// A URI or path to the rating image.
 	Image string `json:"image"`
 	// The value of the rating.
@@ -1619,21 +1619,21 @@ type GetLibraryItemsMetaDataRating struct {
 	Type string `json:"type"`
 }
 
-func (o *GetLibraryItemsMetaDataRating) GetImage() string {
+func (o *MetaDataRating) GetImage() string {
 	if o == nil {
 		return ""
 	}
 	return o.Image
 }
 
-func (o *GetLibraryItemsMetaDataRating) GetValue() float32 {
+func (o *MetaDataRating) GetValue() float32 {
 	if o == nil {
 		return 0.0
 	}
 	return o.Value
 }
 
-func (o *GetLibraryItemsMetaDataRating) GetType() string {
+func (o *MetaDataRating) GetType() string {
 	if o == nil {
 		return ""
 	}
@@ -1724,11 +1724,11 @@ type GetLibraryItemsMetadata struct {
 	SeasonCount    *int                       `json:"seasonCount,omitempty"`
 	Tagline        *string                    `json:"tagline,omitempty"`
 	// Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
-	FlattenSeasons *GetLibraryItemsFlattenSeasons `json:"flattenSeasons,omitempty"`
+	FlattenSeasons *FlattenSeasons `json:"flattenSeasons,omitempty"`
 	// Setting that indicates how episodes are sorted for the show. (-1 = Library default, 0 = Oldest first, 1 = Newest first).
-	EpisodeSort *GetLibraryItemsEpisodeSort `json:"episodeSort,omitempty"`
+	EpisodeSort *EpisodeSort `json:"episodeSort,omitempty"`
 	// Setting that indicates if credits markers detection is enabled. (-1 = Library default, 0 = Disabled).
-	EnableCreditsMarkerGeneration *GetLibraryItemsEnableCreditsMarkerGeneration `json:"enableCreditsMarkerGeneration,omitempty"`
+	EnableCreditsMarkerGeneration *EnableCreditsMarkerGeneration `json:"enableCreditsMarkerGeneration,omitempty"`
 	// Setting that indicates the episode ordering for the show.
 	// None = Library default,
 	// tmdbAiring = The Movie Database (Aired),
@@ -1736,12 +1736,12 @@ type GetLibraryItemsMetadata struct {
 	// dvd = TheTVDB (DVD),
 	// absolute = TheTVDB (Absolute)).
 	//
-	ShowOrdering          *GetLibraryItemsShowOrdering `json:"showOrdering,omitempty"`
-	Thumb                 *string                      `json:"thumb,omitempty"`
-	Art                   *string                      `json:"art,omitempty"`
-	Banner                *string                      `json:"banner,omitempty"`
-	Duration              *int                         `json:"duration,omitempty"`
-	OriginallyAvailableAt *types.Date                  `json:"originallyAvailableAt,omitempty"`
+	ShowOrdering          *ShowOrdering `json:"showOrdering,omitempty"`
+	Thumb                 *string       `json:"thumb,omitempty"`
+	Art                   *string       `json:"art,omitempty"`
+	Banner                *string       `json:"banner,omitempty"`
+	Duration              *int          `json:"duration,omitempty"`
+	OriginallyAvailableAt *types.Date   `json:"originallyAvailableAt,omitempty"`
 	// Unix epoch datetime in seconds
 	AddedAt int64 `json:"addedAt"`
 	// Unix epoch datetime in seconds
@@ -1771,9 +1771,9 @@ type GetLibraryItemsMetadata struct {
 	Location   []GetLibraryItemsLocation   `json:"Location,omitempty"`
 	// The Guid object is only included in the response if the `includeGuids` parameter is set to `1`.
 	//
-	MediaGUID              []GetLibraryItemsMediaGUID      `json:"Guid,omitempty"`
+	MediaGUID              []MediaGUID                     `json:"Guid,omitempty"`
 	UltraBlurColors        *GetLibraryItemsUltraBlurColors `json:"UltraBlurColors,omitempty"`
-	MetaDataRating         []GetLibraryItemsMetaDataRating `json:"Rating,omitempty"`
+	MetaDataRating         []MetaDataRating                `json:"Rating,omitempty"`
 	Image                  []GetLibraryItemsImage          `json:"Image,omitempty"`
 	TitleSort              *string                         `json:"titleSort,omitempty"`
 	ViewCount              *int                            `json:"viewCount,omitempty"`
@@ -1938,28 +1938,28 @@ func (o *GetLibraryItemsMetadata) GetTagline() *string {
 	return o.Tagline
 }
 
-func (o *GetLibraryItemsMetadata) GetFlattenSeasons() *GetLibraryItemsFlattenSeasons {
+func (o *GetLibraryItemsMetadata) GetFlattenSeasons() *FlattenSeasons {
 	if o == nil {
 		return nil
 	}
 	return o.FlattenSeasons
 }
 
-func (o *GetLibraryItemsMetadata) GetEpisodeSort() *GetLibraryItemsEpisodeSort {
+func (o *GetLibraryItemsMetadata) GetEpisodeSort() *EpisodeSort {
 	if o == nil {
 		return nil
 	}
 	return o.EpisodeSort
 }
 
-func (o *GetLibraryItemsMetadata) GetEnableCreditsMarkerGeneration() *GetLibraryItemsEnableCreditsMarkerGeneration {
+func (o *GetLibraryItemsMetadata) GetEnableCreditsMarkerGeneration() *EnableCreditsMarkerGeneration {
 	if o == nil {
 		return nil
 	}
 	return o.EnableCreditsMarkerGeneration
 }
 
-func (o *GetLibraryItemsMetadata) GetShowOrdering() *GetLibraryItemsShowOrdering {
+func (o *GetLibraryItemsMetadata) GetShowOrdering() *ShowOrdering {
 	if o == nil {
 		return nil
 	}
@@ -2162,7 +2162,7 @@ func (o *GetLibraryItemsMetadata) GetLocation() []GetLibraryItemsLocation {
 	return o.Location
 }
 
-func (o *GetLibraryItemsMetadata) GetMediaGUID() []GetLibraryItemsMediaGUID {
+func (o *GetLibraryItemsMetadata) GetMediaGUID() []MediaGUID {
 	if o == nil {
 		return nil
 	}
@@ -2176,7 +2176,7 @@ func (o *GetLibraryItemsMetadata) GetUltraBlurColors() *GetLibraryItemsUltraBlur
 	return o.UltraBlurColors
 }
 
-func (o *GetLibraryItemsMetadata) GetMetaDataRating() []GetLibraryItemsMetaDataRating {
+func (o *GetLibraryItemsMetadata) GetMetaDataRating() []MetaDataRating {
 	if o == nil {
 		return nil
 	}

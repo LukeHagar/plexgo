@@ -24,7 +24,6 @@ API Calls interacting with Plex Media Server Libraries
 * [GetMediaMetaData](#getmediametadata) - Get Media Metadata
 * [GetMetadataChildren](#getmetadatachildren) - Get Items Children
 * [GetTopWatchedContent](#gettopwatchedcontent) - Get Top Watched Content
-* [GetOnDeck](#getondeck) - Get On Deck
 
 ## GetFileHash
 
@@ -1016,55 +1015,3 @@ func main() {
 | sdkerrors.GetTopWatchedContentBadRequest   | 400                                        | application/json                           |
 | sdkerrors.GetTopWatchedContentUnauthorized | 401                                        | application/json                           |
 | sdkerrors.SDKError                         | 4XX, 5XX                                   | \*/\*                                      |
-
-## GetOnDeck
-
-This endpoint will return the on deck content.
-
-
-### Example Usage
-
-```go
-package main
-
-import(
-	"context"
-	"github.com/LukeHagar/plexgo"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := plexgo.New(
-        plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
-
-    res, err := s.Library.GetOnDeck(ctx)
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.Object != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
-
-### Response
-
-**[*operations.GetOnDeckResponse](../../models/operations/getondeckresponse.md), error**
-
-### Errors
-
-| Error Type                      | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.GetOnDeckBadRequest   | 400                             | application/json                |
-| sdkerrors.GetOnDeckUnauthorized | 401                             | application/json                |
-| sdkerrors.SDKError              | 4XX, 5XX                        | \*/\*                           |

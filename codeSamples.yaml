@@ -950,35 +950,6 @@ actions:
                     // handle response
                 }
             }
-  - target: $["paths"]["/library/onDeck"]["get"]
-    update:
-      x-codeSamples:
-        - lang: go
-          label: getOnDeck
-          source: |-
-            package main
-
-            import(
-            	"context"
-            	"github.com/LukeHagar/plexgo"
-            	"log"
-            )
-
-            func main() {
-                ctx := context.Background()
-
-                s := plexgo.New(
-                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-                )
-
-                res, err := s.Library.GetOnDeck(ctx)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res.Object != nil {
-                    // handle response
-                }
-            }
   - target: $["paths"]["/library/recentlyAdded"]["get"]
     update:
       x-codeSamples:

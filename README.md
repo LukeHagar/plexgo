@@ -152,7 +152,6 @@ func main() {
 * [GetMediaMetaData](docs/sdks/library/README.md#getmediametadata) - Get Media Metadata
 * [GetMetadataChildren](docs/sdks/library/README.md#getmetadatachildren) - Get Items Children
 * [GetTopWatchedContent](docs/sdks/library/README.md#gettopwatchedcontent) - Get Top Watched Content
-* [GetOnDeck](docs/sdks/library/README.md#getondeck) - Get On Deck
 
 ### [Log](docs/sdks/log/README.md)
 
