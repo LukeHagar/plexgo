@@ -9,8 +9,8 @@ targets:
         target: go
         source: plexapi
         codeSamples:
-            labelOverride: 
-                fixedValue: PlexGO
             output: codeSamples.yaml
             registry:
                 location: registry.speakeasyapi.dev/plexapi/plexapi/code-samples-go-plexgo
+            labelOverride:
+                fixedValue: PlexGO

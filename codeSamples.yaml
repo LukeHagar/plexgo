@@ -7,7 +7,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getServerCapabilities
+          label: PlexGO
           source: |-
             package main
 
@@ -36,7 +36,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getServerPreferences
+          label: PlexGO
           source: |-
             package main
 
@@ -65,7 +65,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: updatePlayProgress
+          label: PlexGO
           source: |-
             package main
 
@@ -94,7 +94,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: markPlayed
+          label: PlexGO
           source: |-
             package main
 
@@ -123,7 +123,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getTimeline
+          label: PlexGO
           source: |-
             package main
 
@@ -164,7 +164,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: markUnplayed
+          label: PlexGO
           source: |-
             package main
 
@@ -193,7 +193,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getServerActivities
+          label: PlexGO
           source: |-
             package main
 
@@ -222,7 +222,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: cancelServerActivities
+          label: PlexGO
           source: |-
             package main
 
@@ -251,7 +251,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: stopAllTasks
+          label: PlexGO
           source: |-
             package main
 
@@ -280,7 +280,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getButlerTasks
+          label: PlexGO
           source: |-
             package main
 
@@ -309,7 +309,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: startAllTasks
+          label: PlexGO
           source: |-
             package main
 
@@ -338,7 +338,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: stopTask
+          label: PlexGO
           source: |-
             package main
 
@@ -368,7 +368,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: startTask
+          label: PlexGO
           source: |-
             package main
 
@@ -398,7 +398,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getAvailableClients
+          label: PlexGO
           source: |-
             package main
 
@@ -427,7 +427,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getCompanionsData
+          label: PlexGO
           source: |-
             package main
 
@@ -456,7 +456,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getDevices
+          label: PlexGO
           source: |-
             package main
 
@@ -485,7 +485,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getUserFriends
+          label: PlexGO
           source: |-
             package main
 
@@ -514,7 +514,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getGeoData
+          label: PlexGO
           source: |-
             package main
 
@@ -541,7 +541,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getHomeData
+          label: PlexGO
           source: |-
             package main
 
@@ -570,7 +570,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getGlobalHubs
+          label: PlexGO
           source: |-
             package main
 
@@ -599,7 +599,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: get-recently-added
+          label: PlexGO
           source: |-
             package main
 
@@ -633,7 +633,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: performSearch
+          label: PlexGO
           source: |-
             package main
 
@@ -662,7 +662,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: performVoiceSearch
+          label: PlexGO
           source: |-
             package main
 
@@ -691,7 +691,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getLibraryHubs
+          label: PlexGO
           source: |-
             package main
 
@@ -720,7 +720,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: get-server-identity
+          label: PlexGO
           source: |-
             package main
 
@@ -747,7 +747,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getTopWatchedContent
+          label: PlexGO
           source: |-
             package main
 
@@ -777,7 +777,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getFileHash
+          label: PlexGO
           source: |-
             package main
 
@@ -806,7 +806,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: get-media-meta-data
+          label: PlexGO
           source: |-
             package main
 
@@ -851,7 +851,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: get-banner-image
+          label: PlexGO
           source: |-
             package main
 
@@ -888,7 +888,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getMetadataChildren
+          label: PlexGO
           source: |-
             package main
 
@@ -917,7 +917,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: get-thumb-image
+          label: PlexGO
           source: |-
             package main
 
@@ -954,7 +954,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: get-recently-added-library
+          label: PlexGO
           source: |-
             package main
 
@@ -1002,7 +1002,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: get-search-all-libraries
+          label: PlexGO
           source: |-
             package main
 
@@ -1038,7 +1038,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: get-all-libraries
+          label: PlexGO
           source: |-
             package main
 
@@ -1067,7 +1067,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: get-watch-list
+          label: PlexGO
           source: |-
             package main
 
@@ -1100,7 +1100,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: deleteLibrary
+          label: PlexGO
           source: |-
             package main
 
@@ -1129,7 +1129,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: get-library-details
+          label: PlexGO
           source: |-
             package main
 
@@ -1158,7 +1158,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: get-actors-library
+          label: PlexGO
           source: |-
             package main
 
@@ -1188,7 +1188,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: get-all-media-library
+          label: PlexGO
           source: |-
             package main
 
@@ -1221,7 +1221,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: get-countries-library
+          label: PlexGO
           source: |-
             package main
 
@@ -1251,7 +1251,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: get-genres-library
+          label: PlexGO
           source: |-
             package main
 
@@ -1281,7 +1281,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: get-refresh-library-metadata
+          label: PlexGO
           source: |-
             package main
 
@@ -1311,7 +1311,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: get-search-library
+          label: PlexGO
           source: |-
             package main
 
@@ -1341,7 +1341,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: get-library-items
+          label: PlexGO
           source: |-
             package main
 
@@ -1375,7 +1375,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: logLine
+          label: PlexGO
           source: |-
             package main
 
@@ -1405,7 +1405,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: logMultiLine
+          label: PlexGO
           source: |-
             package main
 
@@ -1436,7 +1436,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: enablePaperTrail
+          label: PlexGO
           source: |-
             package main
 
@@ -1465,7 +1465,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: get-media-providers
+          label: PlexGO
           source: |-
             package main
 
@@ -1494,7 +1494,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getMyPlexAccount
+          label: PlexGO
           source: |-
             package main
 
@@ -1523,7 +1523,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getResizedPhoto
+          label: PlexGO
           source: |-
             package main
 
@@ -1561,7 +1561,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getPin
+          label: PlexGO
           source: |-
             package main
 
@@ -1595,7 +1595,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getTokenByPinId
+          label: PlexGO
           source: |-
             package main
 
@@ -1630,7 +1630,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getPlaylists
+          label: PlexGO
           source: |-
             package main
 
@@ -1659,7 +1659,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: createPlaylist
+          label: PlexGO
           source: |-
             package main
 
@@ -1694,7 +1694,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: uploadPlaylist
+          label: PlexGO
           source: |-
             package main
 
@@ -1724,7 +1724,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: deletePlaylist
+          label: PlexGO
           source: |-
             package main
 
@@ -1753,7 +1753,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getPlaylist
+          label: PlexGO
           source: |-
             package main
 
@@ -1782,7 +1782,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: updatePlaylist
+          label: PlexGO
           source: |-
             package main
 
@@ -1811,7 +1811,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: clearPlaylistContents
+          label: PlexGO
           source: |-
             package main
 
@@ -1840,7 +1840,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getPlaylistContents
+          label: PlexGO
           source: |-
             package main
 
@@ -1870,7 +1870,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: addPlaylistContents
+          label: PlexGO
           source: |-
             package main
 
@@ -1899,7 +1899,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: get-server-resources
+          label: PlexGO
           source: |-
             package main
 
@@ -1928,7 +1928,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getSearchResults
+          label: PlexGO
           source: |-
             package main
 
@@ -1957,7 +1957,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getSourceConnectionInformation
+          label: PlexGO
           source: |-
             package main
 
@@ -1986,7 +1986,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getTransientToken
+          label: PlexGO
           source: |-
             package main
 
@@ -2016,7 +2016,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getServerList
+          label: PlexGO
           source: |-
             package main
 
@@ -2045,7 +2045,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getBandwidthStatistics
+          label: PlexGO
           source: |-
             package main
 
@@ -2074,7 +2074,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getStatistics
+          label: PlexGO
           source: |-
             package main
 
@@ -2103,7 +2103,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getResourcesStatistics
+          label: PlexGO
           source: |-
             package main
 
@@ -2132,7 +2132,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getSessions
+          label: PlexGO
           source: |-
             package main
 
@@ -2161,7 +2161,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getSessionHistory
+          label: PlexGO
           source: |-
             package main
 
@@ -2191,7 +2191,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getTranscodeSessions
+          label: PlexGO
           source: |-
             package main
 
@@ -2220,7 +2220,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: stopTranscodeSession
+          label: PlexGO
           source: |-
             package main
 
@@ -2249,7 +2249,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: applyUpdates
+          label: PlexGO
           source: |-
             package main
 
@@ -2279,7 +2279,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: checkForUpdates
+          label: PlexGO
           source: |-
             package main
 
@@ -2309,7 +2309,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getUpdateStatus
+          label: PlexGO
           source: |-
             package main
 
@@ -2338,7 +2338,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: getTokenDetails
+          label: PlexGO
           source: |-
             package main
 
@@ -2367,7 +2367,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: get-users
+          label: PlexGO
           source: |-
             package main
 
@@ -2409,7 +2409,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: post-users-sign-in-data
+          label: PlexGO
           source: |-
             package main
 
@@ -2448,7 +2448,7 @@ actions:
     update:
       x-codeSamples:
         - lang: go
-          label: startUniversalTranscode
+          label: PlexGO
           source: |-
             package main
 
