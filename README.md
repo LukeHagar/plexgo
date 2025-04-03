@@ -150,6 +150,10 @@ func main() {
 * [GetActorsLibrary](docs/sdks/library/README.md#getactorslibrary) - Get Actors of library media
 * [GetSearchAllLibraries](docs/sdks/library/README.md#getsearchalllibraries) - Search All Libraries
 * [GetMediaMetaData](docs/sdks/library/README.md#getmediametadata) - Get Media Metadata
+* [GetMediaArts](docs/sdks/library/README.md#getmediaarts) - Get Media Background Artwork
+* [PostMediaArts](docs/sdks/library/README.md#postmediaarts) - Upload Media Background Artwork
+* [GetMediaPosters](docs/sdks/library/README.md#getmediaposters) - Get Media Posters
+* [PostMediaPoster](docs/sdks/library/README.md#postmediaposter) - Upload Media Poster
 * [GetMetadataChildren](docs/sdks/library/README.md#getmetadatachildren) - Get Items Children
 * [GetTopWatchedContent](docs/sdks/library/README.md#gettopwatchedcontent) - Get Top Watched Content
 

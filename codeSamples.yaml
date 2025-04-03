@@ -847,6 +847,64 @@ actions:
                     // handle response
                 }
             }
+  - target: $["paths"]["/library/metadata/{ratingKey}/arts"]["get"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: PlexGO
+          source: |-
+            package main
+
+            import(
+            	"context"
+            	"github.com/LukeHagar/plexgo"
+            	"log"
+            )
+
+            func main() {
+                ctx := context.Background()
+
+                s := plexgo.New(
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                )
+
+                res, err := s.Library.GetMediaArts(ctx, 16099)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res.Object != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/library/metadata/{ratingKey}/arts"]["post"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: PlexGO
+          source: |-
+            package main
+
+            import(
+            	"context"
+            	"github.com/LukeHagar/plexgo"
+            	"log"
+            )
+
+            func main() {
+                ctx := context.Background()
+
+                s := plexgo.New(
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                )
+
+                res, err := s.Library.PostMediaArts(ctx, 2268, plexgo.String("https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b"), nil)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res != nil {
+                    // handle response
+                }
+            }
   - target: $["paths"]["/library/metadata/{ratingKey}/banner"]["get"]
     update:
       x-codeSamples:
@@ -910,6 +968,64 @@ actions:
                     log.Fatal(err)
                 }
                 if res.Object != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/library/metadata/{ratingKey}/posters"]["get"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: PlexGO
+          source: |-
+            package main
+
+            import(
+            	"context"
+            	"github.com/LukeHagar/plexgo"
+            	"log"
+            )
+
+            func main() {
+                ctx := context.Background()
+
+                s := plexgo.New(
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                )
+
+                res, err := s.Library.GetMediaPosters(ctx, 16099)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res.Object != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/library/metadata/{ratingKey}/posters"]["post"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: PlexGO
+          source: |-
+            package main
+
+            import(
+            	"context"
+            	"github.com/LukeHagar/plexgo"
+            	"log"
+            )
+
+            func main() {
+                ctx := context.Background()
+
+                s := plexgo.New(
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                )
+
+                res, err := s.Library.PostMediaPoster(ctx, 2268, plexgo.String("https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b"), nil)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res != nil {
                     // handle response
                 }
             }

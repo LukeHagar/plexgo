@@ -22,6 +22,10 @@ API Calls interacting with Plex Media Server Libraries
 * [GetActorsLibrary](#getactorslibrary) - Get Actors of library media
 * [GetSearchAllLibraries](#getsearchalllibraries) - Search All Libraries
 * [GetMediaMetaData](#getmediametadata) - Get Media Metadata
+* [GetMediaArts](#getmediaarts) - Get Media Background Artwork
+* [PostMediaArts](#postmediaarts) - Upload Media Background Artwork
+* [GetMediaPosters](#getmediaposters) - Get Media Posters
+* [PostMediaPoster](#postmediaposter) - Upload Media Poster
 * [GetMetadataChildren](#getmetadatachildren) - Get Items Children
 * [GetTopWatchedContent](#gettopwatchedcontent) - Get Top Watched Content
 
@@ -906,6 +910,210 @@ func main() {
 | sdkerrors.GetMediaMetaDataBadRequest   | 400                                    | application/json                       |
 | sdkerrors.GetMediaMetaDataUnauthorized | 401                                    | application/json                       |
 | sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
+
+## GetMediaArts
+
+Returns the background artwork for a library item.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"github.com/LukeHagar/plexgo"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := plexgo.New(
+        plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Library.GetMediaArts(ctx, 16099)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              | Example                                                  |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
+| `ratingKey`                                              | *int64*                                                  | :heavy_check_mark:                                       | the id of the library item to return the artwork of.     | 16099                                                    |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
+
+### Response
+
+**[*operations.GetMediaArtsResponse](../../models/operations/getmediaartsresponse.md), error**
+
+### Errors
+
+| Error Type         | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4XX, 5XX           | \*/\*              |
+
+## PostMediaArts
+
+Uploads an image to use as the background artwork for a library item, either from a local file or a remote URL
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"github.com/LukeHagar/plexgo"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := plexgo.New(
+        plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Library.PostMediaArts(ctx, 2268, plexgo.String("https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b"), nil)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                          | Type                                                               | Required                                                           | Description                                                        | Example                                                            |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| `ctx`                                                              | [context.Context](https://pkg.go.dev/context#Context)              | :heavy_check_mark:                                                 | The context to use for the request.                                |                                                                    |
+| `ratingKey`                                                        | *int64*                                                            | :heavy_check_mark:                                                 | the id of the library item to return the posters of.               | 2268                                                               |
+| `url_`                                                             | **string*                                                          | :heavy_minus_sign:                                                 | The URL of the image, if uploading a remote image                  | https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b |
+| `requestBody`                                                      | **any*                                                             | :heavy_minus_sign:                                                 | The contents of the image, if uploading a local file               |                                                                    |
+| `opts`                                                             | [][operations.Option](../../models/operations/option.md)           | :heavy_minus_sign:                                                 | The options for this request.                                      |                                                                    |
+
+### Response
+
+**[*operations.PostMediaArtsResponse](../../models/operations/postmediaartsresponse.md), error**
+
+### Errors
+
+| Error Type         | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4XX, 5XX           | \*/\*              |
+
+## GetMediaPosters
+
+Returns the available posters for a library item.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"github.com/LukeHagar/plexgo"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := plexgo.New(
+        plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Library.GetMediaPosters(ctx, 16099)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              | Example                                                  |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
+| `ratingKey`                                              | *int64*                                                  | :heavy_check_mark:                                       | the id of the library item to return the posters of.     | 16099                                                    |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
+
+### Response
+
+**[*operations.GetMediaPostersResponse](../../models/operations/getmediapostersresponse.md), error**
+
+### Errors
+
+| Error Type         | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4XX, 5XX           | \*/\*              |
+
+## PostMediaPoster
+
+Uploads a poster to a library item, either from a local file or a remote URL
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"github.com/LukeHagar/plexgo"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := plexgo.New(
+        plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Library.PostMediaPoster(ctx, 2268, plexgo.String("https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b"), nil)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                          | Type                                                               | Required                                                           | Description                                                        | Example                                                            |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| `ctx`                                                              | [context.Context](https://pkg.go.dev/context#Context)              | :heavy_check_mark:                                                 | The context to use for the request.                                |                                                                    |
+| `ratingKey`                                                        | *int64*                                                            | :heavy_check_mark:                                                 | the id of the library item to return the posters of.               | 2268                                                               |
+| `url_`                                                             | **string*                                                          | :heavy_minus_sign:                                                 | The URL of the image, if uploading a remote image                  | https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b |
+| `requestBody`                                                      | **any*                                                             | :heavy_minus_sign:                                                 | The contents of the image, if uploading a local file               |                                                                    |
+| `opts`                                                             | [][operations.Option](../../models/operations/option.md)           | :heavy_minus_sign:                                                 | The options for this request.                                      |                                                                    |
+
+### Response
+
+**[*operations.PostMediaPosterResponse](../../models/operations/postmediaposterresponse.md), error**
+
+### Errors
+
+| Error Type         | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4XX, 5XX           | \*/\*              |
 
 ## GetMetadataChildren
 
