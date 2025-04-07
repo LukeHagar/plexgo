@@ -3,11 +3,82 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
+	"github.com/LukeHagar/plexgo/internal/utils"
 	"net/http"
 )
 
+// GetAllLibrariesType - The library type
+type GetAllLibrariesType string
+
+const (
+	GetAllLibrariesTypeMovie   GetAllLibrariesType = "movie"
+	GetAllLibrariesTypeTvShow  GetAllLibrariesType = "show"
+	GetAllLibrariesTypeSeason  GetAllLibrariesType = "season"
+	GetAllLibrariesTypeEpisode GetAllLibrariesType = "episode"
+	GetAllLibrariesTypeArtist  GetAllLibrariesType = "artist"
+	GetAllLibrariesTypeAlbum   GetAllLibrariesType = "album"
+)
+
+func (e GetAllLibrariesType) ToPointer() *GetAllLibrariesType {
+	return &e
+}
+func (e *GetAllLibrariesType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "movie":
+		fallthrough
+	case "show":
+		fallthrough
+	case "season":
+		fallthrough
+	case "episode":
+		fallthrough
+	case "artist":
+		fallthrough
+	case "album":
+		*e = GetAllLibrariesType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetAllLibrariesType: %v", v)
+	}
+}
+
+// Hidden - UNKNOWN
+type Hidden int
+
+const (
+	HiddenDisable Hidden = 0
+	HiddenEnable  Hidden = 1
+)
+
+func (e Hidden) ToPointer() *Hidden {
+	return &e
+}
+func (e *Hidden) UnmarshalJSON(data []byte) error {
+	var v int
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case 0:
+		fallthrough
+	case 1:
+		*e = Hidden(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Hidden: %v", v)
+	}
+}
+
 type GetAllLibrariesLocation struct {
-	ID   int    `json:"id"`
+	// The ID of the location.
+	ID int `json:"id"`
+	// The path to the media item.
 	Path string `json:"path"`
 }
 
@@ -26,31 +97,55 @@ func (o *GetAllLibrariesLocation) GetPath() string {
 }
 
 type GetAllLibrariesDirectory struct {
-	AllowSync  bool   `json:"allowSync"`
-	Art        string `json:"art"`
-	Composite  string `json:"composite"`
-	Filters    bool   `json:"filters"`
-	Refreshing bool   `json:"refreshing"`
-	Thumb      string `json:"thumb"`
-	Key        string `json:"key"`
-	Type       string `json:"type"`
-	Title      string `json:"title"`
-	Agent      string `json:"agent"`
-	Scanner    string `json:"scanner"`
-	Language   string `json:"language"`
-	UUID       string `json:"uuid"`
+	// Indicates whether syncing is allowed.
+	AllowSync bool `json:"allowSync"`
+	// URL for the background artwork of the media container.
+	Art string `json:"art"`
+	// The relative path to the composite media item.
+	Composite string `json:"composite"`
+	// UNKNOWN
+	Filters bool `json:"filters"`
+	// Indicates whether the library is currently being refreshed or updated
+	Refreshing bool `json:"refreshing"`
+	// URL for the thumbnail image of the media container.
+	Thumb string `json:"thumb"`
+	// The library key representing the unique identifier
+	Key  string              `json:"key"`
+	Type GetAllLibrariesType `json:"type"`
+	// The title of the library
+	Title string `json:"title"`
+	// The Plex agent used to match and retrieve media metadata.
+	Agent string `json:"agent"`
+	// UNKNOWN
+	Scanner string `json:"scanner"`
+	// The Plex library language that has been set
+	Language string `json:"language"`
+	// The universally unique identifier for the library.
+	UUID string `json:"uuid"`
 	// Unix epoch datetime in seconds
-	UpdatedAt int64 `json:"updatedAt"`
-	// Unix epoch datetime in seconds
-	CreatedAt int64 `json:"createdAt"`
+	UpdatedAt int64  `json:"updatedAt"`
+	CreatedAt *int64 `json:"createdAt,omitempty"`
 	// Unix epoch datetime in seconds
 	ScannedAt int64 `json:"scannedAt"`
-	Content   bool  `json:"content"`
-	Directory bool  `json:"directory"`
-	// Unix epoch datetime in seconds
-	ContentChangedAt int64                     `json:"contentChangedAt"`
-	Hidden           int                       `json:"hidden"`
+	// UNKNOWN
+	Content bool `json:"content"`
+	// UNKNOWN
+	Directory bool `json:"directory"`
+	// The number of seconds since the content was last changed relative to now.
+	ContentChangedAt int                       `json:"contentChangedAt"`
+	Hidden           *Hidden                   `default:"0" json:"hidden"`
 	Location         []GetAllLibrariesLocation `json:"Location"`
+}
+
+func (g GetAllLibrariesDirectory) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetAllLibrariesDirectory) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *GetAllLibrariesDirectory) GetAllowSync() bool {
@@ -102,9 +197,9 @@ func (o *GetAllLibrariesDirectory) GetKey() string {
 	return o.Key
 }
 
-func (o *GetAllLibrariesDirectory) GetType() string {
+func (o *GetAllLibrariesDirectory) GetType() GetAllLibrariesType {
 	if o == nil {
-		return ""
+		return GetAllLibrariesType("")
 	}
 	return o.Type
 }
@@ -151,9 +246,9 @@ func (o *GetAllLibrariesDirectory) GetUpdatedAt() int64 {
 	return o.UpdatedAt
 }
 
-func (o *GetAllLibrariesDirectory) GetCreatedAt() int64 {
+func (o *GetAllLibrariesDirectory) GetCreatedAt() *int64 {
 	if o == nil {
-		return 0
+		return nil
 	}
 	return o.CreatedAt
 }
@@ -179,16 +274,16 @@ func (o *GetAllLibrariesDirectory) GetDirectory() bool {
 	return o.Directory
 }
 
-func (o *GetAllLibrariesDirectory) GetContentChangedAt() int64 {
+func (o *GetAllLibrariesDirectory) GetContentChangedAt() int {
 	if o == nil {
 		return 0
 	}
 	return o.ContentChangedAt
 }
 
-func (o *GetAllLibrariesDirectory) GetHidden() int {
+func (o *GetAllLibrariesDirectory) GetHidden() *Hidden {
 	if o == nil {
-		return 0
+		return nil
 	}
 	return o.Hidden
 }
@@ -201,10 +296,13 @@ func (o *GetAllLibrariesDirectory) GetLocation() []GetAllLibrariesLocation {
 }
 
 type GetAllLibrariesMediaContainer struct {
-	Size      int                        `json:"size"`
-	AllowSync bool                       `json:"allowSync"`
+	// Number of media items returned in this response.
+	Size int `json:"size"`
+	// Indicates whether syncing is allowed.
+	AllowSync bool `json:"allowSync"`
+	// The primary title of the media container.
 	Title1    string                     `json:"title1"`
-	Directory []GetAllLibrariesDirectory `json:"Directory"`
+	Directory []GetAllLibrariesDirectory `json:"Directory,omitempty"`
 }
 
 func (o *GetAllLibrariesMediaContainer) GetSize() int {
@@ -230,19 +328,19 @@ func (o *GetAllLibrariesMediaContainer) GetTitle1() string {
 
 func (o *GetAllLibrariesMediaContainer) GetDirectory() []GetAllLibrariesDirectory {
 	if o == nil {
-		return []GetAllLibrariesDirectory{}
+		return nil
 	}
 	return o.Directory
 }
 
 // GetAllLibrariesResponseBody - The libraries available on the Server
 type GetAllLibrariesResponseBody struct {
-	MediaContainer GetAllLibrariesMediaContainer `json:"MediaContainer"`
+	MediaContainer *GetAllLibrariesMediaContainer `json:"MediaContainer,omitempty"`
 }
 
-func (o *GetAllLibrariesResponseBody) GetMediaContainer() GetAllLibrariesMediaContainer {
+func (o *GetAllLibrariesResponseBody) GetMediaContainer() *GetAllLibrariesMediaContainer {
 	if o == nil {
-		return GetAllLibrariesMediaContainer{}
+		return nil
 	}
 	return o.MediaContainer
 }
