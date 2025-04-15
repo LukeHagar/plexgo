@@ -131,8 +131,10 @@ type GetAllLibrariesDirectory struct {
 	Content bool `json:"content"`
 	// UNKNOWN
 	Directory bool `json:"directory"`
-	// The number of seconds since the content was last changed relative to now.
-	ContentChangedAt int                       `json:"contentChangedAt"`
+	// Timestamp (in seconds) representing the last time the content was modified.
+	// NOTE: Some Plex server have some absurd values for this field, like 8457612157633039800 so it should be int64
+	//
+	ContentChangedAt int64                     `json:"contentChangedAt"`
 	Hidden           *Hidden                   `default:"0" json:"hidden"`
 	Location         []GetAllLibrariesLocation `json:"Location"`
 }
@@ -274,7 +276,7 @@ func (o *GetAllLibrariesDirectory) GetDirectory() bool {
 	return o.Directory
 }
 
-func (o *GetAllLibrariesDirectory) GetContentChangedAt() int {
+func (o *GetAllLibrariesDirectory) GetContentChangedAt() int64 {
 	if o == nil {
 		return 0
 	}
