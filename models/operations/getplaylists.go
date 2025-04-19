@@ -3,8 +3,6 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
 	"net/http"
 )
 
@@ -20,23 +18,6 @@ const (
 func (e PlaylistType) ToPointer() *PlaylistType {
 	return &e
 }
-func (e *PlaylistType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "audio":
-		fallthrough
-	case "video":
-		fallthrough
-	case "photo":
-		*e = PlaylistType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PlaylistType: %v", v)
-	}
-}
 
 // QueryParamSmart - type of playlists to return (default is all).
 type QueryParamSmart int64
@@ -48,21 +29,6 @@ const (
 
 func (e QueryParamSmart) ToPointer() *QueryParamSmart {
 	return &e
-}
-func (e *QueryParamSmart) UnmarshalJSON(data []byte) error {
-	var v int64
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case 0:
-		fallthrough
-	case 1:
-		*e = QueryParamSmart(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for QueryParamSmart: %v", v)
-	}
 }
 
 type GetPlaylistsRequest struct {

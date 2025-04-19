@@ -24,29 +24,6 @@ const (
 func (e GetAllLibrariesType) ToPointer() *GetAllLibrariesType {
 	return &e
 }
-func (e *GetAllLibrariesType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "movie":
-		fallthrough
-	case "show":
-		fallthrough
-	case "season":
-		fallthrough
-	case "episode":
-		fallthrough
-	case "artist":
-		fallthrough
-	case "album":
-		*e = GetAllLibrariesType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetAllLibrariesType: %v", v)
-	}
-}
 
 // Hidden - UNKNOWN
 type Hidden int

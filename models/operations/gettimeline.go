@@ -3,8 +3,6 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
 	"net/http"
 )
 
@@ -19,23 +17,6 @@ const (
 
 func (e State) ToPointer() *State {
 	return &e
-}
-func (e *State) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "playing":
-		fallthrough
-	case "paused":
-		fallthrough
-	case "stopped":
-		*e = State(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for State: %v", v)
-	}
 }
 
 type GetTimelineRequest struct {

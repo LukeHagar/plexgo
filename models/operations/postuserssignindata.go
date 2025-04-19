@@ -128,21 +128,6 @@ const (
 func (e PostUsersSignInDataMailingListStatus) ToPointer() *PostUsersSignInDataMailingListStatus {
 	return &e
 }
-func (e *PostUsersSignInDataMailingListStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "active":
-		fallthrough
-	case "unsubscribed":
-		*e = PostUsersSignInDataMailingListStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PostUsersSignInDataMailingListStatus: %v", v)
-	}
-}
 
 // PostUsersSignInDataAutoSelectSubtitle - The auto-select subtitle mode (0 = Manually selected, 1 = Shown with foreign audio, 2 = Always enabled)
 type PostUsersSignInDataAutoSelectSubtitle int
@@ -370,21 +355,6 @@ const (
 func (e PostUsersSignInDataStatus) ToPointer() *PostUsersSignInDataStatus {
 	return &e
 }
-func (e *PostUsersSignInDataStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "online":
-		fallthrough
-	case "offline":
-		*e = PostUsersSignInDataStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PostUsersSignInDataStatus: %v", v)
-	}
-}
 
 type PostUsersSignInDataServices struct {
 	Identifier string                    `json:"identifier"`
@@ -439,21 +409,6 @@ const (
 
 func (e PostUsersSignInDataAuthenticationStatus) ToPointer() *PostUsersSignInDataAuthenticationStatus {
 	return &e
-}
-func (e *PostUsersSignInDataAuthenticationStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Inactive":
-		fallthrough
-	case "Active":
-		*e = PostUsersSignInDataAuthenticationStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PostUsersSignInDataAuthenticationStatus: %v", v)
-	}
 }
 
 // PostUsersSignInDataSubscription - If the account’s Plex Pass subscription is active
@@ -525,21 +480,6 @@ const (
 func (e PostUsersSignInDataAuthenticationResponseStatus) ToPointer() *PostUsersSignInDataAuthenticationResponseStatus {
 	return &e
 }
-func (e *PostUsersSignInDataAuthenticationResponseStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Inactive":
-		fallthrough
-	case "Active":
-		*e = PostUsersSignInDataAuthenticationResponseStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PostUsersSignInDataAuthenticationResponseStatus: %v", v)
-	}
-}
 
 type PostUsersSignInDataAuthenticationSubscription struct {
 	// List of features allowed on your Plex Pass subscription
@@ -606,19 +546,6 @@ const (
 
 func (e PostUsersSignInDataState) ToPointer() *PostUsersSignInDataState {
 	return &e
-}
-func (e *PostUsersSignInDataState) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "ended":
-		*e = PostUsersSignInDataState(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PostUsersSignInDataState: %v", v)
-	}
 }
 
 type InternalPaymentMethod struct {

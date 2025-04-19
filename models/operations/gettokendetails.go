@@ -24,21 +24,6 @@ const (
 func (e MailingListStatus) ToPointer() *MailingListStatus {
 	return &e
 }
-func (e *MailingListStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "active":
-		fallthrough
-	case "unsubscribed":
-		*e = MailingListStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for MailingListStatus: %v", v)
-	}
-}
 
 // AutoSelectSubtitle - The auto-select subtitle mode (0 = Manually selected, 1 = Shown with foreign audio, 2 = Always enabled)
 type AutoSelectSubtitle int
@@ -266,21 +251,6 @@ const (
 func (e GetTokenDetailsStatus) ToPointer() *GetTokenDetailsStatus {
 	return &e
 }
-func (e *GetTokenDetailsStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "online":
-		fallthrough
-	case "offline":
-		*e = GetTokenDetailsStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetTokenDetailsStatus: %v", v)
-	}
-}
 
 type Services struct {
 	Identifier string                `json:"identifier"`
@@ -335,21 +305,6 @@ const (
 
 func (e GetTokenDetailsAuthenticationStatus) ToPointer() *GetTokenDetailsAuthenticationStatus {
 	return &e
-}
-func (e *GetTokenDetailsAuthenticationStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Inactive":
-		fallthrough
-	case "Active":
-		*e = GetTokenDetailsAuthenticationStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetTokenDetailsAuthenticationStatus: %v", v)
-	}
 }
 
 // Subscription - If the account’s Plex Pass subscription is active
@@ -420,21 +375,6 @@ const (
 
 func (e GetTokenDetailsAuthenticationResponseStatus) ToPointer() *GetTokenDetailsAuthenticationResponseStatus {
 	return &e
-}
-func (e *GetTokenDetailsAuthenticationResponseStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Inactive":
-		fallthrough
-	case "Active":
-		*e = GetTokenDetailsAuthenticationResponseStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetTokenDetailsAuthenticationResponseStatus: %v", v)
-	}
 }
 
 type GetTokenDetailsSubscription struct {

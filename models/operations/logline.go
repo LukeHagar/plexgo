@@ -3,8 +3,6 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
 	"net/http"
 )
 
@@ -26,27 +24,6 @@ const (
 
 func (e Level) ToPointer() *Level {
 	return &e
-}
-func (e *Level) UnmarshalJSON(data []byte) error {
-	var v int64
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case 0:
-		fallthrough
-	case 1:
-		fallthrough
-	case 2:
-		fallthrough
-	case 3:
-		fallthrough
-	case 4:
-		*e = Level(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for Level: %v", v)
-	}
 }
 
 type LogLineRequest struct {

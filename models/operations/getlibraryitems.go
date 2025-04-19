@@ -35,49 +35,6 @@ const (
 func (e Tag) ToPointer() *Tag {
 	return &e
 }
-func (e *Tag) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "unwatched":
-		fallthrough
-	case "newest":
-		fallthrough
-	case "recentlyAdded":
-		fallthrough
-	case "recentlyViewed":
-		fallthrough
-	case "onDeck":
-		fallthrough
-	case "collection":
-		fallthrough
-	case "edition":
-		fallthrough
-	case "year":
-		fallthrough
-	case "decade":
-		fallthrough
-	case "director":
-		fallthrough
-	case "contentRating":
-		fallthrough
-	case "rating":
-		fallthrough
-	case "resolution":
-		fallthrough
-	case "firstCharacter":
-		fallthrough
-	case "folder":
-		fallthrough
-	case "albums":
-		*e = Tag(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for Tag: %v", v)
-	}
-}
 
 // IncludeGuids - Adds the Guids object to the response
 type IncludeGuids int
@@ -126,31 +83,6 @@ const (
 
 func (e GetLibraryItemsQueryParamType) ToPointer() *GetLibraryItemsQueryParamType {
 	return &e
-}
-func (e *GetLibraryItemsQueryParamType) UnmarshalJSON(data []byte) error {
-	var v int64
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case 1:
-		fallthrough
-	case 2:
-		fallthrough
-	case 3:
-		fallthrough
-	case 4:
-		fallthrough
-	case 8:
-		fallthrough
-	case 9:
-		fallthrough
-	case 10:
-		*e = GetLibraryItemsQueryParamType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetLibraryItemsQueryParamType: %v", v)
-	}
 }
 
 // GetLibraryItemsQueryParamIncludeMeta - Adds the Meta object to the response
@@ -615,29 +547,6 @@ const (
 func (e GetLibraryItemsLibraryType) ToPointer() *GetLibraryItemsLibraryType {
 	return &e
 }
-func (e *GetLibraryItemsLibraryType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "movie":
-		fallthrough
-	case "show":
-		fallthrough
-	case "season":
-		fallthrough
-	case "episode":
-		fallthrough
-	case "artist":
-		fallthrough
-	case "album":
-		*e = GetLibraryItemsLibraryType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetLibraryItemsLibraryType: %v", v)
-	}
-}
 
 // FlattenSeasons - Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
 type FlattenSeasons string
@@ -650,23 +559,6 @@ const (
 
 func (e FlattenSeasons) ToPointer() *FlattenSeasons {
 	return &e
-}
-func (e *FlattenSeasons) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "-1":
-		fallthrough
-	case "0":
-		fallthrough
-	case "1":
-		*e = FlattenSeasons(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for FlattenSeasons: %v", v)
-	}
 }
 
 // EpisodeSort - Setting that indicates how episodes are sorted for the show. (-1 = Library default, 0 = Oldest first, 1 = Newest first).
@@ -681,23 +573,6 @@ const (
 func (e EpisodeSort) ToPointer() *EpisodeSort {
 	return &e
 }
-func (e *EpisodeSort) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "-1":
-		fallthrough
-	case "0":
-		fallthrough
-	case "1":
-		*e = EpisodeSort(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EpisodeSort: %v", v)
-	}
-}
 
 // EnableCreditsMarkerGeneration - Setting that indicates if credits markers detection is enabled. (-1 = Library default, 0 = Disabled).
 type EnableCreditsMarkerGeneration string
@@ -709,21 +584,6 @@ const (
 
 func (e EnableCreditsMarkerGeneration) ToPointer() *EnableCreditsMarkerGeneration {
 	return &e
-}
-func (e *EnableCreditsMarkerGeneration) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "-1":
-		fallthrough
-	case "0":
-		*e = EnableCreditsMarkerGeneration(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EnableCreditsMarkerGeneration: %v", v)
-	}
 }
 
 // ShowOrdering - Setting that indicates the episode ordering for the show.
@@ -744,27 +604,6 @@ const (
 
 func (e ShowOrdering) ToPointer() *ShowOrdering {
 	return &e
-}
-func (e *ShowOrdering) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "None":
-		fallthrough
-	case "tmdbAiring":
-		fallthrough
-	case "aired":
-		fallthrough
-	case "dvd":
-		fallthrough
-	case "absolute":
-		*e = ShowOrdering(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ShowOrdering: %v", v)
-	}
 }
 
 type GetLibraryItemsOptimizedForStreaming int
@@ -1651,25 +1490,6 @@ const (
 
 func (e GetLibraryItemsLibraryResponse200Type) ToPointer() *GetLibraryItemsLibraryResponse200Type {
 	return &e
-}
-func (e *GetLibraryItemsLibraryResponse200Type) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "coverPoster":
-		fallthrough
-	case "background":
-		fallthrough
-	case "snapshot":
-		fallthrough
-	case "clearLogo":
-		*e = GetLibraryItemsLibraryResponse200Type(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetLibraryItemsLibraryResponse200Type: %v", v)
-	}
 }
 
 type GetLibraryItemsImage struct {

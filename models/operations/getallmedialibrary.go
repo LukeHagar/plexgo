@@ -32,31 +32,6 @@ const (
 func (e GetAllMediaLibraryQueryParamType) ToPointer() *GetAllMediaLibraryQueryParamType {
 	return &e
 }
-func (e *GetAllMediaLibraryQueryParamType) UnmarshalJSON(data []byte) error {
-	var v int64
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case 1:
-		fallthrough
-	case 2:
-		fallthrough
-	case 3:
-		fallthrough
-	case 4:
-		fallthrough
-	case 8:
-		fallthrough
-	case 9:
-		fallthrough
-	case 10:
-		*e = GetAllMediaLibraryQueryParamType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetAllMediaLibraryQueryParamType: %v", v)
-	}
-}
 
 // GetAllMediaLibraryQueryParamIncludeMeta - Adds the Meta object to the response
 type GetAllMediaLibraryQueryParamIncludeMeta int
@@ -660,29 +635,6 @@ const (
 func (e GetAllMediaLibraryLibraryType) ToPointer() *GetAllMediaLibraryLibraryType {
 	return &e
 }
-func (e *GetAllMediaLibraryLibraryType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "movie":
-		fallthrough
-	case "show":
-		fallthrough
-	case "season":
-		fallthrough
-	case "episode":
-		fallthrough
-	case "artist":
-		fallthrough
-	case "album":
-		*e = GetAllMediaLibraryLibraryType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetAllMediaLibraryLibraryType: %v", v)
-	}
-}
 
 type GetAllMediaLibraryLibraryResponseType string
 
@@ -695,25 +647,6 @@ const (
 
 func (e GetAllMediaLibraryLibraryResponseType) ToPointer() *GetAllMediaLibraryLibraryResponseType {
 	return &e
-}
-func (e *GetAllMediaLibraryLibraryResponseType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "coverPoster":
-		fallthrough
-	case "background":
-		fallthrough
-	case "snapshot":
-		fallthrough
-	case "clearLogo":
-		*e = GetAllMediaLibraryLibraryResponseType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetAllMediaLibraryLibraryResponseType: %v", v)
-	}
 }
 
 type GetAllMediaLibraryImage struct {

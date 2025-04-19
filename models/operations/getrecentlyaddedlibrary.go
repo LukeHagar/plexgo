@@ -31,31 +31,6 @@ const (
 func (e QueryParamType) ToPointer() *QueryParamType {
 	return &e
 }
-func (e *QueryParamType) UnmarshalJSON(data []byte) error {
-	var v int64
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case 1:
-		fallthrough
-	case 2:
-		fallthrough
-	case 3:
-		fallthrough
-	case 4:
-		fallthrough
-	case 8:
-		fallthrough
-	case 9:
-		fallthrough
-	case 10:
-		*e = QueryParamType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for QueryParamType: %v", v)
-	}
-}
 
 // QueryParamIncludeMeta - Adds the Meta object to the response
 type QueryParamIncludeMeta int

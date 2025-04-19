@@ -23,27 +23,6 @@ const (
 func (e SearchTypes) ToPointer() *SearchTypes {
 	return &e
 }
-func (e *SearchTypes) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "movies":
-		fallthrough
-	case "music":
-		fallthrough
-	case "otherVideos":
-		fallthrough
-	case "people":
-		fallthrough
-	case "tv":
-		*e = SearchTypes(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for SearchTypes: %v", v)
-	}
-}
 
 // GetSearchAllLibrariesQueryParamIncludeCollections - Whether to include collections in the search results.
 type GetSearchAllLibrariesQueryParamIncludeCollections int
@@ -183,29 +162,6 @@ const (
 func (e GetSearchAllLibrariesType) ToPointer() *GetSearchAllLibrariesType {
 	return &e
 }
-func (e *GetSearchAllLibrariesType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "movie":
-		fallthrough
-	case "show":
-		fallthrough
-	case "season":
-		fallthrough
-	case "episode":
-		fallthrough
-	case "artist":
-		fallthrough
-	case "album":
-		*e = GetSearchAllLibrariesType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetSearchAllLibrariesType: %v", v)
-	}
-}
 
 // GetSearchAllLibrariesFlattenSeasons - Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
 type GetSearchAllLibrariesFlattenSeasons string
@@ -218,23 +174,6 @@ const (
 
 func (e GetSearchAllLibrariesFlattenSeasons) ToPointer() *GetSearchAllLibrariesFlattenSeasons {
 	return &e
-}
-func (e *GetSearchAllLibrariesFlattenSeasons) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "-1":
-		fallthrough
-	case "0":
-		fallthrough
-	case "1":
-		*e = GetSearchAllLibrariesFlattenSeasons(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetSearchAllLibrariesFlattenSeasons: %v", v)
-	}
 }
 
 // GetSearchAllLibrariesEpisodeSort - Setting that indicates how episodes are sorted for the show. (-1 = Library default, 0 = Oldest first, 1 = Newest first).
@@ -249,23 +188,6 @@ const (
 func (e GetSearchAllLibrariesEpisodeSort) ToPointer() *GetSearchAllLibrariesEpisodeSort {
 	return &e
 }
-func (e *GetSearchAllLibrariesEpisodeSort) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "-1":
-		fallthrough
-	case "0":
-		fallthrough
-	case "1":
-		*e = GetSearchAllLibrariesEpisodeSort(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetSearchAllLibrariesEpisodeSort: %v", v)
-	}
-}
 
 // GetSearchAllLibrariesEnableCreditsMarkerGeneration - Setting that indicates if credits markers detection is enabled. (-1 = Library default, 0 = Disabled).
 type GetSearchAllLibrariesEnableCreditsMarkerGeneration string
@@ -277,21 +199,6 @@ const (
 
 func (e GetSearchAllLibrariesEnableCreditsMarkerGeneration) ToPointer() *GetSearchAllLibrariesEnableCreditsMarkerGeneration {
 	return &e
-}
-func (e *GetSearchAllLibrariesEnableCreditsMarkerGeneration) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "-1":
-		fallthrough
-	case "0":
-		*e = GetSearchAllLibrariesEnableCreditsMarkerGeneration(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetSearchAllLibrariesEnableCreditsMarkerGeneration: %v", v)
-	}
 }
 
 // GetSearchAllLibrariesShowOrdering - Setting that indicates the episode ordering for the show.
@@ -312,27 +219,6 @@ const (
 
 func (e GetSearchAllLibrariesShowOrdering) ToPointer() *GetSearchAllLibrariesShowOrdering {
 	return &e
-}
-func (e *GetSearchAllLibrariesShowOrdering) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "None":
-		fallthrough
-	case "tmdbAiring":
-		fallthrough
-	case "aired":
-		fallthrough
-	case "dvd":
-		fallthrough
-	case "absolute":
-		*e = GetSearchAllLibrariesShowOrdering(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetSearchAllLibrariesShowOrdering: %v", v)
-	}
 }
 
 type GetSearchAllLibrariesOptimizedForStreaming int
@@ -1219,25 +1105,6 @@ const (
 
 func (e GetSearchAllLibrariesLibraryType) ToPointer() *GetSearchAllLibrariesLibraryType {
 	return &e
-}
-func (e *GetSearchAllLibrariesLibraryType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "coverPoster":
-		fallthrough
-	case "background":
-		fallthrough
-	case "snapshot":
-		fallthrough
-	case "clearLogo":
-		*e = GetSearchAllLibrariesLibraryType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetSearchAllLibrariesLibraryType: %v", v)
-	}
 }
 
 type GetSearchAllLibrariesImage struct {

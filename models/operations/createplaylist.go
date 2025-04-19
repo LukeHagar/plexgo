@@ -20,23 +20,6 @@ const (
 func (e CreatePlaylistQueryParamType) ToPointer() *CreatePlaylistQueryParamType {
 	return &e
 }
-func (e *CreatePlaylistQueryParamType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "audio":
-		fallthrough
-	case "video":
-		fallthrough
-	case "photo":
-		*e = CreatePlaylistQueryParamType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for CreatePlaylistQueryParamType: %v", v)
-	}
-}
 
 // Smart - whether the playlist is smart or not
 type Smart int64

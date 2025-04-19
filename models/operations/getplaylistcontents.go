@@ -3,8 +3,6 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/LukeHagar/plexgo/internal/utils"
 	"github.com/LukeHagar/plexgo/types"
 	"net/http"
@@ -30,31 +28,6 @@ const (
 
 func (e GetPlaylistContentsQueryParamType) ToPointer() *GetPlaylistContentsQueryParamType {
 	return &e
-}
-func (e *GetPlaylistContentsQueryParamType) UnmarshalJSON(data []byte) error {
-	var v int64
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case 1:
-		fallthrough
-	case 2:
-		fallthrough
-	case 3:
-		fallthrough
-	case 4:
-		fallthrough
-	case 8:
-		fallthrough
-	case 9:
-		fallthrough
-	case 10:
-		*e = GetPlaylistContentsQueryParamType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetPlaylistContentsQueryParamType: %v", v)
-	}
 }
 
 type GetPlaylistContentsRequest struct {

@@ -26,23 +26,6 @@ const (
 func (e Filter) ToPointer() *Filter {
 	return &e
 }
-func (e *Filter) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "all":
-		fallthrough
-	case "available":
-		fallthrough
-	case "released":
-		*e = Filter(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for Filter: %v", v)
-	}
-}
 
 // Libtype - The type of library to filter. Can be "movie" or "show", or all if not present.
 type Libtype string
@@ -54,21 +37,6 @@ const (
 
 func (e Libtype) ToPointer() *Libtype {
 	return &e
-}
-func (e *Libtype) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "movie":
-		fallthrough
-	case "show":
-		*e = Libtype(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for Libtype: %v", v)
-	}
 }
 
 // IncludeCollections - include collections in the results

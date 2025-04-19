@@ -3,8 +3,6 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
 	"net/http"
 )
 
@@ -30,45 +28,6 @@ const (
 
 func (e PathParamTaskName) ToPointer() *PathParamTaskName {
 	return &e
-}
-func (e *PathParamTaskName) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "BackupDatabase":
-		fallthrough
-	case "BuildGracenoteCollections":
-		fallthrough
-	case "CheckForUpdates":
-		fallthrough
-	case "CleanOldBundles":
-		fallthrough
-	case "CleanOldCacheFiles":
-		fallthrough
-	case "DeepMediaAnalysis":
-		fallthrough
-	case "GenerateAutoTags":
-		fallthrough
-	case "GenerateChapterThumbs":
-		fallthrough
-	case "GenerateMediaIndexFiles":
-		fallthrough
-	case "OptimizeDatabase":
-		fallthrough
-	case "RefreshLibraries":
-		fallthrough
-	case "RefreshLocalMedia":
-		fallthrough
-	case "RefreshPeriodicMetadata":
-		fallthrough
-	case "UpgradeMediaAnalysis":
-		*e = PathParamTaskName(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PathParamTaskName: %v", v)
-	}
 }
 
 type StopTaskRequest struct {

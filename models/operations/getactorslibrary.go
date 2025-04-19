@@ -3,8 +3,6 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
 	"net/http"
 )
 
@@ -28,31 +26,6 @@ const (
 
 func (e GetActorsLibraryQueryParamType) ToPointer() *GetActorsLibraryQueryParamType {
 	return &e
-}
-func (e *GetActorsLibraryQueryParamType) UnmarshalJSON(data []byte) error {
-	var v int64
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case 1:
-		fallthrough
-	case 2:
-		fallthrough
-	case 3:
-		fallthrough
-	case 4:
-		fallthrough
-	case 8:
-		fallthrough
-	case 9:
-		fallthrough
-	case 10:
-		*e = GetActorsLibraryQueryParamType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetActorsLibraryQueryParamType: %v", v)
-	}
 }
 
 type GetActorsLibraryRequest struct {
