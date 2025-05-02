@@ -140,6 +140,97 @@ func (o *GetMediaMetaDataRequest) GetAsyncRefreshLocalMediaAgent() *bool {
 	return o.AsyncRefreshLocalMediaAgent
 }
 
+// GetMediaMetaDataType - The type of media content
+type GetMediaMetaDataType string
+
+const (
+	GetMediaMetaDataTypeMovie   GetMediaMetaDataType = "movie"
+	GetMediaMetaDataTypeTvShow  GetMediaMetaDataType = "show"
+	GetMediaMetaDataTypeSeason  GetMediaMetaDataType = "season"
+	GetMediaMetaDataTypeEpisode GetMediaMetaDataType = "episode"
+	GetMediaMetaDataTypeArtist  GetMediaMetaDataType = "artist"
+	GetMediaMetaDataTypeAlbum   GetMediaMetaDataType = "album"
+)
+
+func (e GetMediaMetaDataType) ToPointer() *GetMediaMetaDataType {
+	return &e
+}
+
+type GetMediaMetaDataLibraryType string
+
+const (
+	GetMediaMetaDataLibraryTypeCoverPoster GetMediaMetaDataLibraryType = "coverPoster"
+	GetMediaMetaDataLibraryTypeBackground  GetMediaMetaDataLibraryType = "background"
+	GetMediaMetaDataLibraryTypeSnapshot    GetMediaMetaDataLibraryType = "snapshot"
+	GetMediaMetaDataLibraryTypeClearLogo   GetMediaMetaDataLibraryType = "clearLogo"
+)
+
+func (e GetMediaMetaDataLibraryType) ToPointer() *GetMediaMetaDataLibraryType {
+	return &e
+}
+
+type GetMediaMetaDataImage struct {
+	Alt  string                      `json:"alt"`
+	Type GetMediaMetaDataLibraryType `json:"type"`
+	URL  string                      `json:"url"`
+}
+
+func (o *GetMediaMetaDataImage) GetAlt() string {
+	if o == nil {
+		return ""
+	}
+	return o.Alt
+}
+
+func (o *GetMediaMetaDataImage) GetType() GetMediaMetaDataLibraryType {
+	if o == nil {
+		return GetMediaMetaDataLibraryType("")
+	}
+	return o.Type
+}
+
+func (o *GetMediaMetaDataImage) GetURL() string {
+	if o == nil {
+		return ""
+	}
+	return o.URL
+}
+
+type GetMediaMetaDataUltraBlurColors struct {
+	TopLeft     string `json:"topLeft"`
+	TopRight    string `json:"topRight"`
+	BottomRight string `json:"bottomRight"`
+	BottomLeft  string `json:"bottomLeft"`
+}
+
+func (o *GetMediaMetaDataUltraBlurColors) GetTopLeft() string {
+	if o == nil {
+		return ""
+	}
+	return o.TopLeft
+}
+
+func (o *GetMediaMetaDataUltraBlurColors) GetTopRight() string {
+	if o == nil {
+		return ""
+	}
+	return o.TopRight
+}
+
+func (o *GetMediaMetaDataUltraBlurColors) GetBottomRight() string {
+	if o == nil {
+		return ""
+	}
+	return o.BottomRight
+}
+
+func (o *GetMediaMetaDataUltraBlurColors) GetBottomLeft() string {
+	if o == nil {
+		return ""
+	}
+	return o.BottomLeft
+}
+
 type GetMediaMetaDataOptimizedForStreaming1 int
 
 const (
@@ -347,17 +438,39 @@ func (e *GetMediaMetaDataHasThumbnail) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// GetMediaMetaDataStreamType - Stream type:
+//   - 1 = video
+//   - 2 = audio
+//   - 3 = subtitle
+type GetMediaMetaDataStreamType int
+
+const (
+	GetMediaMetaDataStreamTypeVideo    GetMediaMetaDataStreamType = 1
+	GetMediaMetaDataStreamTypeAudio    GetMediaMetaDataStreamType = 2
+	GetMediaMetaDataStreamTypeSubtitle GetMediaMetaDataStreamType = 3
+)
+
+func (e GetMediaMetaDataStreamType) ToPointer() *GetMediaMetaDataStreamType {
+	return &e
+}
+
 type GetMediaMetaDataStream struct {
 	// Unique stream identifier.
 	ID int64 `json:"id"`
-	// Stream type (1=video, 2=audio, 3=subtitle).
-	StreamType int `json:"streamType"`
+	// Stream type:
+	//   - 1 = video
+	//   - 2 = audio
+	//   - 3 = subtitle
+	//
+	StreamType GetMediaMetaDataStreamType `json:"streamType"`
+	// Format of the stream (e.g., srt).
+	Format *string `json:"format,omitempty"`
 	// Indicates if this stream is default.
 	Default *bool `json:"default,omitempty"`
 	// Codec used by the stream.
 	Codec string `json:"codec"`
 	// Index of the stream.
-	Index int `json:"index"`
+	Index *int `json:"index,omitempty"`
 	// Bitrate of the stream.
 	Bitrate *int `json:"bitrate,omitempty"`
 	// Language of the stream.
@@ -405,6 +518,8 @@ type GetMediaMetaDataStream struct {
 	ColorTrc *string `json:"colorTrc,omitempty"`
 	// Frame rate of the stream.
 	FrameRate *float32 `json:"frameRate,omitempty"`
+	// Key to access this stream part.
+	Key *string `json:"key,omitempty"`
 	// Height of the video stream.
 	Height *int `json:"height,omitempty"`
 	// Video level.
@@ -450,11 +565,18 @@ func (o *GetMediaMetaDataStream) GetID() int64 {
 	return o.ID
 }
 
-func (o *GetMediaMetaDataStream) GetStreamType() int {
+func (o *GetMediaMetaDataStream) GetStreamType() GetMediaMetaDataStreamType {
 	if o == nil {
-		return 0
+		return GetMediaMetaDataStreamType(0)
 	}
 	return o.StreamType
+}
+
+func (o *GetMediaMetaDataStream) GetFormat() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Format
 }
 
 func (o *GetMediaMetaDataStream) GetDefault() *bool {
@@ -471,9 +593,9 @@ func (o *GetMediaMetaDataStream) GetCodec() string {
 	return o.Codec
 }
 
-func (o *GetMediaMetaDataStream) GetIndex() int {
+func (o *GetMediaMetaDataStream) GetIndex() *int {
 	if o == nil {
-		return 0
+		return nil
 	}
 	return o.Index
 }
@@ -644,6 +766,13 @@ func (o *GetMediaMetaDataStream) GetFrameRate() *float32 {
 		return nil
 	}
 	return o.FrameRate
+}
+
+func (o *GetMediaMetaDataStream) GetKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Key
 }
 
 func (o *GetMediaMetaDataStream) GetHeight() *int {
@@ -1113,82 +1242,13 @@ func (o *GetMediaMetaDataMedia) GetPart() []GetMediaMetaDataPart {
 	return o.Part
 }
 
-type GetMediaMetaDataImage struct {
-	// Alternate text for the image.
-	Alt string `json:"alt"`
-	// The type of image (e.g., coverPoster, background, clearLogo).
-	Type string `json:"type"`
-	// The URL of the image.
-	URL string `json:"url"`
-}
-
-func (o *GetMediaMetaDataImage) GetAlt() string {
-	if o == nil {
-		return ""
-	}
-	return o.Alt
-}
-
-func (o *GetMediaMetaDataImage) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-func (o *GetMediaMetaDataImage) GetURL() string {
-	if o == nil {
-		return ""
-	}
-	return o.URL
-}
-
-type GetMediaMetaDataUltraBlurColors struct {
-	// The top-left color value.
-	TopLeft string `json:"topLeft"`
-	// The top-right color value.
-	TopRight string `json:"topRight"`
-	// The bottom-right color value.
-	BottomRight string `json:"bottomRight"`
-	// The bottom-left color value.
-	BottomLeft string `json:"bottomLeft"`
-}
-
-func (o *GetMediaMetaDataUltraBlurColors) GetTopLeft() string {
-	if o == nil {
-		return ""
-	}
-	return o.TopLeft
-}
-
-func (o *GetMediaMetaDataUltraBlurColors) GetTopRight() string {
-	if o == nil {
-		return ""
-	}
-	return o.TopRight
-}
-
-func (o *GetMediaMetaDataUltraBlurColors) GetBottomRight() string {
-	if o == nil {
-		return ""
-	}
-	return o.BottomRight
-}
-
-func (o *GetMediaMetaDataUltraBlurColors) GetBottomLeft() string {
-	if o == nil {
-		return ""
-	}
-	return o.BottomLeft
-}
-
+// GetMediaMetaDataGenre - The filter query string for similar items.
 type GetMediaMetaDataGenre struct {
-	// The unique genre identifier.
 	ID int64 `json:"id"`
-	// The filter string for the genre.
+	// The genre name of this media-item
+	//
+	Tag    string `json:"tag"`
 	Filter string `json:"filter"`
-	// The genre name.
-	Tag string `json:"tag"`
 }
 
 func (o *GetMediaMetaDataGenre) GetID() int64 {
@@ -1198,13 +1258,6 @@ func (o *GetMediaMetaDataGenre) GetID() int64 {
 	return o.ID
 }
 
-func (o *GetMediaMetaDataGenre) GetFilter() string {
-	if o == nil {
-		return ""
-	}
-	return o.Filter
-}
-
 func (o *GetMediaMetaDataGenre) GetTag() string {
 	if o == nil {
 		return ""
@@ -1212,13 +1265,19 @@ func (o *GetMediaMetaDataGenre) GetTag() string {
 	return o.Tag
 }
 
+func (o *GetMediaMetaDataGenre) GetFilter() string {
+	if o == nil {
+		return ""
+	}
+	return o.Filter
+}
+
+// GetMediaMetaDataCountry - The filter query string for country media items.
 type GetMediaMetaDataCountry struct {
-	// The unique country identifier.
 	ID int `json:"id"`
-	// The filter string for the country.
-	Filter string `json:"filter"`
-	// The country name.
-	Tag string `json:"tag"`
+	// The country of origin of this media item
+	Tag    string  `json:"tag"`
+	Filter *string `json:"filter,omitempty"`
 }
 
 func (o *GetMediaMetaDataCountry) GetID() int {
@@ -1228,13 +1287,6 @@ func (o *GetMediaMetaDataCountry) GetID() int {
 	return o.ID
 }
 
-func (o *GetMediaMetaDataCountry) GetFilter() string {
-	if o == nil {
-		return ""
-	}
-	return o.Filter
-}
-
 func (o *GetMediaMetaDataCountry) GetTag() string {
 	if o == nil {
 		return ""
@@ -1242,132 +1294,31 @@ func (o *GetMediaMetaDataCountry) GetTag() string {
 	return o.Tag
 }
 
-type GetMediaMetaDataGuids struct {
-	// The GUID value.
-	ID string `json:"id"`
-}
-
-func (o *GetMediaMetaDataGuids) GetID() string {
+func (o *GetMediaMetaDataCountry) GetFilter() *string {
 	if o == nil {
-		return ""
-	}
-	return o.ID
-}
-
-type Ratings struct {
-	// The image or reference for the rating.
-	Image string `json:"image"`
-	// The rating value.
-	Value float32 `json:"value"`
-	// The type of rating (e.g., audience, critic).
-	Type string `json:"type"`
-}
-
-func (o *Ratings) GetImage() string {
-	if o == nil {
-		return ""
-	}
-	return o.Image
-}
-
-func (o *Ratings) GetValue() float32 {
-	if o == nil {
-		return 0.0
-	}
-	return o.Value
-}
-
-func (o *Ratings) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-type GetMediaMetaDataRole struct {
-	// The unique role identifier.
-	ID int64 `json:"id"`
-	// The filter string for the role.
-	Filter string `json:"filter"`
-	// The actor's name.
-	Tag string `json:"tag"`
-	// A key associated with the actor tag.
-	TagKey string `json:"tagKey"`
-	// The character name or role.
-	Role *string `json:"role,omitempty"`
-	// URL for the role thumbnail image.
-	Thumb *string `json:"thumb,omitempty"`
-}
-
-func (o *GetMediaMetaDataRole) GetID() int64 {
-	if o == nil {
-		return 0
-	}
-	return o.ID
-}
-
-func (o *GetMediaMetaDataRole) GetFilter() string {
-	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Filter
-}
-
-func (o *GetMediaMetaDataRole) GetTag() string {
-	if o == nil {
-		return ""
-	}
-	return o.Tag
-}
-
-func (o *GetMediaMetaDataRole) GetTagKey() string {
-	if o == nil {
-		return ""
-	}
-	return o.TagKey
-}
-
-func (o *GetMediaMetaDataRole) GetRole() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Role
-}
-
-func (o *GetMediaMetaDataRole) GetThumb() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Thumb
 }
 
 type GetMediaMetaDataDirector struct {
-	// The unique role identifier.
-	ID int64 `json:"id"`
-	// The filter string for the role.
-	Filter string `json:"filter"`
-	// The actor's name.
+	// Unique identifier for the director.
+	ID int `json:"id"`
+	// The role of Director
 	Tag string `json:"tag"`
-	// A key associated with the actor tag.
-	TagKey string `json:"tagKey"`
-	// The character name or role.
-	Role *string `json:"role,omitempty"`
-	// URL for the role thumbnail image.
+	// The filter string used to query this director.
+	Filter string `json:"filter"`
+	// A unique key associated with the director's tag, used for internal identification.
+	TagKey *string `json:"tagKey,omitempty"`
+	// The URL of the thumbnail image for the director.
 	Thumb *string `json:"thumb,omitempty"`
 }
 
-func (o *GetMediaMetaDataDirector) GetID() int64 {
+func (o *GetMediaMetaDataDirector) GetID() int {
 	if o == nil {
 		return 0
 	}
 	return o.ID
-}
-
-func (o *GetMediaMetaDataDirector) GetFilter() string {
-	if o == nil {
-		return ""
-	}
-	return o.Filter
 }
 
 func (o *GetMediaMetaDataDirector) GetTag() string {
@@ -1377,18 +1328,18 @@ func (o *GetMediaMetaDataDirector) GetTag() string {
 	return o.Tag
 }
 
-func (o *GetMediaMetaDataDirector) GetTagKey() string {
+func (o *GetMediaMetaDataDirector) GetFilter() string {
 	if o == nil {
 		return ""
 	}
-	return o.TagKey
+	return o.Filter
 }
 
-func (o *GetMediaMetaDataDirector) GetRole() *string {
+func (o *GetMediaMetaDataDirector) GetTagKey() *string {
 	if o == nil {
 		return nil
 	}
-	return o.Role
+	return o.TagKey
 }
 
 func (o *GetMediaMetaDataDirector) GetThumb() *string {
@@ -1399,32 +1350,23 @@ func (o *GetMediaMetaDataDirector) GetThumb() *string {
 }
 
 type GetMediaMetaDataWriter struct {
-	// The unique role identifier.
-	ID int64 `json:"id"`
-	// The filter string for the role.
-	Filter string `json:"filter"`
-	// The actor's name.
+	// Unique identifier for the writer.
+	ID int `json:"id"`
+	// The role of Writer
 	Tag string `json:"tag"`
-	// A key associated with the actor tag.
-	TagKey string `json:"tagKey"`
-	// The character name or role.
-	Role *string `json:"role,omitempty"`
-	// URL for the role thumbnail image.
+	// The filter string used to query this writer.
+	Filter string `json:"filter"`
+	// The URL of the thumbnail image for the writer.
 	Thumb *string `json:"thumb,omitempty"`
+	// A unique key associated with the writers tag, used for internal identification.
+	TagKey *string `json:"tagKey,omitempty"`
 }
 
-func (o *GetMediaMetaDataWriter) GetID() int64 {
+func (o *GetMediaMetaDataWriter) GetID() int {
 	if o == nil {
 		return 0
 	}
 	return o.ID
-}
-
-func (o *GetMediaMetaDataWriter) GetFilter() string {
-	if o == nil {
-		return ""
-	}
-	return o.Filter
 }
 
 func (o *GetMediaMetaDataWriter) GetTag() string {
@@ -1434,18 +1376,11 @@ func (o *GetMediaMetaDataWriter) GetTag() string {
 	return o.Tag
 }
 
-func (o *GetMediaMetaDataWriter) GetTagKey() string {
+func (o *GetMediaMetaDataWriter) GetFilter() string {
 	if o == nil {
 		return ""
 	}
-	return o.TagKey
-}
-
-func (o *GetMediaMetaDataWriter) GetRole() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Role
+	return o.Filter
 }
 
 func (o *GetMediaMetaDataWriter) GetThumb() *string {
@@ -1453,6 +1388,13 @@ func (o *GetMediaMetaDataWriter) GetThumb() *string {
 		return nil
 	}
 	return o.Thumb
+}
+
+func (o *GetMediaMetaDataWriter) GetTagKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TagKey
 }
 
 type GetMediaMetaDataProducer struct {
@@ -1512,6 +1454,105 @@ func (o *GetMediaMetaDataProducer) GetThumb() *string {
 	return o.Thumb
 }
 
+type GetMediaMetaDataRole struct {
+	// Unique identifier for the actor or role.
+	ID int64 `json:"id"`
+	// The display tag for the actor (typically the actor's name).
+	Tag string `json:"tag"`
+	// The role played by the actor in the media item.
+	Role *string `json:"role,omitempty"`
+	// The filter string used to query this actor. For example, it may indicate that this is an actor with a given key.
+	Filter string `json:"filter"`
+	// A unique key associated with the actor's tag, used for internal identification.
+	TagKey *string `json:"tagKey,omitempty"`
+	// The URL of the thumbnail image for the actor.
+	Thumb *string `json:"thumb,omitempty"`
+}
+
+func (o *GetMediaMetaDataRole) GetID() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.ID
+}
+
+func (o *GetMediaMetaDataRole) GetTag() string {
+	if o == nil {
+		return ""
+	}
+	return o.Tag
+}
+
+func (o *GetMediaMetaDataRole) GetRole() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Role
+}
+
+func (o *GetMediaMetaDataRole) GetFilter() string {
+	if o == nil {
+		return ""
+	}
+	return o.Filter
+}
+
+func (o *GetMediaMetaDataRole) GetTagKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TagKey
+}
+
+func (o *GetMediaMetaDataRole) GetThumb() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Thumb
+}
+
+type GetMediaMetaDataGuids struct {
+	// The GUID value.
+	ID string `json:"id"`
+}
+
+func (o *GetMediaMetaDataGuids) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+type Ratings struct {
+	// The image or reference for the rating.
+	Image string `json:"image"`
+	// The rating value.
+	Value float32 `json:"value"`
+	// The type of rating (e.g., audience, critic).
+	Type string `json:"type"`
+}
+
+func (o *Ratings) GetImage() string {
+	if o == nil {
+		return ""
+	}
+	return o.Image
+}
+
+func (o *Ratings) GetValue() float32 {
+	if o == nil {
+		return 0.0
+	}
+	return o.Value
+}
+
+func (o *Ratings) GetType() string {
+	if o == nil {
+		return ""
+	}
+	return o.Type
+}
+
 type GetMediaMetaDataSimilar struct {
 	// The unique similar item identifier.
 	ID int64 `json:"id"`
@@ -1554,123 +1595,275 @@ func (o *GetMediaMetaDataLocation) GetPath() string {
 	return o.Path
 }
 
+// Chapter - The thumbnail for the chapter
+type Chapter struct {
+	ID              int64  `json:"id"`
+	Filter          string `json:"filter"`
+	Index           int64  `json:"index"`
+	StartTimeOffset int64  `json:"startTimeOffset"`
+	EndTimeOffset   int64  `json:"endTimeOffset"`
+	Thumb           string `json:"thumb"`
+}
+
+func (o *Chapter) GetID() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.ID
+}
+
+func (o *Chapter) GetFilter() string {
+	if o == nil {
+		return ""
+	}
+	return o.Filter
+}
+
+func (o *Chapter) GetIndex() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.Index
+}
+
+func (o *Chapter) GetStartTimeOffset() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.StartTimeOffset
+}
+
+func (o *Chapter) GetEndTimeOffset() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.EndTimeOffset
+}
+
+func (o *Chapter) GetThumb() string {
+	if o == nil {
+		return ""
+	}
+	return o.Thumb
+}
+
+// Attributes associated with the marker.
+type Attributes struct {
+	// The identifier for the attributes.
+	ID int64 `json:"id"`
+	// The version number of the marker attributes.
+	Version *int64 `json:"version,omitempty"`
+}
+
+func (o *Attributes) GetID() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.ID
+}
+
+func (o *Attributes) GetVersion() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Version
+}
+
+// Marker - The final status of the marker
+type Marker struct {
+	ID              int64  `json:"id"`
+	Type            string `json:"type"`
+	StartTimeOffset int64  `json:"startTimeOffset"`
+	EndTimeOffset   int64  `json:"endTimeOffset"`
+	Final           *bool  `json:"final,omitempty"`
+	// Attributes associated with the marker.
+	Attributes *Attributes `json:"Attributes,omitempty"`
+}
+
+func (o *Marker) GetID() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.ID
+}
+
+func (o *Marker) GetType() string {
+	if o == nil {
+		return ""
+	}
+	return o.Type
+}
+
+func (o *Marker) GetStartTimeOffset() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.StartTimeOffset
+}
+
+func (o *Marker) GetEndTimeOffset() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.EndTimeOffset
+}
+
+func (o *Marker) GetFinal() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Final
+}
+
+func (o *Marker) GetAttributes() *Attributes {
+	if o == nil {
+		return nil
+	}
+	return o.Attributes
+}
+
+type Extras struct {
+	// The size of the extras.
+	Size *int64 `json:"size,omitempty"`
+}
+
+func (o *Extras) GetSize() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Size
+}
+
+// GetMediaMetaDataMetadata - Unknown
 type GetMediaMetaDataMetadata struct {
-	// The rating key of the metadata item.
+	// The rating key (Media ID) of this media item. Note: Although this is always an integer, it is represented as a string in the API.
 	RatingKey string `json:"ratingKey"`
-	// The rating key of the parent of this metadata item.
-	ParentRatingKey *string `json:"parentRatingKey,omitempty"`
-	// The rating key of the grandparent of this metadata item.
-	GrandparentRatingKey *string `json:"grandparentRatingKey,omitempty"`
-	// A GUID identifying the parent entity (e.g., season) for the item.
-	ParentGUID *string `json:"parentGuid,omitempty"`
-	// A GUID identifying the grandparent entity (e.g., show).
-	GrandparentGUID *string `json:"grandparentGuid,omitempty"`
-	// A URL-friendly identifier (slug) for the grandparent entity.
-	GrandparentSlug *string `json:"grandparentSlug,omitempty"`
-	// A key identifying the grandparent metadata in the library.
-	GrandparentKey *string `json:"grandparentKey,omitempty"`
-	// A key identifying the parent metadata in the library.
-	ParentKey *string `json:"parentKey,omitempty"`
-	// The API key to access metadata details.
+	// The unique key for the media item.
 	Key string `json:"key"`
-	// The globally unique identifier for the item.
+	// The globally unique identifier for the media item.
 	GUID string `json:"guid"`
-	// A URL-friendly identifier for the item.
-	Slug *string `json:"slug,omitempty"`
-	// The studio that produced the content.
-	Studio *string `json:"studio,omitempty"`
-	// The type of content (e.g., show, movie).
-	Type string `json:"type"`
-	// The title of the content.
+	// A URL‐friendly version of the media title.
+	Slug string `json:"slug"`
+	// The studio that produced the media item.
+	Studio *string              `json:"studio,omitempty"`
+	Type   GetMediaMetaDataType `json:"type"`
+	// The title of the media item.
 	Title string `json:"title"`
-	// The original title of the content.
-	OriginalTitle *string `json:"originalTitle,omitempty"`
-	// The title of the library section.
-	LibrarySectionTitle string `json:"librarySectionTitle"`
-	// The ID of the library section.
-	LibrarySectionID int64 `json:"librarySectionID"`
-	// The key of the library section.
-	LibrarySectionKey string `json:"librarySectionKey"`
-	// The content rating (e.g., TV-MA).
+	// The sort title used for ordering media items.
+	TitleSort string `json:"titleSort"`
+	// The content rating for the media item.
 	ContentRating *string `json:"contentRating,omitempty"`
-	// A summary of the content.
+	// A synopsis of the media item.
 	Summary string `json:"summary"`
-	// The index or order of the item.
-	Index *int64 `json:"index,omitempty"`
-	// The title of the grandparent entity (typically the show's title).
-	GrandparentTitle *string `json:"grandparentTitle,omitempty"`
-	// The title of the parent entity (typically the season's title).
-	ParentTitle *string `json:"parentTitle,omitempty"`
-	// The audience rating for the content.
-	AudienceRating *float32 `json:"audienceRating,omitempty"`
-	// The number of times the item has been viewed.
-	ViewCount *int64 `json:"viewCount,omitempty"`
-	// The number of times the item has been skipped.
-	SkipCount *int64 `json:"skipCount,omitempty"`
-	// Unix timestamp of when the item was last viewed.
-	LastViewedAt *int64 `json:"lastViewedAt,omitempty"`
-	// The release year.
-	Year int `json:"year"`
-	// The general rating
-	Rating *float32 `json:"rating,omitempty"`
-	// The URL or identifier for the rating image (e.g., Rotten Tomatoes rating image).
-	RatingImage *string `json:"ratingImage,omitempty"`
-	// The tagline of the content.
-	Tagline         *string `json:"tagline,omitempty"`
-	ChapterSource   *string `json:"chapterSource,omitempty"`
-	PrimaryExtraKey *string `json:"primaryExtraKey,omitempty"`
-	// URL of the thumbnail image.
+	// The critic rating for the media item.
+	Rating float32 `json:"rating"`
+	// The audience rating for the media item.
+	AudienceRating float64 `json:"audienceRating"`
+	// The release year of the media item.
+	Year *int `json:"year,omitempty"`
+	// A brief tagline for the media item.
+	Tagline string `json:"tagline"`
+	// The thumbnail image URL for the media item.
 	Thumb string `json:"thumb"`
-	// URL of the art image.
+	// The art image URL for the media item.
 	Art string `json:"art"`
-	// URL of the theme image.
-	Theme *string `json:"theme,omitempty"`
-	// Duration of the content in milliseconds.
+	// The theme URL for the media item.
+	Theme string `json:"theme"`
+	// The index position of the media item.
+	Index int `json:"index"`
+	// The number of leaf items (end nodes) under this media item.
+	LeafCount *int `json:"leafCount,omitempty"`
+	// The number of leaf items that have been viewed.
+	ViewedLeafCount *int `json:"viewedLeafCount,omitempty"`
+	// The number of child items associated with this media item.
+	ChildCount int `json:"childCount"`
+	// The total number of seasons (for TV shows).
+	SeasonCount int `json:"seasonCount"`
+	// The duration of the media item in milliseconds.
 	Duration int `json:"duration"`
-	// The original release date.
-	OriginallyAvailableAt *types.Date `json:"originallyAvailableAt,omitempty"`
-	// The total number of episodes (or leaves).
-	LeafCount *int64 `json:"leafCount,omitempty"`
-	// The number of episodes that have been viewed.
-	ViewedLeafCount *int64 `json:"viewedLeafCount,omitempty"`
-	// The number of child items.
-	ChildCount *int  `json:"childCount,omitempty"`
-	AddedAt    int64 `json:"addedAt"`
-	UpdatedAt  int64 `json:"updatedAt"`
+	// The original release date of the media item.
+	OriginallyAvailableAt types.Date `json:"originallyAvailableAt"`
+	AddedAt               int64      `json:"addedAt"`
+	// Unix epoch datetime in seconds
+	UpdatedAt *int64 `json:"updatedAt,omitempty"`
 	// The URL for the audience rating image.
 	AudienceRatingImage *string `json:"audienceRatingImage,omitempty"`
-	// The index number of the parent entity, which could indicate its order or position.
-	ParentIndex *int64 `json:"parentIndex,omitempty"`
-	// The URL of the parent's thumbnail image.
-	ParentThumb *string `json:"parentThumb,omitempty"`
-	// The URL of the grandparent's thumbnail image.
+	// The source from which chapter data is derived.
+	ChapterSource *string `json:"chapterSource,omitempty"`
+	// The primary extra key associated with this media item.
+	PrimaryExtraKey *string `json:"primaryExtraKey,omitempty"`
+	// The original title of the media item (if different).
+	OriginalTitle *string `json:"originalTitle,omitempty"`
+	// The rating key of the parent media item.
+	ParentRatingKey *string `json:"parentRatingKey,omitempty"`
+	// The rating key of the grandparent media item.
+	GrandparentRatingKey *string `json:"grandparentRatingKey,omitempty"`
+	// The GUID of the parent media item.
+	ParentGUID *string `json:"parentGuid,omitempty"`
+	// The GUID of the grandparent media item.
+	GrandparentGUID *string `json:"grandparentGuid,omitempty"`
+	// The slug for the grandparent media item.
+	GrandparentSlug *string `json:"grandparentSlug,omitempty"`
+	// The key of the grandparent media item.
+	GrandparentKey *string `json:"grandparentKey,omitempty"`
+	// The key of the parent media item.
+	ParentKey *string `json:"parentKey,omitempty"`
+	// The title of the grandparent media item.
+	GrandparentTitle *string `json:"grandparentTitle,omitempty"`
+	// The thumbnail URL for the grandparent media item.
 	GrandparentThumb *string `json:"grandparentThumb,omitempty"`
-	// The URL of the grandparent's art image.
-	GrandparentArt *string                 `json:"grandparentArt,omitempty"`
-	Media          []GetMediaMetaDataMedia `json:"Media,omitempty"`
-	// An array of image objects.
-	Image           []GetMediaMetaDataImage         `json:"Image"`
-	UltraBlurColors GetMediaMetaDataUltraBlurColors `json:"UltraBlurColors"`
-	// An array of genre tags.
-	Genre []GetMediaMetaDataGenre `json:"Genre,omitempty"`
-	// An array of country tags.
-	Country []GetMediaMetaDataCountry `json:"Country,omitempty"`
-	// An array of GUID objects.
-	Guids []GetMediaMetaDataGuids `json:"Guid,omitempty"`
-	// An array of rating objects.
-	Ratings []Ratings `json:"Rating,omitempty"`
-	// An array of Actor roles.
-	Role []GetMediaMetaDataRole `json:"Role,omitempty"`
-	// An array of Director roles.
-	Director []GetMediaMetaDataDirector `json:"Director,omitempty"`
-	// An array of Writer roles.
-	Writer []GetMediaMetaDataWriter `json:"Writer,omitempty"`
-	// An array of Writer roles.
-	Producer []GetMediaMetaDataProducer `json:"Producer,omitempty"`
-	// An array of similar content objects.
-	Similar []GetMediaMetaDataSimilar `json:"Similar,omitempty"`
-	// An array of location objects.
-	Location []GetMediaMetaDataLocation `json:"Location,omitempty"`
+	// The theme URL for the grandparent media item.
+	GrandparentTheme *string `json:"grandparentTheme,omitempty"`
+	// The art URL for the grandparent media item.
+	GrandparentArt *string `json:"grandparentArt,omitempty"`
+	// The title of the parent media item.
+	ParentTitle *string `json:"parentTitle,omitempty"`
+	// The index position of the parent media item.
+	ParentIndex *int `json:"parentIndex,omitempty"`
+	// The thumbnail URL for the parent media item.
+	ParentThumb *string `json:"parentThumb,omitempty"`
+	// The URL for the rating image.
+	RatingImage *string `json:"ratingImage,omitempty"`
+	// The number of times this media item has been viewed.
+	ViewCount *int `json:"viewCount,omitempty"`
+	// The current playback offset (in milliseconds).
+	ViewOffset *int `json:"viewOffset,omitempty"`
+	// The number of times this media item has been skipped.
+	SkipCount *int `json:"skipCount,omitempty"`
+	// A classification that further describes the type of media item. For example, 'clip' indicates that the item is a short video clip.
+	Subtype *string `json:"subtype,omitempty"`
+	// The Unix timestamp representing the last time the item was rated.
+	LastRatedAt *int64 `json:"lastRatedAt,omitempty"`
+	// The accuracy of the creation timestamp. This value indicates the format(s) provided (for example, 'epoch,local' means both epoch and local time formats are available).
+	CreatedAtAccuracy *string `json:"createdAtAccuracy,omitempty"`
+	// The time zone offset for the creation timestamp, represented as a string. This offset indicates the difference from UTC.
+	CreatedAtTZOffset *string `json:"createdAtTZOffset,omitempty"`
+	// Unix timestamp for when the media item was last viewed.
+	LastViewedAt *int `json:"lastViewedAt,omitempty"`
+	// The rating provided by a user for the item. This value is expressed as a decimal number.
+	UserRating      *float32                         `json:"userRating,omitempty"`
+	Image           []GetMediaMetaDataImage          `json:"Image,omitempty"`
+	UltraBlurColors *GetMediaMetaDataUltraBlurColors `json:"UltraBlurColors,omitempty"`
+	// The identifier for the library section.
+	LibrarySectionID int64 `json:"librarySectionID"`
+	// The title of the library section.
+	LibrarySectionTitle string `json:"librarySectionTitle"`
+	// The key corresponding to the library section.
+	LibrarySectionKey string                     `json:"librarySectionKey"`
+	Media             []GetMediaMetaDataMedia    `json:"Media,omitempty"`
+	Genre             []GetMediaMetaDataGenre    `json:"Genre,omitempty"`
+	Country           []GetMediaMetaDataCountry  `json:"Country,omitempty"`
+	Director          []GetMediaMetaDataDirector `json:"Director,omitempty"`
+	Writer            []GetMediaMetaDataWriter   `json:"Writer,omitempty"`
+	Producer          []GetMediaMetaDataProducer `json:"Producer,omitempty"`
+	Role              []GetMediaMetaDataRole     `json:"Role,omitempty"`
+	Guids             []GetMediaMetaDataGuids    `json:"Guid,omitempty"`
+	Ratings           []Ratings                  `json:"Rating,omitempty"`
+	Similar           []GetMediaMetaDataSimilar  `json:"Similar,omitempty"`
+	Location          []GetMediaMetaDataLocation `json:"Location,omitempty"`
+	Chapter           []Chapter                  `json:"Chapter,omitempty"`
+	Marker            []Marker                   `json:"Marker,omitempty"`
+	Extras            *Extras                    `json:"Extras,omitempty"`
 }
 
 func (g GetMediaMetaDataMetadata) MarshalJSON() ([]byte, error) {
@@ -1689,6 +1882,209 @@ func (o *GetMediaMetaDataMetadata) GetRatingKey() string {
 		return ""
 	}
 	return o.RatingKey
+}
+
+func (o *GetMediaMetaDataMetadata) GetKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.Key
+}
+
+func (o *GetMediaMetaDataMetadata) GetGUID() string {
+	if o == nil {
+		return ""
+	}
+	return o.GUID
+}
+
+func (o *GetMediaMetaDataMetadata) GetSlug() string {
+	if o == nil {
+		return ""
+	}
+	return o.Slug
+}
+
+func (o *GetMediaMetaDataMetadata) GetStudio() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Studio
+}
+
+func (o *GetMediaMetaDataMetadata) GetType() GetMediaMetaDataType {
+	if o == nil {
+		return GetMediaMetaDataType("")
+	}
+	return o.Type
+}
+
+func (o *GetMediaMetaDataMetadata) GetTitle() string {
+	if o == nil {
+		return ""
+	}
+	return o.Title
+}
+
+func (o *GetMediaMetaDataMetadata) GetTitleSort() string {
+	if o == nil {
+		return ""
+	}
+	return o.TitleSort
+}
+
+func (o *GetMediaMetaDataMetadata) GetContentRating() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ContentRating
+}
+
+func (o *GetMediaMetaDataMetadata) GetSummary() string {
+	if o == nil {
+		return ""
+	}
+	return o.Summary
+}
+
+func (o *GetMediaMetaDataMetadata) GetRating() float32 {
+	if o == nil {
+		return 0.0
+	}
+	return o.Rating
+}
+
+func (o *GetMediaMetaDataMetadata) GetAudienceRating() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.AudienceRating
+}
+
+func (o *GetMediaMetaDataMetadata) GetYear() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Year
+}
+
+func (o *GetMediaMetaDataMetadata) GetTagline() string {
+	if o == nil {
+		return ""
+	}
+	return o.Tagline
+}
+
+func (o *GetMediaMetaDataMetadata) GetThumb() string {
+	if o == nil {
+		return ""
+	}
+	return o.Thumb
+}
+
+func (o *GetMediaMetaDataMetadata) GetArt() string {
+	if o == nil {
+		return ""
+	}
+	return o.Art
+}
+
+func (o *GetMediaMetaDataMetadata) GetTheme() string {
+	if o == nil {
+		return ""
+	}
+	return o.Theme
+}
+
+func (o *GetMediaMetaDataMetadata) GetIndex() int {
+	if o == nil {
+		return 0
+	}
+	return o.Index
+}
+
+func (o *GetMediaMetaDataMetadata) GetLeafCount() *int {
+	if o == nil {
+		return nil
+	}
+	return o.LeafCount
+}
+
+func (o *GetMediaMetaDataMetadata) GetViewedLeafCount() *int {
+	if o == nil {
+		return nil
+	}
+	return o.ViewedLeafCount
+}
+
+func (o *GetMediaMetaDataMetadata) GetChildCount() int {
+	if o == nil {
+		return 0
+	}
+	return o.ChildCount
+}
+
+func (o *GetMediaMetaDataMetadata) GetSeasonCount() int {
+	if o == nil {
+		return 0
+	}
+	return o.SeasonCount
+}
+
+func (o *GetMediaMetaDataMetadata) GetDuration() int {
+	if o == nil {
+		return 0
+	}
+	return o.Duration
+}
+
+func (o *GetMediaMetaDataMetadata) GetOriginallyAvailableAt() types.Date {
+	if o == nil {
+		return types.Date{}
+	}
+	return o.OriginallyAvailableAt
+}
+
+func (o *GetMediaMetaDataMetadata) GetAddedAt() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.AddedAt
+}
+
+func (o *GetMediaMetaDataMetadata) GetUpdatedAt() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.UpdatedAt
+}
+
+func (o *GetMediaMetaDataMetadata) GetAudienceRatingImage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AudienceRatingImage
+}
+
+func (o *GetMediaMetaDataMetadata) GetChapterSource() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ChapterSource
+}
+
+func (o *GetMediaMetaDataMetadata) GetPrimaryExtraKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PrimaryExtraKey
+}
+
+func (o *GetMediaMetaDataMetadata) GetOriginalTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.OriginalTitle
 }
 
 func (o *GetMediaMetaDataMetadata) GetParentRatingKey() *string {
@@ -1740,102 +2136,32 @@ func (o *GetMediaMetaDataMetadata) GetParentKey() *string {
 	return o.ParentKey
 }
 
-func (o *GetMediaMetaDataMetadata) GetKey() string {
-	if o == nil {
-		return ""
-	}
-	return o.Key
-}
-
-func (o *GetMediaMetaDataMetadata) GetGUID() string {
-	if o == nil {
-		return ""
-	}
-	return o.GUID
-}
-
-func (o *GetMediaMetaDataMetadata) GetSlug() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Slug
-}
-
-func (o *GetMediaMetaDataMetadata) GetStudio() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Studio
-}
-
-func (o *GetMediaMetaDataMetadata) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-func (o *GetMediaMetaDataMetadata) GetTitle() string {
-	if o == nil {
-		return ""
-	}
-	return o.Title
-}
-
-func (o *GetMediaMetaDataMetadata) GetOriginalTitle() *string {
-	if o == nil {
-		return nil
-	}
-	return o.OriginalTitle
-}
-
-func (o *GetMediaMetaDataMetadata) GetLibrarySectionTitle() string {
-	if o == nil {
-		return ""
-	}
-	return o.LibrarySectionTitle
-}
-
-func (o *GetMediaMetaDataMetadata) GetLibrarySectionID() int64 {
-	if o == nil {
-		return 0
-	}
-	return o.LibrarySectionID
-}
-
-func (o *GetMediaMetaDataMetadata) GetLibrarySectionKey() string {
-	if o == nil {
-		return ""
-	}
-	return o.LibrarySectionKey
-}
-
-func (o *GetMediaMetaDataMetadata) GetContentRating() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ContentRating
-}
-
-func (o *GetMediaMetaDataMetadata) GetSummary() string {
-	if o == nil {
-		return ""
-	}
-	return o.Summary
-}
-
-func (o *GetMediaMetaDataMetadata) GetIndex() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.Index
-}
-
 func (o *GetMediaMetaDataMetadata) GetGrandparentTitle() *string {
 	if o == nil {
 		return nil
 	}
 	return o.GrandparentTitle
+}
+
+func (o *GetMediaMetaDataMetadata) GetGrandparentThumb() *string {
+	if o == nil {
+		return nil
+	}
+	return o.GrandparentThumb
+}
+
+func (o *GetMediaMetaDataMetadata) GetGrandparentTheme() *string {
+	if o == nil {
+		return nil
+	}
+	return o.GrandparentTheme
+}
+
+func (o *GetMediaMetaDataMetadata) GetGrandparentArt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.GrandparentArt
 }
 
 func (o *GetMediaMetaDataMetadata) GetParentTitle() *string {
@@ -1845,154 +2171,7 @@ func (o *GetMediaMetaDataMetadata) GetParentTitle() *string {
 	return o.ParentTitle
 }
 
-func (o *GetMediaMetaDataMetadata) GetAudienceRating() *float32 {
-	if o == nil {
-		return nil
-	}
-	return o.AudienceRating
-}
-
-func (o *GetMediaMetaDataMetadata) GetViewCount() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.ViewCount
-}
-
-func (o *GetMediaMetaDataMetadata) GetSkipCount() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.SkipCount
-}
-
-func (o *GetMediaMetaDataMetadata) GetLastViewedAt() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.LastViewedAt
-}
-
-func (o *GetMediaMetaDataMetadata) GetYear() int {
-	if o == nil {
-		return 0
-	}
-	return o.Year
-}
-
-func (o *GetMediaMetaDataMetadata) GetRating() *float32 {
-	if o == nil {
-		return nil
-	}
-	return o.Rating
-}
-
-func (o *GetMediaMetaDataMetadata) GetRatingImage() *string {
-	if o == nil {
-		return nil
-	}
-	return o.RatingImage
-}
-
-func (o *GetMediaMetaDataMetadata) GetTagline() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Tagline
-}
-
-func (o *GetMediaMetaDataMetadata) GetChapterSource() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ChapterSource
-}
-
-func (o *GetMediaMetaDataMetadata) GetPrimaryExtraKey() *string {
-	if o == nil {
-		return nil
-	}
-	return o.PrimaryExtraKey
-}
-
-func (o *GetMediaMetaDataMetadata) GetThumb() string {
-	if o == nil {
-		return ""
-	}
-	return o.Thumb
-}
-
-func (o *GetMediaMetaDataMetadata) GetArt() string {
-	if o == nil {
-		return ""
-	}
-	return o.Art
-}
-
-func (o *GetMediaMetaDataMetadata) GetTheme() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Theme
-}
-
-func (o *GetMediaMetaDataMetadata) GetDuration() int {
-	if o == nil {
-		return 0
-	}
-	return o.Duration
-}
-
-func (o *GetMediaMetaDataMetadata) GetOriginallyAvailableAt() *types.Date {
-	if o == nil {
-		return nil
-	}
-	return o.OriginallyAvailableAt
-}
-
-func (o *GetMediaMetaDataMetadata) GetLeafCount() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.LeafCount
-}
-
-func (o *GetMediaMetaDataMetadata) GetViewedLeafCount() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.ViewedLeafCount
-}
-
-func (o *GetMediaMetaDataMetadata) GetChildCount() *int {
-	if o == nil {
-		return nil
-	}
-	return o.ChildCount
-}
-
-func (o *GetMediaMetaDataMetadata) GetAddedAt() int64 {
-	if o == nil {
-		return 0
-	}
-	return o.AddedAt
-}
-
-func (o *GetMediaMetaDataMetadata) GetUpdatedAt() int64 {
-	if o == nil {
-		return 0
-	}
-	return o.UpdatedAt
-}
-
-func (o *GetMediaMetaDataMetadata) GetAudienceRatingImage() *string {
-	if o == nil {
-		return nil
-	}
-	return o.AudienceRatingImage
-}
-
-func (o *GetMediaMetaDataMetadata) GetParentIndex() *int64 {
+func (o *GetMediaMetaDataMetadata) GetParentIndex() *int {
 	if o == nil {
 		return nil
 	}
@@ -2006,18 +2185,109 @@ func (o *GetMediaMetaDataMetadata) GetParentThumb() *string {
 	return o.ParentThumb
 }
 
-func (o *GetMediaMetaDataMetadata) GetGrandparentThumb() *string {
+func (o *GetMediaMetaDataMetadata) GetRatingImage() *string {
 	if o == nil {
 		return nil
 	}
-	return o.GrandparentThumb
+	return o.RatingImage
 }
 
-func (o *GetMediaMetaDataMetadata) GetGrandparentArt() *string {
+func (o *GetMediaMetaDataMetadata) GetViewCount() *int {
 	if o == nil {
 		return nil
 	}
-	return o.GrandparentArt
+	return o.ViewCount
+}
+
+func (o *GetMediaMetaDataMetadata) GetViewOffset() *int {
+	if o == nil {
+		return nil
+	}
+	return o.ViewOffset
+}
+
+func (o *GetMediaMetaDataMetadata) GetSkipCount() *int {
+	if o == nil {
+		return nil
+	}
+	return o.SkipCount
+}
+
+func (o *GetMediaMetaDataMetadata) GetSubtype() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Subtype
+}
+
+func (o *GetMediaMetaDataMetadata) GetLastRatedAt() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.LastRatedAt
+}
+
+func (o *GetMediaMetaDataMetadata) GetCreatedAtAccuracy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedAtAccuracy
+}
+
+func (o *GetMediaMetaDataMetadata) GetCreatedAtTZOffset() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedAtTZOffset
+}
+
+func (o *GetMediaMetaDataMetadata) GetLastViewedAt() *int {
+	if o == nil {
+		return nil
+	}
+	return o.LastViewedAt
+}
+
+func (o *GetMediaMetaDataMetadata) GetUserRating() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.UserRating
+}
+
+func (o *GetMediaMetaDataMetadata) GetImage() []GetMediaMetaDataImage {
+	if o == nil {
+		return nil
+	}
+	return o.Image
+}
+
+func (o *GetMediaMetaDataMetadata) GetUltraBlurColors() *GetMediaMetaDataUltraBlurColors {
+	if o == nil {
+		return nil
+	}
+	return o.UltraBlurColors
+}
+
+func (o *GetMediaMetaDataMetadata) GetLibrarySectionID() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.LibrarySectionID
+}
+
+func (o *GetMediaMetaDataMetadata) GetLibrarySectionTitle() string {
+	if o == nil {
+		return ""
+	}
+	return o.LibrarySectionTitle
+}
+
+func (o *GetMediaMetaDataMetadata) GetLibrarySectionKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.LibrarySectionKey
 }
 
 func (o *GetMediaMetaDataMetadata) GetMedia() []GetMediaMetaDataMedia {
@@ -2025,20 +2295,6 @@ func (o *GetMediaMetaDataMetadata) GetMedia() []GetMediaMetaDataMedia {
 		return nil
 	}
 	return o.Media
-}
-
-func (o *GetMediaMetaDataMetadata) GetImage() []GetMediaMetaDataImage {
-	if o == nil {
-		return []GetMediaMetaDataImage{}
-	}
-	return o.Image
-}
-
-func (o *GetMediaMetaDataMetadata) GetUltraBlurColors() GetMediaMetaDataUltraBlurColors {
-	if o == nil {
-		return GetMediaMetaDataUltraBlurColors{}
-	}
-	return o.UltraBlurColors
 }
 
 func (o *GetMediaMetaDataMetadata) GetGenre() []GetMediaMetaDataGenre {
@@ -2053,27 +2309,6 @@ func (o *GetMediaMetaDataMetadata) GetCountry() []GetMediaMetaDataCountry {
 		return nil
 	}
 	return o.Country
-}
-
-func (o *GetMediaMetaDataMetadata) GetGuids() []GetMediaMetaDataGuids {
-	if o == nil {
-		return nil
-	}
-	return o.Guids
-}
-
-func (o *GetMediaMetaDataMetadata) GetRatings() []Ratings {
-	if o == nil {
-		return nil
-	}
-	return o.Ratings
-}
-
-func (o *GetMediaMetaDataMetadata) GetRole() []GetMediaMetaDataRole {
-	if o == nil {
-		return nil
-	}
-	return o.Role
 }
 
 func (o *GetMediaMetaDataMetadata) GetDirector() []GetMediaMetaDataDirector {
@@ -2097,6 +2332,27 @@ func (o *GetMediaMetaDataMetadata) GetProducer() []GetMediaMetaDataProducer {
 	return o.Producer
 }
 
+func (o *GetMediaMetaDataMetadata) GetRole() []GetMediaMetaDataRole {
+	if o == nil {
+		return nil
+	}
+	return o.Role
+}
+
+func (o *GetMediaMetaDataMetadata) GetGuids() []GetMediaMetaDataGuids {
+	if o == nil {
+		return nil
+	}
+	return o.Guids
+}
+
+func (o *GetMediaMetaDataMetadata) GetRatings() []Ratings {
+	if o == nil {
+		return nil
+	}
+	return o.Ratings
+}
+
 func (o *GetMediaMetaDataMetadata) GetSimilar() []GetMediaMetaDataSimilar {
 	if o == nil {
 		return nil
@@ -2109,6 +2365,27 @@ func (o *GetMediaMetaDataMetadata) GetLocation() []GetMediaMetaDataLocation {
 		return nil
 	}
 	return o.Location
+}
+
+func (o *GetMediaMetaDataMetadata) GetChapter() []Chapter {
+	if o == nil {
+		return nil
+	}
+	return o.Chapter
+}
+
+func (o *GetMediaMetaDataMetadata) GetMarker() []Marker {
+	if o == nil {
+		return nil
+	}
+	return o.Marker
+}
+
+func (o *GetMediaMetaDataMetadata) GetExtras() *Extras {
+	if o == nil {
+		return nil
+	}
+	return o.Extras
 }
 
 type GetMediaMetaDataMediaContainer struct {

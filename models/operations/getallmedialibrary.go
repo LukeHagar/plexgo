@@ -918,17 +918,39 @@ func (e *GetAllMediaLibraryHasThumbnail) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// GetAllMediaLibraryStreamType - Stream type:
+//   - 1 = video
+//   - 2 = audio
+//   - 3 = subtitle
+type GetAllMediaLibraryStreamType int
+
+const (
+	GetAllMediaLibraryStreamTypeVideo    GetAllMediaLibraryStreamType = 1
+	GetAllMediaLibraryStreamTypeAudio    GetAllMediaLibraryStreamType = 2
+	GetAllMediaLibraryStreamTypeSubtitle GetAllMediaLibraryStreamType = 3
+)
+
+func (e GetAllMediaLibraryStreamType) ToPointer() *GetAllMediaLibraryStreamType {
+	return &e
+}
+
 type GetAllMediaLibraryStream struct {
 	// Unique stream identifier.
 	ID int64 `json:"id"`
-	// Stream type (1=video, 2=audio, 3=subtitle).
-	StreamType int `json:"streamType"`
+	// Stream type:
+	//   - 1 = video
+	//   - 2 = audio
+	//   - 3 = subtitle
+	//
+	StreamType GetAllMediaLibraryStreamType `json:"streamType"`
+	// Format of the stream (e.g., srt).
+	Format *string `json:"format,omitempty"`
 	// Indicates if this stream is default.
 	Default *bool `json:"default,omitempty"`
 	// Codec used by the stream.
 	Codec string `json:"codec"`
 	// Index of the stream.
-	Index int `json:"index"`
+	Index *int `json:"index,omitempty"`
 	// Bitrate of the stream.
 	Bitrate *int `json:"bitrate,omitempty"`
 	// Language of the stream.
@@ -976,6 +998,8 @@ type GetAllMediaLibraryStream struct {
 	ColorTrc *string `json:"colorTrc,omitempty"`
 	// Frame rate of the stream.
 	FrameRate *float32 `json:"frameRate,omitempty"`
+	// Key to access this stream part.
+	Key *string `json:"key,omitempty"`
 	// Height of the video stream.
 	Height *int `json:"height,omitempty"`
 	// Video level.
@@ -1021,11 +1045,18 @@ func (o *GetAllMediaLibraryStream) GetID() int64 {
 	return o.ID
 }
 
-func (o *GetAllMediaLibraryStream) GetStreamType() int {
+func (o *GetAllMediaLibraryStream) GetStreamType() GetAllMediaLibraryStreamType {
 	if o == nil {
-		return 0
+		return GetAllMediaLibraryStreamType(0)
 	}
 	return o.StreamType
+}
+
+func (o *GetAllMediaLibraryStream) GetFormat() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Format
 }
 
 func (o *GetAllMediaLibraryStream) GetDefault() *bool {
@@ -1042,9 +1073,9 @@ func (o *GetAllMediaLibraryStream) GetCodec() string {
 	return o.Codec
 }
 
-func (o *GetAllMediaLibraryStream) GetIndex() int {
+func (o *GetAllMediaLibraryStream) GetIndex() *int {
 	if o == nil {
-		return 0
+		return nil
 	}
 	return o.Index
 }
@@ -1215,6 +1246,13 @@ func (o *GetAllMediaLibraryStream) GetFrameRate() *float32 {
 		return nil
 	}
 	return o.FrameRate
+}
+
+func (o *GetAllMediaLibraryStream) GetKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Key
 }
 
 func (o *GetAllMediaLibraryStream) GetHeight() *int {

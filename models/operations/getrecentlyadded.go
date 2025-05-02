@@ -795,17 +795,39 @@ func (e *HasThumbnail) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// StreamType - Stream type:
+//   - 1 = video
+//   - 2 = audio
+//   - 3 = subtitle
+type StreamType int
+
+const (
+	StreamTypeVideo    StreamType = 1
+	StreamTypeAudio    StreamType = 2
+	StreamTypeSubtitle StreamType = 3
+)
+
+func (e StreamType) ToPointer() *StreamType {
+	return &e
+}
+
 type Stream struct {
 	// Unique stream identifier.
 	ID int64 `json:"id"`
-	// Stream type (1=video, 2=audio, 3=subtitle).
-	StreamType int `json:"streamType"`
+	// Stream type:
+	//   - 1 = video
+	//   - 2 = audio
+	//   - 3 = subtitle
+	//
+	StreamType StreamType `json:"streamType"`
+	// Format of the stream (e.g., srt).
+	Format *string `json:"format,omitempty"`
 	// Indicates if this stream is default.
 	Default *bool `json:"default,omitempty"`
 	// Codec used by the stream.
 	Codec string `json:"codec"`
 	// Index of the stream.
-	Index int `json:"index"`
+	Index *int `json:"index,omitempty"`
 	// Bitrate of the stream.
 	Bitrate *int `json:"bitrate,omitempty"`
 	// Language of the stream.
@@ -853,6 +875,8 @@ type Stream struct {
 	ColorTrc *string `json:"colorTrc,omitempty"`
 	// Frame rate of the stream.
 	FrameRate *float32 `json:"frameRate,omitempty"`
+	// Key to access this stream part.
+	Key *string `json:"key,omitempty"`
 	// Height of the video stream.
 	Height *int `json:"height,omitempty"`
 	// Video level.
@@ -898,11 +922,18 @@ func (o *Stream) GetID() int64 {
 	return o.ID
 }
 
-func (o *Stream) GetStreamType() int {
+func (o *Stream) GetStreamType() StreamType {
 	if o == nil {
-		return 0
+		return StreamType(0)
 	}
 	return o.StreamType
+}
+
+func (o *Stream) GetFormat() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Format
 }
 
 func (o *Stream) GetDefault() *bool {
@@ -919,9 +950,9 @@ func (o *Stream) GetCodec() string {
 	return o.Codec
 }
 
-func (o *Stream) GetIndex() int {
+func (o *Stream) GetIndex() *int {
 	if o == nil {
-		return 0
+		return nil
 	}
 	return o.Index
 }
@@ -1092,6 +1123,13 @@ func (o *Stream) GetFrameRate() *float32 {
 		return nil
 	}
 	return o.FrameRate
+}
+
+func (o *Stream) GetKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Key
 }
 
 func (o *Stream) GetHeight() *int {
@@ -1593,13 +1631,13 @@ func (o *Genre) GetTag() string {
 
 // Country - The filter query string for country media items.
 type Country struct {
-	ID int64 `json:"id"`
+	ID int `json:"id"`
 	// The country of origin of this media item
 	Tag    string  `json:"tag"`
 	Filter *string `json:"filter,omitempty"`
 }
 
-func (o *Country) GetID() int64 {
+func (o *Country) GetID() int {
 	if o == nil {
 		return 0
 	}
@@ -1634,7 +1672,7 @@ func (o *Director) GetTag() string {
 
 type Writer struct {
 	// Unique identifier for the writer.
-	ID int64 `json:"id"`
+	ID int `json:"id"`
 	// The filter string used to query this writer.
 	Filter string `json:"filter"`
 	// The role of Writer
@@ -1643,7 +1681,7 @@ type Writer struct {
 	TagKey *string `json:"tagKey,omitempty"`
 }
 
-func (o *Writer) GetID() int64 {
+func (o *Writer) GetID() int {
 	if o == nil {
 		return 0
 	}
@@ -1730,7 +1768,7 @@ func (o *Role) GetThumb() *string {
 
 type Producer struct {
 	// Unique identifier for the producer.
-	ID int64 `json:"id"`
+	ID int `json:"id"`
 	// The filter string used to query this producer.
 	Filter string `json:"filter"`
 	// The name of the producer
@@ -1741,7 +1779,7 @@ type Producer struct {
 	Thumb *string `json:"thumb,omitempty"`
 }
 
-func (o *Producer) GetID() int64 {
+func (o *Producer) GetID() int {
 	if o == nil {
 		return 0
 	}

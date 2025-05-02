@@ -17,7 +17,7 @@ import (
 // ServerList contains the list of servers available to the SDK
 var ServerList = []string{
 	// The full address of your Plex Server
-	"https://10.10.10.47:32400",
+	"{protocol}://{ip}:{port}",
 }
 
 // HTTPClient provides an interface for suplying the SDK with a custom HTTP client
@@ -299,9 +299,9 @@ func New(opts ...SDKOption) *PlexAPI {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.3",
-			SDKVersion:        "0.21.0",
-			GenVersion:        "2.585.2",
-			UserAgent:         "speakeasy-sdk/go 0.21.0 2.585.2 0.0.3 github.com/LukeHagar/plexgo",
+			SDKVersion:        "0.21.1",
+			GenVersion:        "2.596.2",
+			UserAgent:         "speakeasy-sdk/go 0.21.1 2.596.2 0.0.3 github.com/LukeHagar/plexgo",
 			ServerDefaults: []map[string]string{
 				{
 					"protocol": "https",

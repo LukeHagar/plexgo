@@ -1,10 +1,12 @@
 # GetMediaMetaDataGenre
 
+The filter query string for similar items.
+
 
 ## Fields
 
-| Field                            | Type                             | Required                         | Description                      | Example                          |
-| -------------------------------- | -------------------------------- | -------------------------------- | -------------------------------- | -------------------------------- |
-| `ID`                             | *int64*                          | :heavy_check_mark:               | The unique genre identifier.     | 1057                             |
-| `Filter`                         | *string*                         | :heavy_check_mark:               | The filter string for the genre. | genre=1057                       |
-| `Tag`                            | *string*                         | :heavy_check_mark:               | The genre name.                  | Crime                            |
+| Field                              | Type                               | Required                           | Description                        | Example                            |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| `ID`                               | *int64*                            | :heavy_check_mark:                 | N/A                                | 259                                |
+| `Tag`                              | *string*                           | :heavy_check_mark:                 | The genre name of this media-item<br/> | Crime                              |
+| `Filter`                           | *string*                           | :heavy_check_mark:                 | N/A                                | genre=19                           |
