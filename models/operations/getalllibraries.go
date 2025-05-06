@@ -25,12 +25,13 @@ func (e GetAllLibrariesType) ToPointer() *GetAllLibrariesType {
 	return &e
 }
 
-// Hidden - UNKNOWN
+// Hidden - The Plex library visibility setting
 type Hidden int
 
 const (
-	HiddenDisable Hidden = 0
-	HiddenEnable  Hidden = 1
+	HiddenVisible                          Hidden = 0
+	HiddenExcludeHomeScreen                Hidden = 1
+	HiddenExcludeHomeScreenAndGlobalSearch Hidden = 2
 )
 
 func (e Hidden) ToPointer() *Hidden {
@@ -45,6 +46,8 @@ func (e *Hidden) UnmarshalJSON(data []byte) error {
 	case 0:
 		fallthrough
 	case 1:
+		fallthrough
+	case 2:
 		*e = Hidden(v)
 		return nil
 	default:
@@ -111,9 +114,10 @@ type GetAllLibrariesDirectory struct {
 	// Timestamp (in seconds) representing the last time the content was modified.
 	// NOTE: Some Plex server have some absurd values for this field, like 8457612157633039800 so it should be int64
 	//
-	ContentChangedAt int64                     `json:"contentChangedAt"`
-	Hidden           *Hidden                   `default:"0" json:"hidden"`
-	Location         []GetAllLibrariesLocation `json:"Location"`
+	ContentChangedAt int64 `json:"contentChangedAt"`
+	// The Plex library visibility setting
+	Hidden   *Hidden                   `default:"0" json:"hidden"`
+	Location []GetAllLibrariesLocation `json:"Location"`
 }
 
 func (g GetAllLibrariesDirectory) MarshalJSON() ([]byte, error) {

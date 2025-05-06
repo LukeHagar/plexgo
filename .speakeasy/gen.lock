@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: dfa99515-01c0-42eb-9be5-ee212fd03eb3
 management:
-  docChecksum: d79f1dea291e60a9e3b3fc2de2e0da83
+  docChecksum: 48621865085324b8b8eda5901f092a37
   docVersion: 0.0.3
-  speakeasyVersion: 1.542.0
-  generationVersion: 2.596.2
-  releaseVersion: 0.21.1
-  configChecksum: e7b073313879c32e26c63c37cae2e2bd
+  speakeasyVersion: 1.542.3
+  generationVersion: 2.597.9
+  releaseVersion: 0.21.2
+  configChecksum: 9b887a3b269025f2afc6ff5be933ce43
   repoURL: https://github.com/LukeHagar/plexgo.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexgo
