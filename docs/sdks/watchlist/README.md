@@ -34,7 +34,7 @@ func main() {
     )
 
     res, err := s.Watchlist.GetWatchList(ctx, operations.GetWatchListRequest{
-        Filter: operations.FilterAvailable,
+        Filter: operations.FilterReleased,
         XPlexToken: "CV5xoxjTpFKUzBTShsaf",
     })
     if err != nil {

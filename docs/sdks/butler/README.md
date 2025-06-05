@@ -201,7 +201,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Butler.StartTask(ctx, operations.TaskNameCleanOldBundles)
+    res, err := s.Butler.StartTask(ctx, operations.TaskNameRefreshPeriodicMetadata)
     if err != nil {
         log.Fatal(err)
     }
@@ -255,7 +255,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Butler.StopTask(ctx, operations.PathParamTaskNameBackupDatabase)
+    res, err := s.Butler.StopTask(ctx, operations.PathParamTaskNameCleanOldCacheFiles)
     if err != nil {
         log.Fatal(err)
     }

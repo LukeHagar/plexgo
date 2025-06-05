@@ -90,9 +90,10 @@ func main() {
     )
 
     res, err := s.Hubs.GetRecentlyAdded(ctx, operations.GetRecentlyAddedRequest{
-        ContentDirectoryID: 470161,
+        ContentDirectoryID: 39486,
         SectionID: plexgo.Int64(2),
         Type: operations.TypeTvShow,
+        IncludeMeta: operations.IncludeMetaEnable.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -144,7 +145,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Hubs.GetLibraryHubs(ctx, 6728.76, nil, nil)
+    res, err := s.Hubs.GetLibraryHubs(ctx, 492.74, nil, nil)
     if err != nil {
         log.Fatal(err)
     }

@@ -2,10 +2,13 @@
 
 package plexgo
 
+// Generated from OpenAPI doc version 0.0.3 and generator version 2.620.2
+
 import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/LukeHagar/plexgo/internal/config"
 	"github.com/LukeHagar/plexgo/internal/hooks"
 	"github.com/LukeHagar/plexgo/internal/utils"
 	"github.com/LukeHagar/plexgo/models/components"
@@ -20,7 +23,7 @@ var ServerList = []string{
 	"{protocol}://{ip}:{port}",
 }
 
-// HTTPClient provides an interface for suplying the SDK with a custom HTTP client
+// HTTPClient provides an interface for supplying the SDK with a custom HTTP client
 type HTTPClient interface {
 	Do(req *http.Request) (*http.Response, error)
 }
@@ -45,30 +48,6 @@ func Float64(f float64) *float64 { return &f }
 
 // Pointer provides a helper function to return a pointer to a type
 func Pointer[T any](v T) *T { return &v }
-
-type sdkConfiguration struct {
-	Client            HTTPClient
-	Security          func(context.Context) (interface{}, error)
-	ServerURL         string
-	ServerIndex       int
-	ServerDefaults    []map[string]string
-	Language          string
-	OpenAPIDocVersion string
-	SDKVersion        string
-	GenVersion        string
-	UserAgent         string
-	RetryConfig       *retry.Config
-	Hooks             *hooks.Hooks
-	Timeout           *time.Duration
-}
-
-func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
-	if c.ServerURL != "" {
-		return c.ServerURL, nil
-	}
-
-	return ServerList[c.ServerIndex], c.ServerDefaults[c.ServerIndex]
-}
 
 // PlexAPI - Plex-API: An Open API Spec for interacting with Plex.tv and Plex Media Server
 // # Plex Media Server OpenAPI Specification
@@ -96,6 +75,7 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 // | Java                  | [GitHub](https://github.com/LukeHagar/plexjava)   | [Releases](https://github.com/LukeHagar/plexjava/releases)                                       | -                                                       |
 // | C#                    | [GitHub](https://github.com/LukeHagar/plexcsharp) | [Releases](https://github.com/LukeHagar/plexcsharp/releases)                                     | -
 type PlexAPI struct {
+	SDKVersion string
 	// Operations against the Plex Media Server System.
 	//
 	Server *Server
@@ -156,7 +136,8 @@ type PlexAPI struct {
 	Updater *Updater
 	Users   *Users
 
-	sdkConfiguration sdkConfiguration
+	sdkConfiguration config.SDKConfiguration
+	hooks            *hooks.Hooks
 }
 
 type SDKOption func(*PlexAPI)
@@ -220,12 +201,12 @@ func (e *ServerProtocol) UnmarshalJSON(data []byte) error {
 // WithProtocol allows setting the protocol variable for url substitution
 func WithProtocol(protocol ServerProtocol) SDKOption {
 	return func(sdk *PlexAPI) {
-		for idx := range sdk.sdkConfiguration.ServerDefaults {
-			if _, ok := sdk.sdkConfiguration.ServerDefaults[idx]["protocol"]; !ok {
+		for idx := range sdk.sdkConfiguration.ServerVariables {
+			if _, ok := sdk.sdkConfiguration.ServerVariables[idx]["protocol"]; !ok {
 				continue
 			}
 
-			sdk.sdkConfiguration.ServerDefaults[idx]["protocol"] = fmt.Sprintf("%v", protocol)
+			sdk.sdkConfiguration.ServerVariables[idx]["protocol"] = fmt.Sprintf("%v", protocol)
 		}
 	}
 }
@@ -233,12 +214,12 @@ func WithProtocol(protocol ServerProtocol) SDKOption {
 // WithIP allows setting the ip variable for url substitution
 func WithIP(ip string) SDKOption {
 	return func(sdk *PlexAPI) {
-		for idx := range sdk.sdkConfiguration.ServerDefaults {
-			if _, ok := sdk.sdkConfiguration.ServerDefaults[idx]["ip"]; !ok {
+		for idx := range sdk.sdkConfiguration.ServerVariables {
+			if _, ok := sdk.sdkConfiguration.ServerVariables[idx]["ip"]; !ok {
 				continue
 			}
 
-			sdk.sdkConfiguration.ServerDefaults[idx]["ip"] = fmt.Sprintf("%v", ip)
+			sdk.sdkConfiguration.ServerVariables[idx]["ip"] = fmt.Sprintf("%v", ip)
 		}
 	}
 }
@@ -246,12 +227,12 @@ func WithIP(ip string) SDKOption {
 // WithPort allows setting the port variable for url substitution
 func WithPort(port string) SDKOption {
 	return func(sdk *PlexAPI) {
-		for idx := range sdk.sdkConfiguration.ServerDefaults {
-			if _, ok := sdk.sdkConfiguration.ServerDefaults[idx]["port"]; !ok {
+		for idx := range sdk.sdkConfiguration.ServerVariables {
+			if _, ok := sdk.sdkConfiguration.ServerVariables[idx]["port"]; !ok {
 				continue
 			}
 
-			sdk.sdkConfiguration.ServerDefaults[idx]["port"] = fmt.Sprintf("%v", port)
+			sdk.sdkConfiguration.ServerVariables[idx]["port"] = fmt.Sprintf("%v", port)
 		}
 	}
 }
@@ -296,21 +277,19 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *PlexAPI {
 	sdk := &PlexAPI{
-		sdkConfiguration: sdkConfiguration{
-			Language:          "go",
-			OpenAPIDocVersion: "0.0.3",
-			SDKVersion:        "0.21.2",
-			GenVersion:        "2.597.9",
-			UserAgent:         "speakeasy-sdk/go 0.21.2 2.597.9 0.0.3 github.com/LukeHagar/plexgo",
-			ServerDefaults: []map[string]string{
+		SDKVersion: "0.22.0",
+		sdkConfiguration: config.SDKConfiguration{
+			UserAgent:  "speakeasy-sdk/go 0.22.0 2.620.2 0.0.3 github.com/LukeHagar/plexgo",
+			ServerList: ServerList,
+			ServerVariables: []map[string]string{
 				{
 					"protocol": "https",
 					"ip":       "10.10.10.47",
 					"port":     "32400",
 				},
 			},
-			Hooks: hooks.New(),
 		},
+		hooks: hooks.New(),
 	}
 	for _, opt := range opts {
 		opt(sdk)
@@ -323,44 +302,28 @@ func New(opts ...SDKOption) *PlexAPI {
 
 	currentServerURL, _ := sdk.sdkConfiguration.GetServerDetails()
 	serverURL := currentServerURL
-	serverURL, sdk.sdkConfiguration.Client = sdk.sdkConfiguration.Hooks.SDKInit(currentServerURL, sdk.sdkConfiguration.Client)
-	if serverURL != currentServerURL {
+	serverURL, sdk.sdkConfiguration.Client = sdk.hooks.SDKInit(currentServerURL, sdk.sdkConfiguration.Client)
+	if currentServerURL != serverURL {
 		sdk.sdkConfiguration.ServerURL = serverURL
 	}
 
-	sdk.Server = newServer(sdk.sdkConfiguration)
-
-	sdk.Media = newMedia(sdk.sdkConfiguration)
-
-	sdk.Video = newVideo(sdk.sdkConfiguration)
-
-	sdk.Activities = newActivities(sdk.sdkConfiguration)
-
-	sdk.Butler = newButler(sdk.sdkConfiguration)
-
-	sdk.Plex = newPlex(sdk.sdkConfiguration)
-
-	sdk.Hubs = newHubs(sdk.sdkConfiguration)
-
-	sdk.Search = newSearch(sdk.sdkConfiguration)
-
-	sdk.Library = newLibrary(sdk.sdkConfiguration)
-
-	sdk.Watchlist = newWatchlist(sdk.sdkConfiguration)
-
-	sdk.Log = newLog(sdk.sdkConfiguration)
-
-	sdk.Playlists = newPlaylists(sdk.sdkConfiguration)
-
-	sdk.Authentication = newAuthentication(sdk.sdkConfiguration)
-
-	sdk.Statistics = newStatistics(sdk.sdkConfiguration)
-
-	sdk.Sessions = newSessions(sdk.sdkConfiguration)
-
-	sdk.Updater = newUpdater(sdk.sdkConfiguration)
-
-	sdk.Users = newUsers(sdk.sdkConfiguration)
+	sdk.Server = newServer(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Media = newMedia(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Video = newVideo(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Activities = newActivities(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Butler = newButler(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Plex = newPlex(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Hubs = newHubs(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Search = newSearch(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Library = newLibrary(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Watchlist = newWatchlist(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Log = newLog(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Playlists = newPlaylists(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Authentication = newAuthentication(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Statistics = newStatistics(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Sessions = newSessions(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Updater = newUpdater(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Users = newUsers(sdk, sdk.sdkConfiguration, sdk.hooks)
 
 	return sdk
 }

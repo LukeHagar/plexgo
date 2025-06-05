@@ -11,12 +11,14 @@ E.g. A movie library will not return anything with type 3 as there are no season
 
 ## Values
 
-| Name                    | Value                   |
-| ----------------------- | ----------------------- |
-| `QueryParamTypeMovie`   | 1                       |
-| `QueryParamTypeTvShow`  | 2                       |
-| `QueryParamTypeSeason`  | 3                       |
-| `QueryParamTypeEpisode` | 4                       |
-| `QueryParamTypeAudio`   | 8                       |
-| `QueryParamTypeAlbum`   | 9                       |
-| `QueryParamTypeTrack`   | 10                      |
+| Name                       | Value                      |
+| -------------------------- | -------------------------- |
+| `QueryParamTypeMovie`      | 1                          |
+| `QueryParamTypeTvShow`     | 2                          |
+| `QueryParamTypeSeason`     | 3                          |
+| `QueryParamTypeEpisode`    | 4                          |
+| `QueryParamTypeArtist`     | 5                          |
+| `QueryParamTypeAlbum`      | 6                          |
+| `QueryParamTypeTrack`      | 7                          |
+| `QueryParamTypePhotoAlbum` | 8                          |
+| `QueryParamTypePhoto`      | 9                          |

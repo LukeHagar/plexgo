@@ -356,7 +356,7 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                 )
 
-                res, err := s.Butler.StopTask(ctx, operations.PathParamTaskNameBackupDatabase)
+                res, err := s.Butler.StopTask(ctx, operations.PathParamTaskNameCleanOldCacheFiles)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -386,7 +386,7 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                 )
 
-                res, err := s.Butler.StartTask(ctx, operations.TaskNameCleanOldBundles)
+                res, err := s.Butler.StartTask(ctx, operations.TaskNameRefreshPeriodicMetadata)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -618,9 +618,10 @@ actions:
                 )
 
                 res, err := s.Hubs.GetRecentlyAdded(ctx, operations.GetRecentlyAddedRequest{
-                    ContentDirectoryID: 470161,
+                    ContentDirectoryID: 39486,
                     SectionID: plexgo.Int64(2),
                     Type: operations.TypeTvShow,
+                    IncludeMeta: operations.IncludeMetaEnable.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -650,7 +651,7 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                 )
 
-                res, err := s.Search.PerformSearch(ctx, "dylan", nil, nil)
+                res, err := s.Search.PerformSearch(ctx, "arnold", nil, plexgo.Float64(5))
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -679,7 +680,7 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                 )
 
-                res, err := s.Search.PerformVoiceSearch(ctx, "dead+poop", nil, nil)
+                res, err := s.Search.PerformVoiceSearch(ctx, "dead+poop", nil, plexgo.Float64(5))
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -708,7 +709,7 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                 )
 
-                res, err := s.Hubs.GetLibraryHubs(ctx, 6728.76, nil, nil)
+                res, err := s.Hubs.GetLibraryHubs(ctx, 492.74, nil, nil)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -765,7 +766,7 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                 )
 
-                res, err := s.Library.GetTopWatchedContent(ctx, operations.GetTopWatchedContentQueryParamTypeTvShow, plexgo.Int64(1))
+                res, err := s.Library.GetTopWatchedContent(ctx, operations.GetTopWatchedContentQueryParamTypeTvShow, operations.GetTopWatchedContentQueryParamIncludeGuidsEnable.ToPointer())
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -825,7 +826,7 @@ actions:
                 )
 
                 res, err := s.Library.GetMediaMetaData(ctx, operations.GetMediaMetaDataRequest{
-                    RatingKey: 9518,
+                    RatingKey: "21119,21617",
                     IncludeConcerts: plexgo.Bool(true),
                     IncludeExtras: plexgo.Bool(true),
                     IncludeOnDeck: plexgo.Bool(true),
@@ -963,7 +964,7 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                 )
 
-                res, err := s.Library.GetMetadataChildren(ctx, 1539.14, plexgo.String("Stream"))
+                res, err := s.Library.GetMetadataChildren(ctx, 2403.67, plexgo.String("Stream"))
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -1106,6 +1107,7 @@ actions:
                     },
                     SectionID: plexgo.Int64(2),
                     Type: operations.QueryParamTypeTvShow,
+                    IncludeMeta: operations.QueryParamIncludeMetaEnable.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -1142,6 +1144,8 @@ actions:
                     SearchTypes: []operations.SearchTypes{
                         operations.SearchTypesPeople,
                     },
+                    IncludeCollections: operations.GetSearchAllLibrariesQueryParamIncludeCollectionsEnable.ToPointer(),
+                    IncludeExternalMedia: operations.GetSearchAllLibrariesQueryParamIncludeExternalMediaEnable.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -1202,7 +1206,7 @@ actions:
                 )
 
                 res, err := s.Watchlist.GetWatchList(ctx, operations.GetWatchListRequest{
-                    Filter: operations.FilterAvailable,
+                    Filter: operations.FilterReleased,
                     XPlexToken: "CV5xoxjTpFKUzBTShsaf",
                 })
                 if err != nil {
@@ -1252,6 +1256,7 @@ actions:
             import(
             	"context"
             	"github.com/LukeHagar/plexgo"
+            	"github.com/LukeHagar/plexgo/models/operations"
             	"log"
             )
 
@@ -1262,7 +1267,7 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                 )
 
-                res, err := s.Library.GetLibraryDetails(ctx, 9518, nil)
+                res, err := s.Library.GetLibraryDetails(ctx, 9518, operations.IncludeDetailsZero.ToPointer())
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -1322,9 +1327,14 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                 )
 
-                res, err := s.Library.GetAllMediaLibrary(ctx, operations.GetAllMediaLibraryRequest{
+                res, err := s.Library.GetLibrarySectionsAll(ctx, operations.GetLibrarySectionsAllRequest{
                     SectionKey: 9518,
-                    Type: operations.GetAllMediaLibraryQueryParamTypeTvShow,
+                    Type: operations.GetLibrarySectionsAllQueryParamTypeTvShow,
+                    IncludeMeta: operations.GetLibrarySectionsAllQueryParamIncludeMetaEnable.ToPointer(),
+                    IncludeGuids: operations.QueryParamIncludeGuidsEnable.ToPointer(),
+                    IncludeAdvanced: operations.IncludeAdvancedEnable.ToPointer(),
+                    IncludeCollections: operations.QueryParamIncludeCollectionsEnable.ToPointer(),
+                    IncludeExternalMedia: operations.QueryParamIncludeExternalMediaEnable.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -1415,7 +1425,7 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                 )
 
-                res, err := s.Library.GetRefreshLibraryMetadata(ctx, 9518, operations.ForceOne.ToPointer())
+                res, err := s.Library.GetRefreshLibraryMetadata(ctx, 9518, operations.ForceZero.ToPointer())
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -1476,9 +1486,11 @@ actions:
                 )
 
                 res, err := s.Library.GetLibraryItems(ctx, operations.GetLibraryItemsRequest{
-                    Tag: operations.TagEdition,
+                    Tag: operations.TagNewest,
+                    IncludeGuids: operations.IncludeGuidsEnable.ToPointer(),
                     Type: operations.GetLibraryItemsQueryParamTypeTvShow,
                     SectionKey: 9518,
+                    IncludeMeta: operations.GetLibraryItemsQueryParamIncludeMetaEnable.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -1660,10 +1672,9 @@ actions:
                 res, err := s.Server.GetResizedPhoto(ctx, operations.GetResizedPhotoRequest{
                     Width: 110,
                     Height: 165,
-                    Opacity: 100,
                     Blur: 0,
-                    MinSize: operations.MinSizeOne,
-                    Upscale: operations.UpscaleOne,
+                    MinSize: operations.MinSizeZero,
+                    Upscale: operations.UpscaleZero,
                     URL: "/library/metadata/49564/thumb/1654258204",
                 })
                 if err != nil {
@@ -1728,7 +1739,7 @@ actions:
                 s := plexgo.New()
 
                 res, err := s.Plex.GetTokenByPinID(ctx, operations.GetTokenByPinIDRequest{
-                    PinID: 408895,
+                    PinID: 232248,
                     ClientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
                     ClientName: plexgo.String("Plex for Roku"),
                     DeviceNickname: plexgo.String("Roku 3"),
@@ -1795,9 +1806,9 @@ actions:
 
                 res, err := s.Playlists.CreatePlaylist(ctx, operations.CreatePlaylistRequest{
                     Title: "<value>",
-                    Type: operations.CreatePlaylistQueryParamTypePhoto,
+                    Type: operations.CreatePlaylistQueryParamTypeAudio,
                     Smart: operations.SmartOne,
-                    URI: "https://hoarse-testing.info/",
+                    URI: "https://short-term-disconnection.name/",
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -1828,7 +1839,7 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                 )
 
-                res, err := s.Playlists.UploadPlaylist(ctx, "/home/barkley/playlist.m3u", operations.QueryParamForceZero, 1)
+                res, err := s.Playlists.UploadPlaylist(ctx, "/home/barkley/playlist.m3u", operations.QueryParamForceOne, 1)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -1857,7 +1868,7 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                 )
 
-                res, err := s.Playlists.DeletePlaylist(ctx, 216.22)
+                res, err := s.Playlists.DeletePlaylist(ctx, 3432.93)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -1886,7 +1897,7 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                 )
 
-                res, err := s.Playlists.GetPlaylist(ctx, 4109.48)
+                res, err := s.Playlists.GetPlaylist(ctx, 8419.53)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -1915,7 +1926,7 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                 )
 
-                res, err := s.Playlists.UpdatePlaylist(ctx, 3915, nil, nil)
+                res, err := s.Playlists.UpdatePlaylist(ctx, 1579.66, nil, nil)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -1944,7 +1955,7 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                 )
 
-                res, err := s.Playlists.ClearPlaylistContents(ctx, 1893.18)
+                res, err := s.Playlists.ClearPlaylistContents(ctx, 4137.37)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -1974,7 +1985,7 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                 )
 
-                res, err := s.Playlists.GetPlaylistContents(ctx, 5004.46, operations.GetPlaylistContentsQueryParamTypeTvShow)
+                res, err := s.Playlists.GetPlaylistContents(ctx, 5535.42, operations.GetPlaylistContentsQueryParamTypeTvShow)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -2003,7 +2014,7 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                 )
 
-                res, err := s.Playlists.AddPlaylistContents(ctx, 8502.01, "server://12345/com.plexapp.plugins.library/library/metadata/1", plexgo.Float64(123))
+                res, err := s.Playlists.AddPlaylistContents(ctx, 7013.44, "server://12345/com.plexapp.plugins.library/library/metadata/1", plexgo.Float64(123))
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -2022,6 +2033,7 @@ actions:
             import(
             	"context"
             	"github.com/LukeHagar/plexgo"
+            	"github.com/LukeHagar/plexgo/models/operations"
             	"log"
             )
 
@@ -2032,7 +2044,7 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                 )
 
-                res, err := s.Plex.GetServerResources(ctx, "3381b62b-9ab7-4e37-827b-203e9809eb58", nil, nil, nil)
+                res, err := s.Plex.GetServerResources(ctx, "3381b62b-9ab7-4e37-827b-203e9809eb58", operations.IncludeHTTPSEnable.ToPointer(), operations.IncludeRelayEnable.ToPointer(), operations.IncludeIPv6Enable.ToPointer())
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -2090,7 +2102,7 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                 )
 
-                res, err := s.Authentication.GetSourceConnectionInformation(ctx, "provider://provider-identifier")
+                res, err := s.Authentication.GetSourceConnectionInformation(ctx, "server://client-identifier")
                 if err != nil {
                     log.Fatal(err)
                 }

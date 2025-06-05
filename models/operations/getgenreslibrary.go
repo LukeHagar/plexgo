@@ -15,13 +15,15 @@ import (
 type GetGenresLibraryQueryParamType int64
 
 const (
-	GetGenresLibraryQueryParamTypeMovie   GetGenresLibraryQueryParamType = 1
-	GetGenresLibraryQueryParamTypeTvShow  GetGenresLibraryQueryParamType = 2
-	GetGenresLibraryQueryParamTypeSeason  GetGenresLibraryQueryParamType = 3
-	GetGenresLibraryQueryParamTypeEpisode GetGenresLibraryQueryParamType = 4
-	GetGenresLibraryQueryParamTypeAudio   GetGenresLibraryQueryParamType = 8
-	GetGenresLibraryQueryParamTypeAlbum   GetGenresLibraryQueryParamType = 9
-	GetGenresLibraryQueryParamTypeTrack   GetGenresLibraryQueryParamType = 10
+	GetGenresLibraryQueryParamTypeMovie      GetGenresLibraryQueryParamType = 1
+	GetGenresLibraryQueryParamTypeTvShow     GetGenresLibraryQueryParamType = 2
+	GetGenresLibraryQueryParamTypeSeason     GetGenresLibraryQueryParamType = 3
+	GetGenresLibraryQueryParamTypeEpisode    GetGenresLibraryQueryParamType = 4
+	GetGenresLibraryQueryParamTypeArtist     GetGenresLibraryQueryParamType = 5
+	GetGenresLibraryQueryParamTypeAlbum      GetGenresLibraryQueryParamType = 6
+	GetGenresLibraryQueryParamTypeTrack      GetGenresLibraryQueryParamType = 7
+	GetGenresLibraryQueryParamTypePhotoAlbum GetGenresLibraryQueryParamType = 8
+	GetGenresLibraryQueryParamTypePhoto      GetGenresLibraryQueryParamType = 9
 )
 
 func (e GetGenresLibraryQueryParamType) ToPointer() *GetGenresLibraryQueryParamType {

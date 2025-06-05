@@ -19,13 +19,15 @@ import (
 type QueryParamType int64
 
 const (
-	QueryParamTypeMovie   QueryParamType = 1
-	QueryParamTypeTvShow  QueryParamType = 2
-	QueryParamTypeSeason  QueryParamType = 3
-	QueryParamTypeEpisode QueryParamType = 4
-	QueryParamTypeAudio   QueryParamType = 8
-	QueryParamTypeAlbum   QueryParamType = 9
-	QueryParamTypeTrack   QueryParamType = 10
+	QueryParamTypeMovie      QueryParamType = 1
+	QueryParamTypeTvShow     QueryParamType = 2
+	QueryParamTypeSeason     QueryParamType = 3
+	QueryParamTypeEpisode    QueryParamType = 4
+	QueryParamTypeArtist     QueryParamType = 5
+	QueryParamTypeAlbum      QueryParamType = 6
+	QueryParamTypeTrack      QueryParamType = 7
+	QueryParamTypePhotoAlbum QueryParamType = 8
+	QueryParamTypePhoto      QueryParamType = 9
 )
 
 func (e QueryParamType) ToPointer() *QueryParamType {

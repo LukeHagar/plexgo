@@ -13,12 +13,16 @@ import (
 type GetAllLibrariesType string
 
 const (
-	GetAllLibrariesTypeMovie   GetAllLibrariesType = "movie"
-	GetAllLibrariesTypeTvShow  GetAllLibrariesType = "show"
-	GetAllLibrariesTypeSeason  GetAllLibrariesType = "season"
-	GetAllLibrariesTypeEpisode GetAllLibrariesType = "episode"
-	GetAllLibrariesTypeArtist  GetAllLibrariesType = "artist"
-	GetAllLibrariesTypeAlbum   GetAllLibrariesType = "album"
+	GetAllLibrariesTypeMovie      GetAllLibrariesType = "movie"
+	GetAllLibrariesTypeTvShow     GetAllLibrariesType = "show"
+	GetAllLibrariesTypeSeason     GetAllLibrariesType = "season"
+	GetAllLibrariesTypeEpisode    GetAllLibrariesType = "episode"
+	GetAllLibrariesTypeArtist     GetAllLibrariesType = "artist"
+	GetAllLibrariesTypeAlbum      GetAllLibrariesType = "album"
+	GetAllLibrariesTypeTrack      GetAllLibrariesType = "track"
+	GetAllLibrariesTypePhotoAlbum GetAllLibrariesType = "photoalbum"
+	GetAllLibrariesTypePhoto      GetAllLibrariesType = "photo"
+	GetAllLibrariesTypeCollection GetAllLibrariesType = "collection"
 )
 
 func (e GetAllLibrariesType) ToPointer() *GetAllLibrariesType {

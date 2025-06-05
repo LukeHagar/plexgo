@@ -14,7 +14,7 @@ API Calls interacting with Plex Media Server Libraries
 * [GetLibraryDetails](#getlibrarydetails) - Get Library Details
 * [DeleteLibrary](#deletelibrary) - Delete Library Section
 * [GetLibraryItems](#getlibraryitems) - Get Library Items
-* [GetAllMediaLibrary](#getallmedialibrary) - Get all media of library
+* [GetLibrarySectionsAll](#getlibrarysectionsall) - Get Library section media by tag ALL
 * [GetRefreshLibraryMetadata](#getrefreshlibrarymetadata) - Refresh Metadata Of The Library
 * [GetSearchLibrary](#getsearchlibrary) - Search Library
 * [GetGenresLibrary](#getgenreslibrary) - Get Genres of library media
@@ -124,6 +124,7 @@ func main() {
         },
         SectionID: plexgo.Int64(2),
         Type: operations.QueryParamTypeTvShow,
+        IncludeMeta: operations.QueryParamIncludeMetaEnable.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -262,6 +263,7 @@ package main
 import(
 	"context"
 	"github.com/LukeHagar/plexgo"
+	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
@@ -272,7 +274,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Library.GetLibraryDetails(ctx, 9518, nil)
+    res, err := s.Library.GetLibraryDetails(ctx, 9518, operations.IncludeDetailsZero.ToPointer())
     if err != nil {
         log.Fatal(err)
     }
@@ -400,9 +402,11 @@ func main() {
     )
 
     res, err := s.Library.GetLibraryItems(ctx, operations.GetLibraryItemsRequest{
-        Tag: operations.TagEdition,
+        Tag: operations.TagNewest,
+        IncludeGuids: operations.IncludeGuidsEnable.ToPointer(),
         Type: operations.GetLibraryItemsQueryParamTypeTvShow,
         SectionKey: 9518,
+        IncludeMeta: operations.GetLibraryItemsQueryParamIncludeMetaEnable.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -433,7 +437,7 @@ func main() {
 | sdkerrors.GetLibraryItemsUnauthorized | 401                                   | application/json                      |
 | sdkerrors.SDKError                    | 4XX, 5XX                              | \*/\*                                 |
 
-## GetAllMediaLibrary
+## GetLibrarySectionsAll
 
 Retrieves a list of all general media data for this library.
 
@@ -457,9 +461,14 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Library.GetAllMediaLibrary(ctx, operations.GetAllMediaLibraryRequest{
+    res, err := s.Library.GetLibrarySectionsAll(ctx, operations.GetLibrarySectionsAllRequest{
         SectionKey: 9518,
-        Type: operations.GetAllMediaLibraryQueryParamTypeTvShow,
+        Type: operations.GetLibrarySectionsAllQueryParamTypeTvShow,
+        IncludeMeta: operations.GetLibrarySectionsAllQueryParamIncludeMetaEnable.ToPointer(),
+        IncludeGuids: operations.QueryParamIncludeGuidsEnable.ToPointer(),
+        IncludeAdvanced: operations.IncludeAdvancedEnable.ToPointer(),
+        IncludeCollections: operations.QueryParamIncludeCollectionsEnable.ToPointer(),
+        IncludeExternalMedia: operations.QueryParamIncludeExternalMediaEnable.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -472,23 +481,23 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
-| `request`                                                                                    | [operations.GetAllMediaLibraryRequest](../../models/operations/getallmedialibraryrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `opts`                                                                                       | [][operations.Option](../../models/operations/option.md)                                     | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
+| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
+| `request`                                                                                          | [operations.GetLibrarySectionsAllRequest](../../models/operations/getlibrarysectionsallrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+| `opts`                                                                                             | [][operations.Option](../../models/operations/option.md)                                           | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
 
 ### Response
 
-**[*operations.GetAllMediaLibraryResponse](../../models/operations/getallmedialibraryresponse.md), error**
+**[*operations.GetLibrarySectionsAllResponse](../../models/operations/getlibrarysectionsallresponse.md), error**
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| sdkerrors.GetAllMediaLibraryBadRequest   | 400                                      | application/json                         |
-| sdkerrors.GetAllMediaLibraryUnauthorized | 401                                      | application/json                         |
-| sdkerrors.SDKError                       | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                                  | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| sdkerrors.GetLibrarySectionsAllBadRequest   | 400                                         | application/json                            |
+| sdkerrors.GetLibrarySectionsAllUnauthorized | 401                                         | application/json                            |
+| sdkerrors.SDKError                          | 4XX, 5XX                                    | \*/\*                                       |
 
 ## GetRefreshLibraryMetadata
 
@@ -514,7 +523,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Library.GetRefreshLibraryMetadata(ctx, 9518, operations.ForceOne.ToPointer())
+    res, err := s.Library.GetRefreshLibraryMetadata(ctx, 9518, operations.ForceZero.ToPointer())
     if err != nil {
         log.Fatal(err)
     }
@@ -812,6 +821,8 @@ func main() {
         SearchTypes: []operations.SearchTypes{
             operations.SearchTypesPeople,
         },
+        IncludeCollections: operations.GetSearchAllLibrariesQueryParamIncludeCollectionsEnable.ToPointer(),
+        IncludeExternalMedia: operations.GetSearchAllLibrariesQueryParamIncludeExternalMediaEnable.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -844,7 +855,8 @@ func main() {
 
 ## GetMediaMetaData
 
-This endpoint will return all the (meta)data of a library item specified with by the ratingKey.
+This endpoint will return all the (meta)data of one or more library items specified by the ratingKey.
+Multiple rating keys can be provided as a comma-separated list (e.g., "21119,21617").
 
 
 ### Example Usage
@@ -867,7 +879,7 @@ func main() {
     )
 
     res, err := s.Library.GetMediaMetaData(ctx, operations.GetMediaMetaDataRequest{
-        RatingKey: 9518,
+        RatingKey: "21119,21617",
         IncludeConcerts: plexgo.Bool(true),
         IncludeExtras: plexgo.Bool(true),
         IncludeOnDeck: plexgo.Bool(true),
@@ -1138,7 +1150,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Library.GetMetadataChildren(ctx, 1539.14, plexgo.String("Stream"))
+    res, err := s.Library.GetMetadataChildren(ctx, 2403.67, plexgo.String("Stream"))
     if err != nil {
         log.Fatal(err)
     }
@@ -1193,7 +1205,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Library.GetTopWatchedContent(ctx, operations.GetTopWatchedContentQueryParamTypeTvShow, plexgo.Int64(1))
+    res, err := s.Library.GetTopWatchedContent(ctx, operations.GetTopWatchedContentQueryParamTypeTvShow, operations.GetTopWatchedContentQueryParamIncludeGuidsEnable.ToPointer())
     if err != nil {
         log.Fatal(err)
     }
@@ -1209,7 +1221,7 @@ func main() {
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                                        | :heavy_check_mark:                                                                                                                                                                           | The context to use for the request.                                                                                                                                                          |                                                                                                                                                                                              |
 | `type_`                                                                                                                                                                                      | [operations.GetTopWatchedContentQueryParamType](../../models/operations/gettopwatchedcontentqueryparamtype.md)                                                                               | :heavy_check_mark:                                                                                                                                                                           | The type of media to retrieve or filter by.<br/>1 = movie<br/>2 = show<br/>3 = season<br/>4 = episode<br/>E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries<br/> | 2                                                                                                                                                                                            |
-| `includeGuids`                                                                                                                                                                               | **int64*                                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                           | Adds the Guids object to the response<br/>                                                                                                                                                   | 1                                                                                                                                                                                            |
+| `includeGuids`                                                                                                                                                                               | [*operations.GetTopWatchedContentQueryParamIncludeGuids](../../models/operations/gettopwatchedcontentqueryparamincludeguids.md)                                                              | :heavy_minus_sign:                                                                                                                                                                           | Adds the Guid object to the response<br/>                                                                                                                                                    | 1                                                                                                                                                                                            |
 | `opts`                                                                                                                                                                                       | [][operations.Option](../../models/operations/option.md)                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                           | The options for this request.                                                                                                                                                                |                                                                                                                                                                                              |
 
 ### Response

@@ -17,13 +17,15 @@ import (
 type GetPlaylistContentsQueryParamType int64
 
 const (
-	GetPlaylistContentsQueryParamTypeMovie   GetPlaylistContentsQueryParamType = 1
-	GetPlaylistContentsQueryParamTypeTvShow  GetPlaylistContentsQueryParamType = 2
-	GetPlaylistContentsQueryParamTypeSeason  GetPlaylistContentsQueryParamType = 3
-	GetPlaylistContentsQueryParamTypeEpisode GetPlaylistContentsQueryParamType = 4
-	GetPlaylistContentsQueryParamTypeAudio   GetPlaylistContentsQueryParamType = 8
-	GetPlaylistContentsQueryParamTypeAlbum   GetPlaylistContentsQueryParamType = 9
-	GetPlaylistContentsQueryParamTypeTrack   GetPlaylistContentsQueryParamType = 10
+	GetPlaylistContentsQueryParamTypeMovie      GetPlaylistContentsQueryParamType = 1
+	GetPlaylistContentsQueryParamTypeTvShow     GetPlaylistContentsQueryParamType = 2
+	GetPlaylistContentsQueryParamTypeSeason     GetPlaylistContentsQueryParamType = 3
+	GetPlaylistContentsQueryParamTypeEpisode    GetPlaylistContentsQueryParamType = 4
+	GetPlaylistContentsQueryParamTypeArtist     GetPlaylistContentsQueryParamType = 5
+	GetPlaylistContentsQueryParamTypeAlbum      GetPlaylistContentsQueryParamType = 6
+	GetPlaylistContentsQueryParamTypeTrack      GetPlaylistContentsQueryParamType = 7
+	GetPlaylistContentsQueryParamTypePhotoAlbum GetPlaylistContentsQueryParamType = 8
+	GetPlaylistContentsQueryParamTypePhoto      GetPlaylistContentsQueryParamType = 9
 )
 
 func (e GetPlaylistContentsQueryParamType) ToPointer() *GetPlaylistContentsQueryParamType {

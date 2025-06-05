@@ -348,10 +348,9 @@ func main() {
     res, err := s.Server.GetResizedPhoto(ctx, operations.GetResizedPhotoRequest{
         Width: 110,
         Height: 165,
-        Opacity: 100,
         Blur: 0,
-        MinSize: operations.MinSizeOne,
-        Upscale: operations.UpscaleOne,
+        MinSize: operations.MinSizeZero,
+        Upscale: operations.UpscaleZero,
         URL: "/library/metadata/49564/thumb/1654258204",
     })
     if err != nil {

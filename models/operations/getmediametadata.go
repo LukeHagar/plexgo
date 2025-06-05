@@ -12,8 +12,8 @@ import (
 )
 
 type GetMediaMetaDataRequest struct {
-	// the id of the library item to return the children of.
-	RatingKey int64 `pathParam:"style=simple,explode=false,name=ratingKey"`
+	// The id(s) of the library item(s) to return metadata for. Can be a single ID or comma-separated list of IDs.
+	RatingKey string `pathParam:"style=simple,explode=false,name=ratingKey"`
 	// Include concerts data if set to true.
 	IncludeConcerts *bool `queryParam:"style=form,explode=true,name=includeConcerts"`
 	// Include extra content (e.g. bonus features).
@@ -42,9 +42,9 @@ type GetMediaMetaDataRequest struct {
 	AsyncRefreshLocalMediaAgent *bool `queryParam:"style=form,explode=true,name=asyncRefreshLocalMediaAgent"`
 }
 
-func (o *GetMediaMetaDataRequest) GetRatingKey() int64 {
+func (o *GetMediaMetaDataRequest) GetRatingKey() string {
 	if o == nil {
-		return 0
+		return ""
 	}
 	return o.RatingKey
 }
@@ -140,16 +140,20 @@ func (o *GetMediaMetaDataRequest) GetAsyncRefreshLocalMediaAgent() *bool {
 	return o.AsyncRefreshLocalMediaAgent
 }
 
-// GetMediaMetaDataType - The type of media content
+// GetMediaMetaDataType - The type of media content in the Plex library. This can represent videos, music, or photos.
 type GetMediaMetaDataType string
 
 const (
-	GetMediaMetaDataTypeMovie   GetMediaMetaDataType = "movie"
-	GetMediaMetaDataTypeTvShow  GetMediaMetaDataType = "show"
-	GetMediaMetaDataTypeSeason  GetMediaMetaDataType = "season"
-	GetMediaMetaDataTypeEpisode GetMediaMetaDataType = "episode"
-	GetMediaMetaDataTypeArtist  GetMediaMetaDataType = "artist"
-	GetMediaMetaDataTypeAlbum   GetMediaMetaDataType = "album"
+	GetMediaMetaDataTypeMovie      GetMediaMetaDataType = "movie"
+	GetMediaMetaDataTypeTvShow     GetMediaMetaDataType = "show"
+	GetMediaMetaDataTypeSeason     GetMediaMetaDataType = "season"
+	GetMediaMetaDataTypeEpisode    GetMediaMetaDataType = "episode"
+	GetMediaMetaDataTypeArtist     GetMediaMetaDataType = "artist"
+	GetMediaMetaDataTypeAlbum      GetMediaMetaDataType = "album"
+	GetMediaMetaDataTypeTrack      GetMediaMetaDataType = "track"
+	GetMediaMetaDataTypePhotoAlbum GetMediaMetaDataType = "photoalbum"
+	GetMediaMetaDataTypePhoto      GetMediaMetaDataType = "photo"
+	GetMediaMetaDataTypeCollection GetMediaMetaDataType = "collection"
 )
 
 func (e GetMediaMetaDataType) ToPointer() *GetMediaMetaDataType {
@@ -229,6 +233,19 @@ func (o *GetMediaMetaDataUltraBlurColors) GetBottomLeft() string {
 		return ""
 	}
 	return o.BottomLeft
+}
+
+type GetMediaMetaDataGuids struct {
+	// The unique identifier for the Guid. Can be prefixed with imdb://, tmdb://, tvdb://
+	//
+	ID string `json:"id"`
+}
+
+func (o *GetMediaMetaDataGuids) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
 }
 
 type GetMediaMetaDataOptimizedForStreaming1 int
@@ -1244,14 +1261,17 @@ func (o *GetMediaMetaDataMedia) GetPart() []GetMediaMetaDataPart {
 
 // GetMediaMetaDataGenre - The filter query string for similar items.
 type GetMediaMetaDataGenre struct {
-	ID int64 `json:"id"`
+	// The unique identifier for the genre.
+	// NOTE: This is different for each Plex server and is not globally unique.
+	//
+	ID int `json:"id"`
 	// The genre name of this media-item
 	//
 	Tag    string `json:"tag"`
 	Filter string `json:"filter"`
 }
 
-func (o *GetMediaMetaDataGenre) GetID() int64 {
+func (o *GetMediaMetaDataGenre) GetID() int {
 	if o == nil {
 		return 0
 	}
@@ -1274,10 +1294,13 @@ func (o *GetMediaMetaDataGenre) GetFilter() string {
 
 // GetMediaMetaDataCountry - The filter query string for country media items.
 type GetMediaMetaDataCountry struct {
+	// The unique identifier for the country.
+	// NOTE: This is different for each Plex server and is not globally unique.
+	//
 	ID int `json:"id"`
 	// The country of origin of this media item
-	Tag    string  `json:"tag"`
-	Filter *string `json:"filter,omitempty"`
+	Tag    string `json:"tag"`
+	Filter string `json:"filter"`
 }
 
 func (o *GetMediaMetaDataCountry) GetID() int {
@@ -1294,9 +1317,9 @@ func (o *GetMediaMetaDataCountry) GetTag() string {
 	return o.Tag
 }
 
-func (o *GetMediaMetaDataCountry) GetFilter() *string {
+func (o *GetMediaMetaDataCountry) GetFilter() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.Filter
 }
@@ -1308,9 +1331,9 @@ type GetMediaMetaDataDirector struct {
 	Tag string `json:"tag"`
 	// The filter string used to query this director.
 	Filter string `json:"filter"`
-	// A unique key associated with the director's tag, used for internal identification.
-	TagKey *string `json:"tagKey,omitempty"`
-	// The URL of the thumbnail image for the director.
+	// A unique 24-character hexadecimal key associated with the director's tag, used for internal identification.
+	TagKey string `json:"tagKey"`
+	// The absolute URL of the thumbnail image for the director.
 	Thumb *string `json:"thumb,omitempty"`
 }
 
@@ -1335,9 +1358,9 @@ func (o *GetMediaMetaDataDirector) GetFilter() string {
 	return o.Filter
 }
 
-func (o *GetMediaMetaDataDirector) GetTagKey() *string {
+func (o *GetMediaMetaDataDirector) GetTagKey() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.TagKey
 }
@@ -1356,9 +1379,9 @@ type GetMediaMetaDataWriter struct {
 	Tag string `json:"tag"`
 	// The filter string used to query this writer.
 	Filter string `json:"filter"`
-	// The URL of the thumbnail image for the writer.
+	// The absolute URL of the thumbnail image for the writer.
 	Thumb *string `json:"thumb,omitempty"`
-	// A unique key associated with the writers tag, used for internal identification.
+	// A 24-character hexadecimal unique key associated with the writer’s tag, used for internal identification.
 	TagKey *string `json:"tagKey,omitempty"`
 }
 
@@ -1455,21 +1478,25 @@ func (o *GetMediaMetaDataProducer) GetThumb() *string {
 }
 
 type GetMediaMetaDataRole struct {
-	// Unique identifier for the actor or role.
-	ID int64 `json:"id"`
+	// The unique identifier for the role.
+	// NOTE: This is different for each Plex server and is not globally unique.
+	//
+	ID int `json:"id"`
 	// The display tag for the actor (typically the actor's name).
 	Tag string `json:"tag"`
 	// The role played by the actor in the media item.
 	Role *string `json:"role,omitempty"`
 	// The filter string used to query this actor. For example, it may indicate that this is an actor with a given key.
 	Filter string `json:"filter"`
-	// A unique key associated with the actor's tag, used for internal identification.
-	TagKey *string `json:"tagKey,omitempty"`
-	// The URL of the thumbnail image for the actor.
+	// A 24-character hexadecimal unique key associated with the actor's tag, used for internal identification.
+	// NOTE: This is globally unique across all Plex Servers.
+	//
+	TagKey string `json:"tagKey"`
+	// The absolute URL of the thumbnail image for the actor.
 	Thumb *string `json:"thumb,omitempty"`
 }
 
-func (o *GetMediaMetaDataRole) GetID() int64 {
+func (o *GetMediaMetaDataRole) GetID() int {
 	if o == nil {
 		return 0
 	}
@@ -1497,9 +1524,9 @@ func (o *GetMediaMetaDataRole) GetFilter() string {
 	return o.Filter
 }
 
-func (o *GetMediaMetaDataRole) GetTagKey() *string {
+func (o *GetMediaMetaDataRole) GetTagKey() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.TagKey
 }
@@ -1509,18 +1536,6 @@ func (o *GetMediaMetaDataRole) GetThumb() *string {
 		return nil
 	}
 	return o.Thumb
-}
-
-type GetMediaMetaDataGuids struct {
-	// The GUID value.
-	ID string `json:"id"`
-}
-
-func (o *GetMediaMetaDataGuids) GetID() string {
-	if o == nil {
-		return ""
-	}
-	return o.ID
 }
 
 type Ratings struct {
@@ -1850,6 +1865,7 @@ type GetMediaMetaDataMetadata struct {
 	LibrarySectionTitle string `json:"librarySectionTitle"`
 	// The key corresponding to the library section.
 	LibrarySectionKey string                     `json:"librarySectionKey"`
+	Guids             []GetMediaMetaDataGuids    `json:"Guid,omitempty"`
 	Media             []GetMediaMetaDataMedia    `json:"Media,omitempty"`
 	Genre             []GetMediaMetaDataGenre    `json:"Genre,omitempty"`
 	Country           []GetMediaMetaDataCountry  `json:"Country,omitempty"`
@@ -1857,7 +1873,6 @@ type GetMediaMetaDataMetadata struct {
 	Writer            []GetMediaMetaDataWriter   `json:"Writer,omitempty"`
 	Producer          []GetMediaMetaDataProducer `json:"Producer,omitempty"`
 	Role              []GetMediaMetaDataRole     `json:"Role,omitempty"`
-	Guids             []GetMediaMetaDataGuids    `json:"Guid,omitempty"`
 	Ratings           []Ratings                  `json:"Rating,omitempty"`
 	Similar           []GetMediaMetaDataSimilar  `json:"Similar,omitempty"`
 	Location          []GetMediaMetaDataLocation `json:"Location,omitempty"`
@@ -2290,6 +2305,13 @@ func (o *GetMediaMetaDataMetadata) GetLibrarySectionKey() string {
 	return o.LibrarySectionKey
 }
 
+func (o *GetMediaMetaDataMetadata) GetGuids() []GetMediaMetaDataGuids {
+	if o == nil {
+		return nil
+	}
+	return o.Guids
+}
+
 func (o *GetMediaMetaDataMetadata) GetMedia() []GetMediaMetaDataMedia {
 	if o == nil {
 		return nil
@@ -2337,13 +2359,6 @@ func (o *GetMediaMetaDataMetadata) GetRole() []GetMediaMetaDataRole {
 		return nil
 	}
 	return o.Role
-}
-
-func (o *GetMediaMetaDataMetadata) GetGuids() []GetMediaMetaDataGuids {
-	if o == nil {
-		return nil
-	}
-	return o.Guids
 }
 
 func (o *GetMediaMetaDataMetadata) GetRatings() []Ratings {

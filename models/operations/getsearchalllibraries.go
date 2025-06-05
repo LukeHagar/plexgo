@@ -147,16 +147,20 @@ func (o *GetSearchAllLibrariesRequest) GetIncludeExternalMedia() *GetSearchAllLi
 	return o.IncludeExternalMedia
 }
 
-// GetSearchAllLibrariesType - The type of media content
+// GetSearchAllLibrariesType - The type of media content in the Plex library. This can represent videos, music, or photos.
 type GetSearchAllLibrariesType string
 
 const (
-	GetSearchAllLibrariesTypeMovie   GetSearchAllLibrariesType = "movie"
-	GetSearchAllLibrariesTypeTvShow  GetSearchAllLibrariesType = "show"
-	GetSearchAllLibrariesTypeSeason  GetSearchAllLibrariesType = "season"
-	GetSearchAllLibrariesTypeEpisode GetSearchAllLibrariesType = "episode"
-	GetSearchAllLibrariesTypeArtist  GetSearchAllLibrariesType = "artist"
-	GetSearchAllLibrariesTypeAlbum   GetSearchAllLibrariesType = "album"
+	GetSearchAllLibrariesTypeMovie      GetSearchAllLibrariesType = "movie"
+	GetSearchAllLibrariesTypeTvShow     GetSearchAllLibrariesType = "show"
+	GetSearchAllLibrariesTypeSeason     GetSearchAllLibrariesType = "season"
+	GetSearchAllLibrariesTypeEpisode    GetSearchAllLibrariesType = "episode"
+	GetSearchAllLibrariesTypeArtist     GetSearchAllLibrariesType = "artist"
+	GetSearchAllLibrariesTypeAlbum      GetSearchAllLibrariesType = "album"
+	GetSearchAllLibrariesTypeTrack      GetSearchAllLibrariesType = "track"
+	GetSearchAllLibrariesTypePhotoAlbum GetSearchAllLibrariesType = "photoalbum"
+	GetSearchAllLibrariesTypePhoto      GetSearchAllLibrariesType = "photo"
+	GetSearchAllLibrariesTypeCollection GetSearchAllLibrariesType = "collection"
 )
 
 func (e GetSearchAllLibrariesType) ToPointer() *GetSearchAllLibrariesType {
@@ -1146,7 +1150,7 @@ type GetSearchAllLibrariesMetadata struct {
 	LibrarySectionID    *int64  `json:"librarySectionID,omitempty"`
 	LibrarySectionTitle *string `json:"librarySectionTitle,omitempty"`
 	LibrarySectionKey   *string `json:"librarySectionKey,omitempty"`
-	// The type of media content
+	// The type of media content in the Plex library. This can represent videos, music, or photos.
 	//
 	Type           GetSearchAllLibrariesType `json:"type"`
 	Title          string                    `json:"title"`

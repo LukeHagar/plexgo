@@ -15,13 +15,15 @@ import (
 type GetSearchLibraryQueryParamType int64
 
 const (
-	GetSearchLibraryQueryParamTypeMovie   GetSearchLibraryQueryParamType = 1
-	GetSearchLibraryQueryParamTypeTvShow  GetSearchLibraryQueryParamType = 2
-	GetSearchLibraryQueryParamTypeSeason  GetSearchLibraryQueryParamType = 3
-	GetSearchLibraryQueryParamTypeEpisode GetSearchLibraryQueryParamType = 4
-	GetSearchLibraryQueryParamTypeAudio   GetSearchLibraryQueryParamType = 8
-	GetSearchLibraryQueryParamTypeAlbum   GetSearchLibraryQueryParamType = 9
-	GetSearchLibraryQueryParamTypeTrack   GetSearchLibraryQueryParamType = 10
+	GetSearchLibraryQueryParamTypeMovie      GetSearchLibraryQueryParamType = 1
+	GetSearchLibraryQueryParamTypeTvShow     GetSearchLibraryQueryParamType = 2
+	GetSearchLibraryQueryParamTypeSeason     GetSearchLibraryQueryParamType = 3
+	GetSearchLibraryQueryParamTypeEpisode    GetSearchLibraryQueryParamType = 4
+	GetSearchLibraryQueryParamTypeArtist     GetSearchLibraryQueryParamType = 5
+	GetSearchLibraryQueryParamTypeAlbum      GetSearchLibraryQueryParamType = 6
+	GetSearchLibraryQueryParamTypeTrack      GetSearchLibraryQueryParamType = 7
+	GetSearchLibraryQueryParamTypePhotoAlbum GetSearchLibraryQueryParamType = 8
+	GetSearchLibraryQueryParamTypePhoto      GetSearchLibraryQueryParamType = 9
 )
 
 func (e GetSearchLibraryQueryParamType) ToPointer() *GetSearchLibraryQueryParamType {

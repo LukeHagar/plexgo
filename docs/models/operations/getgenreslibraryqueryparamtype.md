@@ -11,12 +11,14 @@ E.g. A movie library will not return anything with type 3 as there are no season
 
 ## Values
 
-| Name                                    | Value                                   |
-| --------------------------------------- | --------------------------------------- |
-| `GetGenresLibraryQueryParamTypeMovie`   | 1                                       |
-| `GetGenresLibraryQueryParamTypeTvShow`  | 2                                       |
-| `GetGenresLibraryQueryParamTypeSeason`  | 3                                       |
-| `GetGenresLibraryQueryParamTypeEpisode` | 4                                       |
-| `GetGenresLibraryQueryParamTypeAudio`   | 8                                       |
-| `GetGenresLibraryQueryParamTypeAlbum`   | 9                                       |
-| `GetGenresLibraryQueryParamTypeTrack`   | 10                                      |
+| Name                                       | Value                                      |
+| ------------------------------------------ | ------------------------------------------ |
+| `GetGenresLibraryQueryParamTypeMovie`      | 1                                          |
+| `GetGenresLibraryQueryParamTypeTvShow`     | 2                                          |
+| `GetGenresLibraryQueryParamTypeSeason`     | 3                                          |
+| `GetGenresLibraryQueryParamTypeEpisode`    | 4                                          |
+| `GetGenresLibraryQueryParamTypeArtist`     | 5                                          |
+| `GetGenresLibraryQueryParamTypeAlbum`      | 6                                          |
+| `GetGenresLibraryQueryParamTypeTrack`      | 7                                          |
+| `GetGenresLibraryQueryParamTypePhotoAlbum` | 8                                          |
+| `GetGenresLibraryQueryParamTypePhoto`      | 9                                          |

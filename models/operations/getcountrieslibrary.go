@@ -15,13 +15,15 @@ import (
 type GetCountriesLibraryQueryParamType int64
 
 const (
-	GetCountriesLibraryQueryParamTypeMovie   GetCountriesLibraryQueryParamType = 1
-	GetCountriesLibraryQueryParamTypeTvShow  GetCountriesLibraryQueryParamType = 2
-	GetCountriesLibraryQueryParamTypeSeason  GetCountriesLibraryQueryParamType = 3
-	GetCountriesLibraryQueryParamTypeEpisode GetCountriesLibraryQueryParamType = 4
-	GetCountriesLibraryQueryParamTypeAudio   GetCountriesLibraryQueryParamType = 8
-	GetCountriesLibraryQueryParamTypeAlbum   GetCountriesLibraryQueryParamType = 9
-	GetCountriesLibraryQueryParamTypeTrack   GetCountriesLibraryQueryParamType = 10
+	GetCountriesLibraryQueryParamTypeMovie      GetCountriesLibraryQueryParamType = 1
+	GetCountriesLibraryQueryParamTypeTvShow     GetCountriesLibraryQueryParamType = 2
+	GetCountriesLibraryQueryParamTypeSeason     GetCountriesLibraryQueryParamType = 3
+	GetCountriesLibraryQueryParamTypeEpisode    GetCountriesLibraryQueryParamType = 4
+	GetCountriesLibraryQueryParamTypeArtist     GetCountriesLibraryQueryParamType = 5
+	GetCountriesLibraryQueryParamTypeAlbum      GetCountriesLibraryQueryParamType = 6
+	GetCountriesLibraryQueryParamTypeTrack      GetCountriesLibraryQueryParamType = 7
+	GetCountriesLibraryQueryParamTypePhotoAlbum GetCountriesLibraryQueryParamType = 8
+	GetCountriesLibraryQueryParamTypePhoto      GetCountriesLibraryQueryParamType = 9
 )
 
 func (e GetCountriesLibraryQueryParamType) ToPointer() *GetCountriesLibraryQueryParamType {

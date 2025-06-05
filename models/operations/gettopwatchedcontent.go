@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/LukeHagar/plexgo/internal/utils"
 	"github.com/LukeHagar/plexgo/types"
 	"net/http"
@@ -17,23 +19,49 @@ import (
 type GetTopWatchedContentQueryParamType int64
 
 const (
-	GetTopWatchedContentQueryParamTypeMovie   GetTopWatchedContentQueryParamType = 1
-	GetTopWatchedContentQueryParamTypeTvShow  GetTopWatchedContentQueryParamType = 2
-	GetTopWatchedContentQueryParamTypeSeason  GetTopWatchedContentQueryParamType = 3
-	GetTopWatchedContentQueryParamTypeEpisode GetTopWatchedContentQueryParamType = 4
-	GetTopWatchedContentQueryParamTypeAudio   GetTopWatchedContentQueryParamType = 8
-	GetTopWatchedContentQueryParamTypeAlbum   GetTopWatchedContentQueryParamType = 9
-	GetTopWatchedContentQueryParamTypeTrack   GetTopWatchedContentQueryParamType = 10
+	GetTopWatchedContentQueryParamTypeMovie      GetTopWatchedContentQueryParamType = 1
+	GetTopWatchedContentQueryParamTypeTvShow     GetTopWatchedContentQueryParamType = 2
+	GetTopWatchedContentQueryParamTypeSeason     GetTopWatchedContentQueryParamType = 3
+	GetTopWatchedContentQueryParamTypeEpisode    GetTopWatchedContentQueryParamType = 4
+	GetTopWatchedContentQueryParamTypeArtist     GetTopWatchedContentQueryParamType = 5
+	GetTopWatchedContentQueryParamTypeAlbum      GetTopWatchedContentQueryParamType = 6
+	GetTopWatchedContentQueryParamTypeTrack      GetTopWatchedContentQueryParamType = 7
+	GetTopWatchedContentQueryParamTypePhotoAlbum GetTopWatchedContentQueryParamType = 8
+	GetTopWatchedContentQueryParamTypePhoto      GetTopWatchedContentQueryParamType = 9
 )
 
 func (e GetTopWatchedContentQueryParamType) ToPointer() *GetTopWatchedContentQueryParamType {
 	return &e
 }
 
+// GetTopWatchedContentQueryParamIncludeGuids - Adds the Guid object to the response
+type GetTopWatchedContentQueryParamIncludeGuids int
+
+const (
+	GetTopWatchedContentQueryParamIncludeGuidsDisable GetTopWatchedContentQueryParamIncludeGuids = 0
+	GetTopWatchedContentQueryParamIncludeGuidsEnable  GetTopWatchedContentQueryParamIncludeGuids = 1
+)
+
+func (e GetTopWatchedContentQueryParamIncludeGuids) ToPointer() *GetTopWatchedContentQueryParamIncludeGuids {
+	return &e
+}
+func (e *GetTopWatchedContentQueryParamIncludeGuids) UnmarshalJSON(data []byte) error {
+	var v int
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case 0:
+		fallthrough
+	case 1:
+		*e = GetTopWatchedContentQueryParamIncludeGuids(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetTopWatchedContentQueryParamIncludeGuids: %v", v)
+	}
+}
+
 type GetTopWatchedContentRequest struct {
-	// Adds the Guids object to the response
-	//
-	IncludeGuids *int64 `queryParam:"style=form,explode=true,name=includeGuids"`
 	// The type of media to retrieve or filter by.
 	// 1 = movie
 	// 2 = show
@@ -42,13 +70,20 @@ type GetTopWatchedContentRequest struct {
 	// E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
 	//
 	Type GetTopWatchedContentQueryParamType `queryParam:"style=form,explode=true,name=type"`
+	// Adds the Guid object to the response
+	//
+	IncludeGuids *GetTopWatchedContentQueryParamIncludeGuids `default:"0" queryParam:"style=form,explode=true,name=includeGuids"`
 }
 
-func (o *GetTopWatchedContentRequest) GetIncludeGuids() *int64 {
-	if o == nil {
-		return nil
+func (g GetTopWatchedContentRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetTopWatchedContentRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+		return err
 	}
-	return o.IncludeGuids
+	return nil
 }
 
 func (o *GetTopWatchedContentRequest) GetType() GetTopWatchedContentQueryParamType {
@@ -56,6 +91,13 @@ func (o *GetTopWatchedContentRequest) GetType() GetTopWatchedContentQueryParamTy
 		return GetTopWatchedContentQueryParamType(0)
 	}
 	return o.Type
+}
+
+func (o *GetTopWatchedContentRequest) GetIncludeGuids() *GetTopWatchedContentQueryParamIncludeGuids {
+	if o == nil {
+		return nil
+	}
+	return o.IncludeGuids
 }
 
 type GetTopWatchedContentGenre struct {
@@ -456,45 +498,50 @@ func (o *GetTopWatchedContentMetadata) GetUser() []GetTopWatchedContentUser {
 }
 
 type GetTopWatchedContentMediaContainer struct {
-	Size            *int                           `json:"size,omitempty"`
-	AllowSync       *bool                          `json:"allowSync,omitempty"`
-	Identifier      *string                        `json:"identifier,omitempty"`
-	MediaTagPrefix  *string                        `json:"mediaTagPrefix,omitempty"`
-	MediaTagVersion *int                           `json:"mediaTagVersion,omitempty"`
+	// Number of media items returned in this response.
+	Size int `json:"size"`
+	// Indicates whether syncing is allowed.
+	AllowSync bool `json:"allowSync"`
+	// An plugin identifier for the media container.
+	Identifier string `json:"identifier"`
+	// The prefix used for media tag resource paths.
+	MediaTagPrefix string `json:"mediaTagPrefix"`
+	// The version number for media tags.
+	MediaTagVersion int64                          `json:"mediaTagVersion"`
 	Metadata        []GetTopWatchedContentMetadata `json:"Metadata,omitempty"`
 }
 
-func (o *GetTopWatchedContentMediaContainer) GetSize() *int {
+func (o *GetTopWatchedContentMediaContainer) GetSize() int {
 	if o == nil {
-		return nil
+		return 0
 	}
 	return o.Size
 }
 
-func (o *GetTopWatchedContentMediaContainer) GetAllowSync() *bool {
+func (o *GetTopWatchedContentMediaContainer) GetAllowSync() bool {
 	if o == nil {
-		return nil
+		return false
 	}
 	return o.AllowSync
 }
 
-func (o *GetTopWatchedContentMediaContainer) GetIdentifier() *string {
+func (o *GetTopWatchedContentMediaContainer) GetIdentifier() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.Identifier
 }
 
-func (o *GetTopWatchedContentMediaContainer) GetMediaTagPrefix() *string {
+func (o *GetTopWatchedContentMediaContainer) GetMediaTagPrefix() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.MediaTagPrefix
 }
 
-func (o *GetTopWatchedContentMediaContainer) GetMediaTagVersion() *int {
+func (o *GetTopWatchedContentMediaContainer) GetMediaTagVersion() int64 {
 	if o == nil {
-		return nil
+		return 0
 	}
 	return o.MediaTagVersion
 }

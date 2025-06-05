@@ -72,13 +72,15 @@ func (e *IncludeGuids) UnmarshalJSON(data []byte) error {
 type GetLibraryItemsQueryParamType int64
 
 const (
-	GetLibraryItemsQueryParamTypeMovie   GetLibraryItemsQueryParamType = 1
-	GetLibraryItemsQueryParamTypeTvShow  GetLibraryItemsQueryParamType = 2
-	GetLibraryItemsQueryParamTypeSeason  GetLibraryItemsQueryParamType = 3
-	GetLibraryItemsQueryParamTypeEpisode GetLibraryItemsQueryParamType = 4
-	GetLibraryItemsQueryParamTypeAudio   GetLibraryItemsQueryParamType = 8
-	GetLibraryItemsQueryParamTypeAlbum   GetLibraryItemsQueryParamType = 9
-	GetLibraryItemsQueryParamTypeTrack   GetLibraryItemsQueryParamType = 10
+	GetLibraryItemsQueryParamTypeMovie      GetLibraryItemsQueryParamType = 1
+	GetLibraryItemsQueryParamTypeTvShow     GetLibraryItemsQueryParamType = 2
+	GetLibraryItemsQueryParamTypeSeason     GetLibraryItemsQueryParamType = 3
+	GetLibraryItemsQueryParamTypeEpisode    GetLibraryItemsQueryParamType = 4
+	GetLibraryItemsQueryParamTypeArtist     GetLibraryItemsQueryParamType = 5
+	GetLibraryItemsQueryParamTypeAlbum      GetLibraryItemsQueryParamType = 6
+	GetLibraryItemsQueryParamTypeTrack      GetLibraryItemsQueryParamType = 7
+	GetLibraryItemsQueryParamTypePhotoAlbum GetLibraryItemsQueryParamType = 8
+	GetLibraryItemsQueryParamTypePhoto      GetLibraryItemsQueryParamType = 9
 )
 
 func (e GetLibraryItemsQueryParamType) ToPointer() *GetLibraryItemsQueryParamType {
@@ -532,16 +534,20 @@ func (o *GetLibraryItemsFieldType) GetOperator() []GetLibraryItemsOperator {
 	return o.Operator
 }
 
-// GetLibraryItemsLibraryType - The type of media content
+// GetLibraryItemsLibraryType - The type of media content in the Plex library. This can represent videos, music, or photos.
 type GetLibraryItemsLibraryType string
 
 const (
-	GetLibraryItemsLibraryTypeMovie   GetLibraryItemsLibraryType = "movie"
-	GetLibraryItemsLibraryTypeTvShow  GetLibraryItemsLibraryType = "show"
-	GetLibraryItemsLibraryTypeSeason  GetLibraryItemsLibraryType = "season"
-	GetLibraryItemsLibraryTypeEpisode GetLibraryItemsLibraryType = "episode"
-	GetLibraryItemsLibraryTypeArtist  GetLibraryItemsLibraryType = "artist"
-	GetLibraryItemsLibraryTypeAlbum   GetLibraryItemsLibraryType = "album"
+	GetLibraryItemsLibraryTypeMovie      GetLibraryItemsLibraryType = "movie"
+	GetLibraryItemsLibraryTypeTvShow     GetLibraryItemsLibraryType = "show"
+	GetLibraryItemsLibraryTypeSeason     GetLibraryItemsLibraryType = "season"
+	GetLibraryItemsLibraryTypeEpisode    GetLibraryItemsLibraryType = "episode"
+	GetLibraryItemsLibraryTypeArtist     GetLibraryItemsLibraryType = "artist"
+	GetLibraryItemsLibraryTypeAlbum      GetLibraryItemsLibraryType = "album"
+	GetLibraryItemsLibraryTypeTrack      GetLibraryItemsLibraryType = "track"
+	GetLibraryItemsLibraryTypePhotoAlbum GetLibraryItemsLibraryType = "photoalbum"
+	GetLibraryItemsLibraryTypePhoto      GetLibraryItemsLibraryType = "photo"
+	GetLibraryItemsLibraryTypeCollection GetLibraryItemsLibraryType = "collection"
 )
 
 func (e GetLibraryItemsLibraryType) ToPointer() *GetLibraryItemsLibraryType {
@@ -1531,7 +1537,7 @@ type GetLibraryItemsMetadata struct {
 	LibrarySectionID    *int64  `json:"librarySectionID,omitempty"`
 	LibrarySectionTitle *string `json:"librarySectionTitle,omitempty"`
 	LibrarySectionKey   *string `json:"librarySectionKey,omitempty"`
-	// The type of media content
+	// The type of media content in the Plex library. This can represent videos, music, or photos.
 	//
 	Type           GetLibraryItemsLibraryType `json:"type"`
 	Title          string                     `json:"title"`

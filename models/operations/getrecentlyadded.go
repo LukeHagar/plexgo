@@ -20,13 +20,15 @@ import (
 type Type int64
 
 const (
-	TypeMovie   Type = 1
-	TypeTvShow  Type = 2
-	TypeSeason  Type = 3
-	TypeEpisode Type = 4
-	TypeAudio   Type = 8
-	TypeAlbum   Type = 9
-	TypeTrack   Type = 10
+	TypeMovie      Type = 1
+	TypeTvShow     Type = 2
+	TypeSeason     Type = 3
+	TypeEpisode    Type = 4
+	TypeArtist     Type = 5
+	TypeAlbum      Type = 6
+	TypeTrack      Type = 7
+	TypePhotoAlbum Type = 8
+	TypePhoto      Type = 9
 )
 
 func (e Type) ToPointer() *Type {
@@ -497,16 +499,20 @@ func (o *Meta) GetFieldType() []GetRecentlyAddedFieldType {
 	return o.FieldType
 }
 
-// GetRecentlyAddedHubsType - The type of media content
+// GetRecentlyAddedHubsType - The type of media content in the Plex library. This can represent videos, music, or photos.
 type GetRecentlyAddedHubsType string
 
 const (
-	GetRecentlyAddedHubsTypeMovie   GetRecentlyAddedHubsType = "movie"
-	GetRecentlyAddedHubsTypeTvShow  GetRecentlyAddedHubsType = "show"
-	GetRecentlyAddedHubsTypeSeason  GetRecentlyAddedHubsType = "season"
-	GetRecentlyAddedHubsTypeEpisode GetRecentlyAddedHubsType = "episode"
-	GetRecentlyAddedHubsTypeArtist  GetRecentlyAddedHubsType = "artist"
-	GetRecentlyAddedHubsTypeAlbum   GetRecentlyAddedHubsType = "album"
+	GetRecentlyAddedHubsTypeMovie      GetRecentlyAddedHubsType = "movie"
+	GetRecentlyAddedHubsTypeTvShow     GetRecentlyAddedHubsType = "show"
+	GetRecentlyAddedHubsTypeSeason     GetRecentlyAddedHubsType = "season"
+	GetRecentlyAddedHubsTypeEpisode    GetRecentlyAddedHubsType = "episode"
+	GetRecentlyAddedHubsTypeArtist     GetRecentlyAddedHubsType = "artist"
+	GetRecentlyAddedHubsTypeAlbum      GetRecentlyAddedHubsType = "album"
+	GetRecentlyAddedHubsTypeTrack      GetRecentlyAddedHubsType = "track"
+	GetRecentlyAddedHubsTypePhotoAlbum GetRecentlyAddedHubsType = "photoalbum"
+	GetRecentlyAddedHubsTypePhoto      GetRecentlyAddedHubsType = "photo"
+	GetRecentlyAddedHubsTypeCollection GetRecentlyAddedHubsType = "collection"
 )
 
 func (e GetRecentlyAddedHubsType) ToPointer() *GetRecentlyAddedHubsType {
@@ -586,6 +592,19 @@ func (o *UltraBlurColors) GetBottomLeft() string {
 		return ""
 	}
 	return o.BottomLeft
+}
+
+type Guids struct {
+	// The unique identifier for the Guid. Can be prefixed with imdb://, tmdb://, tvdb://
+	//
+	ID string `json:"id"`
+}
+
+func (o *Guids) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
 }
 
 type One int
@@ -1601,14 +1620,17 @@ func (o *Media) GetPart() []Part {
 
 // Genre - The filter query string for similar items.
 type Genre struct {
-	ID     int64  `json:"id"`
+	// The unique identifier for the genre.
+	// NOTE: This is different for each Plex server and is not globally unique.
+	//
+	ID     int    `json:"id"`
 	Filter string `json:"filter"`
 	// The genre name of this media-item
 	//
 	Tag string `json:"tag"`
 }
 
-func (o *Genre) GetID() int64 {
+func (o *Genre) GetID() int {
 	if o == nil {
 		return 0
 	}
@@ -1631,10 +1653,13 @@ func (o *Genre) GetTag() string {
 
 // Country - The filter query string for country media items.
 type Country struct {
+	// The unique identifier for the country.
+	// NOTE: This is different for each Plex server and is not globally unique.
+	//
 	ID int `json:"id"`
 	// The country of origin of this media item
-	Tag    string  `json:"tag"`
-	Filter *string `json:"filter,omitempty"`
+	Tag    string `json:"tag"`
+	Filter string `json:"filter"`
 }
 
 func (o *Country) GetID() int {
@@ -1651,16 +1676,38 @@ func (o *Country) GetTag() string {
 	return o.Tag
 }
 
-func (o *Country) GetFilter() *string {
+func (o *Country) GetFilter() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.Filter
 }
 
 type Director struct {
+	// Unique identifier for the director.
+	ID int `json:"id"`
+	// The filter string used to query this director.
+	Filter string `json:"filter"`
 	// The role of Director
 	Tag string `json:"tag"`
+	// A unique 24-character hexadecimal key associated with the director's tag, used for internal identification.
+	TagKey string `json:"tagKey"`
+	// The absolute URL of the thumbnail image for the director.
+	Thumb *string `json:"thumb,omitempty"`
+}
+
+func (o *Director) GetID() int {
+	if o == nil {
+		return 0
+	}
+	return o.ID
+}
+
+func (o *Director) GetFilter() string {
+	if o == nil {
+		return ""
+	}
+	return o.Filter
 }
 
 func (o *Director) GetTag() string {
@@ -1670,6 +1717,20 @@ func (o *Director) GetTag() string {
 	return o.Tag
 }
 
+func (o *Director) GetTagKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.TagKey
+}
+
+func (o *Director) GetThumb() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Thumb
+}
+
 type Writer struct {
 	// Unique identifier for the writer.
 	ID int `json:"id"`
@@ -1677,8 +1738,10 @@ type Writer struct {
 	Filter string `json:"filter"`
 	// The role of Writer
 	Tag string `json:"tag"`
-	// A unique key associated with the writers tag, used for internal identification.
+	// A 24-character hexadecimal unique key associated with the writer’s tag, used for internal identification.
 	TagKey *string `json:"tagKey,omitempty"`
+	// The absolute URL of the thumbnail image for the writer.
+	Thumb *string `json:"thumb,omitempty"`
 }
 
 func (o *Writer) GetID() int {
@@ -1709,22 +1772,33 @@ func (o *Writer) GetTagKey() *string {
 	return o.TagKey
 }
 
+func (o *Writer) GetThumb() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Thumb
+}
+
 type Role struct {
-	// Unique identifier for the actor or role.
-	ID int64 `json:"id"`
+	// The unique identifier for the role.
+	// NOTE: This is different for each Plex server and is not globally unique.
+	//
+	ID int `json:"id"`
 	// The filter string used to query this actor. For example, it may indicate that this is an actor with a given key.
 	Filter string `json:"filter"`
 	// The display tag for the actor (typically the actor's name).
 	Tag string `json:"tag"`
-	// A unique key associated with the actor's tag, used for internal identification.
-	TagKey *string `json:"tagKey,omitempty"`
+	// A 24-character hexadecimal unique key associated with the actor's tag, used for internal identification.
+	// NOTE: This is globally unique across all Plex Servers.
+	//
+	TagKey string `json:"tagKey"`
 	// The role played by the actor in the media item.
 	Role *string `json:"role,omitempty"`
-	// The URL of the thumbnail image for the actor.
+	// The absolute URL of the thumbnail image for the actor.
 	Thumb *string `json:"thumb,omitempty"`
 }
 
-func (o *Role) GetID() int64 {
+func (o *Role) GetID() int {
 	if o == nil {
 		return 0
 	}
@@ -1745,9 +1819,9 @@ func (o *Role) GetTag() string {
 	return o.Tag
 }
 
-func (o *Role) GetTagKey() *string {
+func (o *Role) GetTagKey() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.TagKey
 }
@@ -1773,9 +1847,10 @@ type Producer struct {
 	Filter string `json:"filter"`
 	// The name of the producer
 	Tag string `json:"tag"`
-	// A unique key associated with the producer's tag, used for internal identification.
-	TagKey *string `json:"tagKey,omitempty"`
-	// The URL of the thumbnail image for the actor.
+	// A 24-character hexadecimal unique key associated with the producer's tag, used for internal identification.
+	//
+	TagKey string `json:"tagKey"`
+	// The absolute URL of the thumbnail image for the producer.
 	Thumb *string `json:"thumb,omitempty"`
 }
 
@@ -1800,9 +1875,9 @@ func (o *Producer) GetTag() string {
 	return o.Tag
 }
 
-func (o *Producer) GetTagKey() *string {
+func (o *Producer) GetTagKey() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.TagKey
 }
@@ -1816,8 +1891,9 @@ func (o *Producer) GetThumb() *string {
 
 // Rating - The type of rating, for example 'audience' or 'critic'.
 type Rating struct {
+	// The URL for the rating image, for example from IMDb.
 	Image string  `json:"image"`
-	Value float64 `json:"value"`
+	Value float32 `json:"value"`
 	Type  string  `json:"type"`
 }
 
@@ -1828,7 +1904,7 @@ func (o *Rating) GetImage() string {
 	return o.Image
 }
 
-func (o *Rating) GetValue() float64 {
+func (o *Rating) GetValue() float32 {
 	if o == nil {
 		return 0.0
 	}
@@ -1844,12 +1920,12 @@ func (o *Rating) GetType() string {
 
 // Similar - The display tag for the similar item, typically the title.
 type Similar struct {
-	ID     int64  `json:"id"`
+	ID     int    `json:"id"`
 	Filter string `json:"filter"`
 	Tag    string `json:"tag"`
 }
 
-func (o *Similar) GetID() int64 {
+func (o *Similar) GetID() int {
 	if o == nil {
 		return 0
 	}
@@ -1880,19 +1956,6 @@ func (o *Location) GetPath() string {
 		return ""
 	}
 	return o.Path
-}
-
-type Guids struct {
-	// The unique identifier for the Guid. Can be imdb://tt0286347, tmdb://1763, tvdb://2337
-	//
-	ID *string `json:"id,omitempty"`
-}
-
-func (o *Guids) GetID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ID
 }
 
 type Collection struct {
@@ -2031,6 +2094,7 @@ type GetRecentlyAddedMetadata struct {
 	Year            *int                    `json:"year,omitempty"`
 	Image           []GetRecentlyAddedImage `json:"Image,omitempty"`
 	UltraBlurColors *UltraBlurColors        `json:"UltraBlurColors,omitempty"`
+	Guids           []Guids                 `json:"Guid,omitempty"`
 	Media           []Media                 `json:"Media,omitempty"`
 	Genre           []Genre                 `json:"Genre,omitempty"`
 	Country         []Country               `json:"Country,omitempty"`
@@ -2041,7 +2105,6 @@ type GetRecentlyAddedMetadata struct {
 	Rating1         []Rating                `json:"Rating,omitempty"`
 	Similar         []Similar               `json:"Similar,omitempty"`
 	Location        []Location              `json:"Location,omitempty"`
-	Guids           []Guids                 `json:"Guid,omitempty"`
 	Collection      []Collection            `json:"Collection,omitempty"`
 }
 
@@ -2497,6 +2560,13 @@ func (o *GetRecentlyAddedMetadata) GetUltraBlurColors() *UltraBlurColors {
 	return o.UltraBlurColors
 }
 
+func (o *GetRecentlyAddedMetadata) GetGuids() []Guids {
+	if o == nil {
+		return nil
+	}
+	return o.Guids
+}
+
 func (o *GetRecentlyAddedMetadata) GetMedia() []Media {
 	if o == nil {
 		return nil
@@ -2565,13 +2635,6 @@ func (o *GetRecentlyAddedMetadata) GetLocation() []Location {
 		return nil
 	}
 	return o.Location
-}
-
-func (o *GetRecentlyAddedMetadata) GetGuids() []Guids {
-	if o == nil {
-		return nil
-	}
-	return o.Guids
 }
 
 func (o *GetRecentlyAddedMetadata) GetCollection() []Collection {

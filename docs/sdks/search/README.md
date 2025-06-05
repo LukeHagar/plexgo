@@ -46,7 +46,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Search.PerformSearch(ctx, "dylan", nil, nil)
+    res, err := s.Search.PerformSearch(ctx, "arnold", nil, plexgo.Float64(5))
     if err != nil {
         log.Fatal(err)
     }
@@ -104,7 +104,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Search.PerformVoiceSearch(ctx, "dead+poop", nil, nil)
+    res, err := s.Search.PerformVoiceSearch(ctx, "dead+poop", nil, plexgo.Float64(5))
     if err != nil {
         log.Fatal(err)
     }

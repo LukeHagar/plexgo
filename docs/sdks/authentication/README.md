@@ -92,7 +92,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Authentication.GetSourceConnectionInformation(ctx, "provider://provider-identifier")
+    res, err := s.Authentication.GetSourceConnectionInformation(ctx, "server://client-identifier")
     if err != nil {
         log.Fatal(err)
     }

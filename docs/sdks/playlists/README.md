@@ -49,9 +49,9 @@ func main() {
 
     res, err := s.Playlists.CreatePlaylist(ctx, operations.CreatePlaylistRequest{
         Title: "<value>",
-        Type: operations.CreatePlaylistQueryParamTypePhoto,
+        Type: operations.CreatePlaylistQueryParamTypeAudio,
         Smart: operations.SmartOne,
-        URI: "https://hoarse-testing.info/",
+        URI: "https://short-term-disconnection.name/",
     })
     if err != nil {
         log.Fatal(err)
@@ -159,7 +159,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Playlists.GetPlaylist(ctx, 4109.48)
+    res, err := s.Playlists.GetPlaylist(ctx, 8419.53)
     if err != nil {
         log.Fatal(err)
     }
@@ -212,7 +212,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Playlists.DeletePlaylist(ctx, 216.22)
+    res, err := s.Playlists.DeletePlaylist(ctx, 3432.93)
     if err != nil {
         log.Fatal(err)
     }
@@ -265,7 +265,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Playlists.UpdatePlaylist(ctx, 3915, nil, nil)
+    res, err := s.Playlists.UpdatePlaylist(ctx, 1579.66, nil, nil)
     if err != nil {
         log.Fatal(err)
     }
@@ -324,7 +324,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Playlists.GetPlaylistContents(ctx, 5004.46, operations.GetPlaylistContentsQueryParamTypeTvShow)
+    res, err := s.Playlists.GetPlaylistContents(ctx, 5535.42, operations.GetPlaylistContentsQueryParamTypeTvShow)
     if err != nil {
         log.Fatal(err)
     }
@@ -378,7 +378,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Playlists.ClearPlaylistContents(ctx, 1893.18)
+    res, err := s.Playlists.ClearPlaylistContents(ctx, 4137.37)
     if err != nil {
         log.Fatal(err)
     }
@@ -432,7 +432,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Playlists.AddPlaylistContents(ctx, 8502.01, "server://12345/com.plexapp.plugins.library/library/metadata/1", plexgo.Float64(123))
+    res, err := s.Playlists.AddPlaylistContents(ctx, 7013.44, "server://12345/com.plexapp.plugins.library/library/metadata/1", plexgo.Float64(123))
     if err != nil {
         log.Fatal(err)
     }
@@ -488,7 +488,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Playlists.UploadPlaylist(ctx, "/home/barkley/playlist.m3u", operations.QueryParamForceZero, 1)
+    res, err := s.Playlists.UploadPlaylist(ctx, "/home/barkley/playlist.m3u", operations.QueryParamForceOne, 1)
     if err != nil {
         log.Fatal(err)
     }
