@@ -814,31 +814,15 @@ func (e *HasThumbnail) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// StreamType - Stream type:
-//   - 1 = video
-//   - 2 = audio
-//   - 3 = subtitle
-type StreamType int
-
-const (
-	StreamTypeVideo    StreamType = 1
-	StreamTypeAudio    StreamType = 2
-	StreamTypeSubtitle StreamType = 3
-)
-
-func (e StreamType) ToPointer() *StreamType {
-	return &e
-}
-
 type Stream struct {
 	// Unique stream identifier.
 	ID int64 `json:"id"`
 	// Stream type:
-	//   - 1 = video
-	//   - 2 = audio
-	//   - 3 = subtitle
+	//   - VIDEO = 1
+	//   - AUDIO = 2
+	//   - SUBTITLE = 3
 	//
-	StreamType StreamType `json:"streamType"`
+	streamType int64 `const:"1" json:"streamType"`
 	// Format of the stream (e.g., srt).
 	Format *string `json:"format,omitempty"`
 	// Indicates if this stream is default.
@@ -934,6 +918,17 @@ type Stream struct {
 	Title *string `json:"title,omitempty"`
 }
 
+func (s Stream) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *Stream) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *Stream) GetID() int64 {
 	if o == nil {
 		return 0
@@ -941,11 +936,8 @@ func (o *Stream) GetID() int64 {
 	return o.ID
 }
 
-func (o *Stream) GetStreamType() StreamType {
-	if o == nil {
-		return StreamType(0)
-	}
-	return o.StreamType
+func (o *Stream) GetStreamType() int64 {
+	return 1
 }
 
 func (o *Stream) GetFormat() *string {
@@ -2020,15 +2012,15 @@ type GetRecentlyAddedMetadata struct {
 	// The number of leaf items (end nodes) under this media item.
 	LeafCount *int `json:"leafCount,omitempty"`
 	// The identifier for the library section.
-	LibrarySectionID int64 `json:"librarySectionID"`
+	LibrarySectionID *int64 `json:"librarySectionID,omitempty"`
 	// The key corresponding to the library section.
-	LibrarySectionKey string `json:"librarySectionKey"`
+	LibrarySectionKey *string `json:"librarySectionKey,omitempty"`
 	// The title of the library section.
-	LibrarySectionTitle string `json:"librarySectionTitle"`
+	LibrarySectionTitle *string `json:"librarySectionTitle,omitempty"`
 	// The original title of the media item (if different).
 	OriginalTitle *string `json:"originalTitle,omitempty"`
 	// The original release date of the media item.
-	OriginallyAvailableAt types.Date `json:"originallyAvailableAt"`
+	OriginallyAvailableAt *types.Date `json:"originallyAvailableAt,omitempty"`
 	// The GUID of the parent media item.
 	ParentGUID *string `json:"parentGuid,omitempty"`
 	// The index position of the parent media item.
@@ -2287,23 +2279,23 @@ func (o *GetRecentlyAddedMetadata) GetLeafCount() *int {
 	return o.LeafCount
 }
 
-func (o *GetRecentlyAddedMetadata) GetLibrarySectionID() int64 {
+func (o *GetRecentlyAddedMetadata) GetLibrarySectionID() *int64 {
 	if o == nil {
-		return 0
+		return nil
 	}
 	return o.LibrarySectionID
 }
 
-func (o *GetRecentlyAddedMetadata) GetLibrarySectionKey() string {
+func (o *GetRecentlyAddedMetadata) GetLibrarySectionKey() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.LibrarySectionKey
 }
 
-func (o *GetRecentlyAddedMetadata) GetLibrarySectionTitle() string {
+func (o *GetRecentlyAddedMetadata) GetLibrarySectionTitle() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.LibrarySectionTitle
 }
@@ -2315,9 +2307,9 @@ func (o *GetRecentlyAddedMetadata) GetOriginalTitle() *string {
 	return o.OriginalTitle
 }
 
-func (o *GetRecentlyAddedMetadata) GetOriginallyAvailableAt() types.Date {
+func (o *GetRecentlyAddedMetadata) GetOriginallyAvailableAt() *types.Date {
 	if o == nil {
-		return types.Date{}
+		return nil
 	}
 	return o.OriginallyAvailableAt
 }

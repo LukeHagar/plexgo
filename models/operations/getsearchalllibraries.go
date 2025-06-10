@@ -4,6 +4,7 @@ package operations
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"github.com/LukeHagar/plexgo/internal/utils"
 	"github.com/LukeHagar/plexgo/types"
@@ -147,6 +148,128 @@ func (o *GetSearchAllLibrariesRequest) GetIncludeExternalMedia() *GetSearchAllLi
 	return o.IncludeExternalMedia
 }
 
+type GetSearchAllLibrariesDirectory struct {
+	// The unique identifier path for the search result item.
+	Key string `json:"key"`
+	// The identifier for the library section.
+	LibrarySectionID int64 `json:"librarySectionID"`
+	// The key corresponding to the library section.
+	LibrarySectionKey string `json:"librarySectionKey"`
+	// The title of the library section.
+	LibrarySectionTitle string `json:"librarySectionTitle"`
+	librarySectionType  *int64 `const:"1" json:"librarySectionType,omitempty"`
+	// The type of the directory.
+	Type string `json:"type"`
+	ID   int64  `json:"id"`
+	// The filter string used to query this specific item in the library.
+	Filter *string `json:"filter,omitempty"`
+	Tag    string  `json:"tag"`
+	// The type of tag associated with this search result (e.g., Director, Actor).
+	tagType *int64 `const:"4" json:"tagType,omitempty"`
+	// The unique identifier for the tag associated with this search result.
+	TagKey *string `json:"tagKey,omitempty"`
+	// The URL to the thumbnail image associated with this search result.
+	Thumb *string `json:"thumb,omitempty"`
+	// The number of items associated with this search result.
+	Count *int64 `json:"count,omitempty"`
+}
+
+func (g GetSearchAllLibrariesDirectory) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetSearchAllLibrariesDirectory) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *GetSearchAllLibrariesDirectory) GetKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.Key
+}
+
+func (o *GetSearchAllLibrariesDirectory) GetLibrarySectionID() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.LibrarySectionID
+}
+
+func (o *GetSearchAllLibrariesDirectory) GetLibrarySectionKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.LibrarySectionKey
+}
+
+func (o *GetSearchAllLibrariesDirectory) GetLibrarySectionTitle() string {
+	if o == nil {
+		return ""
+	}
+	return o.LibrarySectionTitle
+}
+
+func (o *GetSearchAllLibrariesDirectory) GetLibrarySectionType() *int64 {
+	return types.Int64(1)
+}
+
+func (o *GetSearchAllLibrariesDirectory) GetType() string {
+	if o == nil {
+		return ""
+	}
+	return o.Type
+}
+
+func (o *GetSearchAllLibrariesDirectory) GetID() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.ID
+}
+
+func (o *GetSearchAllLibrariesDirectory) GetFilter() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Filter
+}
+
+func (o *GetSearchAllLibrariesDirectory) GetTag() string {
+	if o == nil {
+		return ""
+	}
+	return o.Tag
+}
+
+func (o *GetSearchAllLibrariesDirectory) GetTagType() *int64 {
+	return types.Int64(4)
+}
+
+func (o *GetSearchAllLibrariesDirectory) GetTagKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TagKey
+}
+
+func (o *GetSearchAllLibrariesDirectory) GetThumb() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Thumb
+}
+
+func (o *GetSearchAllLibrariesDirectory) GetCount() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Count
+}
+
 // GetSearchAllLibrariesType - The type of media content in the Plex library. This can represent videos, music, or photos.
 type GetSearchAllLibrariesType string
 
@@ -165,937 +288,6 @@ const (
 
 func (e GetSearchAllLibrariesType) ToPointer() *GetSearchAllLibrariesType {
 	return &e
-}
-
-// GetSearchAllLibrariesFlattenSeasons - Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
-type GetSearchAllLibrariesFlattenSeasons string
-
-const (
-	GetSearchAllLibrariesFlattenSeasonsLibraryDefault GetSearchAllLibrariesFlattenSeasons = "-1"
-	GetSearchAllLibrariesFlattenSeasonsHide           GetSearchAllLibrariesFlattenSeasons = "0"
-	GetSearchAllLibrariesFlattenSeasonsShow           GetSearchAllLibrariesFlattenSeasons = "1"
-)
-
-func (e GetSearchAllLibrariesFlattenSeasons) ToPointer() *GetSearchAllLibrariesFlattenSeasons {
-	return &e
-}
-
-// GetSearchAllLibrariesEpisodeSort - Setting that indicates how episodes are sorted for the show. (-1 = Library default, 0 = Oldest first, 1 = Newest first).
-type GetSearchAllLibrariesEpisodeSort string
-
-const (
-	GetSearchAllLibrariesEpisodeSortLibraryDefault GetSearchAllLibrariesEpisodeSort = "-1"
-	GetSearchAllLibrariesEpisodeSortOldestFirst    GetSearchAllLibrariesEpisodeSort = "0"
-	GetSearchAllLibrariesEpisodeSortNewestFirst    GetSearchAllLibrariesEpisodeSort = "1"
-)
-
-func (e GetSearchAllLibrariesEpisodeSort) ToPointer() *GetSearchAllLibrariesEpisodeSort {
-	return &e
-}
-
-// GetSearchAllLibrariesEnableCreditsMarkerGeneration - Setting that indicates if credits markers detection is enabled. (-1 = Library default, 0 = Disabled).
-type GetSearchAllLibrariesEnableCreditsMarkerGeneration string
-
-const (
-	GetSearchAllLibrariesEnableCreditsMarkerGenerationLibraryDefault GetSearchAllLibrariesEnableCreditsMarkerGeneration = "-1"
-	GetSearchAllLibrariesEnableCreditsMarkerGenerationDisabled       GetSearchAllLibrariesEnableCreditsMarkerGeneration = "0"
-)
-
-func (e GetSearchAllLibrariesEnableCreditsMarkerGeneration) ToPointer() *GetSearchAllLibrariesEnableCreditsMarkerGeneration {
-	return &e
-}
-
-// GetSearchAllLibrariesShowOrdering - Setting that indicates the episode ordering for the show.
-// None = Library default,
-// tmdbAiring = The Movie Database (Aired),
-// aired = TheTVDB (Aired),
-// dvd = TheTVDB (DVD),
-// absolute = TheTVDB (Absolute)).
-type GetSearchAllLibrariesShowOrdering string
-
-const (
-	GetSearchAllLibrariesShowOrderingNone         GetSearchAllLibrariesShowOrdering = "None"
-	GetSearchAllLibrariesShowOrderingTmdbAiring   GetSearchAllLibrariesShowOrdering = "tmdbAiring"
-	GetSearchAllLibrariesShowOrderingTvdbAired    GetSearchAllLibrariesShowOrdering = "aired"
-	GetSearchAllLibrariesShowOrderingTvdbDvd      GetSearchAllLibrariesShowOrdering = "dvd"
-	GetSearchAllLibrariesShowOrderingTvdbAbsolute GetSearchAllLibrariesShowOrdering = "absolute"
-)
-
-func (e GetSearchAllLibrariesShowOrdering) ToPointer() *GetSearchAllLibrariesShowOrdering {
-	return &e
-}
-
-type GetSearchAllLibrariesOptimizedForStreaming int
-
-const (
-	GetSearchAllLibrariesOptimizedForStreamingDisable GetSearchAllLibrariesOptimizedForStreaming = 0
-	GetSearchAllLibrariesOptimizedForStreamingEnable  GetSearchAllLibrariesOptimizedForStreaming = 1
-)
-
-func (e GetSearchAllLibrariesOptimizedForStreaming) ToPointer() *GetSearchAllLibrariesOptimizedForStreaming {
-	return &e
-}
-func (e *GetSearchAllLibrariesOptimizedForStreaming) UnmarshalJSON(data []byte) error {
-	var v int
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case 0:
-		fallthrough
-	case 1:
-		*e = GetSearchAllLibrariesOptimizedForStreaming(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetSearchAllLibrariesOptimizedForStreaming: %v", v)
-	}
-}
-
-type GetSearchAllLibrariesHasThumbnail string
-
-const (
-	GetSearchAllLibrariesHasThumbnailFalse GetSearchAllLibrariesHasThumbnail = "0"
-	GetSearchAllLibrariesHasThumbnailTrue  GetSearchAllLibrariesHasThumbnail = "1"
-)
-
-func (e GetSearchAllLibrariesHasThumbnail) ToPointer() *GetSearchAllLibrariesHasThumbnail {
-	return &e
-}
-func (e *GetSearchAllLibrariesHasThumbnail) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "0":
-		fallthrough
-	case "1":
-		*e = GetSearchAllLibrariesHasThumbnail(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetSearchAllLibrariesHasThumbnail: %v", v)
-	}
-}
-
-type GetSearchAllLibrariesStream struct {
-	ID int64 `json:"id"`
-	// Type of stream (1 = video, 2 = audio, 3 = subtitle)
-	StreamType int64 `json:"streamType"`
-	// Indicates if this is the default stream
-	Default *bool `json:"default,omitempty"`
-	// Indicates if the stream is selected
-	Selected *bool `json:"selected,omitempty"`
-	// Codec used by the stream
-	Codec string `json:"codec"`
-	// The index of the stream
-	Index int64 `json:"index"`
-	// The bitrate of the stream in kbps
-	Bitrate *int64 `json:"bitrate,omitempty"`
-	// The color primaries of the video stream
-	ColorPrimaries *string `json:"colorPrimaries,omitempty"`
-	// The color range of the video stream
-	ColorRange *string `json:"colorRange,omitempty"`
-	// The color space of the video stream
-	ColorSpace *string `json:"colorSpace,omitempty"`
-	// The transfer characteristics (TRC) of the video stream
-	ColorTrc *string `json:"colorTrc,omitempty"`
-	// The bit depth of the video stream
-	BitDepth *int64 `json:"bitDepth,omitempty"`
-	// The chroma location of the video stream
-	ChromaLocation *string `json:"chromaLocation,omitempty"`
-	// The identifier of the video stream
-	StreamIdentifier *string `json:"streamIdentifier,omitempty"`
-	// The chroma subsampling format
-	ChromaSubsampling *string `json:"chromaSubsampling,omitempty"`
-	// The coded height of the video stream
-	CodedHeight *int64 `json:"codedHeight,omitempty"`
-	// The coded width of the video stream
-	CodedWidth *int64 `json:"codedWidth,omitempty"`
-	// The frame rate of the video stream
-	FrameRate *float64 `json:"frameRate,omitempty"`
-	// Indicates if the stream has a scaling matrix
-	HasScalingMatrix *bool   `json:"hasScalingMatrix,omitempty"`
-	HearingImpaired  *bool   `json:"hearingImpaired,omitempty"`
-	ClosedCaptions   *bool   `json:"closedCaptions,omitempty"`
-	EmbeddedInVideo  *string `json:"embeddedInVideo,omitempty"`
-	// The height of the video stream
-	Height *int64 `json:"height,omitempty"`
-	// The level of the video codec
-	Level *int64 `json:"level,omitempty"`
-	// The profile of the video codec
-	Profile *string `json:"profile,omitempty"`
-	// Number of reference frames
-	RefFrames *int64 `json:"refFrames,omitempty"`
-	// The scan type (progressive or interlaced)
-	ScanType *string `json:"scanType,omitempty"`
-	// The width of the video stream
-	Width *int64 `json:"width,omitempty"`
-	// Display title of the stream
-	DisplayTitle *string `json:"displayTitle,omitempty"`
-	// Extended display title of the stream
-	ExtendedDisplayTitle *string `json:"extendedDisplayTitle,omitempty"`
-	// Number of audio channels (for audio streams)
-	Channels *int64 `json:"channels,omitempty"`
-	// The language of the stream (for audio/subtitle streams)
-	Language *string `json:"language,omitempty"`
-	// Language tag of the stream
-	LanguageTag *string `json:"languageTag,omitempty"`
-	// Language code of the stream
-	LanguageCode *string `json:"languageCode,omitempty"`
-	// The audio channel layout
-	AudioChannelLayout *string `json:"audioChannelLayout,omitempty"`
-	// Sampling rate of the audio stream in Hz
-	SamplingRate *int64 `json:"samplingRate,omitempty"`
-	// Title of the subtitle track (for subtitle streams)
-	Title *string `json:"title,omitempty"`
-	// Indicates if the subtitle stream can auto-sync
-	CanAutoSync *bool `json:"canAutoSync,omitempty"`
-}
-
-func (o *GetSearchAllLibrariesStream) GetID() int64 {
-	if o == nil {
-		return 0
-	}
-	return o.ID
-}
-
-func (o *GetSearchAllLibrariesStream) GetStreamType() int64 {
-	if o == nil {
-		return 0
-	}
-	return o.StreamType
-}
-
-func (o *GetSearchAllLibrariesStream) GetDefault() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Default
-}
-
-func (o *GetSearchAllLibrariesStream) GetSelected() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Selected
-}
-
-func (o *GetSearchAllLibrariesStream) GetCodec() string {
-	if o == nil {
-		return ""
-	}
-	return o.Codec
-}
-
-func (o *GetSearchAllLibrariesStream) GetIndex() int64 {
-	if o == nil {
-		return 0
-	}
-	return o.Index
-}
-
-func (o *GetSearchAllLibrariesStream) GetBitrate() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.Bitrate
-}
-
-func (o *GetSearchAllLibrariesStream) GetColorPrimaries() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ColorPrimaries
-}
-
-func (o *GetSearchAllLibrariesStream) GetColorRange() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ColorRange
-}
-
-func (o *GetSearchAllLibrariesStream) GetColorSpace() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ColorSpace
-}
-
-func (o *GetSearchAllLibrariesStream) GetColorTrc() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ColorTrc
-}
-
-func (o *GetSearchAllLibrariesStream) GetBitDepth() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.BitDepth
-}
-
-func (o *GetSearchAllLibrariesStream) GetChromaLocation() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ChromaLocation
-}
-
-func (o *GetSearchAllLibrariesStream) GetStreamIdentifier() *string {
-	if o == nil {
-		return nil
-	}
-	return o.StreamIdentifier
-}
-
-func (o *GetSearchAllLibrariesStream) GetChromaSubsampling() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ChromaSubsampling
-}
-
-func (o *GetSearchAllLibrariesStream) GetCodedHeight() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.CodedHeight
-}
-
-func (o *GetSearchAllLibrariesStream) GetCodedWidth() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.CodedWidth
-}
-
-func (o *GetSearchAllLibrariesStream) GetFrameRate() *float64 {
-	if o == nil {
-		return nil
-	}
-	return o.FrameRate
-}
-
-func (o *GetSearchAllLibrariesStream) GetHasScalingMatrix() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.HasScalingMatrix
-}
-
-func (o *GetSearchAllLibrariesStream) GetHearingImpaired() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.HearingImpaired
-}
-
-func (o *GetSearchAllLibrariesStream) GetClosedCaptions() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.ClosedCaptions
-}
-
-func (o *GetSearchAllLibrariesStream) GetEmbeddedInVideo() *string {
-	if o == nil {
-		return nil
-	}
-	return o.EmbeddedInVideo
-}
-
-func (o *GetSearchAllLibrariesStream) GetHeight() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.Height
-}
-
-func (o *GetSearchAllLibrariesStream) GetLevel() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.Level
-}
-
-func (o *GetSearchAllLibrariesStream) GetProfile() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Profile
-}
-
-func (o *GetSearchAllLibrariesStream) GetRefFrames() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.RefFrames
-}
-
-func (o *GetSearchAllLibrariesStream) GetScanType() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ScanType
-}
-
-func (o *GetSearchAllLibrariesStream) GetWidth() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.Width
-}
-
-func (o *GetSearchAllLibrariesStream) GetDisplayTitle() *string {
-	if o == nil {
-		return nil
-	}
-	return o.DisplayTitle
-}
-
-func (o *GetSearchAllLibrariesStream) GetExtendedDisplayTitle() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ExtendedDisplayTitle
-}
-
-func (o *GetSearchAllLibrariesStream) GetChannels() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.Channels
-}
-
-func (o *GetSearchAllLibrariesStream) GetLanguage() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Language
-}
-
-func (o *GetSearchAllLibrariesStream) GetLanguageTag() *string {
-	if o == nil {
-		return nil
-	}
-	return o.LanguageTag
-}
-
-func (o *GetSearchAllLibrariesStream) GetLanguageCode() *string {
-	if o == nil {
-		return nil
-	}
-	return o.LanguageCode
-}
-
-func (o *GetSearchAllLibrariesStream) GetAudioChannelLayout() *string {
-	if o == nil {
-		return nil
-	}
-	return o.AudioChannelLayout
-}
-
-func (o *GetSearchAllLibrariesStream) GetSamplingRate() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.SamplingRate
-}
-
-func (o *GetSearchAllLibrariesStream) GetTitle() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Title
-}
-
-func (o *GetSearchAllLibrariesStream) GetCanAutoSync() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.CanAutoSync
-}
-
-type GetSearchAllLibrariesPart struct {
-	ID       int    `json:"id"`
-	Key      string `json:"key"`
-	Duration *int   `json:"duration,omitempty"`
-	File     string `json:"file"`
-	Size     int64  `json:"size"`
-	// The container format of the media file.
-	//
-	Container             string                             `json:"container"`
-	AudioProfile          *string                            `json:"audioProfile,omitempty"`
-	Has64bitOffsets       *bool                              `json:"has64bitOffsets,omitempty"`
-	OptimizedForStreaming *bool                              `json:"optimizedForStreaming,omitempty"`
-	VideoProfile          *string                            `json:"videoProfile,omitempty"`
-	Indexes               *string                            `json:"indexes,omitempty"`
-	HasThumbnail          *GetSearchAllLibrariesHasThumbnail `default:"0" json:"hasThumbnail"`
-	Stream                []GetSearchAllLibrariesStream      `json:"Stream,omitempty"`
-}
-
-func (g GetSearchAllLibrariesPart) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(g, "", false)
-}
-
-func (g *GetSearchAllLibrariesPart) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *GetSearchAllLibrariesPart) GetID() int {
-	if o == nil {
-		return 0
-	}
-	return o.ID
-}
-
-func (o *GetSearchAllLibrariesPart) GetKey() string {
-	if o == nil {
-		return ""
-	}
-	return o.Key
-}
-
-func (o *GetSearchAllLibrariesPart) GetDuration() *int {
-	if o == nil {
-		return nil
-	}
-	return o.Duration
-}
-
-func (o *GetSearchAllLibrariesPart) GetFile() string {
-	if o == nil {
-		return ""
-	}
-	return o.File
-}
-
-func (o *GetSearchAllLibrariesPart) GetSize() int64 {
-	if o == nil {
-		return 0
-	}
-	return o.Size
-}
-
-func (o *GetSearchAllLibrariesPart) GetContainer() string {
-	if o == nil {
-		return ""
-	}
-	return o.Container
-}
-
-func (o *GetSearchAllLibrariesPart) GetAudioProfile() *string {
-	if o == nil {
-		return nil
-	}
-	return o.AudioProfile
-}
-
-func (o *GetSearchAllLibrariesPart) GetHas64bitOffsets() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Has64bitOffsets
-}
-
-func (o *GetSearchAllLibrariesPart) GetOptimizedForStreaming() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.OptimizedForStreaming
-}
-
-func (o *GetSearchAllLibrariesPart) GetVideoProfile() *string {
-	if o == nil {
-		return nil
-	}
-	return o.VideoProfile
-}
-
-func (o *GetSearchAllLibrariesPart) GetIndexes() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Indexes
-}
-
-func (o *GetSearchAllLibrariesPart) GetHasThumbnail() *GetSearchAllLibrariesHasThumbnail {
-	if o == nil {
-		return nil
-	}
-	return o.HasThumbnail
-}
-
-func (o *GetSearchAllLibrariesPart) GetStream() []GetSearchAllLibrariesStream {
-	if o == nil {
-		return nil
-	}
-	return o.Stream
-}
-
-type GetSearchAllLibrariesMedia struct {
-	ID                    int                                         `json:"id"`
-	Duration              *int                                        `json:"duration,omitempty"`
-	Bitrate               *int                                        `json:"bitrate,omitempty"`
-	Width                 *int                                        `json:"width,omitempty"`
-	Height                *int                                        `json:"height,omitempty"`
-	AspectRatio           *float64                                    `json:"aspectRatio,omitempty"`
-	AudioProfile          *string                                     `json:"audioProfile,omitempty"`
-	AudioChannels         *int                                        `json:"audioChannels,omitempty"`
-	AudioCodec            *string                                     `json:"audioCodec,omitempty"`
-	VideoCodec            *string                                     `json:"videoCodec,omitempty"`
-	VideoResolution       *string                                     `json:"videoResolution,omitempty"`
-	Container             string                                      `json:"container"`
-	VideoFrameRate        *string                                     `json:"videoFrameRate,omitempty"`
-	VideoProfile          *string                                     `json:"videoProfile,omitempty"`
-	HasVoiceActivity      *bool                                       `json:"hasVoiceActivity,omitempty"`
-	OptimizedForStreaming *GetSearchAllLibrariesOptimizedForStreaming `default:"0" json:"optimizedForStreaming"`
-	Has64bitOffsets       *bool                                       `json:"has64bitOffsets,omitempty"`
-	Part                  []GetSearchAllLibrariesPart                 `json:"Part"`
-}
-
-func (g GetSearchAllLibrariesMedia) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(g, "", false)
-}
-
-func (g *GetSearchAllLibrariesMedia) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *GetSearchAllLibrariesMedia) GetID() int {
-	if o == nil {
-		return 0
-	}
-	return o.ID
-}
-
-func (o *GetSearchAllLibrariesMedia) GetDuration() *int {
-	if o == nil {
-		return nil
-	}
-	return o.Duration
-}
-
-func (o *GetSearchAllLibrariesMedia) GetBitrate() *int {
-	if o == nil {
-		return nil
-	}
-	return o.Bitrate
-}
-
-func (o *GetSearchAllLibrariesMedia) GetWidth() *int {
-	if o == nil {
-		return nil
-	}
-	return o.Width
-}
-
-func (o *GetSearchAllLibrariesMedia) GetHeight() *int {
-	if o == nil {
-		return nil
-	}
-	return o.Height
-}
-
-func (o *GetSearchAllLibrariesMedia) GetAspectRatio() *float64 {
-	if o == nil {
-		return nil
-	}
-	return o.AspectRatio
-}
-
-func (o *GetSearchAllLibrariesMedia) GetAudioProfile() *string {
-	if o == nil {
-		return nil
-	}
-	return o.AudioProfile
-}
-
-func (o *GetSearchAllLibrariesMedia) GetAudioChannels() *int {
-	if o == nil {
-		return nil
-	}
-	return o.AudioChannels
-}
-
-func (o *GetSearchAllLibrariesMedia) GetAudioCodec() *string {
-	if o == nil {
-		return nil
-	}
-	return o.AudioCodec
-}
-
-func (o *GetSearchAllLibrariesMedia) GetVideoCodec() *string {
-	if o == nil {
-		return nil
-	}
-	return o.VideoCodec
-}
-
-func (o *GetSearchAllLibrariesMedia) GetVideoResolution() *string {
-	if o == nil {
-		return nil
-	}
-	return o.VideoResolution
-}
-
-func (o *GetSearchAllLibrariesMedia) GetContainer() string {
-	if o == nil {
-		return ""
-	}
-	return o.Container
-}
-
-func (o *GetSearchAllLibrariesMedia) GetVideoFrameRate() *string {
-	if o == nil {
-		return nil
-	}
-	return o.VideoFrameRate
-}
-
-func (o *GetSearchAllLibrariesMedia) GetVideoProfile() *string {
-	if o == nil {
-		return nil
-	}
-	return o.VideoProfile
-}
-
-func (o *GetSearchAllLibrariesMedia) GetHasVoiceActivity() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.HasVoiceActivity
-}
-
-func (o *GetSearchAllLibrariesMedia) GetOptimizedForStreaming() *GetSearchAllLibrariesOptimizedForStreaming {
-	if o == nil {
-		return nil
-	}
-	return o.OptimizedForStreaming
-}
-
-func (o *GetSearchAllLibrariesMedia) GetHas64bitOffsets() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Has64bitOffsets
-}
-
-func (o *GetSearchAllLibrariesMedia) GetPart() []GetSearchAllLibrariesPart {
-	if o == nil {
-		return []GetSearchAllLibrariesPart{}
-	}
-	return o.Part
-}
-
-type GetSearchAllLibrariesGenre struct {
-	Tag *string `json:"tag,omitempty"`
-}
-
-func (o *GetSearchAllLibrariesGenre) GetTag() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Tag
-}
-
-type GetSearchAllLibrariesCountry struct {
-	Tag *string `json:"tag,omitempty"`
-}
-
-func (o *GetSearchAllLibrariesCountry) GetTag() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Tag
-}
-
-type GetSearchAllLibrariesDirector struct {
-	Tag *string `json:"tag,omitempty"`
-}
-
-func (o *GetSearchAllLibrariesDirector) GetTag() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Tag
-}
-
-type GetSearchAllLibrariesWriter struct {
-	Tag *string `json:"tag,omitempty"`
-}
-
-func (o *GetSearchAllLibrariesWriter) GetTag() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Tag
-}
-
-type GetSearchAllLibrariesCollection struct {
-	Tag *string `json:"tag,omitempty"`
-}
-
-func (o *GetSearchAllLibrariesCollection) GetTag() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Tag
-}
-
-type GetSearchAllLibrariesRole struct {
-	// The ID of the tag or actor.
-	ID *int64 `json:"id,omitempty"`
-	// The filter used to find the actor or tag.
-	Filter *string `json:"filter,omitempty"`
-	// The thumbnail of the actor
-	Thumb *string `json:"thumb,omitempty"`
-	// The name of the tag or actor.
-	Tag *string `json:"tag,omitempty"`
-	// Unique identifier for the tag.
-	TagKey *string `json:"tagKey,omitempty"`
-	// The role of the actor or tag in the media.
-	Role *string `json:"role,omitempty"`
-}
-
-func (o *GetSearchAllLibrariesRole) GetID() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.ID
-}
-
-func (o *GetSearchAllLibrariesRole) GetFilter() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Filter
-}
-
-func (o *GetSearchAllLibrariesRole) GetThumb() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Thumb
-}
-
-func (o *GetSearchAllLibrariesRole) GetTag() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Tag
-}
-
-func (o *GetSearchAllLibrariesRole) GetTagKey() *string {
-	if o == nil {
-		return nil
-	}
-	return o.TagKey
-}
-
-func (o *GetSearchAllLibrariesRole) GetRole() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Role
-}
-
-type GetSearchAllLibrariesLocation struct {
-	Path *string `json:"path,omitempty"`
-}
-
-func (o *GetSearchAllLibrariesLocation) GetPath() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Path
-}
-
-type GetSearchAllLibrariesMediaGUID struct {
-	// Can be one of the following formats:
-	// imdb://tt13015952, tmdb://2434012, tvdb://7945991
-	//
-	ID string `json:"id"`
-}
-
-func (o *GetSearchAllLibrariesMediaGUID) GetID() string {
-	if o == nil {
-		return ""
-	}
-	return o.ID
-}
-
-type GetSearchAllLibrariesUltraBlurColors struct {
-	TopLeft     string `json:"topLeft"`
-	TopRight    string `json:"topRight"`
-	BottomRight string `json:"bottomRight"`
-	BottomLeft  string `json:"bottomLeft"`
-}
-
-func (o *GetSearchAllLibrariesUltraBlurColors) GetTopLeft() string {
-	if o == nil {
-		return ""
-	}
-	return o.TopLeft
-}
-
-func (o *GetSearchAllLibrariesUltraBlurColors) GetTopRight() string {
-	if o == nil {
-		return ""
-	}
-	return o.TopRight
-}
-
-func (o *GetSearchAllLibrariesUltraBlurColors) GetBottomRight() string {
-	if o == nil {
-		return ""
-	}
-	return o.BottomRight
-}
-
-func (o *GetSearchAllLibrariesUltraBlurColors) GetBottomLeft() string {
-	if o == nil {
-		return ""
-	}
-	return o.BottomLeft
-}
-
-type GetSearchAllLibrariesMetaDataRating struct {
-	// A URI or path to the rating image.
-	Image string `json:"image"`
-	// The value of the rating.
-	Value float32 `json:"value"`
-	// The type of rating (e.g., audience, critic).
-	Type string `json:"type"`
-}
-
-func (o *GetSearchAllLibrariesMetaDataRating) GetImage() string {
-	if o == nil {
-		return ""
-	}
-	return o.Image
-}
-
-func (o *GetSearchAllLibrariesMetaDataRating) GetValue() float32 {
-	if o == nil {
-		return 0.0
-	}
-	return o.Value
-}
-
-func (o *GetSearchAllLibrariesMetaDataRating) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
 }
 
 type GetSearchAllLibrariesLibraryType string
@@ -1138,106 +330,918 @@ func (o *GetSearchAllLibrariesImage) GetURL() string {
 	return o.URL
 }
 
+type GetSearchAllLibrariesUltraBlurColors struct {
+	TopLeft     string `json:"topLeft"`
+	TopRight    string `json:"topRight"`
+	BottomRight string `json:"bottomRight"`
+	BottomLeft  string `json:"bottomLeft"`
+}
+
+func (o *GetSearchAllLibrariesUltraBlurColors) GetTopLeft() string {
+	if o == nil {
+		return ""
+	}
+	return o.TopLeft
+}
+
+func (o *GetSearchAllLibrariesUltraBlurColors) GetTopRight() string {
+	if o == nil {
+		return ""
+	}
+	return o.TopRight
+}
+
+func (o *GetSearchAllLibrariesUltraBlurColors) GetBottomRight() string {
+	if o == nil {
+		return ""
+	}
+	return o.BottomRight
+}
+
+func (o *GetSearchAllLibrariesUltraBlurColors) GetBottomLeft() string {
+	if o == nil {
+		return ""
+	}
+	return o.BottomLeft
+}
+
+type GetSearchAllLibrariesGuids struct {
+	// The unique identifier for the Guid. Can be prefixed with imdb://, tmdb://, tvdb://
+	//
+	ID string `json:"id"`
+}
+
+func (o *GetSearchAllLibrariesGuids) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+// GetSearchAllLibrariesShowOrdering - Setting that indicates the episode ordering for the show.
+// Options:
+//   - None = Library default
+//   - tmdbAiring = The Movie Database (Aired)
+//   - aired = TheTVDB (Aired)
+//   - dvd = TheTVDB (DVD)
+//   - absolute = TheTVDB (Absolute)
+type GetSearchAllLibrariesShowOrdering string
+
+const (
+	GetSearchAllLibrariesShowOrderingNone         GetSearchAllLibrariesShowOrdering = "None"
+	GetSearchAllLibrariesShowOrderingTmdbAiring   GetSearchAllLibrariesShowOrdering = "tmdbAiring"
+	GetSearchAllLibrariesShowOrderingTvdbAired    GetSearchAllLibrariesShowOrdering = "aired"
+	GetSearchAllLibrariesShowOrderingTvdbDvd      GetSearchAllLibrariesShowOrdering = "dvd"
+	GetSearchAllLibrariesShowOrderingTvdbAbsolute GetSearchAllLibrariesShowOrdering = "absolute"
+)
+
+func (e GetSearchAllLibrariesShowOrdering) ToPointer() *GetSearchAllLibrariesShowOrdering {
+	return &e
+}
+
+// GetSearchAllLibrariesFlattenSeasons - Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
+type GetSearchAllLibrariesFlattenSeasons string
+
+const (
+	GetSearchAllLibrariesFlattenSeasonsLibraryDefault GetSearchAllLibrariesFlattenSeasons = "-1"
+	GetSearchAllLibrariesFlattenSeasonsHide           GetSearchAllLibrariesFlattenSeasons = "0"
+	GetSearchAllLibrariesFlattenSeasonsShow           GetSearchAllLibrariesFlattenSeasons = "1"
+)
+
+func (e GetSearchAllLibrariesFlattenSeasons) ToPointer() *GetSearchAllLibrariesFlattenSeasons {
+	return &e
+}
+
+type GetSearchAllLibrariesOptimizedForStreaming1 int
+
+const (
+	GetSearchAllLibrariesOptimizedForStreaming1Zero GetSearchAllLibrariesOptimizedForStreaming1 = 0
+	GetSearchAllLibrariesOptimizedForStreaming1One  GetSearchAllLibrariesOptimizedForStreaming1 = 1
+)
+
+func (e GetSearchAllLibrariesOptimizedForStreaming1) ToPointer() *GetSearchAllLibrariesOptimizedForStreaming1 {
+	return &e
+}
+func (e *GetSearchAllLibrariesOptimizedForStreaming1) UnmarshalJSON(data []byte) error {
+	var v int
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case 0:
+		fallthrough
+	case 1:
+		*e = GetSearchAllLibrariesOptimizedForStreaming1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetSearchAllLibrariesOptimizedForStreaming1: %v", v)
+	}
+}
+
+type GetSearchAllLibrariesOptimizedForStreamingType string
+
+const (
+	GetSearchAllLibrariesOptimizedForStreamingTypeGetSearchAllLibrariesOptimizedForStreaming1 GetSearchAllLibrariesOptimizedForStreamingType = "get-search-all-libraries_optimizedForStreaming_1"
+	GetSearchAllLibrariesOptimizedForStreamingTypeBoolean                                     GetSearchAllLibrariesOptimizedForStreamingType = "boolean"
+)
+
+// GetSearchAllLibrariesOptimizedForStreaming - Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
+type GetSearchAllLibrariesOptimizedForStreaming struct {
+	GetSearchAllLibrariesOptimizedForStreaming1 *GetSearchAllLibrariesOptimizedForStreaming1 `queryParam:"inline"`
+	Boolean                                     *bool                                        `queryParam:"inline"`
+
+	Type GetSearchAllLibrariesOptimizedForStreamingType
+}
+
+func CreateGetSearchAllLibrariesOptimizedForStreamingGetSearchAllLibrariesOptimizedForStreaming1(getSearchAllLibrariesOptimizedForStreaming1 GetSearchAllLibrariesOptimizedForStreaming1) GetSearchAllLibrariesOptimizedForStreaming {
+	typ := GetSearchAllLibrariesOptimizedForStreamingTypeGetSearchAllLibrariesOptimizedForStreaming1
+
+	return GetSearchAllLibrariesOptimizedForStreaming{
+		GetSearchAllLibrariesOptimizedForStreaming1: &getSearchAllLibrariesOptimizedForStreaming1,
+		Type: typ,
+	}
+}
+
+func CreateGetSearchAllLibrariesOptimizedForStreamingBoolean(boolean bool) GetSearchAllLibrariesOptimizedForStreaming {
+	typ := GetSearchAllLibrariesOptimizedForStreamingTypeBoolean
+
+	return GetSearchAllLibrariesOptimizedForStreaming{
+		Boolean: &boolean,
+		Type:    typ,
+	}
+}
+
+func (u *GetSearchAllLibrariesOptimizedForStreaming) UnmarshalJSON(data []byte) error {
+
+	var getSearchAllLibrariesOptimizedForStreaming1 GetSearchAllLibrariesOptimizedForStreaming1 = GetSearchAllLibrariesOptimizedForStreaming1(0)
+	if err := utils.UnmarshalJSON(data, &getSearchAllLibrariesOptimizedForStreaming1, "", true, true); err == nil {
+		u.GetSearchAllLibrariesOptimizedForStreaming1 = &getSearchAllLibrariesOptimizedForStreaming1
+		u.Type = GetSearchAllLibrariesOptimizedForStreamingTypeGetSearchAllLibrariesOptimizedForStreaming1
+		return nil
+	}
+
+	var boolean bool = false
+	if err := utils.UnmarshalJSON(data, &boolean, "", true, true); err == nil {
+		u.Boolean = &boolean
+		u.Type = GetSearchAllLibrariesOptimizedForStreamingTypeBoolean
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for GetSearchAllLibrariesOptimizedForStreaming", string(data))
+}
+
+func (u GetSearchAllLibrariesOptimizedForStreaming) MarshalJSON() ([]byte, error) {
+	if u.GetSearchAllLibrariesOptimizedForStreaming1 != nil {
+		return utils.MarshalJSON(u.GetSearchAllLibrariesOptimizedForStreaming1, "", true)
+	}
+
+	if u.Boolean != nil {
+		return utils.MarshalJSON(u.Boolean, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type GetSearchAllLibrariesOptimizedForStreaming: all fields are null")
+}
+
+type GetSearchAllLibrariesOptimizedForStreamingLibrary1 int
+
+const (
+	GetSearchAllLibrariesOptimizedForStreamingLibrary1Zero GetSearchAllLibrariesOptimizedForStreamingLibrary1 = 0
+	GetSearchAllLibrariesOptimizedForStreamingLibrary1One  GetSearchAllLibrariesOptimizedForStreamingLibrary1 = 1
+)
+
+func (e GetSearchAllLibrariesOptimizedForStreamingLibrary1) ToPointer() *GetSearchAllLibrariesOptimizedForStreamingLibrary1 {
+	return &e
+}
+func (e *GetSearchAllLibrariesOptimizedForStreamingLibrary1) UnmarshalJSON(data []byte) error {
+	var v int
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case 0:
+		fallthrough
+	case 1:
+		*e = GetSearchAllLibrariesOptimizedForStreamingLibrary1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetSearchAllLibrariesOptimizedForStreamingLibrary1: %v", v)
+	}
+}
+
+type GetSearchAllLibrariesLibraryOptimizedForStreamingType string
+
+const (
+	GetSearchAllLibrariesLibraryOptimizedForStreamingTypeGetSearchAllLibrariesOptimizedForStreamingLibrary1 GetSearchAllLibrariesLibraryOptimizedForStreamingType = "get-search-all-libraries_optimizedForStreaming_Library_1"
+	GetSearchAllLibrariesLibraryOptimizedForStreamingTypeBoolean                                            GetSearchAllLibrariesLibraryOptimizedForStreamingType = "boolean"
+)
+
+// GetSearchAllLibrariesLibraryOptimizedForStreaming - Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
+type GetSearchAllLibrariesLibraryOptimizedForStreaming struct {
+	GetSearchAllLibrariesOptimizedForStreamingLibrary1 *GetSearchAllLibrariesOptimizedForStreamingLibrary1 `queryParam:"inline"`
+	Boolean                                            *bool                                               `queryParam:"inline"`
+
+	Type GetSearchAllLibrariesLibraryOptimizedForStreamingType
+}
+
+func CreateGetSearchAllLibrariesLibraryOptimizedForStreamingGetSearchAllLibrariesOptimizedForStreamingLibrary1(getSearchAllLibrariesOptimizedForStreamingLibrary1 GetSearchAllLibrariesOptimizedForStreamingLibrary1) GetSearchAllLibrariesLibraryOptimizedForStreaming {
+	typ := GetSearchAllLibrariesLibraryOptimizedForStreamingTypeGetSearchAllLibrariesOptimizedForStreamingLibrary1
+
+	return GetSearchAllLibrariesLibraryOptimizedForStreaming{
+		GetSearchAllLibrariesOptimizedForStreamingLibrary1: &getSearchAllLibrariesOptimizedForStreamingLibrary1,
+		Type: typ,
+	}
+}
+
+func CreateGetSearchAllLibrariesLibraryOptimizedForStreamingBoolean(boolean bool) GetSearchAllLibrariesLibraryOptimizedForStreaming {
+	typ := GetSearchAllLibrariesLibraryOptimizedForStreamingTypeBoolean
+
+	return GetSearchAllLibrariesLibraryOptimizedForStreaming{
+		Boolean: &boolean,
+		Type:    typ,
+	}
+}
+
+func (u *GetSearchAllLibrariesLibraryOptimizedForStreaming) UnmarshalJSON(data []byte) error {
+
+	var getSearchAllLibrariesOptimizedForStreamingLibrary1 GetSearchAllLibrariesOptimizedForStreamingLibrary1 = GetSearchAllLibrariesOptimizedForStreamingLibrary1(0)
+	if err := utils.UnmarshalJSON(data, &getSearchAllLibrariesOptimizedForStreamingLibrary1, "", true, true); err == nil {
+		u.GetSearchAllLibrariesOptimizedForStreamingLibrary1 = &getSearchAllLibrariesOptimizedForStreamingLibrary1
+		u.Type = GetSearchAllLibrariesLibraryOptimizedForStreamingTypeGetSearchAllLibrariesOptimizedForStreamingLibrary1
+		return nil
+	}
+
+	var boolean bool = false
+	if err := utils.UnmarshalJSON(data, &boolean, "", true, true); err == nil {
+		u.Boolean = &boolean
+		u.Type = GetSearchAllLibrariesLibraryOptimizedForStreamingTypeBoolean
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for GetSearchAllLibrariesLibraryOptimizedForStreaming", string(data))
+}
+
+func (u GetSearchAllLibrariesLibraryOptimizedForStreaming) MarshalJSON() ([]byte, error) {
+	if u.GetSearchAllLibrariesOptimizedForStreamingLibrary1 != nil {
+		return utils.MarshalJSON(u.GetSearchAllLibrariesOptimizedForStreamingLibrary1, "", true)
+	}
+
+	if u.Boolean != nil {
+		return utils.MarshalJSON(u.Boolean, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type GetSearchAllLibrariesLibraryOptimizedForStreaming: all fields are null")
+}
+
+// GetSearchAllLibrariesHasThumbnail - Indicates if the part has a thumbnail.
+type GetSearchAllLibrariesHasThumbnail string
+
+const (
+	GetSearchAllLibrariesHasThumbnailFalse GetSearchAllLibrariesHasThumbnail = "0"
+	GetSearchAllLibrariesHasThumbnailTrue  GetSearchAllLibrariesHasThumbnail = "1"
+)
+
+func (e GetSearchAllLibrariesHasThumbnail) ToPointer() *GetSearchAllLibrariesHasThumbnail {
+	return &e
+}
+func (e *GetSearchAllLibrariesHasThumbnail) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "0":
+		fallthrough
+	case "1":
+		*e = GetSearchAllLibrariesHasThumbnail(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetSearchAllLibrariesHasThumbnail: %v", v)
+	}
+}
+
+type GetSearchAllLibrariesPart struct {
+	// Indicates if the part is accessible.
+	Accessible *bool `json:"accessible,omitempty"`
+	// Indicates if the part exists.
+	Exists *bool `json:"exists,omitempty"`
+	// Unique part identifier.
+	ID int64 `json:"id"`
+	// Key to access this part.
+	Key     *string `json:"key,omitempty"`
+	Indexes *string `json:"indexes,omitempty"`
+	// Duration of the part in milliseconds.
+	Duration *int `json:"duration,omitempty"`
+	// File path for the part.
+	File *string `json:"file,omitempty"`
+	// File size in bytes.
+	Size         *int64 `json:"size,omitempty"`
+	PacketLength *int   `json:"packetLength,omitempty"`
+	// Container format of the part.
+	Container *string `json:"container,omitempty"`
+	// Video profile for the part.
+	VideoProfile *string `json:"videoProfile,omitempty"`
+	// The audio profile used for the media (e.g., DTS, Dolby Digital, etc.).
+	AudioProfile    *string `json:"audioProfile,omitempty"`
+	Has64bitOffsets *bool   `json:"has64bitOffsets,omitempty"`
+	// Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
+	//
+	OptimizedForStreaming *GetSearchAllLibrariesLibraryOptimizedForStreaming `json:"optimizedForStreaming,omitempty"`
+	HasThumbnail          *GetSearchAllLibrariesHasThumbnail                 `default:"0" json:"hasThumbnail"`
+}
+
+func (g GetSearchAllLibrariesPart) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetSearchAllLibrariesPart) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *GetSearchAllLibrariesPart) GetAccessible() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Accessible
+}
+
+func (o *GetSearchAllLibrariesPart) GetExists() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Exists
+}
+
+func (o *GetSearchAllLibrariesPart) GetID() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.ID
+}
+
+func (o *GetSearchAllLibrariesPart) GetKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Key
+}
+
+func (o *GetSearchAllLibrariesPart) GetIndexes() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Indexes
+}
+
+func (o *GetSearchAllLibrariesPart) GetDuration() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Duration
+}
+
+func (o *GetSearchAllLibrariesPart) GetFile() *string {
+	if o == nil {
+		return nil
+	}
+	return o.File
+}
+
+func (o *GetSearchAllLibrariesPart) GetSize() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Size
+}
+
+func (o *GetSearchAllLibrariesPart) GetPacketLength() *int {
+	if o == nil {
+		return nil
+	}
+	return o.PacketLength
+}
+
+func (o *GetSearchAllLibrariesPart) GetContainer() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Container
+}
+
+func (o *GetSearchAllLibrariesPart) GetVideoProfile() *string {
+	if o == nil {
+		return nil
+	}
+	return o.VideoProfile
+}
+
+func (o *GetSearchAllLibrariesPart) GetAudioProfile() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AudioProfile
+}
+
+func (o *GetSearchAllLibrariesPart) GetHas64bitOffsets() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Has64bitOffsets
+}
+
+func (o *GetSearchAllLibrariesPart) GetOptimizedForStreaming() *GetSearchAllLibrariesLibraryOptimizedForStreaming {
+	if o == nil {
+		return nil
+	}
+	return o.OptimizedForStreaming
+}
+
+func (o *GetSearchAllLibrariesPart) GetHasThumbnail() *GetSearchAllLibrariesHasThumbnail {
+	if o == nil {
+		return nil
+	}
+	return o.HasThumbnail
+}
+
+type GetSearchAllLibrariesMedia struct {
+	// Unique media identifier.
+	ID int64 `json:"id"`
+	// Duration of the media in milliseconds.
+	Duration *int `json:"duration,omitempty"`
+	// Bitrate in bits per second.
+	Bitrate *int `json:"bitrate,omitempty"`
+	// Video width in pixels.
+	Width *int `json:"width,omitempty"`
+	// Video height in pixels.
+	Height *int `json:"height,omitempty"`
+	// Aspect ratio of the video.
+	AspectRatio *float32 `json:"aspectRatio,omitempty"`
+	// Number of audio channels.
+	AudioChannels *int `json:"audioChannels,omitempty"`
+	DisplayOffset *int `json:"displayOffset,omitempty"`
+	// Audio codec used.
+	AudioCodec *string `json:"audioCodec,omitempty"`
+	// Video codec used.
+	VideoCodec *string `json:"videoCodec,omitempty"`
+	// Video resolution (e.g., 4k).
+	VideoResolution *string `json:"videoResolution,omitempty"`
+	// Container format of the media.
+	Container *string `json:"container,omitempty"`
+	// Frame rate of the video. Values found include NTSC, PAL, 24p
+	//
+	VideoFrameRate *string `json:"videoFrameRate,omitempty"`
+	// Video profile (e.g., main 10).
+	VideoProfile *string `json:"videoProfile,omitempty"`
+	// Indicates whether voice activity is detected.
+	HasVoiceActivity *bool `json:"hasVoiceActivity,omitempty"`
+	// The audio profile used for the media (e.g., DTS, Dolby Digital, etc.).
+	AudioProfile *string `json:"audioProfile,omitempty"`
+	// Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
+	OptimizedForStreaming *GetSearchAllLibrariesOptimizedForStreaming `json:"optimizedForStreaming,omitempty"`
+	// Indicates whether the media has 64-bit offsets.
+	// This is relevant for media files that may require larger offsets than what 32-bit integers can provide.
+	//
+	Has64bitOffsets *bool                       `json:"has64bitOffsets,omitempty"`
+	Part            []GetSearchAllLibrariesPart `json:"Part,omitempty"`
+}
+
+func (o *GetSearchAllLibrariesMedia) GetID() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.ID
+}
+
+func (o *GetSearchAllLibrariesMedia) GetDuration() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Duration
+}
+
+func (o *GetSearchAllLibrariesMedia) GetBitrate() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Bitrate
+}
+
+func (o *GetSearchAllLibrariesMedia) GetWidth() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Width
+}
+
+func (o *GetSearchAllLibrariesMedia) GetHeight() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Height
+}
+
+func (o *GetSearchAllLibrariesMedia) GetAspectRatio() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.AspectRatio
+}
+
+func (o *GetSearchAllLibrariesMedia) GetAudioChannels() *int {
+	if o == nil {
+		return nil
+	}
+	return o.AudioChannels
+}
+
+func (o *GetSearchAllLibrariesMedia) GetDisplayOffset() *int {
+	if o == nil {
+		return nil
+	}
+	return o.DisplayOffset
+}
+
+func (o *GetSearchAllLibrariesMedia) GetAudioCodec() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AudioCodec
+}
+
+func (o *GetSearchAllLibrariesMedia) GetVideoCodec() *string {
+	if o == nil {
+		return nil
+	}
+	return o.VideoCodec
+}
+
+func (o *GetSearchAllLibrariesMedia) GetVideoResolution() *string {
+	if o == nil {
+		return nil
+	}
+	return o.VideoResolution
+}
+
+func (o *GetSearchAllLibrariesMedia) GetContainer() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Container
+}
+
+func (o *GetSearchAllLibrariesMedia) GetVideoFrameRate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.VideoFrameRate
+}
+
+func (o *GetSearchAllLibrariesMedia) GetVideoProfile() *string {
+	if o == nil {
+		return nil
+	}
+	return o.VideoProfile
+}
+
+func (o *GetSearchAllLibrariesMedia) GetHasVoiceActivity() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasVoiceActivity
+}
+
+func (o *GetSearchAllLibrariesMedia) GetAudioProfile() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AudioProfile
+}
+
+func (o *GetSearchAllLibrariesMedia) GetOptimizedForStreaming() *GetSearchAllLibrariesOptimizedForStreaming {
+	if o == nil {
+		return nil
+	}
+	return o.OptimizedForStreaming
+}
+
+func (o *GetSearchAllLibrariesMedia) GetHas64bitOffsets() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Has64bitOffsets
+}
+
+func (o *GetSearchAllLibrariesMedia) GetPart() []GetSearchAllLibrariesPart {
+	if o == nil {
+		return nil
+	}
+	return o.Part
+}
+
+type GetSearchAllLibrariesGenre struct {
+	// The unique identifier for the genre.
+	// NOTE: This is different for each Plex server and is not globally unique.
+	//
+	ID int `json:"id"`
+	// The genre name of this media-item
+	//
+	Tag string `json:"tag"`
+}
+
+func (o *GetSearchAllLibrariesGenre) GetID() int {
+	if o == nil {
+		return 0
+	}
+	return o.ID
+}
+
+func (o *GetSearchAllLibrariesGenre) GetTag() string {
+	if o == nil {
+		return ""
+	}
+	return o.Tag
+}
+
+type GetSearchAllLibrariesCountry struct {
+	// The unique identifier for the country.
+	// NOTE: This is different for each Plex server and is not globally unique.
+	//
+	ID int `json:"id"`
+	// The country of origin of this media item
+	Tag string `json:"tag"`
+}
+
+func (o *GetSearchAllLibrariesCountry) GetID() int {
+	if o == nil {
+		return 0
+	}
+	return o.ID
+}
+
+func (o *GetSearchAllLibrariesCountry) GetTag() string {
+	if o == nil {
+		return ""
+	}
+	return o.Tag
+}
+
+type GetSearchAllLibrariesDirector struct {
+	// Unique identifier for the director.
+	ID int `json:"id"`
+	// The role of Director
+	Tag string `json:"tag"`
+	// The absolute URL of the thumbnail image for the director.
+	Thumb *string `json:"thumb,omitempty"`
+}
+
+func (o *GetSearchAllLibrariesDirector) GetID() int {
+	if o == nil {
+		return 0
+	}
+	return o.ID
+}
+
+func (o *GetSearchAllLibrariesDirector) GetTag() string {
+	if o == nil {
+		return ""
+	}
+	return o.Tag
+}
+
+func (o *GetSearchAllLibrariesDirector) GetThumb() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Thumb
+}
+
+type GetSearchAllLibrariesWriter struct {
+	// Unique identifier for the writer.
+	ID int `json:"id"`
+	// The role of Writer
+	Tag string `json:"tag"`
+	// The absolute URL of the thumbnail image for the writer.
+	Thumb *string `json:"thumb,omitempty"`
+}
+
+func (o *GetSearchAllLibrariesWriter) GetID() int {
+	if o == nil {
+		return 0
+	}
+	return o.ID
+}
+
+func (o *GetSearchAllLibrariesWriter) GetTag() string {
+	if o == nil {
+		return ""
+	}
+	return o.Tag
+}
+
+func (o *GetSearchAllLibrariesWriter) GetThumb() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Thumb
+}
+
+type GetSearchAllLibrariesRole struct {
+	// The unique identifier for the role.
+	// NOTE: This is different for each Plex server and is not globally unique.
+	//
+	ID int `json:"id"`
+	// The display tag for the actor (typically the actor's name).
+	Tag string `json:"tag"`
+	// The role played by the actor in the media item.
+	Role *string `json:"role,omitempty"`
+	// The absolute URL of the thumbnail image for the actor.
+	Thumb *string `json:"thumb,omitempty"`
+}
+
+func (o *GetSearchAllLibrariesRole) GetID() int {
+	if o == nil {
+		return 0
+	}
+	return o.ID
+}
+
+func (o *GetSearchAllLibrariesRole) GetTag() string {
+	if o == nil {
+		return ""
+	}
+	return o.Tag
+}
+
+func (o *GetSearchAllLibrariesRole) GetRole() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Role
+}
+
+func (o *GetSearchAllLibrariesRole) GetThumb() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Thumb
+}
+
+// GetSearchAllLibrariesLocation - The folder path for the media item.
+type GetSearchAllLibrariesLocation struct {
+	Path string `json:"path"`
+}
+
+func (o *GetSearchAllLibrariesLocation) GetPath() string {
+	if o == nil {
+		return ""
+	}
+	return o.Path
+}
+
+// GetSearchAllLibrariesMetadata - Unknown
 type GetSearchAllLibrariesMetadata struct {
-	// The rating key (Media ID) of this media item.
-	// Note: This is always an integer, but is represented as a string in the API.
-	//
-	RatingKey           string  `json:"ratingKey"`
-	Key                 string  `json:"key"`
-	GUID                string  `json:"guid"`
-	Studio              *string `json:"studio,omitempty"`
-	SkipChildren        *bool   `json:"skipChildren,omitempty"`
-	LibrarySectionID    *int64  `json:"librarySectionID,omitempty"`
-	LibrarySectionTitle *string `json:"librarySectionTitle,omitempty"`
-	LibrarySectionKey   *string `json:"librarySectionKey,omitempty"`
-	// The type of media content in the Plex library. This can represent videos, music, or photos.
-	//
-	Type           GetSearchAllLibrariesType `json:"type"`
-	Title          string                    `json:"title"`
-	Slug           *string                   `json:"slug,omitempty"`
-	ContentRating  *string                   `json:"contentRating,omitempty"`
-	Summary        string                    `json:"summary"`
-	Rating         *float64                  `json:"rating,omitempty"`
-	AudienceRating *float64                  `json:"audienceRating,omitempty"`
-	Year           *int                      `json:"year,omitempty"`
-	SeasonCount    *int                      `json:"seasonCount,omitempty"`
-	Tagline        *string                   `json:"tagline,omitempty"`
-	// Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
-	FlattenSeasons *GetSearchAllLibrariesFlattenSeasons `json:"flattenSeasons,omitempty"`
-	// Setting that indicates how episodes are sorted for the show. (-1 = Library default, 0 = Oldest first, 1 = Newest first).
-	EpisodeSort *GetSearchAllLibrariesEpisodeSort `json:"episodeSort,omitempty"`
-	// Setting that indicates if credits markers detection is enabled. (-1 = Library default, 0 = Disabled).
-	EnableCreditsMarkerGeneration *GetSearchAllLibrariesEnableCreditsMarkerGeneration `json:"enableCreditsMarkerGeneration,omitempty"`
-	// Setting that indicates the episode ordering for the show.
-	// None = Library default,
-	// tmdbAiring = The Movie Database (Aired),
-	// aired = TheTVDB (Aired),
-	// dvd = TheTVDB (DVD),
-	// absolute = TheTVDB (Absolute)).
-	//
-	ShowOrdering          *GetSearchAllLibrariesShowOrdering `json:"showOrdering,omitempty"`
-	Thumb                 *string                            `json:"thumb,omitempty"`
-	Art                   *string                            `json:"art,omitempty"`
-	Banner                *string                            `json:"banner,omitempty"`
-	Duration              *int                               `json:"duration,omitempty"`
-	OriginallyAvailableAt *types.Date                        `json:"originallyAvailableAt,omitempty"`
+	// The rating key (Media ID) of this media item. Note: Although this is always an integer, it is represented as a string in the API.
+	RatingKey string `json:"ratingKey"`
+	// The unique key for the media item.
+	Key string `json:"key"`
+	// The globally unique identifier for the media item.
+	GUID string `json:"guid"`
+	// A URL‐friendly version of the media title.
+	Slug string `json:"slug"`
+	// The studio that produced the media item.
+	Studio *string                   `json:"studio,omitempty"`
+	Type   GetSearchAllLibrariesType `json:"type"`
+	// The title of the media item.
+	Title string `json:"title"`
+	// The banner image URL for the media item.
+	Banner string `json:"banner"`
+	// The sort title used for ordering media items.
+	TitleSort string `json:"titleSort"`
+	// The content rating for the media item.
+	ContentRating *string `json:"contentRating,omitempty"`
+	// A synopsis of the media item.
+	Summary string `json:"summary"`
+	// The critic rating for the media item.
+	Rating float32 `json:"rating"`
+	// The audience rating for the media item.
+	AudienceRating float64 `json:"audienceRating"`
+	// The release year of the media item.
+	Year *int `json:"year,omitempty"`
+	// A brief tagline for the media item.
+	Tagline string `json:"tagline"`
+	// The thumbnail image URL for the media item.
+	Thumb string `json:"thumb"`
+	// The art image URL for the media item.
+	Art string `json:"art"`
+	// The theme URL for the media item.
+	Theme string `json:"theme"`
+	// The index position of the media item.
+	Index int `json:"index"`
+	// The number of leaf items (end nodes) under this media item.
+	LeafCount *int `json:"leafCount,omitempty"`
+	// The number of leaf items that have been viewed.
+	ViewedLeafCount *int `json:"viewedLeafCount,omitempty"`
+	// The number of child items associated with this media item.
+	ChildCount int `json:"childCount"`
+	// The total number of seasons (for TV shows).
+	SeasonCount int `json:"seasonCount"`
+	// The duration of the media item in milliseconds.
+	Duration int `json:"duration"`
+	// The original release date of the media item.
+	OriginallyAvailableAt *types.Date `json:"originallyAvailableAt,omitempty"`
+	AddedAt               int64       `json:"addedAt"`
 	// Unix epoch datetime in seconds
-	AddedAt int64 `json:"addedAt"`
-	// Unix epoch datetime in seconds
-	UpdatedAt            *int64  `json:"updatedAt,omitempty"`
-	AudienceRatingImage  *string `json:"audienceRatingImage,omitempty"`
-	ChapterSource        *string `json:"chapterSource,omitempty"`
-	PrimaryExtraKey      *string `json:"primaryExtraKey,omitempty"`
-	RatingImage          *string `json:"ratingImage,omitempty"`
-	GrandparentRatingKey *string `json:"grandparentRatingKey,omitempty"`
-	GrandparentGUID      *string `json:"grandparentGuid,omitempty"`
-	GrandparentKey       *string `json:"grandparentKey,omitempty"`
-	GrandparentTitle     *string `json:"grandparentTitle,omitempty"`
-	GrandparentThumb     *string `json:"grandparentThumb,omitempty"`
-	ParentSlug           *string `json:"parentSlug,omitempty"`
-	GrandparentSlug      *string `json:"grandparentSlug,omitempty"`
-	GrandparentArt       *string `json:"grandparentArt,omitempty"`
-	GrandparentTheme     *string `json:"grandparentTheme,omitempty"`
-	// The Media object is only included when type query is `4` or higher.
-	//
-	Media      []GetSearchAllLibrariesMedia      `json:"Media,omitempty"`
-	Genre      []GetSearchAllLibrariesGenre      `json:"Genre,omitempty"`
-	Country    []GetSearchAllLibrariesCountry    `json:"Country,omitempty"`
-	Director   []GetSearchAllLibrariesDirector   `json:"Director,omitempty"`
-	Writer     []GetSearchAllLibrariesWriter     `json:"Writer,omitempty"`
-	Collection []GetSearchAllLibrariesCollection `json:"Collection,omitempty"`
-	Role       []GetSearchAllLibrariesRole       `json:"Role,omitempty"`
-	Location   []GetSearchAllLibrariesLocation   `json:"Location,omitempty"`
-	// The Guid object is only included in the response if the `includeGuids` parameter is set to `1`.
-	//
-	MediaGUID              []GetSearchAllLibrariesMediaGUID      `json:"Guid,omitempty"`
-	UltraBlurColors        *GetSearchAllLibrariesUltraBlurColors `json:"UltraBlurColors,omitempty"`
-	MetaDataRating         []GetSearchAllLibrariesMetaDataRating `json:"Rating,omitempty"`
-	Image                  []GetSearchAllLibrariesImage          `json:"Image,omitempty"`
-	TitleSort              *string                               `json:"titleSort,omitempty"`
-	ViewCount              *int                                  `json:"viewCount,omitempty"`
-	LastViewedAt           *int                                  `json:"lastViewedAt,omitempty"`
-	OriginalTitle          *string                               `json:"originalTitle,omitempty"`
-	ViewOffset             *int                                  `json:"viewOffset,omitempty"`
-	SkipCount              *int                                  `json:"skipCount,omitempty"`
-	Index                  *int                                  `json:"index,omitempty"`
-	Theme                  *string                               `json:"theme,omitempty"`
-	LeafCount              *int                                  `json:"leafCount,omitempty"`
-	ViewedLeafCount        *int                                  `json:"viewedLeafCount,omitempty"`
-	ChildCount             *int                                  `json:"childCount,omitempty"`
-	HasPremiumExtras       *string                               `json:"hasPremiumExtras,omitempty"`
-	HasPremiumPrimaryExtra *string                               `json:"hasPremiumPrimaryExtra,omitempty"`
-	// The rating key of the parent item.
-	//
+	UpdatedAt *int64 `json:"updatedAt,omitempty"`
+	// The release year of the parent media item.
+	ParentYear *int `json:"parentYear,omitempty"`
+	// The URL for the audience rating image.
+	AudienceRatingImage *string `json:"audienceRatingImage,omitempty"`
+	// The source from which chapter data is derived.
+	ChapterSource *string `json:"chapterSource,omitempty"`
+	// The primary extra key associated with this media item.
+	PrimaryExtraKey *string `json:"primaryExtraKey,omitempty"`
+	// The original title of the media item (if different).
+	OriginalTitle *string `json:"originalTitle,omitempty"`
+	// The rating key of the parent media item.
 	ParentRatingKey *string `json:"parentRatingKey,omitempty"`
-	ParentGUID      *string `json:"parentGuid,omitempty"`
-	ParentStudio    *string `json:"parentStudio,omitempty"`
-	ParentKey       *string `json:"parentKey,omitempty"`
-	ParentTitle     *string `json:"parentTitle,omitempty"`
-	ParentIndex     *int    `json:"parentIndex,omitempty"`
-	ParentYear      *int    `json:"parentYear,omitempty"`
-	ParentThumb     *string `json:"parentThumb,omitempty"`
-	ParentTheme     *string `json:"parentTheme,omitempty"`
+	// The rating key of the grandparent media item.
+	GrandparentRatingKey *string `json:"grandparentRatingKey,omitempty"`
+	// The GUID of the parent media item.
+	ParentGUID *string `json:"parentGuid,omitempty"`
+	// The GUID of the grandparent media item.
+	GrandparentGUID *string `json:"grandparentGuid,omitempty"`
+	// The slug for the grandparent media item.
+	GrandparentSlug *string `json:"grandparentSlug,omitempty"`
+	// The key of the grandparent media item.
+	GrandparentKey *string `json:"grandparentKey,omitempty"`
+	// The key of the parent media item.
+	ParentKey *string `json:"parentKey,omitempty"`
+	// The title of the grandparent media item.
+	GrandparentTitle *string `json:"grandparentTitle,omitempty"`
+	// The thumbnail URL for the grandparent media item.
+	GrandparentThumb *string `json:"grandparentThumb,omitempty"`
+	// The theme URL for the grandparent media item.
+	GrandparentTheme *string `json:"grandparentTheme,omitempty"`
+	// The art URL for the grandparent media item.
+	GrandparentArt *string `json:"grandparentArt,omitempty"`
+	// The title of the parent media item.
+	ParentTitle *string `json:"parentTitle,omitempty"`
+	// The index position of the parent media item.
+	ParentIndex *int `json:"parentIndex,omitempty"`
+	// The thumbnail URL for the parent media item.
+	ParentThumb *string `json:"parentThumb,omitempty"`
+	// The URL for the rating image.
+	RatingImage *string `json:"ratingImage,omitempty"`
+	// The number of times this media item has been viewed.
+	ViewCount *int `json:"viewCount,omitempty"`
+	// The current playback offset (in milliseconds).
+	ViewOffset *int `json:"viewOffset,omitempty"`
+	// The number of times this media item has been skipped.
+	SkipCount *int `json:"skipCount,omitempty"`
+	// A classification that further describes the type of media item. For example, 'clip' indicates that the item is a short video clip.
+	Subtype *string `json:"subtype,omitempty"`
+	// The Unix timestamp representing the last time the item was rated.
+	LastRatedAt *int64 `json:"lastRatedAt,omitempty"`
+	// The accuracy of the creation timestamp. This value indicates the format(s) provided (for example, 'epoch,local' means both epoch and local time formats are available).
+	CreatedAtAccuracy *string `json:"createdAtAccuracy,omitempty"`
+	// The time zone offset for the creation timestamp, represented as a string. This offset indicates the difference from UTC.
+	CreatedAtTZOffset *string `json:"createdAtTZOffset,omitempty"`
+	// Unix timestamp for when the media item was last viewed.
+	LastViewedAt *int `json:"lastViewedAt,omitempty"`
+	// The rating provided by a user for the item. This value is expressed as a decimal number.
+	UserRating      *float32                              `json:"userRating,omitempty"`
+	Image           []GetSearchAllLibrariesImage          `json:"Image,omitempty"`
+	UltraBlurColors *GetSearchAllLibrariesUltraBlurColors `json:"UltraBlurColors,omitempty"`
+	Guids           []GetSearchAllLibrariesGuids          `json:"Guid,omitempty"`
+	// The identifier for the library section.
+	LibrarySectionID *int64 `json:"librarySectionID,omitempty"`
+	// The title of the library section.
+	LibrarySectionTitle *string `json:"librarySectionTitle,omitempty"`
+	// The key corresponding to the library section.
+	LibrarySectionKey *string `json:"librarySectionKey,omitempty"`
+	// Setting that indicates the episode ordering for the show.
+	// Options:
+	//   - None = Library default
+	//   - tmdbAiring = The Movie Database (Aired)
+	//   - aired = TheTVDB (Aired)
+	//   - dvd = TheTVDB (DVD)
+	//   - absolute = TheTVDB (Absolute)
+	//
+	ShowOrdering *GetSearchAllLibrariesShowOrdering `json:"showOrdering,omitempty"`
+	// Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
+	//
+	FlattenSeasons *GetSearchAllLibrariesFlattenSeasons `json:"flattenSeasons,omitempty"`
+	// Indicates whether child items should be skipped.
+	SkipChildren *bool                           `json:"skipChildren,omitempty"`
+	Media        []GetSearchAllLibrariesMedia    `json:"Media,omitempty"`
+	Genre        []GetSearchAllLibrariesGenre    `json:"Genre,omitempty"`
+	Country      []GetSearchAllLibrariesCountry  `json:"Country,omitempty"`
+	Director     []GetSearchAllLibrariesDirector `json:"Director,omitempty"`
+	Writer       []GetSearchAllLibrariesWriter   `json:"Writer,omitempty"`
+	Role         []GetSearchAllLibrariesRole     `json:"Role,omitempty"`
+	Location     []GetSearchAllLibrariesLocation `json:"Location,omitempty"`
 }
 
 func (g GetSearchAllLibrariesMetadata) MarshalJSON() ([]byte, error) {
@@ -1272,39 +1276,18 @@ func (o *GetSearchAllLibrariesMetadata) GetGUID() string {
 	return o.GUID
 }
 
+func (o *GetSearchAllLibrariesMetadata) GetSlug() string {
+	if o == nil {
+		return ""
+	}
+	return o.Slug
+}
+
 func (o *GetSearchAllLibrariesMetadata) GetStudio() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Studio
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetSkipChildren() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.SkipChildren
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetLibrarySectionID() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.LibrarySectionID
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetLibrarySectionTitle() *string {
-	if o == nil {
-		return nil
-	}
-	return o.LibrarySectionTitle
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetLibrarySectionKey() *string {
-	if o == nil {
-		return nil
-	}
-	return o.LibrarySectionKey
 }
 
 func (o *GetSearchAllLibrariesMetadata) GetType() GetSearchAllLibrariesType {
@@ -1321,11 +1304,18 @@ func (o *GetSearchAllLibrariesMetadata) GetTitle() string {
 	return o.Title
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetSlug() *string {
+func (o *GetSearchAllLibrariesMetadata) GetBanner() string {
 	if o == nil {
-		return nil
+		return ""
 	}
-	return o.Slug
+	return o.Banner
+}
+
+func (o *GetSearchAllLibrariesMetadata) GetTitleSort() string {
+	if o == nil {
+		return ""
+	}
+	return o.TitleSort
 }
 
 func (o *GetSearchAllLibrariesMetadata) GetContentRating() *string {
@@ -1342,16 +1332,16 @@ func (o *GetSearchAllLibrariesMetadata) GetSummary() string {
 	return o.Summary
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetRating() *float64 {
+func (o *GetSearchAllLibrariesMetadata) GetRating() float32 {
 	if o == nil {
-		return nil
+		return 0.0
 	}
 	return o.Rating
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetAudienceRating() *float64 {
+func (o *GetSearchAllLibrariesMetadata) GetAudienceRating() float64 {
 	if o == nil {
-		return nil
+		return 0.0
 	}
 	return o.AudienceRating
 }
@@ -1363,72 +1353,72 @@ func (o *GetSearchAllLibrariesMetadata) GetYear() *int {
 	return o.Year
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetSeasonCount() *int {
+func (o *GetSearchAllLibrariesMetadata) GetTagline() string {
 	if o == nil {
-		return nil
-	}
-	return o.SeasonCount
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetTagline() *string {
-	if o == nil {
-		return nil
+		return ""
 	}
 	return o.Tagline
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetFlattenSeasons() *GetSearchAllLibrariesFlattenSeasons {
+func (o *GetSearchAllLibrariesMetadata) GetThumb() string {
 	if o == nil {
-		return nil
-	}
-	return o.FlattenSeasons
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetEpisodeSort() *GetSearchAllLibrariesEpisodeSort {
-	if o == nil {
-		return nil
-	}
-	return o.EpisodeSort
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetEnableCreditsMarkerGeneration() *GetSearchAllLibrariesEnableCreditsMarkerGeneration {
-	if o == nil {
-		return nil
-	}
-	return o.EnableCreditsMarkerGeneration
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetShowOrdering() *GetSearchAllLibrariesShowOrdering {
-	if o == nil {
-		return nil
-	}
-	return o.ShowOrdering
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetThumb() *string {
-	if o == nil {
-		return nil
+		return ""
 	}
 	return o.Thumb
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetArt() *string {
+func (o *GetSearchAllLibrariesMetadata) GetArt() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.Art
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetBanner() *string {
+func (o *GetSearchAllLibrariesMetadata) GetTheme() string {
+	if o == nil {
+		return ""
+	}
+	return o.Theme
+}
+
+func (o *GetSearchAllLibrariesMetadata) GetIndex() int {
+	if o == nil {
+		return 0
+	}
+	return o.Index
+}
+
+func (o *GetSearchAllLibrariesMetadata) GetLeafCount() *int {
 	if o == nil {
 		return nil
 	}
-	return o.Banner
+	return o.LeafCount
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetDuration() *int {
+func (o *GetSearchAllLibrariesMetadata) GetViewedLeafCount() *int {
 	if o == nil {
 		return nil
+	}
+	return o.ViewedLeafCount
+}
+
+func (o *GetSearchAllLibrariesMetadata) GetChildCount() int {
+	if o == nil {
+		return 0
+	}
+	return o.ChildCount
+}
+
+func (o *GetSearchAllLibrariesMetadata) GetSeasonCount() int {
+	if o == nil {
+		return 0
+	}
+	return o.SeasonCount
+}
+
+func (o *GetSearchAllLibrariesMetadata) GetDuration() int {
+	if o == nil {
+		return 0
 	}
 	return o.Duration
 }
@@ -1454,6 +1444,13 @@ func (o *GetSearchAllLibrariesMetadata) GetUpdatedAt() *int64 {
 	return o.UpdatedAt
 }
 
+func (o *GetSearchAllLibrariesMetadata) GetParentYear() *int {
+	if o == nil {
+		return nil
+	}
+	return o.ParentYear
+}
+
 func (o *GetSearchAllLibrariesMetadata) GetAudienceRatingImage() *string {
 	if o == nil {
 		return nil
@@ -1475,11 +1472,18 @@ func (o *GetSearchAllLibrariesMetadata) GetPrimaryExtraKey() *string {
 	return o.PrimaryExtraKey
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetRatingImage() *string {
+func (o *GetSearchAllLibrariesMetadata) GetOriginalTitle() *string {
 	if o == nil {
 		return nil
 	}
-	return o.RatingImage
+	return o.OriginalTitle
+}
+
+func (o *GetSearchAllLibrariesMetadata) GetParentRatingKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ParentRatingKey
 }
 
 func (o *GetSearchAllLibrariesMetadata) GetGrandparentRatingKey() *string {
@@ -1489,6 +1493,13 @@ func (o *GetSearchAllLibrariesMetadata) GetGrandparentRatingKey() *string {
 	return o.GrandparentRatingKey
 }
 
+func (o *GetSearchAllLibrariesMetadata) GetParentGUID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ParentGUID
+}
+
 func (o *GetSearchAllLibrariesMetadata) GetGrandparentGUID() *string {
 	if o == nil {
 		return nil
@@ -1496,11 +1507,25 @@ func (o *GetSearchAllLibrariesMetadata) GetGrandparentGUID() *string {
 	return o.GrandparentGUID
 }
 
+func (o *GetSearchAllLibrariesMetadata) GetGrandparentSlug() *string {
+	if o == nil {
+		return nil
+	}
+	return o.GrandparentSlug
+}
+
 func (o *GetSearchAllLibrariesMetadata) GetGrandparentKey() *string {
 	if o == nil {
 		return nil
 	}
 	return o.GrandparentKey
+}
+
+func (o *GetSearchAllLibrariesMetadata) GetParentKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ParentKey
 }
 
 func (o *GetSearchAllLibrariesMetadata) GetGrandparentTitle() *string {
@@ -1517,18 +1542,11 @@ func (o *GetSearchAllLibrariesMetadata) GetGrandparentThumb() *string {
 	return o.GrandparentThumb
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetParentSlug() *string {
+func (o *GetSearchAllLibrariesMetadata) GetGrandparentTheme() *string {
 	if o == nil {
 		return nil
 	}
-	return o.ParentSlug
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetGrandparentSlug() *string {
-	if o == nil {
-		return nil
-	}
-	return o.GrandparentSlug
+	return o.GrandparentTheme
 }
 
 func (o *GetSearchAllLibrariesMetadata) GetGrandparentArt() *string {
@@ -1538,11 +1556,158 @@ func (o *GetSearchAllLibrariesMetadata) GetGrandparentArt() *string {
 	return o.GrandparentArt
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetGrandparentTheme() *string {
+func (o *GetSearchAllLibrariesMetadata) GetParentTitle() *string {
 	if o == nil {
 		return nil
 	}
-	return o.GrandparentTheme
+	return o.ParentTitle
+}
+
+func (o *GetSearchAllLibrariesMetadata) GetParentIndex() *int {
+	if o == nil {
+		return nil
+	}
+	return o.ParentIndex
+}
+
+func (o *GetSearchAllLibrariesMetadata) GetParentThumb() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ParentThumb
+}
+
+func (o *GetSearchAllLibrariesMetadata) GetRatingImage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RatingImage
+}
+
+func (o *GetSearchAllLibrariesMetadata) GetViewCount() *int {
+	if o == nil {
+		return nil
+	}
+	return o.ViewCount
+}
+
+func (o *GetSearchAllLibrariesMetadata) GetViewOffset() *int {
+	if o == nil {
+		return nil
+	}
+	return o.ViewOffset
+}
+
+func (o *GetSearchAllLibrariesMetadata) GetSkipCount() *int {
+	if o == nil {
+		return nil
+	}
+	return o.SkipCount
+}
+
+func (o *GetSearchAllLibrariesMetadata) GetSubtype() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Subtype
+}
+
+func (o *GetSearchAllLibrariesMetadata) GetLastRatedAt() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.LastRatedAt
+}
+
+func (o *GetSearchAllLibrariesMetadata) GetCreatedAtAccuracy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedAtAccuracy
+}
+
+func (o *GetSearchAllLibrariesMetadata) GetCreatedAtTZOffset() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedAtTZOffset
+}
+
+func (o *GetSearchAllLibrariesMetadata) GetLastViewedAt() *int {
+	if o == nil {
+		return nil
+	}
+	return o.LastViewedAt
+}
+
+func (o *GetSearchAllLibrariesMetadata) GetUserRating() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.UserRating
+}
+
+func (o *GetSearchAllLibrariesMetadata) GetImage() []GetSearchAllLibrariesImage {
+	if o == nil {
+		return nil
+	}
+	return o.Image
+}
+
+func (o *GetSearchAllLibrariesMetadata) GetUltraBlurColors() *GetSearchAllLibrariesUltraBlurColors {
+	if o == nil {
+		return nil
+	}
+	return o.UltraBlurColors
+}
+
+func (o *GetSearchAllLibrariesMetadata) GetGuids() []GetSearchAllLibrariesGuids {
+	if o == nil {
+		return nil
+	}
+	return o.Guids
+}
+
+func (o *GetSearchAllLibrariesMetadata) GetLibrarySectionID() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.LibrarySectionID
+}
+
+func (o *GetSearchAllLibrariesMetadata) GetLibrarySectionTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LibrarySectionTitle
+}
+
+func (o *GetSearchAllLibrariesMetadata) GetLibrarySectionKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LibrarySectionKey
+}
+
+func (o *GetSearchAllLibrariesMetadata) GetShowOrdering() *GetSearchAllLibrariesShowOrdering {
+	if o == nil {
+		return nil
+	}
+	return o.ShowOrdering
+}
+
+func (o *GetSearchAllLibrariesMetadata) GetFlattenSeasons() *GetSearchAllLibrariesFlattenSeasons {
+	if o == nil {
+		return nil
+	}
+	return o.FlattenSeasons
+}
+
+func (o *GetSearchAllLibrariesMetadata) GetSkipChildren() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.SkipChildren
 }
 
 func (o *GetSearchAllLibrariesMetadata) GetMedia() []GetSearchAllLibrariesMedia {
@@ -1580,13 +1745,6 @@ func (o *GetSearchAllLibrariesMetadata) GetWriter() []GetSearchAllLibrariesWrite
 	return o.Writer
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetCollection() []GetSearchAllLibrariesCollection {
-	if o == nil {
-		return nil
-	}
-	return o.Collection
-}
-
 func (o *GetSearchAllLibrariesMetadata) GetRole() []GetSearchAllLibrariesRole {
 	if o == nil {
 		return nil
@@ -1601,191 +1759,11 @@ func (o *GetSearchAllLibrariesMetadata) GetLocation() []GetSearchAllLibrariesLoc
 	return o.Location
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetMediaGUID() []GetSearchAllLibrariesMediaGUID {
-	if o == nil {
-		return nil
-	}
-	return o.MediaGUID
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetUltraBlurColors() *GetSearchAllLibrariesUltraBlurColors {
-	if o == nil {
-		return nil
-	}
-	return o.UltraBlurColors
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetMetaDataRating() []GetSearchAllLibrariesMetaDataRating {
-	if o == nil {
-		return nil
-	}
-	return o.MetaDataRating
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetImage() []GetSearchAllLibrariesImage {
-	if o == nil {
-		return nil
-	}
-	return o.Image
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetTitleSort() *string {
-	if o == nil {
-		return nil
-	}
-	return o.TitleSort
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetViewCount() *int {
-	if o == nil {
-		return nil
-	}
-	return o.ViewCount
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetLastViewedAt() *int {
-	if o == nil {
-		return nil
-	}
-	return o.LastViewedAt
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetOriginalTitle() *string {
-	if o == nil {
-		return nil
-	}
-	return o.OriginalTitle
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetViewOffset() *int {
-	if o == nil {
-		return nil
-	}
-	return o.ViewOffset
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetSkipCount() *int {
-	if o == nil {
-		return nil
-	}
-	return o.SkipCount
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetIndex() *int {
-	if o == nil {
-		return nil
-	}
-	return o.Index
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetTheme() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Theme
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetLeafCount() *int {
-	if o == nil {
-		return nil
-	}
-	return o.LeafCount
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetViewedLeafCount() *int {
-	if o == nil {
-		return nil
-	}
-	return o.ViewedLeafCount
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetChildCount() *int {
-	if o == nil {
-		return nil
-	}
-	return o.ChildCount
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetHasPremiumExtras() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HasPremiumExtras
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetHasPremiumPrimaryExtra() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HasPremiumPrimaryExtra
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetParentRatingKey() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ParentRatingKey
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetParentGUID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ParentGUID
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetParentStudio() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ParentStudio
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetParentKey() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ParentKey
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetParentTitle() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ParentTitle
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetParentIndex() *int {
-	if o == nil {
-		return nil
-	}
-	return o.ParentIndex
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetParentYear() *int {
-	if o == nil {
-		return nil
-	}
-	return o.ParentYear
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetParentThumb() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ParentThumb
-}
-
-func (o *GetSearchAllLibrariesMetadata) GetParentTheme() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ParentTheme
-}
-
 type SearchResult struct {
-	Score    float32                       `json:"score"`
-	Metadata GetSearchAllLibrariesMetadata `json:"Metadata"`
+	// The score of the search result, typically a float value between 0 and 1.
+	Score     float32                         `json:"score"`
+	Directory *GetSearchAllLibrariesDirectory `json:"Directory,omitempty"`
+	Metadata  *GetSearchAllLibrariesMetadata  `json:"Metadata,omitempty"`
 }
 
 func (o *SearchResult) GetScore() float32 {
@@ -1795,23 +1773,94 @@ func (o *SearchResult) GetScore() float32 {
 	return o.Score
 }
 
-func (o *SearchResult) GetMetadata() GetSearchAllLibrariesMetadata {
+func (o *SearchResult) GetDirectory() *GetSearchAllLibrariesDirectory {
 	if o == nil {
-		return GetSearchAllLibrariesMetadata{}
+		return nil
+	}
+	return o.Directory
+}
+
+func (o *SearchResult) GetMetadata() *GetSearchAllLibrariesMetadata {
+	if o == nil {
+		return nil
 	}
 	return o.Metadata
 }
 
 type GetSearchAllLibrariesMediaContainer struct {
-	Size         float64        `json:"size"`
-	SearchResult []SearchResult `json:"SearchResult"`
+	// Number of media items returned in this response.
+	Size int `json:"size"`
+	// Indicates whether syncing is allowed.
+	AllowSync bool `json:"allowSync"`
+	// An plugin identifier for the media container.
+	Identifier string `json:"identifier"`
+	// The unique identifier for the library section.
+	LibrarySectionID *int64 `json:"librarySectionID,omitempty"`
+	// The title of the library section.
+	LibrarySectionTitle *string `json:"librarySectionTitle,omitempty"`
+	// The universally unique identifier for the library section.
+	LibrarySectionUUID *string `json:"librarySectionUUID,omitempty"`
+	// The prefix used for media tag resource paths.
+	MediaTagPrefix string `json:"mediaTagPrefix"`
+	// The version number for media tags.
+	MediaTagVersion int64          `json:"mediaTagVersion"`
+	SearchResult    []SearchResult `json:"SearchResult"`
 }
 
-func (o *GetSearchAllLibrariesMediaContainer) GetSize() float64 {
+func (o *GetSearchAllLibrariesMediaContainer) GetSize() int {
 	if o == nil {
-		return 0.0
+		return 0
 	}
 	return o.Size
+}
+
+func (o *GetSearchAllLibrariesMediaContainer) GetAllowSync() bool {
+	if o == nil {
+		return false
+	}
+	return o.AllowSync
+}
+
+func (o *GetSearchAllLibrariesMediaContainer) GetIdentifier() string {
+	if o == nil {
+		return ""
+	}
+	return o.Identifier
+}
+
+func (o *GetSearchAllLibrariesMediaContainer) GetLibrarySectionID() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.LibrarySectionID
+}
+
+func (o *GetSearchAllLibrariesMediaContainer) GetLibrarySectionTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LibrarySectionTitle
+}
+
+func (o *GetSearchAllLibrariesMediaContainer) GetLibrarySectionUUID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LibrarySectionUUID
+}
+
+func (o *GetSearchAllLibrariesMediaContainer) GetMediaTagPrefix() string {
+	if o == nil {
+		return ""
+	}
+	return o.MediaTagPrefix
+}
+
+func (o *GetSearchAllLibrariesMediaContainer) GetMediaTagVersion() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.MediaTagVersion
 }
 
 func (o *GetSearchAllLibrariesMediaContainer) GetSearchResult() []SearchResult {

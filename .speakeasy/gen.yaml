@@ -17,9 +17,10 @@ generation:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
 go:
-  version: 0.22.0
+  version: 0.23.0
   additionalDependencies: {}
   allowUnknownFieldsInWeakUnions: false
+  baseErrorName: PlexAPIError
   clientServerStatusCodesAsErrors: true
   defaultErrorName: SDKError
   flattenGlobalSecurity: true

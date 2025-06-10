@@ -122,7 +122,7 @@ type GetActorsLibraryMediaContainer struct {
 	// Identifier for the view group layout.
 	ViewGroup string `json:"viewGroup"`
 	// Identifier for the view mode.
-	ViewMode string `json:"viewMode"`
+	ViewMode *string `json:"viewMode,omitempty"`
 	// An array of actor entries for media items.
 	Directory []GetActorsLibraryDirectory `json:"Directory,omitempty"`
 }
@@ -204,9 +204,9 @@ func (o *GetActorsLibraryMediaContainer) GetViewGroup() string {
 	return o.ViewGroup
 }
 
-func (o *GetActorsLibraryMediaContainer) GetViewMode() string {
+func (o *GetActorsLibraryMediaContainer) GetViewMode() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ViewMode
 }

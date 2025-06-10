@@ -455,37 +455,21 @@ func (e *GetMediaMetaDataHasThumbnail) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// GetMediaMetaDataStreamType - Stream type:
-//   - 1 = video
-//   - 2 = audio
-//   - 3 = subtitle
-type GetMediaMetaDataStreamType int
-
-const (
-	GetMediaMetaDataStreamTypeVideo    GetMediaMetaDataStreamType = 1
-	GetMediaMetaDataStreamTypeAudio    GetMediaMetaDataStreamType = 2
-	GetMediaMetaDataStreamTypeSubtitle GetMediaMetaDataStreamType = 3
-)
-
-func (e GetMediaMetaDataStreamType) ToPointer() *GetMediaMetaDataStreamType {
-	return &e
-}
-
 type GetMediaMetaDataStream struct {
 	// Unique stream identifier.
 	ID int64 `json:"id"`
 	// Stream type:
-	//   - 1 = video
-	//   - 2 = audio
-	//   - 3 = subtitle
+	//   - VIDEO = 1
+	//   - AUDIO = 2
+	//   - SUBTITLE = 3
 	//
-	StreamType GetMediaMetaDataStreamType `json:"streamType"`
+	streamType int64 `const:"1" json:"streamType"`
 	// Format of the stream (e.g., srt).
 	Format *string `json:"format,omitempty"`
 	// Indicates if this stream is default.
 	Default *bool `json:"default,omitempty"`
 	// Codec used by the stream.
-	Codec string `json:"codec"`
+	Codec *string `json:"codec,omitempty"`
 	// Index of the stream.
 	Index *int `json:"index,omitempty"`
 	// Bitrate of the stream.
@@ -553,9 +537,9 @@ type GetMediaMetaDataStream struct {
 	// Width of the video stream.
 	Width *int `json:"width,omitempty"`
 	// Display title for the stream.
-	DisplayTitle string `json:"displayTitle"`
+	DisplayTitle *string `json:"displayTitle,omitempty"`
 	// Extended display title for the stream.
-	ExtendedDisplayTitle string `json:"extendedDisplayTitle"`
+	ExtendedDisplayTitle *string `json:"extendedDisplayTitle,omitempty"`
 	// Indicates if this stream is selected (applicable for audio streams).
 	Selected *bool `json:"selected,omitempty"`
 	Forced   *bool `json:"forced,omitempty"`
@@ -575,6 +559,17 @@ type GetMediaMetaDataStream struct {
 	Title *string `json:"title,omitempty"`
 }
 
+func (g GetMediaMetaDataStream) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetMediaMetaDataStream) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *GetMediaMetaDataStream) GetID() int64 {
 	if o == nil {
 		return 0
@@ -582,11 +577,8 @@ func (o *GetMediaMetaDataStream) GetID() int64 {
 	return o.ID
 }
 
-func (o *GetMediaMetaDataStream) GetStreamType() GetMediaMetaDataStreamType {
-	if o == nil {
-		return GetMediaMetaDataStreamType(0)
-	}
-	return o.StreamType
+func (o *GetMediaMetaDataStream) GetStreamType() int64 {
+	return 1
 }
 
 func (o *GetMediaMetaDataStream) GetFormat() *string {
@@ -603,9 +595,9 @@ func (o *GetMediaMetaDataStream) GetDefault() *bool {
 	return o.Default
 }
 
-func (o *GetMediaMetaDataStream) GetCodec() string {
+func (o *GetMediaMetaDataStream) GetCodec() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Codec
 }
@@ -855,16 +847,16 @@ func (o *GetMediaMetaDataStream) GetWidth() *int {
 	return o.Width
 }
 
-func (o *GetMediaMetaDataStream) GetDisplayTitle() string {
+func (o *GetMediaMetaDataStream) GetDisplayTitle() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.DisplayTitle
 }
 
-func (o *GetMediaMetaDataStream) GetExtendedDisplayTitle() string {
+func (o *GetMediaMetaDataStream) GetExtendedDisplayTitle() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ExtendedDisplayTitle
 }
@@ -940,15 +932,15 @@ type GetMediaMetaDataPart struct {
 	// Unique part identifier.
 	ID int64 `json:"id"`
 	// Key to access this part.
-	Key     string  `json:"key"`
+	Key     *string `json:"key,omitempty"`
 	Indexes *string `json:"indexes,omitempty"`
 	// Duration of the part in milliseconds.
 	Duration *int `json:"duration,omitempty"`
 	// File path for the part.
-	File string `json:"file"`
+	File *string `json:"file,omitempty"`
 	// File size in bytes.
-	Size         int64 `json:"size"`
-	PacketLength *int  `json:"packetLength,omitempty"`
+	Size         *int64 `json:"size,omitempty"`
+	PacketLength *int   `json:"packetLength,omitempty"`
 	// Container format of the part.
 	Container *string `json:"container,omitempty"`
 	// Video profile for the part.
@@ -957,10 +949,10 @@ type GetMediaMetaDataPart struct {
 	AudioProfile    *string `json:"audioProfile,omitempty"`
 	Has64bitOffsets *bool   `json:"has64bitOffsets,omitempty"`
 	// Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
+	//
 	OptimizedForStreaming *GetMediaMetaDataLibraryOptimizedForStreaming `json:"optimizedForStreaming,omitempty"`
 	HasThumbnail          *GetMediaMetaDataHasThumbnail                 `default:"0" json:"hasThumbnail"`
-	// An array of streams for this part.
-	Stream []GetMediaMetaDataStream `json:"Stream,omitempty"`
+	Stream                []GetMediaMetaDataStream                      `json:"Stream,omitempty"`
 }
 
 func (g GetMediaMetaDataPart) MarshalJSON() ([]byte, error) {
@@ -995,9 +987,9 @@ func (o *GetMediaMetaDataPart) GetID() int64 {
 	return o.ID
 }
 
-func (o *GetMediaMetaDataPart) GetKey() string {
+func (o *GetMediaMetaDataPart) GetKey() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Key
 }
@@ -1016,16 +1008,16 @@ func (o *GetMediaMetaDataPart) GetDuration() *int {
 	return o.Duration
 }
 
-func (o *GetMediaMetaDataPart) GetFile() string {
+func (o *GetMediaMetaDataPart) GetFile() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.File
 }
 
-func (o *GetMediaMetaDataPart) GetSize() int64 {
+func (o *GetMediaMetaDataPart) GetSize() *int64 {
 	if o == nil {
-		return 0
+		return nil
 	}
 	return o.Size
 }
@@ -1108,7 +1100,7 @@ type GetMediaMetaDataMedia struct {
 	VideoCodec *string `json:"videoCodec,omitempty"`
 	// Video resolution (e.g., 4k).
 	VideoResolution *string `json:"videoResolution,omitempty"`
-	// File container type.
+	// Container format of the media.
 	Container *string `json:"container,omitempty"`
 	// Frame rate of the video. Values found include NTSC, PAL, 24p
 	//
@@ -1121,9 +1113,11 @@ type GetMediaMetaDataMedia struct {
 	AudioProfile *string `json:"audioProfile,omitempty"`
 	// Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
 	OptimizedForStreaming *GetMediaMetaDataOptimizedForStreaming `json:"optimizedForStreaming,omitempty"`
-	Has64bitOffsets       *bool                                  `json:"has64bitOffsets,omitempty"`
-	// An array of parts for this media item.
-	Part []GetMediaMetaDataPart `json:"Part,omitempty"`
+	// Indicates whether the media has 64-bit offsets.
+	// This is relevant for media files that may require larger offsets than what 32-bit integers can provide.
+	//
+	Has64bitOffsets *bool                  `json:"has64bitOffsets,omitempty"`
+	Part            []GetMediaMetaDataPart `json:"Part,omitempty"`
 }
 
 func (o *GetMediaMetaDataMedia) GetID() int64 {
@@ -1538,7 +1532,7 @@ func (o *GetMediaMetaDataRole) GetThumb() *string {
 	return o.Thumb
 }
 
-type Ratings struct {
+type GetMediaMetaDataRatings struct {
 	// The image or reference for the rating.
 	Image string `json:"image"`
 	// The rating value.
@@ -1547,21 +1541,21 @@ type Ratings struct {
 	Type string `json:"type"`
 }
 
-func (o *Ratings) GetImage() string {
+func (o *GetMediaMetaDataRatings) GetImage() string {
 	if o == nil {
 		return ""
 	}
 	return o.Image
 }
 
-func (o *Ratings) GetValue() float32 {
+func (o *GetMediaMetaDataRatings) GetValue() float32 {
 	if o == nil {
 		return 0.0
 	}
 	return o.Value
 }
 
-func (o *Ratings) GetType() string {
+func (o *GetMediaMetaDataRatings) GetType() string {
 	if o == nil {
 		return ""
 	}
@@ -1610,8 +1604,8 @@ func (o *GetMediaMetaDataLocation) GetPath() string {
 	return o.Path
 }
 
-// Chapter - The thumbnail for the chapter
-type Chapter struct {
+// GetMediaMetaDataChapter - The thumbnail for the chapter
+type GetMediaMetaDataChapter struct {
 	ID              int64  `json:"id"`
 	Filter          string `json:"filter"`
 	Index           int64  `json:"index"`
@@ -1620,129 +1614,129 @@ type Chapter struct {
 	Thumb           string `json:"thumb"`
 }
 
-func (o *Chapter) GetID() int64 {
+func (o *GetMediaMetaDataChapter) GetID() int64 {
 	if o == nil {
 		return 0
 	}
 	return o.ID
 }
 
-func (o *Chapter) GetFilter() string {
+func (o *GetMediaMetaDataChapter) GetFilter() string {
 	if o == nil {
 		return ""
 	}
 	return o.Filter
 }
 
-func (o *Chapter) GetIndex() int64 {
+func (o *GetMediaMetaDataChapter) GetIndex() int64 {
 	if o == nil {
 		return 0
 	}
 	return o.Index
 }
 
-func (o *Chapter) GetStartTimeOffset() int64 {
+func (o *GetMediaMetaDataChapter) GetStartTimeOffset() int64 {
 	if o == nil {
 		return 0
 	}
 	return o.StartTimeOffset
 }
 
-func (o *Chapter) GetEndTimeOffset() int64 {
+func (o *GetMediaMetaDataChapter) GetEndTimeOffset() int64 {
 	if o == nil {
 		return 0
 	}
 	return o.EndTimeOffset
 }
 
-func (o *Chapter) GetThumb() string {
+func (o *GetMediaMetaDataChapter) GetThumb() string {
 	if o == nil {
 		return ""
 	}
 	return o.Thumb
 }
 
-// Attributes associated with the marker.
-type Attributes struct {
+// GetMediaMetaDataAttributes - Attributes associated with the marker.
+type GetMediaMetaDataAttributes struct {
 	// The identifier for the attributes.
 	ID int64 `json:"id"`
 	// The version number of the marker attributes.
 	Version *int64 `json:"version,omitempty"`
 }
 
-func (o *Attributes) GetID() int64 {
+func (o *GetMediaMetaDataAttributes) GetID() int64 {
 	if o == nil {
 		return 0
 	}
 	return o.ID
 }
 
-func (o *Attributes) GetVersion() *int64 {
+func (o *GetMediaMetaDataAttributes) GetVersion() *int64 {
 	if o == nil {
 		return nil
 	}
 	return o.Version
 }
 
-// Marker - The final status of the marker
-type Marker struct {
+// GetMediaMetaDataMarker - The final status of the marker
+type GetMediaMetaDataMarker struct {
 	ID              int64  `json:"id"`
 	Type            string `json:"type"`
 	StartTimeOffset int64  `json:"startTimeOffset"`
 	EndTimeOffset   int64  `json:"endTimeOffset"`
 	Final           *bool  `json:"final,omitempty"`
 	// Attributes associated with the marker.
-	Attributes *Attributes `json:"Attributes,omitempty"`
+	Attributes *GetMediaMetaDataAttributes `json:"Attributes,omitempty"`
 }
 
-func (o *Marker) GetID() int64 {
+func (o *GetMediaMetaDataMarker) GetID() int64 {
 	if o == nil {
 		return 0
 	}
 	return o.ID
 }
 
-func (o *Marker) GetType() string {
+func (o *GetMediaMetaDataMarker) GetType() string {
 	if o == nil {
 		return ""
 	}
 	return o.Type
 }
 
-func (o *Marker) GetStartTimeOffset() int64 {
+func (o *GetMediaMetaDataMarker) GetStartTimeOffset() int64 {
 	if o == nil {
 		return 0
 	}
 	return o.StartTimeOffset
 }
 
-func (o *Marker) GetEndTimeOffset() int64 {
+func (o *GetMediaMetaDataMarker) GetEndTimeOffset() int64 {
 	if o == nil {
 		return 0
 	}
 	return o.EndTimeOffset
 }
 
-func (o *Marker) GetFinal() *bool {
+func (o *GetMediaMetaDataMarker) GetFinal() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Final
 }
 
-func (o *Marker) GetAttributes() *Attributes {
+func (o *GetMediaMetaDataMarker) GetAttributes() *GetMediaMetaDataAttributes {
 	if o == nil {
 		return nil
 	}
 	return o.Attributes
 }
 
-type Extras struct {
+type GetMediaMetaDataExtras struct {
 	// The size of the extras.
 	Size *int64 `json:"size,omitempty"`
 }
 
-func (o *Extras) GetSize() *int64 {
+func (o *GetMediaMetaDataExtras) GetSize() *int64 {
 	if o == nil {
 		return nil
 	}
@@ -1797,8 +1791,8 @@ type GetMediaMetaDataMetadata struct {
 	// The duration of the media item in milliseconds.
 	Duration int `json:"duration"`
 	// The original release date of the media item.
-	OriginallyAvailableAt types.Date `json:"originallyAvailableAt"`
-	AddedAt               int64      `json:"addedAt"`
+	OriginallyAvailableAt *types.Date `json:"originallyAvailableAt,omitempty"`
+	AddedAt               int64       `json:"addedAt"`
 	// Unix epoch datetime in seconds
 	UpdatedAt *int64 `json:"updatedAt,omitempty"`
 	// The URL for the audience rating image.
@@ -1860,11 +1854,11 @@ type GetMediaMetaDataMetadata struct {
 	Image           []GetMediaMetaDataImage          `json:"Image,omitempty"`
 	UltraBlurColors *GetMediaMetaDataUltraBlurColors `json:"UltraBlurColors,omitempty"`
 	// The identifier for the library section.
-	LibrarySectionID int64 `json:"librarySectionID"`
+	LibrarySectionID *int64 `json:"librarySectionID,omitempty"`
 	// The title of the library section.
-	LibrarySectionTitle string `json:"librarySectionTitle"`
+	LibrarySectionTitle *string `json:"librarySectionTitle,omitempty"`
 	// The key corresponding to the library section.
-	LibrarySectionKey string                     `json:"librarySectionKey"`
+	LibrarySectionKey *string                    `json:"librarySectionKey,omitempty"`
 	Guids             []GetMediaMetaDataGuids    `json:"Guid,omitempty"`
 	Media             []GetMediaMetaDataMedia    `json:"Media,omitempty"`
 	Genre             []GetMediaMetaDataGenre    `json:"Genre,omitempty"`
@@ -1873,12 +1867,12 @@ type GetMediaMetaDataMetadata struct {
 	Writer            []GetMediaMetaDataWriter   `json:"Writer,omitempty"`
 	Producer          []GetMediaMetaDataProducer `json:"Producer,omitempty"`
 	Role              []GetMediaMetaDataRole     `json:"Role,omitempty"`
-	Ratings           []Ratings                  `json:"Rating,omitempty"`
+	Ratings           []GetMediaMetaDataRatings  `json:"Rating,omitempty"`
 	Similar           []GetMediaMetaDataSimilar  `json:"Similar,omitempty"`
 	Location          []GetMediaMetaDataLocation `json:"Location,omitempty"`
-	Chapter           []Chapter                  `json:"Chapter,omitempty"`
-	Marker            []Marker                   `json:"Marker,omitempty"`
-	Extras            *Extras                    `json:"Extras,omitempty"`
+	Chapter           []GetMediaMetaDataChapter  `json:"Chapter,omitempty"`
+	Marker            []GetMediaMetaDataMarker   `json:"Marker,omitempty"`
+	Extras            *GetMediaMetaDataExtras    `json:"Extras,omitempty"`
 }
 
 func (g GetMediaMetaDataMetadata) MarshalJSON() ([]byte, error) {
@@ -2053,9 +2047,9 @@ func (o *GetMediaMetaDataMetadata) GetDuration() int {
 	return o.Duration
 }
 
-func (o *GetMediaMetaDataMetadata) GetOriginallyAvailableAt() types.Date {
+func (o *GetMediaMetaDataMetadata) GetOriginallyAvailableAt() *types.Date {
 	if o == nil {
-		return types.Date{}
+		return nil
 	}
 	return o.OriginallyAvailableAt
 }
@@ -2284,23 +2278,23 @@ func (o *GetMediaMetaDataMetadata) GetUltraBlurColors() *GetMediaMetaDataUltraBl
 	return o.UltraBlurColors
 }
 
-func (o *GetMediaMetaDataMetadata) GetLibrarySectionID() int64 {
+func (o *GetMediaMetaDataMetadata) GetLibrarySectionID() *int64 {
 	if o == nil {
-		return 0
+		return nil
 	}
 	return o.LibrarySectionID
 }
 
-func (o *GetMediaMetaDataMetadata) GetLibrarySectionTitle() string {
+func (o *GetMediaMetaDataMetadata) GetLibrarySectionTitle() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.LibrarySectionTitle
 }
 
-func (o *GetMediaMetaDataMetadata) GetLibrarySectionKey() string {
+func (o *GetMediaMetaDataMetadata) GetLibrarySectionKey() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.LibrarySectionKey
 }
@@ -2361,7 +2355,7 @@ func (o *GetMediaMetaDataMetadata) GetRole() []GetMediaMetaDataRole {
 	return o.Role
 }
 
-func (o *GetMediaMetaDataMetadata) GetRatings() []Ratings {
+func (o *GetMediaMetaDataMetadata) GetRatings() []GetMediaMetaDataRatings {
 	if o == nil {
 		return nil
 	}
@@ -2382,21 +2376,21 @@ func (o *GetMediaMetaDataMetadata) GetLocation() []GetMediaMetaDataLocation {
 	return o.Location
 }
 
-func (o *GetMediaMetaDataMetadata) GetChapter() []Chapter {
+func (o *GetMediaMetaDataMetadata) GetChapter() []GetMediaMetaDataChapter {
 	if o == nil {
 		return nil
 	}
 	return o.Chapter
 }
 
-func (o *GetMediaMetaDataMetadata) GetMarker() []Marker {
+func (o *GetMediaMetaDataMetadata) GetMarker() []GetMediaMetaDataMarker {
 	if o == nil {
 		return nil
 	}
 	return o.Marker
 }
 
-func (o *GetMediaMetaDataMetadata) GetExtras() *Extras {
+func (o *GetMediaMetaDataMetadata) GetExtras() *GetMediaMetaDataExtras {
 	if o == nil {
 		return nil
 	}
@@ -2411,9 +2405,9 @@ type GetMediaMetaDataMediaContainer struct {
 	// An plugin identifier for the media container.
 	Identifier string `json:"identifier"`
 	// The unique identifier for the library section.
-	LibrarySectionID int64 `json:"librarySectionID"`
+	LibrarySectionID *int64 `json:"librarySectionID,omitempty"`
 	// The title of the library section.
-	LibrarySectionTitle string `json:"librarySectionTitle"`
+	LibrarySectionTitle *string `json:"librarySectionTitle,omitempty"`
 	// The universally unique identifier for the library section.
 	LibrarySectionUUID *string `json:"librarySectionUUID,omitempty"`
 	// The prefix used for media tag resource paths.
@@ -2445,16 +2439,16 @@ func (o *GetMediaMetaDataMediaContainer) GetIdentifier() string {
 	return o.Identifier
 }
 
-func (o *GetMediaMetaDataMediaContainer) GetLibrarySectionID() int64 {
+func (o *GetMediaMetaDataMediaContainer) GetLibrarySectionID() *int64 {
 	if o == nil {
-		return 0
+		return nil
 	}
 	return o.LibrarySectionID
 }
 
-func (o *GetMediaMetaDataMediaContainer) GetLibrarySectionTitle() string {
+func (o *GetMediaMetaDataMediaContainer) GetLibrarySectionTitle() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.LibrarySectionTitle
 }
