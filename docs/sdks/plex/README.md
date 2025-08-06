@@ -22,6 +22,7 @@ Get Companions Data
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getCompanionsData" method="get" path="/companions" -->
 ```go
 package main
 
@@ -73,6 +74,7 @@ Get friends of provided auth token.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getUserFriends" method="get" path="/friends" -->
 ```go
 package main
 
@@ -124,6 +126,7 @@ Returns the geolocation and locale data of the caller
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getGeoData" method="get" path="/geoip" -->
 ```go
 package main
 
@@ -173,6 +176,7 @@ Retrieves the home data for the authenticated user, including details like home 
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getHomeData" method="get" path="/home" -->
 ```go
 package main
 
@@ -224,6 +228,7 @@ Get Plex server access tokens and server connections
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="get-server-resources" method="get" path="/resources" -->
 ```go
 package main
 
@@ -280,6 +285,7 @@ Retrieve a Pin ID from Plex.tv to use for authentication flows
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getPin" method="post" path="/pins" -->
 ```go
 package main
 
@@ -336,6 +342,7 @@ Retrieve an Access Token from Plex.tv after the Pin has been authenticated
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getTokenByPinId" method="get" path="/pins/{pinID}" -->
 ```go
 package main
 

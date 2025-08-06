@@ -19,6 +19,7 @@ This will retrieve the "Now Playing" Information of the PMS.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getSessions" method="get" path="/status/sessions" -->
 ```go
 package main
 
@@ -70,6 +71,7 @@ This will Retrieve a listing of all history views.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getSessionHistory" method="get" path="/status/sessions/history/all" -->
 ```go
 package main
 
@@ -126,6 +128,7 @@ Get Transcode Sessions
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getTranscodeSessions" method="get" path="/transcode/sessions" -->
 ```go
 package main
 
@@ -177,6 +180,7 @@ Stop a Transcode Session
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="stopTranscodeSession" method="delete" path="/transcode/sessions/{sessionKey}" -->
 ```go
 package main
 

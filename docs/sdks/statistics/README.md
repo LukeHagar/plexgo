@@ -18,6 +18,7 @@ This will return the media statistics for the server
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getStatistics" method="get" path="/statistics/media" -->
 ```go
 package main
 
@@ -70,6 +71,7 @@ This will return the resources for the server
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getResourcesStatistics" method="get" path="/statistics/resources" -->
 ```go
 package main
 
@@ -122,6 +124,7 @@ This will return the bandwidth statistics for the server
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getBandwidthStatistics" method="get" path="/statistics/bandwidth" -->
 ```go
 package main
 

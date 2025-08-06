@@ -20,6 +20,7 @@ This endpoint provides the caller with a temporary token with the same access le
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getTransientToken" method="get" path="/security/token" -->
 ```go
 package main
 
@@ -76,6 +77,7 @@ Note: requires Plex Media Server >= 1.15.4.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getSourceConnectionInformation" method="get" path="/security/resources" -->
 ```go
 package main
 
@@ -128,6 +130,7 @@ Get the User data from the provided X-Plex-Token
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getTokenDetails" method="get" path="/user" -->
 ```go
 package main
 
@@ -179,6 +182,7 @@ Sign in user with username and password and return user data with Plex authentic
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="post-users-sign-in-data" method="post" path="/users/signin" -->
 ```go
 package main
 

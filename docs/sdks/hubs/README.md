@@ -18,6 +18,7 @@ Get Global Hubs filtered by the parameters provided.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getGlobalHubs" method="get" path="/hubs" -->
 ```go
 package main
 
@@ -72,6 +73,7 @@ This endpoint will return the recently added content.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="get-recently-added" method="get" path="/hubs/home/recentlyAdded" -->
 ```go
 package main
 
@@ -129,6 +131,7 @@ This endpoint will return a list of library specific hubs
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getLibraryHubs" method="get" path="/hubs/sections/{sectionId}" -->
 ```go
 package main
 

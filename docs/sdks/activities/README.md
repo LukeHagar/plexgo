@@ -23,6 +23,7 @@ Get Server Activities
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getServerActivities" method="get" path="/activities" -->
 ```go
 package main
 
@@ -74,6 +75,7 @@ Cancel Server Activities
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="cancelServerActivities" method="delete" path="/activities/{activityUUID}" -->
 ```go
 package main
 

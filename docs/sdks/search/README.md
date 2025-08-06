@@ -30,6 +30,7 @@ This request is intended to be very fast, and called as the user types.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="performSearch" method="get" path="/hubs/search" -->
 ```go
 package main
 
@@ -88,6 +89,7 @@ Results, as well as their containing per-type hubs, contain a `distance` attribu
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="performVoiceSearch" method="get" path="/hubs/search/voice" -->
 ```go
 package main
 
@@ -142,6 +144,7 @@ This will search the database for the string provided.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getSearchResults" method="get" path="/search" -->
 ```go
 package main
 

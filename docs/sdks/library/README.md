@@ -35,6 +35,7 @@ This resource returns hash values for local files
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getFileHash" method="get" path="/library/hashes" -->
 ```go
 package main
 
@@ -51,7 +52,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Library.GetFileHash(ctx, "file://C:\Image.png&type=13", nil)
+    res, err := s.Library.GetFileHash(ctx, "file://C:\\Image.png&type=13", nil)
     if err != nil {
         log.Fatal(err)
     }
@@ -89,6 +90,7 @@ This endpoint will return the recently added content.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="get-recently-added-library" method="get" path="/library/recentlyAdded" -->
 ```go
 package main
 
@@ -167,6 +169,7 @@ This allows a client to provide a rich interface around the media (e.g. allow so
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="get-all-libraries" method="get" path="/library/sections" -->
 ```go
 package main
 
@@ -257,6 +260,7 @@ Each type in the library comes with a set of filters and sorts, aiding in buildi
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="get-library-details" method="get" path="/library/sections/{sectionKey}" -->
 ```go
 package main
 
@@ -311,6 +315,7 @@ Delete a library using a specific section id
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="deleteLibrary" method="delete" path="/library/sections/{sectionKey}" -->
 ```go
 package main
 
@@ -384,6 +389,7 @@ Fetches details from a specific section of the library identified by a section k
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="get-library-items" method="get" path="/library/sections/{sectionKey}/{tag}" -->
 ```go
 package main
 
@@ -444,6 +450,7 @@ Retrieves a list of all general media data for this library.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="get-library-sections-all" method="get" path="/library/sections/{sectionKey}/all" -->
 ```go
 package main
 
@@ -506,6 +513,7 @@ This endpoint Refreshes all the Metadata of the library.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="get-refresh-library-metadata" method="get" path="/library/sections/{sectionKey}/refresh" -->
 ```go
 package main
 
@@ -578,6 +586,7 @@ Each type in the library comes with a set of filters and sorts, aiding in buildi
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="get-search-library" method="get" path="/library/sections/{sectionKey}/search" -->
 ```go
 package main
 
@@ -633,6 +642,7 @@ Retrieves a list of all the genres that are found for the media in this library.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="get-genres-library" method="get" path="/library/sections/{sectionKey}/genre" -->
 ```go
 package main
 
@@ -688,6 +698,7 @@ Retrieves a list of all the countries that are found for the media in this libra
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="get-countries-library" method="get" path="/library/sections/{sectionKey}/country" -->
 ```go
 package main
 
@@ -743,6 +754,7 @@ Retrieves a list of all the actors that are found for the media in this library.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="get-actors-library" method="get" path="/library/sections/{sectionKey}/actor" -->
 ```go
 package main
 
@@ -798,6 +810,7 @@ Search the provided query across all library sections, or a single section, and 
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="get-search-all-libraries" method="get" path="/library/search" -->
 ```go
 package main
 
@@ -861,6 +874,7 @@ Multiple rating keys can be provided as a comma-separated list (e.g., "21119,216
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="get-media-meta-data" method="get" path="/library/metadata/{ratingKey}" -->
 ```go
 package main
 
@@ -929,6 +943,7 @@ Returns the background artwork for a library item.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="get-media-arts" method="get" path="/library/metadata/{ratingKey}/arts" -->
 ```go
 package main
 
@@ -979,6 +994,7 @@ Uploads an image to use as the background artwork for a library item, either fro
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="post-media-arts" method="post" path="/library/metadata/{ratingKey}/arts" -->
 ```go
 package main
 
@@ -1031,6 +1047,7 @@ Returns the available posters for a library item.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="get-media-posters" method="get" path="/library/metadata/{ratingKey}/posters" -->
 ```go
 package main
 
@@ -1081,6 +1098,7 @@ Uploads a poster to a library item, either from a local file or a remote URL
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="post-media-poster" method="post" path="/library/metadata/{ratingKey}/posters" -->
 ```go
 package main
 
@@ -1134,6 +1152,7 @@ This endpoint will return the children of of a library item specified with the r
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getMetadataChildren" method="get" path="/library/metadata/{ratingKey}/children" -->
 ```go
 package main
 
@@ -1188,6 +1207,7 @@ This endpoint will return the top watched content from libraries of a certain ty
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getTopWatchedContent" method="get" path="/library/all/top" -->
 ```go
 package main
 

@@ -16,6 +16,7 @@ Get User Watchlist
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="get-watch-list" method="get" path="/library/sections/watchlist/{filter}" -->
 ```go
 package main
 

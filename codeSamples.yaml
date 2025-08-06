@@ -795,7 +795,7 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                 )
 
-                res, err := s.Library.GetFileHash(ctx, "file://C:\Image.png&type=13", nil)
+                res, err := s.Library.GetFileHash(ctx, "file://C:\\Image.png&type=13", nil)
                 if err != nil {
                     log.Fatal(err)
                 }

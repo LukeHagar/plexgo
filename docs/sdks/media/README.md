@@ -20,6 +20,7 @@ This will mark the provided media key as Played.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="markPlayed" method="get" path="/:/scrobble" -->
 ```go
 package main
 
@@ -72,6 +73,7 @@ This will mark the provided media key as Unplayed.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="markUnplayed" method="get" path="/:/unscrobble" -->
 ```go
 package main
 
@@ -125,6 +127,7 @@ This API command can be used to update the play progress of a media item.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="updatePlayProgress" method="post" path="/:/progress" -->
 ```go
 package main
 
@@ -179,6 +182,7 @@ Gets the banner image of the media item
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="get-banner-image" method="get" path="/library/metadata/{ratingKey}/banner" -->
 ```go
 package main
 
@@ -239,6 +243,7 @@ Gets the thumbnail image of the media item
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="get-thumb-image" method="get" path="/library/metadata/{ratingKey}/thumb" -->
 ```go
 package main
 

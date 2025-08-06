@@ -24,6 +24,7 @@ Get Server Capabilities
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getServerCapabilities" method="get" path="/" -->
 ```go
 package main
 
@@ -75,6 +76,7 @@ Get Server Preferences
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getServerPreferences" method="get" path="/:/prefs" -->
 ```go
 package main
 
@@ -126,6 +128,7 @@ Get Available Clients
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getAvailableClients" method="get" path="/clients" -->
 ```go
 package main
 
@@ -177,6 +180,7 @@ Get Devices
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getDevices" method="get" path="/devices" -->
 ```go
 package main
 
@@ -228,6 +232,7 @@ This request is useful to determine if the server is online or offline
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="get-server-identity" method="get" path="/identity" -->
 ```go
 package main
 
@@ -276,6 +281,7 @@ Returns MyPlex Account Information
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getMyPlexAccount" method="get" path="/myplex/account" -->
 ```go
 package main
 
@@ -328,6 +334,7 @@ Plex's Photo transcoder is used throughout the service to serve images at specif
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getResizedPhoto" method="get" path="/photo/:/transcode" -->
 ```go
 package main
 
@@ -388,6 +395,7 @@ Retrieves media providers and their features from the Plex server.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="get-media-providers" method="get" path="/media/providers" -->
 ```go
 package main
 
@@ -440,6 +448,7 @@ Get Server List
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getServerList" method="get" path="/servers" -->
 ```go
 package main
 

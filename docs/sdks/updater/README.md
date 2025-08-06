@@ -19,6 +19,7 @@ Querying status of updates
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getUpdateStatus" method="get" path="/updater/status" -->
 ```go
 package main
 
@@ -70,6 +71,7 @@ Checking for updates
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="checkForUpdates" method="put" path="/updater/check" -->
 ```go
 package main
 
@@ -124,6 +126,7 @@ Note that these two parameters are effectively mutually exclusive. The `tonight`
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="applyUpdates" method="put" path="/updater/apply" -->
 ```go
 package main
 
