@@ -11,7 +11,7 @@ import (
 )
 
 var GetWatchListServerList = []string{
-	"https://metadata.provider.plex.tv",
+	"https://discover.provider.plex.tv",
 }
 
 // Filter
@@ -133,7 +133,7 @@ func (g GetWatchListRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetWatchListRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"filter", "X-Plex-Token"}); err != nil {
 		return err
 	}
 	return nil
@@ -272,7 +272,7 @@ func (m Metadata) MarshalJSON() ([]byte, error) {
 }
 
 func (m *Metadata) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
 		return err
 	}
 	return nil

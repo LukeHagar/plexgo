@@ -129,7 +129,7 @@ func (g GetAllLibrariesDirectory) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetAllLibrariesDirectory) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"allowSync", "art", "composite", "filters", "refreshing", "thumb", "key", "type", "title", "agent", "scanner", "language", "uuid", "updatedAt", "scannedAt", "content", "directory", "contentChangedAt", "Location"}); err != nil {
 		return err
 	}
 	return nil

@@ -100,7 +100,7 @@ func (g GetTokenByPinIDGeoData) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetTokenByPinIDGeoData) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"code", "continent_code", "country", "city", "time_zone", "postal_code", "subdivisions", "coordinates"}); err != nil {
 		return err
 	}
 	return nil
@@ -207,7 +207,7 @@ func (g GetTokenByPinIDAuthPinContainer) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetTokenByPinIDAuthPinContainer) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id", "code", "product", "qr", "clientIdentifier", "location", "createdAt", "expiresAt"}); err != nil {
 		return err
 	}
 	return nil

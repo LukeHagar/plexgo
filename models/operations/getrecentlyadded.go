@@ -97,7 +97,7 @@ func (g GetRecentlyAddedRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetRecentlyAddedRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"contentDirectoryID", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -277,7 +277,7 @@ func (g GetRecentlyAddedSort) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetRecentlyAddedSort) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"key", "title"}); err != nil {
 		return err
 	}
 	return nil
@@ -642,8 +642,8 @@ const (
 
 // OptimizedForStreaming - Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
 type OptimizedForStreaming struct {
-	One     *One  `queryParam:"inline"`
-	Boolean *bool `queryParam:"inline"`
+	One     *One  `queryParam:"inline" name:"optimizedForStreaming"`
+	Boolean *bool `queryParam:"inline" name:"optimizedForStreaming"`
 
 	Type OptimizedForStreamingType
 }
@@ -669,14 +669,14 @@ func CreateOptimizedForStreamingBoolean(boolean bool) OptimizedForStreaming {
 func (u *OptimizedForStreaming) UnmarshalJSON(data []byte) error {
 
 	var one One = One(0)
-	if err := utils.UnmarshalJSON(data, &one, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &one, "", true, nil); err == nil {
 		u.One = &one
 		u.Type = OptimizedForStreamingTypeOne
 		return nil
 	}
 
 	var boolean bool = false
-	if err := utils.UnmarshalJSON(data, &boolean, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {
 		u.Boolean = &boolean
 		u.Type = OptimizedForStreamingTypeBoolean
 		return nil
@@ -732,8 +732,8 @@ const (
 
 // GetRecentlyAddedOptimizedForStreaming - Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
 type GetRecentlyAddedOptimizedForStreaming struct {
-	GetRecentlyAddedOptimizedForStreaming1 *GetRecentlyAddedOptimizedForStreaming1 `queryParam:"inline"`
-	Boolean                                *bool                                   `queryParam:"inline"`
+	GetRecentlyAddedOptimizedForStreaming1 *GetRecentlyAddedOptimizedForStreaming1 `queryParam:"inline" name:"optimizedForStreaming"`
+	Boolean                                *bool                                   `queryParam:"inline" name:"optimizedForStreaming"`
 
 	Type GetRecentlyAddedOptimizedForStreamingType
 }
@@ -759,14 +759,14 @@ func CreateGetRecentlyAddedOptimizedForStreamingBoolean(boolean bool) GetRecentl
 func (u *GetRecentlyAddedOptimizedForStreaming) UnmarshalJSON(data []byte) error {
 
 	var getRecentlyAddedOptimizedForStreaming1 GetRecentlyAddedOptimizedForStreaming1 = GetRecentlyAddedOptimizedForStreaming1(0)
-	if err := utils.UnmarshalJSON(data, &getRecentlyAddedOptimizedForStreaming1, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &getRecentlyAddedOptimizedForStreaming1, "", true, nil); err == nil {
 		u.GetRecentlyAddedOptimizedForStreaming1 = &getRecentlyAddedOptimizedForStreaming1
 		u.Type = GetRecentlyAddedOptimizedForStreamingTypeGetRecentlyAddedOptimizedForStreaming1
 		return nil
 	}
 
 	var boolean bool = false
-	if err := utils.UnmarshalJSON(data, &boolean, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {
 		u.Boolean = &boolean
 		u.Type = GetRecentlyAddedOptimizedForStreamingTypeBoolean
 		return nil
@@ -923,7 +923,7 @@ func (s Stream) MarshalJSON() ([]byte, error) {
 }
 
 func (s *Stream) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"id", "streamType", "codec", "displayTitle", "extendedDisplayTitle"}); err != nil {
 		return err
 	}
 	return nil
@@ -1319,7 +1319,7 @@ func (p Part) MarshalJSON() ([]byte, error) {
 }
 
 func (p *Part) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"id", "key", "file", "size"}); err != nil {
 		return err
 	}
 	return nil
@@ -2105,7 +2105,7 @@ func (g GetRecentlyAddedMetadata) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetRecentlyAddedMetadata) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"addedAt", "art", "audienceRating", "childCount", "duration", "guid", "index", "key", "parentStudio", "parentTheme", "ratingKey", "rating", "seasonCount", "slug", "summary", "tagline", "theme", "thumb", "titleSort", "title", "type"}); err != nil {
 		return err
 	}
 	return nil

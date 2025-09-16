@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: dfa99515-01c0-42eb-9be5-ee212fd03eb3
 management:
-  docChecksum: 77bdddd188d0778dc73b7f7906e1677c
+  docChecksum: addaf2dfdac23cef2e234b64492b9c90
   docVersion: 0.0.3
-  speakeasyVersion: 1.598.3
-  generationVersion: 2.674.3
-  releaseVersion: 0.24.1
-  configChecksum: 572fddd978a14316b2f4d53532d95815
+  speakeasyVersion: 1.615.2
+  generationVersion: 2.698.4
+  releaseVersion: 0.24.2
+  configChecksum: 8d76d795a093eac0731c22ff2789a575
   repoURL: https://github.com/LukeHagar/plexgo.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexgo
@@ -15,7 +15,7 @@ features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.9.3
+    core: 3.9.6
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.3
     downloadStreams: 0.1.2
@@ -23,7 +23,7 @@ features:
     envVarSecurityUsage: 0.3.2
     errors: 2.83.0
     flattening: 2.81.1
-    globalSecurity: 2.82.11
+    globalSecurity: 2.82.12
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.3
@@ -33,9 +33,9 @@ features:
     nullables: 0.1.1
     openEnums: 0.1.0
     responseFormat: 0.1.2
-    retries: 2.84.0
+    retries: 2.84.2
     sdkHooks: 0.2.0
-    unions: 2.85.12
+    unions: 2.85.14
     uploadStreams: 0.1.0
 generatedFiles:
   - .gitattributes

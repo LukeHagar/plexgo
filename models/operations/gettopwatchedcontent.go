@@ -80,7 +80,7 @@ func (g GetTopWatchedContentRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetTopWatchedContentRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"type"}); err != nil {
 		return err
 	}
 	return nil
@@ -267,7 +267,7 @@ func (g GetTopWatchedContentMetadata) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetTopWatchedContentMetadata) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
 		return err
 	}
 	return nil

@@ -58,7 +58,7 @@ func (f Friend) MarshalJSON() ([]byte, error) {
 }
 
 func (f *Friend) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &f, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"email", "friendlyName", "home", "id", "sharedServers", "sharedSources", "status", "thumb", "title", "username", "uuid"}); err != nil {
 		return err
 	}
 	return nil

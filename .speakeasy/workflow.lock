@@ -1,4 +1,4 @@
-speakeasyVersion: 1.598.3
+speakeasyVersion: 1.615.2
 sources:
     my-source:
         sourceNamespace: my-source
@@ -9,19 +9,19 @@ sources:
             - main
     plexapi:
         sourceNamespace: plexapi
-        sourceRevisionDigest: sha256:b4fa89a3571fbdcb4228800772a5fe1c292170babcd3e055161ae54402f89577
-        sourceBlobDigest: sha256:f84dd2bfdaea4074454cea3c7fbc6c9e05515c5e9e961abb4923b77f8faf48f1
+        sourceRevisionDigest: sha256:5125adfea1b0daea399c6ecf755e32795de6b4131465ae6a1f32ad73b3bc7787
+        sourceBlobDigest: sha256:95cea18b6e5f7d76d35db0aba5bcb59e72cf204451a2b09a99be0e3e9ec1f4c0
         tags:
             - latest
-            - speakeasy-sdk-regen-1754525524
+            - speakeasy-sdk-regen-1757981413
 targets:
     plexgo:
         source: plexapi
         sourceNamespace: plexapi
-        sourceRevisionDigest: sha256:b4fa89a3571fbdcb4228800772a5fe1c292170babcd3e055161ae54402f89577
-        sourceBlobDigest: sha256:f84dd2bfdaea4074454cea3c7fbc6c9e05515c5e9e961abb4923b77f8faf48f1
+        sourceRevisionDigest: sha256:5125adfea1b0daea399c6ecf755e32795de6b4131465ae6a1f32ad73b3bc7787
+        sourceBlobDigest: sha256:95cea18b6e5f7d76d35db0aba5bcb59e72cf204451a2b09a99be0e3e9ec1f4c0
         codeSamplesNamespace: code-samples-go-plexgo
-        codeSamplesRevisionDigest: sha256:b3b33cad9d51c5c7b91f0fb005d52d487405e8a7a6e60663cec67546202aac78
+        codeSamplesRevisionDigest: sha256:918f406f027ab1b34a6256235e3389f56c35fa6b319855542a8c2bccc8c97e1a
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

@@ -153,7 +153,7 @@ func (g GetLibraryItemsRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetLibraryItemsRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"tag", "type", "sectionKey"}); err != nil {
 		return err
 	}
 	return nil
@@ -385,8 +385,8 @@ const (
 
 // GetLibraryItemsOptimizedForStreaming - Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
 type GetLibraryItemsOptimizedForStreaming struct {
-	OptimizedForStreaming1 *OptimizedForStreaming1 `queryParam:"inline"`
-	Boolean                *bool                   `queryParam:"inline"`
+	OptimizedForStreaming1 *OptimizedForStreaming1 `queryParam:"inline" name:"optimizedForStreaming"`
+	Boolean                *bool                   `queryParam:"inline" name:"optimizedForStreaming"`
 
 	Type GetLibraryItemsOptimizedForStreamingType
 }
@@ -412,14 +412,14 @@ func CreateGetLibraryItemsOptimizedForStreamingBoolean(boolean bool) GetLibraryI
 func (u *GetLibraryItemsOptimizedForStreaming) UnmarshalJSON(data []byte) error {
 
 	var optimizedForStreaming1 OptimizedForStreaming1 = OptimizedForStreaming1(0)
-	if err := utils.UnmarshalJSON(data, &optimizedForStreaming1, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &optimizedForStreaming1, "", true, nil); err == nil {
 		u.OptimizedForStreaming1 = &optimizedForStreaming1
 		u.Type = GetLibraryItemsOptimizedForStreamingTypeOptimizedForStreaming1
 		return nil
 	}
 
 	var boolean bool = false
-	if err := utils.UnmarshalJSON(data, &boolean, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {
 		u.Boolean = &boolean
 		u.Type = GetLibraryItemsOptimizedForStreamingTypeBoolean
 		return nil
@@ -475,8 +475,8 @@ const (
 
 // GetLibraryItemsLibraryOptimizedForStreaming - Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
 type GetLibraryItemsLibraryOptimizedForStreaming struct {
-	GetLibraryItemsOptimizedForStreaming1 *GetLibraryItemsOptimizedForStreaming1 `queryParam:"inline"`
-	Boolean                               *bool                                  `queryParam:"inline"`
+	GetLibraryItemsOptimizedForStreaming1 *GetLibraryItemsOptimizedForStreaming1 `queryParam:"inline" name:"optimizedForStreaming"`
+	Boolean                               *bool                                  `queryParam:"inline" name:"optimizedForStreaming"`
 
 	Type GetLibraryItemsLibraryOptimizedForStreamingType
 }
@@ -502,14 +502,14 @@ func CreateGetLibraryItemsLibraryOptimizedForStreamingBoolean(boolean bool) GetL
 func (u *GetLibraryItemsLibraryOptimizedForStreaming) UnmarshalJSON(data []byte) error {
 
 	var getLibraryItemsOptimizedForStreaming1 GetLibraryItemsOptimizedForStreaming1 = GetLibraryItemsOptimizedForStreaming1(0)
-	if err := utils.UnmarshalJSON(data, &getLibraryItemsOptimizedForStreaming1, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &getLibraryItemsOptimizedForStreaming1, "", true, nil); err == nil {
 		u.GetLibraryItemsOptimizedForStreaming1 = &getLibraryItemsOptimizedForStreaming1
 		u.Type = GetLibraryItemsLibraryOptimizedForStreamingTypeGetLibraryItemsOptimizedForStreaming1
 		return nil
 	}
 
 	var boolean bool = false
-	if err := utils.UnmarshalJSON(data, &boolean, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {
 		u.Boolean = &boolean
 		u.Type = GetLibraryItemsLibraryOptimizedForStreamingTypeBoolean
 		return nil
@@ -592,7 +592,7 @@ func (g GetLibraryItemsPart) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetLibraryItemsPart) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
 		return err
 	}
 	return nil
@@ -1460,7 +1460,7 @@ func (g GetLibraryItemsMetadata) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetLibraryItemsMetadata) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"ratingKey", "key", "guid", "slug", "type", "title", "banner", "titleSort", "summary", "rating", "audienceRating", "tagline", "thumb", "art", "theme", "index", "childCount", "seasonCount", "duration", "addedAt"}); err != nil {
 		return err
 	}
 	return nil
@@ -2129,7 +2129,7 @@ func (g GetLibraryItemsSort) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetLibraryItemsSort) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"key", "title"}); err != nil {
 		return err
 	}
 	return nil

@@ -114,7 +114,7 @@ func (g GetServerResourcesRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetServerResourcesRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"X-Plex-Client-Identifier"}); err != nil {
 		return err
 	}
 	return nil
@@ -274,7 +274,7 @@ func (p PlexDevice) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PlexDevice) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"name", "product", "productVersion", "platform", "platformVersion", "device", "clientIdentifier", "createdAt", "lastSeenAt", "provides", "ownerId", "sourceTitle", "publicAddress", "accessToken", "owned", "home", "synced", "relay", "presence", "httpsRequired", "publicAddressMatches", "dnsRebindingProtection", "natLoopbackSupported", "connections"}); err != nil {
 		return err
 	}
 	return nil

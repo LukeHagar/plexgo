@@ -21,7 +21,7 @@ func (p PerformVoiceSearchRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PerformVoiceSearchRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"query"}); err != nil {
 		return err
 	}
 	return nil

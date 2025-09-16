@@ -283,8 +283,8 @@ const (
 
 // GetMediaMetaDataOptimizedForStreaming - Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
 type GetMediaMetaDataOptimizedForStreaming struct {
-	GetMediaMetaDataOptimizedForStreaming1 *GetMediaMetaDataOptimizedForStreaming1 `queryParam:"inline"`
-	Boolean                                *bool                                   `queryParam:"inline"`
+	GetMediaMetaDataOptimizedForStreaming1 *GetMediaMetaDataOptimizedForStreaming1 `queryParam:"inline" name:"optimizedForStreaming"`
+	Boolean                                *bool                                   `queryParam:"inline" name:"optimizedForStreaming"`
 
 	Type GetMediaMetaDataOptimizedForStreamingType
 }
@@ -310,14 +310,14 @@ func CreateGetMediaMetaDataOptimizedForStreamingBoolean(boolean bool) GetMediaMe
 func (u *GetMediaMetaDataOptimizedForStreaming) UnmarshalJSON(data []byte) error {
 
 	var getMediaMetaDataOptimizedForStreaming1 GetMediaMetaDataOptimizedForStreaming1 = GetMediaMetaDataOptimizedForStreaming1(0)
-	if err := utils.UnmarshalJSON(data, &getMediaMetaDataOptimizedForStreaming1, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &getMediaMetaDataOptimizedForStreaming1, "", true, nil); err == nil {
 		u.GetMediaMetaDataOptimizedForStreaming1 = &getMediaMetaDataOptimizedForStreaming1
 		u.Type = GetMediaMetaDataOptimizedForStreamingTypeGetMediaMetaDataOptimizedForStreaming1
 		return nil
 	}
 
 	var boolean bool = false
-	if err := utils.UnmarshalJSON(data, &boolean, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {
 		u.Boolean = &boolean
 		u.Type = GetMediaMetaDataOptimizedForStreamingTypeBoolean
 		return nil
@@ -373,8 +373,8 @@ const (
 
 // GetMediaMetaDataLibraryOptimizedForStreaming - Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
 type GetMediaMetaDataLibraryOptimizedForStreaming struct {
-	GetMediaMetaDataOptimizedForStreamingLibrary1 *GetMediaMetaDataOptimizedForStreamingLibrary1 `queryParam:"inline"`
-	Boolean                                       *bool                                          `queryParam:"inline"`
+	GetMediaMetaDataOptimizedForStreamingLibrary1 *GetMediaMetaDataOptimizedForStreamingLibrary1 `queryParam:"inline" name:"optimizedForStreaming"`
+	Boolean                                       *bool                                          `queryParam:"inline" name:"optimizedForStreaming"`
 
 	Type GetMediaMetaDataLibraryOptimizedForStreamingType
 }
@@ -400,14 +400,14 @@ func CreateGetMediaMetaDataLibraryOptimizedForStreamingBoolean(boolean bool) Get
 func (u *GetMediaMetaDataLibraryOptimizedForStreaming) UnmarshalJSON(data []byte) error {
 
 	var getMediaMetaDataOptimizedForStreamingLibrary1 GetMediaMetaDataOptimizedForStreamingLibrary1 = GetMediaMetaDataOptimizedForStreamingLibrary1(0)
-	if err := utils.UnmarshalJSON(data, &getMediaMetaDataOptimizedForStreamingLibrary1, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &getMediaMetaDataOptimizedForStreamingLibrary1, "", true, nil); err == nil {
 		u.GetMediaMetaDataOptimizedForStreamingLibrary1 = &getMediaMetaDataOptimizedForStreamingLibrary1
 		u.Type = GetMediaMetaDataLibraryOptimizedForStreamingTypeGetMediaMetaDataOptimizedForStreamingLibrary1
 		return nil
 	}
 
 	var boolean bool = false
-	if err := utils.UnmarshalJSON(data, &boolean, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {
 		u.Boolean = &boolean
 		u.Type = GetMediaMetaDataLibraryOptimizedForStreamingTypeBoolean
 		return nil
@@ -564,7 +564,7 @@ func (g GetMediaMetaDataStream) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetMediaMetaDataStream) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id", "streamType"}); err != nil {
 		return err
 	}
 	return nil
@@ -960,7 +960,7 @@ func (g GetMediaMetaDataPart) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetMediaMetaDataPart) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
 		return err
 	}
 	return nil
@@ -1880,7 +1880,7 @@ func (g GetMediaMetaDataMetadata) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetMediaMetaDataMetadata) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"ratingKey", "key", "guid", "slug", "type", "title", "titleSort", "summary", "rating", "audienceRating", "tagline", "thumb", "art", "theme", "index", "childCount", "seasonCount", "duration", "addedAt"}); err != nil {
 		return err
 	}
 	return nil

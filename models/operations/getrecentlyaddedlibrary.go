@@ -94,7 +94,7 @@ func (g GetRecentlyAddedLibraryRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetRecentlyAddedLibraryRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"type"}); err != nil {
 		return err
 	}
 	return nil
@@ -274,7 +274,7 @@ func (s Sort) MarshalJSON() ([]byte, error) {
 }
 
 func (s *Sort) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"key", "title"}); err != nil {
 		return err
 	}
 	return nil
@@ -785,7 +785,7 @@ func (g GetRecentlyAddedLibraryMetadata) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetRecentlyAddedLibraryMetadata) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
 		return err
 	}
 	return nil

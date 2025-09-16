@@ -63,7 +63,7 @@ func (u UploadPlaylistRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UploadPlaylistRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"path", "force", "sectionID"}); err != nil {
 		return err
 	}
 	return nil

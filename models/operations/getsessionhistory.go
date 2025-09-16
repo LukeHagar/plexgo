@@ -84,7 +84,7 @@ func (g GetSessionHistoryMetadata) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetSessionHistoryMetadata) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
 		return err
 	}
 	return nil

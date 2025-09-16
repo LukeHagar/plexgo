@@ -452,7 +452,7 @@ func (g GetUsersServer) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetUsersServer) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id", "serverId", "machineIdentifier", "name", "lastSeenAt", "numLibraries"}); err != nil {
 		return err
 	}
 	return nil
@@ -561,7 +561,7 @@ func (u User) MarshalJSON() ([]byte, error) {
 }
 
 func (u *User) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"id", "title", "username", "email", "thumb", "Server"}); err != nil {
 		return err
 	}
 	return nil

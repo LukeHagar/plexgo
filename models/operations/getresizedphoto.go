@@ -85,7 +85,7 @@ func (g GetResizedPhotoRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetResizedPhotoRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"width", "height", "opacity", "blur", "minSize", "upscale", "url"}); err != nil {
 		return err
 	}
 	return nil

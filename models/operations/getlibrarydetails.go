@@ -53,7 +53,7 @@ func (g GetLibraryDetailsRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetLibraryDetailsRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"sectionKey"}); err != nil {
 		return err
 	}
 	return nil

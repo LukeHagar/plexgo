@@ -42,7 +42,7 @@ func (g GetGeoDataGeoData) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetGeoDataGeoData) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"code", "continent_code", "country", "city", "time_zone", "postal_code", "subdivisions", "coordinates"}); err != nil {
 		return err
 	}
 	return nil

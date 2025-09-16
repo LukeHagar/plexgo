@@ -206,7 +206,7 @@ func (g GetLibrarySectionsAllRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetLibrarySectionsAllRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"sectionKey", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -400,7 +400,7 @@ func (g GetLibrarySectionsAllSort) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetLibrarySectionsAllSort) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"key", "title"}); err != nil {
 		return err
 	}
 	return nil
@@ -765,8 +765,8 @@ const (
 
 // GetLibrarySectionsAllOptimizedForStreaming - Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
 type GetLibrarySectionsAllOptimizedForStreaming struct {
-	GetLibrarySectionsAllOptimizedForStreaming1 *GetLibrarySectionsAllOptimizedForStreaming1 `queryParam:"inline"`
-	Boolean                                     *bool                                        `queryParam:"inline"`
+	GetLibrarySectionsAllOptimizedForStreaming1 *GetLibrarySectionsAllOptimizedForStreaming1 `queryParam:"inline" name:"optimizedForStreaming"`
+	Boolean                                     *bool                                        `queryParam:"inline" name:"optimizedForStreaming"`
 
 	Type GetLibrarySectionsAllOptimizedForStreamingType
 }
@@ -792,14 +792,14 @@ func CreateGetLibrarySectionsAllOptimizedForStreamingBoolean(boolean bool) GetLi
 func (u *GetLibrarySectionsAllOptimizedForStreaming) UnmarshalJSON(data []byte) error {
 
 	var getLibrarySectionsAllOptimizedForStreaming1 GetLibrarySectionsAllOptimizedForStreaming1 = GetLibrarySectionsAllOptimizedForStreaming1(0)
-	if err := utils.UnmarshalJSON(data, &getLibrarySectionsAllOptimizedForStreaming1, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &getLibrarySectionsAllOptimizedForStreaming1, "", true, nil); err == nil {
 		u.GetLibrarySectionsAllOptimizedForStreaming1 = &getLibrarySectionsAllOptimizedForStreaming1
 		u.Type = GetLibrarySectionsAllOptimizedForStreamingTypeGetLibrarySectionsAllOptimizedForStreaming1
 		return nil
 	}
 
 	var boolean bool = false
-	if err := utils.UnmarshalJSON(data, &boolean, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {
 		u.Boolean = &boolean
 		u.Type = GetLibrarySectionsAllOptimizedForStreamingTypeBoolean
 		return nil
@@ -855,8 +855,8 @@ const (
 
 // GetLibrarySectionsAllLibraryOptimizedForStreaming - Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
 type GetLibrarySectionsAllLibraryOptimizedForStreaming struct {
-	GetLibrarySectionsAllOptimizedForStreamingLibrary1 *GetLibrarySectionsAllOptimizedForStreamingLibrary1 `queryParam:"inline"`
-	Boolean                                            *bool                                               `queryParam:"inline"`
+	GetLibrarySectionsAllOptimizedForStreamingLibrary1 *GetLibrarySectionsAllOptimizedForStreamingLibrary1 `queryParam:"inline" name:"optimizedForStreaming"`
+	Boolean                                            *bool                                               `queryParam:"inline" name:"optimizedForStreaming"`
 
 	Type GetLibrarySectionsAllLibraryOptimizedForStreamingType
 }
@@ -882,14 +882,14 @@ func CreateGetLibrarySectionsAllLibraryOptimizedForStreamingBoolean(boolean bool
 func (u *GetLibrarySectionsAllLibraryOptimizedForStreaming) UnmarshalJSON(data []byte) error {
 
 	var getLibrarySectionsAllOptimizedForStreamingLibrary1 GetLibrarySectionsAllOptimizedForStreamingLibrary1 = GetLibrarySectionsAllOptimizedForStreamingLibrary1(0)
-	if err := utils.UnmarshalJSON(data, &getLibrarySectionsAllOptimizedForStreamingLibrary1, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &getLibrarySectionsAllOptimizedForStreamingLibrary1, "", true, nil); err == nil {
 		u.GetLibrarySectionsAllOptimizedForStreamingLibrary1 = &getLibrarySectionsAllOptimizedForStreamingLibrary1
 		u.Type = GetLibrarySectionsAllLibraryOptimizedForStreamingTypeGetLibrarySectionsAllOptimizedForStreamingLibrary1
 		return nil
 	}
 
 	var boolean bool = false
-	if err := utils.UnmarshalJSON(data, &boolean, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {
 		u.Boolean = &boolean
 		u.Type = GetLibrarySectionsAllLibraryOptimizedForStreamingTypeBoolean
 		return nil
@@ -1046,7 +1046,7 @@ func (g GetLibrarySectionsAllStream) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetLibrarySectionsAllStream) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id", "streamType", "codec", "displayTitle", "extendedDisplayTitle"}); err != nil {
 		return err
 	}
 	return nil
@@ -1442,7 +1442,7 @@ func (g GetLibrarySectionsAllPart) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetLibrarySectionsAllPart) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id", "key", "file", "size"}); err != nil {
 		return err
 	}
 	return nil
@@ -1931,7 +1931,7 @@ func (g GetLibrarySectionsAllMetadata) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetLibrarySectionsAllMetadata) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"ratingKey", "key", "guid", "slug", "type", "title", "titleSort", "summary", "rating", "audienceRating", "tagline", "thumb", "art", "theme", "index", "childCount", "seasonCount", "duration", "addedAt"}); err != nil {
 		return err
 	}
 	return nil

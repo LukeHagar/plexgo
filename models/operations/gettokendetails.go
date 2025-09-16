@@ -179,7 +179,7 @@ func (u UserProfile) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UserProfile) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"defaultAudioLanguage", "defaultSubtitleLanguage"}); err != nil {
 		return err
 	}
 	return nil
@@ -521,7 +521,7 @@ func (g GetTokenDetailsUserPlexAccount) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetTokenDetailsUserPlexAccount) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"adsConsent", "adsConsentReminderAt", "adsConsentSetAt", "authToken", "country", "email", "friendlyName", "entitlements", "homeSize", "id", "joinedAt", "locale", "mailingListStatus", "maxHomeSize", "profile", "rememberExpiresAt", "scrobbleTypes", "services", "subscription", "subscriptionDescription", "thumb", "title", "username", "uuid", "attributionPartner"}); err != nil {
 		return err
 	}
 	return nil
