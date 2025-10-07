@@ -13,25 +13,25 @@ type LogMultiLineLogErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *LogMultiLineLogErrors) GetCode() *int {
-	if o == nil {
+func (l *LogMultiLineLogErrors) GetCode() *int {
+	if l == nil {
 		return nil
 	}
-	return o.Code
+	return l.Code
 }
 
-func (o *LogMultiLineLogErrors) GetMessage() *string {
-	if o == nil {
+func (l *LogMultiLineLogErrors) GetMessage() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Message
+	return l.Message
 }
 
-func (o *LogMultiLineLogErrors) GetStatus() *int {
-	if o == nil {
+func (l *LogMultiLineLogErrors) GetStatus() *int {
+	if l == nil {
 		return nil
 	}
-	return o.Status
+	return l.Status
 }
 
 // LogMultiLineUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type LogMultiLineErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *LogMultiLineErrors) GetCode() *int {
-	if o == nil {
+func (l *LogMultiLineErrors) GetCode() *int {
+	if l == nil {
 		return nil
 	}
-	return o.Code
+	return l.Code
 }
 
-func (o *LogMultiLineErrors) GetMessage() *string {
-	if o == nil {
+func (l *LogMultiLineErrors) GetMessage() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Message
+	return l.Message
 }
 
-func (o *LogMultiLineErrors) GetStatus() *int {
-	if o == nil {
+func (l *LogMultiLineErrors) GetStatus() *int {
+	if l == nil {
 		return nil
 	}
-	return o.Status
+	return l.Status
 }
 
 // LogMultiLineBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

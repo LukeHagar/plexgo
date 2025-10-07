@@ -11,11 +11,11 @@ type GetSourceConnectionInformationRequest struct {
 	Source string `queryParam:"style=form,explode=true,name=source"`
 }
 
-func (o *GetSourceConnectionInformationRequest) GetSource() string {
-	if o == nil {
+func (g *GetSourceConnectionInformationRequest) GetSource() string {
+	if g == nil {
 		return ""
 	}
-	return o.Source
+	return g.Source
 }
 
 type GetSourceConnectionInformationResponse struct {
@@ -27,23 +27,23 @@ type GetSourceConnectionInformationResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *GetSourceConnectionInformationResponse) GetContentType() string {
-	if o == nil {
+func (g *GetSourceConnectionInformationResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetSourceConnectionInformationResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetSourceConnectionInformationResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetSourceConnectionInformationResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetSourceConnectionInformationResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }

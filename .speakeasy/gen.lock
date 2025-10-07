@@ -3,10 +3,10 @@ id: dfa99515-01c0-42eb-9be5-ee212fd03eb3
 management:
   docChecksum: addaf2dfdac23cef2e234b64492b9c90
   docVersion: 0.0.3
-  speakeasyVersion: 1.615.2
-  generationVersion: 2.698.4
-  releaseVersion: 0.24.2
-  configChecksum: 8d76d795a093eac0731c22ff2789a575
+  speakeasyVersion: 1.635.1
+  generationVersion: 2.722.2
+  releaseVersion: 0.25.0
+  configChecksum: 4ca3994cb62bfd5beb1e6c5c6b0ef941
   repoURL: https://github.com/LukeHagar/plexgo.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexgo
@@ -15,11 +15,11 @@ features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.9.6
+    core: 3.11.1
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.3
     downloadStreams: 0.1.2
-    enums: 2.81.1
+    enums: 2.82.0
     envVarSecurityUsage: 0.3.2
     errors: 2.83.0
     flattening: 2.81.1
@@ -30,12 +30,12 @@ features:
     intellisenseMarkdownSupport: 0.1.0
     methodServerURLs: 2.82.1
     nameOverrides: 2.81.2
-    nullables: 0.1.1
+    nullables: 0.2.1
     openEnums: 0.1.0
     responseFormat: 0.1.2
     retries: 2.84.2
     sdkHooks: 0.2.0
-    unions: 2.85.14
+    unions: 2.86.0
     uploadStreams: 0.1.0
 generatedFiles:
   - .gitattributes
@@ -1158,6 +1158,8 @@ generatedFiles:
   - media.go
   - models/operations/options.go
   - models/sdkerrors/sdkerror.go
+  - optionalnullable/optionalnullable.go
+  - optionalnullable/optionalnullable_test.go
   - playlists.go
   - plex.go
   - plexapi.go
@@ -1169,7 +1171,6 @@ generatedFiles:
   - types/bigint.go
   - types/date.go
   - types/datetime.go
-  - types/decimal.go
   - types/pointers.go
   - updater.go
   - users.go

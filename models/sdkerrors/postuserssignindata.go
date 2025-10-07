@@ -13,25 +13,25 @@ type PostUsersSignInDataAuthenticationErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *PostUsersSignInDataAuthenticationErrors) GetCode() *int {
-	if o == nil {
+func (p *PostUsersSignInDataAuthenticationErrors) GetCode() *int {
+	if p == nil {
 		return nil
 	}
-	return o.Code
+	return p.Code
 }
 
-func (o *PostUsersSignInDataAuthenticationErrors) GetMessage() *string {
-	if o == nil {
+func (p *PostUsersSignInDataAuthenticationErrors) GetMessage() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Message
+	return p.Message
 }
 
-func (o *PostUsersSignInDataAuthenticationErrors) GetStatus() *int {
-	if o == nil {
+func (p *PostUsersSignInDataAuthenticationErrors) GetStatus() *int {
+	if p == nil {
 		return nil
 	}
-	return o.Status
+	return p.Status
 }
 
 // PostUsersSignInDataUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type PostUsersSignInDataErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *PostUsersSignInDataErrors) GetCode() *int {
-	if o == nil {
+func (p *PostUsersSignInDataErrors) GetCode() *int {
+	if p == nil {
 		return nil
 	}
-	return o.Code
+	return p.Code
 }
 
-func (o *PostUsersSignInDataErrors) GetMessage() *string {
-	if o == nil {
+func (p *PostUsersSignInDataErrors) GetMessage() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Message
+	return p.Message
 }
 
-func (o *PostUsersSignInDataErrors) GetStatus() *int {
-	if o == nil {
+func (p *PostUsersSignInDataErrors) GetStatus() *int {
+	if p == nil {
 		return nil
 	}
-	return o.Status
+	return p.Status
 }
 
 // PostUsersSignInDataBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

@@ -11,11 +11,11 @@ type MarkUnplayedRequest struct {
 	Key float64 `queryParam:"style=form,explode=true,name=key"`
 }
 
-func (o *MarkUnplayedRequest) GetKey() float64 {
-	if o == nil {
+func (m *MarkUnplayedRequest) GetKey() float64 {
+	if m == nil {
 		return 0.0
 	}
-	return o.Key
+	return m.Key
 }
 
 type MarkUnplayedResponse struct {
@@ -27,23 +27,23 @@ type MarkUnplayedResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *MarkUnplayedResponse) GetContentType() string {
-	if o == nil {
+func (m *MarkUnplayedResponse) GetContentType() string {
+	if m == nil {
 		return ""
 	}
-	return o.ContentType
+	return m.ContentType
 }
 
-func (o *MarkUnplayedResponse) GetStatusCode() int {
-	if o == nil {
+func (m *MarkUnplayedResponse) GetStatusCode() int {
+	if m == nil {
 		return 0
 	}
-	return o.StatusCode
+	return m.StatusCode
 }
 
-func (o *MarkUnplayedResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (m *MarkUnplayedResponse) GetRawResponse() *http.Response {
+	if m == nil {
 		return nil
 	}
-	return o.RawResponse
+	return m.RawResponse
 }

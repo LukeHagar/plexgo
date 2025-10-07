@@ -40,11 +40,11 @@ type CheckForUpdatesRequest struct {
 	Download *Download `queryParam:"style=form,explode=true,name=download"`
 }
 
-func (o *CheckForUpdatesRequest) GetDownload() *Download {
-	if o == nil {
+func (c *CheckForUpdatesRequest) GetDownload() *Download {
+	if c == nil {
 		return nil
 	}
-	return o.Download
+	return c.Download
 }
 
 type CheckForUpdatesResponse struct {
@@ -56,23 +56,23 @@ type CheckForUpdatesResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *CheckForUpdatesResponse) GetContentType() string {
-	if o == nil {
+func (c *CheckForUpdatesResponse) GetContentType() string {
+	if c == nil {
 		return ""
 	}
-	return o.ContentType
+	return c.ContentType
 }
 
-func (o *CheckForUpdatesResponse) GetStatusCode() int {
-	if o == nil {
+func (c *CheckForUpdatesResponse) GetStatusCode() int {
+	if c == nil {
 		return 0
 	}
-	return o.StatusCode
+	return c.StatusCode
 }
 
-func (o *CheckForUpdatesResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (c *CheckForUpdatesResponse) GetRawResponse() *http.Response {
+	if c == nil {
 		return nil
 	}
-	return o.RawResponse
+	return c.RawResponse
 }

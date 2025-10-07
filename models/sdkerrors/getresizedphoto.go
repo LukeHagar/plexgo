@@ -13,25 +13,25 @@ type GetResizedPhotoServerErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetResizedPhotoServerErrors) GetCode() *int {
-	if o == nil {
+func (g *GetResizedPhotoServerErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetResizedPhotoServerErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetResizedPhotoServerErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetResizedPhotoServerErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetResizedPhotoServerErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetResizedPhotoUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type GetResizedPhotoErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetResizedPhotoErrors) GetCode() *int {
-	if o == nil {
+func (g *GetResizedPhotoErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetResizedPhotoErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetResizedPhotoErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetResizedPhotoErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetResizedPhotoErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetResizedPhotoBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

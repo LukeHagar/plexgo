@@ -35,11 +35,11 @@ type StopTaskRequest struct {
 	TaskName PathParamTaskName `pathParam:"style=simple,explode=false,name=taskName"`
 }
 
-func (o *StopTaskRequest) GetTaskName() PathParamTaskName {
-	if o == nil {
+func (s *StopTaskRequest) GetTaskName() PathParamTaskName {
+	if s == nil {
 		return PathParamTaskName("")
 	}
-	return o.TaskName
+	return s.TaskName
 }
 
 type StopTaskResponse struct {
@@ -51,23 +51,23 @@ type StopTaskResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *StopTaskResponse) GetContentType() string {
-	if o == nil {
+func (s *StopTaskResponse) GetContentType() string {
+	if s == nil {
 		return ""
 	}
-	return o.ContentType
+	return s.ContentType
 }
 
-func (o *StopTaskResponse) GetStatusCode() int {
-	if o == nil {
+func (s *StopTaskResponse) GetStatusCode() int {
+	if s == nil {
 		return 0
 	}
-	return o.StatusCode
+	return s.StatusCode
 }
 
-func (o *StopTaskResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (s *StopTaskResponse) GetRawResponse() *http.Response {
+	if s == nil {
 		return nil
 	}
-	return o.RawResponse
+	return s.RawResponse
 }

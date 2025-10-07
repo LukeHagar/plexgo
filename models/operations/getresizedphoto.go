@@ -91,53 +91,53 @@ func (g *GetResizedPhotoRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetResizedPhotoRequest) GetWidth() float64 {
-	if o == nil {
+func (g *GetResizedPhotoRequest) GetWidth() float64 {
+	if g == nil {
 		return 0.0
 	}
-	return o.Width
+	return g.Width
 }
 
-func (o *GetResizedPhotoRequest) GetHeight() float64 {
-	if o == nil {
+func (g *GetResizedPhotoRequest) GetHeight() float64 {
+	if g == nil {
 		return 0.0
 	}
-	return o.Height
+	return g.Height
 }
 
-func (o *GetResizedPhotoRequest) GetOpacity() int64 {
-	if o == nil {
+func (g *GetResizedPhotoRequest) GetOpacity() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.Opacity
+	return g.Opacity
 }
 
-func (o *GetResizedPhotoRequest) GetBlur() float64 {
-	if o == nil {
+func (g *GetResizedPhotoRequest) GetBlur() float64 {
+	if g == nil {
 		return 0.0
 	}
-	return o.Blur
+	return g.Blur
 }
 
-func (o *GetResizedPhotoRequest) GetMinSize() MinSize {
-	if o == nil {
+func (g *GetResizedPhotoRequest) GetMinSize() MinSize {
+	if g == nil {
 		return MinSize(0)
 	}
-	return o.MinSize
+	return g.MinSize
 }
 
-func (o *GetResizedPhotoRequest) GetUpscale() Upscale {
-	if o == nil {
+func (g *GetResizedPhotoRequest) GetUpscale() Upscale {
+	if g == nil {
 		return Upscale(0)
 	}
-	return o.Upscale
+	return g.Upscale
 }
 
-func (o *GetResizedPhotoRequest) GetURL() string {
-	if o == nil {
+func (g *GetResizedPhotoRequest) GetURL() string {
+	if g == nil {
 		return ""
 	}
-	return o.URL
+	return g.URL
 }
 
 type GetResizedPhotoResponse struct {
@@ -149,23 +149,23 @@ type GetResizedPhotoResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *GetResizedPhotoResponse) GetContentType() string {
-	if o == nil {
+func (g *GetResizedPhotoResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetResizedPhotoResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetResizedPhotoResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetResizedPhotoResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetResizedPhotoResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }

@@ -44,18 +44,18 @@ type GetRefreshLibraryMetadataRequest struct {
 	SectionKey int `pathParam:"style=simple,explode=false,name=sectionKey"`
 }
 
-func (o *GetRefreshLibraryMetadataRequest) GetForce() *Force {
-	if o == nil {
+func (g *GetRefreshLibraryMetadataRequest) GetForce() *Force {
+	if g == nil {
 		return nil
 	}
-	return o.Force
+	return g.Force
 }
 
-func (o *GetRefreshLibraryMetadataRequest) GetSectionKey() int {
-	if o == nil {
+func (g *GetRefreshLibraryMetadataRequest) GetSectionKey() int {
+	if g == nil {
 		return 0
 	}
-	return o.SectionKey
+	return g.SectionKey
 }
 
 type GetRefreshLibraryMetadataResponse struct {
@@ -67,23 +67,23 @@ type GetRefreshLibraryMetadataResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *GetRefreshLibraryMetadataResponse) GetContentType() string {
-	if o == nil {
+func (g *GetRefreshLibraryMetadataResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetRefreshLibraryMetadataResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetRefreshLibraryMetadataResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetRefreshLibraryMetadataResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetRefreshLibraryMetadataResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }

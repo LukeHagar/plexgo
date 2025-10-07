@@ -13,25 +13,25 @@ type ApplyUpdatesUpdaterErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *ApplyUpdatesUpdaterErrors) GetCode() *int {
-	if o == nil {
+func (a *ApplyUpdatesUpdaterErrors) GetCode() *int {
+	if a == nil {
 		return nil
 	}
-	return o.Code
+	return a.Code
 }
 
-func (o *ApplyUpdatesUpdaterErrors) GetMessage() *string {
-	if o == nil {
+func (a *ApplyUpdatesUpdaterErrors) GetMessage() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Message
+	return a.Message
 }
 
-func (o *ApplyUpdatesUpdaterErrors) GetStatus() *int {
-	if o == nil {
+func (a *ApplyUpdatesUpdaterErrors) GetStatus() *int {
+	if a == nil {
 		return nil
 	}
-	return o.Status
+	return a.Status
 }
 
 // ApplyUpdatesUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type ApplyUpdatesErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *ApplyUpdatesErrors) GetCode() *int {
-	if o == nil {
+func (a *ApplyUpdatesErrors) GetCode() *int {
+	if a == nil {
 		return nil
 	}
-	return o.Code
+	return a.Code
 }
 
-func (o *ApplyUpdatesErrors) GetMessage() *string {
-	if o == nil {
+func (a *ApplyUpdatesErrors) GetMessage() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Message
+	return a.Message
 }
 
-func (o *ApplyUpdatesErrors) GetStatus() *int {
-	if o == nil {
+func (a *ApplyUpdatesErrors) GetStatus() *int {
+	if a == nil {
 		return nil
 	}
-	return o.Status
+	return a.Status
 }
 
 // ApplyUpdatesBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

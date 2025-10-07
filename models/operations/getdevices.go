@@ -14,39 +14,39 @@ type Device struct {
 	CreatedAt        *float64 `json:"createdAt,omitempty"`
 }
 
-func (o *Device) GetID() *float64 {
-	if o == nil {
+func (d *Device) GetID() *float64 {
+	if d == nil {
 		return nil
 	}
-	return o.ID
+	return d.ID
 }
 
-func (o *Device) GetName() *string {
-	if o == nil {
+func (d *Device) GetName() *string {
+	if d == nil {
 		return nil
 	}
-	return o.Name
+	return d.Name
 }
 
-func (o *Device) GetPlatform() *string {
-	if o == nil {
+func (d *Device) GetPlatform() *string {
+	if d == nil {
 		return nil
 	}
-	return o.Platform
+	return d.Platform
 }
 
-func (o *Device) GetClientIdentifier() *string {
-	if o == nil {
+func (d *Device) GetClientIdentifier() *string {
+	if d == nil {
 		return nil
 	}
-	return o.ClientIdentifier
+	return d.ClientIdentifier
 }
 
-func (o *Device) GetCreatedAt() *float64 {
-	if o == nil {
+func (d *Device) GetCreatedAt() *float64 {
+	if d == nil {
 		return nil
 	}
-	return o.CreatedAt
+	return d.CreatedAt
 }
 
 type GetDevicesMediaContainer struct {
@@ -55,25 +55,25 @@ type GetDevicesMediaContainer struct {
 	Device     []Device `json:"Device,omitempty"`
 }
 
-func (o *GetDevicesMediaContainer) GetSize() *float64 {
-	if o == nil {
+func (g *GetDevicesMediaContainer) GetSize() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetDevicesMediaContainer) GetIdentifier() *string {
-	if o == nil {
+func (g *GetDevicesMediaContainer) GetIdentifier() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Identifier
+	return g.Identifier
 }
 
-func (o *GetDevicesMediaContainer) GetDevice() []Device {
-	if o == nil {
+func (g *GetDevicesMediaContainer) GetDevice() []Device {
+	if g == nil {
 		return nil
 	}
-	return o.Device
+	return g.Device
 }
 
 // GetDevicesResponseBody - Devices
@@ -81,11 +81,11 @@ type GetDevicesResponseBody struct {
 	MediaContainer *GetDevicesMediaContainer `json:"MediaContainer,omitempty"`
 }
 
-func (o *GetDevicesResponseBody) GetMediaContainer() *GetDevicesMediaContainer {
-	if o == nil {
+func (g *GetDevicesResponseBody) GetMediaContainer() *GetDevicesMediaContainer {
+	if g == nil {
 		return nil
 	}
-	return o.MediaContainer
+	return g.MediaContainer
 }
 
 type GetDevicesResponse struct {
@@ -99,30 +99,30 @@ type GetDevicesResponse struct {
 	Object *GetDevicesResponseBody
 }
 
-func (o *GetDevicesResponse) GetContentType() string {
-	if o == nil {
+func (g *GetDevicesResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetDevicesResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetDevicesResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetDevicesResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetDevicesResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetDevicesResponse) GetObject() *GetDevicesResponseBody {
-	if o == nil {
+func (g *GetDevicesResponse) GetObject() *GetDevicesResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

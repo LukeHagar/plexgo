@@ -13,25 +13,25 @@ type MarkPlayedMediaErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *MarkPlayedMediaErrors) GetCode() *int {
-	if o == nil {
+func (m *MarkPlayedMediaErrors) GetCode() *int {
+	if m == nil {
 		return nil
 	}
-	return o.Code
+	return m.Code
 }
 
-func (o *MarkPlayedMediaErrors) GetMessage() *string {
-	if o == nil {
+func (m *MarkPlayedMediaErrors) GetMessage() *string {
+	if m == nil {
 		return nil
 	}
-	return o.Message
+	return m.Message
 }
 
-func (o *MarkPlayedMediaErrors) GetStatus() *int {
-	if o == nil {
+func (m *MarkPlayedMediaErrors) GetStatus() *int {
+	if m == nil {
 		return nil
 	}
-	return o.Status
+	return m.Status
 }
 
 // MarkPlayedUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type MarkPlayedErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *MarkPlayedErrors) GetCode() *int {
-	if o == nil {
+func (m *MarkPlayedErrors) GetCode() *int {
+	if m == nil {
 		return nil
 	}
-	return o.Code
+	return m.Code
 }
 
-func (o *MarkPlayedErrors) GetMessage() *string {
-	if o == nil {
+func (m *MarkPlayedErrors) GetMessage() *string {
+	if m == nil {
 		return nil
 	}
-	return o.Message
+	return m.Message
 }
 
-func (o *MarkPlayedErrors) GetStatus() *int {
-	if o == nil {
+func (m *MarkPlayedErrors) GetStatus() *int {
+	if m == nil {
 		return nil
 	}
-	return o.Status
+	return m.Status
 }
 
 // MarkPlayedBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

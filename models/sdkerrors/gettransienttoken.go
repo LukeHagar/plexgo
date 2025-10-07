@@ -13,25 +13,25 @@ type GetTransientTokenAuthenticationErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetTransientTokenAuthenticationErrors) GetCode() *int {
-	if o == nil {
+func (g *GetTransientTokenAuthenticationErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetTransientTokenAuthenticationErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetTransientTokenAuthenticationErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetTransientTokenAuthenticationErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetTransientTokenAuthenticationErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetTransientTokenUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type GetTransientTokenErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetTransientTokenErrors) GetCode() *int {
-	if o == nil {
+func (g *GetTransientTokenErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetTransientTokenErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetTransientTokenErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetTransientTokenErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetTransientTokenErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetTransientTokenBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

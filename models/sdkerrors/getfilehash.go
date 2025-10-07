@@ -13,25 +13,25 @@ type GetFileHashLibraryErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetFileHashLibraryErrors) GetCode() *int {
-	if o == nil {
+func (g *GetFileHashLibraryErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetFileHashLibraryErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetFileHashLibraryErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetFileHashLibraryErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetFileHashLibraryErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetFileHashUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type GetFileHashErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetFileHashErrors) GetCode() *int {
-	if o == nil {
+func (g *GetFileHashErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetFileHashErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetFileHashErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetFileHashErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetFileHashErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetFileHashBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

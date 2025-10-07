@@ -15,46 +15,46 @@ type Release struct {
 	State       *string `json:"state,omitempty"`
 }
 
-func (o *Release) GetKey() *string {
-	if o == nil {
+func (r *Release) GetKey() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Key
+	return r.Key
 }
 
-func (o *Release) GetVersion() *string {
-	if o == nil {
+func (r *Release) GetVersion() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Version
+	return r.Version
 }
 
-func (o *Release) GetAdded() *string {
-	if o == nil {
+func (r *Release) GetAdded() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Added
+	return r.Added
 }
 
-func (o *Release) GetFixed() *string {
-	if o == nil {
+func (r *Release) GetFixed() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Fixed
+	return r.Fixed
 }
 
-func (o *Release) GetDownloadURL() *string {
-	if o == nil {
+func (r *Release) GetDownloadURL() *string {
+	if r == nil {
 		return nil
 	}
-	return o.DownloadURL
+	return r.DownloadURL
 }
 
-func (o *Release) GetState() *string {
-	if o == nil {
+func (r *Release) GetState() *string {
+	if r == nil {
 		return nil
 	}
-	return o.State
+	return r.State
 }
 
 type GetUpdateStatusMediaContainer struct {
@@ -66,46 +66,46 @@ type GetUpdateStatusMediaContainer struct {
 	Release     []Release `json:"Release,omitempty"`
 }
 
-func (o *GetUpdateStatusMediaContainer) GetSize() *int {
-	if o == nil {
+func (g *GetUpdateStatusMediaContainer) GetSize() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetUpdateStatusMediaContainer) GetCanInstall() *bool {
-	if o == nil {
+func (g *GetUpdateStatusMediaContainer) GetCanInstall() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.CanInstall
+	return g.CanInstall
 }
 
-func (o *GetUpdateStatusMediaContainer) GetCheckedAt() *int {
-	if o == nil {
+func (g *GetUpdateStatusMediaContainer) GetCheckedAt() *int {
+	if g == nil {
 		return nil
 	}
-	return o.CheckedAt
+	return g.CheckedAt
 }
 
-func (o *GetUpdateStatusMediaContainer) GetDownloadURL() *string {
-	if o == nil {
+func (g *GetUpdateStatusMediaContainer) GetDownloadURL() *string {
+	if g == nil {
 		return nil
 	}
-	return o.DownloadURL
+	return g.DownloadURL
 }
 
-func (o *GetUpdateStatusMediaContainer) GetStatus() *int {
-	if o == nil {
+func (g *GetUpdateStatusMediaContainer) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
-func (o *GetUpdateStatusMediaContainer) GetRelease() []Release {
-	if o == nil {
+func (g *GetUpdateStatusMediaContainer) GetRelease() []Release {
+	if g == nil {
 		return nil
 	}
-	return o.Release
+	return g.Release
 }
 
 // GetUpdateStatusResponseBody - The Server Updates
@@ -113,11 +113,11 @@ type GetUpdateStatusResponseBody struct {
 	MediaContainer *GetUpdateStatusMediaContainer `json:"MediaContainer,omitempty"`
 }
 
-func (o *GetUpdateStatusResponseBody) GetMediaContainer() *GetUpdateStatusMediaContainer {
-	if o == nil {
+func (g *GetUpdateStatusResponseBody) GetMediaContainer() *GetUpdateStatusMediaContainer {
+	if g == nil {
 		return nil
 	}
-	return o.MediaContainer
+	return g.MediaContainer
 }
 
 type GetUpdateStatusResponse struct {
@@ -131,30 +131,30 @@ type GetUpdateStatusResponse struct {
 	Object *GetUpdateStatusResponseBody
 }
 
-func (o *GetUpdateStatusResponse) GetContentType() string {
-	if o == nil {
+func (g *GetUpdateStatusResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetUpdateStatusResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetUpdateStatusResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetUpdateStatusResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetUpdateStatusResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetUpdateStatusResponse) GetObject() *GetUpdateStatusResponseBody {
-	if o == nil {
+func (g *GetUpdateStatusResponse) GetObject() *GetUpdateStatusResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

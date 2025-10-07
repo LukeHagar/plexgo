@@ -179,66 +179,66 @@ func (u UserProfile) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UserProfile) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"defaultAudioLanguage", "defaultSubtitleLanguage"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *UserProfile) GetAutoSelectAudio() *bool {
-	if o == nil {
+func (u *UserProfile) GetAutoSelectAudio() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.AutoSelectAudio
+	return u.AutoSelectAudio
 }
 
-func (o *UserProfile) GetDefaultAudioLanguage() *string {
-	if o == nil {
+func (u *UserProfile) GetDefaultAudioLanguage() *string {
+	if u == nil {
 		return nil
 	}
-	return o.DefaultAudioLanguage
+	return u.DefaultAudioLanguage
 }
 
-func (o *UserProfile) GetDefaultSubtitleLanguage() *string {
-	if o == nil {
+func (u *UserProfile) GetDefaultSubtitleLanguage() *string {
+	if u == nil {
 		return nil
 	}
-	return o.DefaultSubtitleLanguage
+	return u.DefaultSubtitleLanguage
 }
 
-func (o *UserProfile) GetAutoSelectSubtitle() *AutoSelectSubtitle {
-	if o == nil {
+func (u *UserProfile) GetAutoSelectSubtitle() *AutoSelectSubtitle {
+	if u == nil {
 		return nil
 	}
-	return o.AutoSelectSubtitle
+	return u.AutoSelectSubtitle
 }
 
-func (o *UserProfile) GetDefaultSubtitleAccessibility() *DefaultSubtitleAccessibility {
-	if o == nil {
+func (u *UserProfile) GetDefaultSubtitleAccessibility() *DefaultSubtitleAccessibility {
+	if u == nil {
 		return nil
 	}
-	return o.DefaultSubtitleAccessibility
+	return u.DefaultSubtitleAccessibility
 }
 
-func (o *UserProfile) GetDefaultSubtitleForced() *DefaultSubtitleForced {
-	if o == nil {
+func (u *UserProfile) GetDefaultSubtitleForced() *DefaultSubtitleForced {
+	if u == nil {
 		return nil
 	}
-	return o.DefaultSubtitleForced
+	return u.DefaultSubtitleForced
 }
 
-func (o *UserProfile) GetWatchedIndicator() *WatchedIndicator {
-	if o == nil {
+func (u *UserProfile) GetWatchedIndicator() *WatchedIndicator {
+	if u == nil {
 		return nil
 	}
-	return o.WatchedIndicator
+	return u.WatchedIndicator
 }
 
-func (o *UserProfile) GetMediaReviewsVisibility() *MediaReviewsVisibility {
-	if o == nil {
+func (u *UserProfile) GetMediaReviewsVisibility() *MediaReviewsVisibility {
+	if u == nil {
 		return nil
 	}
-	return o.MediaReviewsVisibility
+	return u.MediaReviewsVisibility
 }
 
 type GetTokenDetailsStatus string
@@ -260,39 +260,39 @@ type Services struct {
 	Status     GetTokenDetailsStatus `json:"status"`
 }
 
-func (o *Services) GetIdentifier() string {
-	if o == nil {
+func (s *Services) GetIdentifier() string {
+	if s == nil {
 		return ""
 	}
-	return o.Identifier
+	return s.Identifier
 }
 
-func (o *Services) GetEndpoint() string {
-	if o == nil {
+func (s *Services) GetEndpoint() string {
+	if s == nil {
 		return ""
 	}
-	return o.Endpoint
+	return s.Endpoint
 }
 
-func (o *Services) GetToken() *string {
-	if o == nil {
+func (s *Services) GetToken() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Token
+	return s.Token
 }
 
-func (o *Services) GetSecret() *string {
-	if o == nil {
+func (s *Services) GetSecret() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Secret
+	return s.Secret
 }
 
-func (o *Services) GetStatus() GetTokenDetailsStatus {
-	if o == nil {
+func (s *Services) GetStatus() GetTokenDetailsStatus {
+	if s == nil {
 		return GetTokenDetailsStatus("")
 	}
-	return o.Status
+	return s.Status
 }
 
 // GetTokenDetailsAuthenticationStatus - String representation of subscriptionActive
@@ -323,46 +323,46 @@ type Subscription struct {
 	Plan *string `json:"plan,omitempty"`
 }
 
-func (o *Subscription) GetFeatures() []string {
-	if o == nil {
+func (s *Subscription) GetFeatures() []string {
+	if s == nil {
 		return nil
 	}
-	return o.Features
+	return s.Features
 }
 
-func (o *Subscription) GetActive() *bool {
-	if o == nil {
+func (s *Subscription) GetActive() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.Active
+	return s.Active
 }
 
-func (o *Subscription) GetSubscribedAt() *string {
-	if o == nil {
+func (s *Subscription) GetSubscribedAt() *string {
+	if s == nil {
 		return nil
 	}
-	return o.SubscribedAt
+	return s.SubscribedAt
 }
 
-func (o *Subscription) GetStatus() *GetTokenDetailsAuthenticationStatus {
-	if o == nil {
+func (s *Subscription) GetStatus() *GetTokenDetailsAuthenticationStatus {
+	if s == nil {
 		return nil
 	}
-	return o.Status
+	return s.Status
 }
 
-func (o *Subscription) GetPaymentService() *string {
-	if o == nil {
+func (s *Subscription) GetPaymentService() *string {
+	if s == nil {
 		return nil
 	}
-	return o.PaymentService
+	return s.PaymentService
 }
 
-func (o *Subscription) GetPlan() *string {
-	if o == nil {
+func (s *Subscription) GetPlan() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Plan
+	return s.Plan
 }
 
 // GetTokenDetailsAuthenticationResponseStatus - String representation of subscriptionActive
@@ -392,46 +392,46 @@ type GetTokenDetailsSubscription struct {
 	Plan *string `json:"plan,omitempty"`
 }
 
-func (o *GetTokenDetailsSubscription) GetFeatures() []string {
-	if o == nil {
+func (g *GetTokenDetailsSubscription) GetFeatures() []string {
+	if g == nil {
 		return nil
 	}
-	return o.Features
+	return g.Features
 }
 
-func (o *GetTokenDetailsSubscription) GetActive() *bool {
-	if o == nil {
+func (g *GetTokenDetailsSubscription) GetActive() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Active
+	return g.Active
 }
 
-func (o *GetTokenDetailsSubscription) GetSubscribedAt() *string {
-	if o == nil {
+func (g *GetTokenDetailsSubscription) GetSubscribedAt() *string {
+	if g == nil {
 		return nil
 	}
-	return o.SubscribedAt
+	return g.SubscribedAt
 }
 
-func (o *GetTokenDetailsSubscription) GetStatus() *GetTokenDetailsAuthenticationResponseStatus {
-	if o == nil {
+func (g *GetTokenDetailsSubscription) GetStatus() *GetTokenDetailsAuthenticationResponseStatus {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
-func (o *GetTokenDetailsSubscription) GetPaymentService() *string {
-	if o == nil {
+func (g *GetTokenDetailsSubscription) GetPaymentService() *string {
+	if g == nil {
 		return nil
 	}
-	return o.PaymentService
+	return g.PaymentService
 }
 
-func (o *GetTokenDetailsSubscription) GetPlan() *string {
-	if o == nil {
+func (g *GetTokenDetailsSubscription) GetPlan() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Plan
+	return g.Plan
 }
 
 // GetTokenDetailsUserPlexAccount - Logged in user details
@@ -521,297 +521,297 @@ func (g GetTokenDetailsUserPlexAccount) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetTokenDetailsUserPlexAccount) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"adsConsent", "adsConsentReminderAt", "adsConsentSetAt", "authToken", "country", "email", "friendlyName", "entitlements", "homeSize", "id", "joinedAt", "locale", "mailingListStatus", "maxHomeSize", "profile", "rememberExpiresAt", "scrobbleTypes", "services", "subscription", "subscriptionDescription", "thumb", "title", "username", "uuid", "attributionPartner"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"authToken", "country", "email", "friendlyName", "entitlements", "homeSize", "id", "joinedAt", "mailingListStatus", "maxHomeSize", "profile", "rememberExpiresAt", "scrobbleTypes", "services", "subscription", "thumb", "title", "username", "uuid"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetAdsConsent() *bool {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetAdsConsent() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.AdsConsent
+	return g.AdsConsent
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetAdsConsentReminderAt() *int64 {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetAdsConsentReminderAt() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.AdsConsentReminderAt
+	return g.AdsConsentReminderAt
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetAdsConsentSetAt() *int64 {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetAdsConsentSetAt() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.AdsConsentSetAt
+	return g.AdsConsentSetAt
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetAnonymous() *bool {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetAnonymous() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Anonymous
+	return g.Anonymous
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetAuthToken() string {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetAuthToken() string {
+	if g == nil {
 		return ""
 	}
-	return o.AuthToken
+	return g.AuthToken
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetBackupCodesCreated() *bool {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetBackupCodesCreated() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.BackupCodesCreated
+	return g.BackupCodesCreated
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetConfirmed() *bool {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetConfirmed() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Confirmed
+	return g.Confirmed
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetCountry() string {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetCountry() string {
+	if g == nil {
 		return ""
 	}
-	return o.Country
+	return g.Country
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetEmail() string {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetEmail() string {
+	if g == nil {
 		return ""
 	}
-	return o.Email
+	return g.Email
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetEmailOnlyAuth() *bool {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetEmailOnlyAuth() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.EmailOnlyAuth
+	return g.EmailOnlyAuth
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetExperimentalFeatures() *bool {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetExperimentalFeatures() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.ExperimentalFeatures
+	return g.ExperimentalFeatures
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetFriendlyName() string {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetFriendlyName() string {
+	if g == nil {
 		return ""
 	}
-	return o.FriendlyName
+	return g.FriendlyName
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetEntitlements() []string {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetEntitlements() []string {
+	if g == nil {
 		return []string{}
 	}
-	return o.Entitlements
+	return g.Entitlements
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetGuest() *bool {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetGuest() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Guest
+	return g.Guest
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetHasPassword() *bool {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetHasPassword() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.HasPassword
+	return g.HasPassword
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetHome() *bool {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetHome() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Home
+	return g.Home
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetHomeAdmin() *bool {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetHomeAdmin() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.HomeAdmin
+	return g.HomeAdmin
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetHomeSize() int {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetHomeSize() int {
+	if g == nil {
 		return 0
 	}
-	return o.HomeSize
+	return g.HomeSize
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetID() int {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetID() int {
+	if g == nil {
 		return 0
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetJoinedAt() int64 {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetJoinedAt() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.JoinedAt
+	return g.JoinedAt
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetLocale() *string {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetLocale() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Locale
+	return g.Locale
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetMailingListActive() *bool {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetMailingListActive() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.MailingListActive
+	return g.MailingListActive
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetMailingListStatus() MailingListStatus {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetMailingListStatus() MailingListStatus {
+	if g == nil {
 		return MailingListStatus("")
 	}
-	return o.MailingListStatus
+	return g.MailingListStatus
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetMaxHomeSize() int {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetMaxHomeSize() int {
+	if g == nil {
 		return 0
 	}
-	return o.MaxHomeSize
+	return g.MaxHomeSize
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetPin() *string {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetPin() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Pin
+	return g.Pin
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetProfile() UserProfile {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetProfile() UserProfile {
+	if g == nil {
 		return UserProfile{}
 	}
-	return o.Profile
+	return g.Profile
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetProtected() *bool {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetProtected() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Protected
+	return g.Protected
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetRememberExpiresAt() int64 {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetRememberExpiresAt() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.RememberExpiresAt
+	return g.RememberExpiresAt
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetRestricted() *bool {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetRestricted() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Restricted
+	return g.Restricted
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetRoles() []string {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetRoles() []string {
+	if g == nil {
 		return nil
 	}
-	return o.Roles
+	return g.Roles
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetScrobbleTypes() string {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetScrobbleTypes() string {
+	if g == nil {
 		return ""
 	}
-	return o.ScrobbleTypes
+	return g.ScrobbleTypes
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetServices() []Services {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetServices() []Services {
+	if g == nil {
 		return []Services{}
 	}
-	return o.Services
+	return g.Services
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetSubscription() Subscription {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetSubscription() Subscription {
+	if g == nil {
 		return Subscription{}
 	}
-	return o.Subscription
+	return g.Subscription
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetSubscriptionDescription() *string {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetSubscriptionDescription() *string {
+	if g == nil {
 		return nil
 	}
-	return o.SubscriptionDescription
+	return g.SubscriptionDescription
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetSubscriptions() []GetTokenDetailsSubscription {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetSubscriptions() []GetTokenDetailsSubscription {
+	if g == nil {
 		return nil
 	}
-	return o.Subscriptions
+	return g.Subscriptions
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetThumb() string {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetThumb() string {
+	if g == nil {
 		return ""
 	}
-	return o.Thumb
+	return g.Thumb
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetTitle() string {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetTitle() string {
+	if g == nil {
 		return ""
 	}
-	return o.Title
+	return g.Title
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetTwoFactorEnabled() *bool {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetTwoFactorEnabled() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.TwoFactorEnabled
+	return g.TwoFactorEnabled
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetUsername() string {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetUsername() string {
+	if g == nil {
 		return ""
 	}
-	return o.Username
+	return g.Username
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetUUID() string {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetUUID() string {
+	if g == nil {
 		return ""
 	}
-	return o.UUID
+	return g.UUID
 }
 
-func (o *GetTokenDetailsUserPlexAccount) GetAttributionPartner() *string {
-	if o == nil {
+func (g *GetTokenDetailsUserPlexAccount) GetAttributionPartner() *string {
+	if g == nil {
 		return nil
 	}
-	return o.AttributionPartner
+	return g.AttributionPartner
 }
 
 type GetTokenDetailsResponse struct {
@@ -825,30 +825,30 @@ type GetTokenDetailsResponse struct {
 	UserPlexAccount *GetTokenDetailsUserPlexAccount
 }
 
-func (o *GetTokenDetailsResponse) GetContentType() string {
-	if o == nil {
+func (g *GetTokenDetailsResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetTokenDetailsResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetTokenDetailsResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetTokenDetailsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetTokenDetailsResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetTokenDetailsResponse) GetUserPlexAccount() *GetTokenDetailsUserPlexAccount {
-	if o == nil {
+func (g *GetTokenDetailsResponse) GetUserPlexAccount() *GetTokenDetailsUserPlexAccount {
+	if g == nil {
 		return nil
 	}
-	return o.UserPlexAccount
+	return g.UserPlexAccount
 }

@@ -13,25 +13,25 @@ type GetCompanionsDataPlexErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetCompanionsDataPlexErrors) GetCode() *int {
-	if o == nil {
+func (g *GetCompanionsDataPlexErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetCompanionsDataPlexErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetCompanionsDataPlexErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetCompanionsDataPlexErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetCompanionsDataPlexErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetCompanionsDataUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type GetCompanionsDataErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetCompanionsDataErrors) GetCode() *int {
-	if o == nil {
+func (g *GetCompanionsDataErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetCompanionsDataErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetCompanionsDataErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetCompanionsDataErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetCompanionsDataErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetCompanionsDataBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

@@ -11,11 +11,11 @@ type GetMediaPostersRequest struct {
 	RatingKey int64 `pathParam:"style=simple,explode=false,name=ratingKey"`
 }
 
-func (o *GetMediaPostersRequest) GetRatingKey() int64 {
-	if o == nil {
+func (g *GetMediaPostersRequest) GetRatingKey() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.RatingKey
+	return g.RatingKey
 }
 
 type GetMediaPostersMetadata struct {
@@ -31,39 +31,39 @@ type GetMediaPostersMetadata struct {
 	Thumb string `json:"thumb"`
 }
 
-func (o *GetMediaPostersMetadata) GetKey() string {
-	if o == nil {
+func (g *GetMediaPostersMetadata) GetKey() string {
+	if g == nil {
 		return ""
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetMediaPostersMetadata) GetProvider() *string {
-	if o == nil {
+func (g *GetMediaPostersMetadata) GetProvider() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Provider
+	return g.Provider
 }
 
-func (o *GetMediaPostersMetadata) GetRatingKey() string {
-	if o == nil {
+func (g *GetMediaPostersMetadata) GetRatingKey() string {
+	if g == nil {
 		return ""
 	}
-	return o.RatingKey
+	return g.RatingKey
 }
 
-func (o *GetMediaPostersMetadata) GetSelected() bool {
-	if o == nil {
+func (g *GetMediaPostersMetadata) GetSelected() bool {
+	if g == nil {
 		return false
 	}
-	return o.Selected
+	return g.Selected
 }
 
-func (o *GetMediaPostersMetadata) GetThumb() string {
-	if o == nil {
+func (g *GetMediaPostersMetadata) GetThumb() string {
+	if g == nil {
 		return ""
 	}
-	return o.Thumb
+	return g.Thumb
 }
 
 type GetMediaPostersMediaContainer struct {
@@ -78,39 +78,39 @@ type GetMediaPostersMediaContainer struct {
 	Metadata   []GetMediaPostersMetadata `json:"Metadata"`
 }
 
-func (o *GetMediaPostersMediaContainer) GetSize() int {
-	if o == nil {
+func (g *GetMediaPostersMediaContainer) GetSize() int {
+	if g == nil {
 		return 0
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetMediaPostersMediaContainer) GetMediaTagVersion() int64 {
-	if o == nil {
+func (g *GetMediaPostersMediaContainer) GetMediaTagVersion() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.MediaTagVersion
+	return g.MediaTagVersion
 }
 
-func (o *GetMediaPostersMediaContainer) GetMediaTagPrefix() string {
-	if o == nil {
+func (g *GetMediaPostersMediaContainer) GetMediaTagPrefix() string {
+	if g == nil {
 		return ""
 	}
-	return o.MediaTagPrefix
+	return g.MediaTagPrefix
 }
 
-func (o *GetMediaPostersMediaContainer) GetIdentifier() string {
-	if o == nil {
+func (g *GetMediaPostersMediaContainer) GetIdentifier() string {
+	if g == nil {
 		return ""
 	}
-	return o.Identifier
+	return g.Identifier
 }
 
-func (o *GetMediaPostersMediaContainer) GetMetadata() []GetMediaPostersMetadata {
-	if o == nil {
+func (g *GetMediaPostersMediaContainer) GetMetadata() []GetMediaPostersMetadata {
+	if g == nil {
 		return []GetMediaPostersMetadata{}
 	}
-	return o.Metadata
+	return g.Metadata
 }
 
 // GetMediaPostersResponseBody - The available posters for the library item.
@@ -118,11 +118,11 @@ type GetMediaPostersResponseBody struct {
 	MediaContainer *GetMediaPostersMediaContainer `json:"MediaContainer,omitempty"`
 }
 
-func (o *GetMediaPostersResponseBody) GetMediaContainer() *GetMediaPostersMediaContainer {
-	if o == nil {
+func (g *GetMediaPostersResponseBody) GetMediaContainer() *GetMediaPostersMediaContainer {
+	if g == nil {
 		return nil
 	}
-	return o.MediaContainer
+	return g.MediaContainer
 }
 
 type GetMediaPostersResponse struct {
@@ -136,30 +136,30 @@ type GetMediaPostersResponse struct {
 	Object *GetMediaPostersResponseBody
 }
 
-func (o *GetMediaPostersResponse) GetContentType() string {
-	if o == nil {
+func (g *GetMediaPostersResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetMediaPostersResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetMediaPostersResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetMediaPostersResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetMediaPostersResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetMediaPostersResponse) GetObject() *GetMediaPostersResponseBody {
-	if o == nil {
+func (g *GetMediaPostersResponse) GetObject() *GetMediaPostersResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

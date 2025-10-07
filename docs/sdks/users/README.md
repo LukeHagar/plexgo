@@ -31,17 +31,17 @@ func main() {
 
     res, err := s.Users.GetUsers(ctx, operations.GetUsersRequest{
         ClientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-        ClientName: plexgo.String("Plex for Roku"),
-        DeviceNickname: plexgo.String("Roku 3"),
-        DeviceName: plexgo.String("Chrome"),
-        DeviceScreenResolution: plexgo.String("1487x1165,2560x1440"),
-        ClientVersion: plexgo.String("2.4.1"),
-        Platform: plexgo.String("Roku"),
-        ClientFeatures: plexgo.String("external-media,indirect-media,hub-style-list"),
-        Model: plexgo.String("4200X"),
-        XPlexSessionID: plexgo.String("97e136ef-4ddd-4ff3-89a7-a5820c96c2ca"),
-        XPlexLanguage: plexgo.String("en"),
-        PlatformVersion: plexgo.String("4.3 build 1057"),
+        ClientName: plexgo.Pointer("Plex for Roku"),
+        DeviceNickname: plexgo.Pointer("Roku 3"),
+        DeviceName: plexgo.Pointer("Chrome"),
+        DeviceScreenResolution: plexgo.Pointer("1487x1165,2560x1440"),
+        ClientVersion: plexgo.Pointer("2.4.1"),
+        Platform: plexgo.Pointer("Roku"),
+        ClientFeatures: plexgo.Pointer("external-media,indirect-media,hub-style-list"),
+        Model: plexgo.Pointer("4200X"),
+        XPlexSessionID: plexgo.Pointer("97e136ef-4ddd-4ff3-89a7-a5820c96c2ca"),
+        XPlexLanguage: plexgo.Pointer("en"),
+        PlatformVersion: plexgo.Pointer("4.3 build 1057"),
         XPlexToken: "CV5xoxjTpFKUzBTShsaf",
     })
     if err != nil {

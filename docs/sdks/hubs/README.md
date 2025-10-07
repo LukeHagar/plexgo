@@ -93,7 +93,7 @@ func main() {
 
     res, err := s.Hubs.GetRecentlyAdded(ctx, operations.GetRecentlyAddedRequest{
         ContentDirectoryID: 39486,
-        SectionID: plexgo.Int64(2),
+        SectionID: plexgo.Pointer[int64](2),
         Type: operations.TypeTvShow,
         IncludeMeta: operations.IncludeMetaEnable.ToPointer(),
     })

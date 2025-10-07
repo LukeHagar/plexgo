@@ -27,25 +27,25 @@ func (p *PerformSearchRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *PerformSearchRequest) GetQuery() string {
-	if o == nil {
+func (p *PerformSearchRequest) GetQuery() string {
+	if p == nil {
 		return ""
 	}
-	return o.Query
+	return p.Query
 }
 
-func (o *PerformSearchRequest) GetSectionID() *float64 {
-	if o == nil {
+func (p *PerformSearchRequest) GetSectionID() *float64 {
+	if p == nil {
 		return nil
 	}
-	return o.SectionID
+	return p.SectionID
 }
 
-func (o *PerformSearchRequest) GetLimit() *float64 {
-	if o == nil {
+func (p *PerformSearchRequest) GetLimit() *float64 {
+	if p == nil {
 		return nil
 	}
-	return o.Limit
+	return p.Limit
 }
 
 type PerformSearchResponse struct {
@@ -57,23 +57,23 @@ type PerformSearchResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *PerformSearchResponse) GetContentType() string {
-	if o == nil {
+func (p *PerformSearchResponse) GetContentType() string {
+	if p == nil {
 		return ""
 	}
-	return o.ContentType
+	return p.ContentType
 }
 
-func (o *PerformSearchResponse) GetStatusCode() int {
-	if o == nil {
+func (p *PerformSearchResponse) GetStatusCode() int {
+	if p == nil {
 		return 0
 	}
-	return o.StatusCode
+	return p.StatusCode
 }
 
-func (o *PerformSearchResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (p *PerformSearchResponse) GetRawResponse() *http.Response {
+	if p == nil {
 		return nil
 	}
-	return o.RawResponse
+	return p.RawResponse
 }

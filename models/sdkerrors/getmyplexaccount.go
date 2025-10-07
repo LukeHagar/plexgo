@@ -13,25 +13,25 @@ type GetMyPlexAccountServerErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetMyPlexAccountServerErrors) GetCode() *int {
-	if o == nil {
+func (g *GetMyPlexAccountServerErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetMyPlexAccountServerErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetMyPlexAccountServerErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetMyPlexAccountServerErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetMyPlexAccountServerErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetMyPlexAccountUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type GetMyPlexAccountErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetMyPlexAccountErrors) GetCode() *int {
-	if o == nil {
+func (g *GetMyPlexAccountErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetMyPlexAccountErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetMyPlexAccountErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetMyPlexAccountErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetMyPlexAccountErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetMyPlexAccountBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

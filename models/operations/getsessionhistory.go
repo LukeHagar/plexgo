@@ -29,32 +29,32 @@ type GetSessionHistoryRequest struct {
 	LibrarySectionID *int64 `queryParam:"style=form,explode=true,name=librarySectionID"`
 }
 
-func (o *GetSessionHistoryRequest) GetSort() *string {
-	if o == nil {
+func (g *GetSessionHistoryRequest) GetSort() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Sort
+	return g.Sort
 }
 
-func (o *GetSessionHistoryRequest) GetAccountID() *int64 {
-	if o == nil {
+func (g *GetSessionHistoryRequest) GetAccountID() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.AccountID
+	return g.AccountID
 }
 
-func (o *GetSessionHistoryRequest) GetFilter() *QueryParamFilter {
-	if o == nil {
+func (g *GetSessionHistoryRequest) GetFilter() *QueryParamFilter {
+	if g == nil {
 		return nil
 	}
-	return o.Filter
+	return g.Filter
 }
 
-func (o *GetSessionHistoryRequest) GetLibrarySectionID() *int64 {
-	if o == nil {
+func (g *GetSessionHistoryRequest) GetLibrarySectionID() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionID
+	return g.LibrarySectionID
 }
 
 type GetSessionHistoryMetadata struct {
@@ -90,137 +90,137 @@ func (g *GetSessionHistoryMetadata) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetSessionHistoryMetadata) GetHistoryKey() *string {
-	if o == nil {
+func (g *GetSessionHistoryMetadata) GetHistoryKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.HistoryKey
+	return g.HistoryKey
 }
 
-func (o *GetSessionHistoryMetadata) GetKey() *string {
-	if o == nil {
+func (g *GetSessionHistoryMetadata) GetKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetSessionHistoryMetadata) GetRatingKey() *string {
-	if o == nil {
+func (g *GetSessionHistoryMetadata) GetRatingKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.RatingKey
+	return g.RatingKey
 }
 
-func (o *GetSessionHistoryMetadata) GetLibrarySectionID() *string {
-	if o == nil {
+func (g *GetSessionHistoryMetadata) GetLibrarySectionID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionID
+	return g.LibrarySectionID
 }
 
-func (o *GetSessionHistoryMetadata) GetParentKey() *string {
-	if o == nil {
+func (g *GetSessionHistoryMetadata) GetParentKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ParentKey
+	return g.ParentKey
 }
 
-func (o *GetSessionHistoryMetadata) GetGrandparentKey() *string {
-	if o == nil {
+func (g *GetSessionHistoryMetadata) GetGrandparentKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentKey
+	return g.GrandparentKey
 }
 
-func (o *GetSessionHistoryMetadata) GetTitle() *string {
-	if o == nil {
+func (g *GetSessionHistoryMetadata) GetTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Title
+	return g.Title
 }
 
-func (o *GetSessionHistoryMetadata) GetGrandparentTitle() *string {
-	if o == nil {
+func (g *GetSessionHistoryMetadata) GetGrandparentTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentTitle
+	return g.GrandparentTitle
 }
 
-func (o *GetSessionHistoryMetadata) GetType() *string {
-	if o == nil {
+func (g *GetSessionHistoryMetadata) GetType() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Type
+	return g.Type
 }
 
-func (o *GetSessionHistoryMetadata) GetThumb() *string {
-	if o == nil {
+func (g *GetSessionHistoryMetadata) GetThumb() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Thumb
+	return g.Thumb
 }
 
-func (o *GetSessionHistoryMetadata) GetParentThumb() *string {
-	if o == nil {
+func (g *GetSessionHistoryMetadata) GetParentThumb() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ParentThumb
+	return g.ParentThumb
 }
 
-func (o *GetSessionHistoryMetadata) GetGrandparentThumb() *string {
-	if o == nil {
+func (g *GetSessionHistoryMetadata) GetGrandparentThumb() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentThumb
+	return g.GrandparentThumb
 }
 
-func (o *GetSessionHistoryMetadata) GetGrandparentArt() *string {
-	if o == nil {
+func (g *GetSessionHistoryMetadata) GetGrandparentArt() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentArt
+	return g.GrandparentArt
 }
 
-func (o *GetSessionHistoryMetadata) GetIndex() *int {
-	if o == nil {
+func (g *GetSessionHistoryMetadata) GetIndex() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Index
+	return g.Index
 }
 
-func (o *GetSessionHistoryMetadata) GetParentIndex() *int {
-	if o == nil {
+func (g *GetSessionHistoryMetadata) GetParentIndex() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ParentIndex
+	return g.ParentIndex
 }
 
-func (o *GetSessionHistoryMetadata) GetOriginallyAvailableAt() *types.Date {
-	if o == nil {
+func (g *GetSessionHistoryMetadata) GetOriginallyAvailableAt() *types.Date {
+	if g == nil {
 		return nil
 	}
-	return o.OriginallyAvailableAt
+	return g.OriginallyAvailableAt
 }
 
-func (o *GetSessionHistoryMetadata) GetViewedAt() *int {
-	if o == nil {
+func (g *GetSessionHistoryMetadata) GetViewedAt() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ViewedAt
+	return g.ViewedAt
 }
 
-func (o *GetSessionHistoryMetadata) GetAccountID() *int {
-	if o == nil {
+func (g *GetSessionHistoryMetadata) GetAccountID() *int {
+	if g == nil {
 		return nil
 	}
-	return o.AccountID
+	return g.AccountID
 }
 
-func (o *GetSessionHistoryMetadata) GetDeviceID() *int {
-	if o == nil {
+func (g *GetSessionHistoryMetadata) GetDeviceID() *int {
+	if g == nil {
 		return nil
 	}
-	return o.DeviceID
+	return g.DeviceID
 }
 
 type GetSessionHistoryMediaContainer struct {
@@ -228,18 +228,18 @@ type GetSessionHistoryMediaContainer struct {
 	Metadata []GetSessionHistoryMetadata `json:"Metadata,omitempty"`
 }
 
-func (o *GetSessionHistoryMediaContainer) GetSize() *int {
-	if o == nil {
+func (g *GetSessionHistoryMediaContainer) GetSize() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetSessionHistoryMediaContainer) GetMetadata() []GetSessionHistoryMetadata {
-	if o == nil {
+func (g *GetSessionHistoryMediaContainer) GetMetadata() []GetSessionHistoryMetadata {
+	if g == nil {
 		return nil
 	}
-	return o.Metadata
+	return g.Metadata
 }
 
 // GetSessionHistoryResponseBody - List of Plex Sessions
@@ -247,11 +247,11 @@ type GetSessionHistoryResponseBody struct {
 	MediaContainer *GetSessionHistoryMediaContainer `json:"MediaContainer,omitempty"`
 }
 
-func (o *GetSessionHistoryResponseBody) GetMediaContainer() *GetSessionHistoryMediaContainer {
-	if o == nil {
+func (g *GetSessionHistoryResponseBody) GetMediaContainer() *GetSessionHistoryMediaContainer {
+	if g == nil {
 		return nil
 	}
-	return o.MediaContainer
+	return g.MediaContainer
 }
 
 type GetSessionHistoryResponse struct {
@@ -265,30 +265,30 @@ type GetSessionHistoryResponse struct {
 	Object *GetSessionHistoryResponseBody
 }
 
-func (o *GetSessionHistoryResponse) GetContentType() string {
-	if o == nil {
+func (g *GetSessionHistoryResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetSessionHistoryResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetSessionHistoryResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetSessionHistoryResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetSessionHistoryResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetSessionHistoryResponse) GetObject() *GetSessionHistoryResponseBody {
-	if o == nil {
+func (g *GetSessionHistoryResponse) GetObject() *GetSessionHistoryResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

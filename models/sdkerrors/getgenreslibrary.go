@@ -13,25 +13,25 @@ type GetGenresLibraryLibraryErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetGenresLibraryLibraryErrors) GetCode() *int {
-	if o == nil {
+func (g *GetGenresLibraryLibraryErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetGenresLibraryLibraryErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetGenresLibraryLibraryErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetGenresLibraryLibraryErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetGenresLibraryLibraryErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetGenresLibraryUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type GetGenresLibraryErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetGenresLibraryErrors) GetCode() *int {
-	if o == nil {
+func (g *GetGenresLibraryErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetGenresLibraryErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetGenresLibraryErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetGenresLibraryErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetGenresLibraryErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetGenresLibraryBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

@@ -42,95 +42,95 @@ type GetUsersRequest struct {
 	XPlexToken string `header:"style=simple,explode=false,name=X-Plex-Token"`
 }
 
-func (o *GetUsersRequest) GetClientID() string {
-	if o == nil {
+func (g *GetUsersRequest) GetClientID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ClientID
+	return g.ClientID
 }
 
-func (o *GetUsersRequest) GetClientName() *string {
-	if o == nil {
+func (g *GetUsersRequest) GetClientName() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ClientName
+	return g.ClientName
 }
 
-func (o *GetUsersRequest) GetDeviceNickname() *string {
-	if o == nil {
+func (g *GetUsersRequest) GetDeviceNickname() *string {
+	if g == nil {
 		return nil
 	}
-	return o.DeviceNickname
+	return g.DeviceNickname
 }
 
-func (o *GetUsersRequest) GetDeviceName() *string {
-	if o == nil {
+func (g *GetUsersRequest) GetDeviceName() *string {
+	if g == nil {
 		return nil
 	}
-	return o.DeviceName
+	return g.DeviceName
 }
 
-func (o *GetUsersRequest) GetDeviceScreenResolution() *string {
-	if o == nil {
+func (g *GetUsersRequest) GetDeviceScreenResolution() *string {
+	if g == nil {
 		return nil
 	}
-	return o.DeviceScreenResolution
+	return g.DeviceScreenResolution
 }
 
-func (o *GetUsersRequest) GetClientVersion() *string {
-	if o == nil {
+func (g *GetUsersRequest) GetClientVersion() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ClientVersion
+	return g.ClientVersion
 }
 
-func (o *GetUsersRequest) GetPlatform() *string {
-	if o == nil {
+func (g *GetUsersRequest) GetPlatform() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Platform
+	return g.Platform
 }
 
-func (o *GetUsersRequest) GetClientFeatures() *string {
-	if o == nil {
+func (g *GetUsersRequest) GetClientFeatures() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ClientFeatures
+	return g.ClientFeatures
 }
 
-func (o *GetUsersRequest) GetModel() *string {
-	if o == nil {
+func (g *GetUsersRequest) GetModel() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Model
+	return g.Model
 }
 
-func (o *GetUsersRequest) GetXPlexSessionID() *string {
-	if o == nil {
+func (g *GetUsersRequest) GetXPlexSessionID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.XPlexSessionID
+	return g.XPlexSessionID
 }
 
-func (o *GetUsersRequest) GetXPlexLanguage() *string {
-	if o == nil {
+func (g *GetUsersRequest) GetXPlexLanguage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.XPlexLanguage
+	return g.XPlexLanguage
 }
 
-func (o *GetUsersRequest) GetPlatformVersion() *string {
-	if o == nil {
+func (g *GetUsersRequest) GetPlatformVersion() *string {
+	if g == nil {
 		return nil
 	}
-	return o.PlatformVersion
+	return g.PlatformVersion
 }
 
-func (o *GetUsersRequest) GetXPlexToken() string {
-	if o == nil {
+func (g *GetUsersRequest) GetXPlexToken() string {
+	if g == nil {
 		return ""
 	}
-	return o.XPlexToken
+	return g.XPlexToken
 }
 
 // Protected - Indicates whether the account is protected.
@@ -458,67 +458,67 @@ func (g *GetUsersServer) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetUsersServer) GetID() int64 {
-	if o == nil {
+func (g *GetUsersServer) GetID() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetUsersServer) GetServerID() int64 {
-	if o == nil {
+func (g *GetUsersServer) GetServerID() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.ServerID
+	return g.ServerID
 }
 
-func (o *GetUsersServer) GetMachineIdentifier() string {
-	if o == nil {
+func (g *GetUsersServer) GetMachineIdentifier() string {
+	if g == nil {
 		return ""
 	}
-	return o.MachineIdentifier
+	return g.MachineIdentifier
 }
 
-func (o *GetUsersServer) GetName() string {
-	if o == nil {
+func (g *GetUsersServer) GetName() string {
+	if g == nil {
 		return ""
 	}
-	return o.Name
+	return g.Name
 }
 
-func (o *GetUsersServer) GetLastSeenAt() int64 {
-	if o == nil {
+func (g *GetUsersServer) GetLastSeenAt() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.LastSeenAt
+	return g.LastSeenAt
 }
 
-func (o *GetUsersServer) GetNumLibraries() int64 {
-	if o == nil {
+func (g *GetUsersServer) GetNumLibraries() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.NumLibraries
+	return g.NumLibraries
 }
 
-func (o *GetUsersServer) GetAllLibraries() *AllLibraries {
-	if o == nil {
+func (g *GetUsersServer) GetAllLibraries() *AllLibraries {
+	if g == nil {
 		return nil
 	}
-	return o.AllLibraries
+	return g.AllLibraries
 }
 
-func (o *GetUsersServer) GetOwned() *Owned {
-	if o == nil {
+func (g *GetUsersServer) GetOwned() *Owned {
+	if g == nil {
 		return nil
 	}
-	return o.Owned
+	return g.Owned
 }
 
-func (o *GetUsersServer) GetPending() *Pending {
-	if o == nil {
+func (g *GetUsersServer) GetPending() *Pending {
+	if g == nil {
 		return nil
 	}
-	return o.Pending
+	return g.Pending
 }
 
 type User struct {
@@ -567,144 +567,144 @@ func (u *User) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *User) GetID() int64 {
-	if o == nil {
+func (u *User) GetID() int64 {
+	if u == nil {
 		return 0
 	}
-	return o.ID
+	return u.ID
 }
 
-func (o *User) GetTitle() string {
-	if o == nil {
+func (u *User) GetTitle() string {
+	if u == nil {
 		return ""
 	}
-	return o.Title
+	return u.Title
 }
 
-func (o *User) GetUsername() string {
-	if o == nil {
+func (u *User) GetUsername() string {
+	if u == nil {
 		return ""
 	}
-	return o.Username
+	return u.Username
 }
 
-func (o *User) GetEmail() string {
-	if o == nil {
+func (u *User) GetEmail() string {
+	if u == nil {
 		return ""
 	}
-	return o.Email
+	return u.Email
 }
 
-func (o *User) GetRecommendationsPlaylistID() *string {
-	if o == nil {
+func (u *User) GetRecommendationsPlaylistID() *string {
+	if u == nil {
 		return nil
 	}
-	return o.RecommendationsPlaylistID
+	return u.RecommendationsPlaylistID
 }
 
-func (o *User) GetThumb() string {
-	if o == nil {
+func (u *User) GetThumb() string {
+	if u == nil {
 		return ""
 	}
-	return o.Thumb
+	return u.Thumb
 }
 
-func (o *User) GetProtected() *Protected {
-	if o == nil {
+func (u *User) GetProtected() *Protected {
+	if u == nil {
 		return nil
 	}
-	return o.Protected
+	return u.Protected
 }
 
-func (o *User) GetHome() *Home {
-	if o == nil {
+func (u *User) GetHome() *Home {
+	if u == nil {
 		return nil
 	}
-	return o.Home
+	return u.Home
 }
 
-func (o *User) GetAllowTuners() *AllowTuners {
-	if o == nil {
+func (u *User) GetAllowTuners() *AllowTuners {
+	if u == nil {
 		return nil
 	}
-	return o.AllowTuners
+	return u.AllowTuners
 }
 
-func (o *User) GetAllowSync() *AllowSync {
-	if o == nil {
+func (u *User) GetAllowSync() *AllowSync {
+	if u == nil {
 		return nil
 	}
-	return o.AllowSync
+	return u.AllowSync
 }
 
-func (o *User) GetAllowCameraUpload() *AllowCameraUpload {
-	if o == nil {
+func (u *User) GetAllowCameraUpload() *AllowCameraUpload {
+	if u == nil {
 		return nil
 	}
-	return o.AllowCameraUpload
+	return u.AllowCameraUpload
 }
 
-func (o *User) GetAllowChannels() *AllowChannels {
-	if o == nil {
+func (u *User) GetAllowChannels() *AllowChannels {
+	if u == nil {
 		return nil
 	}
-	return o.AllowChannels
+	return u.AllowChannels
 }
 
-func (o *User) GetAllowSubtitleAdmin() *AllowSubtitleAdmin {
-	if o == nil {
+func (u *User) GetAllowSubtitleAdmin() *AllowSubtitleAdmin {
+	if u == nil {
 		return nil
 	}
-	return o.AllowSubtitleAdmin
+	return u.AllowSubtitleAdmin
 }
 
-func (o *User) GetFilterAll() *string {
-	if o == nil {
+func (u *User) GetFilterAll() *string {
+	if u == nil {
 		return nil
 	}
-	return o.FilterAll
+	return u.FilterAll
 }
 
-func (o *User) GetFilterMovies() *string {
-	if o == nil {
+func (u *User) GetFilterMovies() *string {
+	if u == nil {
 		return nil
 	}
-	return o.FilterMovies
+	return u.FilterMovies
 }
 
-func (o *User) GetFilterMusic() *string {
-	if o == nil {
+func (u *User) GetFilterMusic() *string {
+	if u == nil {
 		return nil
 	}
-	return o.FilterMusic
+	return u.FilterMusic
 }
 
-func (o *User) GetFilterPhotos() *string {
-	if o == nil {
+func (u *User) GetFilterPhotos() *string {
+	if u == nil {
 		return nil
 	}
-	return o.FilterPhotos
+	return u.FilterPhotos
 }
 
-func (o *User) GetFilterTelevision() *string {
-	if o == nil {
+func (u *User) GetFilterTelevision() *string {
+	if u == nil {
 		return nil
 	}
-	return o.FilterTelevision
+	return u.FilterTelevision
 }
 
-func (o *User) GetRestricted() *Restricted {
-	if o == nil {
+func (u *User) GetRestricted() *Restricted {
+	if u == nil {
 		return nil
 	}
-	return o.Restricted
+	return u.Restricted
 }
 
-func (o *User) GetServer() []GetUsersServer {
-	if o == nil {
+func (u *User) GetServer() []GetUsersServer {
+	if u == nil {
 		return []GetUsersServer{}
 	}
-	return o.Server
+	return u.Server
 }
 
 // GetUsersMediaContainer - Container holding user and server details.
@@ -722,46 +722,46 @@ type GetUsersMediaContainer struct {
 	User []User
 }
 
-func (o *GetUsersMediaContainer) GetFriendlyName() string {
-	if o == nil {
+func (g *GetUsersMediaContainer) GetFriendlyName() string {
+	if g == nil {
 		return ""
 	}
-	return o.FriendlyName
+	return g.FriendlyName
 }
 
-func (o *GetUsersMediaContainer) GetIdentifier() string {
-	if o == nil {
+func (g *GetUsersMediaContainer) GetIdentifier() string {
+	if g == nil {
 		return ""
 	}
-	return o.Identifier
+	return g.Identifier
 }
 
-func (o *GetUsersMediaContainer) GetMachineIdentifier() string {
-	if o == nil {
+func (g *GetUsersMediaContainer) GetMachineIdentifier() string {
+	if g == nil {
 		return ""
 	}
-	return o.MachineIdentifier
+	return g.MachineIdentifier
 }
 
-func (o *GetUsersMediaContainer) GetTotalSize() int64 {
-	if o == nil {
+func (g *GetUsersMediaContainer) GetTotalSize() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.TotalSize
+	return g.TotalSize
 }
 
-func (o *GetUsersMediaContainer) GetSize() int64 {
-	if o == nil {
+func (g *GetUsersMediaContainer) GetSize() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetUsersMediaContainer) GetUser() []User {
-	if o == nil {
+func (g *GetUsersMediaContainer) GetUser() []User {
+	if g == nil {
 		return []User{}
 	}
-	return o.User
+	return g.User
 }
 
 // GetUsersResponseBody - Successful response with media container data in XML
@@ -770,11 +770,11 @@ type GetUsersResponseBody struct {
 	MediaContainer *GetUsersMediaContainer
 }
 
-func (o *GetUsersResponseBody) GetMediaContainer() *GetUsersMediaContainer {
-	if o == nil {
+func (g *GetUsersResponseBody) GetMediaContainer() *GetUsersMediaContainer {
+	if g == nil {
 		return nil
 	}
-	return o.MediaContainer
+	return g.MediaContainer
 }
 
 type GetUsersResponse struct {
@@ -787,30 +787,30 @@ type GetUsersResponse struct {
 	Body        []byte
 }
 
-func (o *GetUsersResponse) GetContentType() string {
-	if o == nil {
+func (g *GetUsersResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetUsersResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetUsersResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetUsersResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetUsersResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetUsersResponse) GetBody() []byte {
-	if o == nil {
+func (g *GetUsersResponse) GetBody() []byte {
+	if g == nil {
 		return nil
 	}
-	return o.Body
+	return g.Body
 }

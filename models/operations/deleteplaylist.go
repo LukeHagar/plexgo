@@ -11,11 +11,11 @@ type DeletePlaylistRequest struct {
 	PlaylistID float64 `pathParam:"style=simple,explode=false,name=playlistID"`
 }
 
-func (o *DeletePlaylistRequest) GetPlaylistID() float64 {
-	if o == nil {
+func (d *DeletePlaylistRequest) GetPlaylistID() float64 {
+	if d == nil {
 		return 0.0
 	}
-	return o.PlaylistID
+	return d.PlaylistID
 }
 
 type DeletePlaylistResponse struct {
@@ -27,23 +27,23 @@ type DeletePlaylistResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *DeletePlaylistResponse) GetContentType() string {
-	if o == nil {
+func (d *DeletePlaylistResponse) GetContentType() string {
+	if d == nil {
 		return ""
 	}
-	return o.ContentType
+	return d.ContentType
 }
 
-func (o *DeletePlaylistResponse) GetStatusCode() int {
-	if o == nil {
+func (d *DeletePlaylistResponse) GetStatusCode() int {
+	if d == nil {
 		return 0
 	}
-	return o.StatusCode
+	return d.StatusCode
 }
 
-func (o *DeletePlaylistResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (d *DeletePlaylistResponse) GetRawResponse() *http.Response {
+	if d == nil {
 		return nil
 	}
-	return o.RawResponse
+	return d.RawResponse
 }

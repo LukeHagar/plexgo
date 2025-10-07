@@ -200,14 +200,14 @@ func main() {
 
     res, err := s.Authentication.PostUsersSignInData(ctx, operations.PostUsersSignInDataRequest{
         ClientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-        ClientName: plexgo.String("Plex for Roku"),
-        DeviceNickname: plexgo.String("Roku 3"),
-        ClientVersion: plexgo.String("2.4.1"),
-        Platform: plexgo.String("Roku"),
+        ClientName: plexgo.Pointer("Plex for Roku"),
+        DeviceNickname: plexgo.Pointer("Roku 3"),
+        ClientVersion: plexgo.Pointer("2.4.1"),
+        Platform: plexgo.Pointer("Roku"),
         RequestBody: &operations.PostUsersSignInDataRequestBody{
             Login: "username@email.com",
             Password: "password123",
-            VerificationCode: plexgo.String("123456"),
+            VerificationCode: plexgo.Pointer("123456"),
         },
     })
     if err != nil {

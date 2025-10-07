@@ -12,25 +12,25 @@ type Directory struct {
 	Title *string  `json:"title,omitempty"`
 }
 
-func (o *Directory) GetCount() *float64 {
-	if o == nil {
+func (d *Directory) GetCount() *float64 {
+	if d == nil {
 		return nil
 	}
-	return o.Count
+	return d.Count
 }
 
-func (o *Directory) GetKey() *string {
-	if o == nil {
+func (d *Directory) GetKey() *string {
+	if d == nil {
 		return nil
 	}
-	return o.Key
+	return d.Key
 }
 
-func (o *Directory) GetTitle() *string {
-	if o == nil {
+func (d *Directory) GetTitle() *string {
+	if d == nil {
 		return nil
 	}
-	return o.Title
+	return d.Title
 }
 
 type MediaContainer struct {
@@ -87,361 +87,361 @@ type MediaContainer struct {
 	Directory                     []Directory `json:"Directory,omitempty"`
 }
 
-func (o *MediaContainer) GetSize() *float64 {
-	if o == nil {
+func (m *MediaContainer) GetSize() *float64 {
+	if m == nil {
 		return nil
 	}
-	return o.Size
+	return m.Size
 }
 
-func (o *MediaContainer) GetAllowCameraUpload() *bool {
-	if o == nil {
+func (m *MediaContainer) GetAllowCameraUpload() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.AllowCameraUpload
+	return m.AllowCameraUpload
 }
 
-func (o *MediaContainer) GetAllowChannelAccess() *bool {
-	if o == nil {
+func (m *MediaContainer) GetAllowChannelAccess() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.AllowChannelAccess
+	return m.AllowChannelAccess
 }
 
-func (o *MediaContainer) GetAllowMediaDeletion() *bool {
-	if o == nil {
+func (m *MediaContainer) GetAllowMediaDeletion() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.AllowMediaDeletion
+	return m.AllowMediaDeletion
 }
 
-func (o *MediaContainer) GetAllowSharing() *bool {
-	if o == nil {
+func (m *MediaContainer) GetAllowSharing() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.AllowSharing
+	return m.AllowSharing
 }
 
-func (o *MediaContainer) GetAllowSync() *bool {
-	if o == nil {
+func (m *MediaContainer) GetAllowSync() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.AllowSync
+	return m.AllowSync
 }
 
-func (o *MediaContainer) GetAllowTuners() *bool {
-	if o == nil {
+func (m *MediaContainer) GetAllowTuners() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.AllowTuners
+	return m.AllowTuners
 }
 
-func (o *MediaContainer) GetBackgroundProcessing() *bool {
-	if o == nil {
+func (m *MediaContainer) GetBackgroundProcessing() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.BackgroundProcessing
+	return m.BackgroundProcessing
 }
 
-func (o *MediaContainer) GetCertificate() *bool {
-	if o == nil {
+func (m *MediaContainer) GetCertificate() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.Certificate
+	return m.Certificate
 }
 
-func (o *MediaContainer) GetCompanionProxy() *bool {
-	if o == nil {
+func (m *MediaContainer) GetCompanionProxy() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.CompanionProxy
+	return m.CompanionProxy
 }
 
-func (o *MediaContainer) GetCountryCode() *string {
-	if o == nil {
+func (m *MediaContainer) GetCountryCode() *string {
+	if m == nil {
 		return nil
 	}
-	return o.CountryCode
+	return m.CountryCode
 }
 
-func (o *MediaContainer) GetDiagnostics() *string {
-	if o == nil {
+func (m *MediaContainer) GetDiagnostics() *string {
+	if m == nil {
 		return nil
 	}
-	return o.Diagnostics
+	return m.Diagnostics
 }
 
-func (o *MediaContainer) GetEventStream() *bool {
-	if o == nil {
+func (m *MediaContainer) GetEventStream() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.EventStream
+	return m.EventStream
 }
 
-func (o *MediaContainer) GetFriendlyName() *string {
-	if o == nil {
+func (m *MediaContainer) GetFriendlyName() *string {
+	if m == nil {
 		return nil
 	}
-	return o.FriendlyName
+	return m.FriendlyName
 }
 
-func (o *MediaContainer) GetHubSearch() *bool {
-	if o == nil {
+func (m *MediaContainer) GetHubSearch() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.HubSearch
+	return m.HubSearch
 }
 
-func (o *MediaContainer) GetItemClusters() *bool {
-	if o == nil {
+func (m *MediaContainer) GetItemClusters() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.ItemClusters
+	return m.ItemClusters
 }
 
-func (o *MediaContainer) GetLivetv() *float64 {
-	if o == nil {
+func (m *MediaContainer) GetLivetv() *float64 {
+	if m == nil {
 		return nil
 	}
-	return o.Livetv
+	return m.Livetv
 }
 
-func (o *MediaContainer) GetMachineIdentifier() *string {
-	if o == nil {
+func (m *MediaContainer) GetMachineIdentifier() *string {
+	if m == nil {
 		return nil
 	}
-	return o.MachineIdentifier
+	return m.MachineIdentifier
 }
 
-func (o *MediaContainer) GetMediaProviders() *bool {
-	if o == nil {
+func (m *MediaContainer) GetMediaProviders() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.MediaProviders
+	return m.MediaProviders
 }
 
-func (o *MediaContainer) GetMultiuser() *bool {
-	if o == nil {
+func (m *MediaContainer) GetMultiuser() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.Multiuser
+	return m.Multiuser
 }
 
-func (o *MediaContainer) GetMusicAnalysis() *float64 {
-	if o == nil {
+func (m *MediaContainer) GetMusicAnalysis() *float64 {
+	if m == nil {
 		return nil
 	}
-	return o.MusicAnalysis
+	return m.MusicAnalysis
 }
 
-func (o *MediaContainer) GetMyPlex() *bool {
-	if o == nil {
+func (m *MediaContainer) GetMyPlex() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.MyPlex
+	return m.MyPlex
 }
 
-func (o *MediaContainer) GetMyPlexMappingState() *string {
-	if o == nil {
+func (m *MediaContainer) GetMyPlexMappingState() *string {
+	if m == nil {
 		return nil
 	}
-	return o.MyPlexMappingState
+	return m.MyPlexMappingState
 }
 
-func (o *MediaContainer) GetMyPlexSigninState() *string {
-	if o == nil {
+func (m *MediaContainer) GetMyPlexSigninState() *string {
+	if m == nil {
 		return nil
 	}
-	return o.MyPlexSigninState
+	return m.MyPlexSigninState
 }
 
-func (o *MediaContainer) GetMyPlexSubscription() *bool {
-	if o == nil {
+func (m *MediaContainer) GetMyPlexSubscription() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.MyPlexSubscription
+	return m.MyPlexSubscription
 }
 
-func (o *MediaContainer) GetMyPlexUsername() *string {
-	if o == nil {
+func (m *MediaContainer) GetMyPlexUsername() *string {
+	if m == nil {
 		return nil
 	}
-	return o.MyPlexUsername
+	return m.MyPlexUsername
 }
 
-func (o *MediaContainer) GetOfflineTranscode() *float64 {
-	if o == nil {
+func (m *MediaContainer) GetOfflineTranscode() *float64 {
+	if m == nil {
 		return nil
 	}
-	return o.OfflineTranscode
+	return m.OfflineTranscode
 }
 
-func (o *MediaContainer) GetOwnerFeatures() *string {
-	if o == nil {
+func (m *MediaContainer) GetOwnerFeatures() *string {
+	if m == nil {
 		return nil
 	}
-	return o.OwnerFeatures
+	return m.OwnerFeatures
 }
 
-func (o *MediaContainer) GetPhotoAutoTag() *bool {
-	if o == nil {
+func (m *MediaContainer) GetPhotoAutoTag() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.PhotoAutoTag
+	return m.PhotoAutoTag
 }
 
-func (o *MediaContainer) GetPlatform() *string {
-	if o == nil {
+func (m *MediaContainer) GetPlatform() *string {
+	if m == nil {
 		return nil
 	}
-	return o.Platform
+	return m.Platform
 }
 
-func (o *MediaContainer) GetPlatformVersion() *string {
-	if o == nil {
+func (m *MediaContainer) GetPlatformVersion() *string {
+	if m == nil {
 		return nil
 	}
-	return o.PlatformVersion
+	return m.PlatformVersion
 }
 
-func (o *MediaContainer) GetPluginHost() *bool {
-	if o == nil {
+func (m *MediaContainer) GetPluginHost() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.PluginHost
+	return m.PluginHost
 }
 
-func (o *MediaContainer) GetPushNotifications() *bool {
-	if o == nil {
+func (m *MediaContainer) GetPushNotifications() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.PushNotifications
+	return m.PushNotifications
 }
 
-func (o *MediaContainer) GetReadOnlyLibraries() *bool {
-	if o == nil {
+func (m *MediaContainer) GetReadOnlyLibraries() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.ReadOnlyLibraries
+	return m.ReadOnlyLibraries
 }
 
-func (o *MediaContainer) GetStreamingBrainABRVersion() *float64 {
-	if o == nil {
+func (m *MediaContainer) GetStreamingBrainABRVersion() *float64 {
+	if m == nil {
 		return nil
 	}
-	return o.StreamingBrainABRVersion
+	return m.StreamingBrainABRVersion
 }
 
-func (o *MediaContainer) GetStreamingBrainVersion() *float64 {
-	if o == nil {
+func (m *MediaContainer) GetStreamingBrainVersion() *float64 {
+	if m == nil {
 		return nil
 	}
-	return o.StreamingBrainVersion
+	return m.StreamingBrainVersion
 }
 
-func (o *MediaContainer) GetSync() *bool {
-	if o == nil {
+func (m *MediaContainer) GetSync() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.Sync
+	return m.Sync
 }
 
-func (o *MediaContainer) GetTranscoderActiveVideoSessions() *float64 {
-	if o == nil {
+func (m *MediaContainer) GetTranscoderActiveVideoSessions() *float64 {
+	if m == nil {
 		return nil
 	}
-	return o.TranscoderActiveVideoSessions
+	return m.TranscoderActiveVideoSessions
 }
 
-func (o *MediaContainer) GetTranscoderAudio() *bool {
-	if o == nil {
+func (m *MediaContainer) GetTranscoderAudio() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.TranscoderAudio
+	return m.TranscoderAudio
 }
 
-func (o *MediaContainer) GetTranscoderLyrics() *bool {
-	if o == nil {
+func (m *MediaContainer) GetTranscoderLyrics() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.TranscoderLyrics
+	return m.TranscoderLyrics
 }
 
-func (o *MediaContainer) GetTranscoderPhoto() *bool {
-	if o == nil {
+func (m *MediaContainer) GetTranscoderPhoto() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.TranscoderPhoto
+	return m.TranscoderPhoto
 }
 
-func (o *MediaContainer) GetTranscoderSubtitles() *bool {
-	if o == nil {
+func (m *MediaContainer) GetTranscoderSubtitles() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.TranscoderSubtitles
+	return m.TranscoderSubtitles
 }
 
-func (o *MediaContainer) GetTranscoderVideo() *bool {
-	if o == nil {
+func (m *MediaContainer) GetTranscoderVideo() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.TranscoderVideo
+	return m.TranscoderVideo
 }
 
-func (o *MediaContainer) GetTranscoderVideoBitrates() *string {
-	if o == nil {
+func (m *MediaContainer) GetTranscoderVideoBitrates() *string {
+	if m == nil {
 		return nil
 	}
-	return o.TranscoderVideoBitrates
+	return m.TranscoderVideoBitrates
 }
 
-func (o *MediaContainer) GetTranscoderVideoQualities() *string {
-	if o == nil {
+func (m *MediaContainer) GetTranscoderVideoQualities() *string {
+	if m == nil {
 		return nil
 	}
-	return o.TranscoderVideoQualities
+	return m.TranscoderVideoQualities
 }
 
-func (o *MediaContainer) GetTranscoderVideoResolutions() *string {
-	if o == nil {
+func (m *MediaContainer) GetTranscoderVideoResolutions() *string {
+	if m == nil {
 		return nil
 	}
-	return o.TranscoderVideoResolutions
+	return m.TranscoderVideoResolutions
 }
 
-func (o *MediaContainer) GetUpdatedAt() *float64 {
-	if o == nil {
+func (m *MediaContainer) GetUpdatedAt() *float64 {
+	if m == nil {
 		return nil
 	}
-	return o.UpdatedAt
+	return m.UpdatedAt
 }
 
-func (o *MediaContainer) GetUpdater() *bool {
-	if o == nil {
+func (m *MediaContainer) GetUpdater() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.Updater
+	return m.Updater
 }
 
-func (o *MediaContainer) GetVersion() *string {
-	if o == nil {
+func (m *MediaContainer) GetVersion() *string {
+	if m == nil {
 		return nil
 	}
-	return o.Version
+	return m.Version
 }
 
-func (o *MediaContainer) GetVoiceSearch() *bool {
-	if o == nil {
+func (m *MediaContainer) GetVoiceSearch() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.VoiceSearch
+	return m.VoiceSearch
 }
 
-func (o *MediaContainer) GetDirectory() []Directory {
-	if o == nil {
+func (m *MediaContainer) GetDirectory() []Directory {
+	if m == nil {
 		return nil
 	}
-	return o.Directory
+	return m.Directory
 }
 
 // GetServerCapabilitiesResponseBody - The Server Capabilities
@@ -449,11 +449,11 @@ type GetServerCapabilitiesResponseBody struct {
 	MediaContainer *MediaContainer `json:"MediaContainer,omitempty"`
 }
 
-func (o *GetServerCapabilitiesResponseBody) GetMediaContainer() *MediaContainer {
-	if o == nil {
+func (g *GetServerCapabilitiesResponseBody) GetMediaContainer() *MediaContainer {
+	if g == nil {
 		return nil
 	}
-	return o.MediaContainer
+	return g.MediaContainer
 }
 
 type GetServerCapabilitiesResponse struct {
@@ -467,30 +467,30 @@ type GetServerCapabilitiesResponse struct {
 	Object *GetServerCapabilitiesResponseBody
 }
 
-func (o *GetServerCapabilitiesResponse) GetContentType() string {
-	if o == nil {
+func (g *GetServerCapabilitiesResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetServerCapabilitiesResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetServerCapabilitiesResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetServerCapabilitiesResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetServerCapabilitiesResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetServerCapabilitiesResponse) GetObject() *GetServerCapabilitiesResponseBody {
-	if o == nil {
+func (g *GetServerCapabilitiesResponse) GetObject() *GetServerCapabilitiesResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

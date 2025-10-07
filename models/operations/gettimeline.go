@@ -42,74 +42,74 @@ type GetTimelineRequest struct {
 	Row float64 `queryParam:"style=form,explode=true,name=row"`
 }
 
-func (o *GetTimelineRequest) GetRatingKey() float64 {
-	if o == nil {
+func (g *GetTimelineRequest) GetRatingKey() float64 {
+	if g == nil {
 		return 0.0
 	}
-	return o.RatingKey
+	return g.RatingKey
 }
 
-func (o *GetTimelineRequest) GetKey() string {
-	if o == nil {
+func (g *GetTimelineRequest) GetKey() string {
+	if g == nil {
 		return ""
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetTimelineRequest) GetState() State {
-	if o == nil {
+func (g *GetTimelineRequest) GetState() State {
+	if g == nil {
 		return State("")
 	}
-	return o.State
+	return g.State
 }
 
-func (o *GetTimelineRequest) GetHasMDE() float64 {
-	if o == nil {
+func (g *GetTimelineRequest) GetHasMDE() float64 {
+	if g == nil {
 		return 0.0
 	}
-	return o.HasMDE
+	return g.HasMDE
 }
 
-func (o *GetTimelineRequest) GetTime() float64 {
-	if o == nil {
+func (g *GetTimelineRequest) GetTime() float64 {
+	if g == nil {
 		return 0.0
 	}
-	return o.Time
+	return g.Time
 }
 
-func (o *GetTimelineRequest) GetDuration() float64 {
-	if o == nil {
+func (g *GetTimelineRequest) GetDuration() float64 {
+	if g == nil {
 		return 0.0
 	}
-	return o.Duration
+	return g.Duration
 }
 
-func (o *GetTimelineRequest) GetContext() string {
-	if o == nil {
+func (g *GetTimelineRequest) GetContext() string {
+	if g == nil {
 		return ""
 	}
-	return o.Context
+	return g.Context
 }
 
-func (o *GetTimelineRequest) GetPlayQueueItemID() float64 {
-	if o == nil {
+func (g *GetTimelineRequest) GetPlayQueueItemID() float64 {
+	if g == nil {
 		return 0.0
 	}
-	return o.PlayQueueItemID
+	return g.PlayQueueItemID
 }
 
-func (o *GetTimelineRequest) GetPlayBackTime() float64 {
-	if o == nil {
+func (g *GetTimelineRequest) GetPlayBackTime() float64 {
+	if g == nil {
 		return 0.0
 	}
-	return o.PlayBackTime
+	return g.PlayBackTime
 }
 
-func (o *GetTimelineRequest) GetRow() float64 {
-	if o == nil {
+func (g *GetTimelineRequest) GetRow() float64 {
+	if g == nil {
 		return 0.0
 	}
-	return o.Row
+	return g.Row
 }
 
 type GetTimelineResponse struct {
@@ -121,23 +121,23 @@ type GetTimelineResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *GetTimelineResponse) GetContentType() string {
-	if o == nil {
+func (g *GetTimelineResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetTimelineResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetTimelineResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetTimelineResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetTimelineResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }

@@ -13,25 +13,25 @@ type GetButlerTasksButlerErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetButlerTasksButlerErrors) GetCode() *int {
-	if o == nil {
+func (g *GetButlerTasksButlerErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetButlerTasksButlerErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetButlerTasksButlerErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetButlerTasksButlerErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetButlerTasksButlerErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetButlerTasksUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type GetButlerTasksErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetButlerTasksErrors) GetCode() *int {
-	if o == nil {
+func (g *GetButlerTasksErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetButlerTasksErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetButlerTasksErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetButlerTasksErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetButlerTasksErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetButlerTasksBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

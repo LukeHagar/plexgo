@@ -13,25 +13,25 @@ type GetWatchListWatchlistErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetWatchListWatchlistErrors) GetCode() *int {
-	if o == nil {
+func (g *GetWatchListWatchlistErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetWatchListWatchlistErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetWatchListWatchlistErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetWatchListWatchlistErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetWatchListWatchlistErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetWatchListUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type GetWatchListErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetWatchListErrors) GetCode() *int {
-	if o == nil {
+func (g *GetWatchListErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetWatchListErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetWatchListErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetWatchListErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetWatchListErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetWatchListBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

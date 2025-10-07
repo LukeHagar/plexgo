@@ -13,25 +13,25 @@ type GetGlobalHubsHubsErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetGlobalHubsHubsErrors) GetCode() *int {
-	if o == nil {
+func (g *GetGlobalHubsHubsErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetGlobalHubsHubsErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetGlobalHubsHubsErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetGlobalHubsHubsErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetGlobalHubsHubsErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetGlobalHubsUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type GetGlobalHubsErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetGlobalHubsErrors) GetCode() *int {
-	if o == nil {
+func (g *GetGlobalHubsErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetGlobalHubsErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetGlobalHubsErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetGlobalHubsErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetGlobalHubsErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetGlobalHubsBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

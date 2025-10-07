@@ -42,102 +42,102 @@ type GetMediaMetaDataRequest struct {
 	AsyncRefreshLocalMediaAgent *bool `queryParam:"style=form,explode=true,name=asyncRefreshLocalMediaAgent"`
 }
 
-func (o *GetMediaMetaDataRequest) GetRatingKey() string {
-	if o == nil {
+func (g *GetMediaMetaDataRequest) GetRatingKey() string {
+	if g == nil {
 		return ""
 	}
-	return o.RatingKey
+	return g.RatingKey
 }
 
-func (o *GetMediaMetaDataRequest) GetIncludeConcerts() *bool {
-	if o == nil {
+func (g *GetMediaMetaDataRequest) GetIncludeConcerts() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.IncludeConcerts
+	return g.IncludeConcerts
 }
 
-func (o *GetMediaMetaDataRequest) GetIncludeExtras() *bool {
-	if o == nil {
+func (g *GetMediaMetaDataRequest) GetIncludeExtras() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.IncludeExtras
+	return g.IncludeExtras
 }
 
-func (o *GetMediaMetaDataRequest) GetIncludeOnDeck() *bool {
-	if o == nil {
+func (g *GetMediaMetaDataRequest) GetIncludeOnDeck() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.IncludeOnDeck
+	return g.IncludeOnDeck
 }
 
-func (o *GetMediaMetaDataRequest) GetIncludePopularLeaves() *bool {
-	if o == nil {
+func (g *GetMediaMetaDataRequest) GetIncludePopularLeaves() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.IncludePopularLeaves
+	return g.IncludePopularLeaves
 }
 
-func (o *GetMediaMetaDataRequest) GetIncludePreferences() *bool {
-	if o == nil {
+func (g *GetMediaMetaDataRequest) GetIncludePreferences() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.IncludePreferences
+	return g.IncludePreferences
 }
 
-func (o *GetMediaMetaDataRequest) GetIncludeReviews() *bool {
-	if o == nil {
+func (g *GetMediaMetaDataRequest) GetIncludeReviews() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.IncludeReviews
+	return g.IncludeReviews
 }
 
-func (o *GetMediaMetaDataRequest) GetIncludeChapters() *bool {
-	if o == nil {
+func (g *GetMediaMetaDataRequest) GetIncludeChapters() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.IncludeChapters
+	return g.IncludeChapters
 }
 
-func (o *GetMediaMetaDataRequest) GetIncludeStations() *bool {
-	if o == nil {
+func (g *GetMediaMetaDataRequest) GetIncludeStations() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.IncludeStations
+	return g.IncludeStations
 }
 
-func (o *GetMediaMetaDataRequest) GetIncludeExternalMedia() *bool {
-	if o == nil {
+func (g *GetMediaMetaDataRequest) GetIncludeExternalMedia() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.IncludeExternalMedia
+	return g.IncludeExternalMedia
 }
 
-func (o *GetMediaMetaDataRequest) GetAsyncAugmentMetadata() *bool {
-	if o == nil {
+func (g *GetMediaMetaDataRequest) GetAsyncAugmentMetadata() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.AsyncAugmentMetadata
+	return g.AsyncAugmentMetadata
 }
 
-func (o *GetMediaMetaDataRequest) GetAsyncCheckFiles() *bool {
-	if o == nil {
+func (g *GetMediaMetaDataRequest) GetAsyncCheckFiles() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.AsyncCheckFiles
+	return g.AsyncCheckFiles
 }
 
-func (o *GetMediaMetaDataRequest) GetAsyncRefreshAnalysis() *bool {
-	if o == nil {
+func (g *GetMediaMetaDataRequest) GetAsyncRefreshAnalysis() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.AsyncRefreshAnalysis
+	return g.AsyncRefreshAnalysis
 }
 
-func (o *GetMediaMetaDataRequest) GetAsyncRefreshLocalMediaAgent() *bool {
-	if o == nil {
+func (g *GetMediaMetaDataRequest) GetAsyncRefreshLocalMediaAgent() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.AsyncRefreshLocalMediaAgent
+	return g.AsyncRefreshLocalMediaAgent
 }
 
 // GetMediaMetaDataType - The type of media content in the Plex library. This can represent videos, music, or photos.
@@ -179,25 +179,25 @@ type GetMediaMetaDataImage struct {
 	URL  string                      `json:"url"`
 }
 
-func (o *GetMediaMetaDataImage) GetAlt() string {
-	if o == nil {
+func (g *GetMediaMetaDataImage) GetAlt() string {
+	if g == nil {
 		return ""
 	}
-	return o.Alt
+	return g.Alt
 }
 
-func (o *GetMediaMetaDataImage) GetType() GetMediaMetaDataLibraryType {
-	if o == nil {
+func (g *GetMediaMetaDataImage) GetType() GetMediaMetaDataLibraryType {
+	if g == nil {
 		return GetMediaMetaDataLibraryType("")
 	}
-	return o.Type
+	return g.Type
 }
 
-func (o *GetMediaMetaDataImage) GetURL() string {
-	if o == nil {
+func (g *GetMediaMetaDataImage) GetURL() string {
+	if g == nil {
 		return ""
 	}
-	return o.URL
+	return g.URL
 }
 
 type GetMediaMetaDataUltraBlurColors struct {
@@ -207,32 +207,32 @@ type GetMediaMetaDataUltraBlurColors struct {
 	BottomLeft  string `json:"bottomLeft"`
 }
 
-func (o *GetMediaMetaDataUltraBlurColors) GetTopLeft() string {
-	if o == nil {
+func (g *GetMediaMetaDataUltraBlurColors) GetTopLeft() string {
+	if g == nil {
 		return ""
 	}
-	return o.TopLeft
+	return g.TopLeft
 }
 
-func (o *GetMediaMetaDataUltraBlurColors) GetTopRight() string {
-	if o == nil {
+func (g *GetMediaMetaDataUltraBlurColors) GetTopRight() string {
+	if g == nil {
 		return ""
 	}
-	return o.TopRight
+	return g.TopRight
 }
 
-func (o *GetMediaMetaDataUltraBlurColors) GetBottomRight() string {
-	if o == nil {
+func (g *GetMediaMetaDataUltraBlurColors) GetBottomRight() string {
+	if g == nil {
 		return ""
 	}
-	return o.BottomRight
+	return g.BottomRight
 }
 
-func (o *GetMediaMetaDataUltraBlurColors) GetBottomLeft() string {
-	if o == nil {
+func (g *GetMediaMetaDataUltraBlurColors) GetBottomLeft() string {
+	if g == nil {
 		return ""
 	}
-	return o.BottomLeft
+	return g.BottomLeft
 }
 
 type GetMediaMetaDataGuids struct {
@@ -241,11 +241,11 @@ type GetMediaMetaDataGuids struct {
 	ID string `json:"id"`
 }
 
-func (o *GetMediaMetaDataGuids) GetID() string {
-	if o == nil {
+func (g *GetMediaMetaDataGuids) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
 type GetMediaMetaDataOptimizedForStreaming1 int
@@ -283,8 +283,8 @@ const (
 
 // GetMediaMetaDataOptimizedForStreaming - Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
 type GetMediaMetaDataOptimizedForStreaming struct {
-	GetMediaMetaDataOptimizedForStreaming1 *GetMediaMetaDataOptimizedForStreaming1 `queryParam:"inline" name:"optimizedForStreaming"`
-	Boolean                                *bool                                   `queryParam:"inline" name:"optimizedForStreaming"`
+	GetMediaMetaDataOptimizedForStreaming1 *GetMediaMetaDataOptimizedForStreaming1 `queryParam:"inline,name=optimizedForStreaming"`
+	Boolean                                *bool                                   `queryParam:"inline,name=optimizedForStreaming"`
 
 	Type GetMediaMetaDataOptimizedForStreamingType
 }
@@ -373,8 +373,8 @@ const (
 
 // GetMediaMetaDataLibraryOptimizedForStreaming - Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
 type GetMediaMetaDataLibraryOptimizedForStreaming struct {
-	GetMediaMetaDataOptimizedForStreamingLibrary1 *GetMediaMetaDataOptimizedForStreamingLibrary1 `queryParam:"inline" name:"optimizedForStreaming"`
-	Boolean                                       *bool                                          `queryParam:"inline" name:"optimizedForStreaming"`
+	GetMediaMetaDataOptimizedForStreamingLibrary1 *GetMediaMetaDataOptimizedForStreamingLibrary1 `queryParam:"inline,name=optimizedForStreaming"`
+	Boolean                                       *bool                                          `queryParam:"inline,name=optimizedForStreaming"`
 
 	Type GetMediaMetaDataLibraryOptimizedForStreamingType
 }
@@ -570,358 +570,358 @@ func (g *GetMediaMetaDataStream) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetMediaMetaDataStream) GetID() int64 {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetID() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetMediaMetaDataStream) GetStreamType() int64 {
+func (g *GetMediaMetaDataStream) GetStreamType() int64 {
 	return 1
 }
 
-func (o *GetMediaMetaDataStream) GetFormat() *string {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetFormat() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Format
+	return g.Format
 }
 
-func (o *GetMediaMetaDataStream) GetDefault() *bool {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetDefault() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Default
+	return g.Default
 }
 
-func (o *GetMediaMetaDataStream) GetCodec() *string {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetCodec() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Codec
+	return g.Codec
 }
 
-func (o *GetMediaMetaDataStream) GetIndex() *int {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetIndex() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Index
+	return g.Index
 }
 
-func (o *GetMediaMetaDataStream) GetBitrate() *int {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetBitrate() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Bitrate
+	return g.Bitrate
 }
 
-func (o *GetMediaMetaDataStream) GetLanguage() *string {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetLanguage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Language
+	return g.Language
 }
 
-func (o *GetMediaMetaDataStream) GetLanguageTag() *string {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetLanguageTag() *string {
+	if g == nil {
 		return nil
 	}
-	return o.LanguageTag
+	return g.LanguageTag
 }
 
-func (o *GetMediaMetaDataStream) GetLanguageCode() *string {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetLanguageCode() *string {
+	if g == nil {
 		return nil
 	}
-	return o.LanguageCode
+	return g.LanguageCode
 }
 
-func (o *GetMediaMetaDataStream) GetHeaderCompression() *bool {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetHeaderCompression() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.HeaderCompression
+	return g.HeaderCompression
 }
 
-func (o *GetMediaMetaDataStream) GetDOVIBLCompatID() *int {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetDOVIBLCompatID() *int {
+	if g == nil {
 		return nil
 	}
-	return o.DOVIBLCompatID
+	return g.DOVIBLCompatID
 }
 
-func (o *GetMediaMetaDataStream) GetDOVIBLPresent() *bool {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetDOVIBLPresent() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.DOVIBLPresent
+	return g.DOVIBLPresent
 }
 
-func (o *GetMediaMetaDataStream) GetDOVIELPresent() *bool {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetDOVIELPresent() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.DOVIELPresent
+	return g.DOVIELPresent
 }
 
-func (o *GetMediaMetaDataStream) GetDOVILevel() *int {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetDOVILevel() *int {
+	if g == nil {
 		return nil
 	}
-	return o.DOVILevel
+	return g.DOVILevel
 }
 
-func (o *GetMediaMetaDataStream) GetDOVIPresent() *bool {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetDOVIPresent() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.DOVIPresent
+	return g.DOVIPresent
 }
 
-func (o *GetMediaMetaDataStream) GetDOVIProfile() *int {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetDOVIProfile() *int {
+	if g == nil {
 		return nil
 	}
-	return o.DOVIProfile
+	return g.DOVIProfile
 }
 
-func (o *GetMediaMetaDataStream) GetDOVIRPUPresent() *bool {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetDOVIRPUPresent() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.DOVIRPUPresent
+	return g.DOVIRPUPresent
 }
 
-func (o *GetMediaMetaDataStream) GetDOVIVersion() *string {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetDOVIVersion() *string {
+	if g == nil {
 		return nil
 	}
-	return o.DOVIVersion
+	return g.DOVIVersion
 }
 
-func (o *GetMediaMetaDataStream) GetBitDepth() *int {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetBitDepth() *int {
+	if g == nil {
 		return nil
 	}
-	return o.BitDepth
+	return g.BitDepth
 }
 
-func (o *GetMediaMetaDataStream) GetChromaLocation() *string {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetChromaLocation() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ChromaLocation
+	return g.ChromaLocation
 }
 
-func (o *GetMediaMetaDataStream) GetChromaSubsampling() *string {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetChromaSubsampling() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ChromaSubsampling
+	return g.ChromaSubsampling
 }
 
-func (o *GetMediaMetaDataStream) GetCodedHeight() *int {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetCodedHeight() *int {
+	if g == nil {
 		return nil
 	}
-	return o.CodedHeight
+	return g.CodedHeight
 }
 
-func (o *GetMediaMetaDataStream) GetCodedWidth() *int {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetCodedWidth() *int {
+	if g == nil {
 		return nil
 	}
-	return o.CodedWidth
+	return g.CodedWidth
 }
 
-func (o *GetMediaMetaDataStream) GetClosedCaptions() *bool {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetClosedCaptions() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.ClosedCaptions
+	return g.ClosedCaptions
 }
 
-func (o *GetMediaMetaDataStream) GetColorPrimaries() *string {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetColorPrimaries() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ColorPrimaries
+	return g.ColorPrimaries
 }
 
-func (o *GetMediaMetaDataStream) GetColorRange() *string {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetColorRange() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ColorRange
+	return g.ColorRange
 }
 
-func (o *GetMediaMetaDataStream) GetColorSpace() *string {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetColorSpace() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ColorSpace
+	return g.ColorSpace
 }
 
-func (o *GetMediaMetaDataStream) GetColorTrc() *string {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetColorTrc() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ColorTrc
+	return g.ColorTrc
 }
 
-func (o *GetMediaMetaDataStream) GetFrameRate() *float32 {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetFrameRate() *float32 {
+	if g == nil {
 		return nil
 	}
-	return o.FrameRate
+	return g.FrameRate
 }
 
-func (o *GetMediaMetaDataStream) GetKey() *string {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetMediaMetaDataStream) GetHeight() *int {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetHeight() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Height
+	return g.Height
 }
 
-func (o *GetMediaMetaDataStream) GetLevel() *int {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetLevel() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Level
+	return g.Level
 }
 
-func (o *GetMediaMetaDataStream) GetOriginal() *bool {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetOriginal() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Original
+	return g.Original
 }
 
-func (o *GetMediaMetaDataStream) GetHasScalingMatrix() *bool {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetHasScalingMatrix() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.HasScalingMatrix
+	return g.HasScalingMatrix
 }
 
-func (o *GetMediaMetaDataStream) GetProfile() *string {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetProfile() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Profile
+	return g.Profile
 }
 
-func (o *GetMediaMetaDataStream) GetScanType() *string {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetScanType() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ScanType
+	return g.ScanType
 }
 
-func (o *GetMediaMetaDataStream) GetEmbeddedInVideo() *string {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetEmbeddedInVideo() *string {
+	if g == nil {
 		return nil
 	}
-	return o.EmbeddedInVideo
+	return g.EmbeddedInVideo
 }
 
-func (o *GetMediaMetaDataStream) GetRefFrames() *int {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetRefFrames() *int {
+	if g == nil {
 		return nil
 	}
-	return o.RefFrames
+	return g.RefFrames
 }
 
-func (o *GetMediaMetaDataStream) GetWidth() *int {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetWidth() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Width
+	return g.Width
 }
 
-func (o *GetMediaMetaDataStream) GetDisplayTitle() *string {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetDisplayTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.DisplayTitle
+	return g.DisplayTitle
 }
 
-func (o *GetMediaMetaDataStream) GetExtendedDisplayTitle() *string {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetExtendedDisplayTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ExtendedDisplayTitle
+	return g.ExtendedDisplayTitle
 }
 
-func (o *GetMediaMetaDataStream) GetSelected() *bool {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetSelected() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Selected
+	return g.Selected
 }
 
-func (o *GetMediaMetaDataStream) GetForced() *bool {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetForced() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Forced
+	return g.Forced
 }
 
-func (o *GetMediaMetaDataStream) GetChannels() *int {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetChannels() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Channels
+	return g.Channels
 }
 
-func (o *GetMediaMetaDataStream) GetAudioChannelLayout() *string {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetAudioChannelLayout() *string {
+	if g == nil {
 		return nil
 	}
-	return o.AudioChannelLayout
+	return g.AudioChannelLayout
 }
 
-func (o *GetMediaMetaDataStream) GetSamplingRate() *int {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetSamplingRate() *int {
+	if g == nil {
 		return nil
 	}
-	return o.SamplingRate
+	return g.SamplingRate
 }
 
-func (o *GetMediaMetaDataStream) GetCanAutoSync() *bool {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetCanAutoSync() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.CanAutoSync
+	return g.CanAutoSync
 }
 
-func (o *GetMediaMetaDataStream) GetHearingImpaired() *bool {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetHearingImpaired() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.HearingImpaired
+	return g.HearingImpaired
 }
 
-func (o *GetMediaMetaDataStream) GetDub() *bool {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetDub() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Dub
+	return g.Dub
 }
 
-func (o *GetMediaMetaDataStream) GetTitle() *string {
-	if o == nil {
+func (g *GetMediaMetaDataStream) GetTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Title
+	return g.Title
 }
 
 type GetMediaMetaDataPart struct {
@@ -966,116 +966,116 @@ func (g *GetMediaMetaDataPart) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetMediaMetaDataPart) GetAccessible() *bool {
-	if o == nil {
+func (g *GetMediaMetaDataPart) GetAccessible() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Accessible
+	return g.Accessible
 }
 
-func (o *GetMediaMetaDataPart) GetExists() *bool {
-	if o == nil {
+func (g *GetMediaMetaDataPart) GetExists() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Exists
+	return g.Exists
 }
 
-func (o *GetMediaMetaDataPart) GetID() int64 {
-	if o == nil {
+func (g *GetMediaMetaDataPart) GetID() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetMediaMetaDataPart) GetKey() *string {
-	if o == nil {
+func (g *GetMediaMetaDataPart) GetKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetMediaMetaDataPart) GetIndexes() *string {
-	if o == nil {
+func (g *GetMediaMetaDataPart) GetIndexes() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Indexes
+	return g.Indexes
 }
 
-func (o *GetMediaMetaDataPart) GetDuration() *int {
-	if o == nil {
+func (g *GetMediaMetaDataPart) GetDuration() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Duration
+	return g.Duration
 }
 
-func (o *GetMediaMetaDataPart) GetFile() *string {
-	if o == nil {
+func (g *GetMediaMetaDataPart) GetFile() *string {
+	if g == nil {
 		return nil
 	}
-	return o.File
+	return g.File
 }
 
-func (o *GetMediaMetaDataPart) GetSize() *int64 {
-	if o == nil {
+func (g *GetMediaMetaDataPart) GetSize() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetMediaMetaDataPart) GetPacketLength() *int {
-	if o == nil {
+func (g *GetMediaMetaDataPart) GetPacketLength() *int {
+	if g == nil {
 		return nil
 	}
-	return o.PacketLength
+	return g.PacketLength
 }
 
-func (o *GetMediaMetaDataPart) GetContainer() *string {
-	if o == nil {
+func (g *GetMediaMetaDataPart) GetContainer() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Container
+	return g.Container
 }
 
-func (o *GetMediaMetaDataPart) GetVideoProfile() *string {
-	if o == nil {
+func (g *GetMediaMetaDataPart) GetVideoProfile() *string {
+	if g == nil {
 		return nil
 	}
-	return o.VideoProfile
+	return g.VideoProfile
 }
 
-func (o *GetMediaMetaDataPart) GetAudioProfile() *string {
-	if o == nil {
+func (g *GetMediaMetaDataPart) GetAudioProfile() *string {
+	if g == nil {
 		return nil
 	}
-	return o.AudioProfile
+	return g.AudioProfile
 }
 
-func (o *GetMediaMetaDataPart) GetHas64bitOffsets() *bool {
-	if o == nil {
+func (g *GetMediaMetaDataPart) GetHas64bitOffsets() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Has64bitOffsets
+	return g.Has64bitOffsets
 }
 
-func (o *GetMediaMetaDataPart) GetOptimizedForStreaming() *GetMediaMetaDataLibraryOptimizedForStreaming {
-	if o == nil {
+func (g *GetMediaMetaDataPart) GetOptimizedForStreaming() *GetMediaMetaDataLibraryOptimizedForStreaming {
+	if g == nil {
 		return nil
 	}
-	return o.OptimizedForStreaming
+	return g.OptimizedForStreaming
 }
 
-func (o *GetMediaMetaDataPart) GetHasThumbnail() *GetMediaMetaDataHasThumbnail {
-	if o == nil {
+func (g *GetMediaMetaDataPart) GetHasThumbnail() *GetMediaMetaDataHasThumbnail {
+	if g == nil {
 		return nil
 	}
-	return o.HasThumbnail
+	return g.HasThumbnail
 }
 
-func (o *GetMediaMetaDataPart) GetStream() []GetMediaMetaDataStream {
-	if o == nil {
+func (g *GetMediaMetaDataPart) GetStream() []GetMediaMetaDataStream {
+	if g == nil {
 		return nil
 	}
-	return o.Stream
+	return g.Stream
 }
 
 type GetMediaMetaDataMedia struct {
@@ -1120,137 +1120,137 @@ type GetMediaMetaDataMedia struct {
 	Part            []GetMediaMetaDataPart `json:"Part,omitempty"`
 }
 
-func (o *GetMediaMetaDataMedia) GetID() int64 {
-	if o == nil {
+func (g *GetMediaMetaDataMedia) GetID() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetMediaMetaDataMedia) GetDuration() *int {
-	if o == nil {
+func (g *GetMediaMetaDataMedia) GetDuration() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Duration
+	return g.Duration
 }
 
-func (o *GetMediaMetaDataMedia) GetBitrate() *int {
-	if o == nil {
+func (g *GetMediaMetaDataMedia) GetBitrate() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Bitrate
+	return g.Bitrate
 }
 
-func (o *GetMediaMetaDataMedia) GetWidth() *int {
-	if o == nil {
+func (g *GetMediaMetaDataMedia) GetWidth() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Width
+	return g.Width
 }
 
-func (o *GetMediaMetaDataMedia) GetHeight() *int {
-	if o == nil {
+func (g *GetMediaMetaDataMedia) GetHeight() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Height
+	return g.Height
 }
 
-func (o *GetMediaMetaDataMedia) GetAspectRatio() *float32 {
-	if o == nil {
+func (g *GetMediaMetaDataMedia) GetAspectRatio() *float32 {
+	if g == nil {
 		return nil
 	}
-	return o.AspectRatio
+	return g.AspectRatio
 }
 
-func (o *GetMediaMetaDataMedia) GetAudioChannels() *int {
-	if o == nil {
+func (g *GetMediaMetaDataMedia) GetAudioChannels() *int {
+	if g == nil {
 		return nil
 	}
-	return o.AudioChannels
+	return g.AudioChannels
 }
 
-func (o *GetMediaMetaDataMedia) GetDisplayOffset() *int {
-	if o == nil {
+func (g *GetMediaMetaDataMedia) GetDisplayOffset() *int {
+	if g == nil {
 		return nil
 	}
-	return o.DisplayOffset
+	return g.DisplayOffset
 }
 
-func (o *GetMediaMetaDataMedia) GetAudioCodec() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMedia) GetAudioCodec() *string {
+	if g == nil {
 		return nil
 	}
-	return o.AudioCodec
+	return g.AudioCodec
 }
 
-func (o *GetMediaMetaDataMedia) GetVideoCodec() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMedia) GetVideoCodec() *string {
+	if g == nil {
 		return nil
 	}
-	return o.VideoCodec
+	return g.VideoCodec
 }
 
-func (o *GetMediaMetaDataMedia) GetVideoResolution() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMedia) GetVideoResolution() *string {
+	if g == nil {
 		return nil
 	}
-	return o.VideoResolution
+	return g.VideoResolution
 }
 
-func (o *GetMediaMetaDataMedia) GetContainer() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMedia) GetContainer() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Container
+	return g.Container
 }
 
-func (o *GetMediaMetaDataMedia) GetVideoFrameRate() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMedia) GetVideoFrameRate() *string {
+	if g == nil {
 		return nil
 	}
-	return o.VideoFrameRate
+	return g.VideoFrameRate
 }
 
-func (o *GetMediaMetaDataMedia) GetVideoProfile() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMedia) GetVideoProfile() *string {
+	if g == nil {
 		return nil
 	}
-	return o.VideoProfile
+	return g.VideoProfile
 }
 
-func (o *GetMediaMetaDataMedia) GetHasVoiceActivity() *bool {
-	if o == nil {
+func (g *GetMediaMetaDataMedia) GetHasVoiceActivity() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.HasVoiceActivity
+	return g.HasVoiceActivity
 }
 
-func (o *GetMediaMetaDataMedia) GetAudioProfile() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMedia) GetAudioProfile() *string {
+	if g == nil {
 		return nil
 	}
-	return o.AudioProfile
+	return g.AudioProfile
 }
 
-func (o *GetMediaMetaDataMedia) GetOptimizedForStreaming() *GetMediaMetaDataOptimizedForStreaming {
-	if o == nil {
+func (g *GetMediaMetaDataMedia) GetOptimizedForStreaming() *GetMediaMetaDataOptimizedForStreaming {
+	if g == nil {
 		return nil
 	}
-	return o.OptimizedForStreaming
+	return g.OptimizedForStreaming
 }
 
-func (o *GetMediaMetaDataMedia) GetHas64bitOffsets() *bool {
-	if o == nil {
+func (g *GetMediaMetaDataMedia) GetHas64bitOffsets() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Has64bitOffsets
+	return g.Has64bitOffsets
 }
 
-func (o *GetMediaMetaDataMedia) GetPart() []GetMediaMetaDataPart {
-	if o == nil {
+func (g *GetMediaMetaDataMedia) GetPart() []GetMediaMetaDataPart {
+	if g == nil {
 		return nil
 	}
-	return o.Part
+	return g.Part
 }
 
 // GetMediaMetaDataGenre - The filter query string for similar items.
@@ -1265,25 +1265,25 @@ type GetMediaMetaDataGenre struct {
 	Filter string `json:"filter"`
 }
 
-func (o *GetMediaMetaDataGenre) GetID() int {
-	if o == nil {
+func (g *GetMediaMetaDataGenre) GetID() int {
+	if g == nil {
 		return 0
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetMediaMetaDataGenre) GetTag() string {
-	if o == nil {
+func (g *GetMediaMetaDataGenre) GetTag() string {
+	if g == nil {
 		return ""
 	}
-	return o.Tag
+	return g.Tag
 }
 
-func (o *GetMediaMetaDataGenre) GetFilter() string {
-	if o == nil {
+func (g *GetMediaMetaDataGenre) GetFilter() string {
+	if g == nil {
 		return ""
 	}
-	return o.Filter
+	return g.Filter
 }
 
 // GetMediaMetaDataCountry - The filter query string for country media items.
@@ -1297,25 +1297,25 @@ type GetMediaMetaDataCountry struct {
 	Filter string `json:"filter"`
 }
 
-func (o *GetMediaMetaDataCountry) GetID() int {
-	if o == nil {
+func (g *GetMediaMetaDataCountry) GetID() int {
+	if g == nil {
 		return 0
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetMediaMetaDataCountry) GetTag() string {
-	if o == nil {
+func (g *GetMediaMetaDataCountry) GetTag() string {
+	if g == nil {
 		return ""
 	}
-	return o.Tag
+	return g.Tag
 }
 
-func (o *GetMediaMetaDataCountry) GetFilter() string {
-	if o == nil {
+func (g *GetMediaMetaDataCountry) GetFilter() string {
+	if g == nil {
 		return ""
 	}
-	return o.Filter
+	return g.Filter
 }
 
 type GetMediaMetaDataDirector struct {
@@ -1331,39 +1331,39 @@ type GetMediaMetaDataDirector struct {
 	Thumb *string `json:"thumb,omitempty"`
 }
 
-func (o *GetMediaMetaDataDirector) GetID() int {
-	if o == nil {
+func (g *GetMediaMetaDataDirector) GetID() int {
+	if g == nil {
 		return 0
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetMediaMetaDataDirector) GetTag() string {
-	if o == nil {
+func (g *GetMediaMetaDataDirector) GetTag() string {
+	if g == nil {
 		return ""
 	}
-	return o.Tag
+	return g.Tag
 }
 
-func (o *GetMediaMetaDataDirector) GetFilter() string {
-	if o == nil {
+func (g *GetMediaMetaDataDirector) GetFilter() string {
+	if g == nil {
 		return ""
 	}
-	return o.Filter
+	return g.Filter
 }
 
-func (o *GetMediaMetaDataDirector) GetTagKey() string {
-	if o == nil {
+func (g *GetMediaMetaDataDirector) GetTagKey() string {
+	if g == nil {
 		return ""
 	}
-	return o.TagKey
+	return g.TagKey
 }
 
-func (o *GetMediaMetaDataDirector) GetThumb() *string {
-	if o == nil {
+func (g *GetMediaMetaDataDirector) GetThumb() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Thumb
+	return g.Thumb
 }
 
 type GetMediaMetaDataWriter struct {
@@ -1379,39 +1379,39 @@ type GetMediaMetaDataWriter struct {
 	TagKey *string `json:"tagKey,omitempty"`
 }
 
-func (o *GetMediaMetaDataWriter) GetID() int {
-	if o == nil {
+func (g *GetMediaMetaDataWriter) GetID() int {
+	if g == nil {
 		return 0
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetMediaMetaDataWriter) GetTag() string {
-	if o == nil {
+func (g *GetMediaMetaDataWriter) GetTag() string {
+	if g == nil {
 		return ""
 	}
-	return o.Tag
+	return g.Tag
 }
 
-func (o *GetMediaMetaDataWriter) GetFilter() string {
-	if o == nil {
+func (g *GetMediaMetaDataWriter) GetFilter() string {
+	if g == nil {
 		return ""
 	}
-	return o.Filter
+	return g.Filter
 }
 
-func (o *GetMediaMetaDataWriter) GetThumb() *string {
-	if o == nil {
+func (g *GetMediaMetaDataWriter) GetThumb() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Thumb
+	return g.Thumb
 }
 
-func (o *GetMediaMetaDataWriter) GetTagKey() *string {
-	if o == nil {
+func (g *GetMediaMetaDataWriter) GetTagKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.TagKey
+	return g.TagKey
 }
 
 type GetMediaMetaDataProducer struct {
@@ -1429,46 +1429,46 @@ type GetMediaMetaDataProducer struct {
 	Thumb *string `json:"thumb,omitempty"`
 }
 
-func (o *GetMediaMetaDataProducer) GetID() int64 {
-	if o == nil {
+func (g *GetMediaMetaDataProducer) GetID() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetMediaMetaDataProducer) GetFilter() string {
-	if o == nil {
+func (g *GetMediaMetaDataProducer) GetFilter() string {
+	if g == nil {
 		return ""
 	}
-	return o.Filter
+	return g.Filter
 }
 
-func (o *GetMediaMetaDataProducer) GetTag() string {
-	if o == nil {
+func (g *GetMediaMetaDataProducer) GetTag() string {
+	if g == nil {
 		return ""
 	}
-	return o.Tag
+	return g.Tag
 }
 
-func (o *GetMediaMetaDataProducer) GetTagKey() string {
-	if o == nil {
+func (g *GetMediaMetaDataProducer) GetTagKey() string {
+	if g == nil {
 		return ""
 	}
-	return o.TagKey
+	return g.TagKey
 }
 
-func (o *GetMediaMetaDataProducer) GetRole() *string {
-	if o == nil {
+func (g *GetMediaMetaDataProducer) GetRole() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Role
+	return g.Role
 }
 
-func (o *GetMediaMetaDataProducer) GetThumb() *string {
-	if o == nil {
+func (g *GetMediaMetaDataProducer) GetThumb() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Thumb
+	return g.Thumb
 }
 
 type GetMediaMetaDataRole struct {
@@ -1490,46 +1490,46 @@ type GetMediaMetaDataRole struct {
 	Thumb *string `json:"thumb,omitempty"`
 }
 
-func (o *GetMediaMetaDataRole) GetID() int {
-	if o == nil {
+func (g *GetMediaMetaDataRole) GetID() int {
+	if g == nil {
 		return 0
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetMediaMetaDataRole) GetTag() string {
-	if o == nil {
+func (g *GetMediaMetaDataRole) GetTag() string {
+	if g == nil {
 		return ""
 	}
-	return o.Tag
+	return g.Tag
 }
 
-func (o *GetMediaMetaDataRole) GetRole() *string {
-	if o == nil {
+func (g *GetMediaMetaDataRole) GetRole() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Role
+	return g.Role
 }
 
-func (o *GetMediaMetaDataRole) GetFilter() string {
-	if o == nil {
+func (g *GetMediaMetaDataRole) GetFilter() string {
+	if g == nil {
 		return ""
 	}
-	return o.Filter
+	return g.Filter
 }
 
-func (o *GetMediaMetaDataRole) GetTagKey() string {
-	if o == nil {
+func (g *GetMediaMetaDataRole) GetTagKey() string {
+	if g == nil {
 		return ""
 	}
-	return o.TagKey
+	return g.TagKey
 }
 
-func (o *GetMediaMetaDataRole) GetThumb() *string {
-	if o == nil {
+func (g *GetMediaMetaDataRole) GetThumb() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Thumb
+	return g.Thumb
 }
 
 type GetMediaMetaDataRatings struct {
@@ -1541,25 +1541,25 @@ type GetMediaMetaDataRatings struct {
 	Type string `json:"type"`
 }
 
-func (o *GetMediaMetaDataRatings) GetImage() string {
-	if o == nil {
+func (g *GetMediaMetaDataRatings) GetImage() string {
+	if g == nil {
 		return ""
 	}
-	return o.Image
+	return g.Image
 }
 
-func (o *GetMediaMetaDataRatings) GetValue() float32 {
-	if o == nil {
+func (g *GetMediaMetaDataRatings) GetValue() float32 {
+	if g == nil {
 		return 0.0
 	}
-	return o.Value
+	return g.Value
 }
 
-func (o *GetMediaMetaDataRatings) GetType() string {
-	if o == nil {
+func (g *GetMediaMetaDataRatings) GetType() string {
+	if g == nil {
 		return ""
 	}
-	return o.Type
+	return g.Type
 }
 
 type GetMediaMetaDataSimilar struct {
@@ -1571,25 +1571,25 @@ type GetMediaMetaDataSimilar struct {
 	Tag string `json:"tag"`
 }
 
-func (o *GetMediaMetaDataSimilar) GetID() int64 {
-	if o == nil {
+func (g *GetMediaMetaDataSimilar) GetID() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetMediaMetaDataSimilar) GetFilter() string {
-	if o == nil {
+func (g *GetMediaMetaDataSimilar) GetFilter() string {
+	if g == nil {
 		return ""
 	}
-	return o.Filter
+	return g.Filter
 }
 
-func (o *GetMediaMetaDataSimilar) GetTag() string {
-	if o == nil {
+func (g *GetMediaMetaDataSimilar) GetTag() string {
+	if g == nil {
 		return ""
 	}
-	return o.Tag
+	return g.Tag
 }
 
 type GetMediaMetaDataLocation struct {
@@ -1597,11 +1597,11 @@ type GetMediaMetaDataLocation struct {
 	Path string `json:"path"`
 }
 
-func (o *GetMediaMetaDataLocation) GetPath() string {
-	if o == nil {
+func (g *GetMediaMetaDataLocation) GetPath() string {
+	if g == nil {
 		return ""
 	}
-	return o.Path
+	return g.Path
 }
 
 // GetMediaMetaDataChapter - The thumbnail for the chapter
@@ -1614,46 +1614,46 @@ type GetMediaMetaDataChapter struct {
 	Thumb           string `json:"thumb"`
 }
 
-func (o *GetMediaMetaDataChapter) GetID() int64 {
-	if o == nil {
+func (g *GetMediaMetaDataChapter) GetID() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetMediaMetaDataChapter) GetFilter() string {
-	if o == nil {
+func (g *GetMediaMetaDataChapter) GetFilter() string {
+	if g == nil {
 		return ""
 	}
-	return o.Filter
+	return g.Filter
 }
 
-func (o *GetMediaMetaDataChapter) GetIndex() int64 {
-	if o == nil {
+func (g *GetMediaMetaDataChapter) GetIndex() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.Index
+	return g.Index
 }
 
-func (o *GetMediaMetaDataChapter) GetStartTimeOffset() int64 {
-	if o == nil {
+func (g *GetMediaMetaDataChapter) GetStartTimeOffset() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.StartTimeOffset
+	return g.StartTimeOffset
 }
 
-func (o *GetMediaMetaDataChapter) GetEndTimeOffset() int64 {
-	if o == nil {
+func (g *GetMediaMetaDataChapter) GetEndTimeOffset() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.EndTimeOffset
+	return g.EndTimeOffset
 }
 
-func (o *GetMediaMetaDataChapter) GetThumb() string {
-	if o == nil {
+func (g *GetMediaMetaDataChapter) GetThumb() string {
+	if g == nil {
 		return ""
 	}
-	return o.Thumb
+	return g.Thumb
 }
 
 // GetMediaMetaDataAttributes - Attributes associated with the marker.
@@ -1664,18 +1664,18 @@ type GetMediaMetaDataAttributes struct {
 	Version *int64 `json:"version,omitempty"`
 }
 
-func (o *GetMediaMetaDataAttributes) GetID() int64 {
-	if o == nil {
+func (g *GetMediaMetaDataAttributes) GetID() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetMediaMetaDataAttributes) GetVersion() *int64 {
-	if o == nil {
+func (g *GetMediaMetaDataAttributes) GetVersion() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.Version
+	return g.Version
 }
 
 // GetMediaMetaDataMarker - The final status of the marker
@@ -1689,46 +1689,46 @@ type GetMediaMetaDataMarker struct {
 	Attributes *GetMediaMetaDataAttributes `json:"Attributes,omitempty"`
 }
 
-func (o *GetMediaMetaDataMarker) GetID() int64 {
-	if o == nil {
+func (g *GetMediaMetaDataMarker) GetID() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetMediaMetaDataMarker) GetType() string {
-	if o == nil {
+func (g *GetMediaMetaDataMarker) GetType() string {
+	if g == nil {
 		return ""
 	}
-	return o.Type
+	return g.Type
 }
 
-func (o *GetMediaMetaDataMarker) GetStartTimeOffset() int64 {
-	if o == nil {
+func (g *GetMediaMetaDataMarker) GetStartTimeOffset() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.StartTimeOffset
+	return g.StartTimeOffset
 }
 
-func (o *GetMediaMetaDataMarker) GetEndTimeOffset() int64 {
-	if o == nil {
+func (g *GetMediaMetaDataMarker) GetEndTimeOffset() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.EndTimeOffset
+	return g.EndTimeOffset
 }
 
-func (o *GetMediaMetaDataMarker) GetFinal() *bool {
-	if o == nil {
+func (g *GetMediaMetaDataMarker) GetFinal() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Final
+	return g.Final
 }
 
-func (o *GetMediaMetaDataMarker) GetAttributes() *GetMediaMetaDataAttributes {
-	if o == nil {
+func (g *GetMediaMetaDataMarker) GetAttributes() *GetMediaMetaDataAttributes {
+	if g == nil {
 		return nil
 	}
-	return o.Attributes
+	return g.Attributes
 }
 
 type GetMediaMetaDataExtras struct {
@@ -1736,11 +1736,11 @@ type GetMediaMetaDataExtras struct {
 	Size *int64 `json:"size,omitempty"`
 }
 
-func (o *GetMediaMetaDataExtras) GetSize() *int64 {
-	if o == nil {
+func (g *GetMediaMetaDataExtras) GetSize() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
 // GetMediaMetaDataMetadata - Unknown
@@ -1886,515 +1886,515 @@ func (g *GetMediaMetaDataMetadata) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetMediaMetaDataMetadata) GetRatingKey() string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetRatingKey() string {
+	if g == nil {
 		return ""
 	}
-	return o.RatingKey
+	return g.RatingKey
 }
 
-func (o *GetMediaMetaDataMetadata) GetKey() string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetKey() string {
+	if g == nil {
 		return ""
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetMediaMetaDataMetadata) GetGUID() string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetGUID() string {
+	if g == nil {
 		return ""
 	}
-	return o.GUID
+	return g.GUID
 }
 
-func (o *GetMediaMetaDataMetadata) GetSlug() string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetSlug() string {
+	if g == nil {
 		return ""
 	}
-	return o.Slug
+	return g.Slug
 }
 
-func (o *GetMediaMetaDataMetadata) GetStudio() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetStudio() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Studio
+	return g.Studio
 }
 
-func (o *GetMediaMetaDataMetadata) GetType() GetMediaMetaDataType {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetType() GetMediaMetaDataType {
+	if g == nil {
 		return GetMediaMetaDataType("")
 	}
-	return o.Type
+	return g.Type
 }
 
-func (o *GetMediaMetaDataMetadata) GetTitle() string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetTitle() string {
+	if g == nil {
 		return ""
 	}
-	return o.Title
+	return g.Title
 }
 
-func (o *GetMediaMetaDataMetadata) GetTitleSort() string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetTitleSort() string {
+	if g == nil {
 		return ""
 	}
-	return o.TitleSort
+	return g.TitleSort
 }
 
-func (o *GetMediaMetaDataMetadata) GetContentRating() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetContentRating() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ContentRating
+	return g.ContentRating
 }
 
-func (o *GetMediaMetaDataMetadata) GetSummary() string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetSummary() string {
+	if g == nil {
 		return ""
 	}
-	return o.Summary
+	return g.Summary
 }
 
-func (o *GetMediaMetaDataMetadata) GetRating() float32 {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetRating() float32 {
+	if g == nil {
 		return 0.0
 	}
-	return o.Rating
+	return g.Rating
 }
 
-func (o *GetMediaMetaDataMetadata) GetAudienceRating() float64 {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetAudienceRating() float64 {
+	if g == nil {
 		return 0.0
 	}
-	return o.AudienceRating
+	return g.AudienceRating
 }
 
-func (o *GetMediaMetaDataMetadata) GetYear() *int {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetYear() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Year
+	return g.Year
 }
 
-func (o *GetMediaMetaDataMetadata) GetTagline() string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetTagline() string {
+	if g == nil {
 		return ""
 	}
-	return o.Tagline
+	return g.Tagline
 }
 
-func (o *GetMediaMetaDataMetadata) GetThumb() string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetThumb() string {
+	if g == nil {
 		return ""
 	}
-	return o.Thumb
+	return g.Thumb
 }
 
-func (o *GetMediaMetaDataMetadata) GetArt() string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetArt() string {
+	if g == nil {
 		return ""
 	}
-	return o.Art
+	return g.Art
 }
 
-func (o *GetMediaMetaDataMetadata) GetTheme() string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetTheme() string {
+	if g == nil {
 		return ""
 	}
-	return o.Theme
+	return g.Theme
 }
 
-func (o *GetMediaMetaDataMetadata) GetIndex() int {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetIndex() int {
+	if g == nil {
 		return 0
 	}
-	return o.Index
+	return g.Index
 }
 
-func (o *GetMediaMetaDataMetadata) GetLeafCount() *int {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetLeafCount() *int {
+	if g == nil {
 		return nil
 	}
-	return o.LeafCount
+	return g.LeafCount
 }
 
-func (o *GetMediaMetaDataMetadata) GetViewedLeafCount() *int {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetViewedLeafCount() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ViewedLeafCount
+	return g.ViewedLeafCount
 }
 
-func (o *GetMediaMetaDataMetadata) GetChildCount() int {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetChildCount() int {
+	if g == nil {
 		return 0
 	}
-	return o.ChildCount
+	return g.ChildCount
 }
 
-func (o *GetMediaMetaDataMetadata) GetSeasonCount() int {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetSeasonCount() int {
+	if g == nil {
 		return 0
 	}
-	return o.SeasonCount
+	return g.SeasonCount
 }
 
-func (o *GetMediaMetaDataMetadata) GetDuration() int {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetDuration() int {
+	if g == nil {
 		return 0
 	}
-	return o.Duration
+	return g.Duration
 }
 
-func (o *GetMediaMetaDataMetadata) GetOriginallyAvailableAt() *types.Date {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetOriginallyAvailableAt() *types.Date {
+	if g == nil {
 		return nil
 	}
-	return o.OriginallyAvailableAt
+	return g.OriginallyAvailableAt
 }
 
-func (o *GetMediaMetaDataMetadata) GetAddedAt() int64 {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetAddedAt() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.AddedAt
+	return g.AddedAt
 }
 
-func (o *GetMediaMetaDataMetadata) GetUpdatedAt() *int64 {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetUpdatedAt() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.UpdatedAt
+	return g.UpdatedAt
 }
 
-func (o *GetMediaMetaDataMetadata) GetAudienceRatingImage() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetAudienceRatingImage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.AudienceRatingImage
+	return g.AudienceRatingImage
 }
 
-func (o *GetMediaMetaDataMetadata) GetChapterSource() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetChapterSource() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ChapterSource
+	return g.ChapterSource
 }
 
-func (o *GetMediaMetaDataMetadata) GetPrimaryExtraKey() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetPrimaryExtraKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.PrimaryExtraKey
+	return g.PrimaryExtraKey
 }
 
-func (o *GetMediaMetaDataMetadata) GetOriginalTitle() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetOriginalTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.OriginalTitle
+	return g.OriginalTitle
 }
 
-func (o *GetMediaMetaDataMetadata) GetParentRatingKey() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetParentRatingKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ParentRatingKey
+	return g.ParentRatingKey
 }
 
-func (o *GetMediaMetaDataMetadata) GetGrandparentRatingKey() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetGrandparentRatingKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentRatingKey
+	return g.GrandparentRatingKey
 }
 
-func (o *GetMediaMetaDataMetadata) GetParentGUID() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetParentGUID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ParentGUID
+	return g.ParentGUID
 }
 
-func (o *GetMediaMetaDataMetadata) GetGrandparentGUID() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetGrandparentGUID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentGUID
+	return g.GrandparentGUID
 }
 
-func (o *GetMediaMetaDataMetadata) GetGrandparentSlug() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetGrandparentSlug() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentSlug
+	return g.GrandparentSlug
 }
 
-func (o *GetMediaMetaDataMetadata) GetGrandparentKey() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetGrandparentKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentKey
+	return g.GrandparentKey
 }
 
-func (o *GetMediaMetaDataMetadata) GetParentKey() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetParentKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ParentKey
+	return g.ParentKey
 }
 
-func (o *GetMediaMetaDataMetadata) GetGrandparentTitle() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetGrandparentTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentTitle
+	return g.GrandparentTitle
 }
 
-func (o *GetMediaMetaDataMetadata) GetGrandparentThumb() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetGrandparentThumb() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentThumb
+	return g.GrandparentThumb
 }
 
-func (o *GetMediaMetaDataMetadata) GetGrandparentTheme() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetGrandparentTheme() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentTheme
+	return g.GrandparentTheme
 }
 
-func (o *GetMediaMetaDataMetadata) GetGrandparentArt() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetGrandparentArt() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentArt
+	return g.GrandparentArt
 }
 
-func (o *GetMediaMetaDataMetadata) GetParentTitle() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetParentTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ParentTitle
+	return g.ParentTitle
 }
 
-func (o *GetMediaMetaDataMetadata) GetParentIndex() *int {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetParentIndex() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ParentIndex
+	return g.ParentIndex
 }
 
-func (o *GetMediaMetaDataMetadata) GetParentThumb() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetParentThumb() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ParentThumb
+	return g.ParentThumb
 }
 
-func (o *GetMediaMetaDataMetadata) GetRatingImage() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetRatingImage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.RatingImage
+	return g.RatingImage
 }
 
-func (o *GetMediaMetaDataMetadata) GetViewCount() *int {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetViewCount() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ViewCount
+	return g.ViewCount
 }
 
-func (o *GetMediaMetaDataMetadata) GetViewOffset() *int {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetViewOffset() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ViewOffset
+	return g.ViewOffset
 }
 
-func (o *GetMediaMetaDataMetadata) GetSkipCount() *int {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetSkipCount() *int {
+	if g == nil {
 		return nil
 	}
-	return o.SkipCount
+	return g.SkipCount
 }
 
-func (o *GetMediaMetaDataMetadata) GetSubtype() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetSubtype() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Subtype
+	return g.Subtype
 }
 
-func (o *GetMediaMetaDataMetadata) GetLastRatedAt() *int64 {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetLastRatedAt() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.LastRatedAt
+	return g.LastRatedAt
 }
 
-func (o *GetMediaMetaDataMetadata) GetCreatedAtAccuracy() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetCreatedAtAccuracy() *string {
+	if g == nil {
 		return nil
 	}
-	return o.CreatedAtAccuracy
+	return g.CreatedAtAccuracy
 }
 
-func (o *GetMediaMetaDataMetadata) GetCreatedAtTZOffset() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetCreatedAtTZOffset() *string {
+	if g == nil {
 		return nil
 	}
-	return o.CreatedAtTZOffset
+	return g.CreatedAtTZOffset
 }
 
-func (o *GetMediaMetaDataMetadata) GetLastViewedAt() *int {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetLastViewedAt() *int {
+	if g == nil {
 		return nil
 	}
-	return o.LastViewedAt
+	return g.LastViewedAt
 }
 
-func (o *GetMediaMetaDataMetadata) GetUserRating() *float32 {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetUserRating() *float32 {
+	if g == nil {
 		return nil
 	}
-	return o.UserRating
+	return g.UserRating
 }
 
-func (o *GetMediaMetaDataMetadata) GetImage() []GetMediaMetaDataImage {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetImage() []GetMediaMetaDataImage {
+	if g == nil {
 		return nil
 	}
-	return o.Image
+	return g.Image
 }
 
-func (o *GetMediaMetaDataMetadata) GetUltraBlurColors() *GetMediaMetaDataUltraBlurColors {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetUltraBlurColors() *GetMediaMetaDataUltraBlurColors {
+	if g == nil {
 		return nil
 	}
-	return o.UltraBlurColors
+	return g.UltraBlurColors
 }
 
-func (o *GetMediaMetaDataMetadata) GetLibrarySectionID() *int64 {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetLibrarySectionID() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionID
+	return g.LibrarySectionID
 }
 
-func (o *GetMediaMetaDataMetadata) GetLibrarySectionTitle() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetLibrarySectionTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionTitle
+	return g.LibrarySectionTitle
 }
 
-func (o *GetMediaMetaDataMetadata) GetLibrarySectionKey() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetLibrarySectionKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionKey
+	return g.LibrarySectionKey
 }
 
-func (o *GetMediaMetaDataMetadata) GetGuids() []GetMediaMetaDataGuids {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetGuids() []GetMediaMetaDataGuids {
+	if g == nil {
 		return nil
 	}
-	return o.Guids
+	return g.Guids
 }
 
-func (o *GetMediaMetaDataMetadata) GetMedia() []GetMediaMetaDataMedia {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetMedia() []GetMediaMetaDataMedia {
+	if g == nil {
 		return nil
 	}
-	return o.Media
+	return g.Media
 }
 
-func (o *GetMediaMetaDataMetadata) GetGenre() []GetMediaMetaDataGenre {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetGenre() []GetMediaMetaDataGenre {
+	if g == nil {
 		return nil
 	}
-	return o.Genre
+	return g.Genre
 }
 
-func (o *GetMediaMetaDataMetadata) GetCountry() []GetMediaMetaDataCountry {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetCountry() []GetMediaMetaDataCountry {
+	if g == nil {
 		return nil
 	}
-	return o.Country
+	return g.Country
 }
 
-func (o *GetMediaMetaDataMetadata) GetDirector() []GetMediaMetaDataDirector {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetDirector() []GetMediaMetaDataDirector {
+	if g == nil {
 		return nil
 	}
-	return o.Director
+	return g.Director
 }
 
-func (o *GetMediaMetaDataMetadata) GetWriter() []GetMediaMetaDataWriter {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetWriter() []GetMediaMetaDataWriter {
+	if g == nil {
 		return nil
 	}
-	return o.Writer
+	return g.Writer
 }
 
-func (o *GetMediaMetaDataMetadata) GetProducer() []GetMediaMetaDataProducer {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetProducer() []GetMediaMetaDataProducer {
+	if g == nil {
 		return nil
 	}
-	return o.Producer
+	return g.Producer
 }
 
-func (o *GetMediaMetaDataMetadata) GetRole() []GetMediaMetaDataRole {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetRole() []GetMediaMetaDataRole {
+	if g == nil {
 		return nil
 	}
-	return o.Role
+	return g.Role
 }
 
-func (o *GetMediaMetaDataMetadata) GetRatings() []GetMediaMetaDataRatings {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetRatings() []GetMediaMetaDataRatings {
+	if g == nil {
 		return nil
 	}
-	return o.Ratings
+	return g.Ratings
 }
 
-func (o *GetMediaMetaDataMetadata) GetSimilar() []GetMediaMetaDataSimilar {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetSimilar() []GetMediaMetaDataSimilar {
+	if g == nil {
 		return nil
 	}
-	return o.Similar
+	return g.Similar
 }
 
-func (o *GetMediaMetaDataMetadata) GetLocation() []GetMediaMetaDataLocation {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetLocation() []GetMediaMetaDataLocation {
+	if g == nil {
 		return nil
 	}
-	return o.Location
+	return g.Location
 }
 
-func (o *GetMediaMetaDataMetadata) GetChapter() []GetMediaMetaDataChapter {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetChapter() []GetMediaMetaDataChapter {
+	if g == nil {
 		return nil
 	}
-	return o.Chapter
+	return g.Chapter
 }
 
-func (o *GetMediaMetaDataMetadata) GetMarker() []GetMediaMetaDataMarker {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetMarker() []GetMediaMetaDataMarker {
+	if g == nil {
 		return nil
 	}
-	return o.Marker
+	return g.Marker
 }
 
-func (o *GetMediaMetaDataMetadata) GetExtras() *GetMediaMetaDataExtras {
-	if o == nil {
+func (g *GetMediaMetaDataMetadata) GetExtras() *GetMediaMetaDataExtras {
+	if g == nil {
 		return nil
 	}
-	return o.Extras
+	return g.Extras
 }
 
 type GetMediaMetaDataMediaContainer struct {
@@ -2418,67 +2418,67 @@ type GetMediaMetaDataMediaContainer struct {
 	Metadata []GetMediaMetaDataMetadata `json:"Metadata"`
 }
 
-func (o *GetMediaMetaDataMediaContainer) GetSize() int {
-	if o == nil {
+func (g *GetMediaMetaDataMediaContainer) GetSize() int {
+	if g == nil {
 		return 0
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetMediaMetaDataMediaContainer) GetAllowSync() bool {
-	if o == nil {
+func (g *GetMediaMetaDataMediaContainer) GetAllowSync() bool {
+	if g == nil {
 		return false
 	}
-	return o.AllowSync
+	return g.AllowSync
 }
 
-func (o *GetMediaMetaDataMediaContainer) GetIdentifier() string {
-	if o == nil {
+func (g *GetMediaMetaDataMediaContainer) GetIdentifier() string {
+	if g == nil {
 		return ""
 	}
-	return o.Identifier
+	return g.Identifier
 }
 
-func (o *GetMediaMetaDataMediaContainer) GetLibrarySectionID() *int64 {
-	if o == nil {
+func (g *GetMediaMetaDataMediaContainer) GetLibrarySectionID() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionID
+	return g.LibrarySectionID
 }
 
-func (o *GetMediaMetaDataMediaContainer) GetLibrarySectionTitle() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMediaContainer) GetLibrarySectionTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionTitle
+	return g.LibrarySectionTitle
 }
 
-func (o *GetMediaMetaDataMediaContainer) GetLibrarySectionUUID() *string {
-	if o == nil {
+func (g *GetMediaMetaDataMediaContainer) GetLibrarySectionUUID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionUUID
+	return g.LibrarySectionUUID
 }
 
-func (o *GetMediaMetaDataMediaContainer) GetMediaTagPrefix() string {
-	if o == nil {
+func (g *GetMediaMetaDataMediaContainer) GetMediaTagPrefix() string {
+	if g == nil {
 		return ""
 	}
-	return o.MediaTagPrefix
+	return g.MediaTagPrefix
 }
 
-func (o *GetMediaMetaDataMediaContainer) GetMediaTagVersion() int64 {
-	if o == nil {
+func (g *GetMediaMetaDataMediaContainer) GetMediaTagVersion() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.MediaTagVersion
+	return g.MediaTagVersion
 }
 
-func (o *GetMediaMetaDataMediaContainer) GetMetadata() []GetMediaMetaDataMetadata {
-	if o == nil {
+func (g *GetMediaMetaDataMediaContainer) GetMetadata() []GetMediaMetaDataMetadata {
+	if g == nil {
 		return []GetMediaMetaDataMetadata{}
 	}
-	return o.Metadata
+	return g.Metadata
 }
 
 // GetMediaMetaDataResponseBody - The metadata of the library item.
@@ -2486,11 +2486,11 @@ type GetMediaMetaDataResponseBody struct {
 	MediaContainer *GetMediaMetaDataMediaContainer `json:"MediaContainer,omitempty"`
 }
 
-func (o *GetMediaMetaDataResponseBody) GetMediaContainer() *GetMediaMetaDataMediaContainer {
-	if o == nil {
+func (g *GetMediaMetaDataResponseBody) GetMediaContainer() *GetMediaMetaDataMediaContainer {
+	if g == nil {
 		return nil
 	}
-	return o.MediaContainer
+	return g.MediaContainer
 }
 
 type GetMediaMetaDataResponse struct {
@@ -2504,30 +2504,30 @@ type GetMediaMetaDataResponse struct {
 	Object *GetMediaMetaDataResponseBody
 }
 
-func (o *GetMediaMetaDataResponse) GetContentType() string {
-	if o == nil {
+func (g *GetMediaMetaDataResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetMediaMetaDataResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetMediaMetaDataResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetMediaMetaDataResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetMediaMetaDataResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetMediaMetaDataResponse) GetObject() *GetMediaMetaDataResponseBody {
-	if o == nil {
+func (g *GetMediaMetaDataResponse) GetObject() *GetMediaMetaDataResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

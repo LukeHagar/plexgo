@@ -18,46 +18,46 @@ type GetBannerImageRequest struct {
 	XPlexToken string `header:"style=simple,explode=false,name=X-Plex-Token"`
 }
 
-func (o *GetBannerImageRequest) GetRatingKey() int64 {
-	if o == nil {
+func (g *GetBannerImageRequest) GetRatingKey() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.RatingKey
+	return g.RatingKey
 }
 
-func (o *GetBannerImageRequest) GetWidth() int64 {
-	if o == nil {
+func (g *GetBannerImageRequest) GetWidth() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.Width
+	return g.Width
 }
 
-func (o *GetBannerImageRequest) GetHeight() int64 {
-	if o == nil {
+func (g *GetBannerImageRequest) GetHeight() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.Height
+	return g.Height
 }
 
-func (o *GetBannerImageRequest) GetMinSize() int64 {
-	if o == nil {
+func (g *GetBannerImageRequest) GetMinSize() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.MinSize
+	return g.MinSize
 }
 
-func (o *GetBannerImageRequest) GetUpscale() int64 {
-	if o == nil {
+func (g *GetBannerImageRequest) GetUpscale() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.Upscale
+	return g.Upscale
 }
 
-func (o *GetBannerImageRequest) GetXPlexToken() string {
-	if o == nil {
+func (g *GetBannerImageRequest) GetXPlexToken() string {
+	if g == nil {
 		return ""
 	}
-	return o.XPlexToken
+	return g.XPlexToken
 }
 
 type GetBannerImageResponse struct {
@@ -73,37 +73,37 @@ type GetBannerImageResponse struct {
 	Headers        map[string][]string
 }
 
-func (o *GetBannerImageResponse) GetContentType() string {
-	if o == nil {
+func (g *GetBannerImageResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetBannerImageResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetBannerImageResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetBannerImageResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetBannerImageResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetBannerImageResponse) GetResponseStream() io.ReadCloser {
-	if o == nil {
+func (g *GetBannerImageResponse) GetResponseStream() io.ReadCloser {
+	if g == nil {
 		return nil
 	}
-	return o.ResponseStream
+	return g.ResponseStream
 }
 
-func (o *GetBannerImageResponse) GetHeaders() map[string][]string {
-	if o == nil {
+func (g *GetBannerImageResponse) GetHeaders() map[string][]string {
+	if g == nil {
 		return map[string][]string{}
 	}
-	return o.Headers
+	return g.Headers
 }

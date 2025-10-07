@@ -15,25 +15,25 @@ type AddPlaylistContentsRequest struct {
 	PlayQueueID *float64 `queryParam:"style=form,explode=true,name=playQueueID"`
 }
 
-func (o *AddPlaylistContentsRequest) GetPlaylistID() float64 {
-	if o == nil {
+func (a *AddPlaylistContentsRequest) GetPlaylistID() float64 {
+	if a == nil {
 		return 0.0
 	}
-	return o.PlaylistID
+	return a.PlaylistID
 }
 
-func (o *AddPlaylistContentsRequest) GetURI() string {
-	if o == nil {
+func (a *AddPlaylistContentsRequest) GetURI() string {
+	if a == nil {
 		return ""
 	}
-	return o.URI
+	return a.URI
 }
 
-func (o *AddPlaylistContentsRequest) GetPlayQueueID() *float64 {
-	if o == nil {
+func (a *AddPlaylistContentsRequest) GetPlayQueueID() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.PlayQueueID
+	return a.PlayQueueID
 }
 
 type AddPlaylistContentsMetadata struct {
@@ -52,95 +52,95 @@ type AddPlaylistContentsMetadata struct {
 	UpdatedAt    *int    `json:"updatedAt,omitempty"`
 }
 
-func (o *AddPlaylistContentsMetadata) GetRatingKey() *string {
-	if o == nil {
+func (a *AddPlaylistContentsMetadata) GetRatingKey() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RatingKey
+	return a.RatingKey
 }
 
-func (o *AddPlaylistContentsMetadata) GetKey() *string {
-	if o == nil {
+func (a *AddPlaylistContentsMetadata) GetKey() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Key
+	return a.Key
 }
 
-func (o *AddPlaylistContentsMetadata) GetGUID() *string {
-	if o == nil {
+func (a *AddPlaylistContentsMetadata) GetGUID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.GUID
+	return a.GUID
 }
 
-func (o *AddPlaylistContentsMetadata) GetType() *string {
-	if o == nil {
+func (a *AddPlaylistContentsMetadata) GetType() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AddPlaylistContentsMetadata) GetTitle() *string {
-	if o == nil {
+func (a *AddPlaylistContentsMetadata) GetTitle() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Title
+	return a.Title
 }
 
-func (o *AddPlaylistContentsMetadata) GetSummary() *string {
-	if o == nil {
+func (a *AddPlaylistContentsMetadata) GetSummary() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Summary
+	return a.Summary
 }
 
-func (o *AddPlaylistContentsMetadata) GetSmart() *bool {
-	if o == nil {
+func (a *AddPlaylistContentsMetadata) GetSmart() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Smart
+	return a.Smart
 }
 
-func (o *AddPlaylistContentsMetadata) GetPlaylistType() *string {
-	if o == nil {
+func (a *AddPlaylistContentsMetadata) GetPlaylistType() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PlaylistType
+	return a.PlaylistType
 }
 
-func (o *AddPlaylistContentsMetadata) GetComposite() *string {
-	if o == nil {
+func (a *AddPlaylistContentsMetadata) GetComposite() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Composite
+	return a.Composite
 }
 
-func (o *AddPlaylistContentsMetadata) GetDuration() *int {
-	if o == nil {
+func (a *AddPlaylistContentsMetadata) GetDuration() *int {
+	if a == nil {
 		return nil
 	}
-	return o.Duration
+	return a.Duration
 }
 
-func (o *AddPlaylistContentsMetadata) GetLeafCount() *int {
-	if o == nil {
+func (a *AddPlaylistContentsMetadata) GetLeafCount() *int {
+	if a == nil {
 		return nil
 	}
-	return o.LeafCount
+	return a.LeafCount
 }
 
-func (o *AddPlaylistContentsMetadata) GetAddedAt() *int {
-	if o == nil {
+func (a *AddPlaylistContentsMetadata) GetAddedAt() *int {
+	if a == nil {
 		return nil
 	}
-	return o.AddedAt
+	return a.AddedAt
 }
 
-func (o *AddPlaylistContentsMetadata) GetUpdatedAt() *int {
-	if o == nil {
+func (a *AddPlaylistContentsMetadata) GetUpdatedAt() *int {
+	if a == nil {
 		return nil
 	}
-	return o.UpdatedAt
+	return a.UpdatedAt
 }
 
 type AddPlaylistContentsMediaContainer struct {
@@ -150,32 +150,32 @@ type AddPlaylistContentsMediaContainer struct {
 	Metadata           []AddPlaylistContentsMetadata `json:"Metadata,omitempty"`
 }
 
-func (o *AddPlaylistContentsMediaContainer) GetSize() *int {
-	if o == nil {
+func (a *AddPlaylistContentsMediaContainer) GetSize() *int {
+	if a == nil {
 		return nil
 	}
-	return o.Size
+	return a.Size
 }
 
-func (o *AddPlaylistContentsMediaContainer) GetLeafCountAdded() *int {
-	if o == nil {
+func (a *AddPlaylistContentsMediaContainer) GetLeafCountAdded() *int {
+	if a == nil {
 		return nil
 	}
-	return o.LeafCountAdded
+	return a.LeafCountAdded
 }
 
-func (o *AddPlaylistContentsMediaContainer) GetLeafCountRequested() *int {
-	if o == nil {
+func (a *AddPlaylistContentsMediaContainer) GetLeafCountRequested() *int {
+	if a == nil {
 		return nil
 	}
-	return o.LeafCountRequested
+	return a.LeafCountRequested
 }
 
-func (o *AddPlaylistContentsMediaContainer) GetMetadata() []AddPlaylistContentsMetadata {
-	if o == nil {
+func (a *AddPlaylistContentsMediaContainer) GetMetadata() []AddPlaylistContentsMetadata {
+	if a == nil {
 		return nil
 	}
-	return o.Metadata
+	return a.Metadata
 }
 
 // AddPlaylistContentsResponseBody - Playlist Updated
@@ -183,11 +183,11 @@ type AddPlaylistContentsResponseBody struct {
 	MediaContainer *AddPlaylistContentsMediaContainer `json:"MediaContainer,omitempty"`
 }
 
-func (o *AddPlaylistContentsResponseBody) GetMediaContainer() *AddPlaylistContentsMediaContainer {
-	if o == nil {
+func (a *AddPlaylistContentsResponseBody) GetMediaContainer() *AddPlaylistContentsMediaContainer {
+	if a == nil {
 		return nil
 	}
-	return o.MediaContainer
+	return a.MediaContainer
 }
 
 type AddPlaylistContentsResponse struct {
@@ -201,30 +201,30 @@ type AddPlaylistContentsResponse struct {
 	Object *AddPlaylistContentsResponseBody
 }
 
-func (o *AddPlaylistContentsResponse) GetContentType() string {
-	if o == nil {
+func (a *AddPlaylistContentsResponse) GetContentType() string {
+	if a == nil {
 		return ""
 	}
-	return o.ContentType
+	return a.ContentType
 }
 
-func (o *AddPlaylistContentsResponse) GetStatusCode() int {
-	if o == nil {
+func (a *AddPlaylistContentsResponse) GetStatusCode() int {
+	if a == nil {
 		return 0
 	}
-	return o.StatusCode
+	return a.StatusCode
 }
 
-func (o *AddPlaylistContentsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (a *AddPlaylistContentsResponse) GetRawResponse() *http.Response {
+	if a == nil {
 		return nil
 	}
-	return o.RawResponse
+	return a.RawResponse
 }
 
-func (o *AddPlaylistContentsResponse) GetObject() *AddPlaylistContentsResponseBody {
-	if o == nil {
+func (a *AddPlaylistContentsResponse) GetObject() *AddPlaylistContentsResponseBody {
+	if a == nil {
 		return nil
 	}
-	return o.Object
+	return a.Object
 }

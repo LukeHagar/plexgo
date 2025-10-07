@@ -21,88 +21,88 @@ type MyPlex struct {
 	SubscriptionState    *string  `json:"subscriptionState,omitempty"`
 }
 
-func (o *MyPlex) GetAuthToken() *string {
-	if o == nil {
+func (m *MyPlex) GetAuthToken() *string {
+	if m == nil {
 		return nil
 	}
-	return o.AuthToken
+	return m.AuthToken
 }
 
-func (o *MyPlex) GetUsername() *string {
-	if o == nil {
+func (m *MyPlex) GetUsername() *string {
+	if m == nil {
 		return nil
 	}
-	return o.Username
+	return m.Username
 }
 
-func (o *MyPlex) GetMappingState() *string {
-	if o == nil {
+func (m *MyPlex) GetMappingState() *string {
+	if m == nil {
 		return nil
 	}
-	return o.MappingState
+	return m.MappingState
 }
 
-func (o *MyPlex) GetMappingError() *string {
-	if o == nil {
+func (m *MyPlex) GetMappingError() *string {
+	if m == nil {
 		return nil
 	}
-	return o.MappingError
+	return m.MappingError
 }
 
-func (o *MyPlex) GetSignInState() *string {
-	if o == nil {
+func (m *MyPlex) GetSignInState() *string {
+	if m == nil {
 		return nil
 	}
-	return o.SignInState
+	return m.SignInState
 }
 
-func (o *MyPlex) GetPublicAddress() *string {
-	if o == nil {
+func (m *MyPlex) GetPublicAddress() *string {
+	if m == nil {
 		return nil
 	}
-	return o.PublicAddress
+	return m.PublicAddress
 }
 
-func (o *MyPlex) GetPublicPort() *float64 {
-	if o == nil {
+func (m *MyPlex) GetPublicPort() *float64 {
+	if m == nil {
 		return nil
 	}
-	return o.PublicPort
+	return m.PublicPort
 }
 
-func (o *MyPlex) GetPrivateAddress() *string {
-	if o == nil {
+func (m *MyPlex) GetPrivateAddress() *string {
+	if m == nil {
 		return nil
 	}
-	return o.PrivateAddress
+	return m.PrivateAddress
 }
 
-func (o *MyPlex) GetPrivatePort() *float64 {
-	if o == nil {
+func (m *MyPlex) GetPrivatePort() *float64 {
+	if m == nil {
 		return nil
 	}
-	return o.PrivatePort
+	return m.PrivatePort
 }
 
-func (o *MyPlex) GetSubscriptionFeatures() *string {
-	if o == nil {
+func (m *MyPlex) GetSubscriptionFeatures() *string {
+	if m == nil {
 		return nil
 	}
-	return o.SubscriptionFeatures
+	return m.SubscriptionFeatures
 }
 
-func (o *MyPlex) GetSubscriptionActive() *bool {
-	if o == nil {
+func (m *MyPlex) GetSubscriptionActive() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.SubscriptionActive
+	return m.SubscriptionActive
 }
 
-func (o *MyPlex) GetSubscriptionState() *string {
-	if o == nil {
+func (m *MyPlex) GetSubscriptionState() *string {
+	if m == nil {
 		return nil
 	}
-	return o.SubscriptionState
+	return m.SubscriptionState
 }
 
 // GetMyPlexAccountResponseBody - MyPlex Account
@@ -110,11 +110,11 @@ type GetMyPlexAccountResponseBody struct {
 	MyPlex *MyPlex `json:"MyPlex,omitempty"`
 }
 
-func (o *GetMyPlexAccountResponseBody) GetMyPlex() *MyPlex {
-	if o == nil {
+func (g *GetMyPlexAccountResponseBody) GetMyPlex() *MyPlex {
+	if g == nil {
 		return nil
 	}
-	return o.MyPlex
+	return g.MyPlex
 }
 
 type GetMyPlexAccountResponse struct {
@@ -128,30 +128,30 @@ type GetMyPlexAccountResponse struct {
 	Object *GetMyPlexAccountResponseBody
 }
 
-func (o *GetMyPlexAccountResponse) GetContentType() string {
-	if o == nil {
+func (g *GetMyPlexAccountResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetMyPlexAccountResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetMyPlexAccountResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetMyPlexAccountResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetMyPlexAccountResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetMyPlexAccountResponse) GetObject() *GetMyPlexAccountResponseBody {
-	if o == nil {
+func (g *GetMyPlexAccountResponse) GetObject() *GetMyPlexAccountResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

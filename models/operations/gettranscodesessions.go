@@ -33,172 +33,172 @@ type TranscodeSession struct {
 	MinOffsetAvailable   *float64 `json:"minOffsetAvailable,omitempty"`
 }
 
-func (o *TranscodeSession) GetKey() *string {
-	if o == nil {
+func (t *TranscodeSession) GetKey() *string {
+	if t == nil {
 		return nil
 	}
-	return o.Key
+	return t.Key
 }
 
-func (o *TranscodeSession) GetThrottled() *bool {
-	if o == nil {
+func (t *TranscodeSession) GetThrottled() *bool {
+	if t == nil {
 		return nil
 	}
-	return o.Throttled
+	return t.Throttled
 }
 
-func (o *TranscodeSession) GetComplete() *bool {
-	if o == nil {
+func (t *TranscodeSession) GetComplete() *bool {
+	if t == nil {
 		return nil
 	}
-	return o.Complete
+	return t.Complete
 }
 
-func (o *TranscodeSession) GetProgress() *float64 {
-	if o == nil {
+func (t *TranscodeSession) GetProgress() *float64 {
+	if t == nil {
 		return nil
 	}
-	return o.Progress
+	return t.Progress
 }
 
-func (o *TranscodeSession) GetSize() *int {
-	if o == nil {
+func (t *TranscodeSession) GetSize() *int {
+	if t == nil {
 		return nil
 	}
-	return o.Size
+	return t.Size
 }
 
-func (o *TranscodeSession) GetSpeed() *float64 {
-	if o == nil {
+func (t *TranscodeSession) GetSpeed() *float64 {
+	if t == nil {
 		return nil
 	}
-	return o.Speed
+	return t.Speed
 }
 
-func (o *TranscodeSession) GetError() *bool {
-	if o == nil {
+func (t *TranscodeSession) GetError() *bool {
+	if t == nil {
 		return nil
 	}
-	return o.Error
+	return t.Error
 }
 
-func (o *TranscodeSession) GetDuration() *int {
-	if o == nil {
+func (t *TranscodeSession) GetDuration() *int {
+	if t == nil {
 		return nil
 	}
-	return o.Duration
+	return t.Duration
 }
 
-func (o *TranscodeSession) GetRemaining() *int {
-	if o == nil {
+func (t *TranscodeSession) GetRemaining() *int {
+	if t == nil {
 		return nil
 	}
-	return o.Remaining
+	return t.Remaining
 }
 
-func (o *TranscodeSession) GetContext() *string {
-	if o == nil {
+func (t *TranscodeSession) GetContext() *string {
+	if t == nil {
 		return nil
 	}
-	return o.Context
+	return t.Context
 }
 
-func (o *TranscodeSession) GetSourceVideoCodec() *string {
-	if o == nil {
+func (t *TranscodeSession) GetSourceVideoCodec() *string {
+	if t == nil {
 		return nil
 	}
-	return o.SourceVideoCodec
+	return t.SourceVideoCodec
 }
 
-func (o *TranscodeSession) GetSourceAudioCodec() *string {
-	if o == nil {
+func (t *TranscodeSession) GetSourceAudioCodec() *string {
+	if t == nil {
 		return nil
 	}
-	return o.SourceAudioCodec
+	return t.SourceAudioCodec
 }
 
-func (o *TranscodeSession) GetVideoDecision() *string {
-	if o == nil {
+func (t *TranscodeSession) GetVideoDecision() *string {
+	if t == nil {
 		return nil
 	}
-	return o.VideoDecision
+	return t.VideoDecision
 }
 
-func (o *TranscodeSession) GetAudioDecision() *string {
-	if o == nil {
+func (t *TranscodeSession) GetAudioDecision() *string {
+	if t == nil {
 		return nil
 	}
-	return o.AudioDecision
+	return t.AudioDecision
 }
 
-func (o *TranscodeSession) GetSubtitleDecision() *string {
-	if o == nil {
+func (t *TranscodeSession) GetSubtitleDecision() *string {
+	if t == nil {
 		return nil
 	}
-	return o.SubtitleDecision
+	return t.SubtitleDecision
 }
 
-func (o *TranscodeSession) GetProtocol() *string {
-	if o == nil {
+func (t *TranscodeSession) GetProtocol() *string {
+	if t == nil {
 		return nil
 	}
-	return o.Protocol
+	return t.Protocol
 }
 
-func (o *TranscodeSession) GetContainer() *string {
-	if o == nil {
+func (t *TranscodeSession) GetContainer() *string {
+	if t == nil {
 		return nil
 	}
-	return o.Container
+	return t.Container
 }
 
-func (o *TranscodeSession) GetVideoCodec() *string {
-	if o == nil {
+func (t *TranscodeSession) GetVideoCodec() *string {
+	if t == nil {
 		return nil
 	}
-	return o.VideoCodec
+	return t.VideoCodec
 }
 
-func (o *TranscodeSession) GetAudioCodec() *string {
-	if o == nil {
+func (t *TranscodeSession) GetAudioCodec() *string {
+	if t == nil {
 		return nil
 	}
-	return o.AudioCodec
+	return t.AudioCodec
 }
 
-func (o *TranscodeSession) GetAudioChannels() *int {
-	if o == nil {
+func (t *TranscodeSession) GetAudioChannels() *int {
+	if t == nil {
 		return nil
 	}
-	return o.AudioChannels
+	return t.AudioChannels
 }
 
-func (o *TranscodeSession) GetTranscodeHwRequested() *bool {
-	if o == nil {
+func (t *TranscodeSession) GetTranscodeHwRequested() *bool {
+	if t == nil {
 		return nil
 	}
-	return o.TranscodeHwRequested
+	return t.TranscodeHwRequested
 }
 
-func (o *TranscodeSession) GetTimeStamp() *float64 {
-	if o == nil {
+func (t *TranscodeSession) GetTimeStamp() *float64 {
+	if t == nil {
 		return nil
 	}
-	return o.TimeStamp
+	return t.TimeStamp
 }
 
-func (o *TranscodeSession) GetMaxOffsetAvailable() *float64 {
-	if o == nil {
+func (t *TranscodeSession) GetMaxOffsetAvailable() *float64 {
+	if t == nil {
 		return nil
 	}
-	return o.MaxOffsetAvailable
+	return t.MaxOffsetAvailable
 }
 
-func (o *TranscodeSession) GetMinOffsetAvailable() *float64 {
-	if o == nil {
+func (t *TranscodeSession) GetMinOffsetAvailable() *float64 {
+	if t == nil {
 		return nil
 	}
-	return o.MinOffsetAvailable
+	return t.MinOffsetAvailable
 }
 
 type GetTranscodeSessionsMediaContainer struct {
@@ -206,18 +206,18 @@ type GetTranscodeSessionsMediaContainer struct {
 	TranscodeSession []TranscodeSession `json:"TranscodeSession,omitempty"`
 }
 
-func (o *GetTranscodeSessionsMediaContainer) GetSize() *int {
-	if o == nil {
+func (g *GetTranscodeSessionsMediaContainer) GetSize() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetTranscodeSessionsMediaContainer) GetTranscodeSession() []TranscodeSession {
-	if o == nil {
+func (g *GetTranscodeSessionsMediaContainer) GetTranscodeSession() []TranscodeSession {
+	if g == nil {
 		return nil
 	}
-	return o.TranscodeSession
+	return g.TranscodeSession
 }
 
 // GetTranscodeSessionsResponseBody - The Transcode Sessions
@@ -225,11 +225,11 @@ type GetTranscodeSessionsResponseBody struct {
 	MediaContainer *GetTranscodeSessionsMediaContainer `json:"MediaContainer,omitempty"`
 }
 
-func (o *GetTranscodeSessionsResponseBody) GetMediaContainer() *GetTranscodeSessionsMediaContainer {
-	if o == nil {
+func (g *GetTranscodeSessionsResponseBody) GetMediaContainer() *GetTranscodeSessionsMediaContainer {
+	if g == nil {
 		return nil
 	}
-	return o.MediaContainer
+	return g.MediaContainer
 }
 
 type GetTranscodeSessionsResponse struct {
@@ -243,30 +243,30 @@ type GetTranscodeSessionsResponse struct {
 	Object *GetTranscodeSessionsResponseBody
 }
 
-func (o *GetTranscodeSessionsResponse) GetContentType() string {
-	if o == nil {
+func (g *GetTranscodeSessionsResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetTranscodeSessionsResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetTranscodeSessionsResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetTranscodeSessionsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetTranscodeSessionsResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetTranscodeSessionsResponse) GetObject() *GetTranscodeSessionsResponseBody {
-	if o == nil {
+func (g *GetTranscodeSessionsResponse) GetObject() *GetTranscodeSessionsResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

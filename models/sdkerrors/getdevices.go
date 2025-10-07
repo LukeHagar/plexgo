@@ -13,25 +13,25 @@ type GetDevicesServerErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetDevicesServerErrors) GetCode() *int {
-	if o == nil {
+func (g *GetDevicesServerErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetDevicesServerErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetDevicesServerErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetDevicesServerErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetDevicesServerErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetDevicesUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type GetDevicesErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetDevicesErrors) GetCode() *int {
-	if o == nil {
+func (g *GetDevicesErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetDevicesErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetDevicesErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetDevicesErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetDevicesErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetDevicesBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

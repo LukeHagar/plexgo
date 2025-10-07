@@ -13,25 +13,25 @@ type GetTopWatchedContentLibraryErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetTopWatchedContentLibraryErrors) GetCode() *int {
-	if o == nil {
+func (g *GetTopWatchedContentLibraryErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetTopWatchedContentLibraryErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetTopWatchedContentLibraryErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetTopWatchedContentLibraryErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetTopWatchedContentLibraryErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetTopWatchedContentUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type GetTopWatchedContentErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetTopWatchedContentErrors) GetCode() *int {
-	if o == nil {
+func (g *GetTopWatchedContentErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetTopWatchedContentErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetTopWatchedContentErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetTopWatchedContentErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetTopWatchedContentErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetTopWatchedContentBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

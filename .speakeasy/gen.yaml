@@ -22,7 +22,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 go:
-  version: 0.24.2
+  version: 0.25.0
   additionalDependencies: {}
   allowUnknownFieldsInWeakUnions: false
   baseErrorName: PlexAPIError
@@ -41,6 +41,7 @@ go:
   maxMethodParams: 4
   methodArguments: require-security-and-request
   modulePath: ""
+  nullableOptionalWrapper: false
   outputModelSuffix: output
   packageName: github.com/LukeHagar/plexgo
   respectRequiredFields: false

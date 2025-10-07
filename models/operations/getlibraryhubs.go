@@ -46,25 +46,25 @@ type GetLibraryHubsRequest struct {
 	OnlyTransient *QueryParamOnlyTransient `queryParam:"style=form,explode=true,name=onlyTransient"`
 }
 
-func (o *GetLibraryHubsRequest) GetSectionID() float64 {
-	if o == nil {
+func (g *GetLibraryHubsRequest) GetSectionID() float64 {
+	if g == nil {
 		return 0.0
 	}
-	return o.SectionID
+	return g.SectionID
 }
 
-func (o *GetLibraryHubsRequest) GetCount() *float64 {
-	if o == nil {
+func (g *GetLibraryHubsRequest) GetCount() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Count
+	return g.Count
 }
 
-func (o *GetLibraryHubsRequest) GetOnlyTransient() *QueryParamOnlyTransient {
-	if o == nil {
+func (g *GetLibraryHubsRequest) GetOnlyTransient() *QueryParamOnlyTransient {
+	if g == nil {
 		return nil
 	}
-	return o.OnlyTransient
+	return g.OnlyTransient
 }
 
 type GetLibraryHubsPart struct {
@@ -80,74 +80,74 @@ type GetLibraryHubsPart struct {
 	VideoProfile          *string `json:"videoProfile,omitempty"`
 }
 
-func (o *GetLibraryHubsPart) GetID() *int {
-	if o == nil {
+func (g *GetLibraryHubsPart) GetID() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetLibraryHubsPart) GetKey() *string {
-	if o == nil {
+func (g *GetLibraryHubsPart) GetKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetLibraryHubsPart) GetDuration() *int {
-	if o == nil {
+func (g *GetLibraryHubsPart) GetDuration() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Duration
+	return g.Duration
 }
 
-func (o *GetLibraryHubsPart) GetFile() *string {
-	if o == nil {
+func (g *GetLibraryHubsPart) GetFile() *string {
+	if g == nil {
 		return nil
 	}
-	return o.File
+	return g.File
 }
 
-func (o *GetLibraryHubsPart) GetSize() *int {
-	if o == nil {
+func (g *GetLibraryHubsPart) GetSize() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetLibraryHubsPart) GetAudioProfile() *string {
-	if o == nil {
+func (g *GetLibraryHubsPart) GetAudioProfile() *string {
+	if g == nil {
 		return nil
 	}
-	return o.AudioProfile
+	return g.AudioProfile
 }
 
-func (o *GetLibraryHubsPart) GetContainer() *string {
-	if o == nil {
+func (g *GetLibraryHubsPart) GetContainer() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Container
+	return g.Container
 }
 
-func (o *GetLibraryHubsPart) GetHas64bitOffsets() *bool {
-	if o == nil {
+func (g *GetLibraryHubsPart) GetHas64bitOffsets() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Has64bitOffsets
+	return g.Has64bitOffsets
 }
 
-func (o *GetLibraryHubsPart) GetOptimizedForStreaming() *bool {
-	if o == nil {
+func (g *GetLibraryHubsPart) GetOptimizedForStreaming() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.OptimizedForStreaming
+	return g.OptimizedForStreaming
 }
 
-func (o *GetLibraryHubsPart) GetVideoProfile() *string {
-	if o == nil {
+func (g *GetLibraryHubsPart) GetVideoProfile() *string {
+	if g == nil {
 		return nil
 	}
-	return o.VideoProfile
+	return g.VideoProfile
 }
 
 type GetLibraryHubsMedia struct {
@@ -170,178 +170,178 @@ type GetLibraryHubsMedia struct {
 	Part                  []GetLibraryHubsPart `json:"Part,omitempty"`
 }
 
-func (o *GetLibraryHubsMedia) GetID() *int {
-	if o == nil {
+func (g *GetLibraryHubsMedia) GetID() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetLibraryHubsMedia) GetDuration() *int {
-	if o == nil {
+func (g *GetLibraryHubsMedia) GetDuration() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Duration
+	return g.Duration
 }
 
-func (o *GetLibraryHubsMedia) GetBitrate() *int {
-	if o == nil {
+func (g *GetLibraryHubsMedia) GetBitrate() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Bitrate
+	return g.Bitrate
 }
 
-func (o *GetLibraryHubsMedia) GetWidth() *int {
-	if o == nil {
+func (g *GetLibraryHubsMedia) GetWidth() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Width
+	return g.Width
 }
 
-func (o *GetLibraryHubsMedia) GetHeight() *int {
-	if o == nil {
+func (g *GetLibraryHubsMedia) GetHeight() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Height
+	return g.Height
 }
 
-func (o *GetLibraryHubsMedia) GetAspectRatio() *float64 {
-	if o == nil {
+func (g *GetLibraryHubsMedia) GetAspectRatio() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.AspectRatio
+	return g.AspectRatio
 }
 
-func (o *GetLibraryHubsMedia) GetAudioChannels() *int {
-	if o == nil {
+func (g *GetLibraryHubsMedia) GetAudioChannels() *int {
+	if g == nil {
 		return nil
 	}
-	return o.AudioChannels
+	return g.AudioChannels
 }
 
-func (o *GetLibraryHubsMedia) GetAudioCodec() *string {
-	if o == nil {
+func (g *GetLibraryHubsMedia) GetAudioCodec() *string {
+	if g == nil {
 		return nil
 	}
-	return o.AudioCodec
+	return g.AudioCodec
 }
 
-func (o *GetLibraryHubsMedia) GetVideoCodec() *string {
-	if o == nil {
+func (g *GetLibraryHubsMedia) GetVideoCodec() *string {
+	if g == nil {
 		return nil
 	}
-	return o.VideoCodec
+	return g.VideoCodec
 }
 
-func (o *GetLibraryHubsMedia) GetVideoResolution() *string {
-	if o == nil {
+func (g *GetLibraryHubsMedia) GetVideoResolution() *string {
+	if g == nil {
 		return nil
 	}
-	return o.VideoResolution
+	return g.VideoResolution
 }
 
-func (o *GetLibraryHubsMedia) GetContainer() *string {
-	if o == nil {
+func (g *GetLibraryHubsMedia) GetContainer() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Container
+	return g.Container
 }
 
-func (o *GetLibraryHubsMedia) GetVideoFrameRate() *string {
-	if o == nil {
+func (g *GetLibraryHubsMedia) GetVideoFrameRate() *string {
+	if g == nil {
 		return nil
 	}
-	return o.VideoFrameRate
+	return g.VideoFrameRate
 }
 
-func (o *GetLibraryHubsMedia) GetOptimizedForStreaming() *int {
-	if o == nil {
+func (g *GetLibraryHubsMedia) GetOptimizedForStreaming() *int {
+	if g == nil {
 		return nil
 	}
-	return o.OptimizedForStreaming
+	return g.OptimizedForStreaming
 }
 
-func (o *GetLibraryHubsMedia) GetAudioProfile() *string {
-	if o == nil {
+func (g *GetLibraryHubsMedia) GetAudioProfile() *string {
+	if g == nil {
 		return nil
 	}
-	return o.AudioProfile
+	return g.AudioProfile
 }
 
-func (o *GetLibraryHubsMedia) GetHas64bitOffsets() *bool {
-	if o == nil {
+func (g *GetLibraryHubsMedia) GetHas64bitOffsets() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Has64bitOffsets
+	return g.Has64bitOffsets
 }
 
-func (o *GetLibraryHubsMedia) GetVideoProfile() *string {
-	if o == nil {
+func (g *GetLibraryHubsMedia) GetVideoProfile() *string {
+	if g == nil {
 		return nil
 	}
-	return o.VideoProfile
+	return g.VideoProfile
 }
 
-func (o *GetLibraryHubsMedia) GetPart() []GetLibraryHubsPart {
-	if o == nil {
+func (g *GetLibraryHubsMedia) GetPart() []GetLibraryHubsPart {
+	if g == nil {
 		return nil
 	}
-	return o.Part
+	return g.Part
 }
 
 type GetLibraryHubsGenre struct {
 	Tag *string `json:"tag,omitempty"`
 }
 
-func (o *GetLibraryHubsGenre) GetTag() *string {
-	if o == nil {
+func (g *GetLibraryHubsGenre) GetTag() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Tag
+	return g.Tag
 }
 
 type GetLibraryHubsCountry struct {
 	Tag *string `json:"tag,omitempty"`
 }
 
-func (o *GetLibraryHubsCountry) GetTag() *string {
-	if o == nil {
+func (g *GetLibraryHubsCountry) GetTag() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Tag
+	return g.Tag
 }
 
 type GetLibraryHubsDirector struct {
 	Tag *string `json:"tag,omitempty"`
 }
 
-func (o *GetLibraryHubsDirector) GetTag() *string {
-	if o == nil {
+func (g *GetLibraryHubsDirector) GetTag() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Tag
+	return g.Tag
 }
 
 type GetLibraryHubsRole struct {
 	Tag *string `json:"tag,omitempty"`
 }
 
-func (o *GetLibraryHubsRole) GetTag() *string {
-	if o == nil {
+func (g *GetLibraryHubsRole) GetTag() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Tag
+	return g.Tag
 }
 
 type GetLibraryHubsWriter struct {
 	Tag *string `json:"tag,omitempty"`
 }
 
-func (o *GetLibraryHubsWriter) GetTag() *string {
-	if o == nil {
+func (g *GetLibraryHubsWriter) GetTag() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Tag
+	return g.Tag
 }
 
 type GetLibraryHubsMetadata struct {
@@ -392,242 +392,242 @@ func (g *GetLibraryHubsMetadata) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetLibraryHubsMetadata) GetRatingKey() *string {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetRatingKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.RatingKey
+	return g.RatingKey
 }
 
-func (o *GetLibraryHubsMetadata) GetKey() *string {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetLibraryHubsMetadata) GetGUID() *string {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetGUID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GUID
+	return g.GUID
 }
 
-func (o *GetLibraryHubsMetadata) GetStudio() *string {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetStudio() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Studio
+	return g.Studio
 }
 
-func (o *GetLibraryHubsMetadata) GetType() *string {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetType() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Type
+	return g.Type
 }
 
-func (o *GetLibraryHubsMetadata) GetTitle() *string {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Title
+	return g.Title
 }
 
-func (o *GetLibraryHubsMetadata) GetLibrarySectionTitle() *string {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetLibrarySectionTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionTitle
+	return g.LibrarySectionTitle
 }
 
-func (o *GetLibraryHubsMetadata) GetLibrarySectionID() *int {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetLibrarySectionID() *int {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionID
+	return g.LibrarySectionID
 }
 
-func (o *GetLibraryHubsMetadata) GetLibrarySectionKey() *string {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetLibrarySectionKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionKey
+	return g.LibrarySectionKey
 }
 
-func (o *GetLibraryHubsMetadata) GetContentRating() *string {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetContentRating() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ContentRating
+	return g.ContentRating
 }
 
-func (o *GetLibraryHubsMetadata) GetSummary() *string {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetSummary() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Summary
+	return g.Summary
 }
 
-func (o *GetLibraryHubsMetadata) GetRating() *float64 {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetRating() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Rating
+	return g.Rating
 }
 
-func (o *GetLibraryHubsMetadata) GetAudienceRating() *float64 {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetAudienceRating() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.AudienceRating
+	return g.AudienceRating
 }
 
-func (o *GetLibraryHubsMetadata) GetViewCount() *int {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetViewCount() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ViewCount
+	return g.ViewCount
 }
 
-func (o *GetLibraryHubsMetadata) GetLastViewedAt() *int {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetLastViewedAt() *int {
+	if g == nil {
 		return nil
 	}
-	return o.LastViewedAt
+	return g.LastViewedAt
 }
 
-func (o *GetLibraryHubsMetadata) GetYear() *int {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetYear() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Year
+	return g.Year
 }
 
-func (o *GetLibraryHubsMetadata) GetTagline() *string {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetTagline() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Tagline
+	return g.Tagline
 }
 
-func (o *GetLibraryHubsMetadata) GetThumb() *string {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetThumb() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Thumb
+	return g.Thumb
 }
 
-func (o *GetLibraryHubsMetadata) GetArt() *string {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetArt() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Art
+	return g.Art
 }
 
-func (o *GetLibraryHubsMetadata) GetDuration() *int {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetDuration() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Duration
+	return g.Duration
 }
 
-func (o *GetLibraryHubsMetadata) GetOriginallyAvailableAt() *types.Date {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetOriginallyAvailableAt() *types.Date {
+	if g == nil {
 		return nil
 	}
-	return o.OriginallyAvailableAt
+	return g.OriginallyAvailableAt
 }
 
-func (o *GetLibraryHubsMetadata) GetAddedAt() *int {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetAddedAt() *int {
+	if g == nil {
 		return nil
 	}
-	return o.AddedAt
+	return g.AddedAt
 }
 
-func (o *GetLibraryHubsMetadata) GetUpdatedAt() *int {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetUpdatedAt() *int {
+	if g == nil {
 		return nil
 	}
-	return o.UpdatedAt
+	return g.UpdatedAt
 }
 
-func (o *GetLibraryHubsMetadata) GetAudienceRatingImage() *string {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetAudienceRatingImage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.AudienceRatingImage
+	return g.AudienceRatingImage
 }
 
-func (o *GetLibraryHubsMetadata) GetPrimaryExtraKey() *string {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetPrimaryExtraKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.PrimaryExtraKey
+	return g.PrimaryExtraKey
 }
 
-func (o *GetLibraryHubsMetadata) GetRatingImage() *string {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetRatingImage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.RatingImage
+	return g.RatingImage
 }
 
-func (o *GetLibraryHubsMetadata) GetMedia() []GetLibraryHubsMedia {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetMedia() []GetLibraryHubsMedia {
+	if g == nil {
 		return nil
 	}
-	return o.Media
+	return g.Media
 }
 
-func (o *GetLibraryHubsMetadata) GetGenre() []GetLibraryHubsGenre {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetGenre() []GetLibraryHubsGenre {
+	if g == nil {
 		return nil
 	}
-	return o.Genre
+	return g.Genre
 }
 
-func (o *GetLibraryHubsMetadata) GetCountry() []GetLibraryHubsCountry {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetCountry() []GetLibraryHubsCountry {
+	if g == nil {
 		return nil
 	}
-	return o.Country
+	return g.Country
 }
 
-func (o *GetLibraryHubsMetadata) GetDirector() []GetLibraryHubsDirector {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetDirector() []GetLibraryHubsDirector {
+	if g == nil {
 		return nil
 	}
-	return o.Director
+	return g.Director
 }
 
-func (o *GetLibraryHubsMetadata) GetRole() []GetLibraryHubsRole {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetRole() []GetLibraryHubsRole {
+	if g == nil {
 		return nil
 	}
-	return o.Role
+	return g.Role
 }
 
-func (o *GetLibraryHubsMetadata) GetWriter() []GetLibraryHubsWriter {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetWriter() []GetLibraryHubsWriter {
+	if g == nil {
 		return nil
 	}
-	return o.Writer
+	return g.Writer
 }
 
-func (o *GetLibraryHubsMetadata) GetSkipCount() *int {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetSkipCount() *int {
+	if g == nil {
 		return nil
 	}
-	return o.SkipCount
+	return g.SkipCount
 }
 
-func (o *GetLibraryHubsMetadata) GetChapterSource() *string {
-	if o == nil {
+func (g *GetLibraryHubsMetadata) GetChapterSource() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ChapterSource
+	return g.ChapterSource
 }
 
 type GetLibraryHubsHub struct {
@@ -645,88 +645,88 @@ type GetLibraryHubsHub struct {
 	Random        *bool                    `json:"random,omitempty"`
 }
 
-func (o *GetLibraryHubsHub) GetKey() *string {
-	if o == nil {
+func (g *GetLibraryHubsHub) GetKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetLibraryHubsHub) GetTitle() *string {
-	if o == nil {
+func (g *GetLibraryHubsHub) GetTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Title
+	return g.Title
 }
 
-func (o *GetLibraryHubsHub) GetType() *string {
-	if o == nil {
+func (g *GetLibraryHubsHub) GetType() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Type
+	return g.Type
 }
 
-func (o *GetLibraryHubsHub) GetHubIdentifier() *string {
-	if o == nil {
+func (g *GetLibraryHubsHub) GetHubIdentifier() *string {
+	if g == nil {
 		return nil
 	}
-	return o.HubIdentifier
+	return g.HubIdentifier
 }
 
-func (o *GetLibraryHubsHub) GetContext() *string {
-	if o == nil {
+func (g *GetLibraryHubsHub) GetContext() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Context
+	return g.Context
 }
 
-func (o *GetLibraryHubsHub) GetSize() *int {
-	if o == nil {
+func (g *GetLibraryHubsHub) GetSize() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetLibraryHubsHub) GetMore() *bool {
-	if o == nil {
+func (g *GetLibraryHubsHub) GetMore() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.More
+	return g.More
 }
 
-func (o *GetLibraryHubsHub) GetStyle() *string {
-	if o == nil {
+func (g *GetLibraryHubsHub) GetStyle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Style
+	return g.Style
 }
 
-func (o *GetLibraryHubsHub) GetHubKey() *string {
-	if o == nil {
+func (g *GetLibraryHubsHub) GetHubKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.HubKey
+	return g.HubKey
 }
 
-func (o *GetLibraryHubsHub) GetMetadata() []GetLibraryHubsMetadata {
-	if o == nil {
+func (g *GetLibraryHubsHub) GetMetadata() []GetLibraryHubsMetadata {
+	if g == nil {
 		return nil
 	}
-	return o.Metadata
+	return g.Metadata
 }
 
-func (o *GetLibraryHubsHub) GetPromoted() *bool {
-	if o == nil {
+func (g *GetLibraryHubsHub) GetPromoted() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Promoted
+	return g.Promoted
 }
 
-func (o *GetLibraryHubsHub) GetRandom() *bool {
-	if o == nil {
+func (g *GetLibraryHubsHub) GetRandom() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Random
+	return g.Random
 }
 
 type GetLibraryHubsMediaContainer struct {
@@ -739,53 +739,53 @@ type GetLibraryHubsMediaContainer struct {
 	Hub                 []GetLibraryHubsHub `json:"Hub,omitempty"`
 }
 
-func (o *GetLibraryHubsMediaContainer) GetSize() *int {
-	if o == nil {
+func (g *GetLibraryHubsMediaContainer) GetSize() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetLibraryHubsMediaContainer) GetAllowSync() *bool {
-	if o == nil {
+func (g *GetLibraryHubsMediaContainer) GetAllowSync() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.AllowSync
+	return g.AllowSync
 }
 
-func (o *GetLibraryHubsMediaContainer) GetIdentifier() *string {
-	if o == nil {
+func (g *GetLibraryHubsMediaContainer) GetIdentifier() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Identifier
+	return g.Identifier
 }
 
-func (o *GetLibraryHubsMediaContainer) GetLibrarySectionID() *int {
-	if o == nil {
+func (g *GetLibraryHubsMediaContainer) GetLibrarySectionID() *int {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionID
+	return g.LibrarySectionID
 }
 
-func (o *GetLibraryHubsMediaContainer) GetLibrarySectionTitle() *string {
-	if o == nil {
+func (g *GetLibraryHubsMediaContainer) GetLibrarySectionTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionTitle
+	return g.LibrarySectionTitle
 }
 
-func (o *GetLibraryHubsMediaContainer) GetLibrarySectionUUID() *string {
-	if o == nil {
+func (g *GetLibraryHubsMediaContainer) GetLibrarySectionUUID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionUUID
+	return g.LibrarySectionUUID
 }
 
-func (o *GetLibraryHubsMediaContainer) GetHub() []GetLibraryHubsHub {
-	if o == nil {
+func (g *GetLibraryHubsMediaContainer) GetHub() []GetLibraryHubsHub {
+	if g == nil {
 		return nil
 	}
-	return o.Hub
+	return g.Hub
 }
 
 // GetLibraryHubsResponseBody - The hubs specific to the library
@@ -793,11 +793,11 @@ type GetLibraryHubsResponseBody struct {
 	MediaContainer *GetLibraryHubsMediaContainer `json:"MediaContainer,omitempty"`
 }
 
-func (o *GetLibraryHubsResponseBody) GetMediaContainer() *GetLibraryHubsMediaContainer {
-	if o == nil {
+func (g *GetLibraryHubsResponseBody) GetMediaContainer() *GetLibraryHubsMediaContainer {
+	if g == nil {
 		return nil
 	}
-	return o.MediaContainer
+	return g.MediaContainer
 }
 
 type GetLibraryHubsResponse struct {
@@ -811,30 +811,30 @@ type GetLibraryHubsResponse struct {
 	Object *GetLibraryHubsResponseBody
 }
 
-func (o *GetLibraryHubsResponse) GetContentType() string {
-	if o == nil {
+func (g *GetLibraryHubsResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetLibraryHubsResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetLibraryHubsResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetLibraryHubsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetLibraryHubsResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetLibraryHubsResponse) GetObject() *GetLibraryHubsResponseBody {
-	if o == nil {
+func (g *GetLibraryHubsResponse) GetObject() *GetLibraryHubsResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

@@ -20,81 +20,81 @@ type Server struct {
 	ProtocolCapabilities *string  `json:"protocolCapabilities,omitempty"`
 }
 
-func (o *Server) GetName() *string {
-	if o == nil {
+func (s *Server) GetName() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Name
+	return s.Name
 }
 
-func (o *Server) GetHost() *string {
-	if o == nil {
+func (s *Server) GetHost() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Host
+	return s.Host
 }
 
-func (o *Server) GetAddress() *string {
-	if o == nil {
+func (s *Server) GetAddress() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Address
+	return s.Address
 }
 
-func (o *Server) GetPort() *float64 {
-	if o == nil {
+func (s *Server) GetPort() *float64 {
+	if s == nil {
 		return nil
 	}
-	return o.Port
+	return s.Port
 }
 
-func (o *Server) GetMachineIdentifier() *string {
-	if o == nil {
+func (s *Server) GetMachineIdentifier() *string {
+	if s == nil {
 		return nil
 	}
-	return o.MachineIdentifier
+	return s.MachineIdentifier
 }
 
-func (o *Server) GetVersion() *string {
-	if o == nil {
+func (s *Server) GetVersion() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Version
+	return s.Version
 }
 
-func (o *Server) GetProtocol() *string {
-	if o == nil {
+func (s *Server) GetProtocol() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Protocol
+	return s.Protocol
 }
 
-func (o *Server) GetProduct() *string {
-	if o == nil {
+func (s *Server) GetProduct() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Product
+	return s.Product
 }
 
-func (o *Server) GetDeviceClass() *string {
-	if o == nil {
+func (s *Server) GetDeviceClass() *string {
+	if s == nil {
 		return nil
 	}
-	return o.DeviceClass
+	return s.DeviceClass
 }
 
-func (o *Server) GetProtocolVersion() *float64 {
-	if o == nil {
+func (s *Server) GetProtocolVersion() *float64 {
+	if s == nil {
 		return nil
 	}
-	return o.ProtocolVersion
+	return s.ProtocolVersion
 }
 
-func (o *Server) GetProtocolCapabilities() *string {
-	if o == nil {
+func (s *Server) GetProtocolCapabilities() *string {
+	if s == nil {
 		return nil
 	}
-	return o.ProtocolCapabilities
+	return s.ProtocolCapabilities
 }
 
 type GetAvailableClientsMediaContainer struct {
@@ -102,18 +102,18 @@ type GetAvailableClientsMediaContainer struct {
 	Server []Server `json:"Server,omitempty"`
 }
 
-func (o *GetAvailableClientsMediaContainer) GetSize() *float64 {
-	if o == nil {
+func (g *GetAvailableClientsMediaContainer) GetSize() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetAvailableClientsMediaContainer) GetServer() []Server {
-	if o == nil {
+func (g *GetAvailableClientsMediaContainer) GetServer() []Server {
+	if g == nil {
 		return nil
 	}
-	return o.Server
+	return g.Server
 }
 
 // GetAvailableClientsResponseBody - Available Clients
@@ -121,11 +121,11 @@ type GetAvailableClientsResponseBody struct {
 	MediaContainer *GetAvailableClientsMediaContainer `json:"MediaContainer,omitempty"`
 }
 
-func (o *GetAvailableClientsResponseBody) GetMediaContainer() *GetAvailableClientsMediaContainer {
-	if o == nil {
+func (g *GetAvailableClientsResponseBody) GetMediaContainer() *GetAvailableClientsMediaContainer {
+	if g == nil {
 		return nil
 	}
-	return o.MediaContainer
+	return g.MediaContainer
 }
 
 type GetAvailableClientsResponse struct {
@@ -139,30 +139,30 @@ type GetAvailableClientsResponse struct {
 	Object *GetAvailableClientsResponseBody
 }
 
-func (o *GetAvailableClientsResponse) GetContentType() string {
-	if o == nil {
+func (g *GetAvailableClientsResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetAvailableClientsResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetAvailableClientsResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetAvailableClientsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetAvailableClientsResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetAvailableClientsResponse) GetObject() *GetAvailableClientsResponseBody {
-	if o == nil {
+func (g *GetAvailableClientsResponse) GetObject() *GetAvailableClientsResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

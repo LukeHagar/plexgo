@@ -12,18 +12,18 @@ type GetTokenByPinIDPlexErrors struct {
 	Message *string `json:"message,omitempty"`
 }
 
-func (o *GetTokenByPinIDPlexErrors) GetCode() *int64 {
-	if o == nil {
+func (g *GetTokenByPinIDPlexErrors) GetCode() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetTokenByPinIDPlexErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetTokenByPinIDPlexErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
 // GetTokenByPinIDResponseBody - Not Found or Expired
@@ -46,25 +46,25 @@ type GetTokenByPinIDErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetTokenByPinIDErrors) GetCode() *int {
-	if o == nil {
+func (g *GetTokenByPinIDErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetTokenByPinIDErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetTokenByPinIDErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetTokenByPinIDErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetTokenByPinIDErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetTokenByPinIDBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

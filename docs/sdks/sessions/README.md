@@ -89,7 +89,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Sessions.GetSessionHistory(ctx, plexgo.String("viewedAt:desc"), plexgo.Int64(1), &operations.QueryParamFilter{}, plexgo.Int64(12))
+    res, err := s.Sessions.GetSessionHistory(ctx, plexgo.Pointer("viewedAt:desc"), plexgo.Pointer[int64](1), &operations.QueryParamFilter{}, plexgo.Pointer[int64](12))
     if err != nil {
         log.Fatal(err)
     }

@@ -619,7 +619,7 @@ actions:
 
                 res, err := s.Hubs.GetRecentlyAdded(ctx, operations.GetRecentlyAddedRequest{
                     ContentDirectoryID: 39486,
-                    SectionID: plexgo.Int64(2),
+                    SectionID: plexgo.Pointer[int64](2),
                     Type: operations.TypeTvShow,
                     IncludeMeta: operations.IncludeMetaEnable.ToPointer(),
                 })
@@ -651,7 +651,7 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                 )
 
-                res, err := s.Search.PerformSearch(ctx, "arnold", nil, plexgo.Float64(5))
+                res, err := s.Search.PerformSearch(ctx, "arnold", nil, plexgo.Pointer[float64](5))
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -680,7 +680,7 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                 )
 
-                res, err := s.Search.PerformVoiceSearch(ctx, "dead+poop", nil, plexgo.Float64(5))
+                res, err := s.Search.PerformVoiceSearch(ctx, "dead+poop", nil, plexgo.Pointer[float64](5))
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -827,19 +827,19 @@ actions:
 
                 res, err := s.Library.GetMediaMetaData(ctx, operations.GetMediaMetaDataRequest{
                     RatingKey: "21119,21617",
-                    IncludeConcerts: plexgo.Bool(true),
-                    IncludeExtras: plexgo.Bool(true),
-                    IncludeOnDeck: plexgo.Bool(true),
-                    IncludePopularLeaves: plexgo.Bool(true),
-                    IncludePreferences: plexgo.Bool(true),
-                    IncludeReviews: plexgo.Bool(true),
-                    IncludeChapters: plexgo.Bool(true),
-                    IncludeStations: plexgo.Bool(true),
-                    IncludeExternalMedia: plexgo.Bool(true),
-                    AsyncAugmentMetadata: plexgo.Bool(true),
-                    AsyncCheckFiles: plexgo.Bool(true),
-                    AsyncRefreshAnalysis: plexgo.Bool(true),
-                    AsyncRefreshLocalMediaAgent: plexgo.Bool(true),
+                    IncludeConcerts: plexgo.Pointer(true),
+                    IncludeExtras: plexgo.Pointer(true),
+                    IncludeOnDeck: plexgo.Pointer(true),
+                    IncludePopularLeaves: plexgo.Pointer(true),
+                    IncludePreferences: plexgo.Pointer(true),
+                    IncludeReviews: plexgo.Pointer(true),
+                    IncludeChapters: plexgo.Pointer(true),
+                    IncludeStations: plexgo.Pointer(true),
+                    IncludeExternalMedia: plexgo.Pointer(true),
+                    AsyncAugmentMetadata: plexgo.Pointer(true),
+                    AsyncCheckFiles: plexgo.Pointer(true),
+                    AsyncRefreshAnalysis: plexgo.Pointer(true),
+                    AsyncRefreshLocalMediaAgent: plexgo.Pointer(true),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -898,7 +898,7 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                 )
 
-                res, err := s.Library.PostMediaArts(ctx, 2268, plexgo.String("https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b"), nil)
+                res, err := s.Library.PostMediaArts(ctx, 2268, plexgo.Pointer("https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b"), nil)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -964,7 +964,7 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                 )
 
-                res, err := s.Library.GetMetadataChildren(ctx, 2403.67, plexgo.String("Stream"))
+                res, err := s.Library.GetMetadataChildren(ctx, 2403.67, plexgo.Pointer("Stream"))
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -1022,7 +1022,7 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                 )
 
-                res, err := s.Library.PostMediaPoster(ctx, 2268, plexgo.String("https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b"), nil)
+                res, err := s.Library.PostMediaPoster(ctx, 2268, plexgo.Pointer("https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b"), nil)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -1090,7 +1090,7 @@ actions:
                 )
 
                 res, err := s.Library.GetRecentlyAddedLibrary(ctx, operations.GetRecentlyAddedLibraryRequest{
-                    ContentDirectoryID: plexgo.Int64(2),
+                    ContentDirectoryID: plexgo.Pointer[int64](2),
                     PinnedContentDirectoryID: []int64{
                         3,
                         5,
@@ -1105,7 +1105,7 @@ actions:
                         16,
                         17,
                     },
-                    SectionID: plexgo.Int64(2),
+                    SectionID: plexgo.Pointer[int64](2),
                     Type: operations.QueryParamTypeTvShow,
                     IncludeMeta: operations.QueryParamIncludeMetaEnable.ToPointer(),
                 })
@@ -1706,10 +1706,10 @@ actions:
 
                 res, err := s.Plex.GetPin(ctx, operations.GetPinRequest{
                     ClientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-                    ClientName: plexgo.String("Plex for Roku"),
-                    DeviceNickname: plexgo.String("Roku 3"),
-                    ClientVersion: plexgo.String("2.4.1"),
-                    Platform: plexgo.String("Roku"),
+                    ClientName: plexgo.Pointer("Plex for Roku"),
+                    DeviceNickname: plexgo.Pointer("Roku 3"),
+                    ClientVersion: plexgo.Pointer("2.4.1"),
+                    Platform: plexgo.Pointer("Roku"),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -1741,10 +1741,10 @@ actions:
                 res, err := s.Plex.GetTokenByPinID(ctx, operations.GetTokenByPinIDRequest{
                     PinID: 232248,
                     ClientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-                    ClientName: plexgo.String("Plex for Roku"),
-                    DeviceNickname: plexgo.String("Roku 3"),
-                    ClientVersion: plexgo.String("2.4.1"),
-                    Platform: plexgo.String("Roku"),
+                    ClientName: plexgo.Pointer("Plex for Roku"),
+                    DeviceNickname: plexgo.Pointer("Roku 3"),
+                    ClientVersion: plexgo.Pointer("2.4.1"),
+                    Platform: plexgo.Pointer("Roku"),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -2014,7 +2014,7 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                 )
 
-                res, err := s.Playlists.AddPlaylistContents(ctx, 7013.44, "server://12345/com.plexapp.plugins.library/library/metadata/1", plexgo.Float64(123))
+                res, err := s.Playlists.AddPlaylistContents(ctx, 7013.44, "server://12345/com.plexapp.plugins.library/library/metadata/1", plexgo.Pointer[float64](123))
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -2190,7 +2190,7 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                 )
 
-                res, err := s.Statistics.GetBandwidthStatistics(ctx, plexgo.Int64(4))
+                res, err := s.Statistics.GetBandwidthStatistics(ctx, plexgo.Pointer[int64](4))
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -2219,7 +2219,7 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                 )
 
-                res, err := s.Statistics.GetStatistics(ctx, plexgo.Int64(4))
+                res, err := s.Statistics.GetStatistics(ctx, plexgo.Pointer[int64](4))
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -2248,7 +2248,7 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                 )
 
-                res, err := s.Statistics.GetResourcesStatistics(ctx, plexgo.Int64(4))
+                res, err := s.Statistics.GetResourcesStatistics(ctx, plexgo.Pointer[int64](4))
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -2307,7 +2307,7 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                 )
 
-                res, err := s.Sessions.GetSessionHistory(ctx, plexgo.String("viewedAt:desc"), plexgo.Int64(1), &operations.QueryParamFilter{}, plexgo.Int64(12))
+                res, err := s.Sessions.GetSessionHistory(ctx, plexgo.Pointer("viewedAt:desc"), plexgo.Pointer[int64](1), &operations.QueryParamFilter{}, plexgo.Pointer[int64](12))
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -2513,17 +2513,17 @@ actions:
 
                 res, err := s.Users.GetUsers(ctx, operations.GetUsersRequest{
                     ClientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-                    ClientName: plexgo.String("Plex for Roku"),
-                    DeviceNickname: plexgo.String("Roku 3"),
-                    DeviceName: plexgo.String("Chrome"),
-                    DeviceScreenResolution: plexgo.String("1487x1165,2560x1440"),
-                    ClientVersion: plexgo.String("2.4.1"),
-                    Platform: plexgo.String("Roku"),
-                    ClientFeatures: plexgo.String("external-media,indirect-media,hub-style-list"),
-                    Model: plexgo.String("4200X"),
-                    XPlexSessionID: plexgo.String("97e136ef-4ddd-4ff3-89a7-a5820c96c2ca"),
-                    XPlexLanguage: plexgo.String("en"),
-                    PlatformVersion: plexgo.String("4.3 build 1057"),
+                    ClientName: plexgo.Pointer("Plex for Roku"),
+                    DeviceNickname: plexgo.Pointer("Roku 3"),
+                    DeviceName: plexgo.Pointer("Chrome"),
+                    DeviceScreenResolution: plexgo.Pointer("1487x1165,2560x1440"),
+                    ClientVersion: plexgo.Pointer("2.4.1"),
+                    Platform: plexgo.Pointer("Roku"),
+                    ClientFeatures: plexgo.Pointer("external-media,indirect-media,hub-style-list"),
+                    Model: plexgo.Pointer("4200X"),
+                    XPlexSessionID: plexgo.Pointer("97e136ef-4ddd-4ff3-89a7-a5820c96c2ca"),
+                    XPlexLanguage: plexgo.Pointer("en"),
+                    PlatformVersion: plexgo.Pointer("4.3 build 1057"),
                     XPlexToken: "CV5xoxjTpFKUzBTShsaf",
                 })
                 if err != nil {
@@ -2555,14 +2555,14 @@ actions:
 
                 res, err := s.Authentication.PostUsersSignInData(ctx, operations.PostUsersSignInDataRequest{
                     ClientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-                    ClientName: plexgo.String("Plex for Roku"),
-                    DeviceNickname: plexgo.String("Roku 3"),
-                    ClientVersion: plexgo.String("2.4.1"),
-                    Platform: plexgo.String("Roku"),
+                    ClientName: plexgo.Pointer("Plex for Roku"),
+                    DeviceNickname: plexgo.Pointer("Roku 3"),
+                    ClientVersion: plexgo.Pointer("2.4.1"),
+                    Platform: plexgo.Pointer("Roku"),
                     RequestBody: &operations.PostUsersSignInDataRequestBody{
                         Login: "username@email.com",
                         Password: "password123",
-                        VerificationCode: plexgo.String("123456"),
+                        VerificationCode: plexgo.Pointer("123456"),
                     },
                 })
                 if err != nil {
@@ -2600,17 +2600,17 @@ actions:
                     MediaIndex: 0,
                     PartIndex: 0,
                     Protocol: "hls",
-                    FastSeek: plexgo.Float64(0),
-                    DirectPlay: plexgo.Float64(0),
-                    DirectStream: plexgo.Float64(0),
-                    SubtitleSize: plexgo.Float64(100),
-                    Subtites: plexgo.String("burn"),
-                    AudioBoost: plexgo.Float64(100),
-                    Location: plexgo.String("lan"),
-                    MediaBufferSize: plexgo.Float64(102400),
-                    Session: plexgo.String("zvcage8b7rkioqcm8f4uns4c"),
-                    AddDebugOverlay: plexgo.Float64(0),
-                    AutoAdjustQuality: plexgo.Float64(0),
+                    FastSeek: plexgo.Pointer[float64](0),
+                    DirectPlay: plexgo.Pointer[float64](0),
+                    DirectStream: plexgo.Pointer[float64](0),
+                    SubtitleSize: plexgo.Pointer[float64](100),
+                    Subtites: plexgo.Pointer("burn"),
+                    AudioBoost: plexgo.Pointer[float64](100),
+                    Location: plexgo.Pointer("lan"),
+                    MediaBufferSize: plexgo.Pointer[float64](102400),
+                    Session: plexgo.Pointer("zvcage8b7rkioqcm8f4uns4c"),
+                    AddDebugOverlay: plexgo.Pointer[float64](0),
+                    AutoAdjustQuality: plexgo.Pointer[float64](0),
                 })
                 if err != nil {
                     log.Fatal(err)

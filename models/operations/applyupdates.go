@@ -69,18 +69,18 @@ type ApplyUpdatesRequest struct {
 	Skip *Skip `queryParam:"style=form,explode=true,name=skip"`
 }
 
-func (o *ApplyUpdatesRequest) GetTonight() *Tonight {
-	if o == nil {
+func (a *ApplyUpdatesRequest) GetTonight() *Tonight {
+	if a == nil {
 		return nil
 	}
-	return o.Tonight
+	return a.Tonight
 }
 
-func (o *ApplyUpdatesRequest) GetSkip() *Skip {
-	if o == nil {
+func (a *ApplyUpdatesRequest) GetSkip() *Skip {
+	if a == nil {
 		return nil
 	}
-	return o.Skip
+	return a.Skip
 }
 
 type ApplyUpdatesResponse struct {
@@ -92,23 +92,23 @@ type ApplyUpdatesResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *ApplyUpdatesResponse) GetContentType() string {
-	if o == nil {
+func (a *ApplyUpdatesResponse) GetContentType() string {
+	if a == nil {
 		return ""
 	}
-	return o.ContentType
+	return a.ContentType
 }
 
-func (o *ApplyUpdatesResponse) GetStatusCode() int {
-	if o == nil {
+func (a *ApplyUpdatesResponse) GetStatusCode() int {
+	if a == nil {
 		return 0
 	}
-	return o.StatusCode
+	return a.StatusCode
 }
 
-func (o *ApplyUpdatesResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (a *ApplyUpdatesResponse) GetRawResponse() *http.Response {
+	if a == nil {
 		return nil
 	}
-	return o.RawResponse
+	return a.RawResponse
 }

@@ -41,116 +41,116 @@ type StartUniversalTranscodeRequest struct {
 	AutoAdjustQuality *float64 `queryParam:"style=form,explode=true,name=autoAdjustQuality"`
 }
 
-func (o *StartUniversalTranscodeRequest) GetHasMDE() float64 {
-	if o == nil {
+func (s *StartUniversalTranscodeRequest) GetHasMDE() float64 {
+	if s == nil {
 		return 0.0
 	}
-	return o.HasMDE
+	return s.HasMDE
 }
 
-func (o *StartUniversalTranscodeRequest) GetPath() string {
-	if o == nil {
+func (s *StartUniversalTranscodeRequest) GetPath() string {
+	if s == nil {
 		return ""
 	}
-	return o.Path
+	return s.Path
 }
 
-func (o *StartUniversalTranscodeRequest) GetMediaIndex() float64 {
-	if o == nil {
+func (s *StartUniversalTranscodeRequest) GetMediaIndex() float64 {
+	if s == nil {
 		return 0.0
 	}
-	return o.MediaIndex
+	return s.MediaIndex
 }
 
-func (o *StartUniversalTranscodeRequest) GetPartIndex() float64 {
-	if o == nil {
+func (s *StartUniversalTranscodeRequest) GetPartIndex() float64 {
+	if s == nil {
 		return 0.0
 	}
-	return o.PartIndex
+	return s.PartIndex
 }
 
-func (o *StartUniversalTranscodeRequest) GetProtocol() string {
-	if o == nil {
+func (s *StartUniversalTranscodeRequest) GetProtocol() string {
+	if s == nil {
 		return ""
 	}
-	return o.Protocol
+	return s.Protocol
 }
 
-func (o *StartUniversalTranscodeRequest) GetFastSeek() *float64 {
-	if o == nil {
+func (s *StartUniversalTranscodeRequest) GetFastSeek() *float64 {
+	if s == nil {
 		return nil
 	}
-	return o.FastSeek
+	return s.FastSeek
 }
 
-func (o *StartUniversalTranscodeRequest) GetDirectPlay() *float64 {
-	if o == nil {
+func (s *StartUniversalTranscodeRequest) GetDirectPlay() *float64 {
+	if s == nil {
 		return nil
 	}
-	return o.DirectPlay
+	return s.DirectPlay
 }
 
-func (o *StartUniversalTranscodeRequest) GetDirectStream() *float64 {
-	if o == nil {
+func (s *StartUniversalTranscodeRequest) GetDirectStream() *float64 {
+	if s == nil {
 		return nil
 	}
-	return o.DirectStream
+	return s.DirectStream
 }
 
-func (o *StartUniversalTranscodeRequest) GetSubtitleSize() *float64 {
-	if o == nil {
+func (s *StartUniversalTranscodeRequest) GetSubtitleSize() *float64 {
+	if s == nil {
 		return nil
 	}
-	return o.SubtitleSize
+	return s.SubtitleSize
 }
 
-func (o *StartUniversalTranscodeRequest) GetSubtites() *string {
-	if o == nil {
+func (s *StartUniversalTranscodeRequest) GetSubtites() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Subtites
+	return s.Subtites
 }
 
-func (o *StartUniversalTranscodeRequest) GetAudioBoost() *float64 {
-	if o == nil {
+func (s *StartUniversalTranscodeRequest) GetAudioBoost() *float64 {
+	if s == nil {
 		return nil
 	}
-	return o.AudioBoost
+	return s.AudioBoost
 }
 
-func (o *StartUniversalTranscodeRequest) GetLocation() *string {
-	if o == nil {
+func (s *StartUniversalTranscodeRequest) GetLocation() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Location
+	return s.Location
 }
 
-func (o *StartUniversalTranscodeRequest) GetMediaBufferSize() *float64 {
-	if o == nil {
+func (s *StartUniversalTranscodeRequest) GetMediaBufferSize() *float64 {
+	if s == nil {
 		return nil
 	}
-	return o.MediaBufferSize
+	return s.MediaBufferSize
 }
 
-func (o *StartUniversalTranscodeRequest) GetSession() *string {
-	if o == nil {
+func (s *StartUniversalTranscodeRequest) GetSession() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Session
+	return s.Session
 }
 
-func (o *StartUniversalTranscodeRequest) GetAddDebugOverlay() *float64 {
-	if o == nil {
+func (s *StartUniversalTranscodeRequest) GetAddDebugOverlay() *float64 {
+	if s == nil {
 		return nil
 	}
-	return o.AddDebugOverlay
+	return s.AddDebugOverlay
 }
 
-func (o *StartUniversalTranscodeRequest) GetAutoAdjustQuality() *float64 {
-	if o == nil {
+func (s *StartUniversalTranscodeRequest) GetAutoAdjustQuality() *float64 {
+	if s == nil {
 		return nil
 	}
-	return o.AutoAdjustQuality
+	return s.AutoAdjustQuality
 }
 
 type StartUniversalTranscodeResponse struct {
@@ -162,23 +162,23 @@ type StartUniversalTranscodeResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *StartUniversalTranscodeResponse) GetContentType() string {
-	if o == nil {
+func (s *StartUniversalTranscodeResponse) GetContentType() string {
+	if s == nil {
 		return ""
 	}
-	return o.ContentType
+	return s.ContentType
 }
 
-func (o *StartUniversalTranscodeResponse) GetStatusCode() int {
-	if o == nil {
+func (s *StartUniversalTranscodeResponse) GetStatusCode() int {
+	if s == nil {
 		return 0
 	}
-	return o.StatusCode
+	return s.StatusCode
 }
 
-func (o *StartUniversalTranscodeResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (s *StartUniversalTranscodeResponse) GetRawResponse() *http.Response {
+	if s == nil {
 		return nil
 	}
-	return o.RawResponse
+	return s.RawResponse
 }

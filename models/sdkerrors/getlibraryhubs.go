@@ -13,25 +13,25 @@ type GetLibraryHubsHubsErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetLibraryHubsHubsErrors) GetCode() *int {
-	if o == nil {
+func (g *GetLibraryHubsHubsErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetLibraryHubsHubsErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetLibraryHubsHubsErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetLibraryHubsHubsErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetLibraryHubsHubsErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetLibraryHubsUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type GetLibraryHubsErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetLibraryHubsErrors) GetCode() *int {
-	if o == nil {
+func (g *GetLibraryHubsErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetLibraryHubsErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetLibraryHubsErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetLibraryHubsErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetLibraryHubsErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetLibraryHubsBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

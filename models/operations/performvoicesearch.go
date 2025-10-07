@@ -27,25 +27,25 @@ func (p *PerformVoiceSearchRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *PerformVoiceSearchRequest) GetQuery() string {
-	if o == nil {
+func (p *PerformVoiceSearchRequest) GetQuery() string {
+	if p == nil {
 		return ""
 	}
-	return o.Query
+	return p.Query
 }
 
-func (o *PerformVoiceSearchRequest) GetSectionID() *float64 {
-	if o == nil {
+func (p *PerformVoiceSearchRequest) GetSectionID() *float64 {
+	if p == nil {
 		return nil
 	}
-	return o.SectionID
+	return p.SectionID
 }
 
-func (o *PerformVoiceSearchRequest) GetLimit() *float64 {
-	if o == nil {
+func (p *PerformVoiceSearchRequest) GetLimit() *float64 {
+	if p == nil {
 		return nil
 	}
-	return o.Limit
+	return p.Limit
 }
 
 type PerformVoiceSearchResponse struct {
@@ -57,23 +57,23 @@ type PerformVoiceSearchResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *PerformVoiceSearchResponse) GetContentType() string {
-	if o == nil {
+func (p *PerformVoiceSearchResponse) GetContentType() string {
+	if p == nil {
 		return ""
 	}
-	return o.ContentType
+	return p.ContentType
 }
 
-func (o *PerformVoiceSearchResponse) GetStatusCode() int {
-	if o == nil {
+func (p *PerformVoiceSearchResponse) GetStatusCode() int {
+	if p == nil {
 		return 0
 	}
-	return o.StatusCode
+	return p.StatusCode
 }
 
-func (o *PerformVoiceSearchResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (p *PerformVoiceSearchResponse) GetRawResponse() *http.Response {
+	if p == nil {
 		return nil
 	}
-	return o.RawResponse
+	return p.RawResponse
 }

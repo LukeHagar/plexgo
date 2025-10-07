@@ -41,46 +41,46 @@ func (g *GetPinRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetPinRequest) GetStrong() *bool {
-	if o == nil {
+func (g *GetPinRequest) GetStrong() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Strong
+	return g.Strong
 }
 
-func (o *GetPinRequest) GetClientID() string {
-	if o == nil {
+func (g *GetPinRequest) GetClientID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ClientID
+	return g.ClientID
 }
 
-func (o *GetPinRequest) GetClientName() *string {
-	if o == nil {
+func (g *GetPinRequest) GetClientName() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ClientName
+	return g.ClientName
 }
 
-func (o *GetPinRequest) GetDeviceNickname() *string {
-	if o == nil {
+func (g *GetPinRequest) GetDeviceNickname() *string {
+	if g == nil {
 		return nil
 	}
-	return o.DeviceNickname
+	return g.DeviceNickname
 }
 
-func (o *GetPinRequest) GetClientVersion() *string {
-	if o == nil {
+func (g *GetPinRequest) GetClientVersion() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ClientVersion
+	return g.ClientVersion
 }
 
-func (o *GetPinRequest) GetPlatform() *string {
-	if o == nil {
+func (g *GetPinRequest) GetPlatform() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Platform
+	return g.Platform
 }
 
 // GeoData - Geo location data
@@ -120,81 +120,81 @@ func (g *GeoData) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GeoData) GetCode() string {
-	if o == nil {
+func (g *GeoData) GetCode() string {
+	if g == nil {
 		return ""
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GeoData) GetContinentCode() string {
-	if o == nil {
+func (g *GeoData) GetContinentCode() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContinentCode
+	return g.ContinentCode
 }
 
-func (o *GeoData) GetCountry() string {
-	if o == nil {
+func (g *GeoData) GetCountry() string {
+	if g == nil {
 		return ""
 	}
-	return o.Country
+	return g.Country
 }
 
-func (o *GeoData) GetCity() string {
-	if o == nil {
+func (g *GeoData) GetCity() string {
+	if g == nil {
 		return ""
 	}
-	return o.City
+	return g.City
 }
 
-func (o *GeoData) GetEuropeanUnionMember() *bool {
-	if o == nil {
+func (g *GeoData) GetEuropeanUnionMember() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.EuropeanUnionMember
+	return g.EuropeanUnionMember
 }
 
-func (o *GeoData) GetTimeZone() string {
-	if o == nil {
+func (g *GeoData) GetTimeZone() string {
+	if g == nil {
 		return ""
 	}
-	return o.TimeZone
+	return g.TimeZone
 }
 
-func (o *GeoData) GetPostalCode() string {
-	if o == nil {
+func (g *GeoData) GetPostalCode() string {
+	if g == nil {
 		return ""
 	}
-	return o.PostalCode
+	return g.PostalCode
 }
 
-func (o *GeoData) GetInPrivacyRestrictedCountry() *bool {
-	if o == nil {
+func (g *GeoData) GetInPrivacyRestrictedCountry() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.InPrivacyRestrictedCountry
+	return g.InPrivacyRestrictedCountry
 }
 
-func (o *GeoData) GetInPrivacyRestrictedRegion() *bool {
-	if o == nil {
+func (g *GeoData) GetInPrivacyRestrictedRegion() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.InPrivacyRestrictedRegion
+	return g.InPrivacyRestrictedRegion
 }
 
-func (o *GeoData) GetSubdivisions() string {
-	if o == nil {
+func (g *GeoData) GetSubdivisions() string {
+	if g == nil {
 		return ""
 	}
-	return o.Subdivisions
+	return g.Subdivisions
 }
 
-func (o *GeoData) GetCoordinates() string {
-	if o == nil {
+func (g *GeoData) GetCoordinates() string {
+	if g == nil {
 		return ""
 	}
-	return o.Coordinates
+	return g.Coordinates
 }
 
 // GetPinAuthPinContainer - Requests a new pin id used in the authentication flow
@@ -227,88 +227,88 @@ func (g *GetPinAuthPinContainer) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetPinAuthPinContainer) GetID() int64 {
-	if o == nil {
+func (g *GetPinAuthPinContainer) GetID() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetPinAuthPinContainer) GetCode() string {
-	if o == nil {
+func (g *GetPinAuthPinContainer) GetCode() string {
+	if g == nil {
 		return ""
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetPinAuthPinContainer) GetProduct() string {
-	if o == nil {
+func (g *GetPinAuthPinContainer) GetProduct() string {
+	if g == nil {
 		return ""
 	}
-	return o.Product
+	return g.Product
 }
 
-func (o *GetPinAuthPinContainer) GetTrusted() *bool {
-	if o == nil {
+func (g *GetPinAuthPinContainer) GetTrusted() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Trusted
+	return g.Trusted
 }
 
-func (o *GetPinAuthPinContainer) GetQr() string {
-	if o == nil {
+func (g *GetPinAuthPinContainer) GetQr() string {
+	if g == nil {
 		return ""
 	}
-	return o.Qr
+	return g.Qr
 }
 
-func (o *GetPinAuthPinContainer) GetClientIdentifier() string {
-	if o == nil {
+func (g *GetPinAuthPinContainer) GetClientIdentifier() string {
+	if g == nil {
 		return ""
 	}
-	return o.ClientIdentifier
+	return g.ClientIdentifier
 }
 
-func (o *GetPinAuthPinContainer) GetLocation() GeoData {
-	if o == nil {
+func (g *GetPinAuthPinContainer) GetLocation() GeoData {
+	if g == nil {
 		return GeoData{}
 	}
-	return o.Location
+	return g.Location
 }
 
-func (o *GetPinAuthPinContainer) GetExpiresIn() *int64 {
-	if o == nil {
+func (g *GetPinAuthPinContainer) GetExpiresIn() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.ExpiresIn
+	return g.ExpiresIn
 }
 
-func (o *GetPinAuthPinContainer) GetCreatedAt() time.Time {
-	if o == nil {
+func (g *GetPinAuthPinContainer) GetCreatedAt() time.Time {
+	if g == nil {
 		return time.Time{}
 	}
-	return o.CreatedAt
+	return g.CreatedAt
 }
 
-func (o *GetPinAuthPinContainer) GetExpiresAt() time.Time {
-	if o == nil {
+func (g *GetPinAuthPinContainer) GetExpiresAt() time.Time {
+	if g == nil {
 		return time.Time{}
 	}
-	return o.ExpiresAt
+	return g.ExpiresAt
 }
 
-func (o *GetPinAuthPinContainer) GetAuthToken() *string {
-	if o == nil {
+func (g *GetPinAuthPinContainer) GetAuthToken() *string {
+	if g == nil {
 		return nil
 	}
-	return o.AuthToken
+	return g.AuthToken
 }
 
-func (o *GetPinAuthPinContainer) GetNewRegistration() any {
-	if o == nil {
+func (g *GetPinAuthPinContainer) GetNewRegistration() any {
+	if g == nil {
 		return nil
 	}
-	return o.NewRegistration
+	return g.NewRegistration
 }
 
 type GetPinResponse struct {
@@ -322,30 +322,30 @@ type GetPinResponse struct {
 	AuthPinContainer *GetPinAuthPinContainer
 }
 
-func (o *GetPinResponse) GetContentType() string {
-	if o == nil {
+func (g *GetPinResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetPinResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetPinResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetPinResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetPinResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetPinResponse) GetAuthPinContainer() *GetPinAuthPinContainer {
-	if o == nil {
+func (g *GetPinResponse) GetAuthPinContainer() *GetPinAuthPinContainer {
+	if g == nil {
 		return nil
 	}
-	return o.AuthPinContainer
+	return g.AuthPinContainer
 }

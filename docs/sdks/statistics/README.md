@@ -35,7 +35,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Statistics.GetStatistics(ctx, plexgo.Int64(4))
+    res, err := s.Statistics.GetStatistics(ctx, plexgo.Pointer[int64](4))
     if err != nil {
         log.Fatal(err)
     }
@@ -88,7 +88,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Statistics.GetResourcesStatistics(ctx, plexgo.Int64(4))
+    res, err := s.Statistics.GetResourcesStatistics(ctx, plexgo.Pointer[int64](4))
     if err != nil {
         log.Fatal(err)
     }
@@ -141,7 +141,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Statistics.GetBandwidthStatistics(ctx, plexgo.Int64(4))
+    res, err := s.Statistics.GetBandwidthStatistics(ctx, plexgo.Pointer[int64](4))
     if err != nil {
         log.Fatal(err)
     }

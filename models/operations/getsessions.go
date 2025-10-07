@@ -29,144 +29,144 @@ type GetSessionsStream struct {
 	Location             *string `json:"location,omitempty"`
 }
 
-func (o *GetSessionsStream) GetAlbumGain() *string {
-	if o == nil {
+func (g *GetSessionsStream) GetAlbumGain() *string {
+	if g == nil {
 		return nil
 	}
-	return o.AlbumGain
+	return g.AlbumGain
 }
 
-func (o *GetSessionsStream) GetAlbumPeak() *string {
-	if o == nil {
+func (g *GetSessionsStream) GetAlbumPeak() *string {
+	if g == nil {
 		return nil
 	}
-	return o.AlbumPeak
+	return g.AlbumPeak
 }
 
-func (o *GetSessionsStream) GetAlbumRange() *string {
-	if o == nil {
+func (g *GetSessionsStream) GetAlbumRange() *string {
+	if g == nil {
 		return nil
 	}
-	return o.AlbumRange
+	return g.AlbumRange
 }
 
-func (o *GetSessionsStream) GetAudioChannelLayout() *string {
-	if o == nil {
+func (g *GetSessionsStream) GetAudioChannelLayout() *string {
+	if g == nil {
 		return nil
 	}
-	return o.AudioChannelLayout
+	return g.AudioChannelLayout
 }
 
-func (o *GetSessionsStream) GetBitDepth() *int {
-	if o == nil {
+func (g *GetSessionsStream) GetBitDepth() *int {
+	if g == nil {
 		return nil
 	}
-	return o.BitDepth
+	return g.BitDepth
 }
 
-func (o *GetSessionsStream) GetBitrate() *int {
-	if o == nil {
+func (g *GetSessionsStream) GetBitrate() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Bitrate
+	return g.Bitrate
 }
 
-func (o *GetSessionsStream) GetChannels() *int {
-	if o == nil {
+func (g *GetSessionsStream) GetChannels() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Channels
+	return g.Channels
 }
 
-func (o *GetSessionsStream) GetCodec() *string {
-	if o == nil {
+func (g *GetSessionsStream) GetCodec() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Codec
+	return g.Codec
 }
 
-func (o *GetSessionsStream) GetDisplayTitle() *string {
-	if o == nil {
+func (g *GetSessionsStream) GetDisplayTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.DisplayTitle
+	return g.DisplayTitle
 }
 
-func (o *GetSessionsStream) GetExtendedDisplayTitle() *string {
-	if o == nil {
+func (g *GetSessionsStream) GetExtendedDisplayTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ExtendedDisplayTitle
+	return g.ExtendedDisplayTitle
 }
 
-func (o *GetSessionsStream) GetGain() *string {
-	if o == nil {
+func (g *GetSessionsStream) GetGain() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Gain
+	return g.Gain
 }
 
-func (o *GetSessionsStream) GetID() *string {
-	if o == nil {
+func (g *GetSessionsStream) GetID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetSessionsStream) GetIndex() *int {
-	if o == nil {
+func (g *GetSessionsStream) GetIndex() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Index
+	return g.Index
 }
 
-func (o *GetSessionsStream) GetLoudness() *string {
-	if o == nil {
+func (g *GetSessionsStream) GetLoudness() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Loudness
+	return g.Loudness
 }
 
-func (o *GetSessionsStream) GetLra() *string {
-	if o == nil {
+func (g *GetSessionsStream) GetLra() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Lra
+	return g.Lra
 }
 
-func (o *GetSessionsStream) GetPeak() *string {
-	if o == nil {
+func (g *GetSessionsStream) GetPeak() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Peak
+	return g.Peak
 }
 
-func (o *GetSessionsStream) GetSamplingRate() *int {
-	if o == nil {
+func (g *GetSessionsStream) GetSamplingRate() *int {
+	if g == nil {
 		return nil
 	}
-	return o.SamplingRate
+	return g.SamplingRate
 }
 
-func (o *GetSessionsStream) GetSelected() *bool {
-	if o == nil {
+func (g *GetSessionsStream) GetSelected() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Selected
+	return g.Selected
 }
 
-func (o *GetSessionsStream) GetStreamType() *int {
-	if o == nil {
+func (g *GetSessionsStream) GetStreamType() *int {
+	if g == nil {
 		return nil
 	}
-	return o.StreamType
+	return g.StreamType
 }
 
-func (o *GetSessionsStream) GetLocation() *string {
-	if o == nil {
+func (g *GetSessionsStream) GetLocation() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Location
+	return g.Location
 }
 
 type GetSessionsPart struct {
@@ -182,74 +182,74 @@ type GetSessionsPart struct {
 	Stream       []GetSessionsStream `json:"Stream,omitempty"`
 }
 
-func (o *GetSessionsPart) GetContainer() *string {
-	if o == nil {
+func (g *GetSessionsPart) GetContainer() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Container
+	return g.Container
 }
 
-func (o *GetSessionsPart) GetDuration() *int {
-	if o == nil {
+func (g *GetSessionsPart) GetDuration() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Duration
+	return g.Duration
 }
 
-func (o *GetSessionsPart) GetFile() *string {
-	if o == nil {
+func (g *GetSessionsPart) GetFile() *string {
+	if g == nil {
 		return nil
 	}
-	return o.File
+	return g.File
 }
 
-func (o *GetSessionsPart) GetHasThumbnail() *string {
-	if o == nil {
+func (g *GetSessionsPart) GetHasThumbnail() *string {
+	if g == nil {
 		return nil
 	}
-	return o.HasThumbnail
+	return g.HasThumbnail
 }
 
-func (o *GetSessionsPart) GetID() *string {
-	if o == nil {
+func (g *GetSessionsPart) GetID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetSessionsPart) GetKey() *string {
-	if o == nil {
+func (g *GetSessionsPart) GetKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetSessionsPart) GetSize() *int {
-	if o == nil {
+func (g *GetSessionsPart) GetSize() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetSessionsPart) GetDecision() *string {
-	if o == nil {
+func (g *GetSessionsPart) GetDecision() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Decision
+	return g.Decision
 }
 
-func (o *GetSessionsPart) GetSelected() *bool {
-	if o == nil {
+func (g *GetSessionsPart) GetSelected() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Selected
+	return g.Selected
 }
 
-func (o *GetSessionsPart) GetStream() []GetSessionsStream {
-	if o == nil {
+func (g *GetSessionsPart) GetStream() []GetSessionsStream {
+	if g == nil {
 		return nil
 	}
-	return o.Stream
+	return g.Stream
 }
 
 type GetSessionsMedia struct {
@@ -263,60 +263,60 @@ type GetSessionsMedia struct {
 	Part          []GetSessionsPart `json:"Part,omitempty"`
 }
 
-func (o *GetSessionsMedia) GetAudioChannels() *int {
-	if o == nil {
+func (g *GetSessionsMedia) GetAudioChannels() *int {
+	if g == nil {
 		return nil
 	}
-	return o.AudioChannels
+	return g.AudioChannels
 }
 
-func (o *GetSessionsMedia) GetAudioCodec() *string {
-	if o == nil {
+func (g *GetSessionsMedia) GetAudioCodec() *string {
+	if g == nil {
 		return nil
 	}
-	return o.AudioCodec
+	return g.AudioCodec
 }
 
-func (o *GetSessionsMedia) GetBitrate() *int {
-	if o == nil {
+func (g *GetSessionsMedia) GetBitrate() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Bitrate
+	return g.Bitrate
 }
 
-func (o *GetSessionsMedia) GetContainer() *string {
-	if o == nil {
+func (g *GetSessionsMedia) GetContainer() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Container
+	return g.Container
 }
 
-func (o *GetSessionsMedia) GetDuration() *int {
-	if o == nil {
+func (g *GetSessionsMedia) GetDuration() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Duration
+	return g.Duration
 }
 
-func (o *GetSessionsMedia) GetID() *string {
-	if o == nil {
+func (g *GetSessionsMedia) GetID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetSessionsMedia) GetSelected() *bool {
-	if o == nil {
+func (g *GetSessionsMedia) GetSelected() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Selected
+	return g.Selected
 }
 
-func (o *GetSessionsMedia) GetPart() []GetSessionsPart {
-	if o == nil {
+func (g *GetSessionsMedia) GetPart() []GetSessionsPart {
+	if g == nil {
 		return nil
 	}
-	return o.Part
+	return g.Part
 }
 
 type GetSessionsUser struct {
@@ -325,25 +325,25 @@ type GetSessionsUser struct {
 	Title *string `json:"title,omitempty"`
 }
 
-func (o *GetSessionsUser) GetID() *string {
-	if o == nil {
+func (g *GetSessionsUser) GetID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetSessionsUser) GetThumb() *string {
-	if o == nil {
+func (g *GetSessionsUser) GetThumb() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Thumb
+	return g.Thumb
 }
 
-func (o *GetSessionsUser) GetTitle() *string {
-	if o == nil {
+func (g *GetSessionsUser) GetTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Title
+	return g.Title
 }
 
 type Player struct {
@@ -364,109 +364,109 @@ type Player struct {
 	UserID              *int    `json:"userID,omitempty"`
 }
 
-func (o *Player) GetAddress() *string {
-	if o == nil {
+func (p *Player) GetAddress() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Address
+	return p.Address
 }
 
-func (o *Player) GetMachineIdentifier() *string {
-	if o == nil {
+func (p *Player) GetMachineIdentifier() *string {
+	if p == nil {
 		return nil
 	}
-	return o.MachineIdentifier
+	return p.MachineIdentifier
 }
 
-func (o *Player) GetModel() *string {
-	if o == nil {
+func (p *Player) GetModel() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Model
+	return p.Model
 }
 
-func (o *Player) GetPlatform() *string {
-	if o == nil {
+func (p *Player) GetPlatform() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Platform
+	return p.Platform
 }
 
-func (o *Player) GetPlatformVersion() *string {
-	if o == nil {
+func (p *Player) GetPlatformVersion() *string {
+	if p == nil {
 		return nil
 	}
-	return o.PlatformVersion
+	return p.PlatformVersion
 }
 
-func (o *Player) GetProduct() *string {
-	if o == nil {
+func (p *Player) GetProduct() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Product
+	return p.Product
 }
 
-func (o *Player) GetProfile() *string {
-	if o == nil {
+func (p *Player) GetProfile() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Profile
+	return p.Profile
 }
 
-func (o *Player) GetRemotePublicAddress() *string {
-	if o == nil {
+func (p *Player) GetRemotePublicAddress() *string {
+	if p == nil {
 		return nil
 	}
-	return o.RemotePublicAddress
+	return p.RemotePublicAddress
 }
 
-func (o *Player) GetState() *string {
-	if o == nil {
+func (p *Player) GetState() *string {
+	if p == nil {
 		return nil
 	}
-	return o.State
+	return p.State
 }
 
-func (o *Player) GetTitle() *string {
-	if o == nil {
+func (p *Player) GetTitle() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Title
+	return p.Title
 }
 
-func (o *Player) GetVersion() *string {
-	if o == nil {
+func (p *Player) GetVersion() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Version
+	return p.Version
 }
 
-func (o *Player) GetLocal() *bool {
-	if o == nil {
+func (p *Player) GetLocal() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Local
+	return p.Local
 }
 
-func (o *Player) GetRelayed() *bool {
-	if o == nil {
+func (p *Player) GetRelayed() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Relayed
+	return p.Relayed
 }
 
-func (o *Player) GetSecure() *bool {
-	if o == nil {
+func (p *Player) GetSecure() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Secure
+	return p.Secure
 }
 
-func (o *Player) GetUserID() *int {
-	if o == nil {
+func (p *Player) GetUserID() *int {
+	if p == nil {
 		return nil
 	}
-	return o.UserID
+	return p.UserID
 }
 
 type Session struct {
@@ -475,25 +475,25 @@ type Session struct {
 	Location  *string `json:"location,omitempty"`
 }
 
-func (o *Session) GetID() *string {
-	if o == nil {
+func (s *Session) GetID() *string {
+	if s == nil {
 		return nil
 	}
-	return o.ID
+	return s.ID
 }
 
-func (o *Session) GetBandwidth() *int {
-	if o == nil {
+func (s *Session) GetBandwidth() *int {
+	if s == nil {
 		return nil
 	}
-	return o.Bandwidth
+	return s.Bandwidth
 }
 
-func (o *Session) GetLocation() *string {
-	if o == nil {
+func (s *Session) GetLocation() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Location
+	return s.Location
 }
 
 type GetSessionsMetadata struct {
@@ -538,270 +538,270 @@ type GetSessionsMetadata struct {
 	Session         *Session           `json:"Session,omitempty"`
 }
 
-func (o *GetSessionsMetadata) GetAddedAt() *int {
-	if o == nil {
+func (g *GetSessionsMetadata) GetAddedAt() *int {
+	if g == nil {
 		return nil
 	}
-	return o.AddedAt
+	return g.AddedAt
 }
 
-func (o *GetSessionsMetadata) GetArt() *string {
-	if o == nil {
+func (g *GetSessionsMetadata) GetArt() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Art
+	return g.Art
 }
 
-func (o *GetSessionsMetadata) GetDuration() *int {
-	if o == nil {
+func (g *GetSessionsMetadata) GetDuration() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Duration
+	return g.Duration
 }
 
-func (o *GetSessionsMetadata) GetGrandparentArt() *string {
-	if o == nil {
+func (g *GetSessionsMetadata) GetGrandparentArt() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentArt
+	return g.GrandparentArt
 }
 
-func (o *GetSessionsMetadata) GetGrandparentGUID() *string {
-	if o == nil {
+func (g *GetSessionsMetadata) GetGrandparentGUID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentGUID
+	return g.GrandparentGUID
 }
 
-func (o *GetSessionsMetadata) GetGrandparentKey() *string {
-	if o == nil {
+func (g *GetSessionsMetadata) GetGrandparentKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentKey
+	return g.GrandparentKey
 }
 
-func (o *GetSessionsMetadata) GetGrandparentRatingKey() *string {
-	if o == nil {
+func (g *GetSessionsMetadata) GetGrandparentRatingKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentRatingKey
+	return g.GrandparentRatingKey
 }
 
-func (o *GetSessionsMetadata) GetGrandparentThumb() *string {
-	if o == nil {
+func (g *GetSessionsMetadata) GetGrandparentThumb() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentThumb
+	return g.GrandparentThumb
 }
 
-func (o *GetSessionsMetadata) GetGrandparentTitle() *string {
-	if o == nil {
+func (g *GetSessionsMetadata) GetGrandparentTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentTitle
+	return g.GrandparentTitle
 }
 
-func (o *GetSessionsMetadata) GetGUID() *string {
-	if o == nil {
+func (g *GetSessionsMetadata) GetGUID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GUID
+	return g.GUID
 }
 
-func (o *GetSessionsMetadata) GetIndex() *int {
-	if o == nil {
+func (g *GetSessionsMetadata) GetIndex() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Index
+	return g.Index
 }
 
-func (o *GetSessionsMetadata) GetKey() *string {
-	if o == nil {
+func (g *GetSessionsMetadata) GetKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetSessionsMetadata) GetLibrarySectionID() *string {
-	if o == nil {
+func (g *GetSessionsMetadata) GetLibrarySectionID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionID
+	return g.LibrarySectionID
 }
 
-func (o *GetSessionsMetadata) GetLibrarySectionKey() *string {
-	if o == nil {
+func (g *GetSessionsMetadata) GetLibrarySectionKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionKey
+	return g.LibrarySectionKey
 }
 
-func (o *GetSessionsMetadata) GetLibrarySectionTitle() *string {
-	if o == nil {
+func (g *GetSessionsMetadata) GetLibrarySectionTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionTitle
+	return g.LibrarySectionTitle
 }
 
-func (o *GetSessionsMetadata) GetMusicAnalysisVersion() *string {
-	if o == nil {
+func (g *GetSessionsMetadata) GetMusicAnalysisVersion() *string {
+	if g == nil {
 		return nil
 	}
-	return o.MusicAnalysisVersion
+	return g.MusicAnalysisVersion
 }
 
-func (o *GetSessionsMetadata) GetOriginalTitle() *string {
-	if o == nil {
+func (g *GetSessionsMetadata) GetOriginalTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.OriginalTitle
+	return g.OriginalTitle
 }
 
-func (o *GetSessionsMetadata) GetParentGUID() *string {
-	if o == nil {
+func (g *GetSessionsMetadata) GetParentGUID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ParentGUID
+	return g.ParentGUID
 }
 
-func (o *GetSessionsMetadata) GetParentIndex() *int {
-	if o == nil {
+func (g *GetSessionsMetadata) GetParentIndex() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ParentIndex
+	return g.ParentIndex
 }
 
-func (o *GetSessionsMetadata) GetParentKey() *string {
-	if o == nil {
+func (g *GetSessionsMetadata) GetParentKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ParentKey
+	return g.ParentKey
 }
 
-func (o *GetSessionsMetadata) GetParentRatingKey() *string {
-	if o == nil {
+func (g *GetSessionsMetadata) GetParentRatingKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ParentRatingKey
+	return g.ParentRatingKey
 }
 
-func (o *GetSessionsMetadata) GetParentStudio() *string {
-	if o == nil {
+func (g *GetSessionsMetadata) GetParentStudio() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ParentStudio
+	return g.ParentStudio
 }
 
-func (o *GetSessionsMetadata) GetParentThumb() *string {
-	if o == nil {
+func (g *GetSessionsMetadata) GetParentThumb() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ParentThumb
+	return g.ParentThumb
 }
 
-func (o *GetSessionsMetadata) GetParentTitle() *string {
-	if o == nil {
+func (g *GetSessionsMetadata) GetParentTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ParentTitle
+	return g.ParentTitle
 }
 
-func (o *GetSessionsMetadata) GetParentYear() *int {
-	if o == nil {
+func (g *GetSessionsMetadata) GetParentYear() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ParentYear
+	return g.ParentYear
 }
 
-func (o *GetSessionsMetadata) GetRatingCount() *int {
-	if o == nil {
+func (g *GetSessionsMetadata) GetRatingCount() *int {
+	if g == nil {
 		return nil
 	}
-	return o.RatingCount
+	return g.RatingCount
 }
 
-func (o *GetSessionsMetadata) GetRatingKey() *string {
-	if o == nil {
+func (g *GetSessionsMetadata) GetRatingKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.RatingKey
+	return g.RatingKey
 }
 
-func (o *GetSessionsMetadata) GetSessionKey() *string {
-	if o == nil {
+func (g *GetSessionsMetadata) GetSessionKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.SessionKey
+	return g.SessionKey
 }
 
-func (o *GetSessionsMetadata) GetThumb() *string {
-	if o == nil {
+func (g *GetSessionsMetadata) GetThumb() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Thumb
+	return g.Thumb
 }
 
-func (o *GetSessionsMetadata) GetTitle() *string {
-	if o == nil {
+func (g *GetSessionsMetadata) GetTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Title
+	return g.Title
 }
 
-func (o *GetSessionsMetadata) GetTitleSort() *string {
-	if o == nil {
+func (g *GetSessionsMetadata) GetTitleSort() *string {
+	if g == nil {
 		return nil
 	}
-	return o.TitleSort
+	return g.TitleSort
 }
 
-func (o *GetSessionsMetadata) GetType() *string {
-	if o == nil {
+func (g *GetSessionsMetadata) GetType() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Type
+	return g.Type
 }
 
-func (o *GetSessionsMetadata) GetUpdatedAt() *int {
-	if o == nil {
+func (g *GetSessionsMetadata) GetUpdatedAt() *int {
+	if g == nil {
 		return nil
 	}
-	return o.UpdatedAt
+	return g.UpdatedAt
 }
 
-func (o *GetSessionsMetadata) GetViewOffset() *int {
-	if o == nil {
+func (g *GetSessionsMetadata) GetViewOffset() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ViewOffset
+	return g.ViewOffset
 }
 
-func (o *GetSessionsMetadata) GetMedia() []GetSessionsMedia {
-	if o == nil {
+func (g *GetSessionsMetadata) GetMedia() []GetSessionsMedia {
+	if g == nil {
 		return nil
 	}
-	return o.Media
+	return g.Media
 }
 
-func (o *GetSessionsMetadata) GetUser() *GetSessionsUser {
-	if o == nil {
+func (g *GetSessionsMetadata) GetUser() *GetSessionsUser {
+	if g == nil {
 		return nil
 	}
-	return o.User
+	return g.User
 }
 
-func (o *GetSessionsMetadata) GetPlayer() *Player {
-	if o == nil {
+func (g *GetSessionsMetadata) GetPlayer() *Player {
+	if g == nil {
 		return nil
 	}
-	return o.Player
+	return g.Player
 }
 
-func (o *GetSessionsMetadata) GetSession() *Session {
-	if o == nil {
+func (g *GetSessionsMetadata) GetSession() *Session {
+	if g == nil {
 		return nil
 	}
-	return o.Session
+	return g.Session
 }
 
 type GetSessionsMediaContainer struct {
@@ -809,18 +809,18 @@ type GetSessionsMediaContainer struct {
 	Metadata []GetSessionsMetadata `json:"Metadata,omitempty"`
 }
 
-func (o *GetSessionsMediaContainer) GetSize() *int {
-	if o == nil {
+func (g *GetSessionsMediaContainer) GetSize() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetSessionsMediaContainer) GetMetadata() []GetSessionsMetadata {
-	if o == nil {
+func (g *GetSessionsMediaContainer) GetMetadata() []GetSessionsMetadata {
+	if g == nil {
 		return nil
 	}
-	return o.Metadata
+	return g.Metadata
 }
 
 // GetSessionsResponseBody - List of Active Plex Sessions
@@ -828,11 +828,11 @@ type GetSessionsResponseBody struct {
 	MediaContainer *GetSessionsMediaContainer `json:"MediaContainer,omitempty"`
 }
 
-func (o *GetSessionsResponseBody) GetMediaContainer() *GetSessionsMediaContainer {
-	if o == nil {
+func (g *GetSessionsResponseBody) GetMediaContainer() *GetSessionsMediaContainer {
+	if g == nil {
 		return nil
 	}
-	return o.MediaContainer
+	return g.MediaContainer
 }
 
 type GetSessionsResponse struct {
@@ -846,30 +846,30 @@ type GetSessionsResponse struct {
 	Object *GetSessionsResponseBody
 }
 
-func (o *GetSessionsResponse) GetContentType() string {
-	if o == nil {
+func (g *GetSessionsResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetSessionsResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetSessionsResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetSessionsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetSessionsResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetSessionsResponse) GetObject() *GetSessionsResponseBody {
-	if o == nil {
+func (g *GetSessionsResponse) GetObject() *GetSessionsResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

@@ -15,23 +15,23 @@ type EnablePaperTrailResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *EnablePaperTrailResponse) GetContentType() string {
-	if o == nil {
+func (e *EnablePaperTrailResponse) GetContentType() string {
+	if e == nil {
 		return ""
 	}
-	return o.ContentType
+	return e.ContentType
 }
 
-func (o *EnablePaperTrailResponse) GetStatusCode() int {
-	if o == nil {
+func (e *EnablePaperTrailResponse) GetStatusCode() int {
+	if e == nil {
 		return 0
 	}
-	return o.StatusCode
+	return e.StatusCode
 }
 
-func (o *EnablePaperTrailResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (e *EnablePaperTrailResponse) GetRawResponse() *http.Response {
+	if e == nil {
 		return nil
 	}
-	return o.RawResponse
+	return e.RawResponse
 }

@@ -45,18 +45,18 @@ type GetGenresLibraryRequest struct {
 	Type GetGenresLibraryQueryParamType `queryParam:"style=form,explode=true,name=type"`
 }
 
-func (o *GetGenresLibraryRequest) GetSectionKey() int {
-	if o == nil {
+func (g *GetGenresLibraryRequest) GetSectionKey() int {
+	if g == nil {
 		return 0
 	}
-	return o.SectionKey
+	return g.SectionKey
 }
 
-func (o *GetGenresLibraryRequest) GetType() GetGenresLibraryQueryParamType {
-	if o == nil {
+func (g *GetGenresLibraryRequest) GetType() GetGenresLibraryQueryParamType {
+	if g == nil {
 		return GetGenresLibraryQueryParamType(0)
 	}
-	return o.Type
+	return g.Type
 }
 
 type GetGenresLibraryDirectory struct {
@@ -66,32 +66,32 @@ type GetGenresLibraryDirectory struct {
 	Type    string `json:"type"`
 }
 
-func (o *GetGenresLibraryDirectory) GetFastKey() string {
-	if o == nil {
+func (g *GetGenresLibraryDirectory) GetFastKey() string {
+	if g == nil {
 		return ""
 	}
-	return o.FastKey
+	return g.FastKey
 }
 
-func (o *GetGenresLibraryDirectory) GetKey() string {
-	if o == nil {
+func (g *GetGenresLibraryDirectory) GetKey() string {
+	if g == nil {
 		return ""
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetGenresLibraryDirectory) GetTitle() string {
-	if o == nil {
+func (g *GetGenresLibraryDirectory) GetTitle() string {
+	if g == nil {
 		return ""
 	}
-	return o.Title
+	return g.Title
 }
 
-func (o *GetGenresLibraryDirectory) GetType() string {
-	if o == nil {
+func (g *GetGenresLibraryDirectory) GetType() string {
+	if g == nil {
 		return ""
 	}
-	return o.Type
+	return g.Type
 }
 
 type GetGenresLibraryMediaContainer struct {
@@ -122,95 +122,95 @@ type GetGenresLibraryMediaContainer struct {
 	Directory []GetGenresLibraryDirectory `json:"Directory,omitempty"`
 }
 
-func (o *GetGenresLibraryMediaContainer) GetSize() int {
-	if o == nil {
+func (g *GetGenresLibraryMediaContainer) GetSize() int {
+	if g == nil {
 		return 0
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetGenresLibraryMediaContainer) GetAllowSync() bool {
-	if o == nil {
+func (g *GetGenresLibraryMediaContainer) GetAllowSync() bool {
+	if g == nil {
 		return false
 	}
-	return o.AllowSync
+	return g.AllowSync
 }
 
-func (o *GetGenresLibraryMediaContainer) GetArt() string {
-	if o == nil {
+func (g *GetGenresLibraryMediaContainer) GetArt() string {
+	if g == nil {
 		return ""
 	}
-	return o.Art
+	return g.Art
 }
 
-func (o *GetGenresLibraryMediaContainer) GetContent() string {
-	if o == nil {
+func (g *GetGenresLibraryMediaContainer) GetContent() string {
+	if g == nil {
 		return ""
 	}
-	return o.Content
+	return g.Content
 }
 
-func (o *GetGenresLibraryMediaContainer) GetIdentifier() string {
-	if o == nil {
+func (g *GetGenresLibraryMediaContainer) GetIdentifier() string {
+	if g == nil {
 		return ""
 	}
-	return o.Identifier
+	return g.Identifier
 }
 
-func (o *GetGenresLibraryMediaContainer) GetMediaTagPrefix() string {
-	if o == nil {
+func (g *GetGenresLibraryMediaContainer) GetMediaTagPrefix() string {
+	if g == nil {
 		return ""
 	}
-	return o.MediaTagPrefix
+	return g.MediaTagPrefix
 }
 
-func (o *GetGenresLibraryMediaContainer) GetMediaTagVersion() int64 {
-	if o == nil {
+func (g *GetGenresLibraryMediaContainer) GetMediaTagVersion() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.MediaTagVersion
+	return g.MediaTagVersion
 }
 
-func (o *GetGenresLibraryMediaContainer) GetNocache() bool {
-	if o == nil {
+func (g *GetGenresLibraryMediaContainer) GetNocache() bool {
+	if g == nil {
 		return false
 	}
-	return o.Nocache
+	return g.Nocache
 }
 
-func (o *GetGenresLibraryMediaContainer) GetThumb() string {
-	if o == nil {
+func (g *GetGenresLibraryMediaContainer) GetThumb() string {
+	if g == nil {
 		return ""
 	}
-	return o.Thumb
+	return g.Thumb
 }
 
-func (o *GetGenresLibraryMediaContainer) GetTitle1() string {
-	if o == nil {
+func (g *GetGenresLibraryMediaContainer) GetTitle1() string {
+	if g == nil {
 		return ""
 	}
-	return o.Title1
+	return g.Title1
 }
 
-func (o *GetGenresLibraryMediaContainer) GetTitle2() string {
-	if o == nil {
+func (g *GetGenresLibraryMediaContainer) GetTitle2() string {
+	if g == nil {
 		return ""
 	}
-	return o.Title2
+	return g.Title2
 }
 
-func (o *GetGenresLibraryMediaContainer) GetViewGroup() string {
-	if o == nil {
+func (g *GetGenresLibraryMediaContainer) GetViewGroup() string {
+	if g == nil {
 		return ""
 	}
-	return o.ViewGroup
+	return g.ViewGroup
 }
 
-func (o *GetGenresLibraryMediaContainer) GetDirectory() []GetGenresLibraryDirectory {
-	if o == nil {
+func (g *GetGenresLibraryMediaContainer) GetDirectory() []GetGenresLibraryDirectory {
+	if g == nil {
 		return nil
 	}
-	return o.Directory
+	return g.Directory
 }
 
 // GetGenresLibraryResponseBody - Successful response containing media container data.
@@ -218,11 +218,11 @@ type GetGenresLibraryResponseBody struct {
 	MediaContainer *GetGenresLibraryMediaContainer `json:"MediaContainer,omitempty"`
 }
 
-func (o *GetGenresLibraryResponseBody) GetMediaContainer() *GetGenresLibraryMediaContainer {
-	if o == nil {
+func (g *GetGenresLibraryResponseBody) GetMediaContainer() *GetGenresLibraryMediaContainer {
+	if g == nil {
 		return nil
 	}
-	return o.MediaContainer
+	return g.MediaContainer
 }
 
 type GetGenresLibraryResponse struct {
@@ -236,30 +236,30 @@ type GetGenresLibraryResponse struct {
 	Object *GetGenresLibraryResponseBody
 }
 
-func (o *GetGenresLibraryResponse) GetContentType() string {
-	if o == nil {
+func (g *GetGenresLibraryResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetGenresLibraryResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetGenresLibraryResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetGenresLibraryResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetGenresLibraryResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetGenresLibraryResponse) GetObject() *GetGenresLibraryResponseBody {
-	if o == nil {
+func (g *GetGenresLibraryResponse) GetObject() *GetGenresLibraryResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

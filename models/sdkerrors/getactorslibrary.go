@@ -13,25 +13,25 @@ type GetActorsLibraryLibraryErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetActorsLibraryLibraryErrors) GetCode() *int {
-	if o == nil {
+func (g *GetActorsLibraryLibraryErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetActorsLibraryLibraryErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetActorsLibraryLibraryErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetActorsLibraryLibraryErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetActorsLibraryLibraryErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetActorsLibraryUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type GetActorsLibraryErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetActorsLibraryErrors) GetCode() *int {
-	if o == nil {
+func (g *GetActorsLibraryErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetActorsLibraryErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetActorsLibraryErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetActorsLibraryErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetActorsLibraryErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetActorsLibraryBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

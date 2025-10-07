@@ -13,25 +13,25 @@ type StopTranscodeSessionSessionsErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *StopTranscodeSessionSessionsErrors) GetCode() *int {
-	if o == nil {
+func (s *StopTranscodeSessionSessionsErrors) GetCode() *int {
+	if s == nil {
 		return nil
 	}
-	return o.Code
+	return s.Code
 }
 
-func (o *StopTranscodeSessionSessionsErrors) GetMessage() *string {
-	if o == nil {
+func (s *StopTranscodeSessionSessionsErrors) GetMessage() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Message
+	return s.Message
 }
 
-func (o *StopTranscodeSessionSessionsErrors) GetStatus() *int {
-	if o == nil {
+func (s *StopTranscodeSessionSessionsErrors) GetStatus() *int {
+	if s == nil {
 		return nil
 	}
-	return o.Status
+	return s.Status
 }
 
 // StopTranscodeSessionUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type StopTranscodeSessionErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *StopTranscodeSessionErrors) GetCode() *int {
-	if o == nil {
+func (s *StopTranscodeSessionErrors) GetCode() *int {
+	if s == nil {
 		return nil
 	}
-	return o.Code
+	return s.Code
 }
 
-func (o *StopTranscodeSessionErrors) GetMessage() *string {
-	if o == nil {
+func (s *StopTranscodeSessionErrors) GetMessage() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Message
+	return s.Message
 }
 
-func (o *StopTranscodeSessionErrors) GetStatus() *int {
-	if o == nil {
+func (s *StopTranscodeSessionErrors) GetStatus() *int {
+	if s == nil {
 		return nil
 	}
-	return o.Status
+	return s.Status
 }
 
 // StopTranscodeSessionBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

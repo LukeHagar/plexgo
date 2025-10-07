@@ -13,25 +13,25 @@ type StartTaskButlerErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *StartTaskButlerErrors) GetCode() *int {
-	if o == nil {
+func (s *StartTaskButlerErrors) GetCode() *int {
+	if s == nil {
 		return nil
 	}
-	return o.Code
+	return s.Code
 }
 
-func (o *StartTaskButlerErrors) GetMessage() *string {
-	if o == nil {
+func (s *StartTaskButlerErrors) GetMessage() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Message
+	return s.Message
 }
 
-func (o *StartTaskButlerErrors) GetStatus() *int {
-	if o == nil {
+func (s *StartTaskButlerErrors) GetStatus() *int {
+	if s == nil {
 		return nil
 	}
-	return o.Status
+	return s.Status
 }
 
 // StartTaskUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type StartTaskErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *StartTaskErrors) GetCode() *int {
-	if o == nil {
+func (s *StartTaskErrors) GetCode() *int {
+	if s == nil {
 		return nil
 	}
-	return o.Code
+	return s.Code
 }
 
-func (o *StartTaskErrors) GetMessage() *string {
-	if o == nil {
+func (s *StartTaskErrors) GetMessage() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Message
+	return s.Message
 }
 
-func (o *StartTaskErrors) GetStatus() *int {
-	if o == nil {
+func (s *StartTaskErrors) GetStatus() *int {
+	if s == nil {
 		return nil
 	}
-	return o.Status
+	return s.Status
 }
 
 // StartTaskBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

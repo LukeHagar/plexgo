@@ -69,25 +69,25 @@ func (u *UploadPlaylistRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *UploadPlaylistRequest) GetPath() string {
-	if o == nil {
+func (u *UploadPlaylistRequest) GetPath() string {
+	if u == nil {
 		return ""
 	}
-	return o.Path
+	return u.Path
 }
 
-func (o *UploadPlaylistRequest) GetForce() QueryParamForce {
-	if o == nil {
+func (u *UploadPlaylistRequest) GetForce() QueryParamForce {
+	if u == nil {
 		return QueryParamForce(0)
 	}
-	return o.Force
+	return u.Force
 }
 
-func (o *UploadPlaylistRequest) GetSectionID() int64 {
-	if o == nil {
+func (u *UploadPlaylistRequest) GetSectionID() int64 {
+	if u == nil {
 		return 0
 	}
-	return o.SectionID
+	return u.SectionID
 }
 
 type UploadPlaylistResponse struct {
@@ -99,23 +99,23 @@ type UploadPlaylistResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *UploadPlaylistResponse) GetContentType() string {
-	if o == nil {
+func (u *UploadPlaylistResponse) GetContentType() string {
+	if u == nil {
 		return ""
 	}
-	return o.ContentType
+	return u.ContentType
 }
 
-func (o *UploadPlaylistResponse) GetStatusCode() int {
-	if o == nil {
+func (u *UploadPlaylistResponse) GetStatusCode() int {
+	if u == nil {
 		return 0
 	}
-	return o.StatusCode
+	return u.StatusCode
 }
 
-func (o *UploadPlaylistResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (u *UploadPlaylistResponse) GetRawResponse() *http.Response {
+	if u == nil {
 		return nil
 	}
-	return o.RawResponse
+	return u.RawResponse
 }

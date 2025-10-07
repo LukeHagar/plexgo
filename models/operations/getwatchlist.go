@@ -139,67 +139,67 @@ func (g *GetWatchListRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetWatchListRequest) GetFilter() Filter {
-	if o == nil {
+func (g *GetWatchListRequest) GetFilter() Filter {
+	if g == nil {
 		return Filter("")
 	}
-	return o.Filter
+	return g.Filter
 }
 
-func (o *GetWatchListRequest) GetSort() *string {
-	if o == nil {
+func (g *GetWatchListRequest) GetSort() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Sort
+	return g.Sort
 }
 
-func (o *GetWatchListRequest) GetLibtype() *Libtype {
-	if o == nil {
+func (g *GetWatchListRequest) GetLibtype() *Libtype {
+	if g == nil {
 		return nil
 	}
-	return o.Libtype
+	return g.Libtype
 }
 
-func (o *GetWatchListRequest) GetMaxresults() *int {
-	if o == nil {
+func (g *GetWatchListRequest) GetMaxresults() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Maxresults
+	return g.Maxresults
 }
 
-func (o *GetWatchListRequest) GetIncludeCollections() *IncludeCollections {
-	if o == nil {
+func (g *GetWatchListRequest) GetIncludeCollections() *IncludeCollections {
+	if g == nil {
 		return nil
 	}
-	return o.IncludeCollections
+	return g.IncludeCollections
 }
 
-func (o *GetWatchListRequest) GetIncludeExternalMedia() *IncludeExternalMedia {
-	if o == nil {
+func (g *GetWatchListRequest) GetIncludeExternalMedia() *IncludeExternalMedia {
+	if g == nil {
 		return nil
 	}
-	return o.IncludeExternalMedia
+	return g.IncludeExternalMedia
 }
 
-func (o *GetWatchListRequest) GetXPlexContainerStart() *int {
-	if o == nil {
+func (g *GetWatchListRequest) GetXPlexContainerStart() *int {
+	if g == nil {
 		return nil
 	}
-	return o.XPlexContainerStart
+	return g.XPlexContainerStart
 }
 
-func (o *GetWatchListRequest) GetXPlexContainerSize() *int {
-	if o == nil {
+func (g *GetWatchListRequest) GetXPlexContainerSize() *int {
+	if g == nil {
 		return nil
 	}
-	return o.XPlexContainerSize
+	return g.XPlexContainerSize
 }
 
-func (o *GetWatchListRequest) GetXPlexToken() string {
-	if o == nil {
+func (g *GetWatchListRequest) GetXPlexToken() string {
+	if g == nil {
 		return ""
 	}
-	return o.XPlexToken
+	return g.XPlexToken
 }
 
 type Image struct {
@@ -208,25 +208,25 @@ type Image struct {
 	URL  *string `json:"url,omitempty"`
 }
 
-func (o *Image) GetAlt() *string {
-	if o == nil {
+func (i *Image) GetAlt() *string {
+	if i == nil {
 		return nil
 	}
-	return o.Alt
+	return i.Alt
 }
 
-func (o *Image) GetType() *string {
-	if o == nil {
+func (i *Image) GetType() *string {
+	if i == nil {
 		return nil
 	}
-	return o.Type
+	return i.Type
 }
 
-func (o *Image) GetURL() *string {
-	if o == nil {
+func (i *Image) GetURL() *string {
+	if i == nil {
 		return nil
 	}
-	return o.URL
+	return i.URL
 }
 
 type Metadata struct {
@@ -278,249 +278,249 @@ func (m *Metadata) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *Metadata) GetArt() *string {
-	if o == nil {
+func (m *Metadata) GetArt() *string {
+	if m == nil {
 		return nil
 	}
-	return o.Art
+	return m.Art
 }
 
-func (o *Metadata) GetGUID() *string {
-	if o == nil {
+func (m *Metadata) GetGUID() *string {
+	if m == nil {
 		return nil
 	}
-	return o.GUID
+	return m.GUID
 }
 
-func (o *Metadata) GetKey() *string {
-	if o == nil {
+func (m *Metadata) GetKey() *string {
+	if m == nil {
 		return nil
 	}
-	return o.Key
+	return m.Key
 }
 
-func (o *Metadata) GetRatingKey() *string {
-	if o == nil {
+func (m *Metadata) GetRatingKey() *string {
+	if m == nil {
 		return nil
 	}
-	return o.RatingKey
+	return m.RatingKey
 }
 
-func (o *Metadata) GetStudio() *string {
-	if o == nil {
+func (m *Metadata) GetStudio() *string {
+	if m == nil {
 		return nil
 	}
-	return o.Studio
+	return m.Studio
 }
 
-func (o *Metadata) GetTagline() *string {
-	if o == nil {
+func (m *Metadata) GetTagline() *string {
+	if m == nil {
 		return nil
 	}
-	return o.Tagline
+	return m.Tagline
 }
 
-func (o *Metadata) GetType() *string {
-	if o == nil {
+func (m *Metadata) GetType() *string {
+	if m == nil {
 		return nil
 	}
-	return o.Type
+	return m.Type
 }
 
-func (o *Metadata) GetThumb() *string {
-	if o == nil {
+func (m *Metadata) GetThumb() *string {
+	if m == nil {
 		return nil
 	}
-	return o.Thumb
+	return m.Thumb
 }
 
-func (o *Metadata) GetAddedAt() *int {
-	if o == nil {
+func (m *Metadata) GetAddedAt() *int {
+	if m == nil {
 		return nil
 	}
-	return o.AddedAt
+	return m.AddedAt
 }
 
-func (o *Metadata) GetDuration() *int {
-	if o == nil {
+func (m *Metadata) GetDuration() *int {
+	if m == nil {
 		return nil
 	}
-	return o.Duration
+	return m.Duration
 }
 
-func (o *Metadata) GetPublicPagesURL() *string {
-	if o == nil {
+func (m *Metadata) GetPublicPagesURL() *string {
+	if m == nil {
 		return nil
 	}
-	return o.PublicPagesURL
+	return m.PublicPagesURL
 }
 
-func (o *Metadata) GetSlug() *string {
-	if o == nil {
+func (m *Metadata) GetSlug() *string {
+	if m == nil {
 		return nil
 	}
-	return o.Slug
+	return m.Slug
 }
 
-func (o *Metadata) GetUserState() *bool {
-	if o == nil {
+func (m *Metadata) GetUserState() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.UserState
+	return m.UserState
 }
 
-func (o *Metadata) GetTitle() *string {
-	if o == nil {
+func (m *Metadata) GetTitle() *string {
+	if m == nil {
 		return nil
 	}
-	return o.Title
+	return m.Title
 }
 
-func (o *Metadata) GetContentRating() *string {
-	if o == nil {
+func (m *Metadata) GetContentRating() *string {
+	if m == nil {
 		return nil
 	}
-	return o.ContentRating
+	return m.ContentRating
 }
 
-func (o *Metadata) GetOriginallyAvailableAt() *types.Date {
-	if o == nil {
+func (m *Metadata) GetOriginallyAvailableAt() *types.Date {
+	if m == nil {
 		return nil
 	}
-	return o.OriginallyAvailableAt
+	return m.OriginallyAvailableAt
 }
 
-func (o *Metadata) GetYear() *int {
-	if o == nil {
+func (m *Metadata) GetYear() *int {
+	if m == nil {
 		return nil
 	}
-	return o.Year
+	return m.Year
 }
 
-func (o *Metadata) GetImage() []Image {
-	if o == nil {
+func (m *Metadata) GetImage() []Image {
+	if m == nil {
 		return nil
 	}
-	return o.Image
+	return m.Image
 }
 
-func (o *Metadata) GetBanner() *string {
-	if o == nil {
+func (m *Metadata) GetBanner() *string {
+	if m == nil {
 		return nil
 	}
-	return o.Banner
+	return m.Banner
 }
 
-func (o *Metadata) GetRating() *float64 {
-	if o == nil {
+func (m *Metadata) GetRating() *float64 {
+	if m == nil {
 		return nil
 	}
-	return o.Rating
+	return m.Rating
 }
 
-func (o *Metadata) GetExpiresAt() *int {
-	if o == nil {
+func (m *Metadata) GetExpiresAt() *int {
+	if m == nil {
 		return nil
 	}
-	return o.ExpiresAt
+	return m.ExpiresAt
 }
 
-func (o *Metadata) GetOriginalTitle() *string {
-	if o == nil {
+func (m *Metadata) GetOriginalTitle() *string {
+	if m == nil {
 		return nil
 	}
-	return o.OriginalTitle
+	return m.OriginalTitle
 }
 
-func (o *Metadata) GetAudienceRating() *float64 {
-	if o == nil {
+func (m *Metadata) GetAudienceRating() *float64 {
+	if m == nil {
 		return nil
 	}
-	return o.AudienceRating
+	return m.AudienceRating
 }
 
-func (o *Metadata) GetAudienceRatingImage() *string {
-	if o == nil {
+func (m *Metadata) GetAudienceRatingImage() *string {
+	if m == nil {
 		return nil
 	}
-	return o.AudienceRatingImage
+	return m.AudienceRatingImage
 }
 
-func (o *Metadata) GetRatingImage() *string {
-	if o == nil {
+func (m *Metadata) GetRatingImage() *string {
+	if m == nil {
 		return nil
 	}
-	return o.RatingImage
+	return m.RatingImage
 }
 
-func (o *Metadata) GetImdbRatingCount() *int {
-	if o == nil {
+func (m *Metadata) GetImdbRatingCount() *int {
+	if m == nil {
 		return nil
 	}
-	return o.ImdbRatingCount
+	return m.ImdbRatingCount
 }
 
-func (o *Metadata) GetSubtype() *string {
-	if o == nil {
+func (m *Metadata) GetSubtype() *string {
+	if m == nil {
 		return nil
 	}
-	return o.Subtype
+	return m.Subtype
 }
 
-func (o *Metadata) GetTheme() *string {
-	if o == nil {
+func (m *Metadata) GetTheme() *string {
+	if m == nil {
 		return nil
 	}
-	return o.Theme
+	return m.Theme
 }
 
-func (o *Metadata) GetLeafCount() *int {
-	if o == nil {
+func (m *Metadata) GetLeafCount() *int {
+	if m == nil {
 		return nil
 	}
-	return o.LeafCount
+	return m.LeafCount
 }
 
-func (o *Metadata) GetChildCount() *int {
-	if o == nil {
+func (m *Metadata) GetChildCount() *int {
+	if m == nil {
 		return nil
 	}
-	return o.ChildCount
+	return m.ChildCount
 }
 
-func (o *Metadata) GetIsContinuingSeries() *bool {
-	if o == nil {
+func (m *Metadata) GetIsContinuingSeries() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.IsContinuingSeries
+	return m.IsContinuingSeries
 }
 
-func (o *Metadata) GetSkipChildren() *bool {
-	if o == nil {
+func (m *Metadata) GetSkipChildren() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.SkipChildren
+	return m.SkipChildren
 }
 
-func (o *Metadata) GetAvailabilityID() *string {
-	if o == nil {
+func (m *Metadata) GetAvailabilityID() *string {
+	if m == nil {
 		return nil
 	}
-	return o.AvailabilityID
+	return m.AvailabilityID
 }
 
-func (o *Metadata) GetStreamingMediaID() *string {
-	if o == nil {
+func (m *Metadata) GetStreamingMediaID() *string {
+	if m == nil {
 		return nil
 	}
-	return o.StreamingMediaID
+	return m.StreamingMediaID
 }
 
-func (o *Metadata) GetPlayableKey() *string {
-	if o == nil {
+func (m *Metadata) GetPlayableKey() *string {
+	if m == nil {
 		return nil
 	}
-	return o.PlayableKey
+	return m.PlayableKey
 }
 
 // GetWatchListResponseBody - Watchlist Data
@@ -534,53 +534,53 @@ type GetWatchListResponseBody struct {
 	Metadata            []Metadata `json:"Metadata,omitempty"`
 }
 
-func (o *GetWatchListResponseBody) GetLibrarySectionID() *string {
-	if o == nil {
+func (g *GetWatchListResponseBody) GetLibrarySectionID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionID
+	return g.LibrarySectionID
 }
 
-func (o *GetWatchListResponseBody) GetLibrarySectionTitle() *string {
-	if o == nil {
+func (g *GetWatchListResponseBody) GetLibrarySectionTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionTitle
+	return g.LibrarySectionTitle
 }
 
-func (o *GetWatchListResponseBody) GetOffset() *int {
-	if o == nil {
+func (g *GetWatchListResponseBody) GetOffset() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Offset
+	return g.Offset
 }
 
-func (o *GetWatchListResponseBody) GetTotalSize() *int {
-	if o == nil {
+func (g *GetWatchListResponseBody) GetTotalSize() *int {
+	if g == nil {
 		return nil
 	}
-	return o.TotalSize
+	return g.TotalSize
 }
 
-func (o *GetWatchListResponseBody) GetIdentifier() *string {
-	if o == nil {
+func (g *GetWatchListResponseBody) GetIdentifier() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Identifier
+	return g.Identifier
 }
 
-func (o *GetWatchListResponseBody) GetSize() *int {
-	if o == nil {
+func (g *GetWatchListResponseBody) GetSize() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetWatchListResponseBody) GetMetadata() []Metadata {
-	if o == nil {
+func (g *GetWatchListResponseBody) GetMetadata() []Metadata {
+	if g == nil {
 		return nil
 	}
-	return o.Metadata
+	return g.Metadata
 }
 
 type GetWatchListResponse struct {
@@ -594,30 +594,30 @@ type GetWatchListResponse struct {
 	Object *GetWatchListResponseBody
 }
 
-func (o *GetWatchListResponse) GetContentType() string {
-	if o == nil {
+func (g *GetWatchListResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetWatchListResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetWatchListResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetWatchListResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetWatchListResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetWatchListResponse) GetObject() *GetWatchListResponseBody {
-	if o == nil {
+func (g *GetWatchListResponse) GetObject() *GetWatchListResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

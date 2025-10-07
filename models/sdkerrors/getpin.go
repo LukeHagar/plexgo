@@ -13,25 +13,25 @@ type GetPinErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetPinErrors) GetCode() *int {
-	if o == nil {
+func (g *GetPinErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetPinErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetPinErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetPinErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetPinErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetPinBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

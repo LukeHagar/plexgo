@@ -15,25 +15,25 @@ type UpdatePlayProgressRequest struct {
 	State string `queryParam:"style=form,explode=true,name=state"`
 }
 
-func (o *UpdatePlayProgressRequest) GetKey() string {
-	if o == nil {
+func (u *UpdatePlayProgressRequest) GetKey() string {
+	if u == nil {
 		return ""
 	}
-	return o.Key
+	return u.Key
 }
 
-func (o *UpdatePlayProgressRequest) GetTime() float64 {
-	if o == nil {
+func (u *UpdatePlayProgressRequest) GetTime() float64 {
+	if u == nil {
 		return 0.0
 	}
-	return o.Time
+	return u.Time
 }
 
-func (o *UpdatePlayProgressRequest) GetState() string {
-	if o == nil {
+func (u *UpdatePlayProgressRequest) GetState() string {
+	if u == nil {
 		return ""
 	}
-	return o.State
+	return u.State
 }
 
 type UpdatePlayProgressResponse struct {
@@ -45,23 +45,23 @@ type UpdatePlayProgressResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *UpdatePlayProgressResponse) GetContentType() string {
-	if o == nil {
+func (u *UpdatePlayProgressResponse) GetContentType() string {
+	if u == nil {
 		return ""
 	}
-	return o.ContentType
+	return u.ContentType
 }
 
-func (o *UpdatePlayProgressResponse) GetStatusCode() int {
-	if o == nil {
+func (u *UpdatePlayProgressResponse) GetStatusCode() int {
+	if u == nil {
 		return 0
 	}
-	return o.StatusCode
+	return u.StatusCode
 }
 
-func (o *UpdatePlayProgressResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (u *UpdatePlayProgressResponse) GetRawResponse() *http.Response {
+	if u == nil {
 		return nil
 	}
-	return o.RawResponse
+	return u.RawResponse
 }

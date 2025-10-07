@@ -58,94 +58,94 @@ func (f Friend) MarshalJSON() ([]byte, error) {
 }
 
 func (f *Friend) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"email", "friendlyName", "home", "id", "sharedServers", "sharedSources", "status", "thumb", "title", "username", "uuid"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"email", "home", "id", "sharedServers", "sharedSources", "status", "thumb", "title", "username", "uuid"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Friend) GetEmail() string {
-	if o == nil {
+func (f *Friend) GetEmail() string {
+	if f == nil {
 		return ""
 	}
-	return o.Email
+	return f.Email
 }
 
-func (o *Friend) GetFriendlyName() *string {
-	if o == nil {
+func (f *Friend) GetFriendlyName() *string {
+	if f == nil {
 		return nil
 	}
-	return o.FriendlyName
+	return f.FriendlyName
 }
 
-func (o *Friend) GetHome() bool {
-	if o == nil {
+func (f *Friend) GetHome() bool {
+	if f == nil {
 		return false
 	}
-	return o.Home
+	return f.Home
 }
 
-func (o *Friend) GetID() int {
-	if o == nil {
+func (f *Friend) GetID() int {
+	if f == nil {
 		return 0
 	}
-	return o.ID
+	return f.ID
 }
 
-func (o *Friend) GetRestricted() *bool {
-	if o == nil {
+func (f *Friend) GetRestricted() *bool {
+	if f == nil {
 		return nil
 	}
-	return o.Restricted
+	return f.Restricted
 }
 
-func (o *Friend) GetSharedServers() []SharedServers {
-	if o == nil {
+func (f *Friend) GetSharedServers() []SharedServers {
+	if f == nil {
 		return []SharedServers{}
 	}
-	return o.SharedServers
+	return f.SharedServers
 }
 
-func (o *Friend) GetSharedSources() []SharedSources {
-	if o == nil {
+func (f *Friend) GetSharedSources() []SharedSources {
+	if f == nil {
 		return []SharedSources{}
 	}
-	return o.SharedSources
+	return f.SharedSources
 }
 
-func (o *Friend) GetStatus() Status {
-	if o == nil {
+func (f *Friend) GetStatus() Status {
+	if f == nil {
 		return Status("")
 	}
-	return o.Status
+	return f.Status
 }
 
-func (o *Friend) GetThumb() string {
-	if o == nil {
+func (f *Friend) GetThumb() string {
+	if f == nil {
 		return ""
 	}
-	return o.Thumb
+	return f.Thumb
 }
 
-func (o *Friend) GetTitle() string {
-	if o == nil {
+func (f *Friend) GetTitle() string {
+	if f == nil {
 		return ""
 	}
-	return o.Title
+	return f.Title
 }
 
-func (o *Friend) GetUsername() string {
-	if o == nil {
+func (f *Friend) GetUsername() string {
+	if f == nil {
 		return ""
 	}
-	return o.Username
+	return f.Username
 }
 
-func (o *Friend) GetUUID() string {
-	if o == nil {
+func (f *Friend) GetUUID() string {
+	if f == nil {
 		return ""
 	}
-	return o.UUID
+	return f.UUID
 }
 
 type GetUserFriendsResponse struct {
@@ -159,30 +159,30 @@ type GetUserFriendsResponse struct {
 	Friends []Friend
 }
 
-func (o *GetUserFriendsResponse) GetContentType() string {
-	if o == nil {
+func (g *GetUserFriendsResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetUserFriendsResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetUserFriendsResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetUserFriendsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetUserFriendsResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetUserFriendsResponse) GetFriends() []Friend {
-	if o == nil {
+func (g *GetUserFriendsResponse) GetFriends() []Friend {
+	if g == nil {
 		return nil
 	}
-	return o.Friends
+	return g.Friends
 }

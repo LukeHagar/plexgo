@@ -13,25 +13,25 @@ type GetSearchLibraryLibraryErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetSearchLibraryLibraryErrors) GetCode() *int {
-	if o == nil {
+func (g *GetSearchLibraryLibraryErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetSearchLibraryLibraryErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetSearchLibraryLibraryErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetSearchLibraryLibraryErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetSearchLibraryLibraryErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetSearchLibraryUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type GetSearchLibraryErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetSearchLibraryErrors) GetCode() *int {
-	if o == nil {
+func (g *GetSearchLibraryErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetSearchLibraryErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetSearchLibraryErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetSearchLibraryErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetSearchLibraryErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetSearchLibraryBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

@@ -106,46 +106,46 @@ func (g *GetSearchAllLibrariesRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetSearchAllLibrariesRequest) GetQuery() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesRequest) GetQuery() string {
+	if g == nil {
 		return ""
 	}
-	return o.Query
+	return g.Query
 }
 
-func (o *GetSearchAllLibrariesRequest) GetClientID() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesRequest) GetClientID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ClientID
+	return g.ClientID
 }
 
-func (o *GetSearchAllLibrariesRequest) GetLimit() *int64 {
-	if o == nil {
+func (g *GetSearchAllLibrariesRequest) GetLimit() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.Limit
+	return g.Limit
 }
 
-func (o *GetSearchAllLibrariesRequest) GetSearchTypes() []SearchTypes {
-	if o == nil {
+func (g *GetSearchAllLibrariesRequest) GetSearchTypes() []SearchTypes {
+	if g == nil {
 		return nil
 	}
-	return o.SearchTypes
+	return g.SearchTypes
 }
 
-func (o *GetSearchAllLibrariesRequest) GetIncludeCollections() *GetSearchAllLibrariesQueryParamIncludeCollections {
-	if o == nil {
+func (g *GetSearchAllLibrariesRequest) GetIncludeCollections() *GetSearchAllLibrariesQueryParamIncludeCollections {
+	if g == nil {
 		return nil
 	}
-	return o.IncludeCollections
+	return g.IncludeCollections
 }
 
-func (o *GetSearchAllLibrariesRequest) GetIncludeExternalMedia() *GetSearchAllLibrariesQueryParamIncludeExternalMedia {
-	if o == nil {
+func (g *GetSearchAllLibrariesRequest) GetIncludeExternalMedia() *GetSearchAllLibrariesQueryParamIncludeExternalMedia {
+	if g == nil {
 		return nil
 	}
-	return o.IncludeExternalMedia
+	return g.IncludeExternalMedia
 }
 
 type GetSearchAllLibrariesDirectory struct {
@@ -185,89 +185,89 @@ func (g *GetSearchAllLibrariesDirectory) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetSearchAllLibrariesDirectory) GetKey() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesDirectory) GetKey() string {
+	if g == nil {
 		return ""
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetSearchAllLibrariesDirectory) GetLibrarySectionID() int64 {
-	if o == nil {
+func (g *GetSearchAllLibrariesDirectory) GetLibrarySectionID() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.LibrarySectionID
+	return g.LibrarySectionID
 }
 
-func (o *GetSearchAllLibrariesDirectory) GetLibrarySectionKey() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesDirectory) GetLibrarySectionKey() string {
+	if g == nil {
 		return ""
 	}
-	return o.LibrarySectionKey
+	return g.LibrarySectionKey
 }
 
-func (o *GetSearchAllLibrariesDirectory) GetLibrarySectionTitle() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesDirectory) GetLibrarySectionTitle() string {
+	if g == nil {
 		return ""
 	}
-	return o.LibrarySectionTitle
+	return g.LibrarySectionTitle
 }
 
-func (o *GetSearchAllLibrariesDirectory) GetLibrarySectionType() *int64 {
-	return types.Int64(1)
+func (g *GetSearchAllLibrariesDirectory) GetLibrarySectionType() *int64 {
+	return types.Pointer[int64](1)
 }
 
-func (o *GetSearchAllLibrariesDirectory) GetType() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesDirectory) GetType() string {
+	if g == nil {
 		return ""
 	}
-	return o.Type
+	return g.Type
 }
 
-func (o *GetSearchAllLibrariesDirectory) GetID() int64 {
-	if o == nil {
+func (g *GetSearchAllLibrariesDirectory) GetID() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetSearchAllLibrariesDirectory) GetFilter() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesDirectory) GetFilter() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Filter
+	return g.Filter
 }
 
-func (o *GetSearchAllLibrariesDirectory) GetTag() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesDirectory) GetTag() string {
+	if g == nil {
 		return ""
 	}
-	return o.Tag
+	return g.Tag
 }
 
-func (o *GetSearchAllLibrariesDirectory) GetTagType() *int64 {
-	return types.Int64(4)
+func (g *GetSearchAllLibrariesDirectory) GetTagType() *int64 {
+	return types.Pointer[int64](4)
 }
 
-func (o *GetSearchAllLibrariesDirectory) GetTagKey() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesDirectory) GetTagKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.TagKey
+	return g.TagKey
 }
 
-func (o *GetSearchAllLibrariesDirectory) GetThumb() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesDirectory) GetThumb() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Thumb
+	return g.Thumb
 }
 
-func (o *GetSearchAllLibrariesDirectory) GetCount() *int64 {
-	if o == nil {
+func (g *GetSearchAllLibrariesDirectory) GetCount() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.Count
+	return g.Count
 }
 
 // GetSearchAllLibrariesType - The type of media content in the Plex library. This can represent videos, music, or photos.
@@ -309,25 +309,25 @@ type GetSearchAllLibrariesImage struct {
 	URL  string                           `json:"url"`
 }
 
-func (o *GetSearchAllLibrariesImage) GetAlt() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesImage) GetAlt() string {
+	if g == nil {
 		return ""
 	}
-	return o.Alt
+	return g.Alt
 }
 
-func (o *GetSearchAllLibrariesImage) GetType() GetSearchAllLibrariesLibraryType {
-	if o == nil {
+func (g *GetSearchAllLibrariesImage) GetType() GetSearchAllLibrariesLibraryType {
+	if g == nil {
 		return GetSearchAllLibrariesLibraryType("")
 	}
-	return o.Type
+	return g.Type
 }
 
-func (o *GetSearchAllLibrariesImage) GetURL() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesImage) GetURL() string {
+	if g == nil {
 		return ""
 	}
-	return o.URL
+	return g.URL
 }
 
 type GetSearchAllLibrariesUltraBlurColors struct {
@@ -337,32 +337,32 @@ type GetSearchAllLibrariesUltraBlurColors struct {
 	BottomLeft  string `json:"bottomLeft"`
 }
 
-func (o *GetSearchAllLibrariesUltraBlurColors) GetTopLeft() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesUltraBlurColors) GetTopLeft() string {
+	if g == nil {
 		return ""
 	}
-	return o.TopLeft
+	return g.TopLeft
 }
 
-func (o *GetSearchAllLibrariesUltraBlurColors) GetTopRight() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesUltraBlurColors) GetTopRight() string {
+	if g == nil {
 		return ""
 	}
-	return o.TopRight
+	return g.TopRight
 }
 
-func (o *GetSearchAllLibrariesUltraBlurColors) GetBottomRight() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesUltraBlurColors) GetBottomRight() string {
+	if g == nil {
 		return ""
 	}
-	return o.BottomRight
+	return g.BottomRight
 }
 
-func (o *GetSearchAllLibrariesUltraBlurColors) GetBottomLeft() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesUltraBlurColors) GetBottomLeft() string {
+	if g == nil {
 		return ""
 	}
-	return o.BottomLeft
+	return g.BottomLeft
 }
 
 type GetSearchAllLibrariesGuids struct {
@@ -371,11 +371,11 @@ type GetSearchAllLibrariesGuids struct {
 	ID string `json:"id"`
 }
 
-func (o *GetSearchAllLibrariesGuids) GetID() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesGuids) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
 // GetSearchAllLibrariesShowOrdering - Setting that indicates the episode ordering for the show.
@@ -447,8 +447,8 @@ const (
 
 // GetSearchAllLibrariesOptimizedForStreaming - Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
 type GetSearchAllLibrariesOptimizedForStreaming struct {
-	GetSearchAllLibrariesOptimizedForStreaming1 *GetSearchAllLibrariesOptimizedForStreaming1 `queryParam:"inline" name:"optimizedForStreaming"`
-	Boolean                                     *bool                                        `queryParam:"inline" name:"optimizedForStreaming"`
+	GetSearchAllLibrariesOptimizedForStreaming1 *GetSearchAllLibrariesOptimizedForStreaming1 `queryParam:"inline,name=optimizedForStreaming"`
+	Boolean                                     *bool                                        `queryParam:"inline,name=optimizedForStreaming"`
 
 	Type GetSearchAllLibrariesOptimizedForStreamingType
 }
@@ -537,8 +537,8 @@ const (
 
 // GetSearchAllLibrariesLibraryOptimizedForStreaming - Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
 type GetSearchAllLibrariesLibraryOptimizedForStreaming struct {
-	GetSearchAllLibrariesOptimizedForStreamingLibrary1 *GetSearchAllLibrariesOptimizedForStreamingLibrary1 `queryParam:"inline" name:"optimizedForStreaming"`
-	Boolean                                            *bool                                               `queryParam:"inline" name:"optimizedForStreaming"`
+	GetSearchAllLibrariesOptimizedForStreamingLibrary1 *GetSearchAllLibrariesOptimizedForStreamingLibrary1 `queryParam:"inline,name=optimizedForStreaming"`
+	Boolean                                            *bool                                               `queryParam:"inline,name=optimizedForStreaming"`
 
 	Type GetSearchAllLibrariesLibraryOptimizedForStreamingType
 }
@@ -660,109 +660,109 @@ func (g *GetSearchAllLibrariesPart) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetSearchAllLibrariesPart) GetAccessible() *bool {
-	if o == nil {
+func (g *GetSearchAllLibrariesPart) GetAccessible() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Accessible
+	return g.Accessible
 }
 
-func (o *GetSearchAllLibrariesPart) GetExists() *bool {
-	if o == nil {
+func (g *GetSearchAllLibrariesPart) GetExists() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Exists
+	return g.Exists
 }
 
-func (o *GetSearchAllLibrariesPart) GetID() int64 {
-	if o == nil {
+func (g *GetSearchAllLibrariesPart) GetID() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetSearchAllLibrariesPart) GetKey() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesPart) GetKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetSearchAllLibrariesPart) GetIndexes() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesPart) GetIndexes() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Indexes
+	return g.Indexes
 }
 
-func (o *GetSearchAllLibrariesPart) GetDuration() *int {
-	if o == nil {
+func (g *GetSearchAllLibrariesPart) GetDuration() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Duration
+	return g.Duration
 }
 
-func (o *GetSearchAllLibrariesPart) GetFile() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesPart) GetFile() *string {
+	if g == nil {
 		return nil
 	}
-	return o.File
+	return g.File
 }
 
-func (o *GetSearchAllLibrariesPart) GetSize() *int64 {
-	if o == nil {
+func (g *GetSearchAllLibrariesPart) GetSize() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetSearchAllLibrariesPart) GetPacketLength() *int {
-	if o == nil {
+func (g *GetSearchAllLibrariesPart) GetPacketLength() *int {
+	if g == nil {
 		return nil
 	}
-	return o.PacketLength
+	return g.PacketLength
 }
 
-func (o *GetSearchAllLibrariesPart) GetContainer() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesPart) GetContainer() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Container
+	return g.Container
 }
 
-func (o *GetSearchAllLibrariesPart) GetVideoProfile() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesPart) GetVideoProfile() *string {
+	if g == nil {
 		return nil
 	}
-	return o.VideoProfile
+	return g.VideoProfile
 }
 
-func (o *GetSearchAllLibrariesPart) GetAudioProfile() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesPart) GetAudioProfile() *string {
+	if g == nil {
 		return nil
 	}
-	return o.AudioProfile
+	return g.AudioProfile
 }
 
-func (o *GetSearchAllLibrariesPart) GetHas64bitOffsets() *bool {
-	if o == nil {
+func (g *GetSearchAllLibrariesPart) GetHas64bitOffsets() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Has64bitOffsets
+	return g.Has64bitOffsets
 }
 
-func (o *GetSearchAllLibrariesPart) GetOptimizedForStreaming() *GetSearchAllLibrariesLibraryOptimizedForStreaming {
-	if o == nil {
+func (g *GetSearchAllLibrariesPart) GetOptimizedForStreaming() *GetSearchAllLibrariesLibraryOptimizedForStreaming {
+	if g == nil {
 		return nil
 	}
-	return o.OptimizedForStreaming
+	return g.OptimizedForStreaming
 }
 
-func (o *GetSearchAllLibrariesPart) GetHasThumbnail() *GetSearchAllLibrariesHasThumbnail {
-	if o == nil {
+func (g *GetSearchAllLibrariesPart) GetHasThumbnail() *GetSearchAllLibrariesHasThumbnail {
+	if g == nil {
 		return nil
 	}
-	return o.HasThumbnail
+	return g.HasThumbnail
 }
 
 type GetSearchAllLibrariesMedia struct {
@@ -807,137 +807,137 @@ type GetSearchAllLibrariesMedia struct {
 	Part            []GetSearchAllLibrariesPart `json:"Part,omitempty"`
 }
 
-func (o *GetSearchAllLibrariesMedia) GetID() int64 {
-	if o == nil {
+func (g *GetSearchAllLibrariesMedia) GetID() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetSearchAllLibrariesMedia) GetDuration() *int {
-	if o == nil {
+func (g *GetSearchAllLibrariesMedia) GetDuration() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Duration
+	return g.Duration
 }
 
-func (o *GetSearchAllLibrariesMedia) GetBitrate() *int {
-	if o == nil {
+func (g *GetSearchAllLibrariesMedia) GetBitrate() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Bitrate
+	return g.Bitrate
 }
 
-func (o *GetSearchAllLibrariesMedia) GetWidth() *int {
-	if o == nil {
+func (g *GetSearchAllLibrariesMedia) GetWidth() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Width
+	return g.Width
 }
 
-func (o *GetSearchAllLibrariesMedia) GetHeight() *int {
-	if o == nil {
+func (g *GetSearchAllLibrariesMedia) GetHeight() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Height
+	return g.Height
 }
 
-func (o *GetSearchAllLibrariesMedia) GetAspectRatio() *float32 {
-	if o == nil {
+func (g *GetSearchAllLibrariesMedia) GetAspectRatio() *float32 {
+	if g == nil {
 		return nil
 	}
-	return o.AspectRatio
+	return g.AspectRatio
 }
 
-func (o *GetSearchAllLibrariesMedia) GetAudioChannels() *int {
-	if o == nil {
+func (g *GetSearchAllLibrariesMedia) GetAudioChannels() *int {
+	if g == nil {
 		return nil
 	}
-	return o.AudioChannels
+	return g.AudioChannels
 }
 
-func (o *GetSearchAllLibrariesMedia) GetDisplayOffset() *int {
-	if o == nil {
+func (g *GetSearchAllLibrariesMedia) GetDisplayOffset() *int {
+	if g == nil {
 		return nil
 	}
-	return o.DisplayOffset
+	return g.DisplayOffset
 }
 
-func (o *GetSearchAllLibrariesMedia) GetAudioCodec() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMedia) GetAudioCodec() *string {
+	if g == nil {
 		return nil
 	}
-	return o.AudioCodec
+	return g.AudioCodec
 }
 
-func (o *GetSearchAllLibrariesMedia) GetVideoCodec() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMedia) GetVideoCodec() *string {
+	if g == nil {
 		return nil
 	}
-	return o.VideoCodec
+	return g.VideoCodec
 }
 
-func (o *GetSearchAllLibrariesMedia) GetVideoResolution() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMedia) GetVideoResolution() *string {
+	if g == nil {
 		return nil
 	}
-	return o.VideoResolution
+	return g.VideoResolution
 }
 
-func (o *GetSearchAllLibrariesMedia) GetContainer() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMedia) GetContainer() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Container
+	return g.Container
 }
 
-func (o *GetSearchAllLibrariesMedia) GetVideoFrameRate() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMedia) GetVideoFrameRate() *string {
+	if g == nil {
 		return nil
 	}
-	return o.VideoFrameRate
+	return g.VideoFrameRate
 }
 
-func (o *GetSearchAllLibrariesMedia) GetVideoProfile() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMedia) GetVideoProfile() *string {
+	if g == nil {
 		return nil
 	}
-	return o.VideoProfile
+	return g.VideoProfile
 }
 
-func (o *GetSearchAllLibrariesMedia) GetHasVoiceActivity() *bool {
-	if o == nil {
+func (g *GetSearchAllLibrariesMedia) GetHasVoiceActivity() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.HasVoiceActivity
+	return g.HasVoiceActivity
 }
 
-func (o *GetSearchAllLibrariesMedia) GetAudioProfile() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMedia) GetAudioProfile() *string {
+	if g == nil {
 		return nil
 	}
-	return o.AudioProfile
+	return g.AudioProfile
 }
 
-func (o *GetSearchAllLibrariesMedia) GetOptimizedForStreaming() *GetSearchAllLibrariesOptimizedForStreaming {
-	if o == nil {
+func (g *GetSearchAllLibrariesMedia) GetOptimizedForStreaming() *GetSearchAllLibrariesOptimizedForStreaming {
+	if g == nil {
 		return nil
 	}
-	return o.OptimizedForStreaming
+	return g.OptimizedForStreaming
 }
 
-func (o *GetSearchAllLibrariesMedia) GetHas64bitOffsets() *bool {
-	if o == nil {
+func (g *GetSearchAllLibrariesMedia) GetHas64bitOffsets() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Has64bitOffsets
+	return g.Has64bitOffsets
 }
 
-func (o *GetSearchAllLibrariesMedia) GetPart() []GetSearchAllLibrariesPart {
-	if o == nil {
+func (g *GetSearchAllLibrariesMedia) GetPart() []GetSearchAllLibrariesPart {
+	if g == nil {
 		return nil
 	}
-	return o.Part
+	return g.Part
 }
 
 type GetSearchAllLibrariesGenre struct {
@@ -950,18 +950,18 @@ type GetSearchAllLibrariesGenre struct {
 	Tag string `json:"tag"`
 }
 
-func (o *GetSearchAllLibrariesGenre) GetID() int {
-	if o == nil {
+func (g *GetSearchAllLibrariesGenre) GetID() int {
+	if g == nil {
 		return 0
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetSearchAllLibrariesGenre) GetTag() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesGenre) GetTag() string {
+	if g == nil {
 		return ""
 	}
-	return o.Tag
+	return g.Tag
 }
 
 type GetSearchAllLibrariesCountry struct {
@@ -973,18 +973,18 @@ type GetSearchAllLibrariesCountry struct {
 	Tag string `json:"tag"`
 }
 
-func (o *GetSearchAllLibrariesCountry) GetID() int {
-	if o == nil {
+func (g *GetSearchAllLibrariesCountry) GetID() int {
+	if g == nil {
 		return 0
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetSearchAllLibrariesCountry) GetTag() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesCountry) GetTag() string {
+	if g == nil {
 		return ""
 	}
-	return o.Tag
+	return g.Tag
 }
 
 type GetSearchAllLibrariesDirector struct {
@@ -996,25 +996,25 @@ type GetSearchAllLibrariesDirector struct {
 	Thumb *string `json:"thumb,omitempty"`
 }
 
-func (o *GetSearchAllLibrariesDirector) GetID() int {
-	if o == nil {
+func (g *GetSearchAllLibrariesDirector) GetID() int {
+	if g == nil {
 		return 0
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetSearchAllLibrariesDirector) GetTag() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesDirector) GetTag() string {
+	if g == nil {
 		return ""
 	}
-	return o.Tag
+	return g.Tag
 }
 
-func (o *GetSearchAllLibrariesDirector) GetThumb() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesDirector) GetThumb() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Thumb
+	return g.Thumb
 }
 
 type GetSearchAllLibrariesWriter struct {
@@ -1026,25 +1026,25 @@ type GetSearchAllLibrariesWriter struct {
 	Thumb *string `json:"thumb,omitempty"`
 }
 
-func (o *GetSearchAllLibrariesWriter) GetID() int {
-	if o == nil {
+func (g *GetSearchAllLibrariesWriter) GetID() int {
+	if g == nil {
 		return 0
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetSearchAllLibrariesWriter) GetTag() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesWriter) GetTag() string {
+	if g == nil {
 		return ""
 	}
-	return o.Tag
+	return g.Tag
 }
 
-func (o *GetSearchAllLibrariesWriter) GetThumb() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesWriter) GetThumb() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Thumb
+	return g.Thumb
 }
 
 type GetSearchAllLibrariesRole struct {
@@ -1060,32 +1060,32 @@ type GetSearchAllLibrariesRole struct {
 	Thumb *string `json:"thumb,omitempty"`
 }
 
-func (o *GetSearchAllLibrariesRole) GetID() int {
-	if o == nil {
+func (g *GetSearchAllLibrariesRole) GetID() int {
+	if g == nil {
 		return 0
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetSearchAllLibrariesRole) GetTag() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesRole) GetTag() string {
+	if g == nil {
 		return ""
 	}
-	return o.Tag
+	return g.Tag
 }
 
-func (o *GetSearchAllLibrariesRole) GetRole() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesRole) GetRole() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Role
+	return g.Role
 }
 
-func (o *GetSearchAllLibrariesRole) GetThumb() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesRole) GetThumb() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Thumb
+	return g.Thumb
 }
 
 // GetSearchAllLibrariesLocation - The folder path for the media item.
@@ -1093,11 +1093,11 @@ type GetSearchAllLibrariesLocation struct {
 	Path string `json:"path"`
 }
 
-func (o *GetSearchAllLibrariesLocation) GetPath() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesLocation) GetPath() string {
+	if g == nil {
 		return ""
 	}
-	return o.Path
+	return g.Path
 }
 
 // GetSearchAllLibrariesMetadata - Unknown
@@ -1255,508 +1255,508 @@ func (g *GetSearchAllLibrariesMetadata) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetRatingKey() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetRatingKey() string {
+	if g == nil {
 		return ""
 	}
-	return o.RatingKey
+	return g.RatingKey
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetKey() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetKey() string {
+	if g == nil {
 		return ""
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetGUID() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetGUID() string {
+	if g == nil {
 		return ""
 	}
-	return o.GUID
+	return g.GUID
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetSlug() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetSlug() string {
+	if g == nil {
 		return ""
 	}
-	return o.Slug
+	return g.Slug
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetStudio() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetStudio() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Studio
+	return g.Studio
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetType() GetSearchAllLibrariesType {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetType() GetSearchAllLibrariesType {
+	if g == nil {
 		return GetSearchAllLibrariesType("")
 	}
-	return o.Type
+	return g.Type
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetTitle() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetTitle() string {
+	if g == nil {
 		return ""
 	}
-	return o.Title
+	return g.Title
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetBanner() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetBanner() string {
+	if g == nil {
 		return ""
 	}
-	return o.Banner
+	return g.Banner
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetTitleSort() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetTitleSort() string {
+	if g == nil {
 		return ""
 	}
-	return o.TitleSort
+	return g.TitleSort
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetContentRating() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetContentRating() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ContentRating
+	return g.ContentRating
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetSummary() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetSummary() string {
+	if g == nil {
 		return ""
 	}
-	return o.Summary
+	return g.Summary
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetRating() float32 {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetRating() float32 {
+	if g == nil {
 		return 0.0
 	}
-	return o.Rating
+	return g.Rating
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetAudienceRating() float64 {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetAudienceRating() float64 {
+	if g == nil {
 		return 0.0
 	}
-	return o.AudienceRating
+	return g.AudienceRating
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetYear() *int {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetYear() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Year
+	return g.Year
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetTagline() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetTagline() string {
+	if g == nil {
 		return ""
 	}
-	return o.Tagline
+	return g.Tagline
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetThumb() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetThumb() string {
+	if g == nil {
 		return ""
 	}
-	return o.Thumb
+	return g.Thumb
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetArt() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetArt() string {
+	if g == nil {
 		return ""
 	}
-	return o.Art
+	return g.Art
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetTheme() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetTheme() string {
+	if g == nil {
 		return ""
 	}
-	return o.Theme
+	return g.Theme
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetIndex() int {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetIndex() int {
+	if g == nil {
 		return 0
 	}
-	return o.Index
+	return g.Index
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetLeafCount() *int {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetLeafCount() *int {
+	if g == nil {
 		return nil
 	}
-	return o.LeafCount
+	return g.LeafCount
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetViewedLeafCount() *int {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetViewedLeafCount() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ViewedLeafCount
+	return g.ViewedLeafCount
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetChildCount() int {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetChildCount() int {
+	if g == nil {
 		return 0
 	}
-	return o.ChildCount
+	return g.ChildCount
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetSeasonCount() int {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetSeasonCount() int {
+	if g == nil {
 		return 0
 	}
-	return o.SeasonCount
+	return g.SeasonCount
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetDuration() int {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetDuration() int {
+	if g == nil {
 		return 0
 	}
-	return o.Duration
+	return g.Duration
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetOriginallyAvailableAt() *types.Date {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetOriginallyAvailableAt() *types.Date {
+	if g == nil {
 		return nil
 	}
-	return o.OriginallyAvailableAt
+	return g.OriginallyAvailableAt
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetAddedAt() int64 {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetAddedAt() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.AddedAt
+	return g.AddedAt
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetUpdatedAt() *int64 {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetUpdatedAt() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.UpdatedAt
+	return g.UpdatedAt
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetParentYear() *int {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetParentYear() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ParentYear
+	return g.ParentYear
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetAudienceRatingImage() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetAudienceRatingImage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.AudienceRatingImage
+	return g.AudienceRatingImage
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetChapterSource() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetChapterSource() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ChapterSource
+	return g.ChapterSource
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetPrimaryExtraKey() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetPrimaryExtraKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.PrimaryExtraKey
+	return g.PrimaryExtraKey
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetOriginalTitle() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetOriginalTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.OriginalTitle
+	return g.OriginalTitle
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetParentRatingKey() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetParentRatingKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ParentRatingKey
+	return g.ParentRatingKey
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetGrandparentRatingKey() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetGrandparentRatingKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentRatingKey
+	return g.GrandparentRatingKey
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetParentGUID() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetParentGUID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ParentGUID
+	return g.ParentGUID
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetGrandparentGUID() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetGrandparentGUID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentGUID
+	return g.GrandparentGUID
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetGrandparentSlug() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetGrandparentSlug() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentSlug
+	return g.GrandparentSlug
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetGrandparentKey() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetGrandparentKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentKey
+	return g.GrandparentKey
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetParentKey() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetParentKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ParentKey
+	return g.ParentKey
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetGrandparentTitle() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetGrandparentTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentTitle
+	return g.GrandparentTitle
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetGrandparentThumb() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetGrandparentThumb() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentThumb
+	return g.GrandparentThumb
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetGrandparentTheme() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetGrandparentTheme() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentTheme
+	return g.GrandparentTheme
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetGrandparentArt() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetGrandparentArt() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentArt
+	return g.GrandparentArt
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetParentTitle() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetParentTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ParentTitle
+	return g.ParentTitle
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetParentIndex() *int {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetParentIndex() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ParentIndex
+	return g.ParentIndex
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetParentThumb() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetParentThumb() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ParentThumb
+	return g.ParentThumb
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetRatingImage() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetRatingImage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.RatingImage
+	return g.RatingImage
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetViewCount() *int {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetViewCount() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ViewCount
+	return g.ViewCount
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetViewOffset() *int {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetViewOffset() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ViewOffset
+	return g.ViewOffset
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetSkipCount() *int {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetSkipCount() *int {
+	if g == nil {
 		return nil
 	}
-	return o.SkipCount
+	return g.SkipCount
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetSubtype() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetSubtype() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Subtype
+	return g.Subtype
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetLastRatedAt() *int64 {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetLastRatedAt() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.LastRatedAt
+	return g.LastRatedAt
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetCreatedAtAccuracy() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetCreatedAtAccuracy() *string {
+	if g == nil {
 		return nil
 	}
-	return o.CreatedAtAccuracy
+	return g.CreatedAtAccuracy
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetCreatedAtTZOffset() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetCreatedAtTZOffset() *string {
+	if g == nil {
 		return nil
 	}
-	return o.CreatedAtTZOffset
+	return g.CreatedAtTZOffset
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetLastViewedAt() *int {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetLastViewedAt() *int {
+	if g == nil {
 		return nil
 	}
-	return o.LastViewedAt
+	return g.LastViewedAt
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetUserRating() *float32 {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetUserRating() *float32 {
+	if g == nil {
 		return nil
 	}
-	return o.UserRating
+	return g.UserRating
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetImage() []GetSearchAllLibrariesImage {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetImage() []GetSearchAllLibrariesImage {
+	if g == nil {
 		return nil
 	}
-	return o.Image
+	return g.Image
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetUltraBlurColors() *GetSearchAllLibrariesUltraBlurColors {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetUltraBlurColors() *GetSearchAllLibrariesUltraBlurColors {
+	if g == nil {
 		return nil
 	}
-	return o.UltraBlurColors
+	return g.UltraBlurColors
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetGuids() []GetSearchAllLibrariesGuids {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetGuids() []GetSearchAllLibrariesGuids {
+	if g == nil {
 		return nil
 	}
-	return o.Guids
+	return g.Guids
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetLibrarySectionID() *int64 {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetLibrarySectionID() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionID
+	return g.LibrarySectionID
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetLibrarySectionTitle() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetLibrarySectionTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionTitle
+	return g.LibrarySectionTitle
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetLibrarySectionKey() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetLibrarySectionKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionKey
+	return g.LibrarySectionKey
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetShowOrdering() *GetSearchAllLibrariesShowOrdering {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetShowOrdering() *GetSearchAllLibrariesShowOrdering {
+	if g == nil {
 		return nil
 	}
-	return o.ShowOrdering
+	return g.ShowOrdering
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetFlattenSeasons() *GetSearchAllLibrariesFlattenSeasons {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetFlattenSeasons() *GetSearchAllLibrariesFlattenSeasons {
+	if g == nil {
 		return nil
 	}
-	return o.FlattenSeasons
+	return g.FlattenSeasons
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetSkipChildren() *bool {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetSkipChildren() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.SkipChildren
+	return g.SkipChildren
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetMedia() []GetSearchAllLibrariesMedia {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetMedia() []GetSearchAllLibrariesMedia {
+	if g == nil {
 		return nil
 	}
-	return o.Media
+	return g.Media
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetGenre() []GetSearchAllLibrariesGenre {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetGenre() []GetSearchAllLibrariesGenre {
+	if g == nil {
 		return nil
 	}
-	return o.Genre
+	return g.Genre
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetCountry() []GetSearchAllLibrariesCountry {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetCountry() []GetSearchAllLibrariesCountry {
+	if g == nil {
 		return nil
 	}
-	return o.Country
+	return g.Country
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetDirector() []GetSearchAllLibrariesDirector {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetDirector() []GetSearchAllLibrariesDirector {
+	if g == nil {
 		return nil
 	}
-	return o.Director
+	return g.Director
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetWriter() []GetSearchAllLibrariesWriter {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetWriter() []GetSearchAllLibrariesWriter {
+	if g == nil {
 		return nil
 	}
-	return o.Writer
+	return g.Writer
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetRole() []GetSearchAllLibrariesRole {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetRole() []GetSearchAllLibrariesRole {
+	if g == nil {
 		return nil
 	}
-	return o.Role
+	return g.Role
 }
 
-func (o *GetSearchAllLibrariesMetadata) GetLocation() []GetSearchAllLibrariesLocation {
-	if o == nil {
+func (g *GetSearchAllLibrariesMetadata) GetLocation() []GetSearchAllLibrariesLocation {
+	if g == nil {
 		return nil
 	}
-	return o.Location
+	return g.Location
 }
 
 type SearchResult struct {
@@ -1766,25 +1766,25 @@ type SearchResult struct {
 	Metadata  *GetSearchAllLibrariesMetadata  `json:"Metadata,omitempty"`
 }
 
-func (o *SearchResult) GetScore() float32 {
-	if o == nil {
+func (s *SearchResult) GetScore() float32 {
+	if s == nil {
 		return 0.0
 	}
-	return o.Score
+	return s.Score
 }
 
-func (o *SearchResult) GetDirectory() *GetSearchAllLibrariesDirectory {
-	if o == nil {
+func (s *SearchResult) GetDirectory() *GetSearchAllLibrariesDirectory {
+	if s == nil {
 		return nil
 	}
-	return o.Directory
+	return s.Directory
 }
 
-func (o *SearchResult) GetMetadata() *GetSearchAllLibrariesMetadata {
-	if o == nil {
+func (s *SearchResult) GetMetadata() *GetSearchAllLibrariesMetadata {
+	if s == nil {
 		return nil
 	}
-	return o.Metadata
+	return s.Metadata
 }
 
 type GetSearchAllLibrariesMediaContainer struct {
@@ -1807,67 +1807,67 @@ type GetSearchAllLibrariesMediaContainer struct {
 	SearchResult    []SearchResult `json:"SearchResult"`
 }
 
-func (o *GetSearchAllLibrariesMediaContainer) GetSize() int {
-	if o == nil {
+func (g *GetSearchAllLibrariesMediaContainer) GetSize() int {
+	if g == nil {
 		return 0
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetSearchAllLibrariesMediaContainer) GetAllowSync() bool {
-	if o == nil {
+func (g *GetSearchAllLibrariesMediaContainer) GetAllowSync() bool {
+	if g == nil {
 		return false
 	}
-	return o.AllowSync
+	return g.AllowSync
 }
 
-func (o *GetSearchAllLibrariesMediaContainer) GetIdentifier() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMediaContainer) GetIdentifier() string {
+	if g == nil {
 		return ""
 	}
-	return o.Identifier
+	return g.Identifier
 }
 
-func (o *GetSearchAllLibrariesMediaContainer) GetLibrarySectionID() *int64 {
-	if o == nil {
+func (g *GetSearchAllLibrariesMediaContainer) GetLibrarySectionID() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionID
+	return g.LibrarySectionID
 }
 
-func (o *GetSearchAllLibrariesMediaContainer) GetLibrarySectionTitle() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMediaContainer) GetLibrarySectionTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionTitle
+	return g.LibrarySectionTitle
 }
 
-func (o *GetSearchAllLibrariesMediaContainer) GetLibrarySectionUUID() *string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMediaContainer) GetLibrarySectionUUID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionUUID
+	return g.LibrarySectionUUID
 }
 
-func (o *GetSearchAllLibrariesMediaContainer) GetMediaTagPrefix() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesMediaContainer) GetMediaTagPrefix() string {
+	if g == nil {
 		return ""
 	}
-	return o.MediaTagPrefix
+	return g.MediaTagPrefix
 }
 
-func (o *GetSearchAllLibrariesMediaContainer) GetMediaTagVersion() int64 {
-	if o == nil {
+func (g *GetSearchAllLibrariesMediaContainer) GetMediaTagVersion() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.MediaTagVersion
+	return g.MediaTagVersion
 }
 
-func (o *GetSearchAllLibrariesMediaContainer) GetSearchResult() []SearchResult {
-	if o == nil {
+func (g *GetSearchAllLibrariesMediaContainer) GetSearchResult() []SearchResult {
+	if g == nil {
 		return []SearchResult{}
 	}
-	return o.SearchResult
+	return g.SearchResult
 }
 
 // GetSearchAllLibrariesResponseBody - The libraries available on the Server
@@ -1875,11 +1875,11 @@ type GetSearchAllLibrariesResponseBody struct {
 	MediaContainer GetSearchAllLibrariesMediaContainer `json:"MediaContainer"`
 }
 
-func (o *GetSearchAllLibrariesResponseBody) GetMediaContainer() GetSearchAllLibrariesMediaContainer {
-	if o == nil {
+func (g *GetSearchAllLibrariesResponseBody) GetMediaContainer() GetSearchAllLibrariesMediaContainer {
+	if g == nil {
 		return GetSearchAllLibrariesMediaContainer{}
 	}
-	return o.MediaContainer
+	return g.MediaContainer
 }
 
 type GetSearchAllLibrariesResponse struct {
@@ -1893,30 +1893,30 @@ type GetSearchAllLibrariesResponse struct {
 	Object *GetSearchAllLibrariesResponseBody
 }
 
-func (o *GetSearchAllLibrariesResponse) GetContentType() string {
-	if o == nil {
+func (g *GetSearchAllLibrariesResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetSearchAllLibrariesResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetSearchAllLibrariesResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetSearchAllLibrariesResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetSearchAllLibrariesResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetSearchAllLibrariesResponse) GetObject() *GetSearchAllLibrariesResponseBody {
-	if o == nil {
+func (g *GetSearchAllLibrariesResponse) GetObject() *GetSearchAllLibrariesResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

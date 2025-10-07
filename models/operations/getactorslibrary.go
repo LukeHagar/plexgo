@@ -45,18 +45,18 @@ type GetActorsLibraryRequest struct {
 	Type GetActorsLibraryQueryParamType `queryParam:"style=form,explode=true,name=type"`
 }
 
-func (o *GetActorsLibraryRequest) GetSectionKey() int {
-	if o == nil {
+func (g *GetActorsLibraryRequest) GetSectionKey() int {
+	if g == nil {
 		return 0
 	}
-	return o.SectionKey
+	return g.SectionKey
 }
 
-func (o *GetActorsLibraryRequest) GetType() GetActorsLibraryQueryParamType {
-	if o == nil {
+func (g *GetActorsLibraryRequest) GetType() GetActorsLibraryQueryParamType {
+	if g == nil {
 		return GetActorsLibraryQueryParamType(0)
 	}
-	return o.Type
+	return g.Type
 }
 
 type GetActorsLibraryDirectory struct {
@@ -70,32 +70,32 @@ type GetActorsLibraryDirectory struct {
 	Title string `json:"title"`
 }
 
-func (o *GetActorsLibraryDirectory) GetFastKey() string {
-	if o == nil {
+func (g *GetActorsLibraryDirectory) GetFastKey() string {
+	if g == nil {
 		return ""
 	}
-	return o.FastKey
+	return g.FastKey
 }
 
-func (o *GetActorsLibraryDirectory) GetThumb() string {
-	if o == nil {
+func (g *GetActorsLibraryDirectory) GetThumb() string {
+	if g == nil {
 		return ""
 	}
-	return o.Thumb
+	return g.Thumb
 }
 
-func (o *GetActorsLibraryDirectory) GetKey() string {
-	if o == nil {
+func (g *GetActorsLibraryDirectory) GetKey() string {
+	if g == nil {
 		return ""
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetActorsLibraryDirectory) GetTitle() string {
-	if o == nil {
+func (g *GetActorsLibraryDirectory) GetTitle() string {
+	if g == nil {
 		return ""
 	}
-	return o.Title
+	return g.Title
 }
 
 type GetActorsLibraryMediaContainer struct {
@@ -127,95 +127,95 @@ type GetActorsLibraryMediaContainer struct {
 	Directory []GetActorsLibraryDirectory `json:"Directory,omitempty"`
 }
 
-func (o *GetActorsLibraryMediaContainer) GetSize() int {
-	if o == nil {
+func (g *GetActorsLibraryMediaContainer) GetSize() int {
+	if g == nil {
 		return 0
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetActorsLibraryMediaContainer) GetAllowSync() bool {
-	if o == nil {
+func (g *GetActorsLibraryMediaContainer) GetAllowSync() bool {
+	if g == nil {
 		return false
 	}
-	return o.AllowSync
+	return g.AllowSync
 }
 
-func (o *GetActorsLibraryMediaContainer) GetArt() string {
-	if o == nil {
+func (g *GetActorsLibraryMediaContainer) GetArt() string {
+	if g == nil {
 		return ""
 	}
-	return o.Art
+	return g.Art
 }
 
-func (o *GetActorsLibraryMediaContainer) GetIdentifier() string {
-	if o == nil {
+func (g *GetActorsLibraryMediaContainer) GetIdentifier() string {
+	if g == nil {
 		return ""
 	}
-	return o.Identifier
+	return g.Identifier
 }
 
-func (o *GetActorsLibraryMediaContainer) GetMediaTagPrefix() string {
-	if o == nil {
+func (g *GetActorsLibraryMediaContainer) GetMediaTagPrefix() string {
+	if g == nil {
 		return ""
 	}
-	return o.MediaTagPrefix
+	return g.MediaTagPrefix
 }
 
-func (o *GetActorsLibraryMediaContainer) GetMediaTagVersion() int64 {
-	if o == nil {
+func (g *GetActorsLibraryMediaContainer) GetMediaTagVersion() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.MediaTagVersion
+	return g.MediaTagVersion
 }
 
-func (o *GetActorsLibraryMediaContainer) GetNocache() bool {
-	if o == nil {
+func (g *GetActorsLibraryMediaContainer) GetNocache() bool {
+	if g == nil {
 		return false
 	}
-	return o.Nocache
+	return g.Nocache
 }
 
-func (o *GetActorsLibraryMediaContainer) GetThumb() string {
-	if o == nil {
+func (g *GetActorsLibraryMediaContainer) GetThumb() string {
+	if g == nil {
 		return ""
 	}
-	return o.Thumb
+	return g.Thumb
 }
 
-func (o *GetActorsLibraryMediaContainer) GetTitle1() string {
-	if o == nil {
+func (g *GetActorsLibraryMediaContainer) GetTitle1() string {
+	if g == nil {
 		return ""
 	}
-	return o.Title1
+	return g.Title1
 }
 
-func (o *GetActorsLibraryMediaContainer) GetTitle2() string {
-	if o == nil {
+func (g *GetActorsLibraryMediaContainer) GetTitle2() string {
+	if g == nil {
 		return ""
 	}
-	return o.Title2
+	return g.Title2
 }
 
-func (o *GetActorsLibraryMediaContainer) GetViewGroup() string {
-	if o == nil {
+func (g *GetActorsLibraryMediaContainer) GetViewGroup() string {
+	if g == nil {
 		return ""
 	}
-	return o.ViewGroup
+	return g.ViewGroup
 }
 
-func (o *GetActorsLibraryMediaContainer) GetViewMode() *string {
-	if o == nil {
+func (g *GetActorsLibraryMediaContainer) GetViewMode() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ViewMode
+	return g.ViewMode
 }
 
-func (o *GetActorsLibraryMediaContainer) GetDirectory() []GetActorsLibraryDirectory {
-	if o == nil {
+func (g *GetActorsLibraryMediaContainer) GetDirectory() []GetActorsLibraryDirectory {
+	if g == nil {
 		return nil
 	}
-	return o.Directory
+	return g.Directory
 }
 
 // GetActorsLibraryResponseBody - Successful response containing media container data.
@@ -223,11 +223,11 @@ type GetActorsLibraryResponseBody struct {
 	MediaContainer *GetActorsLibraryMediaContainer `json:"MediaContainer,omitempty"`
 }
 
-func (o *GetActorsLibraryResponseBody) GetMediaContainer() *GetActorsLibraryMediaContainer {
-	if o == nil {
+func (g *GetActorsLibraryResponseBody) GetMediaContainer() *GetActorsLibraryMediaContainer {
+	if g == nil {
 		return nil
 	}
-	return o.MediaContainer
+	return g.MediaContainer
 }
 
 type GetActorsLibraryResponse struct {
@@ -241,30 +241,30 @@ type GetActorsLibraryResponse struct {
 	Object *GetActorsLibraryResponseBody
 }
 
-func (o *GetActorsLibraryResponse) GetContentType() string {
-	if o == nil {
+func (g *GetActorsLibraryResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetActorsLibraryResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetActorsLibraryResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetActorsLibraryResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetActorsLibraryResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetActorsLibraryResponse) GetObject() *GetActorsLibraryResponseBody {
-	if o == nil {
+func (g *GetActorsLibraryResponse) GetObject() *GetActorsLibraryResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

@@ -13,25 +13,25 @@ type GetSessionHistorySessionsErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetSessionHistorySessionsErrors) GetCode() *int {
-	if o == nil {
+func (g *GetSessionHistorySessionsErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetSessionHistorySessionsErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetSessionHistorySessionsErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetSessionHistorySessionsErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetSessionHistorySessionsErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetSessionHistoryUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type GetSessionHistoryErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetSessionHistoryErrors) GetCode() *int {
-	if o == nil {
+func (g *GetSessionHistoryErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetSessionHistoryErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetSessionHistoryErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetSessionHistoryErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetSessionHistoryErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetSessionHistoryBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

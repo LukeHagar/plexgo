@@ -13,11 +13,11 @@ type GetSearchResultsRequest struct {
 	Query string `queryParam:"style=form,explode=true,name=query"`
 }
 
-func (o *GetSearchResultsRequest) GetQuery() string {
-	if o == nil {
+func (g *GetSearchResultsRequest) GetQuery() string {
+	if g == nil {
 		return ""
 	}
-	return o.Query
+	return g.Query
 }
 
 type GetSearchResultsPart struct {
@@ -31,60 +31,60 @@ type GetSearchResultsPart struct {
 	VideoProfile *string  `json:"videoProfile,omitempty"`
 }
 
-func (o *GetSearchResultsPart) GetID() *float64 {
-	if o == nil {
+func (g *GetSearchResultsPart) GetID() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetSearchResultsPart) GetKey() *string {
-	if o == nil {
+func (g *GetSearchResultsPart) GetKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetSearchResultsPart) GetDuration() *float64 {
-	if o == nil {
+func (g *GetSearchResultsPart) GetDuration() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Duration
+	return g.Duration
 }
 
-func (o *GetSearchResultsPart) GetFile() *string {
-	if o == nil {
+func (g *GetSearchResultsPart) GetFile() *string {
+	if g == nil {
 		return nil
 	}
-	return o.File
+	return g.File
 }
 
-func (o *GetSearchResultsPart) GetSize() *float64 {
-	if o == nil {
+func (g *GetSearchResultsPart) GetSize() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetSearchResultsPart) GetAudioProfile() *string {
-	if o == nil {
+func (g *GetSearchResultsPart) GetAudioProfile() *string {
+	if g == nil {
 		return nil
 	}
-	return o.AudioProfile
+	return g.AudioProfile
 }
 
-func (o *GetSearchResultsPart) GetContainer() *string {
-	if o == nil {
+func (g *GetSearchResultsPart) GetContainer() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Container
+	return g.Container
 }
 
-func (o *GetSearchResultsPart) GetVideoProfile() *string {
-	if o == nil {
+func (g *GetSearchResultsPart) GetVideoProfile() *string {
+	if g == nil {
 		return nil
 	}
-	return o.VideoProfile
+	return g.VideoProfile
 }
 
 type GetSearchResultsMedia struct {
@@ -105,164 +105,164 @@ type GetSearchResultsMedia struct {
 	Part            []GetSearchResultsPart `json:"Part,omitempty"`
 }
 
-func (o *GetSearchResultsMedia) GetID() *float64 {
-	if o == nil {
+func (g *GetSearchResultsMedia) GetID() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetSearchResultsMedia) GetDuration() *float64 {
-	if o == nil {
+func (g *GetSearchResultsMedia) GetDuration() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Duration
+	return g.Duration
 }
 
-func (o *GetSearchResultsMedia) GetBitrate() *float64 {
-	if o == nil {
+func (g *GetSearchResultsMedia) GetBitrate() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Bitrate
+	return g.Bitrate
 }
 
-func (o *GetSearchResultsMedia) GetWidth() *float64 {
-	if o == nil {
+func (g *GetSearchResultsMedia) GetWidth() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Width
+	return g.Width
 }
 
-func (o *GetSearchResultsMedia) GetHeight() *float64 {
-	if o == nil {
+func (g *GetSearchResultsMedia) GetHeight() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Height
+	return g.Height
 }
 
-func (o *GetSearchResultsMedia) GetAspectRatio() *float64 {
-	if o == nil {
+func (g *GetSearchResultsMedia) GetAspectRatio() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.AspectRatio
+	return g.AspectRatio
 }
 
-func (o *GetSearchResultsMedia) GetAudioChannels() *float64 {
-	if o == nil {
+func (g *GetSearchResultsMedia) GetAudioChannels() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.AudioChannels
+	return g.AudioChannels
 }
 
-func (o *GetSearchResultsMedia) GetAudioCodec() *string {
-	if o == nil {
+func (g *GetSearchResultsMedia) GetAudioCodec() *string {
+	if g == nil {
 		return nil
 	}
-	return o.AudioCodec
+	return g.AudioCodec
 }
 
-func (o *GetSearchResultsMedia) GetVideoCodec() *string {
-	if o == nil {
+func (g *GetSearchResultsMedia) GetVideoCodec() *string {
+	if g == nil {
 		return nil
 	}
-	return o.VideoCodec
+	return g.VideoCodec
 }
 
-func (o *GetSearchResultsMedia) GetVideoResolution() *float64 {
-	if o == nil {
+func (g *GetSearchResultsMedia) GetVideoResolution() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.VideoResolution
+	return g.VideoResolution
 }
 
-func (o *GetSearchResultsMedia) GetContainer() *string {
-	if o == nil {
+func (g *GetSearchResultsMedia) GetContainer() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Container
+	return g.Container
 }
 
-func (o *GetSearchResultsMedia) GetVideoFrameRate() *string {
-	if o == nil {
+func (g *GetSearchResultsMedia) GetVideoFrameRate() *string {
+	if g == nil {
 		return nil
 	}
-	return o.VideoFrameRate
+	return g.VideoFrameRate
 }
 
-func (o *GetSearchResultsMedia) GetAudioProfile() *string {
-	if o == nil {
+func (g *GetSearchResultsMedia) GetAudioProfile() *string {
+	if g == nil {
 		return nil
 	}
-	return o.AudioProfile
+	return g.AudioProfile
 }
 
-func (o *GetSearchResultsMedia) GetVideoProfile() *string {
-	if o == nil {
+func (g *GetSearchResultsMedia) GetVideoProfile() *string {
+	if g == nil {
 		return nil
 	}
-	return o.VideoProfile
+	return g.VideoProfile
 }
 
-func (o *GetSearchResultsMedia) GetPart() []GetSearchResultsPart {
-	if o == nil {
+func (g *GetSearchResultsMedia) GetPart() []GetSearchResultsPart {
+	if g == nil {
 		return nil
 	}
-	return o.Part
+	return g.Part
 }
 
 type GetSearchResultsGenre struct {
 	Tag *string `json:"tag,omitempty"`
 }
 
-func (o *GetSearchResultsGenre) GetTag() *string {
-	if o == nil {
+func (g *GetSearchResultsGenre) GetTag() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Tag
+	return g.Tag
 }
 
 type GetSearchResultsDirector struct {
 	Tag *string `json:"tag,omitempty"`
 }
 
-func (o *GetSearchResultsDirector) GetTag() *string {
-	if o == nil {
+func (g *GetSearchResultsDirector) GetTag() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Tag
+	return g.Tag
 }
 
 type GetSearchResultsWriter struct {
 	Tag *string `json:"tag,omitempty"`
 }
 
-func (o *GetSearchResultsWriter) GetTag() *string {
-	if o == nil {
+func (g *GetSearchResultsWriter) GetTag() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Tag
+	return g.Tag
 }
 
 type GetSearchResultsCountry struct {
 	Tag *string `json:"tag,omitempty"`
 }
 
-func (o *GetSearchResultsCountry) GetTag() *string {
-	if o == nil {
+func (g *GetSearchResultsCountry) GetTag() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Tag
+	return g.Tag
 }
 
 type GetSearchResultsRole struct {
 	Tag *string `json:"tag,omitempty"`
 }
 
-func (o *GetSearchResultsRole) GetTag() *string {
-	if o == nil {
+func (g *GetSearchResultsRole) GetTag() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Tag
+	return g.Tag
 }
 
 type GetSearchResultsMetadata struct {
@@ -313,242 +313,242 @@ func (g *GetSearchResultsMetadata) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetSearchResultsMetadata) GetAllowSync() *bool {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetAllowSync() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.AllowSync
+	return g.AllowSync
 }
 
-func (o *GetSearchResultsMetadata) GetLibrarySectionID() *float64 {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetLibrarySectionID() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionID
+	return g.LibrarySectionID
 }
 
-func (o *GetSearchResultsMetadata) GetLibrarySectionTitle() *string {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetLibrarySectionTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionTitle
+	return g.LibrarySectionTitle
 }
 
-func (o *GetSearchResultsMetadata) GetLibrarySectionUUID() *string {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetLibrarySectionUUID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionUUID
+	return g.LibrarySectionUUID
 }
 
-func (o *GetSearchResultsMetadata) GetPersonal() *bool {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetPersonal() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Personal
+	return g.Personal
 }
 
-func (o *GetSearchResultsMetadata) GetSourceTitle() *string {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetSourceTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.SourceTitle
+	return g.SourceTitle
 }
 
-func (o *GetSearchResultsMetadata) GetRatingKey() *float64 {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetRatingKey() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.RatingKey
+	return g.RatingKey
 }
 
-func (o *GetSearchResultsMetadata) GetKey() *string {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetSearchResultsMetadata) GetGUID() *string {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetGUID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GUID
+	return g.GUID
 }
 
-func (o *GetSearchResultsMetadata) GetStudio() *string {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetStudio() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Studio
+	return g.Studio
 }
 
-func (o *GetSearchResultsMetadata) GetType() *string {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetType() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Type
+	return g.Type
 }
 
-func (o *GetSearchResultsMetadata) GetTitle() *string {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Title
+	return g.Title
 }
 
-func (o *GetSearchResultsMetadata) GetContentRating() *string {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetContentRating() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ContentRating
+	return g.ContentRating
 }
 
-func (o *GetSearchResultsMetadata) GetSummary() *string {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetSummary() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Summary
+	return g.Summary
 }
 
-func (o *GetSearchResultsMetadata) GetRating() *float64 {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetRating() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Rating
+	return g.Rating
 }
 
-func (o *GetSearchResultsMetadata) GetAudienceRating() *float64 {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetAudienceRating() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.AudienceRating
+	return g.AudienceRating
 }
 
-func (o *GetSearchResultsMetadata) GetYear() *float64 {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetYear() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Year
+	return g.Year
 }
 
-func (o *GetSearchResultsMetadata) GetTagline() *string {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetTagline() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Tagline
+	return g.Tagline
 }
 
-func (o *GetSearchResultsMetadata) GetThumb() *string {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetThumb() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Thumb
+	return g.Thumb
 }
 
-func (o *GetSearchResultsMetadata) GetArt() *string {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetArt() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Art
+	return g.Art
 }
 
-func (o *GetSearchResultsMetadata) GetDuration() *float64 {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetDuration() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Duration
+	return g.Duration
 }
 
-func (o *GetSearchResultsMetadata) GetOriginallyAvailableAt() *time.Time {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetOriginallyAvailableAt() *time.Time {
+	if g == nil {
 		return nil
 	}
-	return o.OriginallyAvailableAt
+	return g.OriginallyAvailableAt
 }
 
-func (o *GetSearchResultsMetadata) GetAddedAt() *float64 {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetAddedAt() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.AddedAt
+	return g.AddedAt
 }
 
-func (o *GetSearchResultsMetadata) GetUpdatedAt() *float64 {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetUpdatedAt() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.UpdatedAt
+	return g.UpdatedAt
 }
 
-func (o *GetSearchResultsMetadata) GetAudienceRatingImage() *string {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetAudienceRatingImage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.AudienceRatingImage
+	return g.AudienceRatingImage
 }
 
-func (o *GetSearchResultsMetadata) GetChapterSource() *string {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetChapterSource() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ChapterSource
+	return g.ChapterSource
 }
 
-func (o *GetSearchResultsMetadata) GetPrimaryExtraKey() *string {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetPrimaryExtraKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.PrimaryExtraKey
+	return g.PrimaryExtraKey
 }
 
-func (o *GetSearchResultsMetadata) GetRatingImage() *string {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetRatingImage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.RatingImage
+	return g.RatingImage
 }
 
-func (o *GetSearchResultsMetadata) GetMedia() []GetSearchResultsMedia {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetMedia() []GetSearchResultsMedia {
+	if g == nil {
 		return nil
 	}
-	return o.Media
+	return g.Media
 }
 
-func (o *GetSearchResultsMetadata) GetGenre() []GetSearchResultsGenre {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetGenre() []GetSearchResultsGenre {
+	if g == nil {
 		return nil
 	}
-	return o.Genre
+	return g.Genre
 }
 
-func (o *GetSearchResultsMetadata) GetDirector() []GetSearchResultsDirector {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetDirector() []GetSearchResultsDirector {
+	if g == nil {
 		return nil
 	}
-	return o.Director
+	return g.Director
 }
 
-func (o *GetSearchResultsMetadata) GetWriter() []GetSearchResultsWriter {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetWriter() []GetSearchResultsWriter {
+	if g == nil {
 		return nil
 	}
-	return o.Writer
+	return g.Writer
 }
 
-func (o *GetSearchResultsMetadata) GetCountry() []GetSearchResultsCountry {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetCountry() []GetSearchResultsCountry {
+	if g == nil {
 		return nil
 	}
-	return o.Country
+	return g.Country
 }
 
-func (o *GetSearchResultsMetadata) GetRole() []GetSearchResultsRole {
-	if o == nil {
+func (g *GetSearchResultsMetadata) GetRole() []GetSearchResultsRole {
+	if g == nil {
 		return nil
 	}
-	return o.Role
+	return g.Role
 }
 
 type Provider struct {
@@ -557,25 +557,25 @@ type Provider struct {
 	Type  *string `json:"type,omitempty"`
 }
 
-func (o *Provider) GetKey() *string {
-	if o == nil {
+func (p *Provider) GetKey() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Key
+	return p.Key
 }
 
-func (o *Provider) GetTitle() *string {
-	if o == nil {
+func (p *Provider) GetTitle() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Title
+	return p.Title
 }
 
-func (o *Provider) GetType() *string {
-	if o == nil {
+func (p *Provider) GetType() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Type
+	return p.Type
 }
 
 type GetSearchResultsMediaContainer struct {
@@ -587,46 +587,46 @@ type GetSearchResultsMediaContainer struct {
 	Provider        []Provider                 `json:"Provider,omitempty"`
 }
 
-func (o *GetSearchResultsMediaContainer) GetSize() *float64 {
-	if o == nil {
+func (g *GetSearchResultsMediaContainer) GetSize() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetSearchResultsMediaContainer) GetIdentifier() *string {
-	if o == nil {
+func (g *GetSearchResultsMediaContainer) GetIdentifier() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Identifier
+	return g.Identifier
 }
 
-func (o *GetSearchResultsMediaContainer) GetMediaTagPrefix() *string {
-	if o == nil {
+func (g *GetSearchResultsMediaContainer) GetMediaTagPrefix() *string {
+	if g == nil {
 		return nil
 	}
-	return o.MediaTagPrefix
+	return g.MediaTagPrefix
 }
 
-func (o *GetSearchResultsMediaContainer) GetMediaTagVersion() *float64 {
-	if o == nil {
+func (g *GetSearchResultsMediaContainer) GetMediaTagVersion() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.MediaTagVersion
+	return g.MediaTagVersion
 }
 
-func (o *GetSearchResultsMediaContainer) GetMetadata() []GetSearchResultsMetadata {
-	if o == nil {
+func (g *GetSearchResultsMediaContainer) GetMetadata() []GetSearchResultsMetadata {
+	if g == nil {
 		return nil
 	}
-	return o.Metadata
+	return g.Metadata
 }
 
-func (o *GetSearchResultsMediaContainer) GetProvider() []Provider {
-	if o == nil {
+func (g *GetSearchResultsMediaContainer) GetProvider() []Provider {
+	if g == nil {
 		return nil
 	}
-	return o.Provider
+	return g.Provider
 }
 
 // GetSearchResultsResponseBody - Search Results
@@ -634,11 +634,11 @@ type GetSearchResultsResponseBody struct {
 	MediaContainer *GetSearchResultsMediaContainer `json:"MediaContainer,omitempty"`
 }
 
-func (o *GetSearchResultsResponseBody) GetMediaContainer() *GetSearchResultsMediaContainer {
-	if o == nil {
+func (g *GetSearchResultsResponseBody) GetMediaContainer() *GetSearchResultsMediaContainer {
+	if g == nil {
 		return nil
 	}
-	return o.MediaContainer
+	return g.MediaContainer
 }
 
 type GetSearchResultsResponse struct {
@@ -652,30 +652,30 @@ type GetSearchResultsResponse struct {
 	Object *GetSearchResultsResponseBody
 }
 
-func (o *GetSearchResultsResponse) GetContentType() string {
-	if o == nil {
+func (g *GetSearchResultsResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetSearchResultsResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetSearchResultsResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetSearchResultsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetSearchResultsResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetSearchResultsResponse) GetObject() *GetSearchResultsResponseBody {
-	if o == nil {
+func (g *GetSearchResultsResponse) GetObject() *GetSearchResultsResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

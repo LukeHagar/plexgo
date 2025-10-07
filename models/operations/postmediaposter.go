@@ -16,25 +16,25 @@ type PostMediaPosterRequest struct {
 	RequestBody *any `request:"mediaType=image/*"`
 }
 
-func (o *PostMediaPosterRequest) GetRatingKey() int64 {
-	if o == nil {
+func (p *PostMediaPosterRequest) GetRatingKey() int64 {
+	if p == nil {
 		return 0
 	}
-	return o.RatingKey
+	return p.RatingKey
 }
 
-func (o *PostMediaPosterRequest) GetURL() *string {
-	if o == nil {
+func (p *PostMediaPosterRequest) GetURL() *string {
+	if p == nil {
 		return nil
 	}
-	return o.URL
+	return p.URL
 }
 
-func (o *PostMediaPosterRequest) GetRequestBody() *any {
-	if o == nil {
+func (p *PostMediaPosterRequest) GetRequestBody() *any {
+	if p == nil {
 		return nil
 	}
-	return o.RequestBody
+	return p.RequestBody
 }
 
 type PostMediaPosterResponse struct {
@@ -46,23 +46,23 @@ type PostMediaPosterResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *PostMediaPosterResponse) GetContentType() string {
-	if o == nil {
+func (p *PostMediaPosterResponse) GetContentType() string {
+	if p == nil {
 		return ""
 	}
-	return o.ContentType
+	return p.ContentType
 }
 
-func (o *PostMediaPosterResponse) GetStatusCode() int {
-	if o == nil {
+func (p *PostMediaPosterResponse) GetStatusCode() int {
+	if p == nil {
 		return 0
 	}
-	return o.StatusCode
+	return p.StatusCode
 }
 
-func (o *PostMediaPosterResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (p *PostMediaPosterResponse) GetRawResponse() *http.Response {
+	if p == nil {
 		return nil
 	}
-	return o.RawResponse
+	return p.RawResponse
 }

@@ -41,25 +41,25 @@ type LogLineRequest struct {
 	Source string `queryParam:"style=form,explode=true,name=source"`
 }
 
-func (o *LogLineRequest) GetLevel() Level {
-	if o == nil {
+func (l *LogLineRequest) GetLevel() Level {
+	if l == nil {
 		return Level(0)
 	}
-	return o.Level
+	return l.Level
 }
 
-func (o *LogLineRequest) GetMessage() string {
-	if o == nil {
+func (l *LogLineRequest) GetMessage() string {
+	if l == nil {
 		return ""
 	}
-	return o.Message
+	return l.Message
 }
 
-func (o *LogLineRequest) GetSource() string {
-	if o == nil {
+func (l *LogLineRequest) GetSource() string {
+	if l == nil {
 		return ""
 	}
-	return o.Source
+	return l.Source
 }
 
 type LogLineResponse struct {
@@ -71,23 +71,23 @@ type LogLineResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *LogLineResponse) GetContentType() string {
-	if o == nil {
+func (l *LogLineResponse) GetContentType() string {
+	if l == nil {
 		return ""
 	}
-	return o.ContentType
+	return l.ContentType
 }
 
-func (o *LogLineResponse) GetStatusCode() int {
-	if o == nil {
+func (l *LogLineResponse) GetStatusCode() int {
+	if l == nil {
 		return 0
 	}
-	return o.StatusCode
+	return l.StatusCode
 }
 
-func (o *LogLineResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (l *LogLineResponse) GetRawResponse() *http.Response {
+	if l == nil {
 		return nil
 	}
-	return o.RawResponse
+	return l.RawResponse
 }

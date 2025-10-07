@@ -13,25 +13,25 @@ type GetUserFriendsPlexErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetUserFriendsPlexErrors) GetCode() *int {
-	if o == nil {
+func (g *GetUserFriendsPlexErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetUserFriendsPlexErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetUserFriendsPlexErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetUserFriendsPlexErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetUserFriendsPlexErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetUserFriendsUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type GetUserFriendsErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetUserFriendsErrors) GetCode() *int {
-	if o == nil {
+func (g *GetUserFriendsErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetUserFriendsErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetUserFriendsErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetUserFriendsErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetUserFriendsErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetUserFriendsBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

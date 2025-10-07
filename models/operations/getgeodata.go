@@ -48,81 +48,81 @@ func (g *GetGeoDataGeoData) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetGeoDataGeoData) GetCode() string {
-	if o == nil {
+func (g *GetGeoDataGeoData) GetCode() string {
+	if g == nil {
 		return ""
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetGeoDataGeoData) GetContinentCode() string {
-	if o == nil {
+func (g *GetGeoDataGeoData) GetContinentCode() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContinentCode
+	return g.ContinentCode
 }
 
-func (o *GetGeoDataGeoData) GetCountry() string {
-	if o == nil {
+func (g *GetGeoDataGeoData) GetCountry() string {
+	if g == nil {
 		return ""
 	}
-	return o.Country
+	return g.Country
 }
 
-func (o *GetGeoDataGeoData) GetCity() string {
-	if o == nil {
+func (g *GetGeoDataGeoData) GetCity() string {
+	if g == nil {
 		return ""
 	}
-	return o.City
+	return g.City
 }
 
-func (o *GetGeoDataGeoData) GetEuropeanUnionMember() *bool {
-	if o == nil {
+func (g *GetGeoDataGeoData) GetEuropeanUnionMember() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.EuropeanUnionMember
+	return g.EuropeanUnionMember
 }
 
-func (o *GetGeoDataGeoData) GetTimeZone() string {
-	if o == nil {
+func (g *GetGeoDataGeoData) GetTimeZone() string {
+	if g == nil {
 		return ""
 	}
-	return o.TimeZone
+	return g.TimeZone
 }
 
-func (o *GetGeoDataGeoData) GetPostalCode() string {
-	if o == nil {
+func (g *GetGeoDataGeoData) GetPostalCode() string {
+	if g == nil {
 		return ""
 	}
-	return o.PostalCode
+	return g.PostalCode
 }
 
-func (o *GetGeoDataGeoData) GetInPrivacyRestrictedCountry() *bool {
-	if o == nil {
+func (g *GetGeoDataGeoData) GetInPrivacyRestrictedCountry() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.InPrivacyRestrictedCountry
+	return g.InPrivacyRestrictedCountry
 }
 
-func (o *GetGeoDataGeoData) GetInPrivacyRestrictedRegion() *bool {
-	if o == nil {
+func (g *GetGeoDataGeoData) GetInPrivacyRestrictedRegion() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.InPrivacyRestrictedRegion
+	return g.InPrivacyRestrictedRegion
 }
 
-func (o *GetGeoDataGeoData) GetSubdivisions() string {
-	if o == nil {
+func (g *GetGeoDataGeoData) GetSubdivisions() string {
+	if g == nil {
 		return ""
 	}
-	return o.Subdivisions
+	return g.Subdivisions
 }
 
-func (o *GetGeoDataGeoData) GetCoordinates() string {
-	if o == nil {
+func (g *GetGeoDataGeoData) GetCoordinates() string {
+	if g == nil {
 		return ""
 	}
-	return o.Coordinates
+	return g.Coordinates
 }
 
 type GetGeoDataResponse struct {
@@ -136,30 +136,30 @@ type GetGeoDataResponse struct {
 	GeoData *GetGeoDataGeoData
 }
 
-func (o *GetGeoDataResponse) GetContentType() string {
-	if o == nil {
+func (g *GetGeoDataResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetGeoDataResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetGeoDataResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetGeoDataResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetGeoDataResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetGeoDataResponse) GetGeoData() *GetGeoDataGeoData {
-	if o == nil {
+func (g *GetGeoDataResponse) GetGeoData() *GetGeoDataGeoData {
+	if g == nil {
 		return nil
 	}
-	return o.GeoData
+	return g.GeoData
 }

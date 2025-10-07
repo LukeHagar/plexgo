@@ -13,25 +13,25 @@ type GetMediaMetaDataLibraryErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetMediaMetaDataLibraryErrors) GetCode() *int {
-	if o == nil {
+func (g *GetMediaMetaDataLibraryErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetMediaMetaDataLibraryErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetMediaMetaDataLibraryErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetMediaMetaDataLibraryErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetMediaMetaDataLibraryErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetMediaMetaDataUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type GetMediaMetaDataErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetMediaMetaDataErrors) GetCode() *int {
-	if o == nil {
+func (g *GetMediaMetaDataErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetMediaMetaDataErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetMediaMetaDataErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetMediaMetaDataErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetMediaMetaDataErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetMediaMetaDataBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

@@ -120,32 +120,32 @@ func (g *GetServerResourcesRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetServerResourcesRequest) GetIncludeHTTPS() *IncludeHTTPS {
-	if o == nil {
+func (g *GetServerResourcesRequest) GetIncludeHTTPS() *IncludeHTTPS {
+	if g == nil {
 		return nil
 	}
-	return o.IncludeHTTPS
+	return g.IncludeHTTPS
 }
 
-func (o *GetServerResourcesRequest) GetIncludeRelay() *IncludeRelay {
-	if o == nil {
+func (g *GetServerResourcesRequest) GetIncludeRelay() *IncludeRelay {
+	if g == nil {
 		return nil
 	}
-	return o.IncludeRelay
+	return g.IncludeRelay
 }
 
-func (o *GetServerResourcesRequest) GetIncludeIPv6() *IncludeIPv6 {
-	if o == nil {
+func (g *GetServerResourcesRequest) GetIncludeIPv6() *IncludeIPv6 {
+	if g == nil {
 		return nil
 	}
-	return o.IncludeIPv6
+	return g.IncludeIPv6
 }
 
-func (o *GetServerResourcesRequest) GetClientID() string {
-	if o == nil {
+func (g *GetServerResourcesRequest) GetClientID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ClientID
+	return g.ClientID
 }
 
 // Protocol - The protocol used for the connection (http, https, etc)
@@ -192,53 +192,53 @@ type Connections struct {
 	IPv6 bool `json:"IPv6"`
 }
 
-func (o *Connections) GetProtocol() Protocol {
-	if o == nil {
+func (c *Connections) GetProtocol() Protocol {
+	if c == nil {
 		return Protocol("")
 	}
-	return o.Protocol
+	return c.Protocol
 }
 
-func (o *Connections) GetAddress() string {
-	if o == nil {
+func (c *Connections) GetAddress() string {
+	if c == nil {
 		return ""
 	}
-	return o.Address
+	return c.Address
 }
 
-func (o *Connections) GetPort() int {
-	if o == nil {
+func (c *Connections) GetPort() int {
+	if c == nil {
 		return 0
 	}
-	return o.Port
+	return c.Port
 }
 
-func (o *Connections) GetURI() string {
-	if o == nil {
+func (c *Connections) GetURI() string {
+	if c == nil {
 		return ""
 	}
-	return o.URI
+	return c.URI
 }
 
-func (o *Connections) GetLocal() bool {
-	if o == nil {
+func (c *Connections) GetLocal() bool {
+	if c == nil {
 		return false
 	}
-	return o.Local
+	return c.Local
 }
 
-func (o *Connections) GetRelay() bool {
-	if o == nil {
+func (c *Connections) GetRelay() bool {
+	if c == nil {
 		return false
 	}
-	return o.Relay
+	return c.Relay
 }
 
-func (o *Connections) GetIPv6() bool {
-	if o == nil {
+func (c *Connections) GetIPv6() bool {
+	if c == nil {
 		return false
 	}
-	return o.IPv6
+	return c.IPv6
 }
 
 type PlexDevice struct {
@@ -274,178 +274,178 @@ func (p PlexDevice) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PlexDevice) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"name", "product", "productVersion", "platform", "platformVersion", "device", "clientIdentifier", "createdAt", "lastSeenAt", "provides", "ownerId", "sourceTitle", "publicAddress", "accessToken", "owned", "home", "synced", "relay", "presence", "httpsRequired", "publicAddressMatches", "dnsRebindingProtection", "natLoopbackSupported", "connections"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"name", "product", "productVersion", "clientIdentifier", "createdAt", "lastSeenAt", "provides", "publicAddress", "accessToken", "owned", "home", "synced", "relay", "presence", "httpsRequired", "publicAddressMatches", "dnsRebindingProtection", "natLoopbackSupported", "connections"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *PlexDevice) GetName() string {
-	if o == nil {
+func (p *PlexDevice) GetName() string {
+	if p == nil {
 		return ""
 	}
-	return o.Name
+	return p.Name
 }
 
-func (o *PlexDevice) GetProduct() string {
-	if o == nil {
+func (p *PlexDevice) GetProduct() string {
+	if p == nil {
 		return ""
 	}
-	return o.Product
+	return p.Product
 }
 
-func (o *PlexDevice) GetProductVersion() string {
-	if o == nil {
+func (p *PlexDevice) GetProductVersion() string {
+	if p == nil {
 		return ""
 	}
-	return o.ProductVersion
+	return p.ProductVersion
 }
 
-func (o *PlexDevice) GetPlatform() *string {
-	if o == nil {
+func (p *PlexDevice) GetPlatform() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Platform
+	return p.Platform
 }
 
-func (o *PlexDevice) GetPlatformVersion() *string {
-	if o == nil {
+func (p *PlexDevice) GetPlatformVersion() *string {
+	if p == nil {
 		return nil
 	}
-	return o.PlatformVersion
+	return p.PlatformVersion
 }
 
-func (o *PlexDevice) GetDevice() *string {
-	if o == nil {
+func (p *PlexDevice) GetDevice() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Device
+	return p.Device
 }
 
-func (o *PlexDevice) GetClientIdentifier() string {
-	if o == nil {
+func (p *PlexDevice) GetClientIdentifier() string {
+	if p == nil {
 		return ""
 	}
-	return o.ClientIdentifier
+	return p.ClientIdentifier
 }
 
-func (o *PlexDevice) GetCreatedAt() time.Time {
-	if o == nil {
+func (p *PlexDevice) GetCreatedAt() time.Time {
+	if p == nil {
 		return time.Time{}
 	}
-	return o.CreatedAt
+	return p.CreatedAt
 }
 
-func (o *PlexDevice) GetLastSeenAt() time.Time {
-	if o == nil {
+func (p *PlexDevice) GetLastSeenAt() time.Time {
+	if p == nil {
 		return time.Time{}
 	}
-	return o.LastSeenAt
+	return p.LastSeenAt
 }
 
-func (o *PlexDevice) GetProvides() string {
-	if o == nil {
+func (p *PlexDevice) GetProvides() string {
+	if p == nil {
 		return ""
 	}
-	return o.Provides
+	return p.Provides
 }
 
-func (o *PlexDevice) GetOwnerID() *int64 {
-	if o == nil {
+func (p *PlexDevice) GetOwnerID() *int64 {
+	if p == nil {
 		return nil
 	}
-	return o.OwnerID
+	return p.OwnerID
 }
 
-func (o *PlexDevice) GetSourceTitle() *string {
-	if o == nil {
+func (p *PlexDevice) GetSourceTitle() *string {
+	if p == nil {
 		return nil
 	}
-	return o.SourceTitle
+	return p.SourceTitle
 }
 
-func (o *PlexDevice) GetPublicAddress() string {
-	if o == nil {
+func (p *PlexDevice) GetPublicAddress() string {
+	if p == nil {
 		return ""
 	}
-	return o.PublicAddress
+	return p.PublicAddress
 }
 
-func (o *PlexDevice) GetAccessToken() string {
-	if o == nil {
+func (p *PlexDevice) GetAccessToken() string {
+	if p == nil {
 		return ""
 	}
-	return o.AccessToken
+	return p.AccessToken
 }
 
-func (o *PlexDevice) GetOwned() bool {
-	if o == nil {
+func (p *PlexDevice) GetOwned() bool {
+	if p == nil {
 		return false
 	}
-	return o.Owned
+	return p.Owned
 }
 
-func (o *PlexDevice) GetHome() bool {
-	if o == nil {
+func (p *PlexDevice) GetHome() bool {
+	if p == nil {
 		return false
 	}
-	return o.Home
+	return p.Home
 }
 
-func (o *PlexDevice) GetSynced() bool {
-	if o == nil {
+func (p *PlexDevice) GetSynced() bool {
+	if p == nil {
 		return false
 	}
-	return o.Synced
+	return p.Synced
 }
 
-func (o *PlexDevice) GetRelay() bool {
-	if o == nil {
+func (p *PlexDevice) GetRelay() bool {
+	if p == nil {
 		return false
 	}
-	return o.Relay
+	return p.Relay
 }
 
-func (o *PlexDevice) GetPresence() bool {
-	if o == nil {
+func (p *PlexDevice) GetPresence() bool {
+	if p == nil {
 		return false
 	}
-	return o.Presence
+	return p.Presence
 }
 
-func (o *PlexDevice) GetHTTPSRequired() bool {
-	if o == nil {
+func (p *PlexDevice) GetHTTPSRequired() bool {
+	if p == nil {
 		return false
 	}
-	return o.HTTPSRequired
+	return p.HTTPSRequired
 }
 
-func (o *PlexDevice) GetPublicAddressMatches() bool {
-	if o == nil {
+func (p *PlexDevice) GetPublicAddressMatches() bool {
+	if p == nil {
 		return false
 	}
-	return o.PublicAddressMatches
+	return p.PublicAddressMatches
 }
 
-func (o *PlexDevice) GetDNSRebindingProtection() bool {
-	if o == nil {
+func (p *PlexDevice) GetDNSRebindingProtection() bool {
+	if p == nil {
 		return false
 	}
-	return o.DNSRebindingProtection
+	return p.DNSRebindingProtection
 }
 
-func (o *PlexDevice) GetNatLoopbackSupported() bool {
-	if o == nil {
+func (p *PlexDevice) GetNatLoopbackSupported() bool {
+	if p == nil {
 		return false
 	}
-	return o.NatLoopbackSupported
+	return p.NatLoopbackSupported
 }
 
-func (o *PlexDevice) GetConnections() []Connections {
-	if o == nil {
+func (p *PlexDevice) GetConnections() []Connections {
+	if p == nil {
 		return []Connections{}
 	}
-	return o.Connections
+	return p.Connections
 }
 
 type GetServerResourcesResponse struct {
@@ -459,30 +459,30 @@ type GetServerResourcesResponse struct {
 	PlexDevices []PlexDevice
 }
 
-func (o *GetServerResourcesResponse) GetContentType() string {
-	if o == nil {
+func (g *GetServerResourcesResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetServerResourcesResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetServerResourcesResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetServerResourcesResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetServerResourcesResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetServerResourcesResponse) GetPlexDevices() []PlexDevice {
-	if o == nil {
+func (g *GetServerResourcesResponse) GetPlexDevices() []PlexDevice {
+	if g == nil {
 		return nil
 	}
-	return o.PlexDevices
+	return g.PlexDevices
 }

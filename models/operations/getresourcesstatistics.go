@@ -13,11 +13,11 @@ type GetResourcesStatisticsRequest struct {
 	Timespan *int64 `queryParam:"style=form,explode=true,name=timespan"`
 }
 
-func (o *GetResourcesStatisticsRequest) GetTimespan() *int64 {
-	if o == nil {
+func (g *GetResourcesStatisticsRequest) GetTimespan() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.Timespan
+	return g.Timespan
 }
 
 type StatisticsResources struct {
@@ -29,46 +29,46 @@ type StatisticsResources struct {
 	ProcessMemoryUtilization *float32 `json:"processMemoryUtilization,omitempty"`
 }
 
-func (o *StatisticsResources) GetTimespan() *int64 {
-	if o == nil {
+func (s *StatisticsResources) GetTimespan() *int64 {
+	if s == nil {
 		return nil
 	}
-	return o.Timespan
+	return s.Timespan
 }
 
-func (o *StatisticsResources) GetAt() *int64 {
-	if o == nil {
+func (s *StatisticsResources) GetAt() *int64 {
+	if s == nil {
 		return nil
 	}
-	return o.At
+	return s.At
 }
 
-func (o *StatisticsResources) GetHostCPUUtilization() *float32 {
-	if o == nil {
+func (s *StatisticsResources) GetHostCPUUtilization() *float32 {
+	if s == nil {
 		return nil
 	}
-	return o.HostCPUUtilization
+	return s.HostCPUUtilization
 }
 
-func (o *StatisticsResources) GetProcessCPUUtilization() *float32 {
-	if o == nil {
+func (s *StatisticsResources) GetProcessCPUUtilization() *float32 {
+	if s == nil {
 		return nil
 	}
-	return o.ProcessCPUUtilization
+	return s.ProcessCPUUtilization
 }
 
-func (o *StatisticsResources) GetHostMemoryUtilization() *float32 {
-	if o == nil {
+func (s *StatisticsResources) GetHostMemoryUtilization() *float32 {
+	if s == nil {
 		return nil
 	}
-	return o.HostMemoryUtilization
+	return s.HostMemoryUtilization
 }
 
-func (o *StatisticsResources) GetProcessMemoryUtilization() *float32 {
-	if o == nil {
+func (s *StatisticsResources) GetProcessMemoryUtilization() *float32 {
+	if s == nil {
 		return nil
 	}
-	return o.ProcessMemoryUtilization
+	return s.ProcessMemoryUtilization
 }
 
 type GetResourcesStatisticsMediaContainer struct {
@@ -76,18 +76,18 @@ type GetResourcesStatisticsMediaContainer struct {
 	StatisticsResources []StatisticsResources `json:"StatisticsResources,omitempty"`
 }
 
-func (o *GetResourcesStatisticsMediaContainer) GetSize() *int {
-	if o == nil {
+func (g *GetResourcesStatisticsMediaContainer) GetSize() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetResourcesStatisticsMediaContainer) GetStatisticsResources() []StatisticsResources {
-	if o == nil {
+func (g *GetResourcesStatisticsMediaContainer) GetStatisticsResources() []StatisticsResources {
+	if g == nil {
 		return nil
 	}
-	return o.StatisticsResources
+	return g.StatisticsResources
 }
 
 // GetResourcesStatisticsResponseBody - Resource Statistics
@@ -95,11 +95,11 @@ type GetResourcesStatisticsResponseBody struct {
 	MediaContainer *GetResourcesStatisticsMediaContainer `json:"MediaContainer,omitempty"`
 }
 
-func (o *GetResourcesStatisticsResponseBody) GetMediaContainer() *GetResourcesStatisticsMediaContainer {
-	if o == nil {
+func (g *GetResourcesStatisticsResponseBody) GetMediaContainer() *GetResourcesStatisticsMediaContainer {
+	if g == nil {
 		return nil
 	}
-	return o.MediaContainer
+	return g.MediaContainer
 }
 
 type GetResourcesStatisticsResponse struct {
@@ -113,30 +113,30 @@ type GetResourcesStatisticsResponse struct {
 	Object *GetResourcesStatisticsResponseBody
 }
 
-func (o *GetResourcesStatisticsResponse) GetContentType() string {
-	if o == nil {
+func (g *GetResourcesStatisticsResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetResourcesStatisticsResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetResourcesStatisticsResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetResourcesStatisticsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetResourcesStatisticsResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetResourcesStatisticsResponse) GetObject() *GetResourcesStatisticsResponseBody {
-	if o == nil {
+func (g *GetResourcesStatisticsResponse) GetObject() *GetResourcesStatisticsResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

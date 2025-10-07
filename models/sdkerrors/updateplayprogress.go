@@ -13,25 +13,25 @@ type UpdatePlayProgressMediaErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *UpdatePlayProgressMediaErrors) GetCode() *int {
-	if o == nil {
+func (u *UpdatePlayProgressMediaErrors) GetCode() *int {
+	if u == nil {
 		return nil
 	}
-	return o.Code
+	return u.Code
 }
 
-func (o *UpdatePlayProgressMediaErrors) GetMessage() *string {
-	if o == nil {
+func (u *UpdatePlayProgressMediaErrors) GetMessage() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Message
+	return u.Message
 }
 
-func (o *UpdatePlayProgressMediaErrors) GetStatus() *int {
-	if o == nil {
+func (u *UpdatePlayProgressMediaErrors) GetStatus() *int {
+	if u == nil {
 		return nil
 	}
-	return o.Status
+	return u.Status
 }
 
 // UpdatePlayProgressUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type UpdatePlayProgressErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *UpdatePlayProgressErrors) GetCode() *int {
-	if o == nil {
+func (u *UpdatePlayProgressErrors) GetCode() *int {
+	if u == nil {
 		return nil
 	}
-	return o.Code
+	return u.Code
 }
 
-func (o *UpdatePlayProgressErrors) GetMessage() *string {
-	if o == nil {
+func (u *UpdatePlayProgressErrors) GetMessage() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Message
+	return u.Message
 }
 
-func (o *UpdatePlayProgressErrors) GetStatus() *int {
-	if o == nil {
+func (u *UpdatePlayProgressErrors) GetStatus() *int {
+	if u == nil {
 		return nil
 	}
-	return o.Status
+	return u.Status
 }
 
 // UpdatePlayProgressBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

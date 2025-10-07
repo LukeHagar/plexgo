@@ -45,18 +45,18 @@ type GetCountriesLibraryRequest struct {
 	Type GetCountriesLibraryQueryParamType `queryParam:"style=form,explode=true,name=type"`
 }
 
-func (o *GetCountriesLibraryRequest) GetSectionKey() int {
-	if o == nil {
+func (g *GetCountriesLibraryRequest) GetSectionKey() int {
+	if g == nil {
 		return 0
 	}
-	return o.SectionKey
+	return g.SectionKey
 }
 
-func (o *GetCountriesLibraryRequest) GetType() GetCountriesLibraryQueryParamType {
-	if o == nil {
+func (g *GetCountriesLibraryRequest) GetType() GetCountriesLibraryQueryParamType {
+	if g == nil {
 		return GetCountriesLibraryQueryParamType(0)
 	}
-	return o.Type
+	return g.Type
 }
 
 type GetCountriesLibraryDirectory struct {
@@ -65,25 +65,25 @@ type GetCountriesLibraryDirectory struct {
 	Title   string `json:"title"`
 }
 
-func (o *GetCountriesLibraryDirectory) GetFastKey() string {
-	if o == nil {
+func (g *GetCountriesLibraryDirectory) GetFastKey() string {
+	if g == nil {
 		return ""
 	}
-	return o.FastKey
+	return g.FastKey
 }
 
-func (o *GetCountriesLibraryDirectory) GetKey() string {
-	if o == nil {
+func (g *GetCountriesLibraryDirectory) GetKey() string {
+	if g == nil {
 		return ""
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetCountriesLibraryDirectory) GetTitle() string {
-	if o == nil {
+func (g *GetCountriesLibraryDirectory) GetTitle() string {
+	if g == nil {
 		return ""
 	}
-	return o.Title
+	return g.Title
 }
 
 type GetCountriesLibraryMediaContainer struct {
@@ -114,95 +114,95 @@ type GetCountriesLibraryMediaContainer struct {
 	Directory []GetCountriesLibraryDirectory `json:"Directory,omitempty"`
 }
 
-func (o *GetCountriesLibraryMediaContainer) GetSize() int {
-	if o == nil {
+func (g *GetCountriesLibraryMediaContainer) GetSize() int {
+	if g == nil {
 		return 0
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetCountriesLibraryMediaContainer) GetAllowSync() bool {
-	if o == nil {
+func (g *GetCountriesLibraryMediaContainer) GetAllowSync() bool {
+	if g == nil {
 		return false
 	}
-	return o.AllowSync
+	return g.AllowSync
 }
 
-func (o *GetCountriesLibraryMediaContainer) GetArt() string {
-	if o == nil {
+func (g *GetCountriesLibraryMediaContainer) GetArt() string {
+	if g == nil {
 		return ""
 	}
-	return o.Art
+	return g.Art
 }
 
-func (o *GetCountriesLibraryMediaContainer) GetContent() string {
-	if o == nil {
+func (g *GetCountriesLibraryMediaContainer) GetContent() string {
+	if g == nil {
 		return ""
 	}
-	return o.Content
+	return g.Content
 }
 
-func (o *GetCountriesLibraryMediaContainer) GetIdentifier() string {
-	if o == nil {
+func (g *GetCountriesLibraryMediaContainer) GetIdentifier() string {
+	if g == nil {
 		return ""
 	}
-	return o.Identifier
+	return g.Identifier
 }
 
-func (o *GetCountriesLibraryMediaContainer) GetMediaTagPrefix() string {
-	if o == nil {
+func (g *GetCountriesLibraryMediaContainer) GetMediaTagPrefix() string {
+	if g == nil {
 		return ""
 	}
-	return o.MediaTagPrefix
+	return g.MediaTagPrefix
 }
 
-func (o *GetCountriesLibraryMediaContainer) GetMediaTagVersion() int64 {
-	if o == nil {
+func (g *GetCountriesLibraryMediaContainer) GetMediaTagVersion() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.MediaTagVersion
+	return g.MediaTagVersion
 }
 
-func (o *GetCountriesLibraryMediaContainer) GetNocache() bool {
-	if o == nil {
+func (g *GetCountriesLibraryMediaContainer) GetNocache() bool {
+	if g == nil {
 		return false
 	}
-	return o.Nocache
+	return g.Nocache
 }
 
-func (o *GetCountriesLibraryMediaContainer) GetThumb() string {
-	if o == nil {
+func (g *GetCountriesLibraryMediaContainer) GetThumb() string {
+	if g == nil {
 		return ""
 	}
-	return o.Thumb
+	return g.Thumb
 }
 
-func (o *GetCountriesLibraryMediaContainer) GetTitle1() string {
-	if o == nil {
+func (g *GetCountriesLibraryMediaContainer) GetTitle1() string {
+	if g == nil {
 		return ""
 	}
-	return o.Title1
+	return g.Title1
 }
 
-func (o *GetCountriesLibraryMediaContainer) GetTitle2() string {
-	if o == nil {
+func (g *GetCountriesLibraryMediaContainer) GetTitle2() string {
+	if g == nil {
 		return ""
 	}
-	return o.Title2
+	return g.Title2
 }
 
-func (o *GetCountriesLibraryMediaContainer) GetViewGroup() string {
-	if o == nil {
+func (g *GetCountriesLibraryMediaContainer) GetViewGroup() string {
+	if g == nil {
 		return ""
 	}
-	return o.ViewGroup
+	return g.ViewGroup
 }
 
-func (o *GetCountriesLibraryMediaContainer) GetDirectory() []GetCountriesLibraryDirectory {
-	if o == nil {
+func (g *GetCountriesLibraryMediaContainer) GetDirectory() []GetCountriesLibraryDirectory {
+	if g == nil {
 		return nil
 	}
-	return o.Directory
+	return g.Directory
 }
 
 // GetCountriesLibraryResponseBody - Successful response containing media container data.
@@ -210,11 +210,11 @@ type GetCountriesLibraryResponseBody struct {
 	MediaContainer *GetCountriesLibraryMediaContainer `json:"MediaContainer,omitempty"`
 }
 
-func (o *GetCountriesLibraryResponseBody) GetMediaContainer() *GetCountriesLibraryMediaContainer {
-	if o == nil {
+func (g *GetCountriesLibraryResponseBody) GetMediaContainer() *GetCountriesLibraryMediaContainer {
+	if g == nil {
 		return nil
 	}
-	return o.MediaContainer
+	return g.MediaContainer
 }
 
 type GetCountriesLibraryResponse struct {
@@ -228,30 +228,30 @@ type GetCountriesLibraryResponse struct {
 	Object *GetCountriesLibraryResponseBody
 }
 
-func (o *GetCountriesLibraryResponse) GetContentType() string {
-	if o == nil {
+func (g *GetCountriesLibraryResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetCountriesLibraryResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetCountriesLibraryResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetCountriesLibraryResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetCountriesLibraryResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetCountriesLibraryResponse) GetObject() *GetCountriesLibraryResponseBody {
-	if o == nil {
+func (g *GetCountriesLibraryResponse) GetObject() *GetCountriesLibraryResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

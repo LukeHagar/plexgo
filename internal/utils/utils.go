@@ -14,8 +14,6 @@ import (
 	"strconv"
 	"strings"
 	"time"
-
-	"github.com/ericlagergren/decimal"
 )
 
 const (
@@ -182,8 +180,6 @@ func valToString(val interface{}) string {
 	case time.Time:
 		return v.Format(time.RFC3339Nano)
 	case big.Int:
-		return v.String()
-	case decimal.Big:
 		return v.String()
 	default:
 		return fmt.Sprintf("%v", v)

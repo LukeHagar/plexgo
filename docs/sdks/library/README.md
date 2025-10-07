@@ -109,7 +109,7 @@ func main() {
     )
 
     res, err := s.Library.GetRecentlyAddedLibrary(ctx, operations.GetRecentlyAddedLibraryRequest{
-        ContentDirectoryID: plexgo.Int64(2),
+        ContentDirectoryID: plexgo.Pointer[int64](2),
         PinnedContentDirectoryID: []int64{
             3,
             5,
@@ -124,7 +124,7 @@ func main() {
             16,
             17,
         },
-        SectionID: plexgo.Int64(2),
+        SectionID: plexgo.Pointer[int64](2),
         Type: operations.QueryParamTypeTvShow,
         IncludeMeta: operations.QueryParamIncludeMetaEnable.ToPointer(),
     })
@@ -894,19 +894,19 @@ func main() {
 
     res, err := s.Library.GetMediaMetaData(ctx, operations.GetMediaMetaDataRequest{
         RatingKey: "21119,21617",
-        IncludeConcerts: plexgo.Bool(true),
-        IncludeExtras: plexgo.Bool(true),
-        IncludeOnDeck: plexgo.Bool(true),
-        IncludePopularLeaves: plexgo.Bool(true),
-        IncludePreferences: plexgo.Bool(true),
-        IncludeReviews: plexgo.Bool(true),
-        IncludeChapters: plexgo.Bool(true),
-        IncludeStations: plexgo.Bool(true),
-        IncludeExternalMedia: plexgo.Bool(true),
-        AsyncAugmentMetadata: plexgo.Bool(true),
-        AsyncCheckFiles: plexgo.Bool(true),
-        AsyncRefreshAnalysis: plexgo.Bool(true),
-        AsyncRefreshLocalMediaAgent: plexgo.Bool(true),
+        IncludeConcerts: plexgo.Pointer(true),
+        IncludeExtras: plexgo.Pointer(true),
+        IncludeOnDeck: plexgo.Pointer(true),
+        IncludePopularLeaves: plexgo.Pointer(true),
+        IncludePreferences: plexgo.Pointer(true),
+        IncludeReviews: plexgo.Pointer(true),
+        IncludeChapters: plexgo.Pointer(true),
+        IncludeStations: plexgo.Pointer(true),
+        IncludeExternalMedia: plexgo.Pointer(true),
+        AsyncAugmentMetadata: plexgo.Pointer(true),
+        AsyncCheckFiles: plexgo.Pointer(true),
+        AsyncRefreshAnalysis: plexgo.Pointer(true),
+        AsyncRefreshLocalMediaAgent: plexgo.Pointer(true),
     })
     if err != nil {
         log.Fatal(err)
@@ -1011,7 +1011,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Library.PostMediaArts(ctx, 2268, plexgo.String("https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b"), nil)
+    res, err := s.Library.PostMediaArts(ctx, 2268, plexgo.Pointer("https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b"), nil)
     if err != nil {
         log.Fatal(err)
     }
@@ -1115,7 +1115,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Library.PostMediaPoster(ctx, 2268, plexgo.String("https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b"), nil)
+    res, err := s.Library.PostMediaPoster(ctx, 2268, plexgo.Pointer("https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b"), nil)
     if err != nil {
         log.Fatal(err)
     }
@@ -1169,7 +1169,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Library.GetMetadataChildren(ctx, 2403.67, plexgo.String("Stream"))
+    res, err := s.Library.GetMetadataChildren(ctx, 2403.67, plexgo.Pointer("Stream"))
     if err != nil {
         log.Fatal(err)
     }

@@ -13,11 +13,11 @@ type GetBandwidthStatisticsRequest struct {
 	Timespan *int64 `queryParam:"style=form,explode=true,name=timespan"`
 }
 
-func (o *GetBandwidthStatisticsRequest) GetTimespan() *int64 {
-	if o == nil {
+func (g *GetBandwidthStatisticsRequest) GetTimespan() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.Timespan
+	return g.Timespan
 }
 
 type GetBandwidthStatisticsDevice struct {
@@ -28,39 +28,39 @@ type GetBandwidthStatisticsDevice struct {
 	CreatedAt        *int    `json:"createdAt,omitempty"`
 }
 
-func (o *GetBandwidthStatisticsDevice) GetID() *int {
-	if o == nil {
+func (g *GetBandwidthStatisticsDevice) GetID() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetBandwidthStatisticsDevice) GetName() *string {
-	if o == nil {
+func (g *GetBandwidthStatisticsDevice) GetName() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Name
+	return g.Name
 }
 
-func (o *GetBandwidthStatisticsDevice) GetPlatform() *string {
-	if o == nil {
+func (g *GetBandwidthStatisticsDevice) GetPlatform() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Platform
+	return g.Platform
 }
 
-func (o *GetBandwidthStatisticsDevice) GetClientIdentifier() *string {
-	if o == nil {
+func (g *GetBandwidthStatisticsDevice) GetClientIdentifier() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ClientIdentifier
+	return g.ClientIdentifier
 }
 
-func (o *GetBandwidthStatisticsDevice) GetCreatedAt() *int {
-	if o == nil {
+func (g *GetBandwidthStatisticsDevice) GetCreatedAt() *int {
+	if g == nil {
 		return nil
 	}
-	return o.CreatedAt
+	return g.CreatedAt
 }
 
 type GetBandwidthStatisticsAccount struct {
@@ -74,60 +74,60 @@ type GetBandwidthStatisticsAccount struct {
 	Thumb                   *string `json:"thumb,omitempty"`
 }
 
-func (o *GetBandwidthStatisticsAccount) GetID() *int {
-	if o == nil {
+func (g *GetBandwidthStatisticsAccount) GetID() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetBandwidthStatisticsAccount) GetKey() *string {
-	if o == nil {
+func (g *GetBandwidthStatisticsAccount) GetKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetBandwidthStatisticsAccount) GetName() *string {
-	if o == nil {
+func (g *GetBandwidthStatisticsAccount) GetName() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Name
+	return g.Name
 }
 
-func (o *GetBandwidthStatisticsAccount) GetDefaultAudioLanguage() *string {
-	if o == nil {
+func (g *GetBandwidthStatisticsAccount) GetDefaultAudioLanguage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.DefaultAudioLanguage
+	return g.DefaultAudioLanguage
 }
 
-func (o *GetBandwidthStatisticsAccount) GetAutoSelectAudio() *bool {
-	if o == nil {
+func (g *GetBandwidthStatisticsAccount) GetAutoSelectAudio() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.AutoSelectAudio
+	return g.AutoSelectAudio
 }
 
-func (o *GetBandwidthStatisticsAccount) GetDefaultSubtitleLanguage() *string {
-	if o == nil {
+func (g *GetBandwidthStatisticsAccount) GetDefaultSubtitleLanguage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.DefaultSubtitleLanguage
+	return g.DefaultSubtitleLanguage
 }
 
-func (o *GetBandwidthStatisticsAccount) GetSubtitleMode() *int {
-	if o == nil {
+func (g *GetBandwidthStatisticsAccount) GetSubtitleMode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.SubtitleMode
+	return g.SubtitleMode
 }
 
-func (o *GetBandwidthStatisticsAccount) GetThumb() *string {
-	if o == nil {
+func (g *GetBandwidthStatisticsAccount) GetThumb() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Thumb
+	return g.Thumb
 }
 
 type StatisticsBandwidth struct {
@@ -139,46 +139,46 @@ type StatisticsBandwidth struct {
 	Bytes     *int64 `json:"bytes,omitempty"`
 }
 
-func (o *StatisticsBandwidth) GetAccountID() *int {
-	if o == nil {
+func (s *StatisticsBandwidth) GetAccountID() *int {
+	if s == nil {
 		return nil
 	}
-	return o.AccountID
+	return s.AccountID
 }
 
-func (o *StatisticsBandwidth) GetDeviceID() *int {
-	if o == nil {
+func (s *StatisticsBandwidth) GetDeviceID() *int {
+	if s == nil {
 		return nil
 	}
-	return o.DeviceID
+	return s.DeviceID
 }
 
-func (o *StatisticsBandwidth) GetTimespan() *int64 {
-	if o == nil {
+func (s *StatisticsBandwidth) GetTimespan() *int64 {
+	if s == nil {
 		return nil
 	}
-	return o.Timespan
+	return s.Timespan
 }
 
-func (o *StatisticsBandwidth) GetAt() *int {
-	if o == nil {
+func (s *StatisticsBandwidth) GetAt() *int {
+	if s == nil {
 		return nil
 	}
-	return o.At
+	return s.At
 }
 
-func (o *StatisticsBandwidth) GetLan() *bool {
-	if o == nil {
+func (s *StatisticsBandwidth) GetLan() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.Lan
+	return s.Lan
 }
 
-func (o *StatisticsBandwidth) GetBytes() *int64 {
-	if o == nil {
+func (s *StatisticsBandwidth) GetBytes() *int64 {
+	if s == nil {
 		return nil
 	}
-	return o.Bytes
+	return s.Bytes
 }
 
 type GetBandwidthStatisticsMediaContainer struct {
@@ -188,32 +188,32 @@ type GetBandwidthStatisticsMediaContainer struct {
 	StatisticsBandwidth []StatisticsBandwidth           `json:"StatisticsBandwidth,omitempty"`
 }
 
-func (o *GetBandwidthStatisticsMediaContainer) GetSize() *int {
-	if o == nil {
+func (g *GetBandwidthStatisticsMediaContainer) GetSize() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetBandwidthStatisticsMediaContainer) GetDevice() []GetBandwidthStatisticsDevice {
-	if o == nil {
+func (g *GetBandwidthStatisticsMediaContainer) GetDevice() []GetBandwidthStatisticsDevice {
+	if g == nil {
 		return nil
 	}
-	return o.Device
+	return g.Device
 }
 
-func (o *GetBandwidthStatisticsMediaContainer) GetAccount() []GetBandwidthStatisticsAccount {
-	if o == nil {
+func (g *GetBandwidthStatisticsMediaContainer) GetAccount() []GetBandwidthStatisticsAccount {
+	if g == nil {
 		return nil
 	}
-	return o.Account
+	return g.Account
 }
 
-func (o *GetBandwidthStatisticsMediaContainer) GetStatisticsBandwidth() []StatisticsBandwidth {
-	if o == nil {
+func (g *GetBandwidthStatisticsMediaContainer) GetStatisticsBandwidth() []StatisticsBandwidth {
+	if g == nil {
 		return nil
 	}
-	return o.StatisticsBandwidth
+	return g.StatisticsBandwidth
 }
 
 // GetBandwidthStatisticsResponseBody - Bandwidth Statistics
@@ -221,11 +221,11 @@ type GetBandwidthStatisticsResponseBody struct {
 	MediaContainer *GetBandwidthStatisticsMediaContainer `json:"MediaContainer,omitempty"`
 }
 
-func (o *GetBandwidthStatisticsResponseBody) GetMediaContainer() *GetBandwidthStatisticsMediaContainer {
-	if o == nil {
+func (g *GetBandwidthStatisticsResponseBody) GetMediaContainer() *GetBandwidthStatisticsMediaContainer {
+	if g == nil {
 		return nil
 	}
-	return o.MediaContainer
+	return g.MediaContainer
 }
 
 type GetBandwidthStatisticsResponse struct {
@@ -239,30 +239,30 @@ type GetBandwidthStatisticsResponse struct {
 	Object *GetBandwidthStatisticsResponseBody
 }
 
-func (o *GetBandwidthStatisticsResponse) GetContentType() string {
-	if o == nil {
+func (g *GetBandwidthStatisticsResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetBandwidthStatisticsResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetBandwidthStatisticsResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetBandwidthStatisticsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetBandwidthStatisticsResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetBandwidthStatisticsResponse) GetObject() *GetBandwidthStatisticsResponseBody {
-	if o == nil {
+func (g *GetBandwidthStatisticsResponse) GetObject() *GetBandwidthStatisticsResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

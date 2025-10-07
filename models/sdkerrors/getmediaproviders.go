@@ -13,25 +13,25 @@ type GetMediaProvidersServerErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetMediaProvidersServerErrors) GetCode() *int {
-	if o == nil {
+func (g *GetMediaProvidersServerErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetMediaProvidersServerErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetMediaProvidersServerErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetMediaProvidersServerErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetMediaProvidersServerErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetMediaProvidersUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type GetMediaProvidersErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetMediaProvidersErrors) GetCode() *int {
-	if o == nil {
+func (g *GetMediaProvidersErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetMediaProvidersErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetMediaProvidersErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetMediaProvidersErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetMediaProvidersErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetMediaProvidersBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

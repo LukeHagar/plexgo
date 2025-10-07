@@ -20,46 +20,46 @@ type ResponseBody struct {
 	Token string `json:"token"`
 }
 
-func (o *ResponseBody) GetIdentifier() string {
-	if o == nil {
+func (r *ResponseBody) GetIdentifier() string {
+	if r == nil {
 		return ""
 	}
-	return o.Identifier
+	return r.Identifier
 }
 
-func (o *ResponseBody) GetBaseURL() string {
-	if o == nil {
+func (r *ResponseBody) GetBaseURL() string {
+	if r == nil {
 		return ""
 	}
-	return o.BaseURL
+	return r.BaseURL
 }
 
-func (o *ResponseBody) GetTitle() string {
-	if o == nil {
+func (r *ResponseBody) GetTitle() string {
+	if r == nil {
 		return ""
 	}
-	return o.Title
+	return r.Title
 }
 
-func (o *ResponseBody) GetLinkURL() string {
-	if o == nil {
+func (r *ResponseBody) GetLinkURL() string {
+	if r == nil {
 		return ""
 	}
-	return o.LinkURL
+	return r.LinkURL
 }
 
-func (o *ResponseBody) GetProvides() string {
-	if o == nil {
+func (r *ResponseBody) GetProvides() string {
+	if r == nil {
 		return ""
 	}
-	return o.Provides
+	return r.Provides
 }
 
-func (o *ResponseBody) GetToken() string {
-	if o == nil {
+func (r *ResponseBody) GetToken() string {
+	if r == nil {
 		return ""
 	}
-	return o.Token
+	return r.Token
 }
 
 type GetCompanionsDataResponse struct {
@@ -73,30 +73,30 @@ type GetCompanionsDataResponse struct {
 	ResponseBodies []ResponseBody
 }
 
-func (o *GetCompanionsDataResponse) GetContentType() string {
-	if o == nil {
+func (g *GetCompanionsDataResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetCompanionsDataResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetCompanionsDataResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetCompanionsDataResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetCompanionsDataResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetCompanionsDataResponse) GetResponseBodies() []ResponseBody {
-	if o == nil {
+func (g *GetCompanionsDataResponse) GetResponseBodies() []ResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.ResponseBodies
+	return g.ResponseBodies
 }

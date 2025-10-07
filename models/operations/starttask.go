@@ -35,11 +35,11 @@ type StartTaskRequest struct {
 	TaskName TaskName `pathParam:"style=simple,explode=false,name=taskName"`
 }
 
-func (o *StartTaskRequest) GetTaskName() TaskName {
-	if o == nil {
+func (s *StartTaskRequest) GetTaskName() TaskName {
+	if s == nil {
 		return TaskName("")
 	}
-	return o.TaskName
+	return s.TaskName
 }
 
 type StartTaskResponse struct {
@@ -51,23 +51,23 @@ type StartTaskResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *StartTaskResponse) GetContentType() string {
-	if o == nil {
+func (s *StartTaskResponse) GetContentType() string {
+	if s == nil {
 		return ""
 	}
-	return o.ContentType
+	return s.ContentType
 }
 
-func (o *StartTaskResponse) GetStatusCode() int {
-	if o == nil {
+func (s *StartTaskResponse) GetStatusCode() int {
+	if s == nil {
 		return 0
 	}
-	return o.StatusCode
+	return s.StatusCode
 }
 
-func (o *StartTaskResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (s *StartTaskResponse) GetRawResponse() *http.Response {
+	if s == nil {
 		return nil
 	}
-	return o.RawResponse
+	return s.RawResponse
 }

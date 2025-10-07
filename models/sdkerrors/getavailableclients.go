@@ -13,25 +13,25 @@ type GetAvailableClientsServerErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetAvailableClientsServerErrors) GetCode() *int {
-	if o == nil {
+func (g *GetAvailableClientsServerErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetAvailableClientsServerErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetAvailableClientsServerErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetAvailableClientsServerErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetAvailableClientsServerErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetAvailableClientsUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type GetAvailableClientsErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetAvailableClientsErrors) GetCode() *int {
-	if o == nil {
+func (g *GetAvailableClientsErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetAvailableClientsErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetAvailableClientsErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetAvailableClientsErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetAvailableClientsErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetAvailableClientsBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

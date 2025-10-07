@@ -303,10 +303,10 @@ func main() {
 
     res, err := s.Plex.GetPin(ctx, operations.GetPinRequest{
         ClientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-        ClientName: plexgo.String("Plex for Roku"),
-        DeviceNickname: plexgo.String("Roku 3"),
-        ClientVersion: plexgo.String("2.4.1"),
-        Platform: plexgo.String("Roku"),
+        ClientName: plexgo.Pointer("Plex for Roku"),
+        DeviceNickname: plexgo.Pointer("Roku 3"),
+        ClientVersion: plexgo.Pointer("2.4.1"),
+        Platform: plexgo.Pointer("Roku"),
     })
     if err != nil {
         log.Fatal(err)
@@ -361,10 +361,10 @@ func main() {
     res, err := s.Plex.GetTokenByPinID(ctx, operations.GetTokenByPinIDRequest{
         PinID: 232248,
         ClientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-        ClientName: plexgo.String("Plex for Roku"),
-        DeviceNickname: plexgo.String("Roku 3"),
-        ClientVersion: plexgo.String("2.4.1"),
-        Platform: plexgo.String("Roku"),
+        ClientName: plexgo.Pointer("Plex for Roku"),
+        DeviceNickname: plexgo.Pointer("Roku 3"),
+        ClientVersion: plexgo.Pointer("2.4.1"),
+        Platform: plexgo.Pointer("Roku"),
     })
     if err != nil {
         log.Fatal(err)

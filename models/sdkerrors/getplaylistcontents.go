@@ -13,25 +13,25 @@ type GetPlaylistContentsPlaylistsErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetPlaylistContentsPlaylistsErrors) GetCode() *int {
-	if o == nil {
+func (g *GetPlaylistContentsPlaylistsErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetPlaylistContentsPlaylistsErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetPlaylistContentsPlaylistsErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetPlaylistContentsPlaylistsErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetPlaylistContentsPlaylistsErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetPlaylistContentsUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type GetPlaylistContentsErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetPlaylistContentsErrors) GetCode() *int {
-	if o == nil {
+func (g *GetPlaylistContentsErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetPlaylistContentsErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetPlaylistContentsErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetPlaylistContentsErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetPlaylistContentsErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetPlaylistContentsBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

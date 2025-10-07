@@ -13,25 +13,25 @@ type GetBannerImageMediaErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetBannerImageMediaErrors) GetCode() *int {
-	if o == nil {
+func (g *GetBannerImageMediaErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetBannerImageMediaErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetBannerImageMediaErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetBannerImageMediaErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetBannerImageMediaErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetBannerImageUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type GetBannerImageErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetBannerImageErrors) GetCode() *int {
-	if o == nil {
+func (g *GetBannerImageErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetBannerImageErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetBannerImageErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetBannerImageErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetBannerImageErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetBannerImageBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

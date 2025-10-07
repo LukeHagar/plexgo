@@ -15,23 +15,23 @@ type LogMultiLineResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *LogMultiLineResponse) GetContentType() string {
-	if o == nil {
+func (l *LogMultiLineResponse) GetContentType() string {
+	if l == nil {
 		return ""
 	}
-	return o.ContentType
+	return l.ContentType
 }
 
-func (o *LogMultiLineResponse) GetStatusCode() int {
-	if o == nil {
+func (l *LogMultiLineResponse) GetStatusCode() int {
+	if l == nil {
 		return 0
 	}
-	return o.StatusCode
+	return l.StatusCode
 }
 
-func (o *LogMultiLineResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (l *LogMultiLineResponse) GetRawResponse() *http.Response {
+	if l == nil {
 		return nil
 	}
-	return o.RawResponse
+	return l.RawResponse
 }

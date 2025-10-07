@@ -13,25 +13,25 @@ type DeleteLibraryLibraryErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *DeleteLibraryLibraryErrors) GetCode() *int {
-	if o == nil {
+func (d *DeleteLibraryLibraryErrors) GetCode() *int {
+	if d == nil {
 		return nil
 	}
-	return o.Code
+	return d.Code
 }
 
-func (o *DeleteLibraryLibraryErrors) GetMessage() *string {
-	if o == nil {
+func (d *DeleteLibraryLibraryErrors) GetMessage() *string {
+	if d == nil {
 		return nil
 	}
-	return o.Message
+	return d.Message
 }
 
-func (o *DeleteLibraryLibraryErrors) GetStatus() *int {
-	if o == nil {
+func (d *DeleteLibraryLibraryErrors) GetStatus() *int {
+	if d == nil {
 		return nil
 	}
-	return o.Status
+	return d.Status
 }
 
 // DeleteLibraryUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type DeleteLibraryErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *DeleteLibraryErrors) GetCode() *int {
-	if o == nil {
+func (d *DeleteLibraryErrors) GetCode() *int {
+	if d == nil {
 		return nil
 	}
-	return o.Code
+	return d.Code
 }
 
-func (o *DeleteLibraryErrors) GetMessage() *string {
-	if o == nil {
+func (d *DeleteLibraryErrors) GetMessage() *string {
+	if d == nil {
 		return nil
 	}
-	return o.Message
+	return d.Message
 }
 
-func (o *DeleteLibraryErrors) GetStatus() *int {
-	if o == nil {
+func (d *DeleteLibraryErrors) GetStatus() *int {
+	if d == nil {
 		return nil
 	}
-	return o.Status
+	return d.Status
 }
 
 // DeleteLibraryBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

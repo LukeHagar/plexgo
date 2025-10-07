@@ -13,11 +13,11 @@ type GetStatisticsRequest struct {
 	Timespan *int64 `queryParam:"style=form,explode=true,name=timespan"`
 }
 
-func (o *GetStatisticsRequest) GetTimespan() *int64 {
-	if o == nil {
+func (g *GetStatisticsRequest) GetTimespan() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.Timespan
+	return g.Timespan
 }
 
 type GetStatisticsDevice struct {
@@ -28,39 +28,39 @@ type GetStatisticsDevice struct {
 	CreatedAt        *int    `json:"createdAt,omitempty"`
 }
 
-func (o *GetStatisticsDevice) GetID() *int {
-	if o == nil {
+func (g *GetStatisticsDevice) GetID() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetStatisticsDevice) GetName() *string {
-	if o == nil {
+func (g *GetStatisticsDevice) GetName() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Name
+	return g.Name
 }
 
-func (o *GetStatisticsDevice) GetPlatform() *string {
-	if o == nil {
+func (g *GetStatisticsDevice) GetPlatform() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Platform
+	return g.Platform
 }
 
-func (o *GetStatisticsDevice) GetClientIdentifier() *string {
-	if o == nil {
+func (g *GetStatisticsDevice) GetClientIdentifier() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ClientIdentifier
+	return g.ClientIdentifier
 }
 
-func (o *GetStatisticsDevice) GetCreatedAt() *int {
-	if o == nil {
+func (g *GetStatisticsDevice) GetCreatedAt() *int {
+	if g == nil {
 		return nil
 	}
-	return o.CreatedAt
+	return g.CreatedAt
 }
 
 type Account struct {
@@ -74,60 +74,60 @@ type Account struct {
 	Thumb                   *string `json:"thumb,omitempty"`
 }
 
-func (o *Account) GetID() *int {
-	if o == nil {
+func (a *Account) GetID() *int {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *Account) GetKey() *string {
-	if o == nil {
+func (a *Account) GetKey() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Key
+	return a.Key
 }
 
-func (o *Account) GetName() *string {
-	if o == nil {
+func (a *Account) GetName() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *Account) GetDefaultAudioLanguage() *string {
-	if o == nil {
+func (a *Account) GetDefaultAudioLanguage() *string {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultAudioLanguage
+	return a.DefaultAudioLanguage
 }
 
-func (o *Account) GetAutoSelectAudio() *bool {
-	if o == nil {
+func (a *Account) GetAutoSelectAudio() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.AutoSelectAudio
+	return a.AutoSelectAudio
 }
 
-func (o *Account) GetDefaultSubtitleLanguage() *string {
-	if o == nil {
+func (a *Account) GetDefaultSubtitleLanguage() *string {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultSubtitleLanguage
+	return a.DefaultSubtitleLanguage
 }
 
-func (o *Account) GetSubtitleMode() *int {
-	if o == nil {
+func (a *Account) GetSubtitleMode() *int {
+	if a == nil {
 		return nil
 	}
-	return o.SubtitleMode
+	return a.SubtitleMode
 }
 
-func (o *Account) GetThumb() *string {
-	if o == nil {
+func (a *Account) GetThumb() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Thumb
+	return a.Thumb
 }
 
 type StatisticsMedia struct {
@@ -140,53 +140,53 @@ type StatisticsMedia struct {
 	Duration     *int `json:"duration,omitempty"`
 }
 
-func (o *StatisticsMedia) GetAccountID() *int {
-	if o == nil {
+func (s *StatisticsMedia) GetAccountID() *int {
+	if s == nil {
 		return nil
 	}
-	return o.AccountID
+	return s.AccountID
 }
 
-func (o *StatisticsMedia) GetDeviceID() *int {
-	if o == nil {
+func (s *StatisticsMedia) GetDeviceID() *int {
+	if s == nil {
 		return nil
 	}
-	return o.DeviceID
+	return s.DeviceID
 }
 
-func (o *StatisticsMedia) GetTimespan() *int {
-	if o == nil {
+func (s *StatisticsMedia) GetTimespan() *int {
+	if s == nil {
 		return nil
 	}
-	return o.Timespan
+	return s.Timespan
 }
 
-func (o *StatisticsMedia) GetAt() *int {
-	if o == nil {
+func (s *StatisticsMedia) GetAt() *int {
+	if s == nil {
 		return nil
 	}
-	return o.At
+	return s.At
 }
 
-func (o *StatisticsMedia) GetMetadataType() *int {
-	if o == nil {
+func (s *StatisticsMedia) GetMetadataType() *int {
+	if s == nil {
 		return nil
 	}
-	return o.MetadataType
+	return s.MetadataType
 }
 
-func (o *StatisticsMedia) GetCount() *int {
-	if o == nil {
+func (s *StatisticsMedia) GetCount() *int {
+	if s == nil {
 		return nil
 	}
-	return o.Count
+	return s.Count
 }
 
-func (o *StatisticsMedia) GetDuration() *int {
-	if o == nil {
+func (s *StatisticsMedia) GetDuration() *int {
+	if s == nil {
 		return nil
 	}
-	return o.Duration
+	return s.Duration
 }
 
 type GetStatisticsMediaContainer struct {
@@ -196,32 +196,32 @@ type GetStatisticsMediaContainer struct {
 	StatisticsMedia []StatisticsMedia     `json:"StatisticsMedia,omitempty"`
 }
 
-func (o *GetStatisticsMediaContainer) GetSize() *int {
-	if o == nil {
+func (g *GetStatisticsMediaContainer) GetSize() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetStatisticsMediaContainer) GetDevice() []GetStatisticsDevice {
-	if o == nil {
+func (g *GetStatisticsMediaContainer) GetDevice() []GetStatisticsDevice {
+	if g == nil {
 		return nil
 	}
-	return o.Device
+	return g.Device
 }
 
-func (o *GetStatisticsMediaContainer) GetAccount() []Account {
-	if o == nil {
+func (g *GetStatisticsMediaContainer) GetAccount() []Account {
+	if g == nil {
 		return nil
 	}
-	return o.Account
+	return g.Account
 }
 
-func (o *GetStatisticsMediaContainer) GetStatisticsMedia() []StatisticsMedia {
-	if o == nil {
+func (g *GetStatisticsMediaContainer) GetStatisticsMedia() []StatisticsMedia {
+	if g == nil {
 		return nil
 	}
-	return o.StatisticsMedia
+	return g.StatisticsMedia
 }
 
 // GetStatisticsResponseBody - Media Statistics
@@ -229,11 +229,11 @@ type GetStatisticsResponseBody struct {
 	MediaContainer *GetStatisticsMediaContainer `json:"MediaContainer,omitempty"`
 }
 
-func (o *GetStatisticsResponseBody) GetMediaContainer() *GetStatisticsMediaContainer {
-	if o == nil {
+func (g *GetStatisticsResponseBody) GetMediaContainer() *GetStatisticsMediaContainer {
+	if g == nil {
 		return nil
 	}
-	return o.MediaContainer
+	return g.MediaContainer
 }
 
 type GetStatisticsResponse struct {
@@ -247,30 +247,30 @@ type GetStatisticsResponse struct {
 	Object *GetStatisticsResponseBody
 }
 
-func (o *GetStatisticsResponse) GetContentType() string {
-	if o == nil {
+func (g *GetStatisticsResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetStatisticsResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetStatisticsResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetStatisticsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetStatisticsResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetStatisticsResponse) GetObject() *GetStatisticsResponseBody {
-	if o == nil {
+func (g *GetStatisticsResponse) GetObject() *GetStatisticsResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

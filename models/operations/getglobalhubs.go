@@ -42,18 +42,18 @@ type GetGlobalHubsRequest struct {
 	OnlyTransient *OnlyTransient `queryParam:"style=form,explode=true,name=onlyTransient"`
 }
 
-func (o *GetGlobalHubsRequest) GetCount() *float64 {
-	if o == nil {
+func (g *GetGlobalHubsRequest) GetCount() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Count
+	return g.Count
 }
 
-func (o *GetGlobalHubsRequest) GetOnlyTransient() *OnlyTransient {
-	if o == nil {
+func (g *GetGlobalHubsRequest) GetOnlyTransient() *OnlyTransient {
+	if g == nil {
 		return nil
 	}
-	return o.OnlyTransient
+	return g.OnlyTransient
 }
 
 type GetGlobalHubsMetadata struct {
@@ -76,123 +76,123 @@ type GetGlobalHubsMetadata struct {
 	UpdatedAt    *int    `json:"updatedAt,omitempty"`
 }
 
-func (o *GetGlobalHubsMetadata) GetRatingKey() *string {
-	if o == nil {
+func (g *GetGlobalHubsMetadata) GetRatingKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.RatingKey
+	return g.RatingKey
 }
 
-func (o *GetGlobalHubsMetadata) GetKey() *string {
-	if o == nil {
+func (g *GetGlobalHubsMetadata) GetKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetGlobalHubsMetadata) GetGUID() *string {
-	if o == nil {
+func (g *GetGlobalHubsMetadata) GetGUID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GUID
+	return g.GUID
 }
 
-func (o *GetGlobalHubsMetadata) GetType() *string {
-	if o == nil {
+func (g *GetGlobalHubsMetadata) GetType() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Type
+	return g.Type
 }
 
-func (o *GetGlobalHubsMetadata) GetTitle() *string {
-	if o == nil {
+func (g *GetGlobalHubsMetadata) GetTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Title
+	return g.Title
 }
 
-func (o *GetGlobalHubsMetadata) GetTitleSort() *string {
-	if o == nil {
+func (g *GetGlobalHubsMetadata) GetTitleSort() *string {
+	if g == nil {
 		return nil
 	}
-	return o.TitleSort
+	return g.TitleSort
 }
 
-func (o *GetGlobalHubsMetadata) GetSummary() *string {
-	if o == nil {
+func (g *GetGlobalHubsMetadata) GetSummary() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Summary
+	return g.Summary
 }
 
-func (o *GetGlobalHubsMetadata) GetSmart() *bool {
-	if o == nil {
+func (g *GetGlobalHubsMetadata) GetSmart() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Smart
+	return g.Smart
 }
 
-func (o *GetGlobalHubsMetadata) GetPlaylistType() *string {
-	if o == nil {
+func (g *GetGlobalHubsMetadata) GetPlaylistType() *string {
+	if g == nil {
 		return nil
 	}
-	return o.PlaylistType
+	return g.PlaylistType
 }
 
-func (o *GetGlobalHubsMetadata) GetComposite() *string {
-	if o == nil {
+func (g *GetGlobalHubsMetadata) GetComposite() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Composite
+	return g.Composite
 }
 
-func (o *GetGlobalHubsMetadata) GetIcon() *string {
-	if o == nil {
+func (g *GetGlobalHubsMetadata) GetIcon() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Icon
+	return g.Icon
 }
 
-func (o *GetGlobalHubsMetadata) GetViewCount() *int {
-	if o == nil {
+func (g *GetGlobalHubsMetadata) GetViewCount() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ViewCount
+	return g.ViewCount
 }
 
-func (o *GetGlobalHubsMetadata) GetLastViewedAt() *int {
-	if o == nil {
+func (g *GetGlobalHubsMetadata) GetLastViewedAt() *int {
+	if g == nil {
 		return nil
 	}
-	return o.LastViewedAt
+	return g.LastViewedAt
 }
 
-func (o *GetGlobalHubsMetadata) GetDuration() *int {
-	if o == nil {
+func (g *GetGlobalHubsMetadata) GetDuration() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Duration
+	return g.Duration
 }
 
-func (o *GetGlobalHubsMetadata) GetLeafCount() *int {
-	if o == nil {
+func (g *GetGlobalHubsMetadata) GetLeafCount() *int {
+	if g == nil {
 		return nil
 	}
-	return o.LeafCount
+	return g.LeafCount
 }
 
-func (o *GetGlobalHubsMetadata) GetAddedAt() *int {
-	if o == nil {
+func (g *GetGlobalHubsMetadata) GetAddedAt() *int {
+	if g == nil {
 		return nil
 	}
-	return o.AddedAt
+	return g.AddedAt
 }
 
-func (o *GetGlobalHubsMetadata) GetUpdatedAt() *int {
-	if o == nil {
+func (g *GetGlobalHubsMetadata) GetUpdatedAt() *int {
+	if g == nil {
 		return nil
 	}
-	return o.UpdatedAt
+	return g.UpdatedAt
 }
 
 type Hub struct {
@@ -209,81 +209,81 @@ type Hub struct {
 	Metadata      []GetGlobalHubsMetadata `json:"Metadata,omitempty"`
 }
 
-func (o *Hub) GetHubKey() *string {
-	if o == nil {
+func (h *Hub) GetHubKey() *string {
+	if h == nil {
 		return nil
 	}
-	return o.HubKey
+	return h.HubKey
 }
 
-func (o *Hub) GetKey() *string {
-	if o == nil {
+func (h *Hub) GetKey() *string {
+	if h == nil {
 		return nil
 	}
-	return o.Key
+	return h.Key
 }
 
-func (o *Hub) GetTitle() *string {
-	if o == nil {
+func (h *Hub) GetTitle() *string {
+	if h == nil {
 		return nil
 	}
-	return o.Title
+	return h.Title
 }
 
-func (o *Hub) GetType() *string {
-	if o == nil {
+func (h *Hub) GetType() *string {
+	if h == nil {
 		return nil
 	}
-	return o.Type
+	return h.Type
 }
 
-func (o *Hub) GetHubIdentifier() *string {
-	if o == nil {
+func (h *Hub) GetHubIdentifier() *string {
+	if h == nil {
 		return nil
 	}
-	return o.HubIdentifier
+	return h.HubIdentifier
 }
 
-func (o *Hub) GetContext() *string {
-	if o == nil {
+func (h *Hub) GetContext() *string {
+	if h == nil {
 		return nil
 	}
-	return o.Context
+	return h.Context
 }
 
-func (o *Hub) GetSize() *int {
-	if o == nil {
+func (h *Hub) GetSize() *int {
+	if h == nil {
 		return nil
 	}
-	return o.Size
+	return h.Size
 }
 
-func (o *Hub) GetMore() *bool {
-	if o == nil {
+func (h *Hub) GetMore() *bool {
+	if h == nil {
 		return nil
 	}
-	return o.More
+	return h.More
 }
 
-func (o *Hub) GetStyle() *string {
-	if o == nil {
+func (h *Hub) GetStyle() *string {
+	if h == nil {
 		return nil
 	}
-	return o.Style
+	return h.Style
 }
 
-func (o *Hub) GetPromoted() *bool {
-	if o == nil {
+func (h *Hub) GetPromoted() *bool {
+	if h == nil {
 		return nil
 	}
-	return o.Promoted
+	return h.Promoted
 }
 
-func (o *Hub) GetMetadata() []GetGlobalHubsMetadata {
-	if o == nil {
+func (h *Hub) GetMetadata() []GetGlobalHubsMetadata {
+	if h == nil {
 		return nil
 	}
-	return o.Metadata
+	return h.Metadata
 }
 
 type GetGlobalHubsMediaContainer struct {
@@ -293,32 +293,32 @@ type GetGlobalHubsMediaContainer struct {
 	Hub        []Hub   `json:"Hub,omitempty"`
 }
 
-func (o *GetGlobalHubsMediaContainer) GetSize() *int {
-	if o == nil {
+func (g *GetGlobalHubsMediaContainer) GetSize() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetGlobalHubsMediaContainer) GetAllowSync() *bool {
-	if o == nil {
+func (g *GetGlobalHubsMediaContainer) GetAllowSync() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.AllowSync
+	return g.AllowSync
 }
 
-func (o *GetGlobalHubsMediaContainer) GetIdentifier() *string {
-	if o == nil {
+func (g *GetGlobalHubsMediaContainer) GetIdentifier() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Identifier
+	return g.Identifier
 }
 
-func (o *GetGlobalHubsMediaContainer) GetHub() []Hub {
-	if o == nil {
+func (g *GetGlobalHubsMediaContainer) GetHub() []Hub {
+	if g == nil {
 		return nil
 	}
-	return o.Hub
+	return g.Hub
 }
 
 // GetGlobalHubsResponseBody - returns global hubs
@@ -326,11 +326,11 @@ type GetGlobalHubsResponseBody struct {
 	MediaContainer *GetGlobalHubsMediaContainer `json:"MediaContainer,omitempty"`
 }
 
-func (o *GetGlobalHubsResponseBody) GetMediaContainer() *GetGlobalHubsMediaContainer {
-	if o == nil {
+func (g *GetGlobalHubsResponseBody) GetMediaContainer() *GetGlobalHubsMediaContainer {
+	if g == nil {
 		return nil
 	}
-	return o.MediaContainer
+	return g.MediaContainer
 }
 
 type GetGlobalHubsResponse struct {
@@ -344,30 +344,30 @@ type GetGlobalHubsResponse struct {
 	Object *GetGlobalHubsResponseBody
 }
 
-func (o *GetGlobalHubsResponse) GetContentType() string {
-	if o == nil {
+func (g *GetGlobalHubsResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetGlobalHubsResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetGlobalHubsResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetGlobalHubsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetGlobalHubsResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetGlobalHubsResponse) GetObject() *GetGlobalHubsResponseBody {
-	if o == nil {
+func (g *GetGlobalHubsResponse) GetObject() *GetGlobalHubsResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

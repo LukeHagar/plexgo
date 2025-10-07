@@ -13,25 +13,25 @@ type GetStatisticsStatisticsErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetStatisticsStatisticsErrors) GetCode() *int {
-	if o == nil {
+func (g *GetStatisticsStatisticsErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetStatisticsStatisticsErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetStatisticsStatisticsErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetStatisticsStatisticsErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetStatisticsStatisticsErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetStatisticsUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type GetStatisticsErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetStatisticsErrors) GetCode() *int {
-	if o == nil {
+func (g *GetStatisticsErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetStatisticsErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetStatisticsErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetStatisticsErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetStatisticsErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetStatisticsBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

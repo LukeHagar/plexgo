@@ -11,11 +11,11 @@ type GetMediaProvidersRequest struct {
 	XPlexToken string `header:"style=simple,explode=false,name=X-Plex-Token"`
 }
 
-func (o *GetMediaProvidersRequest) GetXPlexToken() string {
-	if o == nil {
+func (g *GetMediaProvidersRequest) GetXPlexToken() string {
+	if g == nil {
 		return ""
 	}
-	return o.XPlexToken
+	return g.XPlexToken
 }
 
 type Pivot struct {
@@ -27,46 +27,46 @@ type Pivot struct {
 	Symbol  *string `json:"symbol,omitempty"`
 }
 
-func (o *Pivot) GetID() *string {
-	if o == nil {
+func (p *Pivot) GetID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.ID
+	return p.ID
 }
 
-func (o *Pivot) GetKey() *string {
-	if o == nil {
+func (p *Pivot) GetKey() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Key
+	return p.Key
 }
 
-func (o *Pivot) GetType() *string {
-	if o == nil {
+func (p *Pivot) GetType() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Type
+	return p.Type
 }
 
-func (o *Pivot) GetTitle() *string {
-	if o == nil {
+func (p *Pivot) GetTitle() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Title
+	return p.Title
 }
 
-func (o *Pivot) GetContext() *string {
-	if o == nil {
+func (p *Pivot) GetContext() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Context
+	return p.Context
 }
 
-func (o *Pivot) GetSymbol() *string {
-	if o == nil {
+func (p *Pivot) GetSymbol() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Symbol
+	return p.Symbol
 }
 
 type GetMediaProvidersDirectory struct {
@@ -86,102 +86,102 @@ type GetMediaProvidersDirectory struct {
 	Pivot      []Pivot `json:"Pivot,omitempty"`
 }
 
-func (o *GetMediaProvidersDirectory) GetHubKey() *string {
-	if o == nil {
+func (g *GetMediaProvidersDirectory) GetHubKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.HubKey
+	return g.HubKey
 }
 
-func (o *GetMediaProvidersDirectory) GetTitle() *string {
-	if o == nil {
+func (g *GetMediaProvidersDirectory) GetTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Title
+	return g.Title
 }
 
-func (o *GetMediaProvidersDirectory) GetAgent() *string {
-	if o == nil {
+func (g *GetMediaProvidersDirectory) GetAgent() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Agent
+	return g.Agent
 }
 
-func (o *GetMediaProvidersDirectory) GetLanguage() *string {
-	if o == nil {
+func (g *GetMediaProvidersDirectory) GetLanguage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Language
+	return g.Language
 }
 
-func (o *GetMediaProvidersDirectory) GetRefreshing() *bool {
-	if o == nil {
+func (g *GetMediaProvidersDirectory) GetRefreshing() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Refreshing
+	return g.Refreshing
 }
 
-func (o *GetMediaProvidersDirectory) GetScanner() *string {
-	if o == nil {
+func (g *GetMediaProvidersDirectory) GetScanner() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Scanner
+	return g.Scanner
 }
 
-func (o *GetMediaProvidersDirectory) GetUUID() *string {
-	if o == nil {
+func (g *GetMediaProvidersDirectory) GetUUID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.UUID
+	return g.UUID
 }
 
-func (o *GetMediaProvidersDirectory) GetID() *string {
-	if o == nil {
+func (g *GetMediaProvidersDirectory) GetID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetMediaProvidersDirectory) GetKey() *string {
-	if o == nil {
+func (g *GetMediaProvidersDirectory) GetKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetMediaProvidersDirectory) GetType() *string {
-	if o == nil {
+func (g *GetMediaProvidersDirectory) GetType() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Type
+	return g.Type
 }
 
-func (o *GetMediaProvidersDirectory) GetSubtype() *string {
-	if o == nil {
+func (g *GetMediaProvidersDirectory) GetSubtype() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Subtype
+	return g.Subtype
 }
 
-func (o *GetMediaProvidersDirectory) GetUpdatedAt() *int64 {
-	if o == nil {
+func (g *GetMediaProvidersDirectory) GetUpdatedAt() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.UpdatedAt
+	return g.UpdatedAt
 }
 
-func (o *GetMediaProvidersDirectory) GetScannedAt() *int64 {
-	if o == nil {
+func (g *GetMediaProvidersDirectory) GetScannedAt() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.ScannedAt
+	return g.ScannedAt
 }
 
-func (o *GetMediaProvidersDirectory) GetPivot() []Pivot {
-	if o == nil {
+func (g *GetMediaProvidersDirectory) GetPivot() []Pivot {
+	if g == nil {
 		return nil
 	}
-	return o.Pivot
+	return g.Pivot
 }
 
 type Action struct {
@@ -189,18 +189,18 @@ type Action struct {
 	Key string `json:"key"`
 }
 
-func (o *Action) GetID() string {
-	if o == nil {
+func (a *Action) GetID() string {
+	if a == nil {
 		return ""
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *Action) GetKey() string {
-	if o == nil {
+func (a *Action) GetKey() string {
+	if a == nil {
 		return ""
 	}
-	return o.Key
+	return a.Key
 }
 
 type Feature struct {
@@ -213,53 +213,53 @@ type Feature struct {
 	Action        []Action                     `json:"Action,omitempty"`
 }
 
-func (o *Feature) GetKey() *string {
-	if o == nil {
+func (f *Feature) GetKey() *string {
+	if f == nil {
 		return nil
 	}
-	return o.Key
+	return f.Key
 }
 
-func (o *Feature) GetType() string {
-	if o == nil {
+func (f *Feature) GetType() string {
+	if f == nil {
 		return ""
 	}
-	return o.Type
+	return f.Type
 }
 
-func (o *Feature) GetFlavor() *string {
-	if o == nil {
+func (f *Feature) GetFlavor() *string {
+	if f == nil {
 		return nil
 	}
-	return o.Flavor
+	return f.Flavor
 }
 
-func (o *Feature) GetScrobbleKey() *string {
-	if o == nil {
+func (f *Feature) GetScrobbleKey() *string {
+	if f == nil {
 		return nil
 	}
-	return o.ScrobbleKey
+	return f.ScrobbleKey
 }
 
-func (o *Feature) GetUnscrobbleKey() *string {
-	if o == nil {
+func (f *Feature) GetUnscrobbleKey() *string {
+	if f == nil {
 		return nil
 	}
-	return o.UnscrobbleKey
+	return f.UnscrobbleKey
 }
 
-func (o *Feature) GetDirectory() []GetMediaProvidersDirectory {
-	if o == nil {
+func (f *Feature) GetDirectory() []GetMediaProvidersDirectory {
+	if f == nil {
 		return nil
 	}
-	return o.Directory
+	return f.Directory
 }
 
-func (o *Feature) GetAction() []Action {
-	if o == nil {
+func (f *Feature) GetAction() []Action {
+	if f == nil {
 		return nil
 	}
-	return o.Action
+	return f.Action
 }
 
 type MediaProvider struct {
@@ -270,39 +270,39 @@ type MediaProvider struct {
 	Feature    []Feature `json:"Feature,omitempty"`
 }
 
-func (o *MediaProvider) GetIdentifier() *string {
-	if o == nil {
+func (m *MediaProvider) GetIdentifier() *string {
+	if m == nil {
 		return nil
 	}
-	return o.Identifier
+	return m.Identifier
 }
 
-func (o *MediaProvider) GetTitle() *string {
-	if o == nil {
+func (m *MediaProvider) GetTitle() *string {
+	if m == nil {
 		return nil
 	}
-	return o.Title
+	return m.Title
 }
 
-func (o *MediaProvider) GetTypes() *string {
-	if o == nil {
+func (m *MediaProvider) GetTypes() *string {
+	if m == nil {
 		return nil
 	}
-	return o.Types
+	return m.Types
 }
 
-func (o *MediaProvider) GetProtocols() *string {
-	if o == nil {
+func (m *MediaProvider) GetProtocols() *string {
+	if m == nil {
 		return nil
 	}
-	return o.Protocols
+	return m.Protocols
 }
 
-func (o *MediaProvider) GetFeature() []Feature {
-	if o == nil {
+func (m *MediaProvider) GetFeature() []Feature {
+	if m == nil {
 		return nil
 	}
-	return o.Feature
+	return m.Feature
 }
 
 type GetMediaProvidersMediaContainer struct {
@@ -352,312 +352,312 @@ type GetMediaProvidersMediaContainer struct {
 	MediaProvider                 []MediaProvider `json:"MediaProvider,omitempty"`
 }
 
-func (o *GetMediaProvidersMediaContainer) GetSize() *int64 {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetSize() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetMediaProvidersMediaContainer) GetAllowCameraUpload() *bool {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetAllowCameraUpload() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.AllowCameraUpload
+	return g.AllowCameraUpload
 }
 
-func (o *GetMediaProvidersMediaContainer) GetAllowChannelAccess() *bool {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetAllowChannelAccess() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.AllowChannelAccess
+	return g.AllowChannelAccess
 }
 
-func (o *GetMediaProvidersMediaContainer) GetAllowSharing() *bool {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetAllowSharing() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.AllowSharing
+	return g.AllowSharing
 }
 
-func (o *GetMediaProvidersMediaContainer) GetAllowSync() *bool {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetAllowSync() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.AllowSync
+	return g.AllowSync
 }
 
-func (o *GetMediaProvidersMediaContainer) GetAllowTuners() *bool {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetAllowTuners() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.AllowTuners
+	return g.AllowTuners
 }
 
-func (o *GetMediaProvidersMediaContainer) GetBackgroundProcessing() *bool {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetBackgroundProcessing() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.BackgroundProcessing
+	return g.BackgroundProcessing
 }
 
-func (o *GetMediaProvidersMediaContainer) GetCertificate() *bool {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetCertificate() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Certificate
+	return g.Certificate
 }
 
-func (o *GetMediaProvidersMediaContainer) GetCompanionProxy() *bool {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetCompanionProxy() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.CompanionProxy
+	return g.CompanionProxy
 }
 
-func (o *GetMediaProvidersMediaContainer) GetCountryCode() *string {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetCountryCode() *string {
+	if g == nil {
 		return nil
 	}
-	return o.CountryCode
+	return g.CountryCode
 }
 
-func (o *GetMediaProvidersMediaContainer) GetDiagnostics() *string {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetDiagnostics() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Diagnostics
+	return g.Diagnostics
 }
 
-func (o *GetMediaProvidersMediaContainer) GetEventStream() *bool {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetEventStream() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.EventStream
+	return g.EventStream
 }
 
-func (o *GetMediaProvidersMediaContainer) GetFriendlyName() *string {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetFriendlyName() *string {
+	if g == nil {
 		return nil
 	}
-	return o.FriendlyName
+	return g.FriendlyName
 }
 
-func (o *GetMediaProvidersMediaContainer) GetLivetv() *int64 {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetLivetv() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.Livetv
+	return g.Livetv
 }
 
-func (o *GetMediaProvidersMediaContainer) GetMachineIdentifier() *string {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetMachineIdentifier() *string {
+	if g == nil {
 		return nil
 	}
-	return o.MachineIdentifier
+	return g.MachineIdentifier
 }
 
-func (o *GetMediaProvidersMediaContainer) GetMusicAnalysis() *int64 {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetMusicAnalysis() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.MusicAnalysis
+	return g.MusicAnalysis
 }
 
-func (o *GetMediaProvidersMediaContainer) GetMyPlex() *bool {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetMyPlex() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.MyPlex
+	return g.MyPlex
 }
 
-func (o *GetMediaProvidersMediaContainer) GetMyPlexMappingState() *string {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetMyPlexMappingState() *string {
+	if g == nil {
 		return nil
 	}
-	return o.MyPlexMappingState
+	return g.MyPlexMappingState
 }
 
-func (o *GetMediaProvidersMediaContainer) GetMyPlexSigninState() *string {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetMyPlexSigninState() *string {
+	if g == nil {
 		return nil
 	}
-	return o.MyPlexSigninState
+	return g.MyPlexSigninState
 }
 
-func (o *GetMediaProvidersMediaContainer) GetMyPlexSubscription() *bool {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetMyPlexSubscription() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.MyPlexSubscription
+	return g.MyPlexSubscription
 }
 
-func (o *GetMediaProvidersMediaContainer) GetMyPlexUsername() *string {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetMyPlexUsername() *string {
+	if g == nil {
 		return nil
 	}
-	return o.MyPlexUsername
+	return g.MyPlexUsername
 }
 
-func (o *GetMediaProvidersMediaContainer) GetOfflineTranscode() *int64 {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetOfflineTranscode() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.OfflineTranscode
+	return g.OfflineTranscode
 }
 
-func (o *GetMediaProvidersMediaContainer) GetOwnerFeatures() *string {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetOwnerFeatures() *string {
+	if g == nil {
 		return nil
 	}
-	return o.OwnerFeatures
+	return g.OwnerFeatures
 }
 
-func (o *GetMediaProvidersMediaContainer) GetPlatform() *string {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetPlatform() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Platform
+	return g.Platform
 }
 
-func (o *GetMediaProvidersMediaContainer) GetPlatformVersion() *string {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetPlatformVersion() *string {
+	if g == nil {
 		return nil
 	}
-	return o.PlatformVersion
+	return g.PlatformVersion
 }
 
-func (o *GetMediaProvidersMediaContainer) GetPluginHost() *bool {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetPluginHost() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.PluginHost
+	return g.PluginHost
 }
 
-func (o *GetMediaProvidersMediaContainer) GetPushNotifications() *bool {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetPushNotifications() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.PushNotifications
+	return g.PushNotifications
 }
 
-func (o *GetMediaProvidersMediaContainer) GetReadOnlyLibraries() *bool {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetReadOnlyLibraries() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.ReadOnlyLibraries
+	return g.ReadOnlyLibraries
 }
 
-func (o *GetMediaProvidersMediaContainer) GetStreamingBrainABRVersion() *int64 {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetStreamingBrainABRVersion() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.StreamingBrainABRVersion
+	return g.StreamingBrainABRVersion
 }
 
-func (o *GetMediaProvidersMediaContainer) GetStreamingBrainVersion() *int64 {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetStreamingBrainVersion() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.StreamingBrainVersion
+	return g.StreamingBrainVersion
 }
 
-func (o *GetMediaProvidersMediaContainer) GetSync() *bool {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetSync() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Sync
+	return g.Sync
 }
 
-func (o *GetMediaProvidersMediaContainer) GetTranscoderActiveVideoSessions() *int64 {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetTranscoderActiveVideoSessions() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.TranscoderActiveVideoSessions
+	return g.TranscoderActiveVideoSessions
 }
 
-func (o *GetMediaProvidersMediaContainer) GetTranscoderAudio() *bool {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetTranscoderAudio() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.TranscoderAudio
+	return g.TranscoderAudio
 }
 
-func (o *GetMediaProvidersMediaContainer) GetTranscoderLyrics() *bool {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetTranscoderLyrics() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.TranscoderLyrics
+	return g.TranscoderLyrics
 }
 
-func (o *GetMediaProvidersMediaContainer) GetTranscoderSubtitles() *bool {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetTranscoderSubtitles() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.TranscoderSubtitles
+	return g.TranscoderSubtitles
 }
 
-func (o *GetMediaProvidersMediaContainer) GetTranscoderVideo() *bool {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetTranscoderVideo() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.TranscoderVideo
+	return g.TranscoderVideo
 }
 
-func (o *GetMediaProvidersMediaContainer) GetTranscoderVideoBitrates() *string {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetTranscoderVideoBitrates() *string {
+	if g == nil {
 		return nil
 	}
-	return o.TranscoderVideoBitrates
+	return g.TranscoderVideoBitrates
 }
 
-func (o *GetMediaProvidersMediaContainer) GetTranscoderVideoQualities() *string {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetTranscoderVideoQualities() *string {
+	if g == nil {
 		return nil
 	}
-	return o.TranscoderVideoQualities
+	return g.TranscoderVideoQualities
 }
 
-func (o *GetMediaProvidersMediaContainer) GetTranscoderVideoResolutions() *string {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetTranscoderVideoResolutions() *string {
+	if g == nil {
 		return nil
 	}
-	return o.TranscoderVideoResolutions
+	return g.TranscoderVideoResolutions
 }
 
-func (o *GetMediaProvidersMediaContainer) GetUpdatedAt() *int64 {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetUpdatedAt() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.UpdatedAt
+	return g.UpdatedAt
 }
 
-func (o *GetMediaProvidersMediaContainer) GetUpdater() *bool {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetUpdater() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Updater
+	return g.Updater
 }
 
-func (o *GetMediaProvidersMediaContainer) GetVersion() *string {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetVersion() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Version
+	return g.Version
 }
 
-func (o *GetMediaProvidersMediaContainer) GetVoiceSearch() *bool {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetVoiceSearch() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.VoiceSearch
+	return g.VoiceSearch
 }
 
-func (o *GetMediaProvidersMediaContainer) GetMediaProvider() []MediaProvider {
-	if o == nil {
+func (g *GetMediaProvidersMediaContainer) GetMediaProvider() []MediaProvider {
+	if g == nil {
 		return nil
 	}
-	return o.MediaProvider
+	return g.MediaProvider
 }
 
 // GetMediaProvidersResponseBody - Media providers and their features
@@ -665,11 +665,11 @@ type GetMediaProvidersResponseBody struct {
 	MediaContainer *GetMediaProvidersMediaContainer `json:"MediaContainer,omitempty"`
 }
 
-func (o *GetMediaProvidersResponseBody) GetMediaContainer() *GetMediaProvidersMediaContainer {
-	if o == nil {
+func (g *GetMediaProvidersResponseBody) GetMediaContainer() *GetMediaProvidersMediaContainer {
+	if g == nil {
 		return nil
 	}
-	return o.MediaContainer
+	return g.MediaContainer
 }
 
 type GetMediaProvidersResponse struct {
@@ -683,30 +683,30 @@ type GetMediaProvidersResponse struct {
 	Object *GetMediaProvidersResponseBody
 }
 
-func (o *GetMediaProvidersResponse) GetContentType() string {
-	if o == nil {
+func (g *GetMediaProvidersResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetMediaProvidersResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetMediaProvidersResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetMediaProvidersResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetMediaProvidersResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetMediaProvidersResponse) GetObject() *GetMediaProvidersResponseBody {
-	if o == nil {
+func (g *GetMediaProvidersResponse) GetObject() *GetMediaProvidersResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

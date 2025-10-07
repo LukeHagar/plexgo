@@ -11,11 +11,11 @@ type StopTranscodeSessionRequest struct {
 	SessionKey string `pathParam:"style=simple,explode=false,name=sessionKey"`
 }
 
-func (o *StopTranscodeSessionRequest) GetSessionKey() string {
-	if o == nil {
+func (s *StopTranscodeSessionRequest) GetSessionKey() string {
+	if s == nil {
 		return ""
 	}
-	return o.SessionKey
+	return s.SessionKey
 }
 
 type StopTranscodeSessionResponse struct {
@@ -27,23 +27,23 @@ type StopTranscodeSessionResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *StopTranscodeSessionResponse) GetContentType() string {
-	if o == nil {
+func (s *StopTranscodeSessionResponse) GetContentType() string {
+	if s == nil {
 		return ""
 	}
-	return o.ContentType
+	return s.ContentType
 }
 
-func (o *StopTranscodeSessionResponse) GetStatusCode() int {
-	if o == nil {
+func (s *StopTranscodeSessionResponse) GetStatusCode() int {
+	if s == nil {
 		return 0
 	}
-	return o.StatusCode
+	return s.StatusCode
 }
 
-func (o *StopTranscodeSessionResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (s *StopTranscodeSessionResponse) GetRawResponse() *http.Response {
+	if s == nil {
 		return nil
 	}
-	return o.RawResponse
+	return s.RawResponse
 }

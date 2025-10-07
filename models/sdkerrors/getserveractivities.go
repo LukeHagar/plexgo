@@ -13,25 +13,25 @@ type GetServerActivitiesActivitiesErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetServerActivitiesActivitiesErrors) GetCode() *int {
-	if o == nil {
+func (g *GetServerActivitiesActivitiesErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetServerActivitiesActivitiesErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetServerActivitiesActivitiesErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetServerActivitiesActivitiesErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetServerActivitiesActivitiesErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetServerActivitiesUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type GetServerActivitiesErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetServerActivitiesErrors) GetCode() *int {
-	if o == nil {
+func (g *GetServerActivitiesErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetServerActivitiesErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetServerActivitiesErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetServerActivitiesErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetServerActivitiesErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetServerActivitiesBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

@@ -86,18 +86,18 @@ func (g *GetTopWatchedContentRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetTopWatchedContentRequest) GetType() GetTopWatchedContentQueryParamType {
-	if o == nil {
+func (g *GetTopWatchedContentRequest) GetType() GetTopWatchedContentQueryParamType {
+	if g == nil {
 		return GetTopWatchedContentQueryParamType(0)
 	}
-	return o.Type
+	return g.Type
 }
 
-func (o *GetTopWatchedContentRequest) GetIncludeGuids() *GetTopWatchedContentQueryParamIncludeGuids {
-	if o == nil {
+func (g *GetTopWatchedContentRequest) GetIncludeGuids() *GetTopWatchedContentQueryParamIncludeGuids {
+	if g == nil {
 		return nil
 	}
-	return o.IncludeGuids
+	return g.IncludeGuids
 }
 
 type GetTopWatchedContentGenre struct {
@@ -106,25 +106,25 @@ type GetTopWatchedContentGenre struct {
 	Tag    *string `json:"tag,omitempty"`
 }
 
-func (o *GetTopWatchedContentGenre) GetID() *int {
-	if o == nil {
+func (g *GetTopWatchedContentGenre) GetID() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetTopWatchedContentGenre) GetFilter() *string {
-	if o == nil {
+func (g *GetTopWatchedContentGenre) GetFilter() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Filter
+	return g.Filter
 }
 
-func (o *GetTopWatchedContentGenre) GetTag() *string {
-	if o == nil {
+func (g *GetTopWatchedContentGenre) GetTag() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Tag
+	return g.Tag
 }
 
 type GetTopWatchedContentCountry struct {
@@ -133,36 +133,36 @@ type GetTopWatchedContentCountry struct {
 	Tag    *string `json:"tag,omitempty"`
 }
 
-func (o *GetTopWatchedContentCountry) GetID() *int {
-	if o == nil {
+func (g *GetTopWatchedContentCountry) GetID() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetTopWatchedContentCountry) GetFilter() *string {
-	if o == nil {
+func (g *GetTopWatchedContentCountry) GetFilter() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Filter
+	return g.Filter
 }
 
-func (o *GetTopWatchedContentCountry) GetTag() *string {
-	if o == nil {
+func (g *GetTopWatchedContentCountry) GetTag() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Tag
+	return g.Tag
 }
 
 type GetTopWatchedContentGuids struct {
 	ID *string `json:"id,omitempty"`
 }
 
-func (o *GetTopWatchedContentGuids) GetID() *string {
-	if o == nil {
+func (g *GetTopWatchedContentGuids) GetID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ID
+	return g.ID
 }
 
 type GetTopWatchedContentRole struct {
@@ -174,57 +174,57 @@ type GetTopWatchedContentRole struct {
 	Thumb  *string `json:"thumb,omitempty"`
 }
 
-func (o *GetTopWatchedContentRole) GetID() *int {
-	if o == nil {
+func (g *GetTopWatchedContentRole) GetID() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetTopWatchedContentRole) GetFilter() *string {
-	if o == nil {
+func (g *GetTopWatchedContentRole) GetFilter() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Filter
+	return g.Filter
 }
 
-func (o *GetTopWatchedContentRole) GetTag() *string {
-	if o == nil {
+func (g *GetTopWatchedContentRole) GetTag() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Tag
+	return g.Tag
 }
 
-func (o *GetTopWatchedContentRole) GetTagKey() *string {
-	if o == nil {
+func (g *GetTopWatchedContentRole) GetTagKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.TagKey
+	return g.TagKey
 }
 
-func (o *GetTopWatchedContentRole) GetRole() *string {
-	if o == nil {
+func (g *GetTopWatchedContentRole) GetRole() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Role
+	return g.Role
 }
 
-func (o *GetTopWatchedContentRole) GetThumb() *string {
-	if o == nil {
+func (g *GetTopWatchedContentRole) GetThumb() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Thumb
+	return g.Thumb
 }
 
 type GetTopWatchedContentUser struct {
 	ID *int `json:"id,omitempty"`
 }
 
-func (o *GetTopWatchedContentUser) GetID() *int {
-	if o == nil {
+func (g *GetTopWatchedContentUser) GetID() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ID
+	return g.ID
 }
 
 type GetTopWatchedContentMetadata struct {
@@ -273,228 +273,228 @@ func (g *GetTopWatchedContentMetadata) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetTopWatchedContentMetadata) GetRatingKey() *string {
-	if o == nil {
+func (g *GetTopWatchedContentMetadata) GetRatingKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.RatingKey
+	return g.RatingKey
 }
 
-func (o *GetTopWatchedContentMetadata) GetKey() *string {
-	if o == nil {
+func (g *GetTopWatchedContentMetadata) GetKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetTopWatchedContentMetadata) GetGUID() *string {
-	if o == nil {
+func (g *GetTopWatchedContentMetadata) GetGUID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GUID
+	return g.GUID
 }
 
-func (o *GetTopWatchedContentMetadata) GetSlug() *string {
-	if o == nil {
+func (g *GetTopWatchedContentMetadata) GetSlug() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Slug
+	return g.Slug
 }
 
-func (o *GetTopWatchedContentMetadata) GetStudio() *string {
-	if o == nil {
+func (g *GetTopWatchedContentMetadata) GetStudio() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Studio
+	return g.Studio
 }
 
-func (o *GetTopWatchedContentMetadata) GetType() *string {
-	if o == nil {
+func (g *GetTopWatchedContentMetadata) GetType() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Type
+	return g.Type
 }
 
-func (o *GetTopWatchedContentMetadata) GetTitle() *string {
-	if o == nil {
+func (g *GetTopWatchedContentMetadata) GetTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Title
+	return g.Title
 }
 
-func (o *GetTopWatchedContentMetadata) GetLibrarySectionTitle() *string {
-	if o == nil {
+func (g *GetTopWatchedContentMetadata) GetLibrarySectionTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionTitle
+	return g.LibrarySectionTitle
 }
 
-func (o *GetTopWatchedContentMetadata) GetLibrarySectionID() *int {
-	if o == nil {
+func (g *GetTopWatchedContentMetadata) GetLibrarySectionID() *int {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionID
+	return g.LibrarySectionID
 }
 
-func (o *GetTopWatchedContentMetadata) GetLibrarySectionKey() *string {
-	if o == nil {
+func (g *GetTopWatchedContentMetadata) GetLibrarySectionKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionKey
+	return g.LibrarySectionKey
 }
 
-func (o *GetTopWatchedContentMetadata) GetContentRating() *string {
-	if o == nil {
+func (g *GetTopWatchedContentMetadata) GetContentRating() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ContentRating
+	return g.ContentRating
 }
 
-func (o *GetTopWatchedContentMetadata) GetSummary() *string {
-	if o == nil {
+func (g *GetTopWatchedContentMetadata) GetSummary() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Summary
+	return g.Summary
 }
 
-func (o *GetTopWatchedContentMetadata) GetIndex() *int64 {
-	if o == nil {
+func (g *GetTopWatchedContentMetadata) GetIndex() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.Index
+	return g.Index
 }
 
-func (o *GetTopWatchedContentMetadata) GetAudienceRating() *float64 {
-	if o == nil {
+func (g *GetTopWatchedContentMetadata) GetAudienceRating() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.AudienceRating
+	return g.AudienceRating
 }
 
-func (o *GetTopWatchedContentMetadata) GetYear() *int {
-	if o == nil {
+func (g *GetTopWatchedContentMetadata) GetYear() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Year
+	return g.Year
 }
 
-func (o *GetTopWatchedContentMetadata) GetTagline() *string {
-	if o == nil {
+func (g *GetTopWatchedContentMetadata) GetTagline() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Tagline
+	return g.Tagline
 }
 
-func (o *GetTopWatchedContentMetadata) GetThumb() *string {
-	if o == nil {
+func (g *GetTopWatchedContentMetadata) GetThumb() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Thumb
+	return g.Thumb
 }
 
-func (o *GetTopWatchedContentMetadata) GetArt() *string {
-	if o == nil {
+func (g *GetTopWatchedContentMetadata) GetArt() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Art
+	return g.Art
 }
 
-func (o *GetTopWatchedContentMetadata) GetDuration() *int {
-	if o == nil {
+func (g *GetTopWatchedContentMetadata) GetDuration() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Duration
+	return g.Duration
 }
 
-func (o *GetTopWatchedContentMetadata) GetOriginallyAvailableAt() *types.Date {
-	if o == nil {
+func (g *GetTopWatchedContentMetadata) GetOriginallyAvailableAt() *types.Date {
+	if g == nil {
 		return nil
 	}
-	return o.OriginallyAvailableAt
+	return g.OriginallyAvailableAt
 }
 
-func (o *GetTopWatchedContentMetadata) GetLeafCount() *int64 {
-	if o == nil {
+func (g *GetTopWatchedContentMetadata) GetLeafCount() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.LeafCount
+	return g.LeafCount
 }
 
-func (o *GetTopWatchedContentMetadata) GetViewedLeafCount() *int64 {
-	if o == nil {
+func (g *GetTopWatchedContentMetadata) GetViewedLeafCount() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.ViewedLeafCount
+	return g.ViewedLeafCount
 }
 
-func (o *GetTopWatchedContentMetadata) GetChildCount() *int64 {
-	if o == nil {
+func (g *GetTopWatchedContentMetadata) GetChildCount() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.ChildCount
+	return g.ChildCount
 }
 
-func (o *GetTopWatchedContentMetadata) GetAddedAt() *int {
-	if o == nil {
+func (g *GetTopWatchedContentMetadata) GetAddedAt() *int {
+	if g == nil {
 		return nil
 	}
-	return o.AddedAt
+	return g.AddedAt
 }
 
-func (o *GetTopWatchedContentMetadata) GetUpdatedAt() *int {
-	if o == nil {
+func (g *GetTopWatchedContentMetadata) GetUpdatedAt() *int {
+	if g == nil {
 		return nil
 	}
-	return o.UpdatedAt
+	return g.UpdatedAt
 }
 
-func (o *GetTopWatchedContentMetadata) GetGlobalViewCount() *int64 {
-	if o == nil {
+func (g *GetTopWatchedContentMetadata) GetGlobalViewCount() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.GlobalViewCount
+	return g.GlobalViewCount
 }
 
-func (o *GetTopWatchedContentMetadata) GetAudienceRatingImage() *string {
-	if o == nil {
+func (g *GetTopWatchedContentMetadata) GetAudienceRatingImage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.AudienceRatingImage
+	return g.AudienceRatingImage
 }
 
-func (o *GetTopWatchedContentMetadata) GetGenre() []GetTopWatchedContentGenre {
-	if o == nil {
+func (g *GetTopWatchedContentMetadata) GetGenre() []GetTopWatchedContentGenre {
+	if g == nil {
 		return nil
 	}
-	return o.Genre
+	return g.Genre
 }
 
-func (o *GetTopWatchedContentMetadata) GetCountry() []GetTopWatchedContentCountry {
-	if o == nil {
+func (g *GetTopWatchedContentMetadata) GetCountry() []GetTopWatchedContentCountry {
+	if g == nil {
 		return nil
 	}
-	return o.Country
+	return g.Country
 }
 
-func (o *GetTopWatchedContentMetadata) GetGuids() []GetTopWatchedContentGuids {
-	if o == nil {
+func (g *GetTopWatchedContentMetadata) GetGuids() []GetTopWatchedContentGuids {
+	if g == nil {
 		return nil
 	}
-	return o.Guids
+	return g.Guids
 }
 
-func (o *GetTopWatchedContentMetadata) GetRole() []GetTopWatchedContentRole {
-	if o == nil {
+func (g *GetTopWatchedContentMetadata) GetRole() []GetTopWatchedContentRole {
+	if g == nil {
 		return nil
 	}
-	return o.Role
+	return g.Role
 }
 
-func (o *GetTopWatchedContentMetadata) GetUser() []GetTopWatchedContentUser {
-	if o == nil {
+func (g *GetTopWatchedContentMetadata) GetUser() []GetTopWatchedContentUser {
+	if g == nil {
 		return nil
 	}
-	return o.User
+	return g.User
 }
 
 type GetTopWatchedContentMediaContainer struct {
@@ -511,46 +511,46 @@ type GetTopWatchedContentMediaContainer struct {
 	Metadata        []GetTopWatchedContentMetadata `json:"Metadata,omitempty"`
 }
 
-func (o *GetTopWatchedContentMediaContainer) GetSize() int {
-	if o == nil {
+func (g *GetTopWatchedContentMediaContainer) GetSize() int {
+	if g == nil {
 		return 0
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetTopWatchedContentMediaContainer) GetAllowSync() bool {
-	if o == nil {
+func (g *GetTopWatchedContentMediaContainer) GetAllowSync() bool {
+	if g == nil {
 		return false
 	}
-	return o.AllowSync
+	return g.AllowSync
 }
 
-func (o *GetTopWatchedContentMediaContainer) GetIdentifier() string {
-	if o == nil {
+func (g *GetTopWatchedContentMediaContainer) GetIdentifier() string {
+	if g == nil {
 		return ""
 	}
-	return o.Identifier
+	return g.Identifier
 }
 
-func (o *GetTopWatchedContentMediaContainer) GetMediaTagPrefix() string {
-	if o == nil {
+func (g *GetTopWatchedContentMediaContainer) GetMediaTagPrefix() string {
+	if g == nil {
 		return ""
 	}
-	return o.MediaTagPrefix
+	return g.MediaTagPrefix
 }
 
-func (o *GetTopWatchedContentMediaContainer) GetMediaTagVersion() int64 {
-	if o == nil {
+func (g *GetTopWatchedContentMediaContainer) GetMediaTagVersion() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.MediaTagVersion
+	return g.MediaTagVersion
 }
 
-func (o *GetTopWatchedContentMediaContainer) GetMetadata() []GetTopWatchedContentMetadata {
-	if o == nil {
+func (g *GetTopWatchedContentMediaContainer) GetMetadata() []GetTopWatchedContentMetadata {
+	if g == nil {
 		return nil
 	}
-	return o.Metadata
+	return g.Metadata
 }
 
 // GetTopWatchedContentResponseBody - The metadata of the library item.
@@ -558,11 +558,11 @@ type GetTopWatchedContentResponseBody struct {
 	MediaContainer *GetTopWatchedContentMediaContainer `json:"MediaContainer,omitempty"`
 }
 
-func (o *GetTopWatchedContentResponseBody) GetMediaContainer() *GetTopWatchedContentMediaContainer {
-	if o == nil {
+func (g *GetTopWatchedContentResponseBody) GetMediaContainer() *GetTopWatchedContentMediaContainer {
+	if g == nil {
 		return nil
 	}
-	return o.MediaContainer
+	return g.MediaContainer
 }
 
 type GetTopWatchedContentResponse struct {
@@ -576,30 +576,30 @@ type GetTopWatchedContentResponse struct {
 	Object *GetTopWatchedContentResponseBody
 }
 
-func (o *GetTopWatchedContentResponse) GetContentType() string {
-	if o == nil {
+func (g *GetTopWatchedContentResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetTopWatchedContentResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetTopWatchedContentResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetTopWatchedContentResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetTopWatchedContentResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetTopWatchedContentResponse) GetObject() *GetTopWatchedContentResponseBody {
-	if o == nil {
+func (g *GetTopWatchedContentResponse) GetObject() *GetTopWatchedContentResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

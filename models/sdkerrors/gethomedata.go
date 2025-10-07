@@ -13,25 +13,25 @@ type GetHomeDataPlexErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetHomeDataPlexErrors) GetCode() *int {
-	if o == nil {
+func (g *GetHomeDataPlexErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetHomeDataPlexErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetHomeDataPlexErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetHomeDataPlexErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetHomeDataPlexErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetHomeDataUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type GetHomeDataErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetHomeDataErrors) GetCode() *int {
-	if o == nil {
+func (g *GetHomeDataErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetHomeDataErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetHomeDataErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetHomeDataErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetHomeDataErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetHomeDataBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

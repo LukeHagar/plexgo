@@ -13,25 +13,25 @@ type GetRefreshLibraryMetadataLibraryErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetRefreshLibraryMetadataLibraryErrors) GetCode() *int {
-	if o == nil {
+func (g *GetRefreshLibraryMetadataLibraryErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetRefreshLibraryMetadataLibraryErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetRefreshLibraryMetadataLibraryErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetRefreshLibraryMetadataLibraryErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetRefreshLibraryMetadataLibraryErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetRefreshLibraryMetadataUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type GetRefreshLibraryMetadataErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetRefreshLibraryMetadataErrors) GetCode() *int {
-	if o == nil {
+func (g *GetRefreshLibraryMetadataErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetRefreshLibraryMetadataErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetRefreshLibraryMetadataErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetRefreshLibraryMetadataErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetRefreshLibraryMetadataErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetRefreshLibraryMetadataBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

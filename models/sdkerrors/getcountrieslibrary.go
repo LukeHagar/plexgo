@@ -13,25 +13,25 @@ type GetCountriesLibraryLibraryErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetCountriesLibraryLibraryErrors) GetCode() *int {
-	if o == nil {
+func (g *GetCountriesLibraryLibraryErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetCountriesLibraryLibraryErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetCountriesLibraryLibraryErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetCountriesLibraryLibraryErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetCountriesLibraryLibraryErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetCountriesLibraryUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type GetCountriesLibraryErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetCountriesLibraryErrors) GetCode() *int {
-	if o == nil {
+func (g *GetCountriesLibraryErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetCountriesLibraryErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetCountriesLibraryErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetCountriesLibraryErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetCountriesLibraryErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetCountriesLibraryBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

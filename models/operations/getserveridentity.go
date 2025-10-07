@@ -13,32 +13,32 @@ type GetServerIdentityMediaContainer struct {
 	Version           *string  `json:"version,omitempty"`
 }
 
-func (o *GetServerIdentityMediaContainer) GetSize() *float64 {
-	if o == nil {
+func (g *GetServerIdentityMediaContainer) GetSize() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetServerIdentityMediaContainer) GetClaimed() *bool {
-	if o == nil {
+func (g *GetServerIdentityMediaContainer) GetClaimed() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Claimed
+	return g.Claimed
 }
 
-func (o *GetServerIdentityMediaContainer) GetMachineIdentifier() *string {
-	if o == nil {
+func (g *GetServerIdentityMediaContainer) GetMachineIdentifier() *string {
+	if g == nil {
 		return nil
 	}
-	return o.MachineIdentifier
+	return g.MachineIdentifier
 }
 
-func (o *GetServerIdentityMediaContainer) GetVersion() *string {
-	if o == nil {
+func (g *GetServerIdentityMediaContainer) GetVersion() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Version
+	return g.Version
 }
 
 // GetServerIdentityResponseBody - The Server Identity information
@@ -46,11 +46,11 @@ type GetServerIdentityResponseBody struct {
 	MediaContainer *GetServerIdentityMediaContainer `json:"MediaContainer,omitempty"`
 }
 
-func (o *GetServerIdentityResponseBody) GetMediaContainer() *GetServerIdentityMediaContainer {
-	if o == nil {
+func (g *GetServerIdentityResponseBody) GetMediaContainer() *GetServerIdentityMediaContainer {
+	if g == nil {
 		return nil
 	}
-	return o.MediaContainer
+	return g.MediaContainer
 }
 
 type GetServerIdentityResponse struct {
@@ -64,30 +64,30 @@ type GetServerIdentityResponse struct {
 	Object *GetServerIdentityResponseBody
 }
 
-func (o *GetServerIdentityResponse) GetContentType() string {
-	if o == nil {
+func (g *GetServerIdentityResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetServerIdentityResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetServerIdentityResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetServerIdentityResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetServerIdentityResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetServerIdentityResponse) GetObject() *GetServerIdentityResponseBody {
-	if o == nil {
+func (g *GetServerIdentityResponse) GetObject() *GetServerIdentityResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

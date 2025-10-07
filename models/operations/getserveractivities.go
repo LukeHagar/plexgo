@@ -10,11 +10,11 @@ type Context struct {
 	LibrarySectionID *string `json:"librarySectionID,omitempty"`
 }
 
-func (o *Context) GetLibrarySectionID() *string {
-	if o == nil {
+func (c *Context) GetLibrarySectionID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.LibrarySectionID
+	return c.LibrarySectionID
 }
 
 type Activity struct {
@@ -28,60 +28,60 @@ type Activity struct {
 	Context     *Context `json:"Context,omitempty"`
 }
 
-func (o *Activity) GetUUID() *string {
-	if o == nil {
+func (a *Activity) GetUUID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.UUID
+	return a.UUID
 }
 
-func (o *Activity) GetType() *string {
-	if o == nil {
+func (a *Activity) GetType() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *Activity) GetCancellable() *bool {
-	if o == nil {
+func (a *Activity) GetCancellable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Cancellable
+	return a.Cancellable
 }
 
-func (o *Activity) GetUserID() *float64 {
-	if o == nil {
+func (a *Activity) GetUserID() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.UserID
+	return a.UserID
 }
 
-func (o *Activity) GetTitle() *string {
-	if o == nil {
+func (a *Activity) GetTitle() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Title
+	return a.Title
 }
 
-func (o *Activity) GetSubtitle() *string {
-	if o == nil {
+func (a *Activity) GetSubtitle() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Subtitle
+	return a.Subtitle
 }
 
-func (o *Activity) GetProgress() *float64 {
-	if o == nil {
+func (a *Activity) GetProgress() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.Progress
+	return a.Progress
 }
 
-func (o *Activity) GetContext() *Context {
-	if o == nil {
+func (a *Activity) GetContext() *Context {
+	if a == nil {
 		return nil
 	}
-	return o.Context
+	return a.Context
 }
 
 type GetServerActivitiesMediaContainer struct {
@@ -89,18 +89,18 @@ type GetServerActivitiesMediaContainer struct {
 	Activity []Activity `json:"Activity,omitempty"`
 }
 
-func (o *GetServerActivitiesMediaContainer) GetSize() *float64 {
-	if o == nil {
+func (g *GetServerActivitiesMediaContainer) GetSize() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetServerActivitiesMediaContainer) GetActivity() []Activity {
-	if o == nil {
+func (g *GetServerActivitiesMediaContainer) GetActivity() []Activity {
+	if g == nil {
 		return nil
 	}
-	return o.Activity
+	return g.Activity
 }
 
 // GetServerActivitiesResponseBody - The Server Activities
@@ -108,11 +108,11 @@ type GetServerActivitiesResponseBody struct {
 	MediaContainer *GetServerActivitiesMediaContainer `json:"MediaContainer,omitempty"`
 }
 
-func (o *GetServerActivitiesResponseBody) GetMediaContainer() *GetServerActivitiesMediaContainer {
-	if o == nil {
+func (g *GetServerActivitiesResponseBody) GetMediaContainer() *GetServerActivitiesMediaContainer {
+	if g == nil {
 		return nil
 	}
-	return o.MediaContainer
+	return g.MediaContainer
 }
 
 type GetServerActivitiesResponse struct {
@@ -126,30 +126,30 @@ type GetServerActivitiesResponse struct {
 	Object *GetServerActivitiesResponseBody
 }
 
-func (o *GetServerActivitiesResponse) GetContentType() string {
-	if o == nil {
+func (g *GetServerActivitiesResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetServerActivitiesResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetServerActivitiesResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetServerActivitiesResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetServerActivitiesResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetServerActivitiesResponse) GetObject() *GetServerActivitiesResponseBody {
-	if o == nil {
+func (g *GetServerActivitiesResponse) GetObject() *GetServerActivitiesResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

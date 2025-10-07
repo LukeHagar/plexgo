@@ -13,25 +13,25 @@ type DeletePlaylistPlaylistsErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *DeletePlaylistPlaylistsErrors) GetCode() *int {
-	if o == nil {
+func (d *DeletePlaylistPlaylistsErrors) GetCode() *int {
+	if d == nil {
 		return nil
 	}
-	return o.Code
+	return d.Code
 }
 
-func (o *DeletePlaylistPlaylistsErrors) GetMessage() *string {
-	if o == nil {
+func (d *DeletePlaylistPlaylistsErrors) GetMessage() *string {
+	if d == nil {
 		return nil
 	}
-	return o.Message
+	return d.Message
 }
 
-func (o *DeletePlaylistPlaylistsErrors) GetStatus() *int {
-	if o == nil {
+func (d *DeletePlaylistPlaylistsErrors) GetStatus() *int {
+	if d == nil {
 		return nil
 	}
-	return o.Status
+	return d.Status
 }
 
 // DeletePlaylistUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type DeletePlaylistErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *DeletePlaylistErrors) GetCode() *int {
-	if o == nil {
+func (d *DeletePlaylistErrors) GetCode() *int {
+	if d == nil {
 		return nil
 	}
-	return o.Code
+	return d.Code
 }
 
-func (o *DeletePlaylistErrors) GetMessage() *string {
-	if o == nil {
+func (d *DeletePlaylistErrors) GetMessage() *string {
+	if d == nil {
 		return nil
 	}
-	return o.Message
+	return d.Message
 }
 
-func (o *DeletePlaylistErrors) GetStatus() *int {
-	if o == nil {
+func (d *DeletePlaylistErrors) GetStatus() *int {
+	if d == nil {
 		return nil
 	}
-	return o.Status
+	return d.Status
 }
 
 // DeletePlaylistBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

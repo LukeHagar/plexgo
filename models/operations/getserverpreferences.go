@@ -19,74 +19,74 @@ type Setting struct {
 	EnumValues *string `json:"enumValues,omitempty"`
 }
 
-func (o *Setting) GetID() *string {
-	if o == nil {
+func (s *Setting) GetID() *string {
+	if s == nil {
 		return nil
 	}
-	return o.ID
+	return s.ID
 }
 
-func (o *Setting) GetLabel() *string {
-	if o == nil {
+func (s *Setting) GetLabel() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Label
+	return s.Label
 }
 
-func (o *Setting) GetSummary() *string {
-	if o == nil {
+func (s *Setting) GetSummary() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Summary
+	return s.Summary
 }
 
-func (o *Setting) GetType() *string {
-	if o == nil {
+func (s *Setting) GetType() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Type
+	return s.Type
 }
 
-func (o *Setting) GetDefault() *bool {
-	if o == nil {
+func (s *Setting) GetDefault() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.Default
+	return s.Default
 }
 
-func (o *Setting) GetValue() *bool {
-	if o == nil {
+func (s *Setting) GetValue() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.Value
+	return s.Value
 }
 
-func (o *Setting) GetHidden() *bool {
-	if o == nil {
+func (s *Setting) GetHidden() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.Hidden
+	return s.Hidden
 }
 
-func (o *Setting) GetAdvanced() *bool {
-	if o == nil {
+func (s *Setting) GetAdvanced() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.Advanced
+	return s.Advanced
 }
 
-func (o *Setting) GetGroup() *string {
-	if o == nil {
+func (s *Setting) GetGroup() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Group
+	return s.Group
 }
 
-func (o *Setting) GetEnumValues() *string {
-	if o == nil {
+func (s *Setting) GetEnumValues() *string {
+	if s == nil {
 		return nil
 	}
-	return o.EnumValues
+	return s.EnumValues
 }
 
 type GetServerPreferencesMediaContainer struct {
@@ -94,18 +94,18 @@ type GetServerPreferencesMediaContainer struct {
 	Setting []Setting `json:"Setting,omitempty"`
 }
 
-func (o *GetServerPreferencesMediaContainer) GetSize() *int {
-	if o == nil {
+func (g *GetServerPreferencesMediaContainer) GetSize() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetServerPreferencesMediaContainer) GetSetting() []Setting {
-	if o == nil {
+func (g *GetServerPreferencesMediaContainer) GetSetting() []Setting {
+	if g == nil {
 		return nil
 	}
-	return o.Setting
+	return g.Setting
 }
 
 // GetServerPreferencesResponseBody - Server Preferences
@@ -113,11 +113,11 @@ type GetServerPreferencesResponseBody struct {
 	MediaContainer *GetServerPreferencesMediaContainer `json:"MediaContainer,omitempty"`
 }
 
-func (o *GetServerPreferencesResponseBody) GetMediaContainer() *GetServerPreferencesMediaContainer {
-	if o == nil {
+func (g *GetServerPreferencesResponseBody) GetMediaContainer() *GetServerPreferencesMediaContainer {
+	if g == nil {
 		return nil
 	}
-	return o.MediaContainer
+	return g.MediaContainer
 }
 
 type GetServerPreferencesResponse struct {
@@ -131,30 +131,30 @@ type GetServerPreferencesResponse struct {
 	Object *GetServerPreferencesResponseBody
 }
 
-func (o *GetServerPreferencesResponse) GetContentType() string {
-	if o == nil {
+func (g *GetServerPreferencesResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetServerPreferencesResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetServerPreferencesResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetServerPreferencesResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetServerPreferencesResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetServerPreferencesResponse) GetObject() *GetServerPreferencesResponseBody {
-	if o == nil {
+func (g *GetServerPreferencesResponse) GetObject() *GetServerPreferencesResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

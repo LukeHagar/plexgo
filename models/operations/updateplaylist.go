@@ -15,25 +15,25 @@ type UpdatePlaylistRequest struct {
 	Summary *string `queryParam:"style=form,explode=true,name=summary"`
 }
 
-func (o *UpdatePlaylistRequest) GetPlaylistID() float64 {
-	if o == nil {
+func (u *UpdatePlaylistRequest) GetPlaylistID() float64 {
+	if u == nil {
 		return 0.0
 	}
-	return o.PlaylistID
+	return u.PlaylistID
 }
 
-func (o *UpdatePlaylistRequest) GetTitle() *string {
-	if o == nil {
+func (u *UpdatePlaylistRequest) GetTitle() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Title
+	return u.Title
 }
 
-func (o *UpdatePlaylistRequest) GetSummary() *string {
-	if o == nil {
+func (u *UpdatePlaylistRequest) GetSummary() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Summary
+	return u.Summary
 }
 
 type UpdatePlaylistResponse struct {
@@ -45,23 +45,23 @@ type UpdatePlaylistResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *UpdatePlaylistResponse) GetContentType() string {
-	if o == nil {
+func (u *UpdatePlaylistResponse) GetContentType() string {
+	if u == nil {
 		return ""
 	}
-	return o.ContentType
+	return u.ContentType
 }
 
-func (o *UpdatePlaylistResponse) GetStatusCode() int {
-	if o == nil {
+func (u *UpdatePlaylistResponse) GetStatusCode() int {
+	if u == nil {
 		return 0
 	}
-	return o.StatusCode
+	return u.StatusCode
 }
 
-func (o *UpdatePlaylistResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (u *UpdatePlaylistResponse) GetRawResponse() *http.Response {
+	if u == nil {
 		return nil
 	}
-	return o.RawResponse
+	return u.RawResponse
 }

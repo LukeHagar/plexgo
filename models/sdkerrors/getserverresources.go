@@ -13,25 +13,25 @@ type GetServerResourcesPlexErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetServerResourcesPlexErrors) GetCode() *int {
-	if o == nil {
+func (g *GetServerResourcesPlexErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetServerResourcesPlexErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetServerResourcesPlexErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetServerResourcesPlexErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetServerResourcesPlexErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetServerResourcesUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type GetServerResourcesErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetServerResourcesErrors) GetCode() *int {
-	if o == nil {
+func (g *GetServerResourcesErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetServerResourcesErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetServerResourcesErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetServerResourcesErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetServerResourcesErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetServerResourcesBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

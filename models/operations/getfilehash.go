@@ -13,18 +13,18 @@ type GetFileHashRequest struct {
 	Type *float64 `queryParam:"style=form,explode=true,name=type"`
 }
 
-func (o *GetFileHashRequest) GetURL() string {
-	if o == nil {
+func (g *GetFileHashRequest) GetURL() string {
+	if g == nil {
 		return ""
 	}
-	return o.URL
+	return g.URL
 }
 
-func (o *GetFileHashRequest) GetType() *float64 {
-	if o == nil {
+func (g *GetFileHashRequest) GetType() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Type
+	return g.Type
 }
 
 type GetFileHashResponse struct {
@@ -36,23 +36,23 @@ type GetFileHashResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *GetFileHashResponse) GetContentType() string {
-	if o == nil {
+func (g *GetFileHashResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetFileHashResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetFileHashResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetFileHashResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetFileHashResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }

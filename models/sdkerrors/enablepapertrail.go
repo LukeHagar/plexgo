@@ -13,25 +13,25 @@ type EnablePaperTrailLogErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *EnablePaperTrailLogErrors) GetCode() *int {
-	if o == nil {
+func (e *EnablePaperTrailLogErrors) GetCode() *int {
+	if e == nil {
 		return nil
 	}
-	return o.Code
+	return e.Code
 }
 
-func (o *EnablePaperTrailLogErrors) GetMessage() *string {
-	if o == nil {
+func (e *EnablePaperTrailLogErrors) GetMessage() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Message
+	return e.Message
 }
 
-func (o *EnablePaperTrailLogErrors) GetStatus() *int {
-	if o == nil {
+func (e *EnablePaperTrailLogErrors) GetStatus() *int {
+	if e == nil {
 		return nil
 	}
-	return o.Status
+	return e.Status
 }
 
 // EnablePaperTrailUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type EnablePaperTrailErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *EnablePaperTrailErrors) GetCode() *int {
-	if o == nil {
+func (e *EnablePaperTrailErrors) GetCode() *int {
+	if e == nil {
 		return nil
 	}
-	return o.Code
+	return e.Code
 }
 
-func (o *EnablePaperTrailErrors) GetMessage() *string {
-	if o == nil {
+func (e *EnablePaperTrailErrors) GetMessage() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Message
+	return e.Message
 }
 
-func (o *EnablePaperTrailErrors) GetStatus() *int {
-	if o == nil {
+func (e *EnablePaperTrailErrors) GetStatus() *int {
+	if e == nil {
 		return nil
 	}
-	return o.Status
+	return e.Status
 }
 
 // EnablePaperTrailBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

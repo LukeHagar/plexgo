@@ -16,46 +16,46 @@ type GetHomeDataResponseBody struct {
 	Subscription  *bool    `json:"subscription,omitempty"`
 }
 
-func (o *GetHomeDataResponseBody) GetID() *float64 {
-	if o == nil {
+func (g *GetHomeDataResponseBody) GetID() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetHomeDataResponseBody) GetName() *string {
-	if o == nil {
+func (g *GetHomeDataResponseBody) GetName() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Name
+	return g.Name
 }
 
-func (o *GetHomeDataResponseBody) GetGuestUserID() *float64 {
-	if o == nil {
+func (g *GetHomeDataResponseBody) GetGuestUserID() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.GuestUserID
+	return g.GuestUserID
 }
 
-func (o *GetHomeDataResponseBody) GetGuestUserUUID() *string {
-	if o == nil {
+func (g *GetHomeDataResponseBody) GetGuestUserUUID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GuestUserUUID
+	return g.GuestUserUUID
 }
 
-func (o *GetHomeDataResponseBody) GetGuestEnabled() *bool {
-	if o == nil {
+func (g *GetHomeDataResponseBody) GetGuestEnabled() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.GuestEnabled
+	return g.GuestEnabled
 }
 
-func (o *GetHomeDataResponseBody) GetSubscription() *bool {
-	if o == nil {
+func (g *GetHomeDataResponseBody) GetSubscription() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Subscription
+	return g.Subscription
 }
 
 type GetHomeDataResponse struct {
@@ -69,30 +69,30 @@ type GetHomeDataResponse struct {
 	Object *GetHomeDataResponseBody
 }
 
-func (o *GetHomeDataResponse) GetContentType() string {
-	if o == nil {
+func (g *GetHomeDataResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetHomeDataResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetHomeDataResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetHomeDataResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetHomeDataResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetHomeDataResponse) GetObject() *GetHomeDataResponseBody {
-	if o == nil {
+func (g *GetHomeDataResponse) GetObject() *GetHomeDataResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

@@ -440,7 +440,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Playlists.AddPlaylistContents(ctx, 7013.44, "server://12345/com.plexapp.plugins.library/library/metadata/1", plexgo.Float64(123))
+    res, err := s.Playlists.AddPlaylistContents(ctx, 7013.44, "server://12345/com.plexapp.plugins.library/library/metadata/1", plexgo.Pointer[float64](123))
     if err != nil {
         log.Fatal(err)
     }

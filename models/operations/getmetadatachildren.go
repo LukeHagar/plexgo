@@ -14,18 +14,18 @@ type GetMetadataChildrenRequest struct {
 	IncludeElements *string `queryParam:"style=form,explode=true,name=includeElements"`
 }
 
-func (o *GetMetadataChildrenRequest) GetRatingKey() float64 {
-	if o == nil {
+func (g *GetMetadataChildrenRequest) GetRatingKey() float64 {
+	if g == nil {
 		return 0.0
 	}
-	return o.RatingKey
+	return g.RatingKey
 }
 
-func (o *GetMetadataChildrenRequest) GetIncludeElements() *string {
-	if o == nil {
+func (g *GetMetadataChildrenRequest) GetIncludeElements() *string {
+	if g == nil {
 		return nil
 	}
-	return o.IncludeElements
+	return g.IncludeElements
 }
 
 type GetMetadataChildrenDirectory struct {
@@ -36,39 +36,39 @@ type GetMetadataChildrenDirectory struct {
 	Title           *string `json:"title,omitempty"`
 }
 
-func (o *GetMetadataChildrenDirectory) GetLeafCount() *int {
-	if o == nil {
+func (g *GetMetadataChildrenDirectory) GetLeafCount() *int {
+	if g == nil {
 		return nil
 	}
-	return o.LeafCount
+	return g.LeafCount
 }
 
-func (o *GetMetadataChildrenDirectory) GetThumb() *string {
-	if o == nil {
+func (g *GetMetadataChildrenDirectory) GetThumb() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Thumb
+	return g.Thumb
 }
 
-func (o *GetMetadataChildrenDirectory) GetViewedLeafCount() *int {
-	if o == nil {
+func (g *GetMetadataChildrenDirectory) GetViewedLeafCount() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ViewedLeafCount
+	return g.ViewedLeafCount
 }
 
-func (o *GetMetadataChildrenDirectory) GetKey() *string {
-	if o == nil {
+func (g *GetMetadataChildrenDirectory) GetKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetMetadataChildrenDirectory) GetTitle() *string {
-	if o == nil {
+func (g *GetMetadataChildrenDirectory) GetTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Title
+	return g.Title
 }
 
 type GetMetadataChildrenMetadata struct {
@@ -101,193 +101,193 @@ type GetMetadataChildrenMetadata struct {
 	LastRatedAt     *int    `json:"lastRatedAt,omitempty"`
 }
 
-func (o *GetMetadataChildrenMetadata) GetRatingKey() *string {
-	if o == nil {
+func (g *GetMetadataChildrenMetadata) GetRatingKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.RatingKey
+	return g.RatingKey
 }
 
-func (o *GetMetadataChildrenMetadata) GetKey() *string {
-	if o == nil {
+func (g *GetMetadataChildrenMetadata) GetKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetMetadataChildrenMetadata) GetParentRatingKey() *string {
-	if o == nil {
+func (g *GetMetadataChildrenMetadata) GetParentRatingKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ParentRatingKey
+	return g.ParentRatingKey
 }
 
-func (o *GetMetadataChildrenMetadata) GetGUID() *string {
-	if o == nil {
+func (g *GetMetadataChildrenMetadata) GetGUID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GUID
+	return g.GUID
 }
 
-func (o *GetMetadataChildrenMetadata) GetParentGUID() *string {
-	if o == nil {
+func (g *GetMetadataChildrenMetadata) GetParentGUID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ParentGUID
+	return g.ParentGUID
 }
 
-func (o *GetMetadataChildrenMetadata) GetParentStudio() *string {
-	if o == nil {
+func (g *GetMetadataChildrenMetadata) GetParentStudio() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ParentStudio
+	return g.ParentStudio
 }
 
-func (o *GetMetadataChildrenMetadata) GetType() *string {
-	if o == nil {
+func (g *GetMetadataChildrenMetadata) GetType() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Type
+	return g.Type
 }
 
-func (o *GetMetadataChildrenMetadata) GetTitle() *string {
-	if o == nil {
+func (g *GetMetadataChildrenMetadata) GetTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Title
+	return g.Title
 }
 
-func (o *GetMetadataChildrenMetadata) GetParentKey() *string {
-	if o == nil {
+func (g *GetMetadataChildrenMetadata) GetParentKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ParentKey
+	return g.ParentKey
 }
 
-func (o *GetMetadataChildrenMetadata) GetParentTitle() *string {
-	if o == nil {
+func (g *GetMetadataChildrenMetadata) GetParentTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ParentTitle
+	return g.ParentTitle
 }
 
-func (o *GetMetadataChildrenMetadata) GetSummary() *string {
-	if o == nil {
+func (g *GetMetadataChildrenMetadata) GetSummary() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Summary
+	return g.Summary
 }
 
-func (o *GetMetadataChildrenMetadata) GetIndex() *int {
-	if o == nil {
+func (g *GetMetadataChildrenMetadata) GetIndex() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Index
+	return g.Index
 }
 
-func (o *GetMetadataChildrenMetadata) GetParentIndex() *int {
-	if o == nil {
+func (g *GetMetadataChildrenMetadata) GetParentIndex() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ParentIndex
+	return g.ParentIndex
 }
 
-func (o *GetMetadataChildrenMetadata) GetViewCount() *int {
-	if o == nil {
+func (g *GetMetadataChildrenMetadata) GetViewCount() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ViewCount
+	return g.ViewCount
 }
 
-func (o *GetMetadataChildrenMetadata) GetLastViewedAt() *int {
-	if o == nil {
+func (g *GetMetadataChildrenMetadata) GetLastViewedAt() *int {
+	if g == nil {
 		return nil
 	}
-	return o.LastViewedAt
+	return g.LastViewedAt
 }
 
-func (o *GetMetadataChildrenMetadata) GetParentYear() *int {
-	if o == nil {
+func (g *GetMetadataChildrenMetadata) GetParentYear() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ParentYear
+	return g.ParentYear
 }
 
-func (o *GetMetadataChildrenMetadata) GetThumb() *string {
-	if o == nil {
+func (g *GetMetadataChildrenMetadata) GetThumb() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Thumb
+	return g.Thumb
 }
 
-func (o *GetMetadataChildrenMetadata) GetArt() *string {
-	if o == nil {
+func (g *GetMetadataChildrenMetadata) GetArt() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Art
+	return g.Art
 }
 
-func (o *GetMetadataChildrenMetadata) GetParentThumb() *string {
-	if o == nil {
+func (g *GetMetadataChildrenMetadata) GetParentThumb() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ParentThumb
+	return g.ParentThumb
 }
 
-func (o *GetMetadataChildrenMetadata) GetParentTheme() *string {
-	if o == nil {
+func (g *GetMetadataChildrenMetadata) GetParentTheme() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ParentTheme
+	return g.ParentTheme
 }
 
-func (o *GetMetadataChildrenMetadata) GetLeafCount() *int {
-	if o == nil {
+func (g *GetMetadataChildrenMetadata) GetLeafCount() *int {
+	if g == nil {
 		return nil
 	}
-	return o.LeafCount
+	return g.LeafCount
 }
 
-func (o *GetMetadataChildrenMetadata) GetViewedLeafCount() *int {
-	if o == nil {
+func (g *GetMetadataChildrenMetadata) GetViewedLeafCount() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ViewedLeafCount
+	return g.ViewedLeafCount
 }
 
-func (o *GetMetadataChildrenMetadata) GetAddedAt() *int {
-	if o == nil {
+func (g *GetMetadataChildrenMetadata) GetAddedAt() *int {
+	if g == nil {
 		return nil
 	}
-	return o.AddedAt
+	return g.AddedAt
 }
 
-func (o *GetMetadataChildrenMetadata) GetUpdatedAt() *int {
-	if o == nil {
+func (g *GetMetadataChildrenMetadata) GetUpdatedAt() *int {
+	if g == nil {
 		return nil
 	}
-	return o.UpdatedAt
+	return g.UpdatedAt
 }
 
-func (o *GetMetadataChildrenMetadata) GetUserRating() *int {
-	if o == nil {
+func (g *GetMetadataChildrenMetadata) GetUserRating() *int {
+	if g == nil {
 		return nil
 	}
-	return o.UserRating
+	return g.UserRating
 }
 
-func (o *GetMetadataChildrenMetadata) GetSkipCount() *int {
-	if o == nil {
+func (g *GetMetadataChildrenMetadata) GetSkipCount() *int {
+	if g == nil {
 		return nil
 	}
-	return o.SkipCount
+	return g.SkipCount
 }
 
-func (o *GetMetadataChildrenMetadata) GetLastRatedAt() *int {
-	if o == nil {
+func (g *GetMetadataChildrenMetadata) GetLastRatedAt() *int {
+	if g == nil {
 		return nil
 	}
-	return o.LastRatedAt
+	return g.LastRatedAt
 }
 
 type GetMetadataChildrenMediaContainer struct {
@@ -316,165 +316,165 @@ type GetMetadataChildrenMediaContainer struct {
 	Metadata            []GetMetadataChildrenMetadata  `json:"Metadata,omitempty"`
 }
 
-func (o *GetMetadataChildrenMediaContainer) GetSize() *int {
-	if o == nil {
+func (g *GetMetadataChildrenMediaContainer) GetSize() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetMetadataChildrenMediaContainer) GetAllowSync() *bool {
-	if o == nil {
+func (g *GetMetadataChildrenMediaContainer) GetAllowSync() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.AllowSync
+	return g.AllowSync
 }
 
-func (o *GetMetadataChildrenMediaContainer) GetArt() *string {
-	if o == nil {
+func (g *GetMetadataChildrenMediaContainer) GetArt() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Art
+	return g.Art
 }
 
-func (o *GetMetadataChildrenMediaContainer) GetIdentifier() *string {
-	if o == nil {
+func (g *GetMetadataChildrenMediaContainer) GetIdentifier() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Identifier
+	return g.Identifier
 }
 
-func (o *GetMetadataChildrenMediaContainer) GetKey() *string {
-	if o == nil {
+func (g *GetMetadataChildrenMediaContainer) GetKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetMetadataChildrenMediaContainer) GetLibrarySectionID() *int {
-	if o == nil {
+func (g *GetMetadataChildrenMediaContainer) GetLibrarySectionID() *int {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionID
+	return g.LibrarySectionID
 }
 
-func (o *GetMetadataChildrenMediaContainer) GetLibrarySectionTitle() *string {
-	if o == nil {
+func (g *GetMetadataChildrenMediaContainer) GetLibrarySectionTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionTitle
+	return g.LibrarySectionTitle
 }
 
-func (o *GetMetadataChildrenMediaContainer) GetLibrarySectionUUID() *string {
-	if o == nil {
+func (g *GetMetadataChildrenMediaContainer) GetLibrarySectionUUID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionUUID
+	return g.LibrarySectionUUID
 }
 
-func (o *GetMetadataChildrenMediaContainer) GetMediaTagPrefix() *string {
-	if o == nil {
+func (g *GetMetadataChildrenMediaContainer) GetMediaTagPrefix() *string {
+	if g == nil {
 		return nil
 	}
-	return o.MediaTagPrefix
+	return g.MediaTagPrefix
 }
 
-func (o *GetMetadataChildrenMediaContainer) GetMediaTagVersion() *int {
-	if o == nil {
+func (g *GetMetadataChildrenMediaContainer) GetMediaTagVersion() *int {
+	if g == nil {
 		return nil
 	}
-	return o.MediaTagVersion
+	return g.MediaTagVersion
 }
 
-func (o *GetMetadataChildrenMediaContainer) GetNocache() *bool {
-	if o == nil {
+func (g *GetMetadataChildrenMediaContainer) GetNocache() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Nocache
+	return g.Nocache
 }
 
-func (o *GetMetadataChildrenMediaContainer) GetParentIndex() *int {
-	if o == nil {
+func (g *GetMetadataChildrenMediaContainer) GetParentIndex() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ParentIndex
+	return g.ParentIndex
 }
 
-func (o *GetMetadataChildrenMediaContainer) GetParentTitle() *string {
-	if o == nil {
+func (g *GetMetadataChildrenMediaContainer) GetParentTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ParentTitle
+	return g.ParentTitle
 }
 
-func (o *GetMetadataChildrenMediaContainer) GetParentYear() *int {
-	if o == nil {
+func (g *GetMetadataChildrenMediaContainer) GetParentYear() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ParentYear
+	return g.ParentYear
 }
 
-func (o *GetMetadataChildrenMediaContainer) GetSummary() *string {
-	if o == nil {
+func (g *GetMetadataChildrenMediaContainer) GetSummary() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Summary
+	return g.Summary
 }
 
-func (o *GetMetadataChildrenMediaContainer) GetTheme() *string {
-	if o == nil {
+func (g *GetMetadataChildrenMediaContainer) GetTheme() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Theme
+	return g.Theme
 }
 
-func (o *GetMetadataChildrenMediaContainer) GetThumb() *string {
-	if o == nil {
+func (g *GetMetadataChildrenMediaContainer) GetThumb() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Thumb
+	return g.Thumb
 }
 
-func (o *GetMetadataChildrenMediaContainer) GetTitle1() *string {
-	if o == nil {
+func (g *GetMetadataChildrenMediaContainer) GetTitle1() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Title1
+	return g.Title1
 }
 
-func (o *GetMetadataChildrenMediaContainer) GetTitle2() *string {
-	if o == nil {
+func (g *GetMetadataChildrenMediaContainer) GetTitle2() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Title2
+	return g.Title2
 }
 
-func (o *GetMetadataChildrenMediaContainer) GetViewGroup() *string {
-	if o == nil {
+func (g *GetMetadataChildrenMediaContainer) GetViewGroup() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ViewGroup
+	return g.ViewGroup
 }
 
-func (o *GetMetadataChildrenMediaContainer) GetViewMode() *int {
-	if o == nil {
+func (g *GetMetadataChildrenMediaContainer) GetViewMode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ViewMode
+	return g.ViewMode
 }
 
-func (o *GetMetadataChildrenMediaContainer) GetDirectory() []GetMetadataChildrenDirectory {
-	if o == nil {
+func (g *GetMetadataChildrenMediaContainer) GetDirectory() []GetMetadataChildrenDirectory {
+	if g == nil {
 		return nil
 	}
-	return o.Directory
+	return g.Directory
 }
 
-func (o *GetMetadataChildrenMediaContainer) GetMetadata() []GetMetadataChildrenMetadata {
-	if o == nil {
+func (g *GetMetadataChildrenMediaContainer) GetMetadata() []GetMetadataChildrenMetadata {
+	if g == nil {
 		return nil
 	}
-	return o.Metadata
+	return g.Metadata
 }
 
 // GetMetadataChildrenResponseBody - The children of the library item.
@@ -482,11 +482,11 @@ type GetMetadataChildrenResponseBody struct {
 	MediaContainer *GetMetadataChildrenMediaContainer `json:"MediaContainer,omitempty"`
 }
 
-func (o *GetMetadataChildrenResponseBody) GetMediaContainer() *GetMetadataChildrenMediaContainer {
-	if o == nil {
+func (g *GetMetadataChildrenResponseBody) GetMediaContainer() *GetMetadataChildrenMediaContainer {
+	if g == nil {
 		return nil
 	}
-	return o.MediaContainer
+	return g.MediaContainer
 }
 
 type GetMetadataChildrenResponse struct {
@@ -500,30 +500,30 @@ type GetMetadataChildrenResponse struct {
 	Object *GetMetadataChildrenResponseBody
 }
 
-func (o *GetMetadataChildrenResponse) GetContentType() string {
-	if o == nil {
+func (g *GetMetadataChildrenResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetMetadataChildrenResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetMetadataChildrenResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetMetadataChildrenResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetMetadataChildrenResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetMetadataChildrenResponse) GetObject() *GetMetadataChildrenResponseBody {
-	if o == nil {
+func (g *GetMetadataChildrenResponse) GetObject() *GetMetadataChildrenResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

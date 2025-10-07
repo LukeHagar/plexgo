@@ -18,46 +18,46 @@ type GetThumbImageRequest struct {
 	XPlexToken string `header:"style=simple,explode=false,name=X-Plex-Token"`
 }
 
-func (o *GetThumbImageRequest) GetRatingKey() int64 {
-	if o == nil {
+func (g *GetThumbImageRequest) GetRatingKey() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.RatingKey
+	return g.RatingKey
 }
 
-func (o *GetThumbImageRequest) GetWidth() int64 {
-	if o == nil {
+func (g *GetThumbImageRequest) GetWidth() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.Width
+	return g.Width
 }
 
-func (o *GetThumbImageRequest) GetHeight() int64 {
-	if o == nil {
+func (g *GetThumbImageRequest) GetHeight() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.Height
+	return g.Height
 }
 
-func (o *GetThumbImageRequest) GetMinSize() int64 {
-	if o == nil {
+func (g *GetThumbImageRequest) GetMinSize() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.MinSize
+	return g.MinSize
 }
 
-func (o *GetThumbImageRequest) GetUpscale() int64 {
-	if o == nil {
+func (g *GetThumbImageRequest) GetUpscale() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.Upscale
+	return g.Upscale
 }
 
-func (o *GetThumbImageRequest) GetXPlexToken() string {
-	if o == nil {
+func (g *GetThumbImageRequest) GetXPlexToken() string {
+	if g == nil {
 		return ""
 	}
-	return o.XPlexToken
+	return g.XPlexToken
 }
 
 type GetThumbImageResponse struct {
@@ -73,37 +73,37 @@ type GetThumbImageResponse struct {
 	Headers        map[string][]string
 }
 
-func (o *GetThumbImageResponse) GetContentType() string {
-	if o == nil {
+func (g *GetThumbImageResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetThumbImageResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetThumbImageResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetThumbImageResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetThumbImageResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetThumbImageResponse) GetResponseStream() io.ReadCloser {
-	if o == nil {
+func (g *GetThumbImageResponse) GetResponseStream() io.ReadCloser {
+	if g == nil {
 		return nil
 	}
-	return o.ResponseStream
+	return g.ResponseStream
 }
 
-func (o *GetThumbImageResponse) GetHeaders() map[string][]string {
-	if o == nil {
+func (g *GetThumbImageResponse) GetHeaders() map[string][]string {
+	if g == nil {
 		return map[string][]string{}
 	}
-	return o.Headers
+	return g.Headers
 }

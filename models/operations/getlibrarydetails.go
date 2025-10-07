@@ -59,18 +59,18 @@ func (g *GetLibraryDetailsRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetLibraryDetailsRequest) GetIncludeDetails() *IncludeDetails {
-	if o == nil {
+func (g *GetLibraryDetailsRequest) GetIncludeDetails() *IncludeDetails {
+	if g == nil {
 		return nil
 	}
-	return o.IncludeDetails
+	return g.IncludeDetails
 }
 
-func (o *GetLibraryDetailsRequest) GetSectionKey() int {
-	if o == nil {
+func (g *GetLibraryDetailsRequest) GetSectionKey() int {
+	if g == nil {
 		return 0
 	}
-	return o.SectionKey
+	return g.SectionKey
 }
 
 type GetLibraryDetailsDirectory struct {
@@ -81,39 +81,39 @@ type GetLibraryDetailsDirectory struct {
 	Search    *bool   `json:"search,omitempty"`
 }
 
-func (o *GetLibraryDetailsDirectory) GetKey() *string {
-	if o == nil {
+func (g *GetLibraryDetailsDirectory) GetKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetLibraryDetailsDirectory) GetTitle() *string {
-	if o == nil {
+func (g *GetLibraryDetailsDirectory) GetTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Title
+	return g.Title
 }
 
-func (o *GetLibraryDetailsDirectory) GetSecondary() *bool {
-	if o == nil {
+func (g *GetLibraryDetailsDirectory) GetSecondary() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Secondary
+	return g.Secondary
 }
 
-func (o *GetLibraryDetailsDirectory) GetPrompt() *string {
-	if o == nil {
+func (g *GetLibraryDetailsDirectory) GetPrompt() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Prompt
+	return g.Prompt
 }
 
-func (o *GetLibraryDetailsDirectory) GetSearch() *bool {
-	if o == nil {
+func (g *GetLibraryDetailsDirectory) GetSearch() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Search
+	return g.Search
 }
 
 type GetLibraryDetailsFilter struct {
@@ -124,39 +124,39 @@ type GetLibraryDetailsFilter struct {
 	Type       *string `json:"type,omitempty"`
 }
 
-func (o *GetLibraryDetailsFilter) GetFilter() *string {
-	if o == nil {
+func (g *GetLibraryDetailsFilter) GetFilter() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Filter
+	return g.Filter
 }
 
-func (o *GetLibraryDetailsFilter) GetFilterType() *string {
-	if o == nil {
+func (g *GetLibraryDetailsFilter) GetFilterType() *string {
+	if g == nil {
 		return nil
 	}
-	return o.FilterType
+	return g.FilterType
 }
 
-func (o *GetLibraryDetailsFilter) GetKey() *string {
-	if o == nil {
+func (g *GetLibraryDetailsFilter) GetKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetLibraryDetailsFilter) GetTitle() *string {
-	if o == nil {
+func (g *GetLibraryDetailsFilter) GetTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Title
+	return g.Title
 }
 
-func (o *GetLibraryDetailsFilter) GetType() *string {
-	if o == nil {
+func (g *GetLibraryDetailsFilter) GetType() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Type
+	return g.Type
 }
 
 type GetLibraryDetailsSort struct {
@@ -168,46 +168,46 @@ type GetLibraryDetailsSort struct {
 	Title             *string `json:"title,omitempty"`
 }
 
-func (o *GetLibraryDetailsSort) GetDefault() *string {
-	if o == nil {
+func (g *GetLibraryDetailsSort) GetDefault() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Default
+	return g.Default
 }
 
-func (o *GetLibraryDetailsSort) GetDefaultDirection() *string {
-	if o == nil {
+func (g *GetLibraryDetailsSort) GetDefaultDirection() *string {
+	if g == nil {
 		return nil
 	}
-	return o.DefaultDirection
+	return g.DefaultDirection
 }
 
-func (o *GetLibraryDetailsSort) GetDescKey() *string {
-	if o == nil {
+func (g *GetLibraryDetailsSort) GetDescKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.DescKey
+	return g.DescKey
 }
 
-func (o *GetLibraryDetailsSort) GetFirstCharacterKey() *string {
-	if o == nil {
+func (g *GetLibraryDetailsSort) GetFirstCharacterKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.FirstCharacterKey
+	return g.FirstCharacterKey
 }
 
-func (o *GetLibraryDetailsSort) GetKey() *string {
-	if o == nil {
+func (g *GetLibraryDetailsSort) GetKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetLibraryDetailsSort) GetTitle() *string {
-	if o == nil {
+func (g *GetLibraryDetailsSort) GetTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Title
+	return g.Title
 }
 
 type GetLibraryDetailsField struct {
@@ -217,32 +217,32 @@ type GetLibraryDetailsField struct {
 	SubType *string `json:"subType,omitempty"`
 }
 
-func (o *GetLibraryDetailsField) GetKey() *string {
-	if o == nil {
+func (g *GetLibraryDetailsField) GetKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetLibraryDetailsField) GetTitle() *string {
-	if o == nil {
+func (g *GetLibraryDetailsField) GetTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Title
+	return g.Title
 }
 
-func (o *GetLibraryDetailsField) GetType() *string {
-	if o == nil {
+func (g *GetLibraryDetailsField) GetType() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Type
+	return g.Type
 }
 
-func (o *GetLibraryDetailsField) GetSubType() *string {
-	if o == nil {
+func (g *GetLibraryDetailsField) GetSubType() *string {
+	if g == nil {
 		return nil
 	}
-	return o.SubType
+	return g.SubType
 }
 
 type GetLibraryDetailsType struct {
@@ -255,53 +255,53 @@ type GetLibraryDetailsType struct {
 	Field  []GetLibraryDetailsField  `json:"Field,omitempty"`
 }
 
-func (o *GetLibraryDetailsType) GetKey() *string {
-	if o == nil {
+func (g *GetLibraryDetailsType) GetKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetLibraryDetailsType) GetType() *string {
-	if o == nil {
+func (g *GetLibraryDetailsType) GetType() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Type
+	return g.Type
 }
 
-func (o *GetLibraryDetailsType) GetTitle() *string {
-	if o == nil {
+func (g *GetLibraryDetailsType) GetTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Title
+	return g.Title
 }
 
-func (o *GetLibraryDetailsType) GetActive() *bool {
-	if o == nil {
+func (g *GetLibraryDetailsType) GetActive() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Active
+	return g.Active
 }
 
-func (o *GetLibraryDetailsType) GetFilter() []GetLibraryDetailsFilter {
-	if o == nil {
+func (g *GetLibraryDetailsType) GetFilter() []GetLibraryDetailsFilter {
+	if g == nil {
 		return nil
 	}
-	return o.Filter
+	return g.Filter
 }
 
-func (o *GetLibraryDetailsType) GetSort() []GetLibraryDetailsSort {
-	if o == nil {
+func (g *GetLibraryDetailsType) GetSort() []GetLibraryDetailsSort {
+	if g == nil {
 		return nil
 	}
-	return o.Sort
+	return g.Sort
 }
 
-func (o *GetLibraryDetailsType) GetField() []GetLibraryDetailsField {
-	if o == nil {
+func (g *GetLibraryDetailsType) GetField() []GetLibraryDetailsField {
+	if g == nil {
 		return nil
 	}
-	return o.Field
+	return g.Field
 }
 
 type GetLibraryDetailsOperator struct {
@@ -309,18 +309,18 @@ type GetLibraryDetailsOperator struct {
 	Title *string `json:"title,omitempty"`
 }
 
-func (o *GetLibraryDetailsOperator) GetKey() *string {
-	if o == nil {
+func (g *GetLibraryDetailsOperator) GetKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetLibraryDetailsOperator) GetTitle() *string {
-	if o == nil {
+func (g *GetLibraryDetailsOperator) GetTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Title
+	return g.Title
 }
 
 type GetLibraryDetailsFieldType struct {
@@ -328,18 +328,18 @@ type GetLibraryDetailsFieldType struct {
 	Operator []GetLibraryDetailsOperator `json:"Operator,omitempty"`
 }
 
-func (o *GetLibraryDetailsFieldType) GetType() *string {
-	if o == nil {
+func (g *GetLibraryDetailsFieldType) GetType() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Type
+	return g.Type
 }
 
-func (o *GetLibraryDetailsFieldType) GetOperator() []GetLibraryDetailsOperator {
-	if o == nil {
+func (g *GetLibraryDetailsFieldType) GetOperator() []GetLibraryDetailsOperator {
+	if g == nil {
 		return nil
 	}
-	return o.Operator
+	return g.Operator
 }
 
 type GetLibraryDetailsMediaContainer struct {
@@ -360,109 +360,109 @@ type GetLibraryDetailsMediaContainer struct {
 	FieldType        []GetLibraryDetailsFieldType `json:"FieldType,omitempty"`
 }
 
-func (o *GetLibraryDetailsMediaContainer) GetSize() *int {
-	if o == nil {
+func (g *GetLibraryDetailsMediaContainer) GetSize() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetLibraryDetailsMediaContainer) GetAllowSync() *bool {
-	if o == nil {
+func (g *GetLibraryDetailsMediaContainer) GetAllowSync() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.AllowSync
+	return g.AllowSync
 }
 
-func (o *GetLibraryDetailsMediaContainer) GetArt() *string {
-	if o == nil {
+func (g *GetLibraryDetailsMediaContainer) GetArt() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Art
+	return g.Art
 }
 
-func (o *GetLibraryDetailsMediaContainer) GetContent() *string {
-	if o == nil {
+func (g *GetLibraryDetailsMediaContainer) GetContent() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Content
+	return g.Content
 }
 
-func (o *GetLibraryDetailsMediaContainer) GetIdentifier() *string {
-	if o == nil {
+func (g *GetLibraryDetailsMediaContainer) GetIdentifier() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Identifier
+	return g.Identifier
 }
 
-func (o *GetLibraryDetailsMediaContainer) GetLibrarySectionID() *int {
-	if o == nil {
+func (g *GetLibraryDetailsMediaContainer) GetLibrarySectionID() *int {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionID
+	return g.LibrarySectionID
 }
 
-func (o *GetLibraryDetailsMediaContainer) GetMediaTagPrefix() *string {
-	if o == nil {
+func (g *GetLibraryDetailsMediaContainer) GetMediaTagPrefix() *string {
+	if g == nil {
 		return nil
 	}
-	return o.MediaTagPrefix
+	return g.MediaTagPrefix
 }
 
-func (o *GetLibraryDetailsMediaContainer) GetMediaTagVersion() *int {
-	if o == nil {
+func (g *GetLibraryDetailsMediaContainer) GetMediaTagVersion() *int {
+	if g == nil {
 		return nil
 	}
-	return o.MediaTagVersion
+	return g.MediaTagVersion
 }
 
-func (o *GetLibraryDetailsMediaContainer) GetThumb() *string {
-	if o == nil {
+func (g *GetLibraryDetailsMediaContainer) GetThumb() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Thumb
+	return g.Thumb
 }
 
-func (o *GetLibraryDetailsMediaContainer) GetTitle1() *string {
-	if o == nil {
+func (g *GetLibraryDetailsMediaContainer) GetTitle1() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Title1
+	return g.Title1
 }
 
-func (o *GetLibraryDetailsMediaContainer) GetViewGroup() *string {
-	if o == nil {
+func (g *GetLibraryDetailsMediaContainer) GetViewGroup() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ViewGroup
+	return g.ViewGroup
 }
 
-func (o *GetLibraryDetailsMediaContainer) GetViewMode() *int {
-	if o == nil {
+func (g *GetLibraryDetailsMediaContainer) GetViewMode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ViewMode
+	return g.ViewMode
 }
 
-func (o *GetLibraryDetailsMediaContainer) GetDirectory() []GetLibraryDetailsDirectory {
-	if o == nil {
+func (g *GetLibraryDetailsMediaContainer) GetDirectory() []GetLibraryDetailsDirectory {
+	if g == nil {
 		return nil
 	}
-	return o.Directory
+	return g.Directory
 }
 
-func (o *GetLibraryDetailsMediaContainer) GetType() []GetLibraryDetailsType {
-	if o == nil {
+func (g *GetLibraryDetailsMediaContainer) GetType() []GetLibraryDetailsType {
+	if g == nil {
 		return nil
 	}
-	return o.Type
+	return g.Type
 }
 
-func (o *GetLibraryDetailsMediaContainer) GetFieldType() []GetLibraryDetailsFieldType {
-	if o == nil {
+func (g *GetLibraryDetailsMediaContainer) GetFieldType() []GetLibraryDetailsFieldType {
+	if g == nil {
 		return nil
 	}
-	return o.FieldType
+	return g.FieldType
 }
 
 // GetLibraryDetailsResponseBody - The details of the library
@@ -470,11 +470,11 @@ type GetLibraryDetailsResponseBody struct {
 	MediaContainer *GetLibraryDetailsMediaContainer `json:"MediaContainer,omitempty"`
 }
 
-func (o *GetLibraryDetailsResponseBody) GetMediaContainer() *GetLibraryDetailsMediaContainer {
-	if o == nil {
+func (g *GetLibraryDetailsResponseBody) GetMediaContainer() *GetLibraryDetailsMediaContainer {
+	if g == nil {
 		return nil
 	}
-	return o.MediaContainer
+	return g.MediaContainer
 }
 
 type GetLibraryDetailsResponse struct {
@@ -488,30 +488,30 @@ type GetLibraryDetailsResponse struct {
 	Object *GetLibraryDetailsResponseBody
 }
 
-func (o *GetLibraryDetailsResponse) GetContentType() string {
-	if o == nil {
+func (g *GetLibraryDetailsResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetLibraryDetailsResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetLibraryDetailsResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetLibraryDetailsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetLibraryDetailsResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetLibraryDetailsResponse) GetObject() *GetLibraryDetailsResponseBody {
-	if o == nil {
+func (g *GetLibraryDetailsResponse) GetObject() *GetLibraryDetailsResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

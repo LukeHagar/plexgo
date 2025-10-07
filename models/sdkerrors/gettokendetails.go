@@ -13,25 +13,25 @@ type GetTokenDetailsAuthenticationErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetTokenDetailsAuthenticationErrors) GetCode() *int {
-	if o == nil {
+func (g *GetTokenDetailsAuthenticationErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetTokenDetailsAuthenticationErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetTokenDetailsAuthenticationErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetTokenDetailsAuthenticationErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetTokenDetailsAuthenticationErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetTokenDetailsUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type GetTokenDetailsErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetTokenDetailsErrors) GetCode() *int {
-	if o == nil {
+func (g *GetTokenDetailsErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetTokenDetailsErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetTokenDetailsErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetTokenDetailsErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetTokenDetailsErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetTokenDetailsBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

@@ -32,32 +32,32 @@ func (p *PostUsersSignInDataRequestBody) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *PostUsersSignInDataRequestBody) GetLogin() string {
-	if o == nil {
+func (p *PostUsersSignInDataRequestBody) GetLogin() string {
+	if p == nil {
 		return ""
 	}
-	return o.Login
+	return p.Login
 }
 
-func (o *PostUsersSignInDataRequestBody) GetPassword() string {
-	if o == nil {
+func (p *PostUsersSignInDataRequestBody) GetPassword() string {
+	if p == nil {
 		return ""
 	}
-	return o.Password
+	return p.Password
 }
 
-func (o *PostUsersSignInDataRequestBody) GetRememberMe() *bool {
-	if o == nil {
+func (p *PostUsersSignInDataRequestBody) GetRememberMe() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.RememberMe
+	return p.RememberMe
 }
 
-func (o *PostUsersSignInDataRequestBody) GetVerificationCode() *string {
-	if o == nil {
+func (p *PostUsersSignInDataRequestBody) GetVerificationCode() *string {
+	if p == nil {
 		return nil
 	}
-	return o.VerificationCode
+	return p.VerificationCode
 }
 
 type PostUsersSignInDataRequest struct {
@@ -75,46 +75,46 @@ type PostUsersSignInDataRequest struct {
 	RequestBody *PostUsersSignInDataRequestBody `request:"mediaType=application/x-www-form-urlencoded"`
 }
 
-func (o *PostUsersSignInDataRequest) GetClientID() string {
-	if o == nil {
+func (p *PostUsersSignInDataRequest) GetClientID() string {
+	if p == nil {
 		return ""
 	}
-	return o.ClientID
+	return p.ClientID
 }
 
-func (o *PostUsersSignInDataRequest) GetClientName() *string {
-	if o == nil {
+func (p *PostUsersSignInDataRequest) GetClientName() *string {
+	if p == nil {
 		return nil
 	}
-	return o.ClientName
+	return p.ClientName
 }
 
-func (o *PostUsersSignInDataRequest) GetDeviceNickname() *string {
-	if o == nil {
+func (p *PostUsersSignInDataRequest) GetDeviceNickname() *string {
+	if p == nil {
 		return nil
 	}
-	return o.DeviceNickname
+	return p.DeviceNickname
 }
 
-func (o *PostUsersSignInDataRequest) GetClientVersion() *string {
-	if o == nil {
+func (p *PostUsersSignInDataRequest) GetClientVersion() *string {
+	if p == nil {
 		return nil
 	}
-	return o.ClientVersion
+	return p.ClientVersion
 }
 
-func (o *PostUsersSignInDataRequest) GetPlatform() *string {
-	if o == nil {
+func (p *PostUsersSignInDataRequest) GetPlatform() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Platform
+	return p.Platform
 }
 
-func (o *PostUsersSignInDataRequest) GetRequestBody() *PostUsersSignInDataRequestBody {
-	if o == nil {
+func (p *PostUsersSignInDataRequest) GetRequestBody() *PostUsersSignInDataRequestBody {
+	if p == nil {
 		return nil
 	}
-	return o.RequestBody
+	return p.RequestBody
 }
 
 // PostUsersSignInDataMailingListStatus - Your current mailing list status (active or unsubscribed)
@@ -283,66 +283,66 @@ func (p PostUsersSignInDataUserProfile) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PostUsersSignInDataUserProfile) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"defaultAudioLanguage", "defaultSubtitleLanguage"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *PostUsersSignInDataUserProfile) GetAutoSelectAudio() *bool {
-	if o == nil {
+func (p *PostUsersSignInDataUserProfile) GetAutoSelectAudio() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.AutoSelectAudio
+	return p.AutoSelectAudio
 }
 
-func (o *PostUsersSignInDataUserProfile) GetDefaultAudioLanguage() *string {
-	if o == nil {
+func (p *PostUsersSignInDataUserProfile) GetDefaultAudioLanguage() *string {
+	if p == nil {
 		return nil
 	}
-	return o.DefaultAudioLanguage
+	return p.DefaultAudioLanguage
 }
 
-func (o *PostUsersSignInDataUserProfile) GetDefaultSubtitleLanguage() *string {
-	if o == nil {
+func (p *PostUsersSignInDataUserProfile) GetDefaultSubtitleLanguage() *string {
+	if p == nil {
 		return nil
 	}
-	return o.DefaultSubtitleLanguage
+	return p.DefaultSubtitleLanguage
 }
 
-func (o *PostUsersSignInDataUserProfile) GetAutoSelectSubtitle() *PostUsersSignInDataAutoSelectSubtitle {
-	if o == nil {
+func (p *PostUsersSignInDataUserProfile) GetAutoSelectSubtitle() *PostUsersSignInDataAutoSelectSubtitle {
+	if p == nil {
 		return nil
 	}
-	return o.AutoSelectSubtitle
+	return p.AutoSelectSubtitle
 }
 
-func (o *PostUsersSignInDataUserProfile) GetDefaultSubtitleAccessibility() *PostUsersSignInDataDefaultSubtitleAccessibility {
-	if o == nil {
+func (p *PostUsersSignInDataUserProfile) GetDefaultSubtitleAccessibility() *PostUsersSignInDataDefaultSubtitleAccessibility {
+	if p == nil {
 		return nil
 	}
-	return o.DefaultSubtitleAccessibility
+	return p.DefaultSubtitleAccessibility
 }
 
-func (o *PostUsersSignInDataUserProfile) GetDefaultSubtitleForced() *PostUsersSignInDataDefaultSubtitleForced {
-	if o == nil {
+func (p *PostUsersSignInDataUserProfile) GetDefaultSubtitleForced() *PostUsersSignInDataDefaultSubtitleForced {
+	if p == nil {
 		return nil
 	}
-	return o.DefaultSubtitleForced
+	return p.DefaultSubtitleForced
 }
 
-func (o *PostUsersSignInDataUserProfile) GetWatchedIndicator() *PostUsersSignInDataWatchedIndicator {
-	if o == nil {
+func (p *PostUsersSignInDataUserProfile) GetWatchedIndicator() *PostUsersSignInDataWatchedIndicator {
+	if p == nil {
 		return nil
 	}
-	return o.WatchedIndicator
+	return p.WatchedIndicator
 }
 
-func (o *PostUsersSignInDataUserProfile) GetMediaReviewsVisibility() *PostUsersSignInDataMediaReviewsVisibility {
-	if o == nil {
+func (p *PostUsersSignInDataUserProfile) GetMediaReviewsVisibility() *PostUsersSignInDataMediaReviewsVisibility {
+	if p == nil {
 		return nil
 	}
-	return o.MediaReviewsVisibility
+	return p.MediaReviewsVisibility
 }
 
 type PostUsersSignInDataStatus string
@@ -364,39 +364,39 @@ type PostUsersSignInDataServices struct {
 	Status     PostUsersSignInDataStatus `json:"status"`
 }
 
-func (o *PostUsersSignInDataServices) GetIdentifier() string {
-	if o == nil {
+func (p *PostUsersSignInDataServices) GetIdentifier() string {
+	if p == nil {
 		return ""
 	}
-	return o.Identifier
+	return p.Identifier
 }
 
-func (o *PostUsersSignInDataServices) GetEndpoint() string {
-	if o == nil {
+func (p *PostUsersSignInDataServices) GetEndpoint() string {
+	if p == nil {
 		return ""
 	}
-	return o.Endpoint
+	return p.Endpoint
 }
 
-func (o *PostUsersSignInDataServices) GetToken() *string {
-	if o == nil {
+func (p *PostUsersSignInDataServices) GetToken() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Token
+	return p.Token
 }
 
-func (o *PostUsersSignInDataServices) GetSecret() *string {
-	if o == nil {
+func (p *PostUsersSignInDataServices) GetSecret() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Secret
+	return p.Secret
 }
 
-func (o *PostUsersSignInDataServices) GetStatus() PostUsersSignInDataStatus {
-	if o == nil {
+func (p *PostUsersSignInDataServices) GetStatus() PostUsersSignInDataStatus {
+	if p == nil {
 		return PostUsersSignInDataStatus("")
 	}
-	return o.Status
+	return p.Status
 }
 
 // PostUsersSignInDataAuthenticationStatus - String representation of subscriptionActive
@@ -427,46 +427,46 @@ type PostUsersSignInDataSubscription struct {
 	Plan *string `json:"plan,omitempty"`
 }
 
-func (o *PostUsersSignInDataSubscription) GetFeatures() []string {
-	if o == nil {
+func (p *PostUsersSignInDataSubscription) GetFeatures() []string {
+	if p == nil {
 		return nil
 	}
-	return o.Features
+	return p.Features
 }
 
-func (o *PostUsersSignInDataSubscription) GetActive() *bool {
-	if o == nil {
+func (p *PostUsersSignInDataSubscription) GetActive() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Active
+	return p.Active
 }
 
-func (o *PostUsersSignInDataSubscription) GetSubscribedAt() *string {
-	if o == nil {
+func (p *PostUsersSignInDataSubscription) GetSubscribedAt() *string {
+	if p == nil {
 		return nil
 	}
-	return o.SubscribedAt
+	return p.SubscribedAt
 }
 
-func (o *PostUsersSignInDataSubscription) GetStatus() *PostUsersSignInDataAuthenticationStatus {
-	if o == nil {
+func (p *PostUsersSignInDataSubscription) GetStatus() *PostUsersSignInDataAuthenticationStatus {
+	if p == nil {
 		return nil
 	}
-	return o.Status
+	return p.Status
 }
 
-func (o *PostUsersSignInDataSubscription) GetPaymentService() *string {
-	if o == nil {
+func (p *PostUsersSignInDataSubscription) GetPaymentService() *string {
+	if p == nil {
 		return nil
 	}
-	return o.PaymentService
+	return p.PaymentService
 }
 
-func (o *PostUsersSignInDataSubscription) GetPlan() *string {
-	if o == nil {
+func (p *PostUsersSignInDataSubscription) GetPlan() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Plan
+	return p.Plan
 }
 
 // PostUsersSignInDataAuthenticationResponseStatus - String representation of subscriptionActive
@@ -496,46 +496,46 @@ type PostUsersSignInDataAuthenticationSubscription struct {
 	Plan *string `json:"plan,omitempty"`
 }
 
-func (o *PostUsersSignInDataAuthenticationSubscription) GetFeatures() []string {
-	if o == nil {
+func (p *PostUsersSignInDataAuthenticationSubscription) GetFeatures() []string {
+	if p == nil {
 		return nil
 	}
-	return o.Features
+	return p.Features
 }
 
-func (o *PostUsersSignInDataAuthenticationSubscription) GetActive() *bool {
-	if o == nil {
+func (p *PostUsersSignInDataAuthenticationSubscription) GetActive() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Active
+	return p.Active
 }
 
-func (o *PostUsersSignInDataAuthenticationSubscription) GetSubscribedAt() *string {
-	if o == nil {
+func (p *PostUsersSignInDataAuthenticationSubscription) GetSubscribedAt() *string {
+	if p == nil {
 		return nil
 	}
-	return o.SubscribedAt
+	return p.SubscribedAt
 }
 
-func (o *PostUsersSignInDataAuthenticationSubscription) GetStatus() *PostUsersSignInDataAuthenticationResponseStatus {
-	if o == nil {
+func (p *PostUsersSignInDataAuthenticationSubscription) GetStatus() *PostUsersSignInDataAuthenticationResponseStatus {
+	if p == nil {
 		return nil
 	}
-	return o.Status
+	return p.Status
 }
 
-func (o *PostUsersSignInDataAuthenticationSubscription) GetPaymentService() *string {
-	if o == nil {
+func (p *PostUsersSignInDataAuthenticationSubscription) GetPaymentService() *string {
+	if p == nil {
 		return nil
 	}
-	return o.PaymentService
+	return p.PaymentService
 }
 
-func (o *PostUsersSignInDataAuthenticationSubscription) GetPlan() *string {
-	if o == nil {
+func (p *PostUsersSignInDataAuthenticationSubscription) GetPlan() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Plan
+	return p.Plan
 }
 
 type PostUsersSignInDataState string
@@ -556,18 +556,18 @@ type Billing struct {
 	PaymentMethodID       *int64                `json:"paymentMethodId"`
 }
 
-func (o *Billing) GetInternalPaymentMethod() InternalPaymentMethod {
-	if o == nil {
+func (b *Billing) GetInternalPaymentMethod() InternalPaymentMethod {
+	if b == nil {
 		return InternalPaymentMethod{}
 	}
-	return o.InternalPaymentMethod
+	return b.InternalPaymentMethod
 }
 
-func (o *Billing) GetPaymentMethodID() *int64 {
-	if o == nil {
+func (b *Billing) GetPaymentMethodID() *int64 {
+	if b == nil {
 		return nil
 	}
-	return o.PaymentMethodID
+	return b.PaymentMethodID
 }
 
 type PastSubscription struct {
@@ -593,115 +593,115 @@ func (p PastSubscription) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PastSubscription) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"id", "mode", "renewsAt", "endsAt", "type", "transfer", "state", "billing"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"type", "state", "billing"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *PastSubscription) GetID() *string {
-	if o == nil {
+func (p *PastSubscription) GetID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.ID
+	return p.ID
 }
 
-func (o *PastSubscription) GetMode() *string {
-	if o == nil {
+func (p *PastSubscription) GetMode() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Mode
+	return p.Mode
 }
 
-func (o *PastSubscription) GetRenewsAt() *int64 {
-	if o == nil {
+func (p *PastSubscription) GetRenewsAt() *int64 {
+	if p == nil {
 		return nil
 	}
-	return o.RenewsAt
+	return p.RenewsAt
 }
 
-func (o *PastSubscription) GetEndsAt() *int64 {
-	if o == nil {
+func (p *PastSubscription) GetEndsAt() *int64 {
+	if p == nil {
 		return nil
 	}
-	return o.EndsAt
+	return p.EndsAt
 }
 
-func (o *PastSubscription) GetCanceled() *bool {
-	if o == nil {
+func (p *PastSubscription) GetCanceled() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Canceled
+	return p.Canceled
 }
 
-func (o *PastSubscription) GetGracePeriod() *bool {
-	if o == nil {
+func (p *PastSubscription) GetGracePeriod() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.GracePeriod
+	return p.GracePeriod
 }
 
-func (o *PastSubscription) GetOnHold() *bool {
-	if o == nil {
+func (p *PastSubscription) GetOnHold() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.OnHold
+	return p.OnHold
 }
 
-func (o *PastSubscription) GetCanReactivate() *bool {
-	if o == nil {
+func (p *PastSubscription) GetCanReactivate() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.CanReactivate
+	return p.CanReactivate
 }
 
-func (o *PastSubscription) GetCanUpgrade() *bool {
-	if o == nil {
+func (p *PastSubscription) GetCanUpgrade() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.CanUpgrade
+	return p.CanUpgrade
 }
 
-func (o *PastSubscription) GetCanDowngrade() *bool {
-	if o == nil {
+func (p *PastSubscription) GetCanDowngrade() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.CanDowngrade
+	return p.CanDowngrade
 }
 
-func (o *PastSubscription) GetCanConvert() *bool {
-	if o == nil {
+func (p *PastSubscription) GetCanConvert() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.CanConvert
+	return p.CanConvert
 }
 
-func (o *PastSubscription) GetType() string {
-	if o == nil {
+func (p *PastSubscription) GetType() string {
+	if p == nil {
 		return ""
 	}
-	return o.Type
+	return p.Type
 }
 
-func (o *PastSubscription) GetTransfer() *string {
-	if o == nil {
+func (p *PastSubscription) GetTransfer() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Transfer
+	return p.Transfer
 }
 
-func (o *PastSubscription) GetState() PostUsersSignInDataState {
-	if o == nil {
+func (p *PastSubscription) GetState() PostUsersSignInDataState {
+	if p == nil {
 		return PostUsersSignInDataState("")
 	}
-	return o.State
+	return p.State
 }
 
-func (o *PastSubscription) GetBilling() Billing {
-	if o == nil {
+func (p *PastSubscription) GetBilling() Billing {
+	if p == nil {
 		return Billing{}
 	}
-	return o.Billing
+	return p.Billing
 }
 
 type Trials struct {
@@ -796,311 +796,311 @@ func (p PostUsersSignInDataUserPlexAccount) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PostUsersSignInDataUserPlexAccount) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"adsConsent", "adsConsentReminderAt", "adsConsentSetAt", "authToken", "country", "email", "friendlyName", "entitlements", "homeSize", "id", "joinedAt", "locale", "mailingListStatus", "maxHomeSize", "profile", "rememberExpiresAt", "scrobbleTypes", "services", "subscription", "subscriptionDescription", "thumb", "title", "username", "uuid", "attributionPartner", "pastSubscriptions", "trials"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"authToken", "country", "email", "friendlyName", "entitlements", "homeSize", "id", "joinedAt", "mailingListStatus", "maxHomeSize", "profile", "rememberExpiresAt", "scrobbleTypes", "services", "subscription", "thumb", "title", "username", "uuid", "pastSubscriptions", "trials"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetAdsConsent() *bool {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetAdsConsent() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.AdsConsent
+	return p.AdsConsent
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetAdsConsentReminderAt() *int64 {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetAdsConsentReminderAt() *int64 {
+	if p == nil {
 		return nil
 	}
-	return o.AdsConsentReminderAt
+	return p.AdsConsentReminderAt
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetAdsConsentSetAt() *int64 {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetAdsConsentSetAt() *int64 {
+	if p == nil {
 		return nil
 	}
-	return o.AdsConsentSetAt
+	return p.AdsConsentSetAt
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetAnonymous() *bool {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetAnonymous() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Anonymous
+	return p.Anonymous
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetAuthToken() string {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetAuthToken() string {
+	if p == nil {
 		return ""
 	}
-	return o.AuthToken
+	return p.AuthToken
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetBackupCodesCreated() *bool {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetBackupCodesCreated() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.BackupCodesCreated
+	return p.BackupCodesCreated
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetConfirmed() *bool {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetConfirmed() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Confirmed
+	return p.Confirmed
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetCountry() string {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetCountry() string {
+	if p == nil {
 		return ""
 	}
-	return o.Country
+	return p.Country
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetEmail() string {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetEmail() string {
+	if p == nil {
 		return ""
 	}
-	return o.Email
+	return p.Email
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetEmailOnlyAuth() *bool {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetEmailOnlyAuth() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.EmailOnlyAuth
+	return p.EmailOnlyAuth
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetExperimentalFeatures() *bool {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetExperimentalFeatures() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.ExperimentalFeatures
+	return p.ExperimentalFeatures
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetFriendlyName() string {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetFriendlyName() string {
+	if p == nil {
 		return ""
 	}
-	return o.FriendlyName
+	return p.FriendlyName
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetEntitlements() []string {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetEntitlements() []string {
+	if p == nil {
 		return []string{}
 	}
-	return o.Entitlements
+	return p.Entitlements
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetGuest() *bool {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetGuest() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Guest
+	return p.Guest
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetHasPassword() *bool {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetHasPassword() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.HasPassword
+	return p.HasPassword
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetHome() *bool {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetHome() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Home
+	return p.Home
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetHomeAdmin() *bool {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetHomeAdmin() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.HomeAdmin
+	return p.HomeAdmin
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetHomeSize() int {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetHomeSize() int {
+	if p == nil {
 		return 0
 	}
-	return o.HomeSize
+	return p.HomeSize
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetID() int {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetID() int {
+	if p == nil {
 		return 0
 	}
-	return o.ID
+	return p.ID
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetJoinedAt() int64 {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetJoinedAt() int64 {
+	if p == nil {
 		return 0
 	}
-	return o.JoinedAt
+	return p.JoinedAt
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetLocale() *string {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetLocale() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Locale
+	return p.Locale
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetMailingListActive() *bool {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetMailingListActive() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.MailingListActive
+	return p.MailingListActive
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetMailingListStatus() PostUsersSignInDataMailingListStatus {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetMailingListStatus() PostUsersSignInDataMailingListStatus {
+	if p == nil {
 		return PostUsersSignInDataMailingListStatus("")
 	}
-	return o.MailingListStatus
+	return p.MailingListStatus
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetMaxHomeSize() int {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetMaxHomeSize() int {
+	if p == nil {
 		return 0
 	}
-	return o.MaxHomeSize
+	return p.MaxHomeSize
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetPin() *string {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetPin() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Pin
+	return p.Pin
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetProfile() PostUsersSignInDataUserProfile {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetProfile() PostUsersSignInDataUserProfile {
+	if p == nil {
 		return PostUsersSignInDataUserProfile{}
 	}
-	return o.Profile
+	return p.Profile
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetProtected() *bool {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetProtected() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Protected
+	return p.Protected
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetRememberExpiresAt() int64 {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetRememberExpiresAt() int64 {
+	if p == nil {
 		return 0
 	}
-	return o.RememberExpiresAt
+	return p.RememberExpiresAt
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetRestricted() *bool {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetRestricted() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Restricted
+	return p.Restricted
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetRoles() []string {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetRoles() []string {
+	if p == nil {
 		return nil
 	}
-	return o.Roles
+	return p.Roles
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetScrobbleTypes() string {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetScrobbleTypes() string {
+	if p == nil {
 		return ""
 	}
-	return o.ScrobbleTypes
+	return p.ScrobbleTypes
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetServices() []PostUsersSignInDataServices {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetServices() []PostUsersSignInDataServices {
+	if p == nil {
 		return []PostUsersSignInDataServices{}
 	}
-	return o.Services
+	return p.Services
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetSubscription() PostUsersSignInDataSubscription {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetSubscription() PostUsersSignInDataSubscription {
+	if p == nil {
 		return PostUsersSignInDataSubscription{}
 	}
-	return o.Subscription
+	return p.Subscription
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetSubscriptionDescription() *string {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetSubscriptionDescription() *string {
+	if p == nil {
 		return nil
 	}
-	return o.SubscriptionDescription
+	return p.SubscriptionDescription
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetSubscriptions() []PostUsersSignInDataAuthenticationSubscription {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetSubscriptions() []PostUsersSignInDataAuthenticationSubscription {
+	if p == nil {
 		return nil
 	}
-	return o.Subscriptions
+	return p.Subscriptions
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetThumb() string {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetThumb() string {
+	if p == nil {
 		return ""
 	}
-	return o.Thumb
+	return p.Thumb
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetTitle() string {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetTitle() string {
+	if p == nil {
 		return ""
 	}
-	return o.Title
+	return p.Title
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetTwoFactorEnabled() *bool {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetTwoFactorEnabled() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.TwoFactorEnabled
+	return p.TwoFactorEnabled
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetUsername() string {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetUsername() string {
+	if p == nil {
 		return ""
 	}
-	return o.Username
+	return p.Username
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetUUID() string {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetUUID() string {
+	if p == nil {
 		return ""
 	}
-	return o.UUID
+	return p.UUID
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetAttributionPartner() *string {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetAttributionPartner() *string {
+	if p == nil {
 		return nil
 	}
-	return o.AttributionPartner
+	return p.AttributionPartner
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetPastSubscriptions() []PastSubscription {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetPastSubscriptions() []PastSubscription {
+	if p == nil {
 		return []PastSubscription{}
 	}
-	return o.PastSubscriptions
+	return p.PastSubscriptions
 }
 
-func (o *PostUsersSignInDataUserPlexAccount) GetTrials() []Trials {
-	if o == nil {
+func (p *PostUsersSignInDataUserPlexAccount) GetTrials() []Trials {
+	if p == nil {
 		return []Trials{}
 	}
-	return o.Trials
+	return p.Trials
 }
 
 type PostUsersSignInDataResponse struct {
@@ -1114,30 +1114,30 @@ type PostUsersSignInDataResponse struct {
 	UserPlexAccount *PostUsersSignInDataUserPlexAccount
 }
 
-func (o *PostUsersSignInDataResponse) GetContentType() string {
-	if o == nil {
+func (p *PostUsersSignInDataResponse) GetContentType() string {
+	if p == nil {
 		return ""
 	}
-	return o.ContentType
+	return p.ContentType
 }
 
-func (o *PostUsersSignInDataResponse) GetStatusCode() int {
-	if o == nil {
+func (p *PostUsersSignInDataResponse) GetStatusCode() int {
+	if p == nil {
 		return 0
 	}
-	return o.StatusCode
+	return p.StatusCode
 }
 
-func (o *PostUsersSignInDataResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (p *PostUsersSignInDataResponse) GetRawResponse() *http.Response {
+	if p == nil {
 		return nil
 	}
-	return o.RawResponse
+	return p.RawResponse
 }
 
-func (o *PostUsersSignInDataResponse) GetUserPlexAccount() *PostUsersSignInDataUserPlexAccount {
-	if o == nil {
+func (p *PostUsersSignInDataResponse) GetUserPlexAccount() *PostUsersSignInDataUserPlexAccount {
+	if p == nil {
 		return nil
 	}
-	return o.UserPlexAccount
+	return p.UserPlexAccount
 }

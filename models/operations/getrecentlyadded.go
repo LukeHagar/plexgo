@@ -103,53 +103,53 @@ func (g *GetRecentlyAddedRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetRecentlyAddedRequest) GetContentDirectoryID() int64 {
-	if o == nil {
+func (g *GetRecentlyAddedRequest) GetContentDirectoryID() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.ContentDirectoryID
+	return g.ContentDirectoryID
 }
 
-func (o *GetRecentlyAddedRequest) GetPinnedContentDirectoryID() *string {
-	if o == nil {
+func (g *GetRecentlyAddedRequest) GetPinnedContentDirectoryID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.PinnedContentDirectoryID
+	return g.PinnedContentDirectoryID
 }
 
-func (o *GetRecentlyAddedRequest) GetSectionID() *int64 {
-	if o == nil {
+func (g *GetRecentlyAddedRequest) GetSectionID() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.SectionID
+	return g.SectionID
 }
 
-func (o *GetRecentlyAddedRequest) GetType() Type {
-	if o == nil {
+func (g *GetRecentlyAddedRequest) GetType() Type {
+	if g == nil {
 		return Type(0)
 	}
-	return o.Type
+	return g.Type
 }
 
-func (o *GetRecentlyAddedRequest) GetIncludeMeta() *IncludeMeta {
-	if o == nil {
+func (g *GetRecentlyAddedRequest) GetIncludeMeta() *IncludeMeta {
+	if g == nil {
 		return nil
 	}
-	return o.IncludeMeta
+	return g.IncludeMeta
 }
 
-func (o *GetRecentlyAddedRequest) GetXPlexContainerStart() *int {
-	if o == nil {
+func (g *GetRecentlyAddedRequest) GetXPlexContainerStart() *int {
+	if g == nil {
 		return nil
 	}
-	return o.XPlexContainerStart
+	return g.XPlexContainerStart
 }
 
-func (o *GetRecentlyAddedRequest) GetXPlexContainerSize() *int {
-	if o == nil {
+func (g *GetRecentlyAddedRequest) GetXPlexContainerSize() *int {
+	if g == nil {
 		return nil
 	}
-	return o.XPlexContainerSize
+	return g.XPlexContainerSize
 }
 
 type GetRecentlyAddedFilter struct {
@@ -161,46 +161,46 @@ type GetRecentlyAddedFilter struct {
 	Advanced   *bool  `json:"advanced,omitempty"`
 }
 
-func (o *GetRecentlyAddedFilter) GetFilter() string {
-	if o == nil {
+func (g *GetRecentlyAddedFilter) GetFilter() string {
+	if g == nil {
 		return ""
 	}
-	return o.Filter
+	return g.Filter
 }
 
-func (o *GetRecentlyAddedFilter) GetFilterType() string {
-	if o == nil {
+func (g *GetRecentlyAddedFilter) GetFilterType() string {
+	if g == nil {
 		return ""
 	}
-	return o.FilterType
+	return g.FilterType
 }
 
-func (o *GetRecentlyAddedFilter) GetKey() string {
-	if o == nil {
+func (g *GetRecentlyAddedFilter) GetKey() string {
+	if g == nil {
 		return ""
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetRecentlyAddedFilter) GetTitle() string {
-	if o == nil {
+func (g *GetRecentlyAddedFilter) GetTitle() string {
+	if g == nil {
 		return ""
 	}
-	return o.Title
+	return g.Title
 }
 
-func (o *GetRecentlyAddedFilter) GetType() string {
-	if o == nil {
+func (g *GetRecentlyAddedFilter) GetType() string {
+	if g == nil {
 		return ""
 	}
-	return o.Type
+	return g.Type
 }
 
-func (o *GetRecentlyAddedFilter) GetAdvanced() *bool {
-	if o == nil {
+func (g *GetRecentlyAddedFilter) GetAdvanced() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Advanced
+	return g.Advanced
 }
 
 // GetRecentlyAddedActiveDirection - The direction of the sort. Can be either `asc` or `desc`.
@@ -283,60 +283,60 @@ func (g *GetRecentlyAddedSort) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetRecentlyAddedSort) GetDefault() *string {
-	if o == nil {
+func (g *GetRecentlyAddedSort) GetDefault() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Default
+	return g.Default
 }
 
-func (o *GetRecentlyAddedSort) GetActive() *bool {
-	if o == nil {
+func (g *GetRecentlyAddedSort) GetActive() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Active
+	return g.Active
 }
 
-func (o *GetRecentlyAddedSort) GetActiveDirection() *GetRecentlyAddedActiveDirection {
-	if o == nil {
+func (g *GetRecentlyAddedSort) GetActiveDirection() *GetRecentlyAddedActiveDirection {
+	if g == nil {
 		return nil
 	}
-	return o.ActiveDirection
+	return g.ActiveDirection
 }
 
-func (o *GetRecentlyAddedSort) GetDefaultDirection() *GetRecentlyAddedDefaultDirection {
-	if o == nil {
+func (g *GetRecentlyAddedSort) GetDefaultDirection() *GetRecentlyAddedDefaultDirection {
+	if g == nil {
 		return nil
 	}
-	return o.DefaultDirection
+	return g.DefaultDirection
 }
 
-func (o *GetRecentlyAddedSort) GetDescKey() *string {
-	if o == nil {
+func (g *GetRecentlyAddedSort) GetDescKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.DescKey
+	return g.DescKey
 }
 
-func (o *GetRecentlyAddedSort) GetFirstCharacterKey() *string {
-	if o == nil {
+func (g *GetRecentlyAddedSort) GetFirstCharacterKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.FirstCharacterKey
+	return g.FirstCharacterKey
 }
 
-func (o *GetRecentlyAddedSort) GetKey() string {
-	if o == nil {
+func (g *GetRecentlyAddedSort) GetKey() string {
+	if g == nil {
 		return ""
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetRecentlyAddedSort) GetTitle() string {
-	if o == nil {
+func (g *GetRecentlyAddedSort) GetTitle() string {
+	if g == nil {
 		return ""
 	}
-	return o.Title
+	return g.Title
 }
 
 type GetRecentlyAddedField struct {
@@ -346,32 +346,32 @@ type GetRecentlyAddedField struct {
 	SubType *string `json:"subType,omitempty"`
 }
 
-func (o *GetRecentlyAddedField) GetKey() string {
-	if o == nil {
+func (g *GetRecentlyAddedField) GetKey() string {
+	if g == nil {
 		return ""
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetRecentlyAddedField) GetTitle() string {
-	if o == nil {
+func (g *GetRecentlyAddedField) GetTitle() string {
+	if g == nil {
 		return ""
 	}
-	return o.Title
+	return g.Title
 }
 
-func (o *GetRecentlyAddedField) GetType() string {
-	if o == nil {
+func (g *GetRecentlyAddedField) GetType() string {
+	if g == nil {
 		return ""
 	}
-	return o.Type
+	return g.Type
 }
 
-func (o *GetRecentlyAddedField) GetSubType() *string {
-	if o == nil {
+func (g *GetRecentlyAddedField) GetSubType() *string {
+	if g == nil {
 		return nil
 	}
-	return o.SubType
+	return g.SubType
 }
 
 type GetRecentlyAddedType struct {
@@ -385,60 +385,60 @@ type GetRecentlyAddedType struct {
 	Field   []GetRecentlyAddedField  `json:"Field,omitempty"`
 }
 
-func (o *GetRecentlyAddedType) GetKey() string {
-	if o == nil {
+func (g *GetRecentlyAddedType) GetKey() string {
+	if g == nil {
 		return ""
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetRecentlyAddedType) GetType() string {
-	if o == nil {
+func (g *GetRecentlyAddedType) GetType() string {
+	if g == nil {
 		return ""
 	}
-	return o.Type
+	return g.Type
 }
 
-func (o *GetRecentlyAddedType) GetSubtype() *string {
-	if o == nil {
+func (g *GetRecentlyAddedType) GetSubtype() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Subtype
+	return g.Subtype
 }
 
-func (o *GetRecentlyAddedType) GetTitle() string {
-	if o == nil {
+func (g *GetRecentlyAddedType) GetTitle() string {
+	if g == nil {
 		return ""
 	}
-	return o.Title
+	return g.Title
 }
 
-func (o *GetRecentlyAddedType) GetActive() bool {
-	if o == nil {
+func (g *GetRecentlyAddedType) GetActive() bool {
+	if g == nil {
 		return false
 	}
-	return o.Active
+	return g.Active
 }
 
-func (o *GetRecentlyAddedType) GetFilter() []GetRecentlyAddedFilter {
-	if o == nil {
+func (g *GetRecentlyAddedType) GetFilter() []GetRecentlyAddedFilter {
+	if g == nil {
 		return nil
 	}
-	return o.Filter
+	return g.Filter
 }
 
-func (o *GetRecentlyAddedType) GetSort() []GetRecentlyAddedSort {
-	if o == nil {
+func (g *GetRecentlyAddedType) GetSort() []GetRecentlyAddedSort {
+	if g == nil {
 		return nil
 	}
-	return o.Sort
+	return g.Sort
 }
 
-func (o *GetRecentlyAddedType) GetField() []GetRecentlyAddedField {
-	if o == nil {
+func (g *GetRecentlyAddedType) GetField() []GetRecentlyAddedField {
+	if g == nil {
 		return nil
 	}
-	return o.Field
+	return g.Field
 }
 
 type GetRecentlyAddedOperator struct {
@@ -446,18 +446,18 @@ type GetRecentlyAddedOperator struct {
 	Title string `json:"title"`
 }
 
-func (o *GetRecentlyAddedOperator) GetKey() string {
-	if o == nil {
+func (g *GetRecentlyAddedOperator) GetKey() string {
+	if g == nil {
 		return ""
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetRecentlyAddedOperator) GetTitle() string {
-	if o == nil {
+func (g *GetRecentlyAddedOperator) GetTitle() string {
+	if g == nil {
 		return ""
 	}
-	return o.Title
+	return g.Title
 }
 
 type GetRecentlyAddedFieldType struct {
@@ -465,18 +465,18 @@ type GetRecentlyAddedFieldType struct {
 	Operator []GetRecentlyAddedOperator `json:"Operator"`
 }
 
-func (o *GetRecentlyAddedFieldType) GetType() string {
-	if o == nil {
+func (g *GetRecentlyAddedFieldType) GetType() string {
+	if g == nil {
 		return ""
 	}
-	return o.Type
+	return g.Type
 }
 
-func (o *GetRecentlyAddedFieldType) GetOperator() []GetRecentlyAddedOperator {
-	if o == nil {
+func (g *GetRecentlyAddedFieldType) GetOperator() []GetRecentlyAddedOperator {
+	if g == nil {
 		return []GetRecentlyAddedOperator{}
 	}
-	return o.Operator
+	return g.Operator
 }
 
 // The Meta object is only included in the response if the `includeMeta` parameter is set to `1`.
@@ -485,18 +485,18 @@ type Meta struct {
 	FieldType []GetRecentlyAddedFieldType `json:"FieldType,omitempty"`
 }
 
-func (o *Meta) GetType() []GetRecentlyAddedType {
-	if o == nil {
+func (m *Meta) GetType() []GetRecentlyAddedType {
+	if m == nil {
 		return nil
 	}
-	return o.Type
+	return m.Type
 }
 
-func (o *Meta) GetFieldType() []GetRecentlyAddedFieldType {
-	if o == nil {
+func (m *Meta) GetFieldType() []GetRecentlyAddedFieldType {
+	if m == nil {
 		return nil
 	}
-	return o.FieldType
+	return m.FieldType
 }
 
 // GetRecentlyAddedHubsType - The type of media content in the Plex library. This can represent videos, music, or photos.
@@ -538,25 +538,25 @@ type GetRecentlyAddedImage struct {
 	URL  string                           `json:"url"`
 }
 
-func (o *GetRecentlyAddedImage) GetAlt() string {
-	if o == nil {
+func (g *GetRecentlyAddedImage) GetAlt() string {
+	if g == nil {
 		return ""
 	}
-	return o.Alt
+	return g.Alt
 }
 
-func (o *GetRecentlyAddedImage) GetType() GetRecentlyAddedHubsResponseType {
-	if o == nil {
+func (g *GetRecentlyAddedImage) GetType() GetRecentlyAddedHubsResponseType {
+	if g == nil {
 		return GetRecentlyAddedHubsResponseType("")
 	}
-	return o.Type
+	return g.Type
 }
 
-func (o *GetRecentlyAddedImage) GetURL() string {
-	if o == nil {
+func (g *GetRecentlyAddedImage) GetURL() string {
+	if g == nil {
 		return ""
 	}
-	return o.URL
+	return g.URL
 }
 
 type UltraBlurColors struct {
@@ -566,32 +566,32 @@ type UltraBlurColors struct {
 	BottomLeft  string `json:"bottomLeft"`
 }
 
-func (o *UltraBlurColors) GetTopLeft() string {
-	if o == nil {
+func (u *UltraBlurColors) GetTopLeft() string {
+	if u == nil {
 		return ""
 	}
-	return o.TopLeft
+	return u.TopLeft
 }
 
-func (o *UltraBlurColors) GetTopRight() string {
-	if o == nil {
+func (u *UltraBlurColors) GetTopRight() string {
+	if u == nil {
 		return ""
 	}
-	return o.TopRight
+	return u.TopRight
 }
 
-func (o *UltraBlurColors) GetBottomRight() string {
-	if o == nil {
+func (u *UltraBlurColors) GetBottomRight() string {
+	if u == nil {
 		return ""
 	}
-	return o.BottomRight
+	return u.BottomRight
 }
 
-func (o *UltraBlurColors) GetBottomLeft() string {
-	if o == nil {
+func (u *UltraBlurColors) GetBottomLeft() string {
+	if u == nil {
 		return ""
 	}
-	return o.BottomLeft
+	return u.BottomLeft
 }
 
 type Guids struct {
@@ -600,11 +600,11 @@ type Guids struct {
 	ID string `json:"id"`
 }
 
-func (o *Guids) GetID() string {
-	if o == nil {
+func (g *Guids) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
 type One int
@@ -642,8 +642,8 @@ const (
 
 // OptimizedForStreaming - Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
 type OptimizedForStreaming struct {
-	One     *One  `queryParam:"inline" name:"optimizedForStreaming"`
-	Boolean *bool `queryParam:"inline" name:"optimizedForStreaming"`
+	One     *One  `queryParam:"inline,name=optimizedForStreaming"`
+	Boolean *bool `queryParam:"inline,name=optimizedForStreaming"`
 
 	Type OptimizedForStreamingType
 }
@@ -732,8 +732,8 @@ const (
 
 // GetRecentlyAddedOptimizedForStreaming - Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
 type GetRecentlyAddedOptimizedForStreaming struct {
-	GetRecentlyAddedOptimizedForStreaming1 *GetRecentlyAddedOptimizedForStreaming1 `queryParam:"inline" name:"optimizedForStreaming"`
-	Boolean                                *bool                                   `queryParam:"inline" name:"optimizedForStreaming"`
+	GetRecentlyAddedOptimizedForStreaming1 *GetRecentlyAddedOptimizedForStreaming1 `queryParam:"inline,name=optimizedForStreaming"`
+	Boolean                                *bool                                   `queryParam:"inline,name=optimizedForStreaming"`
 
 	Type GetRecentlyAddedOptimizedForStreamingType
 }
@@ -929,358 +929,358 @@ func (s *Stream) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *Stream) GetID() int64 {
-	if o == nil {
+func (s *Stream) GetID() int64 {
+	if s == nil {
 		return 0
 	}
-	return o.ID
+	return s.ID
 }
 
-func (o *Stream) GetStreamType() int64 {
+func (s *Stream) GetStreamType() int64 {
 	return 1
 }
 
-func (o *Stream) GetFormat() *string {
-	if o == nil {
+func (s *Stream) GetFormat() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Format
+	return s.Format
 }
 
-func (o *Stream) GetDefault() *bool {
-	if o == nil {
+func (s *Stream) GetDefault() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.Default
+	return s.Default
 }
 
-func (o *Stream) GetCodec() string {
-	if o == nil {
+func (s *Stream) GetCodec() string {
+	if s == nil {
 		return ""
 	}
-	return o.Codec
+	return s.Codec
 }
 
-func (o *Stream) GetIndex() *int {
-	if o == nil {
+func (s *Stream) GetIndex() *int {
+	if s == nil {
 		return nil
 	}
-	return o.Index
+	return s.Index
 }
 
-func (o *Stream) GetBitrate() *int {
-	if o == nil {
+func (s *Stream) GetBitrate() *int {
+	if s == nil {
 		return nil
 	}
-	return o.Bitrate
+	return s.Bitrate
 }
 
-func (o *Stream) GetLanguage() *string {
-	if o == nil {
+func (s *Stream) GetLanguage() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Language
+	return s.Language
 }
 
-func (o *Stream) GetLanguageTag() *string {
-	if o == nil {
+func (s *Stream) GetLanguageTag() *string {
+	if s == nil {
 		return nil
 	}
-	return o.LanguageTag
+	return s.LanguageTag
 }
 
-func (o *Stream) GetLanguageCode() *string {
-	if o == nil {
+func (s *Stream) GetLanguageCode() *string {
+	if s == nil {
 		return nil
 	}
-	return o.LanguageCode
+	return s.LanguageCode
 }
 
-func (o *Stream) GetHeaderCompression() *bool {
-	if o == nil {
+func (s *Stream) GetHeaderCompression() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.HeaderCompression
+	return s.HeaderCompression
 }
 
-func (o *Stream) GetDOVIBLCompatID() *int {
-	if o == nil {
+func (s *Stream) GetDOVIBLCompatID() *int {
+	if s == nil {
 		return nil
 	}
-	return o.DOVIBLCompatID
+	return s.DOVIBLCompatID
 }
 
-func (o *Stream) GetDOVIBLPresent() *bool {
-	if o == nil {
+func (s *Stream) GetDOVIBLPresent() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.DOVIBLPresent
+	return s.DOVIBLPresent
 }
 
-func (o *Stream) GetDOVIELPresent() *bool {
-	if o == nil {
+func (s *Stream) GetDOVIELPresent() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.DOVIELPresent
+	return s.DOVIELPresent
 }
 
-func (o *Stream) GetDOVILevel() *int {
-	if o == nil {
+func (s *Stream) GetDOVILevel() *int {
+	if s == nil {
 		return nil
 	}
-	return o.DOVILevel
+	return s.DOVILevel
 }
 
-func (o *Stream) GetDOVIPresent() *bool {
-	if o == nil {
+func (s *Stream) GetDOVIPresent() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.DOVIPresent
+	return s.DOVIPresent
 }
 
-func (o *Stream) GetDOVIProfile() *int {
-	if o == nil {
+func (s *Stream) GetDOVIProfile() *int {
+	if s == nil {
 		return nil
 	}
-	return o.DOVIProfile
+	return s.DOVIProfile
 }
 
-func (o *Stream) GetDOVIRPUPresent() *bool {
-	if o == nil {
+func (s *Stream) GetDOVIRPUPresent() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.DOVIRPUPresent
+	return s.DOVIRPUPresent
 }
 
-func (o *Stream) GetDOVIVersion() *string {
-	if o == nil {
+func (s *Stream) GetDOVIVersion() *string {
+	if s == nil {
 		return nil
 	}
-	return o.DOVIVersion
+	return s.DOVIVersion
 }
 
-func (o *Stream) GetBitDepth() *int {
-	if o == nil {
+func (s *Stream) GetBitDepth() *int {
+	if s == nil {
 		return nil
 	}
-	return o.BitDepth
+	return s.BitDepth
 }
 
-func (o *Stream) GetChromaLocation() *string {
-	if o == nil {
+func (s *Stream) GetChromaLocation() *string {
+	if s == nil {
 		return nil
 	}
-	return o.ChromaLocation
+	return s.ChromaLocation
 }
 
-func (o *Stream) GetChromaSubsampling() *string {
-	if o == nil {
+func (s *Stream) GetChromaSubsampling() *string {
+	if s == nil {
 		return nil
 	}
-	return o.ChromaSubsampling
+	return s.ChromaSubsampling
 }
 
-func (o *Stream) GetCodedHeight() *int {
-	if o == nil {
+func (s *Stream) GetCodedHeight() *int {
+	if s == nil {
 		return nil
 	}
-	return o.CodedHeight
+	return s.CodedHeight
 }
 
-func (o *Stream) GetCodedWidth() *int {
-	if o == nil {
+func (s *Stream) GetCodedWidth() *int {
+	if s == nil {
 		return nil
 	}
-	return o.CodedWidth
+	return s.CodedWidth
 }
 
-func (o *Stream) GetClosedCaptions() *bool {
-	if o == nil {
+func (s *Stream) GetClosedCaptions() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.ClosedCaptions
+	return s.ClosedCaptions
 }
 
-func (o *Stream) GetColorPrimaries() *string {
-	if o == nil {
+func (s *Stream) GetColorPrimaries() *string {
+	if s == nil {
 		return nil
 	}
-	return o.ColorPrimaries
+	return s.ColorPrimaries
 }
 
-func (o *Stream) GetColorRange() *string {
-	if o == nil {
+func (s *Stream) GetColorRange() *string {
+	if s == nil {
 		return nil
 	}
-	return o.ColorRange
+	return s.ColorRange
 }
 
-func (o *Stream) GetColorSpace() *string {
-	if o == nil {
+func (s *Stream) GetColorSpace() *string {
+	if s == nil {
 		return nil
 	}
-	return o.ColorSpace
+	return s.ColorSpace
 }
 
-func (o *Stream) GetColorTrc() *string {
-	if o == nil {
+func (s *Stream) GetColorTrc() *string {
+	if s == nil {
 		return nil
 	}
-	return o.ColorTrc
+	return s.ColorTrc
 }
 
-func (o *Stream) GetFrameRate() *float32 {
-	if o == nil {
+func (s *Stream) GetFrameRate() *float32 {
+	if s == nil {
 		return nil
 	}
-	return o.FrameRate
+	return s.FrameRate
 }
 
-func (o *Stream) GetKey() *string {
-	if o == nil {
+func (s *Stream) GetKey() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Key
+	return s.Key
 }
 
-func (o *Stream) GetHeight() *int {
-	if o == nil {
+func (s *Stream) GetHeight() *int {
+	if s == nil {
 		return nil
 	}
-	return o.Height
+	return s.Height
 }
 
-func (o *Stream) GetLevel() *int {
-	if o == nil {
+func (s *Stream) GetLevel() *int {
+	if s == nil {
 		return nil
 	}
-	return o.Level
+	return s.Level
 }
 
-func (o *Stream) GetOriginal() *bool {
-	if o == nil {
+func (s *Stream) GetOriginal() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.Original
+	return s.Original
 }
 
-func (o *Stream) GetHasScalingMatrix() *bool {
-	if o == nil {
+func (s *Stream) GetHasScalingMatrix() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.HasScalingMatrix
+	return s.HasScalingMatrix
 }
 
-func (o *Stream) GetProfile() *string {
-	if o == nil {
+func (s *Stream) GetProfile() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Profile
+	return s.Profile
 }
 
-func (o *Stream) GetScanType() *string {
-	if o == nil {
+func (s *Stream) GetScanType() *string {
+	if s == nil {
 		return nil
 	}
-	return o.ScanType
+	return s.ScanType
 }
 
-func (o *Stream) GetEmbeddedInVideo() *string {
-	if o == nil {
+func (s *Stream) GetEmbeddedInVideo() *string {
+	if s == nil {
 		return nil
 	}
-	return o.EmbeddedInVideo
+	return s.EmbeddedInVideo
 }
 
-func (o *Stream) GetRefFrames() *int {
-	if o == nil {
+func (s *Stream) GetRefFrames() *int {
+	if s == nil {
 		return nil
 	}
-	return o.RefFrames
+	return s.RefFrames
 }
 
-func (o *Stream) GetWidth() *int {
-	if o == nil {
+func (s *Stream) GetWidth() *int {
+	if s == nil {
 		return nil
 	}
-	return o.Width
+	return s.Width
 }
 
-func (o *Stream) GetDisplayTitle() string {
-	if o == nil {
+func (s *Stream) GetDisplayTitle() string {
+	if s == nil {
 		return ""
 	}
-	return o.DisplayTitle
+	return s.DisplayTitle
 }
 
-func (o *Stream) GetExtendedDisplayTitle() string {
-	if o == nil {
+func (s *Stream) GetExtendedDisplayTitle() string {
+	if s == nil {
 		return ""
 	}
-	return o.ExtendedDisplayTitle
+	return s.ExtendedDisplayTitle
 }
 
-func (o *Stream) GetSelected() *bool {
-	if o == nil {
+func (s *Stream) GetSelected() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.Selected
+	return s.Selected
 }
 
-func (o *Stream) GetForced() *bool {
-	if o == nil {
+func (s *Stream) GetForced() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.Forced
+	return s.Forced
 }
 
-func (o *Stream) GetChannels() *int {
-	if o == nil {
+func (s *Stream) GetChannels() *int {
+	if s == nil {
 		return nil
 	}
-	return o.Channels
+	return s.Channels
 }
 
-func (o *Stream) GetAudioChannelLayout() *string {
-	if o == nil {
+func (s *Stream) GetAudioChannelLayout() *string {
+	if s == nil {
 		return nil
 	}
-	return o.AudioChannelLayout
+	return s.AudioChannelLayout
 }
 
-func (o *Stream) GetSamplingRate() *int {
-	if o == nil {
+func (s *Stream) GetSamplingRate() *int {
+	if s == nil {
 		return nil
 	}
-	return o.SamplingRate
+	return s.SamplingRate
 }
 
-func (o *Stream) GetCanAutoSync() *bool {
-	if o == nil {
+func (s *Stream) GetCanAutoSync() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.CanAutoSync
+	return s.CanAutoSync
 }
 
-func (o *Stream) GetHearingImpaired() *bool {
-	if o == nil {
+func (s *Stream) GetHearingImpaired() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.HearingImpaired
+	return s.HearingImpaired
 }
 
-func (o *Stream) GetDub() *bool {
-	if o == nil {
+func (s *Stream) GetDub() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.Dub
+	return s.Dub
 }
 
-func (o *Stream) GetTitle() *string {
-	if o == nil {
+func (s *Stream) GetTitle() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Title
+	return s.Title
 }
 
 type Part struct {
@@ -1325,116 +1325,116 @@ func (p *Part) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *Part) GetAccessible() *bool {
-	if o == nil {
+func (p *Part) GetAccessible() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Accessible
+	return p.Accessible
 }
 
-func (o *Part) GetExists() *bool {
-	if o == nil {
+func (p *Part) GetExists() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Exists
+	return p.Exists
 }
 
-func (o *Part) GetID() int64 {
-	if o == nil {
+func (p *Part) GetID() int64 {
+	if p == nil {
 		return 0
 	}
-	return o.ID
+	return p.ID
 }
 
-func (o *Part) GetKey() string {
-	if o == nil {
+func (p *Part) GetKey() string {
+	if p == nil {
 		return ""
 	}
-	return o.Key
+	return p.Key
 }
 
-func (o *Part) GetIndexes() *string {
-	if o == nil {
+func (p *Part) GetIndexes() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Indexes
+	return p.Indexes
 }
 
-func (o *Part) GetDuration() *int {
-	if o == nil {
+func (p *Part) GetDuration() *int {
+	if p == nil {
 		return nil
 	}
-	return o.Duration
+	return p.Duration
 }
 
-func (o *Part) GetFile() string {
-	if o == nil {
+func (p *Part) GetFile() string {
+	if p == nil {
 		return ""
 	}
-	return o.File
+	return p.File
 }
 
-func (o *Part) GetSize() int64 {
-	if o == nil {
+func (p *Part) GetSize() int64 {
+	if p == nil {
 		return 0
 	}
-	return o.Size
+	return p.Size
 }
 
-func (o *Part) GetPacketLength() *int {
-	if o == nil {
+func (p *Part) GetPacketLength() *int {
+	if p == nil {
 		return nil
 	}
-	return o.PacketLength
+	return p.PacketLength
 }
 
-func (o *Part) GetContainer() *string {
-	if o == nil {
+func (p *Part) GetContainer() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Container
+	return p.Container
 }
 
-func (o *Part) GetVideoProfile() *string {
-	if o == nil {
+func (p *Part) GetVideoProfile() *string {
+	if p == nil {
 		return nil
 	}
-	return o.VideoProfile
+	return p.VideoProfile
 }
 
-func (o *Part) GetAudioProfile() *string {
-	if o == nil {
+func (p *Part) GetAudioProfile() *string {
+	if p == nil {
 		return nil
 	}
-	return o.AudioProfile
+	return p.AudioProfile
 }
 
-func (o *Part) GetHas64bitOffsets() *bool {
-	if o == nil {
+func (p *Part) GetHas64bitOffsets() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Has64bitOffsets
+	return p.Has64bitOffsets
 }
 
-func (o *Part) GetOptimizedForStreaming() *GetRecentlyAddedOptimizedForStreaming {
-	if o == nil {
+func (p *Part) GetOptimizedForStreaming() *GetRecentlyAddedOptimizedForStreaming {
+	if p == nil {
 		return nil
 	}
-	return o.OptimizedForStreaming
+	return p.OptimizedForStreaming
 }
 
-func (o *Part) GetHasThumbnail() *HasThumbnail {
-	if o == nil {
+func (p *Part) GetHasThumbnail() *HasThumbnail {
+	if p == nil {
 		return nil
 	}
-	return o.HasThumbnail
+	return p.HasThumbnail
 }
 
-func (o *Part) GetStream() []Stream {
-	if o == nil {
+func (p *Part) GetStream() []Stream {
+	if p == nil {
 		return nil
 	}
-	return o.Stream
+	return p.Stream
 }
 
 type Media struct {
@@ -1477,137 +1477,137 @@ type Media struct {
 	Part []Part `json:"Part,omitempty"`
 }
 
-func (o *Media) GetID() int64 {
-	if o == nil {
+func (m *Media) GetID() int64 {
+	if m == nil {
 		return 0
 	}
-	return o.ID
+	return m.ID
 }
 
-func (o *Media) GetDuration() *int {
-	if o == nil {
+func (m *Media) GetDuration() *int {
+	if m == nil {
 		return nil
 	}
-	return o.Duration
+	return m.Duration
 }
 
-func (o *Media) GetBitrate() *int {
-	if o == nil {
+func (m *Media) GetBitrate() *int {
+	if m == nil {
 		return nil
 	}
-	return o.Bitrate
+	return m.Bitrate
 }
 
-func (o *Media) GetWidth() *int {
-	if o == nil {
+func (m *Media) GetWidth() *int {
+	if m == nil {
 		return nil
 	}
-	return o.Width
+	return m.Width
 }
 
-func (o *Media) GetHeight() *int {
-	if o == nil {
+func (m *Media) GetHeight() *int {
+	if m == nil {
 		return nil
 	}
-	return o.Height
+	return m.Height
 }
 
-func (o *Media) GetAspectRatio() *float32 {
-	if o == nil {
+func (m *Media) GetAspectRatio() *float32 {
+	if m == nil {
 		return nil
 	}
-	return o.AspectRatio
+	return m.AspectRatio
 }
 
-func (o *Media) GetAudioChannels() *int {
-	if o == nil {
+func (m *Media) GetAudioChannels() *int {
+	if m == nil {
 		return nil
 	}
-	return o.AudioChannels
+	return m.AudioChannels
 }
 
-func (o *Media) GetDisplayOffset() *int {
-	if o == nil {
+func (m *Media) GetDisplayOffset() *int {
+	if m == nil {
 		return nil
 	}
-	return o.DisplayOffset
+	return m.DisplayOffset
 }
 
-func (o *Media) GetAudioCodec() *string {
-	if o == nil {
+func (m *Media) GetAudioCodec() *string {
+	if m == nil {
 		return nil
 	}
-	return o.AudioCodec
+	return m.AudioCodec
 }
 
-func (o *Media) GetVideoCodec() *string {
-	if o == nil {
+func (m *Media) GetVideoCodec() *string {
+	if m == nil {
 		return nil
 	}
-	return o.VideoCodec
+	return m.VideoCodec
 }
 
-func (o *Media) GetVideoResolution() *string {
-	if o == nil {
+func (m *Media) GetVideoResolution() *string {
+	if m == nil {
 		return nil
 	}
-	return o.VideoResolution
+	return m.VideoResolution
 }
 
-func (o *Media) GetContainer() *string {
-	if o == nil {
+func (m *Media) GetContainer() *string {
+	if m == nil {
 		return nil
 	}
-	return o.Container
+	return m.Container
 }
 
-func (o *Media) GetVideoFrameRate() *string {
-	if o == nil {
+func (m *Media) GetVideoFrameRate() *string {
+	if m == nil {
 		return nil
 	}
-	return o.VideoFrameRate
+	return m.VideoFrameRate
 }
 
-func (o *Media) GetVideoProfile() *string {
-	if o == nil {
+func (m *Media) GetVideoProfile() *string {
+	if m == nil {
 		return nil
 	}
-	return o.VideoProfile
+	return m.VideoProfile
 }
 
-func (o *Media) GetHasVoiceActivity() *bool {
-	if o == nil {
+func (m *Media) GetHasVoiceActivity() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.HasVoiceActivity
+	return m.HasVoiceActivity
 }
 
-func (o *Media) GetAudioProfile() *string {
-	if o == nil {
+func (m *Media) GetAudioProfile() *string {
+	if m == nil {
 		return nil
 	}
-	return o.AudioProfile
+	return m.AudioProfile
 }
 
-func (o *Media) GetOptimizedForStreaming() *OptimizedForStreaming {
-	if o == nil {
+func (m *Media) GetOptimizedForStreaming() *OptimizedForStreaming {
+	if m == nil {
 		return nil
 	}
-	return o.OptimizedForStreaming
+	return m.OptimizedForStreaming
 }
 
-func (o *Media) GetHas64bitOffsets() *bool {
-	if o == nil {
+func (m *Media) GetHas64bitOffsets() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.Has64bitOffsets
+	return m.Has64bitOffsets
 }
 
-func (o *Media) GetPart() []Part {
-	if o == nil {
+func (m *Media) GetPart() []Part {
+	if m == nil {
 		return nil
 	}
-	return o.Part
+	return m.Part
 }
 
 // Genre - The filter query string for similar items.
@@ -1622,25 +1622,25 @@ type Genre struct {
 	Tag string `json:"tag"`
 }
 
-func (o *Genre) GetID() int {
-	if o == nil {
+func (g *Genre) GetID() int {
+	if g == nil {
 		return 0
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *Genre) GetFilter() string {
-	if o == nil {
+func (g *Genre) GetFilter() string {
+	if g == nil {
 		return ""
 	}
-	return o.Filter
+	return g.Filter
 }
 
-func (o *Genre) GetTag() string {
-	if o == nil {
+func (g *Genre) GetTag() string {
+	if g == nil {
 		return ""
 	}
-	return o.Tag
+	return g.Tag
 }
 
 // Country - The filter query string for country media items.
@@ -1654,25 +1654,25 @@ type Country struct {
 	Filter string `json:"filter"`
 }
 
-func (o *Country) GetID() int {
-	if o == nil {
+func (c *Country) GetID() int {
+	if c == nil {
 		return 0
 	}
-	return o.ID
+	return c.ID
 }
 
-func (o *Country) GetTag() string {
-	if o == nil {
+func (c *Country) GetTag() string {
+	if c == nil {
 		return ""
 	}
-	return o.Tag
+	return c.Tag
 }
 
-func (o *Country) GetFilter() string {
-	if o == nil {
+func (c *Country) GetFilter() string {
+	if c == nil {
 		return ""
 	}
-	return o.Filter
+	return c.Filter
 }
 
 type Director struct {
@@ -1688,39 +1688,39 @@ type Director struct {
 	Thumb *string `json:"thumb,omitempty"`
 }
 
-func (o *Director) GetID() int {
-	if o == nil {
+func (d *Director) GetID() int {
+	if d == nil {
 		return 0
 	}
-	return o.ID
+	return d.ID
 }
 
-func (o *Director) GetFilter() string {
-	if o == nil {
+func (d *Director) GetFilter() string {
+	if d == nil {
 		return ""
 	}
-	return o.Filter
+	return d.Filter
 }
 
-func (o *Director) GetTag() string {
-	if o == nil {
+func (d *Director) GetTag() string {
+	if d == nil {
 		return ""
 	}
-	return o.Tag
+	return d.Tag
 }
 
-func (o *Director) GetTagKey() string {
-	if o == nil {
+func (d *Director) GetTagKey() string {
+	if d == nil {
 		return ""
 	}
-	return o.TagKey
+	return d.TagKey
 }
 
-func (o *Director) GetThumb() *string {
-	if o == nil {
+func (d *Director) GetThumb() *string {
+	if d == nil {
 		return nil
 	}
-	return o.Thumb
+	return d.Thumb
 }
 
 type Writer struct {
@@ -1736,39 +1736,39 @@ type Writer struct {
 	Thumb *string `json:"thumb,omitempty"`
 }
 
-func (o *Writer) GetID() int {
-	if o == nil {
+func (w *Writer) GetID() int {
+	if w == nil {
 		return 0
 	}
-	return o.ID
+	return w.ID
 }
 
-func (o *Writer) GetFilter() string {
-	if o == nil {
+func (w *Writer) GetFilter() string {
+	if w == nil {
 		return ""
 	}
-	return o.Filter
+	return w.Filter
 }
 
-func (o *Writer) GetTag() string {
-	if o == nil {
+func (w *Writer) GetTag() string {
+	if w == nil {
 		return ""
 	}
-	return o.Tag
+	return w.Tag
 }
 
-func (o *Writer) GetTagKey() *string {
-	if o == nil {
+func (w *Writer) GetTagKey() *string {
+	if w == nil {
 		return nil
 	}
-	return o.TagKey
+	return w.TagKey
 }
 
-func (o *Writer) GetThumb() *string {
-	if o == nil {
+func (w *Writer) GetThumb() *string {
+	if w == nil {
 		return nil
 	}
-	return o.Thumb
+	return w.Thumb
 }
 
 type Role struct {
@@ -1790,46 +1790,46 @@ type Role struct {
 	Thumb *string `json:"thumb,omitempty"`
 }
 
-func (o *Role) GetID() int {
-	if o == nil {
+func (r *Role) GetID() int {
+	if r == nil {
 		return 0
 	}
-	return o.ID
+	return r.ID
 }
 
-func (o *Role) GetFilter() string {
-	if o == nil {
+func (r *Role) GetFilter() string {
+	if r == nil {
 		return ""
 	}
-	return o.Filter
+	return r.Filter
 }
 
-func (o *Role) GetTag() string {
-	if o == nil {
+func (r *Role) GetTag() string {
+	if r == nil {
 		return ""
 	}
-	return o.Tag
+	return r.Tag
 }
 
-func (o *Role) GetTagKey() string {
-	if o == nil {
+func (r *Role) GetTagKey() string {
+	if r == nil {
 		return ""
 	}
-	return o.TagKey
+	return r.TagKey
 }
 
-func (o *Role) GetRole() *string {
-	if o == nil {
+func (r *Role) GetRole() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Role
+	return r.Role
 }
 
-func (o *Role) GetThumb() *string {
-	if o == nil {
+func (r *Role) GetThumb() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Thumb
+	return r.Thumb
 }
 
 type Producer struct {
@@ -1846,39 +1846,39 @@ type Producer struct {
 	Thumb *string `json:"thumb,omitempty"`
 }
 
-func (o *Producer) GetID() int {
-	if o == nil {
+func (p *Producer) GetID() int {
+	if p == nil {
 		return 0
 	}
-	return o.ID
+	return p.ID
 }
 
-func (o *Producer) GetFilter() string {
-	if o == nil {
+func (p *Producer) GetFilter() string {
+	if p == nil {
 		return ""
 	}
-	return o.Filter
+	return p.Filter
 }
 
-func (o *Producer) GetTag() string {
-	if o == nil {
+func (p *Producer) GetTag() string {
+	if p == nil {
 		return ""
 	}
-	return o.Tag
+	return p.Tag
 }
 
-func (o *Producer) GetTagKey() string {
-	if o == nil {
+func (p *Producer) GetTagKey() string {
+	if p == nil {
 		return ""
 	}
-	return o.TagKey
+	return p.TagKey
 }
 
-func (o *Producer) GetThumb() *string {
-	if o == nil {
+func (p *Producer) GetThumb() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Thumb
+	return p.Thumb
 }
 
 // Rating - The type of rating, for example 'audience' or 'critic'.
@@ -1889,25 +1889,25 @@ type Rating struct {
 	Type  string  `json:"type"`
 }
 
-func (o *Rating) GetImage() string {
-	if o == nil {
+func (r *Rating) GetImage() string {
+	if r == nil {
 		return ""
 	}
-	return o.Image
+	return r.Image
 }
 
-func (o *Rating) GetValue() float32 {
-	if o == nil {
+func (r *Rating) GetValue() float32 {
+	if r == nil {
 		return 0.0
 	}
-	return o.Value
+	return r.Value
 }
 
-func (o *Rating) GetType() string {
-	if o == nil {
+func (r *Rating) GetType() string {
+	if r == nil {
 		return ""
 	}
-	return o.Type
+	return r.Type
 }
 
 // Similar - The display tag for the similar item, typically the title.
@@ -1917,25 +1917,25 @@ type Similar struct {
 	Tag    string `json:"tag"`
 }
 
-func (o *Similar) GetID() int {
-	if o == nil {
+func (s *Similar) GetID() int {
+	if s == nil {
 		return 0
 	}
-	return o.ID
+	return s.ID
 }
 
-func (o *Similar) GetFilter() string {
-	if o == nil {
+func (s *Similar) GetFilter() string {
+	if s == nil {
 		return ""
 	}
-	return o.Filter
+	return s.Filter
 }
 
-func (o *Similar) GetTag() string {
-	if o == nil {
+func (s *Similar) GetTag() string {
+	if s == nil {
 		return ""
 	}
-	return o.Tag
+	return s.Tag
 }
 
 // Location - The folder path for the media item.
@@ -1943,11 +1943,11 @@ type Location struct {
 	Path string `json:"path"`
 }
 
-func (o *Location) GetPath() string {
-	if o == nil {
+func (l *Location) GetPath() string {
+	if l == nil {
 		return ""
 	}
-	return o.Path
+	return l.Path
 }
 
 type Collection struct {
@@ -1955,11 +1955,11 @@ type Collection struct {
 	Tag string `json:"tag"`
 }
 
-func (o *Collection) GetTag() string {
-	if o == nil {
+func (c *Collection) GetTag() string {
+	if c == nil {
 		return ""
 	}
-	return o.Tag
+	return c.Tag
 }
 
 // GetRecentlyAddedMetadata - Unknown
@@ -2111,529 +2111,529 @@ func (g *GetRecentlyAddedMetadata) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetRecentlyAddedMetadata) GetAddedAt() int64 {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetAddedAt() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.AddedAt
+	return g.AddedAt
 }
 
-func (o *GetRecentlyAddedMetadata) GetArt() string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetArt() string {
+	if g == nil {
 		return ""
 	}
-	return o.Art
+	return g.Art
 }
 
-func (o *GetRecentlyAddedMetadata) GetAudienceRatingImage() *string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetAudienceRatingImage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.AudienceRatingImage
+	return g.AudienceRatingImage
 }
 
-func (o *GetRecentlyAddedMetadata) GetAudienceRating() float64 {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetAudienceRating() float64 {
+	if g == nil {
 		return 0.0
 	}
-	return o.AudienceRating
+	return g.AudienceRating
 }
 
-func (o *GetRecentlyAddedMetadata) GetChapterSource() *string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetChapterSource() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ChapterSource
+	return g.ChapterSource
 }
 
-func (o *GetRecentlyAddedMetadata) GetChildCount() int {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetChildCount() int {
+	if g == nil {
 		return 0
 	}
-	return o.ChildCount
+	return g.ChildCount
 }
 
-func (o *GetRecentlyAddedMetadata) GetContentRating() *string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetContentRating() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ContentRating
+	return g.ContentRating
 }
 
-func (o *GetRecentlyAddedMetadata) GetCreatedAtAccuracy() *string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetCreatedAtAccuracy() *string {
+	if g == nil {
 		return nil
 	}
-	return o.CreatedAtAccuracy
+	return g.CreatedAtAccuracy
 }
 
-func (o *GetRecentlyAddedMetadata) GetCreatedAtTZOffset() *string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetCreatedAtTZOffset() *string {
+	if g == nil {
 		return nil
 	}
-	return o.CreatedAtTZOffset
+	return g.CreatedAtTZOffset
 }
 
-func (o *GetRecentlyAddedMetadata) GetDuration() int {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetDuration() int {
+	if g == nil {
 		return 0
 	}
-	return o.Duration
+	return g.Duration
 }
 
-func (o *GetRecentlyAddedMetadata) GetGrandparentArt() *string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetGrandparentArt() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentArt
+	return g.GrandparentArt
 }
 
-func (o *GetRecentlyAddedMetadata) GetGrandparentGUID() *string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetGrandparentGUID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentGUID
+	return g.GrandparentGUID
 }
 
-func (o *GetRecentlyAddedMetadata) GetGrandparentKey() *string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetGrandparentKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentKey
+	return g.GrandparentKey
 }
 
-func (o *GetRecentlyAddedMetadata) GetGrandparentRatingKey() *string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetGrandparentRatingKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentRatingKey
+	return g.GrandparentRatingKey
 }
 
-func (o *GetRecentlyAddedMetadata) GetGrandparentSlug() *string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetGrandparentSlug() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentSlug
+	return g.GrandparentSlug
 }
 
-func (o *GetRecentlyAddedMetadata) GetGrandparentTheme() *string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetGrandparentTheme() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentTheme
+	return g.GrandparentTheme
 }
 
-func (o *GetRecentlyAddedMetadata) GetGrandparentThumb() *string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetGrandparentThumb() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentThumb
+	return g.GrandparentThumb
 }
 
-func (o *GetRecentlyAddedMetadata) GetGrandparentTitle() *string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetGrandparentTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.GrandparentTitle
+	return g.GrandparentTitle
 }
 
-func (o *GetRecentlyAddedMetadata) GetGUID() string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetGUID() string {
+	if g == nil {
 		return ""
 	}
-	return o.GUID
+	return g.GUID
 }
 
-func (o *GetRecentlyAddedMetadata) GetIndex() int {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetIndex() int {
+	if g == nil {
 		return 0
 	}
-	return o.Index
+	return g.Index
 }
 
-func (o *GetRecentlyAddedMetadata) GetKey() string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetKey() string {
+	if g == nil {
 		return ""
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetRecentlyAddedMetadata) GetLastRatedAt() *int64 {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetLastRatedAt() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.LastRatedAt
+	return g.LastRatedAt
 }
 
-func (o *GetRecentlyAddedMetadata) GetLastViewedAt() *int {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetLastViewedAt() *int {
+	if g == nil {
 		return nil
 	}
-	return o.LastViewedAt
+	return g.LastViewedAt
 }
 
-func (o *GetRecentlyAddedMetadata) GetLeafCount() *int {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetLeafCount() *int {
+	if g == nil {
 		return nil
 	}
-	return o.LeafCount
+	return g.LeafCount
 }
 
-func (o *GetRecentlyAddedMetadata) GetLibrarySectionID() *int64 {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetLibrarySectionID() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionID
+	return g.LibrarySectionID
 }
 
-func (o *GetRecentlyAddedMetadata) GetLibrarySectionKey() *string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetLibrarySectionKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionKey
+	return g.LibrarySectionKey
 }
 
-func (o *GetRecentlyAddedMetadata) GetLibrarySectionTitle() *string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetLibrarySectionTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.LibrarySectionTitle
+	return g.LibrarySectionTitle
 }
 
-func (o *GetRecentlyAddedMetadata) GetOriginalTitle() *string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetOriginalTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.OriginalTitle
+	return g.OriginalTitle
 }
 
-func (o *GetRecentlyAddedMetadata) GetOriginallyAvailableAt() *types.Date {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetOriginallyAvailableAt() *types.Date {
+	if g == nil {
 		return nil
 	}
-	return o.OriginallyAvailableAt
+	return g.OriginallyAvailableAt
 }
 
-func (o *GetRecentlyAddedMetadata) GetParentGUID() *string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetParentGUID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ParentGUID
+	return g.ParentGUID
 }
 
-func (o *GetRecentlyAddedMetadata) GetParentIndex() *int {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetParentIndex() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ParentIndex
+	return g.ParentIndex
 }
 
-func (o *GetRecentlyAddedMetadata) GetParentKey() *string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetParentKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ParentKey
+	return g.ParentKey
 }
 
-func (o *GetRecentlyAddedMetadata) GetParentRatingKey() *string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetParentRatingKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ParentRatingKey
+	return g.ParentRatingKey
 }
 
-func (o *GetRecentlyAddedMetadata) GetParentSlug() *string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetParentSlug() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ParentSlug
+	return g.ParentSlug
 }
 
-func (o *GetRecentlyAddedMetadata) GetParentStudio() string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetParentStudio() string {
+	if g == nil {
 		return ""
 	}
-	return o.ParentStudio
+	return g.ParentStudio
 }
 
-func (o *GetRecentlyAddedMetadata) GetParentTheme() string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetParentTheme() string {
+	if g == nil {
 		return ""
 	}
-	return o.ParentTheme
+	return g.ParentTheme
 }
 
-func (o *GetRecentlyAddedMetadata) GetParentThumb() *string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetParentThumb() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ParentThumb
+	return g.ParentThumb
 }
 
-func (o *GetRecentlyAddedMetadata) GetParentTitle() *string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetParentTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ParentTitle
+	return g.ParentTitle
 }
 
-func (o *GetRecentlyAddedMetadata) GetParentYear() *int {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetParentYear() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ParentYear
+	return g.ParentYear
 }
 
-func (o *GetRecentlyAddedMetadata) GetPrimaryExtraKey() *string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetPrimaryExtraKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.PrimaryExtraKey
+	return g.PrimaryExtraKey
 }
 
-func (o *GetRecentlyAddedMetadata) GetRatingImage() *string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetRatingImage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.RatingImage
+	return g.RatingImage
 }
 
-func (o *GetRecentlyAddedMetadata) GetRatingKey() string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetRatingKey() string {
+	if g == nil {
 		return ""
 	}
-	return o.RatingKey
+	return g.RatingKey
 }
 
-func (o *GetRecentlyAddedMetadata) GetRating() float32 {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetRating() float32 {
+	if g == nil {
 		return 0.0
 	}
-	return o.Rating
+	return g.Rating
 }
 
-func (o *GetRecentlyAddedMetadata) GetSeasonCount() int {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetSeasonCount() int {
+	if g == nil {
 		return 0
 	}
-	return o.SeasonCount
+	return g.SeasonCount
 }
 
-func (o *GetRecentlyAddedMetadata) GetSkipCount() *int {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetSkipCount() *int {
+	if g == nil {
 		return nil
 	}
-	return o.SkipCount
+	return g.SkipCount
 }
 
-func (o *GetRecentlyAddedMetadata) GetSlug() string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetSlug() string {
+	if g == nil {
 		return ""
 	}
-	return o.Slug
+	return g.Slug
 }
 
-func (o *GetRecentlyAddedMetadata) GetStudio() *string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetStudio() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Studio
+	return g.Studio
 }
 
-func (o *GetRecentlyAddedMetadata) GetSubtype() *string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetSubtype() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Subtype
+	return g.Subtype
 }
 
-func (o *GetRecentlyAddedMetadata) GetSummary() string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetSummary() string {
+	if g == nil {
 		return ""
 	}
-	return o.Summary
+	return g.Summary
 }
 
-func (o *GetRecentlyAddedMetadata) GetTagline() string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetTagline() string {
+	if g == nil {
 		return ""
 	}
-	return o.Tagline
+	return g.Tagline
 }
 
-func (o *GetRecentlyAddedMetadata) GetTheme() string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetTheme() string {
+	if g == nil {
 		return ""
 	}
-	return o.Theme
+	return g.Theme
 }
 
-func (o *GetRecentlyAddedMetadata) GetThumb() string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetThumb() string {
+	if g == nil {
 		return ""
 	}
-	return o.Thumb
+	return g.Thumb
 }
 
-func (o *GetRecentlyAddedMetadata) GetTitleSort() string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetTitleSort() string {
+	if g == nil {
 		return ""
 	}
-	return o.TitleSort
+	return g.TitleSort
 }
 
-func (o *GetRecentlyAddedMetadata) GetTitle() string {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetTitle() string {
+	if g == nil {
 		return ""
 	}
-	return o.Title
+	return g.Title
 }
 
-func (o *GetRecentlyAddedMetadata) GetType() GetRecentlyAddedHubsType {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetType() GetRecentlyAddedHubsType {
+	if g == nil {
 		return GetRecentlyAddedHubsType("")
 	}
-	return o.Type
+	return g.Type
 }
 
-func (o *GetRecentlyAddedMetadata) GetUpdatedAt() *int64 {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetUpdatedAt() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.UpdatedAt
+	return g.UpdatedAt
 }
 
-func (o *GetRecentlyAddedMetadata) GetUserRating() *float32 {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetUserRating() *float32 {
+	if g == nil {
 		return nil
 	}
-	return o.UserRating
+	return g.UserRating
 }
 
-func (o *GetRecentlyAddedMetadata) GetViewCount() *int {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetViewCount() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ViewCount
+	return g.ViewCount
 }
 
-func (o *GetRecentlyAddedMetadata) GetViewOffset() *int {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetViewOffset() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ViewOffset
+	return g.ViewOffset
 }
 
-func (o *GetRecentlyAddedMetadata) GetViewedLeafCount() *int {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetViewedLeafCount() *int {
+	if g == nil {
 		return nil
 	}
-	return o.ViewedLeafCount
+	return g.ViewedLeafCount
 }
 
-func (o *GetRecentlyAddedMetadata) GetYear() *int {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetYear() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Year
+	return g.Year
 }
 
-func (o *GetRecentlyAddedMetadata) GetImage() []GetRecentlyAddedImage {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetImage() []GetRecentlyAddedImage {
+	if g == nil {
 		return nil
 	}
-	return o.Image
+	return g.Image
 }
 
-func (o *GetRecentlyAddedMetadata) GetUltraBlurColors() *UltraBlurColors {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetUltraBlurColors() *UltraBlurColors {
+	if g == nil {
 		return nil
 	}
-	return o.UltraBlurColors
+	return g.UltraBlurColors
 }
 
-func (o *GetRecentlyAddedMetadata) GetGuids() []Guids {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetGuids() []Guids {
+	if g == nil {
 		return nil
 	}
-	return o.Guids
+	return g.Guids
 }
 
-func (o *GetRecentlyAddedMetadata) GetMedia() []Media {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetMedia() []Media {
+	if g == nil {
 		return nil
 	}
-	return o.Media
+	return g.Media
 }
 
-func (o *GetRecentlyAddedMetadata) GetGenre() []Genre {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetGenre() []Genre {
+	if g == nil {
 		return nil
 	}
-	return o.Genre
+	return g.Genre
 }
 
-func (o *GetRecentlyAddedMetadata) GetCountry() []Country {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetCountry() []Country {
+	if g == nil {
 		return nil
 	}
-	return o.Country
+	return g.Country
 }
 
-func (o *GetRecentlyAddedMetadata) GetDirector() []Director {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetDirector() []Director {
+	if g == nil {
 		return nil
 	}
-	return o.Director
+	return g.Director
 }
 
-func (o *GetRecentlyAddedMetadata) GetWriter() []Writer {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetWriter() []Writer {
+	if g == nil {
 		return nil
 	}
-	return o.Writer
+	return g.Writer
 }
 
-func (o *GetRecentlyAddedMetadata) GetRole() []Role {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetRole() []Role {
+	if g == nil {
 		return nil
 	}
-	return o.Role
+	return g.Role
 }
 
-func (o *GetRecentlyAddedMetadata) GetProducer() []Producer {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetProducer() []Producer {
+	if g == nil {
 		return nil
 	}
-	return o.Producer
+	return g.Producer
 }
 
-func (o *GetRecentlyAddedMetadata) GetRating1() []Rating {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetRating1() []Rating {
+	if g == nil {
 		return nil
 	}
-	return o.Rating1
+	return g.Rating1
 }
 
-func (o *GetRecentlyAddedMetadata) GetSimilar() []Similar {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetSimilar() []Similar {
+	if g == nil {
 		return nil
 	}
-	return o.Similar
+	return g.Similar
 }
 
-func (o *GetRecentlyAddedMetadata) GetLocation() []Location {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetLocation() []Location {
+	if g == nil {
 		return nil
 	}
-	return o.Location
+	return g.Location
 }
 
-func (o *GetRecentlyAddedMetadata) GetCollection() []Collection {
-	if o == nil {
+func (g *GetRecentlyAddedMetadata) GetCollection() []Collection {
+	if g == nil {
 		return nil
 	}
-	return o.Collection
+	return g.Collection
 }
 
 type GetRecentlyAddedMediaContainer struct {
@@ -2654,53 +2654,53 @@ type GetRecentlyAddedMediaContainer struct {
 	Metadata []GetRecentlyAddedMetadata `json:"Metadata,omitempty"`
 }
 
-func (o *GetRecentlyAddedMediaContainer) GetSize() int {
-	if o == nil {
+func (g *GetRecentlyAddedMediaContainer) GetSize() int {
+	if g == nil {
 		return 0
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetRecentlyAddedMediaContainer) GetTotalSize() int {
-	if o == nil {
+func (g *GetRecentlyAddedMediaContainer) GetTotalSize() int {
+	if g == nil {
 		return 0
 	}
-	return o.TotalSize
+	return g.TotalSize
 }
 
-func (o *GetRecentlyAddedMediaContainer) GetOffset() int64 {
-	if o == nil {
+func (g *GetRecentlyAddedMediaContainer) GetOffset() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.Offset
+	return g.Offset
 }
 
-func (o *GetRecentlyAddedMediaContainer) GetAllowSync() bool {
-	if o == nil {
+func (g *GetRecentlyAddedMediaContainer) GetAllowSync() bool {
+	if g == nil {
 		return false
 	}
-	return o.AllowSync
+	return g.AllowSync
 }
 
-func (o *GetRecentlyAddedMediaContainer) GetIdentifier() string {
-	if o == nil {
+func (g *GetRecentlyAddedMediaContainer) GetIdentifier() string {
+	if g == nil {
 		return ""
 	}
-	return o.Identifier
+	return g.Identifier
 }
 
-func (o *GetRecentlyAddedMediaContainer) GetMeta() *Meta {
-	if o == nil {
+func (g *GetRecentlyAddedMediaContainer) GetMeta() *Meta {
+	if g == nil {
 		return nil
 	}
-	return o.Meta
+	return g.Meta
 }
 
-func (o *GetRecentlyAddedMediaContainer) GetMetadata() []GetRecentlyAddedMetadata {
-	if o == nil {
+func (g *GetRecentlyAddedMediaContainer) GetMetadata() []GetRecentlyAddedMetadata {
+	if g == nil {
 		return nil
 	}
-	return o.Metadata
+	return g.Metadata
 }
 
 // GetRecentlyAddedResponseBody - A successful response with recently added content.
@@ -2708,11 +2708,11 @@ type GetRecentlyAddedResponseBody struct {
 	MediaContainer *GetRecentlyAddedMediaContainer `json:"MediaContainer,omitempty"`
 }
 
-func (o *GetRecentlyAddedResponseBody) GetMediaContainer() *GetRecentlyAddedMediaContainer {
-	if o == nil {
+func (g *GetRecentlyAddedResponseBody) GetMediaContainer() *GetRecentlyAddedMediaContainer {
+	if g == nil {
 		return nil
 	}
-	return o.MediaContainer
+	return g.MediaContainer
 }
 
 type GetRecentlyAddedResponse struct {
@@ -2726,30 +2726,30 @@ type GetRecentlyAddedResponse struct {
 	Object *GetRecentlyAddedResponseBody
 }
 
-func (o *GetRecentlyAddedResponse) GetContentType() string {
-	if o == nil {
+func (g *GetRecentlyAddedResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetRecentlyAddedResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetRecentlyAddedResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetRecentlyAddedResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetRecentlyAddedResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetRecentlyAddedResponse) GetObject() *GetRecentlyAddedResponseBody {
-	if o == nil {
+func (g *GetRecentlyAddedResponse) GetObject() *GetRecentlyAddedResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

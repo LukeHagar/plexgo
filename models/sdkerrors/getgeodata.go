@@ -13,25 +13,25 @@ type GetGeoDataPlexErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetGeoDataPlexErrors) GetCode() *int {
-	if o == nil {
+func (g *GetGeoDataPlexErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetGeoDataPlexErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetGeoDataPlexErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetGeoDataPlexErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetGeoDataPlexErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetGeoDataUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type GetGeoDataErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetGeoDataErrors) GetCode() *int {
-	if o == nil {
+func (g *GetGeoDataErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetGeoDataErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetGeoDataErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetGeoDataErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetGeoDataErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetGeoDataBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

@@ -13,25 +13,25 @@ type GetTimelineVideoErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetTimelineVideoErrors) GetCode() *int {
-	if o == nil {
+func (g *GetTimelineVideoErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetTimelineVideoErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetTimelineVideoErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetTimelineVideoErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetTimelineVideoErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetTimelineUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type GetTimelineErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetTimelineErrors) GetCode() *int {
-	if o == nil {
+func (g *GetTimelineErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetTimelineErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetTimelineErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetTimelineErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetTimelineErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetTimelineBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

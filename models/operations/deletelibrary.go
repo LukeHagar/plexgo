@@ -13,11 +13,11 @@ type DeleteLibraryRequest struct {
 	SectionKey int `pathParam:"style=simple,explode=false,name=sectionKey"`
 }
 
-func (o *DeleteLibraryRequest) GetSectionKey() int {
-	if o == nil {
+func (d *DeleteLibraryRequest) GetSectionKey() int {
+	if d == nil {
 		return 0
 	}
-	return o.SectionKey
+	return d.SectionKey
 }
 
 type DeleteLibraryResponse struct {
@@ -29,23 +29,23 @@ type DeleteLibraryResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *DeleteLibraryResponse) GetContentType() string {
-	if o == nil {
+func (d *DeleteLibraryResponse) GetContentType() string {
+	if d == nil {
 		return ""
 	}
-	return o.ContentType
+	return d.ContentType
 }
 
-func (o *DeleteLibraryResponse) GetStatusCode() int {
-	if o == nil {
+func (d *DeleteLibraryResponse) GetStatusCode() int {
+	if d == nil {
 		return 0
 	}
-	return o.StatusCode
+	return d.StatusCode
 }
 
-func (o *DeleteLibraryResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (d *DeleteLibraryResponse) GetRawResponse() *http.Response {
+	if d == nil {
 		return nil
 	}
-	return o.RawResponse
+	return d.RawResponse
 }

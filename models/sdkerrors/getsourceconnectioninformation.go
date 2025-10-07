@@ -13,25 +13,25 @@ type GetSourceConnectionInformationAuthenticationErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetSourceConnectionInformationAuthenticationErrors) GetCode() *int {
-	if o == nil {
+func (g *GetSourceConnectionInformationAuthenticationErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetSourceConnectionInformationAuthenticationErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetSourceConnectionInformationAuthenticationErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetSourceConnectionInformationAuthenticationErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetSourceConnectionInformationAuthenticationErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetSourceConnectionInformationUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type GetSourceConnectionInformationErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetSourceConnectionInformationErrors) GetCode() *int {
-	if o == nil {
+func (g *GetSourceConnectionInformationErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetSourceConnectionInformationErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetSourceConnectionInformationErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetSourceConnectionInformationErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetSourceConnectionInformationErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetSourceConnectionInformationBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

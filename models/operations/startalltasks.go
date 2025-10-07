@@ -15,23 +15,23 @@ type StartAllTasksResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *StartAllTasksResponse) GetContentType() string {
-	if o == nil {
+func (s *StartAllTasksResponse) GetContentType() string {
+	if s == nil {
 		return ""
 	}
-	return o.ContentType
+	return s.ContentType
 }
 
-func (o *StartAllTasksResponse) GetStatusCode() int {
-	if o == nil {
+func (s *StartAllTasksResponse) GetStatusCode() int {
+	if s == nil {
 		return 0
 	}
-	return o.StatusCode
+	return s.StatusCode
 }
 
-func (o *StartAllTasksResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (s *StartAllTasksResponse) GetRawResponse() *http.Response {
+	if s == nil {
 		return nil
 	}
-	return o.RawResponse
+	return s.RawResponse
 }

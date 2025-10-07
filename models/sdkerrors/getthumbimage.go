@@ -13,25 +13,25 @@ type GetThumbImageMediaErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetThumbImageMediaErrors) GetCode() *int {
-	if o == nil {
+func (g *GetThumbImageMediaErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetThumbImageMediaErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetThumbImageMediaErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetThumbImageMediaErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetThumbImageMediaErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetThumbImageUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type GetThumbImageErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetThumbImageErrors) GetCode() *int {
-	if o == nil {
+func (g *GetThumbImageErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetThumbImageErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetThumbImageErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetThumbImageErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetThumbImageErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetThumbImageBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

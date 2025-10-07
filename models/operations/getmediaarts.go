@@ -11,11 +11,11 @@ type GetMediaArtsRequest struct {
 	RatingKey int64 `pathParam:"style=simple,explode=false,name=ratingKey"`
 }
 
-func (o *GetMediaArtsRequest) GetRatingKey() int64 {
-	if o == nil {
+func (g *GetMediaArtsRequest) GetRatingKey() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.RatingKey
+	return g.RatingKey
 }
 
 type GetMediaArtsMetadata struct {
@@ -31,39 +31,39 @@ type GetMediaArtsMetadata struct {
 	Thumb string `json:"thumb"`
 }
 
-func (o *GetMediaArtsMetadata) GetKey() string {
-	if o == nil {
+func (g *GetMediaArtsMetadata) GetKey() string {
+	if g == nil {
 		return ""
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetMediaArtsMetadata) GetProvider() *string {
-	if o == nil {
+func (g *GetMediaArtsMetadata) GetProvider() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Provider
+	return g.Provider
 }
 
-func (o *GetMediaArtsMetadata) GetRatingKey() string {
-	if o == nil {
+func (g *GetMediaArtsMetadata) GetRatingKey() string {
+	if g == nil {
 		return ""
 	}
-	return o.RatingKey
+	return g.RatingKey
 }
 
-func (o *GetMediaArtsMetadata) GetSelected() bool {
-	if o == nil {
+func (g *GetMediaArtsMetadata) GetSelected() bool {
+	if g == nil {
 		return false
 	}
-	return o.Selected
+	return g.Selected
 }
 
-func (o *GetMediaArtsMetadata) GetThumb() string {
-	if o == nil {
+func (g *GetMediaArtsMetadata) GetThumb() string {
+	if g == nil {
 		return ""
 	}
-	return o.Thumb
+	return g.Thumb
 }
 
 type GetMediaArtsMediaContainer struct {
@@ -78,39 +78,39 @@ type GetMediaArtsMediaContainer struct {
 	Metadata   []GetMediaArtsMetadata `json:"Metadata"`
 }
 
-func (o *GetMediaArtsMediaContainer) GetSize() int {
-	if o == nil {
+func (g *GetMediaArtsMediaContainer) GetSize() int {
+	if g == nil {
 		return 0
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetMediaArtsMediaContainer) GetMediaTagVersion() int64 {
-	if o == nil {
+func (g *GetMediaArtsMediaContainer) GetMediaTagVersion() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.MediaTagVersion
+	return g.MediaTagVersion
 }
 
-func (o *GetMediaArtsMediaContainer) GetMediaTagPrefix() string {
-	if o == nil {
+func (g *GetMediaArtsMediaContainer) GetMediaTagPrefix() string {
+	if g == nil {
 		return ""
 	}
-	return o.MediaTagPrefix
+	return g.MediaTagPrefix
 }
 
-func (o *GetMediaArtsMediaContainer) GetIdentifier() string {
-	if o == nil {
+func (g *GetMediaArtsMediaContainer) GetIdentifier() string {
+	if g == nil {
 		return ""
 	}
-	return o.Identifier
+	return g.Identifier
 }
 
-func (o *GetMediaArtsMediaContainer) GetMetadata() []GetMediaArtsMetadata {
-	if o == nil {
+func (g *GetMediaArtsMediaContainer) GetMetadata() []GetMediaArtsMetadata {
+	if g == nil {
 		return []GetMediaArtsMetadata{}
 	}
-	return o.Metadata
+	return g.Metadata
 }
 
 // GetMediaArtsResponseBody - The available background artwork for the library item.
@@ -118,11 +118,11 @@ type GetMediaArtsResponseBody struct {
 	MediaContainer *GetMediaArtsMediaContainer `json:"MediaContainer,omitempty"`
 }
 
-func (o *GetMediaArtsResponseBody) GetMediaContainer() *GetMediaArtsMediaContainer {
-	if o == nil {
+func (g *GetMediaArtsResponseBody) GetMediaContainer() *GetMediaArtsMediaContainer {
+	if g == nil {
 		return nil
 	}
-	return o.MediaContainer
+	return g.MediaContainer
 }
 
 type GetMediaArtsResponse struct {
@@ -136,30 +136,30 @@ type GetMediaArtsResponse struct {
 	Object *GetMediaArtsResponseBody
 }
 
-func (o *GetMediaArtsResponse) GetContentType() string {
-	if o == nil {
+func (g *GetMediaArtsResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetMediaArtsResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetMediaArtsResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetMediaArtsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetMediaArtsResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetMediaArtsResponse) GetObject() *GetMediaArtsResponseBody {
-	if o == nil {
+func (g *GetMediaArtsResponse) GetObject() *GetMediaArtsResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

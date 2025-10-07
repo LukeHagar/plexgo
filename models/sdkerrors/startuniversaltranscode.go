@@ -13,25 +13,25 @@ type StartUniversalTranscodeVideoErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *StartUniversalTranscodeVideoErrors) GetCode() *int {
-	if o == nil {
+func (s *StartUniversalTranscodeVideoErrors) GetCode() *int {
+	if s == nil {
 		return nil
 	}
-	return o.Code
+	return s.Code
 }
 
-func (o *StartUniversalTranscodeVideoErrors) GetMessage() *string {
-	if o == nil {
+func (s *StartUniversalTranscodeVideoErrors) GetMessage() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Message
+	return s.Message
 }
 
-func (o *StartUniversalTranscodeVideoErrors) GetStatus() *int {
-	if o == nil {
+func (s *StartUniversalTranscodeVideoErrors) GetStatus() *int {
+	if s == nil {
 		return nil
 	}
-	return o.Status
+	return s.Status
 }
 
 // StartUniversalTranscodeUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type StartUniversalTranscodeErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *StartUniversalTranscodeErrors) GetCode() *int {
-	if o == nil {
+func (s *StartUniversalTranscodeErrors) GetCode() *int {
+	if s == nil {
 		return nil
 	}
-	return o.Code
+	return s.Code
 }
 
-func (o *StartUniversalTranscodeErrors) GetMessage() *string {
-	if o == nil {
+func (s *StartUniversalTranscodeErrors) GetMessage() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Message
+	return s.Message
 }
 
-func (o *StartUniversalTranscodeErrors) GetStatus() *int {
-	if o == nil {
+func (s *StartUniversalTranscodeErrors) GetStatus() *int {
+	if s == nil {
 		return nil
 	}
-	return o.Status
+	return s.Status
 }
 
 // StartUniversalTranscodeBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

@@ -13,25 +13,25 @@ type GetBandwidthStatisticsStatisticsErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetBandwidthStatisticsStatisticsErrors) GetCode() *int {
-	if o == nil {
+func (g *GetBandwidthStatisticsStatisticsErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetBandwidthStatisticsStatisticsErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetBandwidthStatisticsStatisticsErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetBandwidthStatisticsStatisticsErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetBandwidthStatisticsStatisticsErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetBandwidthStatisticsUnauthorized - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
@@ -54,25 +54,25 @@ type GetBandwidthStatisticsErrors struct {
 	Status  *int    `json:"status,omitempty"`
 }
 
-func (o *GetBandwidthStatisticsErrors) GetCode() *int {
-	if o == nil {
+func (g *GetBandwidthStatisticsErrors) GetCode() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Code
+	return g.Code
 }
 
-func (o *GetBandwidthStatisticsErrors) GetMessage() *string {
-	if o == nil {
+func (g *GetBandwidthStatisticsErrors) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetBandwidthStatisticsErrors) GetStatus() *int {
-	if o == nil {
+func (g *GetBandwidthStatisticsErrors) GetStatus() *int {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
 // GetBandwidthStatisticsBadRequest - Bad Request - A parameter was not specified, or was specified incorrectly.

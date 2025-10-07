@@ -11,11 +11,11 @@ type CancelServerActivitiesRequest struct {
 	ActivityUUID string `pathParam:"style=simple,explode=false,name=activityUUID"`
 }
 
-func (o *CancelServerActivitiesRequest) GetActivityUUID() string {
-	if o == nil {
+func (c *CancelServerActivitiesRequest) GetActivityUUID() string {
+	if c == nil {
 		return ""
 	}
-	return o.ActivityUUID
+	return c.ActivityUUID
 }
 
 type CancelServerActivitiesResponse struct {
@@ -27,23 +27,23 @@ type CancelServerActivitiesResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *CancelServerActivitiesResponse) GetContentType() string {
-	if o == nil {
+func (c *CancelServerActivitiesResponse) GetContentType() string {
+	if c == nil {
 		return ""
 	}
-	return o.ContentType
+	return c.ContentType
 }
 
-func (o *CancelServerActivitiesResponse) GetStatusCode() int {
-	if o == nil {
+func (c *CancelServerActivitiesResponse) GetStatusCode() int {
+	if c == nil {
 		return 0
 	}
-	return o.StatusCode
+	return c.StatusCode
 }
 
-func (o *CancelServerActivitiesResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (c *CancelServerActivitiesResponse) GetRawResponse() *http.Response {
+	if c == nil {
 		return nil
 	}
-	return o.RawResponse
+	return c.RawResponse
 }

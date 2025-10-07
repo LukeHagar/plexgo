@@ -15,57 +15,57 @@ type ButlerTask struct {
 	Description        *string  `json:"description,omitempty"`
 }
 
-func (o *ButlerTask) GetName() *string {
-	if o == nil {
+func (b *ButlerTask) GetName() *string {
+	if b == nil {
 		return nil
 	}
-	return o.Name
+	return b.Name
 }
 
-func (o *ButlerTask) GetInterval() *float64 {
-	if o == nil {
+func (b *ButlerTask) GetInterval() *float64 {
+	if b == nil {
 		return nil
 	}
-	return o.Interval
+	return b.Interval
 }
 
-func (o *ButlerTask) GetScheduleRandomized() *bool {
-	if o == nil {
+func (b *ButlerTask) GetScheduleRandomized() *bool {
+	if b == nil {
 		return nil
 	}
-	return o.ScheduleRandomized
+	return b.ScheduleRandomized
 }
 
-func (o *ButlerTask) GetEnabled() *bool {
-	if o == nil {
+func (b *ButlerTask) GetEnabled() *bool {
+	if b == nil {
 		return nil
 	}
-	return o.Enabled
+	return b.Enabled
 }
 
-func (o *ButlerTask) GetTitle() *string {
-	if o == nil {
+func (b *ButlerTask) GetTitle() *string {
+	if b == nil {
 		return nil
 	}
-	return o.Title
+	return b.Title
 }
 
-func (o *ButlerTask) GetDescription() *string {
-	if o == nil {
+func (b *ButlerTask) GetDescription() *string {
+	if b == nil {
 		return nil
 	}
-	return o.Description
+	return b.Description
 }
 
 type ButlerTasks struct {
 	ButlerTask []ButlerTask `json:"ButlerTask,omitempty"`
 }
 
-func (o *ButlerTasks) GetButlerTask() []ButlerTask {
-	if o == nil {
+func (b *ButlerTasks) GetButlerTask() []ButlerTask {
+	if b == nil {
 		return nil
 	}
-	return o.ButlerTask
+	return b.ButlerTask
 }
 
 // GetButlerTasksResponseBody - All butler tasks
@@ -73,11 +73,11 @@ type GetButlerTasksResponseBody struct {
 	ButlerTasks *ButlerTasks `json:"ButlerTasks,omitempty"`
 }
 
-func (o *GetButlerTasksResponseBody) GetButlerTasks() *ButlerTasks {
-	if o == nil {
+func (g *GetButlerTasksResponseBody) GetButlerTasks() *ButlerTasks {
+	if g == nil {
 		return nil
 	}
-	return o.ButlerTasks
+	return g.ButlerTasks
 }
 
 type GetButlerTasksResponse struct {
@@ -91,30 +91,30 @@ type GetButlerTasksResponse struct {
 	Object *GetButlerTasksResponseBody
 }
 
-func (o *GetButlerTasksResponse) GetContentType() string {
-	if o == nil {
+func (g *GetButlerTasksResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetButlerTasksResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetButlerTasksResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetButlerTasksResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetButlerTasksResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetButlerTasksResponse) GetObject() *GetButlerTasksResponseBody {
-	if o == nil {
+func (g *GetButlerTasksResponse) GetObject() *GetButlerTasksResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

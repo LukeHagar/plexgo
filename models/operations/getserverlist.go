@@ -15,46 +15,46 @@ type GetServerListServer struct {
 	Version           *string  `json:"version,omitempty"`
 }
 
-func (o *GetServerListServer) GetName() *string {
-	if o == nil {
+func (g *GetServerListServer) GetName() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Name
+	return g.Name
 }
 
-func (o *GetServerListServer) GetHost() *string {
-	if o == nil {
+func (g *GetServerListServer) GetHost() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Host
+	return g.Host
 }
 
-func (o *GetServerListServer) GetAddress() *string {
-	if o == nil {
+func (g *GetServerListServer) GetAddress() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Address
+	return g.Address
 }
 
-func (o *GetServerListServer) GetPort() *float64 {
-	if o == nil {
+func (g *GetServerListServer) GetPort() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Port
+	return g.Port
 }
 
-func (o *GetServerListServer) GetMachineIdentifier() *string {
-	if o == nil {
+func (g *GetServerListServer) GetMachineIdentifier() *string {
+	if g == nil {
 		return nil
 	}
-	return o.MachineIdentifier
+	return g.MachineIdentifier
 }
 
-func (o *GetServerListServer) GetVersion() *string {
-	if o == nil {
+func (g *GetServerListServer) GetVersion() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Version
+	return g.Version
 }
 
 type GetServerListMediaContainer struct {
@@ -62,18 +62,18 @@ type GetServerListMediaContainer struct {
 	Server []GetServerListServer `json:"Server,omitempty"`
 }
 
-func (o *GetServerListMediaContainer) GetSize() *float64 {
-	if o == nil {
+func (g *GetServerListMediaContainer) GetSize() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetServerListMediaContainer) GetServer() []GetServerListServer {
-	if o == nil {
+func (g *GetServerListMediaContainer) GetServer() []GetServerListServer {
+	if g == nil {
 		return nil
 	}
-	return o.Server
+	return g.Server
 }
 
 // GetServerListResponseBody - List of Servers
@@ -81,11 +81,11 @@ type GetServerListResponseBody struct {
 	MediaContainer *GetServerListMediaContainer `json:"MediaContainer,omitempty"`
 }
 
-func (o *GetServerListResponseBody) GetMediaContainer() *GetServerListMediaContainer {
-	if o == nil {
+func (g *GetServerListResponseBody) GetMediaContainer() *GetServerListMediaContainer {
+	if g == nil {
 		return nil
 	}
-	return o.MediaContainer
+	return g.MediaContainer
 }
 
 type GetServerListResponse struct {
@@ -99,30 +99,30 @@ type GetServerListResponse struct {
 	Object *GetServerListResponseBody
 }
 
-func (o *GetServerListResponse) GetContentType() string {
-	if o == nil {
+func (g *GetServerListResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetServerListResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetServerListResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetServerListResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetServerListResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetServerListResponse) GetObject() *GetServerListResponseBody {
-	if o == nil {
+func (g *GetServerListResponse) GetObject() *GetServerListResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }
