@@ -1,10 +1,12 @@
 # Location
 
-The folder path for the media item.
+Network type of the client, can be used to help determine target bitrate.
 
 
-## Fields
+## Values
 
-| Field                     | Type                      | Required                  | Description               | Example                   |
-| ------------------------- | ------------------------- | ------------------------- | ------------------------- | ------------------------- |
-| `Path`                    | *string*                  | :heavy_check_mark:        | N/A                       | /TV Shows/Clarkson's Farm |
+| Name               | Value              |
+| ------------------ | ------------------ |
+| `LocationLan`      | lan                |
+| `LocationWan`      | wan                |
+| `LocationCellular` | cellular           |

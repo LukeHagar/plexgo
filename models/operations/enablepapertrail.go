@@ -3,10 +3,247 @@
 package operations
 
 import (
+	"github.com/LukeHagar/plexgo/internal/utils"
+	"github.com/LukeHagar/plexgo/models/components"
 	"net/http"
 )
 
-type EnablePaperTrailResponse struct {
+type EnablePapertrailGlobals struct {
+	// Indicates the client accepts the indicated media types
+	Accepts *components.Accepts `default:"application/xml" header:"style=simple,explode=false,name=accepts"`
+	// An opaque identifier unique to the client
+	ClientIdentifier *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+	// The name of the client product
+	Product *string `header:"style=simple,explode=false,name=X-Plex-Product"`
+	// The version of the client application
+	Version *string `header:"style=simple,explode=false,name=X-Plex-Version"`
+	// The platform of the client
+	Platform *string `header:"style=simple,explode=false,name=X-Plex-Platform"`
+	// The version of the platform
+	PlatformVersion *string `header:"style=simple,explode=false,name=X-Plex-Platform-Version"`
+	// A relatively friendly name for the client device
+	Device *string `header:"style=simple,explode=false,name=X-Plex-Device"`
+	// A potentially less friendly identifier for the device model
+	Model *string `header:"style=simple,explode=false,name=X-Plex-Model"`
+	// The device vendor
+	DeviceVendor *string `header:"style=simple,explode=false,name=X-Plex-Device-Vendor"`
+	// A friendly name for the client
+	DeviceName *string `header:"style=simple,explode=false,name=X-Plex-Device-Name"`
+	// The marketplace on which the client application is distributed
+	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
+}
+
+func (e EnablePapertrailGlobals) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EnablePapertrailGlobals) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (e *EnablePapertrailGlobals) GetAccepts() *components.Accepts {
+	if e == nil {
+		return nil
+	}
+	return e.Accepts
+}
+
+func (e *EnablePapertrailGlobals) GetClientIdentifier() *string {
+	if e == nil {
+		return nil
+	}
+	return e.ClientIdentifier
+}
+
+func (e *EnablePapertrailGlobals) GetProduct() *string {
+	if e == nil {
+		return nil
+	}
+	return e.Product
+}
+
+func (e *EnablePapertrailGlobals) GetVersion() *string {
+	if e == nil {
+		return nil
+	}
+	return e.Version
+}
+
+func (e *EnablePapertrailGlobals) GetPlatform() *string {
+	if e == nil {
+		return nil
+	}
+	return e.Platform
+}
+
+func (e *EnablePapertrailGlobals) GetPlatformVersion() *string {
+	if e == nil {
+		return nil
+	}
+	return e.PlatformVersion
+}
+
+func (e *EnablePapertrailGlobals) GetDevice() *string {
+	if e == nil {
+		return nil
+	}
+	return e.Device
+}
+
+func (e *EnablePapertrailGlobals) GetModel() *string {
+	if e == nil {
+		return nil
+	}
+	return e.Model
+}
+
+func (e *EnablePapertrailGlobals) GetDeviceVendor() *string {
+	if e == nil {
+		return nil
+	}
+	return e.DeviceVendor
+}
+
+func (e *EnablePapertrailGlobals) GetDeviceName() *string {
+	if e == nil {
+		return nil
+	}
+	return e.DeviceName
+}
+
+func (e *EnablePapertrailGlobals) GetMarketplace() *string {
+	if e == nil {
+		return nil
+	}
+	return e.Marketplace
+}
+
+type EnablePapertrailRequest struct {
+	// Indicates the client accepts the indicated media types
+	Accepts *components.Accepts `default:"application/xml" header:"style=simple,explode=false,name=accepts"`
+	// An opaque identifier unique to the client
+	ClientIdentifier *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+	// The name of the client product
+	Product *string `header:"style=simple,explode=false,name=X-Plex-Product"`
+	// The version of the client application
+	Version *string `header:"style=simple,explode=false,name=X-Plex-Version"`
+	// The platform of the client
+	Platform *string `header:"style=simple,explode=false,name=X-Plex-Platform"`
+	// The version of the platform
+	PlatformVersion *string `header:"style=simple,explode=false,name=X-Plex-Platform-Version"`
+	// A relatively friendly name for the client device
+	Device *string `header:"style=simple,explode=false,name=X-Plex-Device"`
+	// A potentially less friendly identifier for the device model
+	Model *string `header:"style=simple,explode=false,name=X-Plex-Model"`
+	// The device vendor
+	DeviceVendor *string `header:"style=simple,explode=false,name=X-Plex-Device-Vendor"`
+	// A friendly name for the client
+	DeviceName *string `header:"style=simple,explode=false,name=X-Plex-Device-Name"`
+	// The marketplace on which the client application is distributed
+	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
+	// The number of minutes logging should be sent to Papertrail
+	Minutes *int64 `queryParam:"style=form,explode=true,name=minutes"`
+}
+
+func (e EnablePapertrailRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EnablePapertrailRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (e *EnablePapertrailRequest) GetAccepts() *components.Accepts {
+	if e == nil {
+		return nil
+	}
+	return e.Accepts
+}
+
+func (e *EnablePapertrailRequest) GetClientIdentifier() *string {
+	if e == nil {
+		return nil
+	}
+	return e.ClientIdentifier
+}
+
+func (e *EnablePapertrailRequest) GetProduct() *string {
+	if e == nil {
+		return nil
+	}
+	return e.Product
+}
+
+func (e *EnablePapertrailRequest) GetVersion() *string {
+	if e == nil {
+		return nil
+	}
+	return e.Version
+}
+
+func (e *EnablePapertrailRequest) GetPlatform() *string {
+	if e == nil {
+		return nil
+	}
+	return e.Platform
+}
+
+func (e *EnablePapertrailRequest) GetPlatformVersion() *string {
+	if e == nil {
+		return nil
+	}
+	return e.PlatformVersion
+}
+
+func (e *EnablePapertrailRequest) GetDevice() *string {
+	if e == nil {
+		return nil
+	}
+	return e.Device
+}
+
+func (e *EnablePapertrailRequest) GetModel() *string {
+	if e == nil {
+		return nil
+	}
+	return e.Model
+}
+
+func (e *EnablePapertrailRequest) GetDeviceVendor() *string {
+	if e == nil {
+		return nil
+	}
+	return e.DeviceVendor
+}
+
+func (e *EnablePapertrailRequest) GetDeviceName() *string {
+	if e == nil {
+		return nil
+	}
+	return e.DeviceName
+}
+
+func (e *EnablePapertrailRequest) GetMarketplace() *string {
+	if e == nil {
+		return nil
+	}
+	return e.Marketplace
+}
+
+func (e *EnablePapertrailRequest) GetMinutes() *int64 {
+	if e == nil {
+		return nil
+	}
+	return e.Minutes
+}
+
+type EnablePapertrailResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
@@ -15,21 +252,21 @@ type EnablePaperTrailResponse struct {
 	RawResponse *http.Response
 }
 
-func (e *EnablePaperTrailResponse) GetContentType() string {
+func (e *EnablePapertrailResponse) GetContentType() string {
 	if e == nil {
 		return ""
 	}
 	return e.ContentType
 }
 
-func (e *EnablePaperTrailResponse) GetStatusCode() int {
+func (e *EnablePapertrailResponse) GetStatusCode() int {
 	if e == nil {
 		return 0
 	}
 	return e.StatusCode
 }
 
-func (e *EnablePaperTrailResponse) GetRawResponse() *http.Response {
+func (e *EnablePapertrailResponse) GetRawResponse() *http.Response {
 	if e == nil {
 		return nil
 	}

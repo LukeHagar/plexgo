@@ -16,13 +16,11 @@ import (
 	"net/url"
 )
 
-// Activities are awesome. They provide a way to monitor and control asynchronous operations on the server. In order to receive real-time updates for activities, a client would normally subscribe via either EventSource or Websocket endpoints.
+// Activities provide a way to monitor and control asynchronous operations on the server. In order to receive real-time updates for activities, a client would normally subscribe via either EventSource or Websocket endpoints.
+//
 // Activities are associated with HTTP replies via a special `X-Plex-Activity` header which contains the UUID of the activity.
-// Activities are optional cancellable. If cancellable, they may be cancelled via the `DELETE` endpoint. Other details:
-// - They can contain a `progress` (from 0 to 100) marking the percent completion of the activity.
-// - They must contain an `type` which is used by clients to distinguish the specific activity.
-// - They may contain a `Context` object with attributes which associate the activity with various specific entities (items, libraries, etc.)
-// - The may contain a `Response` object which attributes which represent the result of the asynchronous operation.
+//
+// Activities are optional cancellable. If cancellable, they may be cancelled via the `DELETE` endpoint.
 type Activities struct {
 	rootSDK          *PlexAPI
 	sdkConfiguration config.SDKConfiguration
@@ -37,9 +35,9 @@ func newActivities(rootSDK *PlexAPI, sdkConfig config.SDKConfiguration, hooks *h
 	}
 }
 
-// GetServerActivities - Get Server Activities
-// Get Server Activities
-func (s *Activities) GetServerActivities(ctx context.Context, opts ...operations.Option) (*operations.GetServerActivitiesResponse, error) {
+// ListActivities - Get all activities
+// List all activities on the server.  Admins can see all activities but other users can only see their own
+func (s *Activities) ListActivities(ctx context.Context, opts ...operations.Option) (*operations.ListActivitiesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -68,8 +66,8 @@ func (s *Activities) GetServerActivities(ctx context.Context, opts ...operations
 		SDKConfiguration: s.sdkConfiguration,
 		BaseURL:          baseURL,
 		Context:          ctx,
-		OperationID:      "getServerActivities",
-		OAuth2Scopes:     []string{},
+		OperationID:      "listActivities",
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -175,7 +173,7 @@ func (s *Activities) GetServerActivities(ctx context.Context, opts ...operations
 
 			_, err = s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 			return nil, err
-		} else if utils.MatchStatusCodes([]string{"400", "401", "4XX", "5XX"}, httpRes.StatusCode) {
+		} else if utils.MatchStatusCodes([]string{"4XX", "5XX"}, httpRes.StatusCode) {
 			_httpRes, err := s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 			if err != nil {
 				return nil, err
@@ -190,7 +188,7 @@ func (s *Activities) GetServerActivities(ctx context.Context, opts ...operations
 		}
 	}
 
-	res := &operations.GetServerActivitiesResponse{
+	res := &operations.ListActivitiesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: httpRes.Header.Get("Content-Type"),
 		RawResponse: httpRes,
@@ -205,56 +203,12 @@ func (s *Activities) GetServerActivities(ctx context.Context, opts ...operations
 				return nil, err
 			}
 
-			var out operations.GetServerActivitiesResponseBody
+			var out operations.ListActivitiesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
 			res.Object = &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
-	case httpRes.StatusCode == 400:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out sdkerrors.GetServerActivitiesBadRequest
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			out.RawResponse = httpRes
-			return nil, &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
-	case httpRes.StatusCode == 401:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out sdkerrors.GetServerActivitiesUnauthorized
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			out.RawResponse = httpRes
-			return nil, &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -286,11 +240,21 @@ func (s *Activities) GetServerActivities(ctx context.Context, opts ...operations
 
 }
 
-// CancelServerActivities - Cancel Server Activities
-// Cancel Server Activities
-func (s *Activities) CancelServerActivities(ctx context.Context, activityUUID string, opts ...operations.Option) (*operations.CancelServerActivitiesResponse, error) {
-	request := operations.CancelServerActivitiesRequest{
-		ActivityUUID: activityUUID,
+// CancelActivity - Cancel a running activity
+// Cancel a running activity.  Admins can cancel all activities but other users can only cancel their own
+func (s *Activities) CancelActivity(ctx context.Context, request operations.CancelActivityRequest, opts ...operations.Option) (*operations.CancelActivityResponse, error) {
+	globals := operations.CancelActivityGlobals{
+		Accepts:          s.sdkConfiguration.Globals.Accepts,
+		ClientIdentifier: s.sdkConfiguration.Globals.ClientIdentifier,
+		Product:          s.sdkConfiguration.Globals.Product,
+		Version:          s.sdkConfiguration.Globals.Version,
+		Platform:         s.sdkConfiguration.Globals.Platform,
+		PlatformVersion:  s.sdkConfiguration.Globals.PlatformVersion,
+		Device:           s.sdkConfiguration.Globals.Device,
+		Model:            s.sdkConfiguration.Globals.Model,
+		DeviceVendor:     s.sdkConfiguration.Globals.DeviceVendor,
+		DeviceName:       s.sdkConfiguration.Globals.DeviceName,
+		Marketplace:      s.sdkConfiguration.Globals.Marketplace,
 	}
 
 	o := operations.Options{}
@@ -311,7 +275,7 @@ func (s *Activities) CancelServerActivities(ctx context.Context, activityUUID st
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/activities/{activityUUID}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/activities/{activityId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -321,8 +285,8 @@ func (s *Activities) CancelServerActivities(ctx context.Context, activityUUID st
 		SDKConfiguration: s.sdkConfiguration,
 		BaseURL:          baseURL,
 		Context:          ctx,
-		OperationID:      "cancelServerActivities",
-		OAuth2Scopes:     []string{},
+		OperationID:      "cancelActivity",
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -341,8 +305,10 @@ func (s *Activities) CancelServerActivities(ctx context.Context, activityUUID st
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Accept", "*/*")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, globals)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -428,7 +394,7 @@ func (s *Activities) CancelServerActivities(ctx context.Context, activityUUID st
 
 			_, err = s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 			return nil, err
-		} else if utils.MatchStatusCodes([]string{"400", "401", "4XX", "5XX"}, httpRes.StatusCode) {
+		} else if utils.MatchStatusCodes([]string{"400", "404", "4XX", "5XX"}, httpRes.StatusCode) {
 			_httpRes, err := s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 			if err != nil {
 				return nil, err
@@ -443,7 +409,7 @@ func (s *Activities) CancelServerActivities(ctx context.Context, activityUUID st
 		}
 	}
 
-	res := &operations.CancelServerActivitiesResponse{
+	res := &operations.CancelActivityResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: httpRes.Header.Get("Content-Type"),
 		RawResponse: httpRes,
@@ -452,49 +418,9 @@ func (s *Activities) CancelServerActivities(ctx context.Context, activityUUID st
 	switch {
 	case httpRes.StatusCode == 200:
 	case httpRes.StatusCode == 400:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out sdkerrors.CancelServerActivitiesBadRequest
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			out.RawResponse = httpRes
-			return nil, &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
-	case httpRes.StatusCode == 401:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out sdkerrors.CancelServerActivitiesUnauthorized
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			out.RawResponse = httpRes
-			return nil, &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
+		fallthrough
+	case httpRes.StatusCode == 404:
+		fallthrough
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {

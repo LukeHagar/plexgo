@@ -3,59 +3,151 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/LukeHagar/plexgo/internal/utils"
+	"github.com/LukeHagar/plexgo/models/components"
 	"net/http"
 )
 
-// QueryParamForce - Force overwriting of duplicate playlists.
-// By default, a playlist file uploaded with the same path will overwrite the existing playlist.
-// The `force` argument is used to disable overwriting.
-// If the `force` argument is set to 0, a new playlist will be created suffixed with the date and time that the duplicate was uploaded.
-type QueryParamForce int64
-
-const (
-	QueryParamForceZero QueryParamForce = 0
-	QueryParamForceOne  QueryParamForce = 1
-)
-
-func (e QueryParamForce) ToPointer() *QueryParamForce {
-	return &e
+type UploadPlaylistGlobals struct {
+	// Indicates the client accepts the indicated media types
+	Accepts *components.Accepts `default:"application/xml" header:"style=simple,explode=false,name=accepts"`
+	// An opaque identifier unique to the client
+	ClientIdentifier *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+	// The name of the client product
+	Product *string `header:"style=simple,explode=false,name=X-Plex-Product"`
+	// The version of the client application
+	Version *string `header:"style=simple,explode=false,name=X-Plex-Version"`
+	// The platform of the client
+	Platform *string `header:"style=simple,explode=false,name=X-Plex-Platform"`
+	// The version of the platform
+	PlatformVersion *string `header:"style=simple,explode=false,name=X-Plex-Platform-Version"`
+	// A relatively friendly name for the client device
+	Device *string `header:"style=simple,explode=false,name=X-Plex-Device"`
+	// A potentially less friendly identifier for the device model
+	Model *string `header:"style=simple,explode=false,name=X-Plex-Model"`
+	// The device vendor
+	DeviceVendor *string `header:"style=simple,explode=false,name=X-Plex-Device-Vendor"`
+	// A friendly name for the client
+	DeviceName *string `header:"style=simple,explode=false,name=X-Plex-Device-Name"`
+	// The marketplace on which the client application is distributed
+	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
 }
-func (e *QueryParamForce) UnmarshalJSON(data []byte) error {
-	var v int64
-	if err := json.Unmarshal(data, &v); err != nil {
+
+func (u UploadPlaylistGlobals) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UploadPlaylistGlobals) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
 		return err
 	}
-	switch v {
-	case 0:
-		fallthrough
-	case 1:
-		*e = QueryParamForce(v)
+	return nil
+}
+
+func (u *UploadPlaylistGlobals) GetAccepts() *components.Accepts {
+	if u == nil {
 		return nil
-	default:
-		return fmt.Errorf("invalid value for QueryParamForce: %v", v)
 	}
+	return u.Accepts
+}
+
+func (u *UploadPlaylistGlobals) GetClientIdentifier() *string {
+	if u == nil {
+		return nil
+	}
+	return u.ClientIdentifier
+}
+
+func (u *UploadPlaylistGlobals) GetProduct() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Product
+}
+
+func (u *UploadPlaylistGlobals) GetVersion() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Version
+}
+
+func (u *UploadPlaylistGlobals) GetPlatform() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Platform
+}
+
+func (u *UploadPlaylistGlobals) GetPlatformVersion() *string {
+	if u == nil {
+		return nil
+	}
+	return u.PlatformVersion
+}
+
+func (u *UploadPlaylistGlobals) GetDevice() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Device
+}
+
+func (u *UploadPlaylistGlobals) GetModel() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Model
+}
+
+func (u *UploadPlaylistGlobals) GetDeviceVendor() *string {
+	if u == nil {
+		return nil
+	}
+	return u.DeviceVendor
+}
+
+func (u *UploadPlaylistGlobals) GetDeviceName() *string {
+	if u == nil {
+		return nil
+	}
+	return u.DeviceName
+}
+
+func (u *UploadPlaylistGlobals) GetMarketplace() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Marketplace
 }
 
 type UploadPlaylistRequest struct {
-	// absolute path to a directory on the server where m3u files are stored, or the absolute path to a playlist file on the server.
-	// If the `path` argument is a directory, that path will be scanned for playlist files to be processed.
-	// Each file in that directory creates a separate playlist, with a name based on the filename of the file that created it.
-	// The GUID of each playlist is based on the filename.
-	// If the `path` argument is a file, that file will be used to create a new playlist, with the name based on the filename of the file that created it.
-	// The GUID of each playlist is based on the filename.
-	//
-	Path string `queryParam:"style=form,explode=true,name=path"`
-	// Force overwriting of duplicate playlists.
-	// By default, a playlist file uploaded with the same path will overwrite the existing playlist.
-	// The `force` argument is used to disable overwriting.
-	// If the `force` argument is set to 0, a new playlist will be created suffixed with the date and time that the duplicate was uploaded.
-	//
-	Force QueryParamForce `queryParam:"style=form,explode=true,name=force"`
-	// Possibly the section ID to upload the playlist to, we are not certain.
-	SectionID int64 `default:"1" queryParam:"style=form,explode=true,name=sectionID"`
+	// Indicates the client accepts the indicated media types
+	Accepts *components.Accepts `default:"application/xml" header:"style=simple,explode=false,name=accepts"`
+	// An opaque identifier unique to the client
+	ClientIdentifier *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+	// The name of the client product
+	Product *string `header:"style=simple,explode=false,name=X-Plex-Product"`
+	// The version of the client application
+	Version *string `header:"style=simple,explode=false,name=X-Plex-Version"`
+	// The platform of the client
+	Platform *string `header:"style=simple,explode=false,name=X-Plex-Platform"`
+	// The version of the platform
+	PlatformVersion *string `header:"style=simple,explode=false,name=X-Plex-Platform-Version"`
+	// A relatively friendly name for the client device
+	Device *string `header:"style=simple,explode=false,name=X-Plex-Device"`
+	// A potentially less friendly identifier for the device model
+	Model *string `header:"style=simple,explode=false,name=X-Plex-Model"`
+	// The device vendor
+	DeviceVendor *string `header:"style=simple,explode=false,name=X-Plex-Device-Vendor"`
+	// A friendly name for the client
+	DeviceName *string `header:"style=simple,explode=false,name=X-Plex-Device-Name"`
+	// The marketplace on which the client application is distributed
+	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
+	// Absolute path to a directory on the server where m3u files are stored, or the absolute path to a playlist file on the server. If the `path` argument is a directory, that path will be scanned for playlist files to be processed. Each file in that directory creates a separate playlist, with a name based on the filename of the file that created it. The GUID of each playlist is based on the filename. If the `path` argument is a file, that file will be used to create a new playlist, with the name based on the filename of the file that created it. The GUID of each playlist is based on the filename.
+	Path *string `queryParam:"style=form,explode=true,name=path"`
+	// Force overwriting of duplicate playlists. By default, a playlist file uploaded with the same path will overwrite the existing playlist. The `force` argument is used to disable overwriting. If the `force` argument is set to 0, a new playlist will be created suffixed with the date and time that the duplicate was uploaded.
+	Force *components.BoolInt `queryParam:"style=form,explode=true,name=force"`
 }
 
 func (u UploadPlaylistRequest) MarshalJSON() ([]byte, error) {
@@ -63,31 +155,101 @@ func (u UploadPlaylistRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UploadPlaylistRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"path", "force", "sectionID"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (u *UploadPlaylistRequest) GetPath() string {
+func (u *UploadPlaylistRequest) GetAccepts() *components.Accepts {
 	if u == nil {
-		return ""
+		return nil
+	}
+	return u.Accepts
+}
+
+func (u *UploadPlaylistRequest) GetClientIdentifier() *string {
+	if u == nil {
+		return nil
+	}
+	return u.ClientIdentifier
+}
+
+func (u *UploadPlaylistRequest) GetProduct() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Product
+}
+
+func (u *UploadPlaylistRequest) GetVersion() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Version
+}
+
+func (u *UploadPlaylistRequest) GetPlatform() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Platform
+}
+
+func (u *UploadPlaylistRequest) GetPlatformVersion() *string {
+	if u == nil {
+		return nil
+	}
+	return u.PlatformVersion
+}
+
+func (u *UploadPlaylistRequest) GetDevice() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Device
+}
+
+func (u *UploadPlaylistRequest) GetModel() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Model
+}
+
+func (u *UploadPlaylistRequest) GetDeviceVendor() *string {
+	if u == nil {
+		return nil
+	}
+	return u.DeviceVendor
+}
+
+func (u *UploadPlaylistRequest) GetDeviceName() *string {
+	if u == nil {
+		return nil
+	}
+	return u.DeviceName
+}
+
+func (u *UploadPlaylistRequest) GetMarketplace() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Marketplace
+}
+
+func (u *UploadPlaylistRequest) GetPath() *string {
+	if u == nil {
+		return nil
 	}
 	return u.Path
 }
 
-func (u *UploadPlaylistRequest) GetForce() QueryParamForce {
+func (u *UploadPlaylistRequest) GetForce() *components.BoolInt {
 	if u == nil {
-		return QueryParamForce(0)
+		return nil
 	}
 	return u.Force
-}
-
-func (u *UploadPlaylistRequest) GetSectionID() int64 {
-	if u == nil {
-		return 0
-	}
-	return u.SectionID
 }
 
 type UploadPlaylistResponse struct {

@@ -9,17 +9,150 @@ Updates to the status can be observed via the Event API.
 
 ### Available Operations
 
-* [GetUpdateStatus](#getupdatestatus) - Querying status of updates
-* [CheckForUpdates](#checkforupdates) - Checking for updates
-* [ApplyUpdates](#applyupdates) - Apply Updates
+* [ApplyUpdates](#applyupdates) - Applying updates
+* [CheckUpdates](#checkupdates) - Checking for updates
+* [GetUpdatesStatus](#getupdatesstatus) - Querying status of updates
 
-## GetUpdateStatus
+## ApplyUpdates
 
-Querying status of updates
+Apply any downloaded updates.  Note that the two parameters `tonight` and `skip` are effectively mutually exclusive. The `tonight` parameter takes precedence and `skip` will be ignored if `tonight` is also passed.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="getUpdateStatus" method="get" path="/updater/status" -->
+<!-- UsageSnippet language="go" operationID="applyUpdates" method="put" path="/updater/apply" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/LukeHagar/plexgo/models/components"
+	"github.com/LukeHagar/plexgo"
+	"github.com/LukeHagar/plexgo/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := plexgo.New(
+        plexgo.WithAccepts(components.AcceptsApplicationXML),
+        plexgo.WithClientIdentifier("abc123"),
+        plexgo.WithProduct("Plex for Roku"),
+        plexgo.WithVersion("2.4.1"),
+        plexgo.WithPlatform("Roku"),
+        plexgo.WithPlatformVersion("4.3 build 1057"),
+        plexgo.WithDevice("Roku 3"),
+        plexgo.WithModel("4200X"),
+        plexgo.WithDeviceVendor("Roku"),
+        plexgo.WithDeviceName("Living Room TV"),
+        plexgo.WithMarketplace("googlePlay"),
+        plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Updater.ApplyUpdates(ctx, operations.ApplyUpdatesRequest{
+        Tonight: components.BoolIntOne.ToPointer(),
+        Skip: components.BoolIntOne.ToPointer(),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `request`                                                                        | [operations.ApplyUpdatesRequest](../../models/operations/applyupdatesrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |
+
+### Response
+
+**[*operations.ApplyUpdatesResponse](../../models/operations/applyupdatesresponse.md), error**
+
+### Errors
+
+| Error Type         | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4XX, 5XX           | \*/\*              |
+
+## CheckUpdates
+
+Perform an update check and potentially download
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="checkUpdates" method="put" path="/updater/check" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/LukeHagar/plexgo/models/components"
+	"github.com/LukeHagar/plexgo"
+	"github.com/LukeHagar/plexgo/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := plexgo.New(
+        plexgo.WithAccepts(components.AcceptsApplicationXML),
+        plexgo.WithClientIdentifier("abc123"),
+        plexgo.WithProduct("Plex for Roku"),
+        plexgo.WithVersion("2.4.1"),
+        plexgo.WithPlatform("Roku"),
+        plexgo.WithPlatformVersion("4.3 build 1057"),
+        plexgo.WithDevice("Roku 3"),
+        plexgo.WithModel("4200X"),
+        plexgo.WithDeviceVendor("Roku"),
+        plexgo.WithDeviceName("Living Room TV"),
+        plexgo.WithMarketplace("googlePlay"),
+        plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Updater.CheckUpdates(ctx, operations.CheckUpdatesRequest{
+        Download: components.BoolIntOne.ToPointer(),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `request`                                                                        | [operations.CheckUpdatesRequest](../../models/operations/checkupdatesrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |
+
+### Response
+
+**[*operations.CheckUpdatesResponse](../../models/operations/checkupdatesresponse.md), error**
+
+### Errors
+
+| Error Type         | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4XX, 5XX           | \*/\*              |
+
+## GetUpdatesStatus
+
+Get the status of updating the server
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="getUpdatesStatus" method="get" path="/updater/status" -->
 ```go
 package main
 
@@ -36,7 +169,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Updater.GetUpdateStatus(ctx)
+    res, err := s.Updater.GetUpdatesStatus(ctx)
     if err != nil {
         log.Fatal(err)
     }
@@ -55,122 +188,10 @@ func main() {
 
 ### Response
 
-**[*operations.GetUpdateStatusResponse](../../models/operations/getupdatestatusresponse.md), error**
+**[*operations.GetUpdatesStatusResponse](../../models/operations/getupdatesstatusresponse.md), error**
 
 ### Errors
 
-| Error Type                            | Status Code                           | Content Type                          |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| sdkerrors.GetUpdateStatusBadRequest   | 400                                   | application/json                      |
-| sdkerrors.GetUpdateStatusUnauthorized | 401                                   | application/json                      |
-| sdkerrors.SDKError                    | 4XX, 5XX                              | \*/\*                                 |
-
-## CheckForUpdates
-
-Checking for updates
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="checkForUpdates" method="put" path="/updater/check" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/LukeHagar/plexgo"
-	"github.com/LukeHagar/plexgo/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := plexgo.New(
-        plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
-
-    res, err := s.Updater.CheckForUpdates(ctx, operations.DownloadOne.ToPointer())
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 | Example                                                     |
-| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-| `ctx`                                                       | [context.Context](https://pkg.go.dev/context#Context)       | :heavy_check_mark:                                          | The context to use for the request.                         |                                                             |
-| `download`                                                  | [*operations.Download](../../models/operations/download.md) | :heavy_minus_sign:                                          | Indicate that you want to start download any updates found. | 1                                                           |
-| `opts`                                                      | [][operations.Option](../../models/operations/option.md)    | :heavy_minus_sign:                                          | The options for this request.                               |                                                             |
-
-### Response
-
-**[*operations.CheckForUpdatesResponse](../../models/operations/checkforupdatesresponse.md), error**
-
-### Errors
-
-| Error Type                            | Status Code                           | Content Type                          |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| sdkerrors.CheckForUpdatesBadRequest   | 400                                   | application/json                      |
-| sdkerrors.CheckForUpdatesUnauthorized | 401                                   | application/json                      |
-| sdkerrors.SDKError                    | 4XX, 5XX                              | \*/\*                                 |
-
-## ApplyUpdates
-
-Note that these two parameters are effectively mutually exclusive. The `tonight` parameter takes precedence and `skip` will be ignored if `tonight` is also passed
-
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="applyUpdates" method="put" path="/updater/apply" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/LukeHagar/plexgo"
-	"github.com/LukeHagar/plexgo/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := plexgo.New(
-        plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
-
-    res, err := s.Updater.ApplyUpdates(ctx, operations.TonightOne.ToPointer(), operations.SkipOne.ToPointer())
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                | Type                                                                                                                                                     | Required                                                                                                                                                 | Description                                                                                                                                              | Example                                                                                                                                                  |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                                                                    | :heavy_check_mark:                                                                                                                                       | The context to use for the request.                                                                                                                      |                                                                                                                                                          |
-| `tonight`                                                                                                                                                | [*operations.Tonight](../../models/operations/tonight.md)                                                                                                | :heavy_minus_sign:                                                                                                                                       | Indicate that you want the update to run during the next Butler execution. Omitting this or setting it to false indicates that the update should install | 1                                                                                                                                                        |
-| `skip`                                                                                                                                                   | [*operations.Skip](../../models/operations/skip.md)                                                                                                      | :heavy_minus_sign:                                                                                                                                       | Indicate that the latest version should be marked as skipped. The [Release] entry for this version will have the `state` set to `skipped`.               | 1                                                                                                                                                        |
-| `opts`                                                                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                                                                 | :heavy_minus_sign:                                                                                                                                       | The options for this request.                                                                                                                            |                                                                                                                                                          |
-
-### Response
-
-**[*operations.ApplyUpdatesResponse](../../models/operations/applyupdatesresponse.md), error**
-
-### Errors
-
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| sdkerrors.ApplyUpdatesBadRequest   | 400                                | application/json                   |
-| sdkerrors.ApplyUpdatesUnauthorized | 401                                | application/json                   |
-| sdkerrors.SDKError                 | 4XX, 5XX                           | \*/\*                              |
+| Error Type         | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4XX, 5XX           | \*/\*              |

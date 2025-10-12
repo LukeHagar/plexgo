@@ -1,0 +1,9 @@
+# ListDVRsMediaContainer
+
+
+## Fields
+
+| Field                                                                                           | Type                                                                                            | Required                                                                                        | Description                                                                                     |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `MediaContainer`                                                                                | [*operations.ListDVRsDVRsMediaContainer](../../models/operations/listdvrsdvrsmediacontainer.md) | :heavy_minus_sign:                                                                              | N/A                                                                                             |
+| `Dvr`                                                                                           | [][operations.Dvr](../../models/operations/dvr.md)                                              | :heavy_minus_sign:                                                                              | N/A                                                                                             |

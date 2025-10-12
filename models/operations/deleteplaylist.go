@@ -3,17 +3,242 @@
 package operations
 
 import (
+	"github.com/LukeHagar/plexgo/internal/utils"
+	"github.com/LukeHagar/plexgo/models/components"
 	"net/http"
 )
 
-type DeletePlaylistRequest struct {
-	// the ID of the playlist
-	PlaylistID float64 `pathParam:"style=simple,explode=false,name=playlistID"`
+type DeletePlaylistGlobals struct {
+	// Indicates the client accepts the indicated media types
+	Accepts *components.Accepts `default:"application/xml" header:"style=simple,explode=false,name=accepts"`
+	// An opaque identifier unique to the client
+	ClientIdentifier *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+	// The name of the client product
+	Product *string `header:"style=simple,explode=false,name=X-Plex-Product"`
+	// The version of the client application
+	Version *string `header:"style=simple,explode=false,name=X-Plex-Version"`
+	// The platform of the client
+	Platform *string `header:"style=simple,explode=false,name=X-Plex-Platform"`
+	// The version of the platform
+	PlatformVersion *string `header:"style=simple,explode=false,name=X-Plex-Platform-Version"`
+	// A relatively friendly name for the client device
+	Device *string `header:"style=simple,explode=false,name=X-Plex-Device"`
+	// A potentially less friendly identifier for the device model
+	Model *string `header:"style=simple,explode=false,name=X-Plex-Model"`
+	// The device vendor
+	DeviceVendor *string `header:"style=simple,explode=false,name=X-Plex-Device-Vendor"`
+	// A friendly name for the client
+	DeviceName *string `header:"style=simple,explode=false,name=X-Plex-Device-Name"`
+	// The marketplace on which the client application is distributed
+	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
 }
 
-func (d *DeletePlaylistRequest) GetPlaylistID() float64 {
+func (d DeletePlaylistGlobals) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeletePlaylistGlobals) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *DeletePlaylistGlobals) GetAccepts() *components.Accepts {
 	if d == nil {
-		return 0.0
+		return nil
+	}
+	return d.Accepts
+}
+
+func (d *DeletePlaylistGlobals) GetClientIdentifier() *string {
+	if d == nil {
+		return nil
+	}
+	return d.ClientIdentifier
+}
+
+func (d *DeletePlaylistGlobals) GetProduct() *string {
+	if d == nil {
+		return nil
+	}
+	return d.Product
+}
+
+func (d *DeletePlaylistGlobals) GetVersion() *string {
+	if d == nil {
+		return nil
+	}
+	return d.Version
+}
+
+func (d *DeletePlaylistGlobals) GetPlatform() *string {
+	if d == nil {
+		return nil
+	}
+	return d.Platform
+}
+
+func (d *DeletePlaylistGlobals) GetPlatformVersion() *string {
+	if d == nil {
+		return nil
+	}
+	return d.PlatformVersion
+}
+
+func (d *DeletePlaylistGlobals) GetDevice() *string {
+	if d == nil {
+		return nil
+	}
+	return d.Device
+}
+
+func (d *DeletePlaylistGlobals) GetModel() *string {
+	if d == nil {
+		return nil
+	}
+	return d.Model
+}
+
+func (d *DeletePlaylistGlobals) GetDeviceVendor() *string {
+	if d == nil {
+		return nil
+	}
+	return d.DeviceVendor
+}
+
+func (d *DeletePlaylistGlobals) GetDeviceName() *string {
+	if d == nil {
+		return nil
+	}
+	return d.DeviceName
+}
+
+func (d *DeletePlaylistGlobals) GetMarketplace() *string {
+	if d == nil {
+		return nil
+	}
+	return d.Marketplace
+}
+
+type DeletePlaylistRequest struct {
+	// Indicates the client accepts the indicated media types
+	Accepts *components.Accepts `default:"application/xml" header:"style=simple,explode=false,name=accepts"`
+	// An opaque identifier unique to the client
+	ClientIdentifier *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+	// The name of the client product
+	Product *string `header:"style=simple,explode=false,name=X-Plex-Product"`
+	// The version of the client application
+	Version *string `header:"style=simple,explode=false,name=X-Plex-Version"`
+	// The platform of the client
+	Platform *string `header:"style=simple,explode=false,name=X-Plex-Platform"`
+	// The version of the platform
+	PlatformVersion *string `header:"style=simple,explode=false,name=X-Plex-Platform-Version"`
+	// A relatively friendly name for the client device
+	Device *string `header:"style=simple,explode=false,name=X-Plex-Device"`
+	// A potentially less friendly identifier for the device model
+	Model *string `header:"style=simple,explode=false,name=X-Plex-Model"`
+	// The device vendor
+	DeviceVendor *string `header:"style=simple,explode=false,name=X-Plex-Device-Vendor"`
+	// A friendly name for the client
+	DeviceName *string `header:"style=simple,explode=false,name=X-Plex-Device-Name"`
+	// The marketplace on which the client application is distributed
+	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
+	// The ID of the playlist
+	PlaylistID int64 `pathParam:"style=simple,explode=false,name=playlistId"`
+}
+
+func (d DeletePlaylistRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeletePlaylistRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"playlistId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *DeletePlaylistRequest) GetAccepts() *components.Accepts {
+	if d == nil {
+		return nil
+	}
+	return d.Accepts
+}
+
+func (d *DeletePlaylistRequest) GetClientIdentifier() *string {
+	if d == nil {
+		return nil
+	}
+	return d.ClientIdentifier
+}
+
+func (d *DeletePlaylistRequest) GetProduct() *string {
+	if d == nil {
+		return nil
+	}
+	return d.Product
+}
+
+func (d *DeletePlaylistRequest) GetVersion() *string {
+	if d == nil {
+		return nil
+	}
+	return d.Version
+}
+
+func (d *DeletePlaylistRequest) GetPlatform() *string {
+	if d == nil {
+		return nil
+	}
+	return d.Platform
+}
+
+func (d *DeletePlaylistRequest) GetPlatformVersion() *string {
+	if d == nil {
+		return nil
+	}
+	return d.PlatformVersion
+}
+
+func (d *DeletePlaylistRequest) GetDevice() *string {
+	if d == nil {
+		return nil
+	}
+	return d.Device
+}
+
+func (d *DeletePlaylistRequest) GetModel() *string {
+	if d == nil {
+		return nil
+	}
+	return d.Model
+}
+
+func (d *DeletePlaylistRequest) GetDeviceVendor() *string {
+	if d == nil {
+		return nil
+	}
+	return d.DeviceVendor
+}
+
+func (d *DeletePlaylistRequest) GetDeviceName() *string {
+	if d == nil {
+		return nil
+	}
+	return d.DeviceName
+}
+
+func (d *DeletePlaylistRequest) GetMarketplace() *string {
+	if d == nil {
+		return nil
+	}
+	return d.Marketplace
+}
+
+func (d *DeletePlaylistRequest) GetPlaylistID() int64 {
+	if d == nil {
+		return 0
 	}
 	return d.PlaylistID
 }

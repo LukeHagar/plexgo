@@ -1,6 +1,6 @@
 # GetLibraryDetailsResponseBody
 
-The details of the library
+OK
 
 
 ## Fields

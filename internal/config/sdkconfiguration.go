@@ -4,6 +4,7 @@ package config
 
 import (
 	"context"
+	"github.com/LukeHagar/plexgo/internal/globals"
 	"github.com/LukeHagar/plexgo/retry"
 	"net/http"
 	"time"
@@ -21,6 +22,7 @@ type SDKConfiguration struct {
 	ServerList      []string
 	ServerVariables []map[string]string
 	UserAgent       string
+	Globals         globals.Globals
 	RetryConfig     *retry.Config
 	Timeout         *time.Duration
 }

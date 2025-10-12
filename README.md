@@ -10,41 +10,13 @@
 <!-- Start Summary [summary] -->
 ## Summary
 
-Plex-API: An Open API Spec for interacting with Plex.tv and Plex Media Server
 
-# Plex Media Server OpenAPI Specification
-
-An Open Source OpenAPI Specification for Plex Media Server
-
-Automation and SDKs provided by [Speakeasy](https://speakeasyapi.dev/)
-
-## Documentation
-
-[API Documentation](https://plexapi.dev)
-
-## SDKs
-
-The following SDKs are generated from the OpenAPI Specification. They are automatically generated and may not be fully tested. If you find any issues, please open an issue on the [main specification Repository](https://github.com/LukeHagar/plex-api-spec).
-
-| Language              | Repository                                        | Releases                                                                                         | Other                                                   |
-| --------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------- |
-| Python                | [GitHub](https://github.com/LukeHagar/plexpy)     | [PyPI](https://pypi.org/project/plex-api-client/)                                                | -                                                       |
-| JavaScript/TypeScript | [GitHub](https://github.com/LukeHagar/plexjs)     | [NPM](https://www.npmjs.com/package/@lukehagar/plexjs) \ [JSR](https://jsr.io/@lukehagar/plexjs) | -                                                       |
-| Go                    | [GitHub](https://github.com/LukeHagar/plexgo)     | [Releases](https://github.com/LukeHagar/plexgo/releases)                                         | [GoDoc](https://pkg.go.dev/github.com/LukeHagar/plexgo) |
-| Ruby                  | [GitHub](https://github.com/LukeHagar/plexruby)   | [Releases](https://github.com/LukeHagar/plexruby/releases)                                       | -                                                       |
-| Swift                 | [GitHub](https://github.com/LukeHagar/plexswift)  | [Releases](https://github.com/LukeHagar/plexswift/releases)                                      | -                                                       |
-| PHP                   | [GitHub](https://github.com/LukeHagar/plexphp)    | [Releases](https://github.com/LukeHagar/plexphp/releases)                                        | -                                                       |
-| Java                  | [GitHub](https://github.com/LukeHagar/plexjava)   | [Releases](https://github.com/LukeHagar/plexjava/releases)                                       | -                                                       |
-| C#                    | [GitHub](https://github.com/LukeHagar/plexcsharp) | [Releases](https://github.com/LukeHagar/plexcsharp/releases)                                     | -
 <!-- End Summary [summary] -->
 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
 <!-- $toc-max-depth=2 -->
 * [github.com/LukeHagar/plexgo](#githubcomlukehagarplexgo)
-* [Plex Media Server OpenAPI Specification](#plex-media-server-openapi-specification)
-  * [Documentation](#documentation)
-  * [SDKs](#sdks)
   * [SDK Installation](#sdk-installation)
   * [SDK Example Usage](#sdk-example-usage)
   * [Available Resources and Operations](#available-resources-and-operations)
@@ -53,7 +25,6 @@ The following SDKs are generated from the OpenAPI Specification. They are automa
   * [Server Selection](#server-selection)
   * [Custom HTTP Client](#custom-http-client)
   * [Authentication](#authentication)
-  * [Special Types](#special-types)
 * [Development](#development)
   * [Maturity](#maturity)
   * [Contributions](#contributions)
@@ -80,6 +51,8 @@ package main
 import (
 	"context"
 	"github.com/LukeHagar/plexgo"
+	"github.com/LukeHagar/plexgo/models/components"
+	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
@@ -87,14 +60,55 @@ func main() {
 	ctx := context.Background()
 
 	s := plexgo.New(
+		plexgo.WithAccepts(components.AcceptsApplicationXML),
+		plexgo.WithClientIdentifier("abc123"),
+		plexgo.WithProduct("Plex for Roku"),
+		plexgo.WithVersion("2.4.1"),
+		plexgo.WithPlatform("Roku"),
+		plexgo.WithPlatformVersion("4.3 build 1057"),
+		plexgo.WithDevice("Roku 3"),
+		plexgo.WithModel("4200X"),
+		plexgo.WithDeviceVendor("Roku"),
+		plexgo.WithDeviceName("Living Room TV"),
+		plexgo.WithMarketplace("googlePlay"),
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
 	)
 
-	res, err := s.Server.GetServerCapabilities(ctx)
+	res, err := s.Transcoder.StartTranscodeSession(ctx, operations.StartTranscodeSessionRequest{
+		TranscodeType:             components.TranscodeTypeMusic,
+		Extension:                 operations.ExtensionMpd,
+		AdvancedSubtitles:         components.AdvancedSubtitlesBurn.ToPointer(),
+		AudioBoost:                plexgo.Pointer[int64](50),
+		AudioChannelCount:         plexgo.Pointer[int64](5),
+		AutoAdjustQuality:         components.BoolIntOne.ToPointer(),
+		AutoAdjustSubtitle:        components.BoolIntOne.ToPointer(),
+		DirectPlay:                components.BoolIntOne.ToPointer(),
+		DirectStream:              components.BoolIntOne.ToPointer(),
+		DirectStreamAudio:         components.BoolIntOne.ToPointer(),
+		DisableResolutionRotation: components.BoolIntOne.ToPointer(),
+		HasMDE:                    components.BoolIntOne.ToPointer(),
+		Location:                  operations.StartTranscodeSessionQueryParamLocationWan.ToPointer(),
+		MediaBufferSize:           plexgo.Pointer[int64](102400),
+		MediaIndex:                plexgo.Pointer[int64](0),
+		MusicBitrate:              plexgo.Pointer[int64](5000),
+		Offset:                    plexgo.Pointer[float64](90.5),
+		PartIndex:                 plexgo.Pointer[int64](0),
+		Path:                      plexgo.Pointer("/library/metadata/151671"),
+		PeakBitrate:               plexgo.Pointer[int64](12000),
+		PhotoResolution:           plexgo.Pointer("1080x1080"),
+		Protocol:                  operations.StartTranscodeSessionQueryParamProtocolDash.ToPointer(),
+		SecondsPerSegment:         plexgo.Pointer[int64](5),
+		SubtitleSize:              plexgo.Pointer[int64](50),
+		VideoBitrate:              plexgo.Pointer[int64](12000),
+		VideoQuality:              plexgo.Pointer[int64](50),
+		VideoResolution:           plexgo.Pointer("1080x1080"),
+		XPlexClientProfileExtra:   plexgo.Pointer("add-limitation(scope=videoCodec&scopeName=*&type=upperBound&name=video.frameRate&value=60&replace=true)+append-transcode-target-codec(type=videoProfile&context=streaming&videoCodec=h264%2Chevc&audioCodec=aac&protocol=dash)"),
+		XPlexClientProfileName:    plexgo.Pointer("generic"),
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.Object != nil {
+	if res.ResponseStream != nil {
 		// handle response
 	}
 }
@@ -110,139 +124,324 @@ func main() {
 
 ### [Activities](docs/sdks/activities/README.md)
 
-* [GetServerActivities](docs/sdks/activities/README.md#getserveractivities) - Get Server Activities
-* [CancelServerActivities](docs/sdks/activities/README.md#cancelserveractivities) - Cancel Server Activities
-
-### [Authentication](docs/sdks/authentication/README.md)
-
-* [GetTransientToken](docs/sdks/authentication/README.md#gettransienttoken) - Get a Transient Token
-* [GetSourceConnectionInformation](docs/sdks/authentication/README.md#getsourceconnectioninformation) - Get Source Connection Information
-* [GetTokenDetails](docs/sdks/authentication/README.md#gettokendetails) - Get Token Details
-* [PostUsersSignInData](docs/sdks/authentication/README.md#postuserssignindata) - Get User Sign In Data
+* [ListActivities](docs/sdks/activities/README.md#listactivities) - Get all activities
+* [CancelActivity](docs/sdks/activities/README.md#cancelactivity) - Cancel a running activity
 
 ### [Butler](docs/sdks/butler/README.md)
 
-* [GetButlerTasks](docs/sdks/butler/README.md#getbutlertasks) - Get Butler tasks
-* [StartAllTasks](docs/sdks/butler/README.md#startalltasks) - Start all Butler tasks
-* [StopAllTasks](docs/sdks/butler/README.md#stopalltasks) - Stop all Butler tasks
-* [StartTask](docs/sdks/butler/README.md#starttask) - Start a single Butler task
+* [StopTasks](docs/sdks/butler/README.md#stoptasks) - Stop all Butler tasks
+* [GetTasks](docs/sdks/butler/README.md#gettasks) - Get all Butler tasks
+* [StartTasks](docs/sdks/butler/README.md#starttasks) - Start all Butler tasks
 * [StopTask](docs/sdks/butler/README.md#stoptask) - Stop a single Butler task
+* [StartTask](docs/sdks/butler/README.md#starttask) - Start a single Butler task
+
+### [Collections](docs/sdks/collections/README.md)
+
+* [CreateCollection](docs/sdks/collections/README.md#createcollection) - Create collection
+
+### [Content](docs/sdks/content/README.md)
+
+* [GetCollectionItems](docs/sdks/content/README.md#getcollectionitems) - Get items in a collection
+* [GetMetadataItem](docs/sdks/content/README.md#getmetadataitem) - Get a metadata item
+* [GetAlbums](docs/sdks/content/README.md#getalbums) - Set section albums
+* [ListContent](docs/sdks/content/README.md#listcontent) - Get items in the section
+* [GetAllLeaves](docs/sdks/content/README.md#getallleaves) - Set section leaves
+* [GetArts](docs/sdks/content/README.md#getarts) - Set section artwork
+* [GetCategories](docs/sdks/content/README.md#getcategories) - Set section categories
+* [GetCluster](docs/sdks/content/README.md#getcluster) - Set section clusters
+* [GetSonicPath](docs/sdks/content/README.md#getsonicpath) - Similar tracks to transition from one to another
+* [GetFolders](docs/sdks/content/README.md#getfolders) - Get all folder locations
+* [ListMoments](docs/sdks/content/README.md#listmoments) - Set section moments
+* [GetSonicallySimilar](docs/sdks/content/README.md#getsonicallysimilar) - The nearest audio tracks
+* [GetCollectionImage](docs/sdks/content/README.md#getcollectionimage) - Get a collection's image
+
+### [Devices](docs/sdks/devices/README.md)
+
+* [GetAvailableGrabbers](docs/sdks/devices/README.md#getavailablegrabbers) - Get available grabbers
+* [ListDevices](docs/sdks/devices/README.md#listdevices) - Get all devices
+* [AddDevice](docs/sdks/devices/README.md#adddevice) - Add a device
+* [DiscoverDevices](docs/sdks/devices/README.md#discoverdevices) - Tell grabbers to discover devices
+* [RemoveDevice](docs/sdks/devices/README.md#removedevice) - Remove a device
+* [GetDeviceDetails](docs/sdks/devices/README.md#getdevicedetails) - Get device details
+* [ModifyDevice](docs/sdks/devices/README.md#modifydevice) - Enable or disable a device
+* [SetChannelmap](docs/sdks/devices/README.md#setchannelmap) - Set a device's channel mapping
+* [GetDevicesChannels](docs/sdks/devices/README.md#getdeviceschannels) - Get a device's channels
+* [SetDevicePreferences](docs/sdks/devices/README.md#setdevicepreferences) - Set device preferences
+* [StopScan](docs/sdks/devices/README.md#stopscan) - Tell a device to stop scanning for channels
+* [Scan](docs/sdks/devices/README.md#scan) - Tell a device to scan for channels
+* [GetThumb](docs/sdks/devices/README.md#getthumb) - Get device thumb
+
+### [DownloadQueue](docs/sdks/downloadqueue/README.md)
+
+* [CreateDownloadQueue](docs/sdks/downloadqueue/README.md#createdownloadqueue) - Create download queue
+* [GetDownloadQueue](docs/sdks/downloadqueue/README.md#getdownloadqueue) - Get a download queue
+* [AddDownloadQueueItems](docs/sdks/downloadqueue/README.md#adddownloadqueueitems) - Add to download queue
+* [ListDownloadQueueItems](docs/sdks/downloadqueue/README.md#listdownloadqueueitems) - Get download queue items
+* [GetItemDecision](docs/sdks/downloadqueue/README.md#getitemdecision) - Grab download queue item decision
+* [GetDownloadQueueMedia](docs/sdks/downloadqueue/README.md#getdownloadqueuemedia) - Grab download queue media
+* [RemoveDownloadQueueItems](docs/sdks/downloadqueue/README.md#removedownloadqueueitems) - Delete download queue items
+* [GetDownloadQueueItems](docs/sdks/downloadqueue/README.md#getdownloadqueueitems) - Get download queue items
+* [RestartProcessingDownloadQueueItems](docs/sdks/downloadqueue/README.md#restartprocessingdownloadqueueitems) - Restart processing of items from the decision
+
+### [DVRs](docs/sdks/dvrs/README.md)
+
+* [ListDVRs](docs/sdks/dvrs/README.md#listdvrs) - Get DVRs
+* [CreateDVR](docs/sdks/dvrs/README.md#createdvr) - Create a DVR
+* [DeleteDVR](docs/sdks/dvrs/README.md#deletedvr) - Delete a single DVR
+* [GetDVR](docs/sdks/dvrs/README.md#getdvr) - Get a single DVR
+* [DeleteLineup](docs/sdks/dvrs/README.md#deletelineup) - Delete a DVR Lineup
+* [AddLineup](docs/sdks/dvrs/README.md#addlineup) - Add a DVR Lineup
+* [SetDVRPreferences](docs/sdks/dvrs/README.md#setdvrpreferences) - Set DVR preferences
+* [StopDVRReload](docs/sdks/dvrs/README.md#stopdvrreload) - Tell a DVR to stop reloading program guide
+* [ReloadGuide](docs/sdks/dvrs/README.md#reloadguide) - Tell a DVR to reload program guide
+* [TuneChannel](docs/sdks/dvrs/README.md#tunechannel) - Tune a channel on a DVR
+* [RemoveDeviceFromDVR](docs/sdks/dvrs/README.md#removedevicefromdvr) - Remove a device from an existing DVR
+* [AddDeviceToDVR](docs/sdks/dvrs/README.md#adddevicetodvr) - Add a device to an existing DVR
+
+### [Epg](docs/sdks/epg/README.md)
+
+* [ComputeChannelMap](docs/sdks/epg/README.md#computechannelmap) - Compute the best channel map
+* [GetChannels](docs/sdks/epg/README.md#getchannels) - Get channels for a lineup
+* [GetCountries](docs/sdks/epg/README.md#getcountries) - Get all countries
+* [GetAllLanguages](docs/sdks/epg/README.md#getalllanguages) - Get all languages
+* [GetLineup](docs/sdks/epg/README.md#getlineup) - Compute the best lineup
+* [GetLineupChannels](docs/sdks/epg/README.md#getlineupchannels) - Get the channels for mulitple lineups
+* [GetCountriesLineups](docs/sdks/epg/README.md#getcountrieslineups) - Get lineups for a country via postal code
+* [GetCountryRegions](docs/sdks/epg/README.md#getcountryregions) - Get regions for a country
+* [ListLineups](docs/sdks/epg/README.md#listlineups) - Get lineups for a region
+
+### [Events](docs/sdks/events/README.md)
+
+* [GetNotifications](docs/sdks/events/README.md#getnotifications) - Connect to Eventsource
+* [ConnectWebSocket](docs/sdks/events/README.md#connectwebsocket) - Connect to WebSocket
+
+### [General](docs/sdks/general/README.md)
+
+* [GetServerInfo](docs/sdks/general/README.md#getserverinfo) - Get PMS info
+* [GetIdentity](docs/sdks/general/README.md#getidentity) - Get PMS identity
+* [GetSourceConnectionInformation](docs/sdks/general/README.md#getsourceconnectioninformation) - Get Source Connection Information
+* [GetTransientToken](docs/sdks/general/README.md#gettransienttoken) - Get Transient Tokens
 
 ### [Hubs](docs/sdks/hubs/README.md)
 
-* [GetGlobalHubs](docs/sdks/hubs/README.md#getglobalhubs) - Get Global Hubs
-* [GetRecentlyAdded](docs/sdks/hubs/README.md#getrecentlyadded) - Get Recently Added
-* [GetLibraryHubs](docs/sdks/hubs/README.md#getlibraryhubs) - Get library specific hubs
+* [GetAllHubs](docs/sdks/hubs/README.md#getallhubs) - Get global hubs
+* [GetContinueWatching](docs/sdks/hubs/README.md#getcontinuewatching) - Get the continue watching hub
+* [GetHubItems](docs/sdks/hubs/README.md#gethubitems) - Get a hub's items
+* [GetPromotedHubs](docs/sdks/hubs/README.md#getpromotedhubs) - Get the hubs which are promoted
+* [GetMetadataHubs](docs/sdks/hubs/README.md#getmetadatahubs) - Get hubs for section by metadata item
+* [GetPostplayHubs](docs/sdks/hubs/README.md#getpostplayhubs) - Get postplay hubs
+* [GetRelatedHubs](docs/sdks/hubs/README.md#getrelatedhubs) - Get related hubs
+* [GetSectionHubs](docs/sdks/hubs/README.md#getsectionhubs) - Get section hubs
+* [ResetSectionDefaults](docs/sdks/hubs/README.md#resetsectiondefaults) - Reset hubs to defaults
+* [ListHubs](docs/sdks/hubs/README.md#listhubs) - Get hubs
+* [CreateCustomHub](docs/sdks/hubs/README.md#createcustomhub) - Create a custom hub
+* [MoveHub](docs/sdks/hubs/README.md#movehub) - Move Hub
+* [DeleteCustomHub](docs/sdks/hubs/README.md#deletecustomhub) - Delete a custom hub
+* [UpdateHubVisibility](docs/sdks/hubs/README.md#updatehubvisibility) - Change hub visibility
 
 ### [Library](docs/sdks/library/README.md)
 
-* [GetFileHash](docs/sdks/library/README.md#getfilehash) - Get Hash Value
-* [GetRecentlyAddedLibrary](docs/sdks/library/README.md#getrecentlyaddedlibrary) - Get Recently Added
-* [GetAllLibraries](docs/sdks/library/README.md#getalllibraries) - Get All Libraries
-* [GetLibraryDetails](docs/sdks/library/README.md#getlibrarydetails) - Get Library Details
-* [DeleteLibrary](docs/sdks/library/README.md#deletelibrary) - Delete Library Section
-* [GetLibraryItems](docs/sdks/library/README.md#getlibraryitems) - Get Library Items
-* [GetLibrarySectionsAll](docs/sdks/library/README.md#getlibrarysectionsall) - Get Library section media by tag ALL
-* [GetRefreshLibraryMetadata](docs/sdks/library/README.md#getrefreshlibrarymetadata) - Refresh Metadata Of The Library
-* [GetSearchLibrary](docs/sdks/library/README.md#getsearchlibrary) - Search Library
-* [GetGenresLibrary](docs/sdks/library/README.md#getgenreslibrary) - Get Genres of library media
-* [GetCountriesLibrary](docs/sdks/library/README.md#getcountrieslibrary) - Get Countries of library media
-* [GetActorsLibrary](docs/sdks/library/README.md#getactorslibrary) - Get Actors of library media
-* [GetSearchAllLibraries](docs/sdks/library/README.md#getsearchalllibraries) - Search All Libraries
-* [GetMediaMetaData](docs/sdks/library/README.md#getmediametadata) - Get Media Metadata
-* [GetMediaArts](docs/sdks/library/README.md#getmediaarts) - Get Media Background Artwork
-* [PostMediaArts](docs/sdks/library/README.md#postmediaarts) - Upload Media Background Artwork
-* [GetMediaPosters](docs/sdks/library/README.md#getmediaposters) - Get Media Posters
-* [PostMediaPoster](docs/sdks/library/README.md#postmediaposter) - Upload Media Poster
-* [GetMetadataChildren](docs/sdks/library/README.md#getmetadatachildren) - Get Items Children
-* [GetTopWatchedContent](docs/sdks/library/README.md#gettopwatchedcontent) - Get Top Watched Content
+* [GetLibraryItems](docs/sdks/library/README.md#getlibraryitems) - Get all items in library
+* [DeleteCaches](docs/sdks/library/README.md#deletecaches) - Delete library caches
+* [CleanBundles](docs/sdks/library/README.md#cleanbundles) - Clean bundles
+* [IngestTransientItem](docs/sdks/library/README.md#ingesttransientitem) - Ingest a transient item
+* [GetLibraryMatches](docs/sdks/library/README.md#getlibrarymatches) - Get library matches
+* [OptimizeDatabase](docs/sdks/library/README.md#optimizedatabase) - Optimize the Database
+* [GetRandomArtwork](docs/sdks/library/README.md#getrandomartwork) - Get random artwork
+* [GetSections](docs/sdks/library/README.md#getsections) - Get library sections (main Media Provider Only)
+* [AddSection](docs/sdks/library/README.md#addsection) - Add a library section
+* [StopAllRefreshes](docs/sdks/library/README.md#stopallrefreshes) - Stop refresh
+* [GetSectionsPrefs](docs/sdks/library/README.md#getsectionsprefs) - Get section prefs
+* [RefreshSectionsMetadata](docs/sdks/library/README.md#refreshsectionsmetadata) - Refresh all sections
+* [GetTags](docs/sdks/library/README.md#gettags) - Get all library tags of a type
+* [DeleteMetadataItem](docs/sdks/library/README.md#deletemetadataitem) - Delete a metadata item
+* [EditMetadataItem](docs/sdks/library/README.md#editmetadataitem) - Edit a metadata item
+* [DetectAds](docs/sdks/library/README.md#detectads) - Ad-detect an item
+* [GetAllItemLeaves](docs/sdks/library/README.md#getallitemleaves) - Get the leaves of an item
+* [AnalyzeMetadata](docs/sdks/library/README.md#analyzemetadata) - Analyze an item
+* [GenerateThumbs](docs/sdks/library/README.md#generatethumbs) - Generate thumbs of chapters for an item
+* [DetectCredits](docs/sdks/library/README.md#detectcredits) - Credit detect a metadata item
+* [GetExtras](docs/sdks/library/README.md#getextras) - Get an item's extras
+* [AddExtras](docs/sdks/library/README.md#addextras) - Add to an item's extras
+* [GetFile](docs/sdks/library/README.md#getfile) - Get a file from a metadata or media bundle
+* [StartBifGeneration](docs/sdks/library/README.md#startbifgeneration) - Start BIF generation of an item
+* [DetectIntros](docs/sdks/library/README.md#detectintros) - Intro detect an item
+* [CreateMarker](docs/sdks/library/README.md#createmarker) - Create a marker
+* [MatchItem](docs/sdks/library/README.md#matchitem) - Match a metadata item
+* [ListMatches](docs/sdks/library/README.md#listmatches) - Get metadata matches for an item
+* [MergeItems](docs/sdks/library/README.md#mergeitems) - Merge a metadata item
+* [ListSonicallySimilar](docs/sdks/library/README.md#listsonicallysimilar) - Get nearest tracks to metadata item
+* [SetItemPreferences](docs/sdks/library/README.md#setitempreferences) - Set metadata preferences
+* [RefreshItemsMetadata](docs/sdks/library/README.md#refreshitemsmetadata) - Refresh a metadata item
+* [GetRelatedItems](docs/sdks/library/README.md#getrelateditems) - Get related items
+* [ListSimilar](docs/sdks/library/README.md#listsimilar) - Get similar items
+* [SplitItem](docs/sdks/library/README.md#splititem) - Split a metadata item
+* [AddSubtitles](docs/sdks/library/README.md#addsubtitles) - Add subtitles
+* [GetItemTree](docs/sdks/library/README.md#getitemtree) - Get metadata items as a tree
+* [Unmatch](docs/sdks/library/README.md#unmatch) - Unmatch a metadata item
+* [ListTopUsers](docs/sdks/library/README.md#listtopusers) - Get metadata top users
+* [DetectVoiceActivity](docs/sdks/library/README.md#detectvoiceactivity) - Detect voice activity
+* [GetAugmentationStatus](docs/sdks/library/README.md#getaugmentationstatus) - Get augmentation status
+* [SetStreamSelection](docs/sdks/library/README.md#setstreamselection) - Set stream selection
+* [GetPerson](docs/sdks/library/README.md#getperson) - Get person details
+* [ListPersonMedia](docs/sdks/library/README.md#listpersonmedia) - Get media for a person
+* [DeleteLibrarySection](docs/sdks/library/README.md#deletelibrarysection) - Delete a library section
+* [GetLibraryDetails](docs/sdks/library/README.md#getlibrarydetails) - Get a library section by id
+* [EditSection](docs/sdks/library/README.md#editsection) - Edit a library section
+* [UpdateItems](docs/sdks/library/README.md#updateitems) - Set the fields of the filtered items
+* [StartAnalysis](docs/sdks/library/README.md#startanalysis) - Analyze a section
+* [Autocomplete](docs/sdks/library/README.md#autocomplete) - Get autocompletions for search
+* [GetCollections](docs/sdks/library/README.md#getcollections) - Get collections in a section
+* [GetCommon](docs/sdks/library/README.md#getcommon) - Get common fields for items
+* [EmptyTrash](docs/sdks/library/README.md#emptytrash) - Empty section trash
+* [GetSectionFilters](docs/sdks/library/README.md#getsectionfilters) - Get section filters
+* [GetFirstCharacters](docs/sdks/library/README.md#getfirstcharacters) - Get list of first characters
+* [DeleteIndexes](docs/sdks/library/README.md#deleteindexes) - Delete section indexes
+* [DeleteIntros](docs/sdks/library/README.md#deleteintros) - Delete section intro markers
+* [GetSectionPreferences](docs/sdks/library/README.md#getsectionpreferences) - Get section prefs
+* [SetSectionPreferences](docs/sdks/library/README.md#setsectionpreferences) - Set section prefs
+* [CancelRefresh](docs/sdks/library/README.md#cancelrefresh) - Cancel section refresh
+* [RefreshSection](docs/sdks/library/README.md#refreshsection) - Refresh section
+* [GetAvailableSorts](docs/sdks/library/README.md#getavailablesorts) - Get a section sorts
+* [GetStreamLevels](docs/sdks/library/README.md#getstreamlevels) - Get loudness about a stream in json
+* [GetStreamLoudness](docs/sdks/library/README.md#getstreamloudness) - Get loudness about a stream
+* [GetChapterImage](docs/sdks/library/README.md#getchapterimage) - Get a chapter image
+* [SetItemArtwork](docs/sdks/library/README.md#setitemartwork) - Set an item's artwork, theme, etc
+* [UpdateItemArtwork](docs/sdks/library/README.md#updateitemartwork) - Set an item's artwork, theme, etc
+* [DeleteMarker](docs/sdks/library/README.md#deletemarker) - Delete a marker
+* [EditMarker](docs/sdks/library/README.md#editmarker) - Edit a marker
+* [DeleteMediaItem](docs/sdks/library/README.md#deletemediaitem) - Delete a media item
+* [GetPartIndex](docs/sdks/library/README.md#getpartindex) - Get BIF index for a part
+* [DeleteCollection](docs/sdks/library/README.md#deletecollection) - Delete a collection
+* [GetSectionImage](docs/sdks/library/README.md#getsectionimage) - Get a section composite image
+* [DeleteStream](docs/sdks/library/README.md#deletestream) - Delete a stream
+* [GetStream](docs/sdks/library/README.md#getstream) - Get a stream
+* [SetStreamOffset](docs/sdks/library/README.md#setstreamoffset) - Set a stream offset
+* [GetItemArtwork](docs/sdks/library/README.md#getitemartwork) - Get an item's artwork, theme, etc
+* [GetMediaPart](docs/sdks/library/README.md#getmediapart) - Get a media part
+* [GetImageFromBif](docs/sdks/library/README.md#getimagefrombif) - Get an image from part BIF
+
+### [LibraryCollections](docs/sdks/librarycollections/README.md)
+
+* [AddCollectionItems](docs/sdks/librarycollections/README.md#addcollectionitems) - Add items to a collection
+* [DeleteCollectionItem](docs/sdks/librarycollections/README.md#deletecollectionitem) - Delete an item from a collection
+* [MoveCollectionItem](docs/sdks/librarycollections/README.md#movecollectionitem) - Reorder an item in the collection
+
+### [LibraryPlaylists](docs/sdks/libraryplaylists/README.md)
+
+* [CreatePlaylist](docs/sdks/libraryplaylists/README.md#createplaylist) - Create a Playlist
+* [UploadPlaylist](docs/sdks/libraryplaylists/README.md#uploadplaylist) - Upload
+* [DeletePlaylist](docs/sdks/libraryplaylists/README.md#deleteplaylist) - Delete a Playlist
+* [UpdatePlaylist](docs/sdks/libraryplaylists/README.md#updateplaylist) - Editing a Playlist
+* [GetPlaylistGenerators](docs/sdks/libraryplaylists/README.md#getplaylistgenerators) - Get a playlist's generators
+* [ClearPlaylistItems](docs/sdks/libraryplaylists/README.md#clearplaylistitems) - Clearing a playlist
+* [AddPlaylistItems](docs/sdks/libraryplaylists/README.md#addplaylistitems) - Adding to  a Playlist
+* [DeletePlaylistItem](docs/sdks/libraryplaylists/README.md#deleteplaylistitem) - Delete a Generator
+* [GetPlaylistGenerator](docs/sdks/libraryplaylists/README.md#getplaylistgenerator) - Get a playlist generator
+* [ModifyPlaylistGenerator](docs/sdks/libraryplaylists/README.md#modifyplaylistgenerator) - Modify a Generator
+* [GetPlaylistGeneratorItems](docs/sdks/libraryplaylists/README.md#getplaylistgeneratoritems) - Get a playlist generator's items
+* [MovePlaylistItem](docs/sdks/libraryplaylists/README.md#moveplaylistitem) - Moving items in a playlist
+* [RefreshPlaylist](docs/sdks/libraryplaylists/README.md#refreshplaylist) - Reprocess a generator
+
+### [LiveTV](docs/sdks/livetv/README.md)
+
+* [GetSessions](docs/sdks/livetv/README.md#getsessions) - Get all sessions
+* [GetLiveTVSession](docs/sdks/livetv/README.md#getlivetvsession) - Get a single session
+* [GetSessionPlaylistIndex](docs/sdks/livetv/README.md#getsessionplaylistindex) - Get a session playlist index
+* [GetSessionSegment](docs/sdks/livetv/README.md#getsessionsegment) - Get a single session segment
 
 ### [Log](docs/sdks/log/README.md)
 
-* [LogLine](docs/sdks/log/README.md#logline) - Logging a single line message.
-* [LogMultiLine](docs/sdks/log/README.md#logmultiline) - Logging a multi-line message
-* [EnablePaperTrail](docs/sdks/log/README.md#enablepapertrail) - Enabling Papertrail
+* [WriteLog](docs/sdks/log/README.md#writelog) - Logging a multi-line message to the Plex Media Server log
+* [WriteMessage](docs/sdks/log/README.md#writemessage) - Logging a single-line message to the Plex Media Server log
+* [EnablePapertrail](docs/sdks/log/README.md#enablepapertrail) - Enabling Papertrail
 
-### [Media](docs/sdks/media/README.md)
+### [Playlist](docs/sdks/playlist/README.md)
 
-* [MarkPlayed](docs/sdks/media/README.md#markplayed) - Mark Media Played
-* [MarkUnplayed](docs/sdks/media/README.md#markunplayed) - Mark Media Unplayed
-* [UpdatePlayProgress](docs/sdks/media/README.md#updateplayprogress) - Update Media Play Progress
-* [GetBannerImage](docs/sdks/media/README.md#getbannerimage) - Get Banner Image
-* [GetThumbImage](docs/sdks/media/README.md#getthumbimage) - Get Thumb Image
+* [ListPlaylists](docs/sdks/playlist/README.md#listplaylists) - List playlists
+* [GetPlaylist](docs/sdks/playlist/README.md#getplaylist) - Retrieve Playlist
+* [GetPlaylistItems](docs/sdks/playlist/README.md#getplaylistitems) - Retrieve Playlist Contents
 
-### [Playlists](docs/sdks/playlists/README.md)
+### [PlayQueue](docs/sdks/playqueue/README.md)
 
-* [CreatePlaylist](docs/sdks/playlists/README.md#createplaylist) - Create a Playlist
-* [GetPlaylists](docs/sdks/playlists/README.md#getplaylists) - Get All Playlists
-* [GetPlaylist](docs/sdks/playlists/README.md#getplaylist) - Retrieve Playlist
-* [DeletePlaylist](docs/sdks/playlists/README.md#deleteplaylist) - Deletes a Playlist
-* [UpdatePlaylist](docs/sdks/playlists/README.md#updateplaylist) - Update a Playlist
-* [GetPlaylistContents](docs/sdks/playlists/README.md#getplaylistcontents) - Retrieve Playlist Contents
-* [ClearPlaylistContents](docs/sdks/playlists/README.md#clearplaylistcontents) - Delete Playlist Contents
-* [AddPlaylistContents](docs/sdks/playlists/README.md#addplaylistcontents) - Adding to a Playlist
-* [UploadPlaylist](docs/sdks/playlists/README.md#uploadplaylist) - Upload Playlist
+* [CreatePlayQueue](docs/sdks/playqueue/README.md#createplayqueue) - Create a play queue
+* [GetPlayQueue](docs/sdks/playqueue/README.md#getplayqueue) - Retrieve a play queue
+* [AddToPlayQueue](docs/sdks/playqueue/README.md#addtoplayqueue) - Add a generator or playlist to a play queue
+* [ClearPlayQueue](docs/sdks/playqueue/README.md#clearplayqueue) - Clear a play queue
+* [ResetPlayQueue](docs/sdks/playqueue/README.md#resetplayqueue) - Reset a play queue
+* [Shuffle](docs/sdks/playqueue/README.md#shuffle) - Shuffle a play queue
+* [Unshuffle](docs/sdks/playqueue/README.md#unshuffle) - Unshuffle a play queue
+* [DeletePlayQueueItem](docs/sdks/playqueue/README.md#deleteplayqueueitem) - Delete an item from a play queue
+* [MovePlayQueueItem](docs/sdks/playqueue/README.md#moveplayqueueitem) - Move an item in a play queue
 
-### [Plex](docs/sdks/plex/README.md)
+### [Preferences](docs/sdks/preferences/README.md)
 
-* [GetCompanionsData](docs/sdks/plex/README.md#getcompanionsdata) - Get Companions Data
-* [GetUserFriends](docs/sdks/plex/README.md#getuserfriends) - Get list of friends of the user logged in
-* [GetGeoData](docs/sdks/plex/README.md#getgeodata) - Get Geo Data
-* [GetHomeData](docs/sdks/plex/README.md#gethomedata) - Get Plex Home Data
-* [GetServerResources](docs/sdks/plex/README.md#getserverresources) - Get Server Resources
-* [GetPin](docs/sdks/plex/README.md#getpin) - Get a Pin
-* [GetTokenByPinID](docs/sdks/plex/README.md#gettokenbypinid) - Get Access Token by PinId
+* [GetAllPreferences](docs/sdks/preferences/README.md#getallpreferences) - Get all preferences
+* [SetPreferences](docs/sdks/preferences/README.md#setpreferences) - Set preferences
+* [GetPreference](docs/sdks/preferences/README.md#getpreference) - Get a preferences
 
+### [Provider](docs/sdks/provider/README.md)
+
+* [ListProviders](docs/sdks/provider/README.md#listproviders) - Get the list of available media providers
+* [AddProvider](docs/sdks/provider/README.md#addprovider) - Add a media provider
+* [RefreshProviders](docs/sdks/provider/README.md#refreshproviders) - Refresh media providers
+* [DeleteMediaProvider](docs/sdks/provider/README.md#deletemediaprovider) - Delete a media provider
+
+### [Rate](docs/sdks/rate/README.md)
+
+* [SetRating](docs/sdks/rate/README.md#setrating) - Rate an item
 
 ### [Search](docs/sdks/search/README.md)
 
-* [PerformSearch](docs/sdks/search/README.md#performsearch) - Perform a search
-* [PerformVoiceSearch](docs/sdks/search/README.md#performvoicesearch) - Perform a voice search
-* [GetSearchResults](docs/sdks/search/README.md#getsearchresults) - Get Search Results
+* [SearchHubs](docs/sdks/search/README.md#searchhubs) - Search Hub
+* [VoiceSearchHubs](docs/sdks/search/README.md#voicesearchhubs) - Voice Search Hub
 
-### [Server](docs/sdks/server/README.md)
+### [Status](docs/sdks/status/README.md)
 
-* [GetServerCapabilities](docs/sdks/server/README.md#getservercapabilities) - Get Server Capabilities
-* [GetServerPreferences](docs/sdks/server/README.md#getserverpreferences) - Get Server Preferences
-* [GetAvailableClients](docs/sdks/server/README.md#getavailableclients) - Get Available Clients
-* [GetDevices](docs/sdks/server/README.md#getdevices) - Get Devices
-* [GetServerIdentity](docs/sdks/server/README.md#getserveridentity) - Get Server Identity
-* [GetMyPlexAccount](docs/sdks/server/README.md#getmyplexaccount) - Get MyPlex Account
-* [GetResizedPhoto](docs/sdks/server/README.md#getresizedphoto) - Get a Resized Photo
-* [GetMediaProviders](docs/sdks/server/README.md#getmediaproviders) - Get Media Providers
-* [GetServerList](docs/sdks/server/README.md#getserverlist) - Get Server List
+* [ListSessions](docs/sdks/status/README.md#listsessions) - List Sessions
+* [GetBackgroundTasks](docs/sdks/status/README.md#getbackgroundtasks) - Get background tasks
+* [ListPlaybackHistory](docs/sdks/status/README.md#listplaybackhistory) - List Playback History
+* [TerminateSession](docs/sdks/status/README.md#terminatesession) - Terminate a session
+* [DeleteHistory](docs/sdks/status/README.md#deletehistory) - Delete Single History Item
+* [GetHistoryItem](docs/sdks/status/README.md#gethistoryitem) - Get Single History Item
 
-### [Sessions](docs/sdks/sessions/README.md)
+### [Subscriptions](docs/sdks/subscriptions/README.md)
 
-* [GetSessions](docs/sdks/sessions/README.md#getsessions) - Get Active Sessions
-* [GetSessionHistory](docs/sdks/sessions/README.md#getsessionhistory) - Get Session History
-* [GetTranscodeSessions](docs/sdks/sessions/README.md#gettranscodesessions) - Get Transcode Sessions
-* [StopTranscodeSession](docs/sdks/sessions/README.md#stoptranscodesession) - Stop a Transcode Session
+* [GetAllSubscriptions](docs/sdks/subscriptions/README.md#getallsubscriptions) - Get all subscriptions
+* [CreateSubscription](docs/sdks/subscriptions/README.md#createsubscription) - Create a subscription
+* [ProcessSubscriptions](docs/sdks/subscriptions/README.md#processsubscriptions) - Process all subscriptions
+* [GetScheduledRecordings](docs/sdks/subscriptions/README.md#getscheduledrecordings) - Get all scheduled recordings
+* [GetTemplate](docs/sdks/subscriptions/README.md#gettemplate) - Get the subscription template
+* [CancelGrab](docs/sdks/subscriptions/README.md#cancelgrab) - Cancel an existing grab
+* [DeleteSubscription](docs/sdks/subscriptions/README.md#deletesubscription) - Delete a subscription
+* [GetSubscription](docs/sdks/subscriptions/README.md#getsubscription) - Get a single subscription
+* [EditSubscriptionPreferences](docs/sdks/subscriptions/README.md#editsubscriptionpreferences) - Edit a subscription
+* [ReorderSubscription](docs/sdks/subscriptions/README.md#reordersubscription) - Re-order a subscription
 
-### [Statistics](docs/sdks/statistics/README.md)
+### [Timeline](docs/sdks/timeline/README.md)
 
-* [GetStatistics](docs/sdks/statistics/README.md#getstatistics) - Get Media Statistics
-* [GetResourcesStatistics](docs/sdks/statistics/README.md#getresourcesstatistics) - Get Resources Statistics
-* [GetBandwidthStatistics](docs/sdks/statistics/README.md#getbandwidthstatistics) - Get Bandwidth Statistics
+* [MarkPlayed](docs/sdks/timeline/README.md#markplayed) - Mark an item as played
+* [Report](docs/sdks/timeline/README.md#report) - Report media timeline
+* [Unscrobble](docs/sdks/timeline/README.md#unscrobble) - Mark an item as unplayed
+
+### [Transcoder](docs/sdks/transcoder/README.md)
+
+* [TranscodeImage](docs/sdks/transcoder/README.md#transcodeimage) - Transcode an image
+* [MakeDecision](docs/sdks/transcoder/README.md#makedecision) - Make a decision on media playback
+* [TriggerFallback](docs/sdks/transcoder/README.md#triggerfallback) - Manually trigger a transcoder fallback
+* [TranscodeSubtitles](docs/sdks/transcoder/README.md#transcodesubtitles) - Transcode subtitles
+* [StartTranscodeSession](docs/sdks/transcoder/README.md#starttranscodesession) - Start A Transcoding Session
+
+### [UltraBlur](docs/sdks/ultrablur/README.md)
+
+* [GetColors](docs/sdks/ultrablur/README.md#getcolors) - Get UltraBlur Colors
+* [GetImage](docs/sdks/ultrablur/README.md#getimage) - Get UltraBlur Image
 
 ### [Updater](docs/sdks/updater/README.md)
 
-* [GetUpdateStatus](docs/sdks/updater/README.md#getupdatestatus) - Querying status of updates
-* [CheckForUpdates](docs/sdks/updater/README.md#checkforupdates) - Checking for updates
-* [ApplyUpdates](docs/sdks/updater/README.md#applyupdates) - Apply Updates
-
-### [Users](docs/sdks/users/README.md)
-
-* [GetUsers](docs/sdks/users/README.md#getusers) - Get list of all connected users
-
-### [Video](docs/sdks/video/README.md)
-
-* [GetTimeline](docs/sdks/video/README.md#gettimeline) - Get the timeline for a media item
-* [StartUniversalTranscode](docs/sdks/video/README.md#startuniversaltranscode) - Start Universal Transcode
-
-### [Watchlist](docs/sdks/watchlist/README.md)
-
-* [GetWatchList](docs/sdks/watchlist/README.md#getwatchlist) - Get User Watchlist
+* [ApplyUpdates](docs/sdks/updater/README.md#applyupdates) - Applying updates
+* [CheckUpdates](docs/sdks/updater/README.md#checkupdates) - Checking for updates
+* [GetUpdatesStatus](docs/sdks/updater/README.md#getupdatesstatus) - Querying status of updates
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -259,6 +458,8 @@ package main
 import (
 	"context"
 	"github.com/LukeHagar/plexgo"
+	"github.com/LukeHagar/plexgo/models/components"
+	"github.com/LukeHagar/plexgo/models/operations"
 	"github.com/LukeHagar/plexgo/retry"
 	"log"
 	"models/operations"
@@ -268,10 +469,21 @@ func main() {
 	ctx := context.Background()
 
 	s := plexgo.New(
+		plexgo.WithAccepts(components.AcceptsApplicationXML),
+		plexgo.WithClientIdentifier("abc123"),
+		plexgo.WithProduct("Plex for Roku"),
+		plexgo.WithVersion("2.4.1"),
+		plexgo.WithPlatform("Roku"),
+		plexgo.WithPlatformVersion("4.3 build 1057"),
+		plexgo.WithDevice("Roku 3"),
+		plexgo.WithModel("4200X"),
+		plexgo.WithDeviceVendor("Roku"),
+		plexgo.WithDeviceName("Living Room TV"),
+		plexgo.WithMarketplace("googlePlay"),
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
 	)
 
-	res, err := s.Server.GetServerCapabilities(ctx, operations.WithRetries(
+	res, err := s.General.GetServerInfo(ctx, operations.GetServerInfoRequest{}, operations.WithRetries(
 		retry.Config{
 			Strategy: "backoff",
 			Backoff: &retry.BackoffStrategy{
@@ -285,7 +497,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.Object != nil {
+	if res.MediaContainerWithDirectory != nil {
 		// handle response
 	}
 }
@@ -299,6 +511,8 @@ package main
 import (
 	"context"
 	"github.com/LukeHagar/plexgo"
+	"github.com/LukeHagar/plexgo/models/components"
+	"github.com/LukeHagar/plexgo/models/operations"
 	"github.com/LukeHagar/plexgo/retry"
 	"log"
 )
@@ -318,14 +532,25 @@ func main() {
 				},
 				RetryConnectionErrors: false,
 			}),
+		plexgo.WithAccepts(components.AcceptsApplicationXML),
+		plexgo.WithClientIdentifier("abc123"),
+		plexgo.WithProduct("Plex for Roku"),
+		plexgo.WithVersion("2.4.1"),
+		plexgo.WithPlatform("Roku"),
+		plexgo.WithPlatformVersion("4.3 build 1057"),
+		plexgo.WithDevice("Roku 3"),
+		plexgo.WithModel("4200X"),
+		plexgo.WithDeviceVendor("Roku"),
+		plexgo.WithDeviceName("Living Room TV"),
+		plexgo.WithMarketplace("googlePlay"),
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
 	)
 
-	res, err := s.Server.GetServerCapabilities(ctx)
+	res, err := s.General.GetServerInfo(ctx, operations.GetServerInfoRequest{})
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.Object != nil {
+	if res.MediaContainerWithDirectory != nil {
 		// handle response
 	}
 }
@@ -340,13 +565,11 @@ Handling errors in this SDK should largely match your expectations. All operatio
 
 By Default, an API error will return `sdkerrors.SDKError`. When custom error responses are specified for an operation, the SDK may also return their associated error. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation.
 
-For example, the `GetServerCapabilities` function may return the following errors:
+For example, the `GetServerInfo` function may return the following errors:
 
-| Error Type                                  | Status Code | Content Type     |
-| ------------------------------------------- | ----------- | ---------------- |
-| sdkerrors.GetServerCapabilitiesBadRequest   | 400         | application/json |
-| sdkerrors.GetServerCapabilitiesUnauthorized | 401         | application/json |
-| sdkerrors.SDKError                          | 4XX, 5XX    | \*/\*            |
+| Error Type         | Status Code | Content Type |
+| ------------------ | ----------- | ------------ |
+| sdkerrors.SDKError | 4XX, 5XX    | \*/\*        |
 
 ### Example
 
@@ -357,6 +580,8 @@ import (
 	"context"
 	"errors"
 	"github.com/LukeHagar/plexgo"
+	"github.com/LukeHagar/plexgo/models/components"
+	"github.com/LukeHagar/plexgo/models/operations"
 	"github.com/LukeHagar/plexgo/models/sdkerrors"
 	"log"
 )
@@ -365,23 +590,22 @@ func main() {
 	ctx := context.Background()
 
 	s := plexgo.New(
+		plexgo.WithAccepts(components.AcceptsApplicationXML),
+		plexgo.WithClientIdentifier("abc123"),
+		plexgo.WithProduct("Plex for Roku"),
+		plexgo.WithVersion("2.4.1"),
+		plexgo.WithPlatform("Roku"),
+		plexgo.WithPlatformVersion("4.3 build 1057"),
+		plexgo.WithDevice("Roku 3"),
+		plexgo.WithModel("4200X"),
+		plexgo.WithDeviceVendor("Roku"),
+		plexgo.WithDeviceName("Living Room TV"),
+		plexgo.WithMarketplace("googlePlay"),
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
 	)
 
-	res, err := s.Server.GetServerCapabilities(ctx)
+	res, err := s.General.GetServerInfo(ctx, operations.GetServerInfoRequest{})
 	if err != nil {
-
-		var e *sdkerrors.GetServerCapabilitiesBadRequest
-		if errors.As(err, &e) {
-			// handle error
-			log.Fatal(e.Error())
-		}
-
-		var e *sdkerrors.GetServerCapabilitiesUnauthorized
-		if errors.As(err, &e) {
-			// handle error
-			log.Fatal(e.Error())
-		}
 
 		var e *sdkerrors.SDKError
 		if errors.As(err, &e) {
@@ -397,15 +621,26 @@ func main() {
 <!-- Start Server Selection [server] -->
 ## Server Selection
 
-### Server Variables
+### Select Server by Index
 
-The default server `{protocol}://{ip}:{port}` contains variables and is set to `https://10.10.10.47:32400` by default. To override default values, the following options are available when initializing the SDK client instance:
+You can override the default server globally using the `WithServerIndex(serverIndex int)` option when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
-| Variable   | Option                                  | Supported Values           | Default         | Description                                    |
-| ---------- | --------------------------------------- | -------------------------- | --------------- | ---------------------------------------------- |
-| `protocol` | `WithProtocol(protocol ServerProtocol)` | - `"http"`<br/>- `"https"` | `"https"`       | The protocol to use for the server connection  |
-| `ip`       | `WithIP(ip string)`                     | string                     | `"10.10.10.47"` | The IP address or hostname of your Plex Server |
-| `port`     | `WithPort(port string)`                 | string                     | `"32400"`       | The port of your Plex Server                   |
+| #   | Server                                                     | Variables                                    | Description |
+| --- | ---------------------------------------------------------- | -------------------------------------------- | ----------- |
+| 0   | `https://{IP-description}.{identifier}.plex.direct:{port}` | `identifier`<br/>`IP-description`<br/>`port` |             |
+| 1   | `{protocol}://{host}:{port}`                               | `protocol`<br/>`host`<br/>`port`             |             |
+| 2   | `https://{server_url}`                                     | `server_url`                                 |             |
+
+If the selected server has variables, you may override its default values using the associated option(s):
+
+| Variable         | Option                                    | Default                              | Description                                                                                                                                                                                                                                                                                                                                                                          |
+| ---------------- | ----------------------------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `identifier`     | `WithIdentifier(identifier string)`       | `"0123456789abcdef0123456789abcdef"` | The unique identifier of this particular PMS                                                                                                                                                                                                                                                                                                                                         |
+| `IP-description` | `WithIPDescription(ipDescription string)` | `"1-2-3-4"`                          | A `-` separated string of the IPv4 or IPv6 address components                                                                                                                                                                                                                                                                                                                        |
+| `port`           | `WithPort(port string)`                   | `"32400"`                            | The Port number configured on the PMS. Typically (`32400`). <br/>If using a reverse proxy, this would be the port number configured on the proxy.<br/>                                                                                                                                                                                                                               |
+| `protocol`       | `WithProtocol(protocol string)`           | `"http"`                             | The network protocol to use. Typically (`http` or `https`)                                                                                                                                                                                                                                                                                                                           |
+| `host`           | `WithHost(host string)`                   | `"localhost"`                        | The Host of the PMS.<br/>If using on a local network, this is the internal IP address of the server hosting the PMS.<br/>If using on an external network, this is the external IP address for your network, and requires port forwarding.<br/>If using a reverse proxy, this would be the external DNS domain for your network, and requires the proxy handle port forwarding. <br/> |
+| `server_url`     | `WithGlobalServerURL(serverURL string)`   | `"http://localhost:32400"`           | The full manual URL to access the PMS                                                                                                                                                                                                                                                                                                                                                |
 
 #### Example
 
@@ -415,70 +650,7 @@ package main
 import (
 	"context"
 	"github.com/LukeHagar/plexgo"
-	"log"
-)
-
-func main() {
-	ctx := context.Background()
-
-	s := plexgo.New(
-		plexgo.WithProtocol("https"),
-		plexgo.WithIP("4982:bc2a:b4f8:efb5:2394:5bc3:ab4f:0e6d"),
-		plexgo.WithPort("44765"),
-		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-	)
-
-	res, err := s.Server.GetServerCapabilities(ctx)
-	if err != nil {
-		log.Fatal(err)
-	}
-	if res.Object != nil {
-		// handle response
-	}
-}
-
-```
-
-### Override Server URL Per-Client
-
-The default server can be overridden globally using the `WithServerURL(serverURL string)` option when initializing the SDK client instance. For example:
-```go
-package main
-
-import (
-	"context"
-	"github.com/LukeHagar/plexgo"
-	"log"
-)
-
-func main() {
-	ctx := context.Background()
-
-	s := plexgo.New(
-		plexgo.WithServerURL("https://10.10.10.47:32400"),
-		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-	)
-
-	res, err := s.Server.GetServerCapabilities(ctx)
-	if err != nil {
-		log.Fatal(err)
-	}
-	if res.Object != nil {
-		// handle response
-	}
-}
-
-```
-
-### Override Server URL Per-Operation
-
-The server URL can also be overridden on a per-operation basis, provided a server list was specified for the operation. For example:
-```go
-package main
-
-import (
-	"context"
-	"github.com/LukeHagar/plexgo"
+	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
@@ -487,14 +659,73 @@ func main() {
 	ctx := context.Background()
 
 	s := plexgo.New(
+		plexgo.WithServerIndex(1),
+		plexgo.WithProtocol("<value>"),
+		plexgo.WithHost("electric-excess.name"),
+		plexgo.WithPort("36393"),
+		plexgo.WithAccepts(components.AcceptsApplicationXML),
+		plexgo.WithClientIdentifier("abc123"),
+		plexgo.WithProduct("Plex for Roku"),
+		plexgo.WithVersion("2.4.1"),
+		plexgo.WithPlatform("Roku"),
+		plexgo.WithPlatformVersion("4.3 build 1057"),
+		plexgo.WithDevice("Roku 3"),
+		plexgo.WithModel("4200X"),
+		plexgo.WithDeviceVendor("Roku"),
+		plexgo.WithDeviceName("Living Room TV"),
+		plexgo.WithMarketplace("googlePlay"),
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
 	)
 
-	res, err := s.Plex.GetCompanionsData(ctx, operations.WithServerURL("https://plex.tv/api/v2"))
+	res, err := s.General.GetServerInfo(ctx, operations.GetServerInfoRequest{})
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.ResponseBodies != nil {
+	if res.MediaContainerWithDirectory != nil {
+		// handle response
+	}
+}
+
+```
+
+### Override Server URL Per-Client
+
+The default server can also be overridden globally using the `WithServerURL(serverURL string)` option when initializing the SDK client instance. For example:
+```go
+package main
+
+import (
+	"context"
+	"github.com/LukeHagar/plexgo"
+	"github.com/LukeHagar/plexgo/models/components"
+	"github.com/LukeHagar/plexgo/models/operations"
+	"log"
+)
+
+func main() {
+	ctx := context.Background()
+
+	s := plexgo.New(
+		plexgo.WithServerURL("https://http://localhost:32400"),
+		plexgo.WithAccepts(components.AcceptsApplicationXML),
+		plexgo.WithClientIdentifier("abc123"),
+		plexgo.WithProduct("Plex for Roku"),
+		plexgo.WithVersion("2.4.1"),
+		plexgo.WithPlatform("Roku"),
+		plexgo.WithPlatformVersion("4.3 build 1057"),
+		plexgo.WithDevice("Roku 3"),
+		plexgo.WithModel("4200X"),
+		plexgo.WithDeviceVendor("Roku"),
+		plexgo.WithDeviceName("Living Room TV"),
+		plexgo.WithMarketplace("googlePlay"),
+		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+	)
+
+	res, err := s.General.GetServerInfo(ctx, operations.GetServerInfoRequest{})
+	if err != nil {
+		log.Fatal(err)
+	}
+	if res.MediaContainerWithDirectory != nil {
 		// handle response
 	}
 }
@@ -539,9 +770,9 @@ This can be a convenient way to configure timeouts, cookies, proxies, custom hea
 
 This SDK supports the following security scheme globally:
 
-| Name          | Type   | Scheme  |
-| ------------- | ------ | ------- |
-| `AccessToken` | apiKey | API key |
+| Name    | Type   | Scheme  |
+| ------- | ------ | ------- |
+| `Token` | apiKey | API key |
 
 You can configure it using the `WithSecurity` option when initializing the SDK client instance. For example:
 ```go
@@ -550,6 +781,8 @@ package main
 import (
 	"context"
 	"github.com/LukeHagar/plexgo"
+	"github.com/LukeHagar/plexgo/models/components"
+	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
 )
 
@@ -558,45 +791,30 @@ func main() {
 
 	s := plexgo.New(
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+		plexgo.WithAccepts(components.AcceptsApplicationXML),
+		plexgo.WithClientIdentifier("abc123"),
+		plexgo.WithProduct("Plex for Roku"),
+		plexgo.WithVersion("2.4.1"),
+		plexgo.WithPlatform("Roku"),
+		plexgo.WithPlatformVersion("4.3 build 1057"),
+		plexgo.WithDevice("Roku 3"),
+		plexgo.WithModel("4200X"),
+		plexgo.WithDeviceVendor("Roku"),
+		plexgo.WithDeviceName("Living Room TV"),
+		plexgo.WithMarketplace("googlePlay"),
 	)
 
-	res, err := s.Server.GetServerCapabilities(ctx)
+	res, err := s.General.GetServerInfo(ctx, operations.GetServerInfoRequest{})
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.Object != nil {
+	if res.MediaContainerWithDirectory != nil {
 		// handle response
 	}
 }
 
 ```
 <!-- End Authentication [security] -->
-
-<!-- Start Special Types [types] -->
-## Special Types
-
-This SDK defines the following custom types to assist with marshalling and unmarshalling data.
-
-### Date
-
-`types.Date` is a wrapper around time.Time that allows for JSON marshaling a date string formatted as "2006-01-02".
-
-#### Usage
-
-```go
-d1 := types.NewDate(time.Now()) // returns *types.Date
-
-d2 := types.DateFromTime(time.Now()) // returns types.Date
-
-d3, err := types.NewDateFromString("2019-01-01") // returns *types.Date, error
-
-d4, err := types.DateFromString("2019-01-01") // returns types.Date, error
-
-d5 := types.MustNewDateFromString("2019-01-01") // returns *types.Date and panics on error
-
-d6 := types.MustDateFromString("2019-01-01") // returns types.Date and panics on error
-```
-<!-- End Special Types [types] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

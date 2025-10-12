@@ -3,173 +3,244 @@
 package operations
 
 import (
+	"github.com/LukeHagar/plexgo/internal/utils"
+	"github.com/LukeHagar/plexgo/models/components"
 	"net/http"
 )
 
-type GetPlaylistRequest struct {
-	// the ID of the playlist
-	PlaylistID float64 `pathParam:"style=simple,explode=false,name=playlistID"`
+type GetPlaylistGlobals struct {
+	// Indicates the client accepts the indicated media types
+	Accepts *components.Accepts `default:"application/xml" header:"style=simple,explode=false,name=accepts"`
+	// An opaque identifier unique to the client
+	ClientIdentifier *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+	// The name of the client product
+	Product *string `header:"style=simple,explode=false,name=X-Plex-Product"`
+	// The version of the client application
+	Version *string `header:"style=simple,explode=false,name=X-Plex-Version"`
+	// The platform of the client
+	Platform *string `header:"style=simple,explode=false,name=X-Plex-Platform"`
+	// The version of the platform
+	PlatformVersion *string `header:"style=simple,explode=false,name=X-Plex-Platform-Version"`
+	// A relatively friendly name for the client device
+	Device *string `header:"style=simple,explode=false,name=X-Plex-Device"`
+	// A potentially less friendly identifier for the device model
+	Model *string `header:"style=simple,explode=false,name=X-Plex-Model"`
+	// The device vendor
+	DeviceVendor *string `header:"style=simple,explode=false,name=X-Plex-Device-Vendor"`
+	// A friendly name for the client
+	DeviceName *string `header:"style=simple,explode=false,name=X-Plex-Device-Name"`
+	// The marketplace on which the client application is distributed
+	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
 }
 
-func (g *GetPlaylistRequest) GetPlaylistID() float64 {
+func (g GetPlaylistGlobals) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetPlaylistGlobals) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetPlaylistGlobals) GetAccepts() *components.Accepts {
 	if g == nil {
-		return 0.0
+		return nil
+	}
+	return g.Accepts
+}
+
+func (g *GetPlaylistGlobals) GetClientIdentifier() *string {
+	if g == nil {
+		return nil
+	}
+	return g.ClientIdentifier
+}
+
+func (g *GetPlaylistGlobals) GetProduct() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Product
+}
+
+func (g *GetPlaylistGlobals) GetVersion() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Version
+}
+
+func (g *GetPlaylistGlobals) GetPlatform() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Platform
+}
+
+func (g *GetPlaylistGlobals) GetPlatformVersion() *string {
+	if g == nil {
+		return nil
+	}
+	return g.PlatformVersion
+}
+
+func (g *GetPlaylistGlobals) GetDevice() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Device
+}
+
+func (g *GetPlaylistGlobals) GetModel() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Model
+}
+
+func (g *GetPlaylistGlobals) GetDeviceVendor() *string {
+	if g == nil {
+		return nil
+	}
+	return g.DeviceVendor
+}
+
+func (g *GetPlaylistGlobals) GetDeviceName() *string {
+	if g == nil {
+		return nil
+	}
+	return g.DeviceName
+}
+
+func (g *GetPlaylistGlobals) GetMarketplace() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Marketplace
+}
+
+type GetPlaylistRequest struct {
+	// Indicates the client accepts the indicated media types
+	Accepts *components.Accepts `default:"application/xml" header:"style=simple,explode=false,name=accepts"`
+	// An opaque identifier unique to the client
+	ClientIdentifier *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+	// The name of the client product
+	Product *string `header:"style=simple,explode=false,name=X-Plex-Product"`
+	// The version of the client application
+	Version *string `header:"style=simple,explode=false,name=X-Plex-Version"`
+	// The platform of the client
+	Platform *string `header:"style=simple,explode=false,name=X-Plex-Platform"`
+	// The version of the platform
+	PlatformVersion *string `header:"style=simple,explode=false,name=X-Plex-Platform-Version"`
+	// A relatively friendly name for the client device
+	Device *string `header:"style=simple,explode=false,name=X-Plex-Device"`
+	// A potentially less friendly identifier for the device model
+	Model *string `header:"style=simple,explode=false,name=X-Plex-Model"`
+	// The device vendor
+	DeviceVendor *string `header:"style=simple,explode=false,name=X-Plex-Device-Vendor"`
+	// A friendly name for the client
+	DeviceName *string `header:"style=simple,explode=false,name=X-Plex-Device-Name"`
+	// The marketplace on which the client application is distributed
+	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
+	// The ID of the playlist
+	PlaylistID int64 `pathParam:"style=simple,explode=false,name=playlistId"`
+}
+
+func (g GetPlaylistRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetPlaylistRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"playlistId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetPlaylistRequest) GetAccepts() *components.Accepts {
+	if g == nil {
+		return nil
+	}
+	return g.Accepts
+}
+
+func (g *GetPlaylistRequest) GetClientIdentifier() *string {
+	if g == nil {
+		return nil
+	}
+	return g.ClientIdentifier
+}
+
+func (g *GetPlaylistRequest) GetProduct() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Product
+}
+
+func (g *GetPlaylistRequest) GetVersion() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Version
+}
+
+func (g *GetPlaylistRequest) GetPlatform() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Platform
+}
+
+func (g *GetPlaylistRequest) GetPlatformVersion() *string {
+	if g == nil {
+		return nil
+	}
+	return g.PlatformVersion
+}
+
+func (g *GetPlaylistRequest) GetDevice() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Device
+}
+
+func (g *GetPlaylistRequest) GetModel() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Model
+}
+
+func (g *GetPlaylistRequest) GetDeviceVendor() *string {
+	if g == nil {
+		return nil
+	}
+	return g.DeviceVendor
+}
+
+func (g *GetPlaylistRequest) GetDeviceName() *string {
+	if g == nil {
+		return nil
+	}
+	return g.DeviceName
+}
+
+func (g *GetPlaylistRequest) GetMarketplace() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Marketplace
+}
+
+func (g *GetPlaylistRequest) GetPlaylistID() int64 {
+	if g == nil {
+		return 0
 	}
 	return g.PlaylistID
-}
-
-type GetPlaylistMetadata struct {
-	Content      *string `json:"content,omitempty"`
-	RatingKey    *string `json:"ratingKey,omitempty"`
-	Key          *string `json:"key,omitempty"`
-	GUID         *string `json:"guid,omitempty"`
-	Type         *string `json:"type,omitempty"`
-	Title        *string `json:"title,omitempty"`
-	Summary      *string `json:"summary,omitempty"`
-	Smart        *bool   `json:"smart,omitempty"`
-	PlaylistType *string `json:"playlistType,omitempty"`
-	Composite    *string `json:"composite,omitempty"`
-	Icon         *string `json:"icon,omitempty"`
-	Duration     *int    `json:"duration,omitempty"`
-	LeafCount    *int    `json:"leafCount,omitempty"`
-	AddedAt      *int    `json:"addedAt,omitempty"`
-	UpdatedAt    *int    `json:"updatedAt,omitempty"`
-}
-
-func (g *GetPlaylistMetadata) GetContent() *string {
-	if g == nil {
-		return nil
-	}
-	return g.Content
-}
-
-func (g *GetPlaylistMetadata) GetRatingKey() *string {
-	if g == nil {
-		return nil
-	}
-	return g.RatingKey
-}
-
-func (g *GetPlaylistMetadata) GetKey() *string {
-	if g == nil {
-		return nil
-	}
-	return g.Key
-}
-
-func (g *GetPlaylistMetadata) GetGUID() *string {
-	if g == nil {
-		return nil
-	}
-	return g.GUID
-}
-
-func (g *GetPlaylistMetadata) GetType() *string {
-	if g == nil {
-		return nil
-	}
-	return g.Type
-}
-
-func (g *GetPlaylistMetadata) GetTitle() *string {
-	if g == nil {
-		return nil
-	}
-	return g.Title
-}
-
-func (g *GetPlaylistMetadata) GetSummary() *string {
-	if g == nil {
-		return nil
-	}
-	return g.Summary
-}
-
-func (g *GetPlaylistMetadata) GetSmart() *bool {
-	if g == nil {
-		return nil
-	}
-	return g.Smart
-}
-
-func (g *GetPlaylistMetadata) GetPlaylistType() *string {
-	if g == nil {
-		return nil
-	}
-	return g.PlaylistType
-}
-
-func (g *GetPlaylistMetadata) GetComposite() *string {
-	if g == nil {
-		return nil
-	}
-	return g.Composite
-}
-
-func (g *GetPlaylistMetadata) GetIcon() *string {
-	if g == nil {
-		return nil
-	}
-	return g.Icon
-}
-
-func (g *GetPlaylistMetadata) GetDuration() *int {
-	if g == nil {
-		return nil
-	}
-	return g.Duration
-}
-
-func (g *GetPlaylistMetadata) GetLeafCount() *int {
-	if g == nil {
-		return nil
-	}
-	return g.LeafCount
-}
-
-func (g *GetPlaylistMetadata) GetAddedAt() *int {
-	if g == nil {
-		return nil
-	}
-	return g.AddedAt
-}
-
-func (g *GetPlaylistMetadata) GetUpdatedAt() *int {
-	if g == nil {
-		return nil
-	}
-	return g.UpdatedAt
-}
-
-type GetPlaylistMediaContainer struct {
-	Size     *int                  `json:"size,omitempty"`
-	Metadata []GetPlaylistMetadata `json:"Metadata,omitempty"`
-}
-
-func (g *GetPlaylistMediaContainer) GetSize() *int {
-	if g == nil {
-		return nil
-	}
-	return g.Size
-}
-
-func (g *GetPlaylistMediaContainer) GetMetadata() []GetPlaylistMetadata {
-	if g == nil {
-		return nil
-	}
-	return g.Metadata
-}
-
-// GetPlaylistResponseBody - The playlist
-type GetPlaylistResponseBody struct {
-	MediaContainer *GetPlaylistMediaContainer `json:"MediaContainer,omitempty"`
-}
-
-func (g *GetPlaylistResponseBody) GetMediaContainer() *GetPlaylistMediaContainer {
-	if g == nil {
-		return nil
-	}
-	return g.MediaContainer
 }
 
 type GetPlaylistResponse struct {
@@ -179,8 +250,8 @@ type GetPlaylistResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The playlist
-	Object *GetPlaylistResponseBody
+	// OK
+	MediaContainerWithPlaylistMetadata *components.MediaContainerWithPlaylistMetadata
 }
 
 func (g *GetPlaylistResponse) GetContentType() string {
@@ -204,9 +275,9 @@ func (g *GetPlaylistResponse) GetRawResponse() *http.Response {
 	return g.RawResponse
 }
 
-func (g *GetPlaylistResponse) GetObject() *GetPlaylistResponseBody {
+func (g *GetPlaylistResponse) GetMediaContainerWithPlaylistMetadata() *components.MediaContainerWithPlaylistMetadata {
 	if g == nil {
 		return nil
 	}
-	return g.Object
+	return g.MediaContainerWithPlaylistMetadata
 }

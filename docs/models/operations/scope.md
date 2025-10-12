@@ -1,6 +1,6 @@
 # Scope
 
-`all` - This is the only supported `scope` parameter.
+The value `all` is the only supported `scope` parameter.
 
 
 ## Values

@@ -3,43 +3,333 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
+	"github.com/LukeHagar/plexgo/internal/utils"
+	"github.com/LukeHagar/plexgo/models/components"
 	"net/http"
 )
 
-// TaskName - the name of the task to be started.
-type TaskName string
+type StartTaskGlobals struct {
+	// Indicates the client accepts the indicated media types
+	Accepts *components.Accepts `default:"application/xml" header:"style=simple,explode=false,name=accepts"`
+	// An opaque identifier unique to the client
+	ClientIdentifier *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+	// The name of the client product
+	Product *string `header:"style=simple,explode=false,name=X-Plex-Product"`
+	// The version of the client application
+	Version *string `header:"style=simple,explode=false,name=X-Plex-Version"`
+	// The platform of the client
+	Platform *string `header:"style=simple,explode=false,name=X-Plex-Platform"`
+	// The version of the platform
+	PlatformVersion *string `header:"style=simple,explode=false,name=X-Plex-Platform-Version"`
+	// A relatively friendly name for the client device
+	Device *string `header:"style=simple,explode=false,name=X-Plex-Device"`
+	// A potentially less friendly identifier for the device model
+	Model *string `header:"style=simple,explode=false,name=X-Plex-Model"`
+	// The device vendor
+	DeviceVendor *string `header:"style=simple,explode=false,name=X-Plex-Device-Vendor"`
+	// A friendly name for the client
+	DeviceName *string `header:"style=simple,explode=false,name=X-Plex-Device-Name"`
+	// The marketplace on which the client application is distributed
+	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
+}
+
+func (s StartTaskGlobals) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *StartTaskGlobals) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *StartTaskGlobals) GetAccepts() *components.Accepts {
+	if s == nil {
+		return nil
+	}
+	return s.Accepts
+}
+
+func (s *StartTaskGlobals) GetClientIdentifier() *string {
+	if s == nil {
+		return nil
+	}
+	return s.ClientIdentifier
+}
+
+func (s *StartTaskGlobals) GetProduct() *string {
+	if s == nil {
+		return nil
+	}
+	return s.Product
+}
+
+func (s *StartTaskGlobals) GetVersion() *string {
+	if s == nil {
+		return nil
+	}
+	return s.Version
+}
+
+func (s *StartTaskGlobals) GetPlatform() *string {
+	if s == nil {
+		return nil
+	}
+	return s.Platform
+}
+
+func (s *StartTaskGlobals) GetPlatformVersion() *string {
+	if s == nil {
+		return nil
+	}
+	return s.PlatformVersion
+}
+
+func (s *StartTaskGlobals) GetDevice() *string {
+	if s == nil {
+		return nil
+	}
+	return s.Device
+}
+
+func (s *StartTaskGlobals) GetModel() *string {
+	if s == nil {
+		return nil
+	}
+	return s.Model
+}
+
+func (s *StartTaskGlobals) GetDeviceVendor() *string {
+	if s == nil {
+		return nil
+	}
+	return s.DeviceVendor
+}
+
+func (s *StartTaskGlobals) GetDeviceName() *string {
+	if s == nil {
+		return nil
+	}
+	return s.DeviceName
+}
+
+func (s *StartTaskGlobals) GetMarketplace() *string {
+	if s == nil {
+		return nil
+	}
+	return s.Marketplace
+}
+
+// PathParamTask - The task name
+type PathParamTask string
 
 const (
-	TaskNameBackupDatabase            TaskName = "BackupDatabase"
-	TaskNameBuildGracenoteCollections TaskName = "BuildGracenoteCollections"
-	TaskNameCheckForUpdates           TaskName = "CheckForUpdates"
-	TaskNameCleanOldBundles           TaskName = "CleanOldBundles"
-	TaskNameCleanOldCacheFiles        TaskName = "CleanOldCacheFiles"
-	TaskNameDeepMediaAnalysis         TaskName = "DeepMediaAnalysis"
-	TaskNameGenerateAutoTags          TaskName = "GenerateAutoTags"
-	TaskNameGenerateChapterThumbs     TaskName = "GenerateChapterThumbs"
-	TaskNameGenerateMediaIndexFiles   TaskName = "GenerateMediaIndexFiles"
-	TaskNameOptimizeDatabase          TaskName = "OptimizeDatabase"
-	TaskNameRefreshLibraries          TaskName = "RefreshLibraries"
-	TaskNameRefreshLocalMedia         TaskName = "RefreshLocalMedia"
-	TaskNameRefreshPeriodicMetadata   TaskName = "RefreshPeriodicMetadata"
-	TaskNameUpgradeMediaAnalysis      TaskName = "UpgradeMediaAnalysis"
+	PathParamTaskAutomaticUpdates                 PathParamTask = "AutomaticUpdates"
+	PathParamTaskBackupDatabase                   PathParamTask = "BackupDatabase"
+	PathParamTaskButlerTaskGenerateAdMarkers      PathParamTask = "ButlerTaskGenerateAdMarkers"
+	PathParamTaskButlerTaskGenerateCreditsMarkers PathParamTask = "ButlerTaskGenerateCreditsMarkers"
+	PathParamTaskButlerTaskGenerateIntroMarkers   PathParamTask = "ButlerTaskGenerateIntroMarkers"
+	PathParamTaskButlerTaskGenerateVoiceActivity  PathParamTask = "ButlerTaskGenerateVoiceActivity"
+	PathParamTaskCleanOldBundles                  PathParamTask = "CleanOldBundles"
+	PathParamTaskCleanOldCacheFiles               PathParamTask = "CleanOldCacheFiles"
+	PathParamTaskDeepMediaAnalysis                PathParamTask = "DeepMediaAnalysis"
+	PathParamTaskGarbageCollectBlobs              PathParamTask = "GarbageCollectBlobs"
+	PathParamTaskGarbageCollectLibraryMedia       PathParamTask = "GarbageCollectLibraryMedia"
+	PathParamTaskGenerateBlurHashes               PathParamTask = "GenerateBlurHashes"
+	PathParamTaskGenerateChapterThumbs            PathParamTask = "GenerateChapterThumbs"
+	PathParamTaskGenerateMediaIndexFiles          PathParamTask = "GenerateMediaIndexFiles"
+	PathParamTaskLoudnessAnalysis                 PathParamTask = "LoudnessAnalysis"
+	PathParamTaskMusicAnalysis                    PathParamTask = "MusicAnalysis"
+	PathParamTaskOptimizeDatabase                 PathParamTask = "OptimizeDatabase"
+	PathParamTaskRefreshEpgGuides                 PathParamTask = "RefreshEpgGuides"
+	PathParamTaskRefreshLibraries                 PathParamTask = "RefreshLibraries"
+	PathParamTaskRefreshLocalMedia                PathParamTask = "RefreshLocalMedia"
+	PathParamTaskRefreshPeriodicMetadata          PathParamTask = "RefreshPeriodicMetadata"
+	PathParamTaskUpgradeMediaAnalysis             PathParamTask = "UpgradeMediaAnalysis"
 )
 
-func (e TaskName) ToPointer() *TaskName {
+func (e PathParamTask) ToPointer() *PathParamTask {
 	return &e
+}
+func (e *PathParamTask) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "AutomaticUpdates":
+		fallthrough
+	case "BackupDatabase":
+		fallthrough
+	case "ButlerTaskGenerateAdMarkers":
+		fallthrough
+	case "ButlerTaskGenerateCreditsMarkers":
+		fallthrough
+	case "ButlerTaskGenerateIntroMarkers":
+		fallthrough
+	case "ButlerTaskGenerateVoiceActivity":
+		fallthrough
+	case "CleanOldBundles":
+		fallthrough
+	case "CleanOldCacheFiles":
+		fallthrough
+	case "DeepMediaAnalysis":
+		fallthrough
+	case "GarbageCollectBlobs":
+		fallthrough
+	case "GarbageCollectLibraryMedia":
+		fallthrough
+	case "GenerateBlurHashes":
+		fallthrough
+	case "GenerateChapterThumbs":
+		fallthrough
+	case "GenerateMediaIndexFiles":
+		fallthrough
+	case "LoudnessAnalysis":
+		fallthrough
+	case "MusicAnalysis":
+		fallthrough
+	case "OptimizeDatabase":
+		fallthrough
+	case "RefreshEpgGuides":
+		fallthrough
+	case "RefreshLibraries":
+		fallthrough
+	case "RefreshLocalMedia":
+		fallthrough
+	case "RefreshPeriodicMetadata":
+		fallthrough
+	case "UpgradeMediaAnalysis":
+		*e = PathParamTask(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PathParamTask: %v", v)
+	}
 }
 
 type StartTaskRequest struct {
-	// the name of the task to be started.
-	TaskName TaskName `pathParam:"style=simple,explode=false,name=taskName"`
+	// Indicates the client accepts the indicated media types
+	Accepts *components.Accepts `default:"application/xml" header:"style=simple,explode=false,name=accepts"`
+	// An opaque identifier unique to the client
+	ClientIdentifier *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+	// The name of the client product
+	Product *string `header:"style=simple,explode=false,name=X-Plex-Product"`
+	// The version of the client application
+	Version *string `header:"style=simple,explode=false,name=X-Plex-Version"`
+	// The platform of the client
+	Platform *string `header:"style=simple,explode=false,name=X-Plex-Platform"`
+	// The version of the platform
+	PlatformVersion *string `header:"style=simple,explode=false,name=X-Plex-Platform-Version"`
+	// A relatively friendly name for the client device
+	Device *string `header:"style=simple,explode=false,name=X-Plex-Device"`
+	// A potentially less friendly identifier for the device model
+	Model *string `header:"style=simple,explode=false,name=X-Plex-Model"`
+	// The device vendor
+	DeviceVendor *string `header:"style=simple,explode=false,name=X-Plex-Device-Vendor"`
+	// A friendly name for the client
+	DeviceName *string `header:"style=simple,explode=false,name=X-Plex-Device-Name"`
+	// The marketplace on which the client application is distributed
+	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
+	// The task name
+	Task PathParamTask `pathParam:"style=simple,explode=false,name=task"`
 }
 
-func (s *StartTaskRequest) GetTaskName() TaskName {
-	if s == nil {
-		return TaskName("")
+func (s StartTaskRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *StartTaskRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"task"}); err != nil {
+		return err
 	}
-	return s.TaskName
+	return nil
+}
+
+func (s *StartTaskRequest) GetAccepts() *components.Accepts {
+	if s == nil {
+		return nil
+	}
+	return s.Accepts
+}
+
+func (s *StartTaskRequest) GetClientIdentifier() *string {
+	if s == nil {
+		return nil
+	}
+	return s.ClientIdentifier
+}
+
+func (s *StartTaskRequest) GetProduct() *string {
+	if s == nil {
+		return nil
+	}
+	return s.Product
+}
+
+func (s *StartTaskRequest) GetVersion() *string {
+	if s == nil {
+		return nil
+	}
+	return s.Version
+}
+
+func (s *StartTaskRequest) GetPlatform() *string {
+	if s == nil {
+		return nil
+	}
+	return s.Platform
+}
+
+func (s *StartTaskRequest) GetPlatformVersion() *string {
+	if s == nil {
+		return nil
+	}
+	return s.PlatformVersion
+}
+
+func (s *StartTaskRequest) GetDevice() *string {
+	if s == nil {
+		return nil
+	}
+	return s.Device
+}
+
+func (s *StartTaskRequest) GetModel() *string {
+	if s == nil {
+		return nil
+	}
+	return s.Model
+}
+
+func (s *StartTaskRequest) GetDeviceVendor() *string {
+	if s == nil {
+		return nil
+	}
+	return s.DeviceVendor
+}
+
+func (s *StartTaskRequest) GetDeviceName() *string {
+	if s == nil {
+		return nil
+	}
+	return s.DeviceName
+}
+
+func (s *StartTaskRequest) GetMarketplace() *string {
+	if s == nil {
+		return nil
+	}
+	return s.Marketplace
+}
+
+func (s *StartTaskRequest) GetTask() PathParamTask {
+	if s == nil {
+		return PathParamTask("")
+	}
+	return s.Task
 }
 
 type StartTaskResponse struct {

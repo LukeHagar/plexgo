@@ -1,4 +1,4 @@
-# EnablePaperTrailResponse
+# EnablePapertrailResponse
 
 
 ## Fields

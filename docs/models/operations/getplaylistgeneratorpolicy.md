@@ -1,0 +1,10 @@
+# GetPlaylistGeneratorPolicy
+
+
+## Fields
+
+| Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `Scope`                                                                                       | [*operations.GetPlaylistGeneratorScope](../../models/operations/getplaylistgeneratorscope.md) | :heavy_minus_sign:                                                                            | N/A                                                                                           |
+| `Unwatched`                                                                                   | **bool*                                                                                       | :heavy_minus_sign:                                                                            | True if only unwatched items are optimized                                                    |
+| `Value`                                                                                       | **int64*                                                                                      | :heavy_minus_sign:                                                                            | If the scope is count, the number of items to optimize                                        |

@@ -3,12 +3,239 @@
 package operations
 
 import (
+	"github.com/LukeHagar/plexgo/internal/utils"
+	"github.com/LukeHagar/plexgo/models/components"
 	"net/http"
 )
 
+type GetSourceConnectionInformationGlobals struct {
+	// Indicates the client accepts the indicated media types
+	Accepts *components.Accepts `default:"application/xml" header:"style=simple,explode=false,name=accepts"`
+	// An opaque identifier unique to the client
+	ClientIdentifier *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+	// The name of the client product
+	Product *string `header:"style=simple,explode=false,name=X-Plex-Product"`
+	// The version of the client application
+	Version *string `header:"style=simple,explode=false,name=X-Plex-Version"`
+	// The platform of the client
+	Platform *string `header:"style=simple,explode=false,name=X-Plex-Platform"`
+	// The version of the platform
+	PlatformVersion *string `header:"style=simple,explode=false,name=X-Plex-Platform-Version"`
+	// A relatively friendly name for the client device
+	Device *string `header:"style=simple,explode=false,name=X-Plex-Device"`
+	// A potentially less friendly identifier for the device model
+	Model *string `header:"style=simple,explode=false,name=X-Plex-Model"`
+	// The device vendor
+	DeviceVendor *string `header:"style=simple,explode=false,name=X-Plex-Device-Vendor"`
+	// A friendly name for the client
+	DeviceName *string `header:"style=simple,explode=false,name=X-Plex-Device-Name"`
+	// The marketplace on which the client application is distributed
+	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
+}
+
+func (g GetSourceConnectionInformationGlobals) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetSourceConnectionInformationGlobals) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetSourceConnectionInformationGlobals) GetAccepts() *components.Accepts {
+	if g == nil {
+		return nil
+	}
+	return g.Accepts
+}
+
+func (g *GetSourceConnectionInformationGlobals) GetClientIdentifier() *string {
+	if g == nil {
+		return nil
+	}
+	return g.ClientIdentifier
+}
+
+func (g *GetSourceConnectionInformationGlobals) GetProduct() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Product
+}
+
+func (g *GetSourceConnectionInformationGlobals) GetVersion() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Version
+}
+
+func (g *GetSourceConnectionInformationGlobals) GetPlatform() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Platform
+}
+
+func (g *GetSourceConnectionInformationGlobals) GetPlatformVersion() *string {
+	if g == nil {
+		return nil
+	}
+	return g.PlatformVersion
+}
+
+func (g *GetSourceConnectionInformationGlobals) GetDevice() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Device
+}
+
+func (g *GetSourceConnectionInformationGlobals) GetModel() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Model
+}
+
+func (g *GetSourceConnectionInformationGlobals) GetDeviceVendor() *string {
+	if g == nil {
+		return nil
+	}
+	return g.DeviceVendor
+}
+
+func (g *GetSourceConnectionInformationGlobals) GetDeviceName() *string {
+	if g == nil {
+		return nil
+	}
+	return g.DeviceName
+}
+
+func (g *GetSourceConnectionInformationGlobals) GetMarketplace() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Marketplace
+}
+
 type GetSourceConnectionInformationRequest struct {
+	// Indicates the client accepts the indicated media types
+	Accepts *components.Accepts `default:"application/xml" header:"style=simple,explode=false,name=accepts"`
+	// An opaque identifier unique to the client
+	ClientIdentifier *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+	// The name of the client product
+	Product *string `header:"style=simple,explode=false,name=X-Plex-Product"`
+	// The version of the client application
+	Version *string `header:"style=simple,explode=false,name=X-Plex-Version"`
+	// The platform of the client
+	Platform *string `header:"style=simple,explode=false,name=X-Plex-Platform"`
+	// The version of the platform
+	PlatformVersion *string `header:"style=simple,explode=false,name=X-Plex-Platform-Version"`
+	// A relatively friendly name for the client device
+	Device *string `header:"style=simple,explode=false,name=X-Plex-Device"`
+	// A potentially less friendly identifier for the device model
+	Model *string `header:"style=simple,explode=false,name=X-Plex-Model"`
+	// The device vendor
+	DeviceVendor *string `header:"style=simple,explode=false,name=X-Plex-Device-Vendor"`
+	// A friendly name for the client
+	DeviceName *string `header:"style=simple,explode=false,name=X-Plex-Device-Name"`
+	// The marketplace on which the client application is distributed
+	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
 	// The source identifier with an included prefix.
 	Source string `queryParam:"style=form,explode=true,name=source"`
+	// Force refresh
+	Refresh *components.BoolInt `queryParam:"style=form,explode=true,name=refresh"`
+}
+
+func (g GetSourceConnectionInformationRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetSourceConnectionInformationRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"source"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetSourceConnectionInformationRequest) GetAccepts() *components.Accepts {
+	if g == nil {
+		return nil
+	}
+	return g.Accepts
+}
+
+func (g *GetSourceConnectionInformationRequest) GetClientIdentifier() *string {
+	if g == nil {
+		return nil
+	}
+	return g.ClientIdentifier
+}
+
+func (g *GetSourceConnectionInformationRequest) GetProduct() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Product
+}
+
+func (g *GetSourceConnectionInformationRequest) GetVersion() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Version
+}
+
+func (g *GetSourceConnectionInformationRequest) GetPlatform() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Platform
+}
+
+func (g *GetSourceConnectionInformationRequest) GetPlatformVersion() *string {
+	if g == nil {
+		return nil
+	}
+	return g.PlatformVersion
+}
+
+func (g *GetSourceConnectionInformationRequest) GetDevice() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Device
+}
+
+func (g *GetSourceConnectionInformationRequest) GetModel() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Model
+}
+
+func (g *GetSourceConnectionInformationRequest) GetDeviceVendor() *string {
+	if g == nil {
+		return nil
+	}
+	return g.DeviceVendor
+}
+
+func (g *GetSourceConnectionInformationRequest) GetDeviceName() *string {
+	if g == nil {
+		return nil
+	}
+	return g.DeviceName
+}
+
+func (g *GetSourceConnectionInformationRequest) GetMarketplace() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Marketplace
 }
 
 func (g *GetSourceConnectionInformationRequest) GetSource() string {
@@ -18,6 +245,163 @@ func (g *GetSourceConnectionInformationRequest) GetSource() string {
 	return g.Source
 }
 
+func (g *GetSourceConnectionInformationRequest) GetRefresh() *components.BoolInt {
+	if g == nil {
+		return nil
+	}
+	return g.Refresh
+}
+
+type Connection struct {
+	Address *string `json:"address,omitempty"`
+	// Indicates if the connection is the server's LAN address
+	Local    *bool   `json:"local,omitempty"`
+	Port     *int64  `json:"port,omitempty"`
+	Protocol *string `json:"protocol,omitempty"`
+	// Indicates the connection is over a relayed connection
+	Relay *bool   `json:"relay,omitempty"`
+	URI   *string `json:"uri,omitempty"`
+}
+
+func (c *Connection) GetAddress() *string {
+	if c == nil {
+		return nil
+	}
+	return c.Address
+}
+
+func (c *Connection) GetLocal() *bool {
+	if c == nil {
+		return nil
+	}
+	return c.Local
+}
+
+func (c *Connection) GetPort() *int64 {
+	if c == nil {
+		return nil
+	}
+	return c.Port
+}
+
+func (c *Connection) GetProtocol() *string {
+	if c == nil {
+		return nil
+	}
+	return c.Protocol
+}
+
+func (c *Connection) GetRelay() *bool {
+	if c == nil {
+		return nil
+	}
+	return c.Relay
+}
+
+func (c *Connection) GetURI() *string {
+	if c == nil {
+		return nil
+	}
+	return c.URI
+}
+
+type Device struct {
+	AccessToken      *string      `json:"accessToken,omitempty"`
+	ClientIdentifier *string      `json:"clientIdentifier,omitempty"`
+	Connection       []Connection `json:"Connection,omitempty"`
+	Name             *string      `json:"name,omitempty"`
+}
+
+func (d *Device) GetAccessToken() *string {
+	if d == nil {
+		return nil
+	}
+	return d.AccessToken
+}
+
+func (d *Device) GetClientIdentifier() *string {
+	if d == nil {
+		return nil
+	}
+	return d.ClientIdentifier
+}
+
+func (d *Device) GetConnection() []Connection {
+	if d == nil {
+		return nil
+	}
+	return d.Connection
+}
+
+func (d *Device) GetName() *string {
+	if d == nil {
+		return nil
+	}
+	return d.Name
+}
+
+// GetSourceConnectionInformationMediaContainer - `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.
+// Common attributes: - identifier: Unique identifier for this container - size: Number of items in this response page - totalSize: Total number of items available (for pagination) - offset: Starting index of this page (for pagination)
+// The container often "hoists" common attributes from its children. For example, if all tracks in a container share the same album title, the `parentTitle` attribute may appear on the MediaContainer rather than being repeated on each track.
+type GetSourceConnectionInformationMediaContainer struct {
+	Identifier *string `json:"identifier,omitempty"`
+	// The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
+	//
+	Offset *int64 `json:"offset,omitempty"`
+	Size   *int64 `json:"size,omitempty"`
+	// The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
+	//
+	TotalSize *int64  `json:"totalSize,omitempty"`
+	Device    *Device `json:"Device,omitempty"`
+}
+
+func (g *GetSourceConnectionInformationMediaContainer) GetIdentifier() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Identifier
+}
+
+func (g *GetSourceConnectionInformationMediaContainer) GetOffset() *int64 {
+	if g == nil {
+		return nil
+	}
+	return g.Offset
+}
+
+func (g *GetSourceConnectionInformationMediaContainer) GetSize() *int64 {
+	if g == nil {
+		return nil
+	}
+	return g.Size
+}
+
+func (g *GetSourceConnectionInformationMediaContainer) GetTotalSize() *int64 {
+	if g == nil {
+		return nil
+	}
+	return g.TotalSize
+}
+
+func (g *GetSourceConnectionInformationMediaContainer) GetDevice() *Device {
+	if g == nil {
+		return nil
+	}
+	return g.Device
+}
+
+// GetSourceConnectionInformationResponseBody - OK
+type GetSourceConnectionInformationResponseBody struct {
+	MediaContainer *GetSourceConnectionInformationMediaContainer `json:"MediaContainer,omitempty"`
+}
+
+func (g *GetSourceConnectionInformationResponseBody) GetMediaContainer() *GetSourceConnectionInformationMediaContainer {
+	if g == nil {
+		return nil
+	}
+	return g.MediaContainer
+}
+
 type GetSourceConnectionInformationResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -25,6 +409,8 @@ type GetSourceConnectionInformationResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+	// OK
+	Object *GetSourceConnectionInformationResponseBody
 }
 
 func (g *GetSourceConnectionInformationResponse) GetContentType() string {
@@ -46,4 +432,11 @@ func (g *GetSourceConnectionInformationResponse) GetRawResponse() *http.Response
 		return nil
 	}
 	return g.RawResponse
+}
+
+func (g *GetSourceConnectionInformationResponse) GetObject() *GetSourceConnectionInformationResponseBody {
+	if g == nil {
+		return nil
+	}
+	return g.Object
 }

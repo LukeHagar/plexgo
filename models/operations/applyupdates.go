@@ -3,80 +3,249 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
+	"github.com/LukeHagar/plexgo/internal/utils"
+	"github.com/LukeHagar/plexgo/models/components"
 	"net/http"
 )
 
-// Tonight - Indicate that you want the update to run during the next Butler execution. Omitting this or setting it to false indicates that the update should install
-type Tonight int64
-
-const (
-	TonightZero Tonight = 0
-	TonightOne  Tonight = 1
-)
-
-func (e Tonight) ToPointer() *Tonight {
-	return &e
+type ApplyUpdatesGlobals struct {
+	// Indicates the client accepts the indicated media types
+	Accepts *components.Accepts `default:"application/xml" header:"style=simple,explode=false,name=accepts"`
+	// An opaque identifier unique to the client
+	ClientIdentifier *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+	// The name of the client product
+	Product *string `header:"style=simple,explode=false,name=X-Plex-Product"`
+	// The version of the client application
+	Version *string `header:"style=simple,explode=false,name=X-Plex-Version"`
+	// The platform of the client
+	Platform *string `header:"style=simple,explode=false,name=X-Plex-Platform"`
+	// The version of the platform
+	PlatformVersion *string `header:"style=simple,explode=false,name=X-Plex-Platform-Version"`
+	// A relatively friendly name for the client device
+	Device *string `header:"style=simple,explode=false,name=X-Plex-Device"`
+	// A potentially less friendly identifier for the device model
+	Model *string `header:"style=simple,explode=false,name=X-Plex-Model"`
+	// The device vendor
+	DeviceVendor *string `header:"style=simple,explode=false,name=X-Plex-Device-Vendor"`
+	// A friendly name for the client
+	DeviceName *string `header:"style=simple,explode=false,name=X-Plex-Device-Name"`
+	// The marketplace on which the client application is distributed
+	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
 }
-func (e *Tonight) UnmarshalJSON(data []byte) error {
-	var v int64
-	if err := json.Unmarshal(data, &v); err != nil {
+
+func (a ApplyUpdatesGlobals) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *ApplyUpdatesGlobals) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
 		return err
 	}
-	switch v {
-	case 0:
-		fallthrough
-	case 1:
-		*e = Tonight(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for Tonight: %v", v)
-	}
+	return nil
 }
 
-// Skip - Indicate that the latest version should be marked as skipped. The [Release] entry for this version will have the `state` set to `skipped`.
-type Skip int64
-
-const (
-	SkipZero Skip = 0
-	SkipOne  Skip = 1
-)
-
-func (e Skip) ToPointer() *Skip {
-	return &e
-}
-func (e *Skip) UnmarshalJSON(data []byte) error {
-	var v int64
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case 0:
-		fallthrough
-	case 1:
-		*e = Skip(v)
+func (a *ApplyUpdatesGlobals) GetAccepts() *components.Accepts {
+	if a == nil {
 		return nil
-	default:
-		return fmt.Errorf("invalid value for Skip: %v", v)
 	}
+	return a.Accepts
+}
+
+func (a *ApplyUpdatesGlobals) GetClientIdentifier() *string {
+	if a == nil {
+		return nil
+	}
+	return a.ClientIdentifier
+}
+
+func (a *ApplyUpdatesGlobals) GetProduct() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Product
+}
+
+func (a *ApplyUpdatesGlobals) GetVersion() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Version
+}
+
+func (a *ApplyUpdatesGlobals) GetPlatform() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Platform
+}
+
+func (a *ApplyUpdatesGlobals) GetPlatformVersion() *string {
+	if a == nil {
+		return nil
+	}
+	return a.PlatformVersion
+}
+
+func (a *ApplyUpdatesGlobals) GetDevice() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Device
+}
+
+func (a *ApplyUpdatesGlobals) GetModel() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Model
+}
+
+func (a *ApplyUpdatesGlobals) GetDeviceVendor() *string {
+	if a == nil {
+		return nil
+	}
+	return a.DeviceVendor
+}
+
+func (a *ApplyUpdatesGlobals) GetDeviceName() *string {
+	if a == nil {
+		return nil
+	}
+	return a.DeviceName
+}
+
+func (a *ApplyUpdatesGlobals) GetMarketplace() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Marketplace
 }
 
 type ApplyUpdatesRequest struct {
-	// Indicate that you want the update to run during the next Butler execution. Omitting this or setting it to false indicates that the update should install
-	Tonight *Tonight `queryParam:"style=form,explode=true,name=tonight"`
-	// Indicate that the latest version should be marked as skipped. The [Release] entry for this version will have the `state` set to `skipped`.
-	Skip *Skip `queryParam:"style=form,explode=true,name=skip"`
+	// Indicates the client accepts the indicated media types
+	Accepts *components.Accepts `default:"application/xml" header:"style=simple,explode=false,name=accepts"`
+	// An opaque identifier unique to the client
+	ClientIdentifier *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+	// The name of the client product
+	Product *string `header:"style=simple,explode=false,name=X-Plex-Product"`
+	// The version of the client application
+	Version *string `header:"style=simple,explode=false,name=X-Plex-Version"`
+	// The platform of the client
+	Platform *string `header:"style=simple,explode=false,name=X-Plex-Platform"`
+	// The version of the platform
+	PlatformVersion *string `header:"style=simple,explode=false,name=X-Plex-Platform-Version"`
+	// A relatively friendly name for the client device
+	Device *string `header:"style=simple,explode=false,name=X-Plex-Device"`
+	// A potentially less friendly identifier for the device model
+	Model *string `header:"style=simple,explode=false,name=X-Plex-Model"`
+	// The device vendor
+	DeviceVendor *string `header:"style=simple,explode=false,name=X-Plex-Device-Vendor"`
+	// A friendly name for the client
+	DeviceName *string `header:"style=simple,explode=false,name=X-Plex-Device-Name"`
+	// The marketplace on which the client application is distributed
+	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
+	// Indicate that you want the update to run during the next Butler execution. Omitting this or setting it to false indicates that the update should install immediately.
+	Tonight *components.BoolInt `queryParam:"style=form,explode=true,name=tonight"`
+	// Indicate that the latest version should be marked as skipped. The <Release> entry for this version will have the `state` set to `skipped`.
+	Skip *components.BoolInt `queryParam:"style=form,explode=true,name=skip"`
 }
 
-func (a *ApplyUpdatesRequest) GetTonight() *Tonight {
+func (a ApplyUpdatesRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *ApplyUpdatesRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *ApplyUpdatesRequest) GetAccepts() *components.Accepts {
+	if a == nil {
+		return nil
+	}
+	return a.Accepts
+}
+
+func (a *ApplyUpdatesRequest) GetClientIdentifier() *string {
+	if a == nil {
+		return nil
+	}
+	return a.ClientIdentifier
+}
+
+func (a *ApplyUpdatesRequest) GetProduct() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Product
+}
+
+func (a *ApplyUpdatesRequest) GetVersion() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Version
+}
+
+func (a *ApplyUpdatesRequest) GetPlatform() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Platform
+}
+
+func (a *ApplyUpdatesRequest) GetPlatformVersion() *string {
+	if a == nil {
+		return nil
+	}
+	return a.PlatformVersion
+}
+
+func (a *ApplyUpdatesRequest) GetDevice() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Device
+}
+
+func (a *ApplyUpdatesRequest) GetModel() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Model
+}
+
+func (a *ApplyUpdatesRequest) GetDeviceVendor() *string {
+	if a == nil {
+		return nil
+	}
+	return a.DeviceVendor
+}
+
+func (a *ApplyUpdatesRequest) GetDeviceName() *string {
+	if a == nil {
+		return nil
+	}
+	return a.DeviceName
+}
+
+func (a *ApplyUpdatesRequest) GetMarketplace() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Marketplace
+}
+
+func (a *ApplyUpdatesRequest) GetTonight() *components.BoolInt {
 	if a == nil {
 		return nil
 	}
 	return a.Tonight
 }
 
-func (a *ApplyUpdatesRequest) GetSkip() *Skip {
+func (a *ApplyUpdatesRequest) GetSkip() *components.BoolInt {
 	if a == nil {
 		return nil
 	}

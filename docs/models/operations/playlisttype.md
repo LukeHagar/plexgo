@@ -1,6 +1,6 @@
 # PlaylistType
 
-limit to a type of playlist.
+Limit to a type of playlist
 
 
 ## Values

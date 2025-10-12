@@ -3,19 +3,262 @@
 package operations
 
 import (
+	"github.com/LukeHagar/plexgo/internal/utils"
+	"github.com/LukeHagar/plexgo/models/components"
 	"net/http"
 )
 
-type MarkPlayedRequest struct {
-	// The media key to mark as played
-	Key float64 `queryParam:"style=form,explode=true,name=key"`
+type MarkPlayedGlobals struct {
+	// Indicates the client accepts the indicated media types
+	Accepts *components.Accepts `default:"application/xml" header:"style=simple,explode=false,name=accepts"`
+	// An opaque identifier unique to the client
+	ClientIdentifier *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+	// The name of the client product
+	Product *string `header:"style=simple,explode=false,name=X-Plex-Product"`
+	// The version of the client application
+	Version *string `header:"style=simple,explode=false,name=X-Plex-Version"`
+	// The platform of the client
+	Platform *string `header:"style=simple,explode=false,name=X-Plex-Platform"`
+	// The version of the platform
+	PlatformVersion *string `header:"style=simple,explode=false,name=X-Plex-Platform-Version"`
+	// A relatively friendly name for the client device
+	Device *string `header:"style=simple,explode=false,name=X-Plex-Device"`
+	// A potentially less friendly identifier for the device model
+	Model *string `header:"style=simple,explode=false,name=X-Plex-Model"`
+	// The device vendor
+	DeviceVendor *string `header:"style=simple,explode=false,name=X-Plex-Device-Vendor"`
+	// A friendly name for the client
+	DeviceName *string `header:"style=simple,explode=false,name=X-Plex-Device-Name"`
+	// The marketplace on which the client application is distributed
+	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
 }
 
-func (m *MarkPlayedRequest) GetKey() float64 {
+func (m MarkPlayedGlobals) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(m, "", false)
+}
+
+func (m *MarkPlayedGlobals) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *MarkPlayedGlobals) GetAccepts() *components.Accepts {
 	if m == nil {
-		return 0.0
+		return nil
+	}
+	return m.Accepts
+}
+
+func (m *MarkPlayedGlobals) GetClientIdentifier() *string {
+	if m == nil {
+		return nil
+	}
+	return m.ClientIdentifier
+}
+
+func (m *MarkPlayedGlobals) GetProduct() *string {
+	if m == nil {
+		return nil
+	}
+	return m.Product
+}
+
+func (m *MarkPlayedGlobals) GetVersion() *string {
+	if m == nil {
+		return nil
+	}
+	return m.Version
+}
+
+func (m *MarkPlayedGlobals) GetPlatform() *string {
+	if m == nil {
+		return nil
+	}
+	return m.Platform
+}
+
+func (m *MarkPlayedGlobals) GetPlatformVersion() *string {
+	if m == nil {
+		return nil
+	}
+	return m.PlatformVersion
+}
+
+func (m *MarkPlayedGlobals) GetDevice() *string {
+	if m == nil {
+		return nil
+	}
+	return m.Device
+}
+
+func (m *MarkPlayedGlobals) GetModel() *string {
+	if m == nil {
+		return nil
+	}
+	return m.Model
+}
+
+func (m *MarkPlayedGlobals) GetDeviceVendor() *string {
+	if m == nil {
+		return nil
+	}
+	return m.DeviceVendor
+}
+
+func (m *MarkPlayedGlobals) GetDeviceName() *string {
+	if m == nil {
+		return nil
+	}
+	return m.DeviceName
+}
+
+func (m *MarkPlayedGlobals) GetMarketplace() *string {
+	if m == nil {
+		return nil
+	}
+	return m.Marketplace
+}
+
+type MarkPlayedRequest struct {
+	// Indicates the client accepts the indicated media types
+	Accepts *components.Accepts `default:"application/xml" header:"style=simple,explode=false,name=accepts"`
+	// An opaque identifier unique to the client
+	ClientIdentifier *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+	// The name of the client product
+	Product *string `header:"style=simple,explode=false,name=X-Plex-Product"`
+	// The version of the client application
+	Version *string `header:"style=simple,explode=false,name=X-Plex-Version"`
+	// The platform of the client
+	Platform *string `header:"style=simple,explode=false,name=X-Plex-Platform"`
+	// The version of the platform
+	PlatformVersion *string `header:"style=simple,explode=false,name=X-Plex-Platform-Version"`
+	// A relatively friendly name for the client device
+	Device *string `header:"style=simple,explode=false,name=X-Plex-Device"`
+	// A potentially less friendly identifier for the device model
+	Model *string `header:"style=simple,explode=false,name=X-Plex-Model"`
+	// The device vendor
+	DeviceVendor *string `header:"style=simple,explode=false,name=X-Plex-Device-Vendor"`
+	// A friendly name for the client
+	DeviceName *string `header:"style=simple,explode=false,name=X-Plex-Device-Name"`
+	// The marketplace on which the client application is distributed
+	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
+	// The identifier of the media provider containing the media to rate.  Typically `com.plexapp.plugins.library`
+	Identifier string `queryParam:"style=form,explode=true,name=identifier"`
+	// The key of the item to rate.  This is the `ratingKey` found in metadata items
+	Key *string `queryParam:"style=form,explode=true,name=key"`
+	// The URI of the item to mark as played.  See intro for description of the URIs
+	URI *string `queryParam:"style=form,explode=true,name=uri"`
+}
+
+func (m MarkPlayedRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(m, "", false)
+}
+
+func (m *MarkPlayedRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &m, "", false, []string{"identifier"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *MarkPlayedRequest) GetAccepts() *components.Accepts {
+	if m == nil {
+		return nil
+	}
+	return m.Accepts
+}
+
+func (m *MarkPlayedRequest) GetClientIdentifier() *string {
+	if m == nil {
+		return nil
+	}
+	return m.ClientIdentifier
+}
+
+func (m *MarkPlayedRequest) GetProduct() *string {
+	if m == nil {
+		return nil
+	}
+	return m.Product
+}
+
+func (m *MarkPlayedRequest) GetVersion() *string {
+	if m == nil {
+		return nil
+	}
+	return m.Version
+}
+
+func (m *MarkPlayedRequest) GetPlatform() *string {
+	if m == nil {
+		return nil
+	}
+	return m.Platform
+}
+
+func (m *MarkPlayedRequest) GetPlatformVersion() *string {
+	if m == nil {
+		return nil
+	}
+	return m.PlatformVersion
+}
+
+func (m *MarkPlayedRequest) GetDevice() *string {
+	if m == nil {
+		return nil
+	}
+	return m.Device
+}
+
+func (m *MarkPlayedRequest) GetModel() *string {
+	if m == nil {
+		return nil
+	}
+	return m.Model
+}
+
+func (m *MarkPlayedRequest) GetDeviceVendor() *string {
+	if m == nil {
+		return nil
+	}
+	return m.DeviceVendor
+}
+
+func (m *MarkPlayedRequest) GetDeviceName() *string {
+	if m == nil {
+		return nil
+	}
+	return m.DeviceName
+}
+
+func (m *MarkPlayedRequest) GetMarketplace() *string {
+	if m == nil {
+		return nil
+	}
+	return m.Marketplace
+}
+
+func (m *MarkPlayedRequest) GetIdentifier() string {
+	if m == nil {
+		return ""
+	}
+	return m.Identifier
+}
+
+func (m *MarkPlayedRequest) GetKey() *string {
+	if m == nil {
+		return nil
 	}
 	return m.Key
+}
+
+func (m *MarkPlayedRequest) GetURI() *string {
+	if m == nil {
+		return nil
+	}
+	return m.URI
 }
 
 type MarkPlayedResponse struct {

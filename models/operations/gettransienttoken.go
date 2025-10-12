@@ -5,34 +5,149 @@ package operations
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/LukeHagar/plexgo/internal/utils"
+	"github.com/LukeHagar/plexgo/models/components"
 	"net/http"
 )
 
-// GetTransientTokenQueryParamType - `delegation` - This is the only supported `type` parameter.
-type GetTransientTokenQueryParamType string
+type GetTransientTokenGlobals struct {
+	// Indicates the client accepts the indicated media types
+	Accepts *components.Accepts `default:"application/xml" header:"style=simple,explode=false,name=accepts"`
+	// An opaque identifier unique to the client
+	ClientIdentifier *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+	// The name of the client product
+	Product *string `header:"style=simple,explode=false,name=X-Plex-Product"`
+	// The version of the client application
+	Version *string `header:"style=simple,explode=false,name=X-Plex-Version"`
+	// The platform of the client
+	Platform *string `header:"style=simple,explode=false,name=X-Plex-Platform"`
+	// The version of the platform
+	PlatformVersion *string `header:"style=simple,explode=false,name=X-Plex-Platform-Version"`
+	// A relatively friendly name for the client device
+	Device *string `header:"style=simple,explode=false,name=X-Plex-Device"`
+	// A potentially less friendly identifier for the device model
+	Model *string `header:"style=simple,explode=false,name=X-Plex-Model"`
+	// The device vendor
+	DeviceVendor *string `header:"style=simple,explode=false,name=X-Plex-Device-Vendor"`
+	// A friendly name for the client
+	DeviceName *string `header:"style=simple,explode=false,name=X-Plex-Device-Name"`
+	// The marketplace on which the client application is distributed
+	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
+}
+
+func (g GetTransientTokenGlobals) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetTransientTokenGlobals) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetTransientTokenGlobals) GetAccepts() *components.Accepts {
+	if g == nil {
+		return nil
+	}
+	return g.Accepts
+}
+
+func (g *GetTransientTokenGlobals) GetClientIdentifier() *string {
+	if g == nil {
+		return nil
+	}
+	return g.ClientIdentifier
+}
+
+func (g *GetTransientTokenGlobals) GetProduct() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Product
+}
+
+func (g *GetTransientTokenGlobals) GetVersion() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Version
+}
+
+func (g *GetTransientTokenGlobals) GetPlatform() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Platform
+}
+
+func (g *GetTransientTokenGlobals) GetPlatformVersion() *string {
+	if g == nil {
+		return nil
+	}
+	return g.PlatformVersion
+}
+
+func (g *GetTransientTokenGlobals) GetDevice() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Device
+}
+
+func (g *GetTransientTokenGlobals) GetModel() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Model
+}
+
+func (g *GetTransientTokenGlobals) GetDeviceVendor() *string {
+	if g == nil {
+		return nil
+	}
+	return g.DeviceVendor
+}
+
+func (g *GetTransientTokenGlobals) GetDeviceName() *string {
+	if g == nil {
+		return nil
+	}
+	return g.DeviceName
+}
+
+func (g *GetTransientTokenGlobals) GetMarketplace() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Marketplace
+}
+
+// QueryParamType - The value `delegation` is the only supported `type` parameter.
+type QueryParamType string
 
 const (
-	GetTransientTokenQueryParamTypeDelegation GetTransientTokenQueryParamType = "delegation"
+	QueryParamTypeDelegation QueryParamType = "delegation"
 )
 
-func (e GetTransientTokenQueryParamType) ToPointer() *GetTransientTokenQueryParamType {
+func (e QueryParamType) ToPointer() *QueryParamType {
 	return &e
 }
-func (e *GetTransientTokenQueryParamType) UnmarshalJSON(data []byte) error {
+func (e *QueryParamType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "delegation":
-		*e = GetTransientTokenQueryParamType(v)
+		*e = QueryParamType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for GetTransientTokenQueryParamType: %v", v)
+		return fmt.Errorf("invalid value for QueryParamType: %v", v)
 	}
 }
 
-// Scope - `all` - This is the only supported `scope` parameter.
+// Scope - The value `all` is the only supported `scope` parameter.
 type Scope string
 
 const (
@@ -57,15 +172,125 @@ func (e *Scope) UnmarshalJSON(data []byte) error {
 }
 
 type GetTransientTokenRequest struct {
-	// `delegation` - This is the only supported `type` parameter.
-	Type GetTransientTokenQueryParamType `queryParam:"style=form,explode=true,name=type"`
-	// `all` - This is the only supported `scope` parameter.
+	// Indicates the client accepts the indicated media types
+	Accepts *components.Accepts `default:"application/xml" header:"style=simple,explode=false,name=accepts"`
+	// An opaque identifier unique to the client
+	ClientIdentifier *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+	// The name of the client product
+	Product *string `header:"style=simple,explode=false,name=X-Plex-Product"`
+	// The version of the client application
+	Version *string `header:"style=simple,explode=false,name=X-Plex-Version"`
+	// The platform of the client
+	Platform *string `header:"style=simple,explode=false,name=X-Plex-Platform"`
+	// The version of the platform
+	PlatformVersion *string `header:"style=simple,explode=false,name=X-Plex-Platform-Version"`
+	// A relatively friendly name for the client device
+	Device *string `header:"style=simple,explode=false,name=X-Plex-Device"`
+	// A potentially less friendly identifier for the device model
+	Model *string `header:"style=simple,explode=false,name=X-Plex-Model"`
+	// The device vendor
+	DeviceVendor *string `header:"style=simple,explode=false,name=X-Plex-Device-Vendor"`
+	// A friendly name for the client
+	DeviceName *string `header:"style=simple,explode=false,name=X-Plex-Device-Name"`
+	// The marketplace on which the client application is distributed
+	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
+	// The value `delegation` is the only supported `type` parameter.
+	Type QueryParamType `queryParam:"style=form,explode=true,name=type"`
+	// The value `all` is the only supported `scope` parameter.
 	Scope Scope `queryParam:"style=form,explode=true,name=scope"`
 }
 
-func (g *GetTransientTokenRequest) GetType() GetTransientTokenQueryParamType {
+func (g GetTransientTokenRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetTransientTokenRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"type", "scope"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetTransientTokenRequest) GetAccepts() *components.Accepts {
 	if g == nil {
-		return GetTransientTokenQueryParamType("")
+		return nil
+	}
+	return g.Accepts
+}
+
+func (g *GetTransientTokenRequest) GetClientIdentifier() *string {
+	if g == nil {
+		return nil
+	}
+	return g.ClientIdentifier
+}
+
+func (g *GetTransientTokenRequest) GetProduct() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Product
+}
+
+func (g *GetTransientTokenRequest) GetVersion() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Version
+}
+
+func (g *GetTransientTokenRequest) GetPlatform() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Platform
+}
+
+func (g *GetTransientTokenRequest) GetPlatformVersion() *string {
+	if g == nil {
+		return nil
+	}
+	return g.PlatformVersion
+}
+
+func (g *GetTransientTokenRequest) GetDevice() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Device
+}
+
+func (g *GetTransientTokenRequest) GetModel() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Model
+}
+
+func (g *GetTransientTokenRequest) GetDeviceVendor() *string {
+	if g == nil {
+		return nil
+	}
+	return g.DeviceVendor
+}
+
+func (g *GetTransientTokenRequest) GetDeviceName() *string {
+	if g == nil {
+		return nil
+	}
+	return g.DeviceName
+}
+
+func (g *GetTransientTokenRequest) GetMarketplace() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Marketplace
+}
+
+func (g *GetTransientTokenRequest) GetType() QueryParamType {
+	if g == nil {
+		return QueryParamType("")
 	}
 	return g.Type
 }
@@ -77,6 +302,69 @@ func (g *GetTransientTokenRequest) GetScope() Scope {
 	return g.Scope
 }
 
+// GetTransientTokenMediaContainer - `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.
+// Common attributes: - identifier: Unique identifier for this container - size: Number of items in this response page - totalSize: Total number of items available (for pagination) - offset: Starting index of this page (for pagination)
+// The container often "hoists" common attributes from its children. For example, if all tracks in a container share the same album title, the `parentTitle` attribute may appear on the MediaContainer rather than being repeated on each track.
+type GetTransientTokenMediaContainer struct {
+	Identifier *string `json:"identifier,omitempty"`
+	// The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
+	//
+	Offset *int64 `json:"offset,omitempty"`
+	Size   *int64 `json:"size,omitempty"`
+	// The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
+	//
+	TotalSize *int64 `json:"totalSize,omitempty"`
+	// The transient token
+	Token *string `json:"token,omitempty"`
+}
+
+func (g *GetTransientTokenMediaContainer) GetIdentifier() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Identifier
+}
+
+func (g *GetTransientTokenMediaContainer) GetOffset() *int64 {
+	if g == nil {
+		return nil
+	}
+	return g.Offset
+}
+
+func (g *GetTransientTokenMediaContainer) GetSize() *int64 {
+	if g == nil {
+		return nil
+	}
+	return g.Size
+}
+
+func (g *GetTransientTokenMediaContainer) GetTotalSize() *int64 {
+	if g == nil {
+		return nil
+	}
+	return g.TotalSize
+}
+
+func (g *GetTransientTokenMediaContainer) GetToken() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Token
+}
+
+// GetTransientTokenResponseBody - OK
+type GetTransientTokenResponseBody struct {
+	MediaContainer *GetTransientTokenMediaContainer `json:"MediaContainer,omitempty"`
+}
+
+func (g *GetTransientTokenResponseBody) GetMediaContainer() *GetTransientTokenMediaContainer {
+	if g == nil {
+		return nil
+	}
+	return g.MediaContainer
+}
+
 type GetTransientTokenResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -84,6 +372,8 @@ type GetTransientTokenResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+	// OK
+	Object *GetTransientTokenResponseBody
 }
 
 func (g *GetTransientTokenResponse) GetContentType() string {
@@ -105,4 +395,11 @@ func (g *GetTransientTokenResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return g.RawResponse
+}
+
+func (g *GetTransientTokenResponse) GetObject() *GetTransientTokenResponseBody {
+	if g == nil {
+		return nil
+	}
+	return g.Object
 }

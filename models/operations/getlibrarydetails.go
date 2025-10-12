@@ -3,49 +3,151 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/LukeHagar/plexgo/internal/utils"
+	"github.com/LukeHagar/plexgo/models/components"
 	"net/http"
 )
 
-// IncludeDetails - Whether or not to include details for a section (types, filters, and sorts).
-// Only exists for backwards compatibility, media providers other than the server libraries have it on always.
-type IncludeDetails int64
-
-const (
-	IncludeDetailsZero IncludeDetails = 0
-	IncludeDetailsOne  IncludeDetails = 1
-)
-
-func (e IncludeDetails) ToPointer() *IncludeDetails {
-	return &e
+type GetLibraryDetailsGlobals struct {
+	// Indicates the client accepts the indicated media types
+	Accepts *components.Accepts `default:"application/xml" header:"style=simple,explode=false,name=accepts"`
+	// An opaque identifier unique to the client
+	ClientIdentifier *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+	// The name of the client product
+	Product *string `header:"style=simple,explode=false,name=X-Plex-Product"`
+	// The version of the client application
+	Version *string `header:"style=simple,explode=false,name=X-Plex-Version"`
+	// The platform of the client
+	Platform *string `header:"style=simple,explode=false,name=X-Plex-Platform"`
+	// The version of the platform
+	PlatformVersion *string `header:"style=simple,explode=false,name=X-Plex-Platform-Version"`
+	// A relatively friendly name for the client device
+	Device *string `header:"style=simple,explode=false,name=X-Plex-Device"`
+	// A potentially less friendly identifier for the device model
+	Model *string `header:"style=simple,explode=false,name=X-Plex-Model"`
+	// The device vendor
+	DeviceVendor *string `header:"style=simple,explode=false,name=X-Plex-Device-Vendor"`
+	// A friendly name for the client
+	DeviceName *string `header:"style=simple,explode=false,name=X-Plex-Device-Name"`
+	// The marketplace on which the client application is distributed
+	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
 }
-func (e *IncludeDetails) UnmarshalJSON(data []byte) error {
-	var v int64
-	if err := json.Unmarshal(data, &v); err != nil {
+
+func (g GetLibraryDetailsGlobals) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetLibraryDetailsGlobals) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
 		return err
 	}
-	switch v {
-	case 0:
-		fallthrough
-	case 1:
-		*e = IncludeDetails(v)
+	return nil
+}
+
+func (g *GetLibraryDetailsGlobals) GetAccepts() *components.Accepts {
+	if g == nil {
 		return nil
-	default:
-		return fmt.Errorf("invalid value for IncludeDetails: %v", v)
 	}
+	return g.Accepts
+}
+
+func (g *GetLibraryDetailsGlobals) GetClientIdentifier() *string {
+	if g == nil {
+		return nil
+	}
+	return g.ClientIdentifier
+}
+
+func (g *GetLibraryDetailsGlobals) GetProduct() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Product
+}
+
+func (g *GetLibraryDetailsGlobals) GetVersion() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Version
+}
+
+func (g *GetLibraryDetailsGlobals) GetPlatform() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Platform
+}
+
+func (g *GetLibraryDetailsGlobals) GetPlatformVersion() *string {
+	if g == nil {
+		return nil
+	}
+	return g.PlatformVersion
+}
+
+func (g *GetLibraryDetailsGlobals) GetDevice() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Device
+}
+
+func (g *GetLibraryDetailsGlobals) GetModel() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Model
+}
+
+func (g *GetLibraryDetailsGlobals) GetDeviceVendor() *string {
+	if g == nil {
+		return nil
+	}
+	return g.DeviceVendor
+}
+
+func (g *GetLibraryDetailsGlobals) GetDeviceName() *string {
+	if g == nil {
+		return nil
+	}
+	return g.DeviceName
+}
+
+func (g *GetLibraryDetailsGlobals) GetMarketplace() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Marketplace
 }
 
 type GetLibraryDetailsRequest struct {
-	// Whether or not to include details for a section (types, filters, and sorts).
-	// Only exists for backwards compatibility, media providers other than the server libraries have it on always.
-	//
-	IncludeDetails *IncludeDetails `default:"0" queryParam:"style=form,explode=true,name=includeDetails"`
-	// The unique key of the Plex library.
-	// Note: This is unique in the context of the Plex server.
-	//
-	SectionKey int `pathParam:"style=simple,explode=false,name=sectionKey"`
+	// Indicates the client accepts the indicated media types
+	Accepts *components.Accepts `default:"application/xml" header:"style=simple,explode=false,name=accepts"`
+	// An opaque identifier unique to the client
+	ClientIdentifier *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+	// The name of the client product
+	Product *string `header:"style=simple,explode=false,name=X-Plex-Product"`
+	// The version of the client application
+	Version *string `header:"style=simple,explode=false,name=X-Plex-Version"`
+	// The platform of the client
+	Platform *string `header:"style=simple,explode=false,name=X-Plex-Platform"`
+	// The version of the platform
+	PlatformVersion *string `header:"style=simple,explode=false,name=X-Plex-Platform-Version"`
+	// A relatively friendly name for the client device
+	Device *string `header:"style=simple,explode=false,name=X-Plex-Device"`
+	// A potentially less friendly identifier for the device model
+	Model *string `header:"style=simple,explode=false,name=X-Plex-Model"`
+	// The device vendor
+	DeviceVendor *string `header:"style=simple,explode=false,name=X-Plex-Device-Vendor"`
+	// A friendly name for the client
+	DeviceName *string `header:"style=simple,explode=false,name=X-Plex-Device-Name"`
+	// The marketplace on which the client application is distributed
+	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
+	// The section identifier
+	SectionID string `pathParam:"style=simple,explode=false,name=sectionId"`
+	// Whether or not to include details for a section (types, filters, and sorts). Only exists for backwards compatibility, media providers other than the server libraries have it on always.
+	IncludeDetails *components.BoolInt `queryParam:"style=form,explode=true,name=includeDetails"`
 }
 
 func (g GetLibraryDetailsRequest) MarshalJSON() ([]byte, error) {
@@ -53,318 +155,129 @@ func (g GetLibraryDetailsRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetLibraryDetailsRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"sectionKey"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"sectionId"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (g *GetLibraryDetailsRequest) GetIncludeDetails() *IncludeDetails {
+func (g *GetLibraryDetailsRequest) GetAccepts() *components.Accepts {
+	if g == nil {
+		return nil
+	}
+	return g.Accepts
+}
+
+func (g *GetLibraryDetailsRequest) GetClientIdentifier() *string {
+	if g == nil {
+		return nil
+	}
+	return g.ClientIdentifier
+}
+
+func (g *GetLibraryDetailsRequest) GetProduct() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Product
+}
+
+func (g *GetLibraryDetailsRequest) GetVersion() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Version
+}
+
+func (g *GetLibraryDetailsRequest) GetPlatform() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Platform
+}
+
+func (g *GetLibraryDetailsRequest) GetPlatformVersion() *string {
+	if g == nil {
+		return nil
+	}
+	return g.PlatformVersion
+}
+
+func (g *GetLibraryDetailsRequest) GetDevice() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Device
+}
+
+func (g *GetLibraryDetailsRequest) GetModel() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Model
+}
+
+func (g *GetLibraryDetailsRequest) GetDeviceVendor() *string {
+	if g == nil {
+		return nil
+	}
+	return g.DeviceVendor
+}
+
+func (g *GetLibraryDetailsRequest) GetDeviceName() *string {
+	if g == nil {
+		return nil
+	}
+	return g.DeviceName
+}
+
+func (g *GetLibraryDetailsRequest) GetMarketplace() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Marketplace
+}
+
+func (g *GetLibraryDetailsRequest) GetSectionID() string {
+	if g == nil {
+		return ""
+	}
+	return g.SectionID
+}
+
+func (g *GetLibraryDetailsRequest) GetIncludeDetails() *components.BoolInt {
 	if g == nil {
 		return nil
 	}
 	return g.IncludeDetails
 }
 
-func (g *GetLibraryDetailsRequest) GetSectionKey() int {
-	if g == nil {
-		return 0
-	}
-	return g.SectionKey
-}
-
-type GetLibraryDetailsDirectory struct {
-	Key       *string `json:"key,omitempty"`
-	Title     *string `json:"title,omitempty"`
-	Secondary *bool   `json:"secondary,omitempty"`
-	Prompt    *string `json:"prompt,omitempty"`
-	Search    *bool   `json:"search,omitempty"`
-}
-
-func (g *GetLibraryDetailsDirectory) GetKey() *string {
-	if g == nil {
-		return nil
-	}
-	return g.Key
-}
-
-func (g *GetLibraryDetailsDirectory) GetTitle() *string {
-	if g == nil {
-		return nil
-	}
-	return g.Title
-}
-
-func (g *GetLibraryDetailsDirectory) GetSecondary() *bool {
-	if g == nil {
-		return nil
-	}
-	return g.Secondary
-}
-
-func (g *GetLibraryDetailsDirectory) GetPrompt() *string {
-	if g == nil {
-		return nil
-	}
-	return g.Prompt
-}
-
-func (g *GetLibraryDetailsDirectory) GetSearch() *bool {
-	if g == nil {
-		return nil
-	}
-	return g.Search
-}
-
-type GetLibraryDetailsFilter struct {
-	Filter     *string `json:"filter,omitempty"`
-	FilterType *string `json:"filterType,omitempty"`
-	Key        *string `json:"key,omitempty"`
-	Title      *string `json:"title,omitempty"`
-	Type       *string `json:"type,omitempty"`
-}
-
-func (g *GetLibraryDetailsFilter) GetFilter() *string {
-	if g == nil {
-		return nil
-	}
-	return g.Filter
-}
-
-func (g *GetLibraryDetailsFilter) GetFilterType() *string {
-	if g == nil {
-		return nil
-	}
-	return g.FilterType
-}
-
-func (g *GetLibraryDetailsFilter) GetKey() *string {
-	if g == nil {
-		return nil
-	}
-	return g.Key
-}
-
-func (g *GetLibraryDetailsFilter) GetTitle() *string {
-	if g == nil {
-		return nil
-	}
-	return g.Title
-}
-
-func (g *GetLibraryDetailsFilter) GetType() *string {
-	if g == nil {
-		return nil
-	}
-	return g.Type
-}
-
-type GetLibraryDetailsSort struct {
-	Default           *string `json:"default,omitempty"`
-	DefaultDirection  *string `json:"defaultDirection,omitempty"`
-	DescKey           *string `json:"descKey,omitempty"`
-	FirstCharacterKey *string `json:"firstCharacterKey,omitempty"`
-	Key               *string `json:"key,omitempty"`
-	Title             *string `json:"title,omitempty"`
-}
-
-func (g *GetLibraryDetailsSort) GetDefault() *string {
-	if g == nil {
-		return nil
-	}
-	return g.Default
-}
-
-func (g *GetLibraryDetailsSort) GetDefaultDirection() *string {
-	if g == nil {
-		return nil
-	}
-	return g.DefaultDirection
-}
-
-func (g *GetLibraryDetailsSort) GetDescKey() *string {
-	if g == nil {
-		return nil
-	}
-	return g.DescKey
-}
-
-func (g *GetLibraryDetailsSort) GetFirstCharacterKey() *string {
-	if g == nil {
-		return nil
-	}
-	return g.FirstCharacterKey
-}
-
-func (g *GetLibraryDetailsSort) GetKey() *string {
-	if g == nil {
-		return nil
-	}
-	return g.Key
-}
-
-func (g *GetLibraryDetailsSort) GetTitle() *string {
-	if g == nil {
-		return nil
-	}
-	return g.Title
-}
-
-type GetLibraryDetailsField struct {
-	Key     *string `json:"key,omitempty"`
-	Title   *string `json:"title,omitempty"`
-	Type    *string `json:"type,omitempty"`
-	SubType *string `json:"subType,omitempty"`
-}
-
-func (g *GetLibraryDetailsField) GetKey() *string {
-	if g == nil {
-		return nil
-	}
-	return g.Key
-}
-
-func (g *GetLibraryDetailsField) GetTitle() *string {
-	if g == nil {
-		return nil
-	}
-	return g.Title
-}
-
-func (g *GetLibraryDetailsField) GetType() *string {
-	if g == nil {
-		return nil
-	}
-	return g.Type
-}
-
-func (g *GetLibraryDetailsField) GetSubType() *string {
-	if g == nil {
-		return nil
-	}
-	return g.SubType
-}
-
-type GetLibraryDetailsType struct {
-	Key    *string                   `json:"key,omitempty"`
-	Type   *string                   `json:"type,omitempty"`
-	Title  *string                   `json:"title,omitempty"`
-	Active *bool                     `json:"active,omitempty"`
-	Filter []GetLibraryDetailsFilter `json:"Filter,omitempty"`
-	Sort   []GetLibraryDetailsSort   `json:"Sort,omitempty"`
-	Field  []GetLibraryDetailsField  `json:"Field,omitempty"`
-}
-
-func (g *GetLibraryDetailsType) GetKey() *string {
-	if g == nil {
-		return nil
-	}
-	return g.Key
-}
-
-func (g *GetLibraryDetailsType) GetType() *string {
-	if g == nil {
-		return nil
-	}
-	return g.Type
-}
-
-func (g *GetLibraryDetailsType) GetTitle() *string {
-	if g == nil {
-		return nil
-	}
-	return g.Title
-}
-
-func (g *GetLibraryDetailsType) GetActive() *bool {
-	if g == nil {
-		return nil
-	}
-	return g.Active
-}
-
-func (g *GetLibraryDetailsType) GetFilter() []GetLibraryDetailsFilter {
-	if g == nil {
-		return nil
-	}
-	return g.Filter
-}
-
-func (g *GetLibraryDetailsType) GetSort() []GetLibraryDetailsSort {
-	if g == nil {
-		return nil
-	}
-	return g.Sort
-}
-
-func (g *GetLibraryDetailsType) GetField() []GetLibraryDetailsField {
-	if g == nil {
-		return nil
-	}
-	return g.Field
-}
-
-type GetLibraryDetailsOperator struct {
-	Key   *string `json:"key,omitempty"`
-	Title *string `json:"title,omitempty"`
-}
-
-func (g *GetLibraryDetailsOperator) GetKey() *string {
-	if g == nil {
-		return nil
-	}
-	return g.Key
-}
-
-func (g *GetLibraryDetailsOperator) GetTitle() *string {
-	if g == nil {
-		return nil
-	}
-	return g.Title
-}
-
-type GetLibraryDetailsFieldType struct {
-	Type     *string                     `json:"type,omitempty"`
-	Operator []GetLibraryDetailsOperator `json:"Operator,omitempty"`
-}
-
-func (g *GetLibraryDetailsFieldType) GetType() *string {
-	if g == nil {
-		return nil
-	}
-	return g.Type
-}
-
-func (g *GetLibraryDetailsFieldType) GetOperator() []GetLibraryDetailsOperator {
-	if g == nil {
-		return nil
-	}
-	return g.Operator
-}
-
 type GetLibraryDetailsMediaContainer struct {
-	Size             *int                         `json:"size,omitempty"`
-	AllowSync        *bool                        `json:"allowSync,omitempty"`
-	Art              *string                      `json:"art,omitempty"`
-	Content          *string                      `json:"content,omitempty"`
-	Identifier       *string                      `json:"identifier,omitempty"`
-	LibrarySectionID *int                         `json:"librarySectionID,omitempty"`
-	MediaTagPrefix   *string                      `json:"mediaTagPrefix,omitempty"`
-	MediaTagVersion  *int                         `json:"mediaTagVersion,omitempty"`
-	Thumb            *string                      `json:"thumb,omitempty"`
-	Title1           *string                      `json:"title1,omitempty"`
-	ViewGroup        *string                      `json:"viewGroup,omitempty"`
-	ViewMode         *int                         `json:"viewMode,omitempty"`
-	Directory        []GetLibraryDetailsDirectory `json:"Directory,omitempty"`
-	Type             []GetLibraryDetailsType      `json:"Type,omitempty"`
-	FieldType        []GetLibraryDetailsFieldType `json:"FieldType,omitempty"`
+	// The flavors of directory found here:
+	//   - Primary: (e.g. all, On Deck) These are still used in some clients to provide "shortcuts" to subsets of media. However, with the exception of On Deck, all of them can be created by media queries, and the desire is to allow these to be customized by users.
+	//   - Secondary: These are marked with `"secondary": true` and were used by old clients to provide nested menus allowing for primative (but structured) navigation.
+	//   - Special: There is a By Folder entry which allows browsing the media by the underlying filesystem structure, and there's a completely obsolete entry marked `"search": true` which used to be used to allow clients to build search dialogs on the fly.
+	Content          *string               `json:"content,omitempty"`
+	AllowSync        *bool                 `json:"allowSync,omitempty"`
+	Art              *string               `json:"art,omitempty"`
+	Directory        []components.Metadata `json:"Directory,omitempty"`
+	Identifier       *string               `json:"identifier,omitempty"`
+	LibrarySectionID *int64                `json:"librarySectionID,omitempty"`
+	MediaTagPrefix   *string               `json:"mediaTagPrefix,omitempty"`
+	MediaTagVersion  *int64                `json:"mediaTagVersion,omitempty"`
+	Size             *int64                `json:"size,omitempty"`
+	SortAsc          *bool                 `json:"sortAsc,omitempty"`
+	Thumb            *string               `json:"thumb,omitempty"`
+	Title1           *string               `json:"title1,omitempty"`
+	ViewGroup        *string               `json:"viewGroup,omitempty"`
+	ViewMode         *int64                `json:"viewMode,omitempty"`
 }
 
-func (g *GetLibraryDetailsMediaContainer) GetSize() *int {
+func (g *GetLibraryDetailsMediaContainer) GetContent() *string {
 	if g == nil {
 		return nil
 	}
-	return g.Size
+	return g.Content
 }
 
 func (g *GetLibraryDetailsMediaContainer) GetAllowSync() *bool {
@@ -381,11 +294,11 @@ func (g *GetLibraryDetailsMediaContainer) GetArt() *string {
 	return g.Art
 }
 
-func (g *GetLibraryDetailsMediaContainer) GetContent() *string {
+func (g *GetLibraryDetailsMediaContainer) GetDirectory() []components.Metadata {
 	if g == nil {
 		return nil
 	}
-	return g.Content
+	return g.Directory
 }
 
 func (g *GetLibraryDetailsMediaContainer) GetIdentifier() *string {
@@ -395,7 +308,7 @@ func (g *GetLibraryDetailsMediaContainer) GetIdentifier() *string {
 	return g.Identifier
 }
 
-func (g *GetLibraryDetailsMediaContainer) GetLibrarySectionID() *int {
+func (g *GetLibraryDetailsMediaContainer) GetLibrarySectionID() *int64 {
 	if g == nil {
 		return nil
 	}
@@ -409,11 +322,25 @@ func (g *GetLibraryDetailsMediaContainer) GetMediaTagPrefix() *string {
 	return g.MediaTagPrefix
 }
 
-func (g *GetLibraryDetailsMediaContainer) GetMediaTagVersion() *int {
+func (g *GetLibraryDetailsMediaContainer) GetMediaTagVersion() *int64 {
 	if g == nil {
 		return nil
 	}
 	return g.MediaTagVersion
+}
+
+func (g *GetLibraryDetailsMediaContainer) GetSize() *int64 {
+	if g == nil {
+		return nil
+	}
+	return g.Size
+}
+
+func (g *GetLibraryDetailsMediaContainer) GetSortAsc() *bool {
+	if g == nil {
+		return nil
+	}
+	return g.SortAsc
 }
 
 func (g *GetLibraryDetailsMediaContainer) GetThumb() *string {
@@ -437,35 +364,14 @@ func (g *GetLibraryDetailsMediaContainer) GetViewGroup() *string {
 	return g.ViewGroup
 }
 
-func (g *GetLibraryDetailsMediaContainer) GetViewMode() *int {
+func (g *GetLibraryDetailsMediaContainer) GetViewMode() *int64 {
 	if g == nil {
 		return nil
 	}
 	return g.ViewMode
 }
 
-func (g *GetLibraryDetailsMediaContainer) GetDirectory() []GetLibraryDetailsDirectory {
-	if g == nil {
-		return nil
-	}
-	return g.Directory
-}
-
-func (g *GetLibraryDetailsMediaContainer) GetType() []GetLibraryDetailsType {
-	if g == nil {
-		return nil
-	}
-	return g.Type
-}
-
-func (g *GetLibraryDetailsMediaContainer) GetFieldType() []GetLibraryDetailsFieldType {
-	if g == nil {
-		return nil
-	}
-	return g.FieldType
-}
-
-// GetLibraryDetailsResponseBody - The details of the library
+// GetLibraryDetailsResponseBody - OK
 type GetLibraryDetailsResponseBody struct {
 	MediaContainer *GetLibraryDetailsMediaContainer `json:"MediaContainer,omitempty"`
 }
@@ -484,7 +390,7 @@ type GetLibraryDetailsResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The details of the library
+	// OK
 	Object *GetLibraryDetailsResponseBody
 }
 

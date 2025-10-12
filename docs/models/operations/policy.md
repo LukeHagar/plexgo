@@ -1,0 +1,10 @@
+# Policy
+
+
+## Fields
+
+| Field                                                                     | Type                                                                      | Required                                                                  | Description                                                               | Example                                                                   |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `Value`                                                                   | **int64*                                                                  | :heavy_minus_sign:                                                        | N/A                                                                       |                                                                           |
+| `Scope`                                                                   | [*operations.QueryParamScope](../../models/operations/queryparamscope.md) | :heavy_minus_sign:                                                        | N/A                                                                       |                                                                           |
+| `Unwatched`                                                               | [*components.BoolInt](../../models/components/boolint.md)                 | :heavy_minus_sign:                                                        | N/A                                                                       | 1                                                                         |

@@ -3,37 +3,244 @@
 package operations
 
 import (
+	"github.com/LukeHagar/plexgo/internal/utils"
+	"github.com/LukeHagar/plexgo/models/components"
 	"net/http"
 )
 
-type UpdatePlaylistRequest struct {
-	// the ID of the playlist
-	PlaylistID float64 `pathParam:"style=simple,explode=false,name=playlistID"`
-	// name of the playlist
-	Title *string `queryParam:"style=form,explode=true,name=title"`
-	// summary description of the playlist
-	Summary *string `queryParam:"style=form,explode=true,name=summary"`
+type UpdatePlaylistGlobals struct {
+	// Indicates the client accepts the indicated media types
+	Accepts *components.Accepts `default:"application/xml" header:"style=simple,explode=false,name=accepts"`
+	// An opaque identifier unique to the client
+	ClientIdentifier *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+	// The name of the client product
+	Product *string `header:"style=simple,explode=false,name=X-Plex-Product"`
+	// The version of the client application
+	Version *string `header:"style=simple,explode=false,name=X-Plex-Version"`
+	// The platform of the client
+	Platform *string `header:"style=simple,explode=false,name=X-Plex-Platform"`
+	// The version of the platform
+	PlatformVersion *string `header:"style=simple,explode=false,name=X-Plex-Platform-Version"`
+	// A relatively friendly name for the client device
+	Device *string `header:"style=simple,explode=false,name=X-Plex-Device"`
+	// A potentially less friendly identifier for the device model
+	Model *string `header:"style=simple,explode=false,name=X-Plex-Model"`
+	// The device vendor
+	DeviceVendor *string `header:"style=simple,explode=false,name=X-Plex-Device-Vendor"`
+	// A friendly name for the client
+	DeviceName *string `header:"style=simple,explode=false,name=X-Plex-Device-Name"`
+	// The marketplace on which the client application is distributed
+	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
 }
 
-func (u *UpdatePlaylistRequest) GetPlaylistID() float64 {
+func (u UpdatePlaylistGlobals) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdatePlaylistGlobals) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u *UpdatePlaylistGlobals) GetAccepts() *components.Accepts {
 	if u == nil {
-		return 0.0
+		return nil
+	}
+	return u.Accepts
+}
+
+func (u *UpdatePlaylistGlobals) GetClientIdentifier() *string {
+	if u == nil {
+		return nil
+	}
+	return u.ClientIdentifier
+}
+
+func (u *UpdatePlaylistGlobals) GetProduct() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Product
+}
+
+func (u *UpdatePlaylistGlobals) GetVersion() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Version
+}
+
+func (u *UpdatePlaylistGlobals) GetPlatform() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Platform
+}
+
+func (u *UpdatePlaylistGlobals) GetPlatformVersion() *string {
+	if u == nil {
+		return nil
+	}
+	return u.PlatformVersion
+}
+
+func (u *UpdatePlaylistGlobals) GetDevice() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Device
+}
+
+func (u *UpdatePlaylistGlobals) GetModel() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Model
+}
+
+func (u *UpdatePlaylistGlobals) GetDeviceVendor() *string {
+	if u == nil {
+		return nil
+	}
+	return u.DeviceVendor
+}
+
+func (u *UpdatePlaylistGlobals) GetDeviceName() *string {
+	if u == nil {
+		return nil
+	}
+	return u.DeviceName
+}
+
+func (u *UpdatePlaylistGlobals) GetMarketplace() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Marketplace
+}
+
+type UpdatePlaylistRequest struct {
+	// Indicates the client accepts the indicated media types
+	Accepts *components.Accepts `default:"application/xml" header:"style=simple,explode=false,name=accepts"`
+	// An opaque identifier unique to the client
+	ClientIdentifier *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+	// The name of the client product
+	Product *string `header:"style=simple,explode=false,name=X-Plex-Product"`
+	// The version of the client application
+	Version *string `header:"style=simple,explode=false,name=X-Plex-Version"`
+	// The platform of the client
+	Platform *string `header:"style=simple,explode=false,name=X-Plex-Platform"`
+	// The version of the platform
+	PlatformVersion *string `header:"style=simple,explode=false,name=X-Plex-Platform-Version"`
+	// A relatively friendly name for the client device
+	Device *string `header:"style=simple,explode=false,name=X-Plex-Device"`
+	// A potentially less friendly identifier for the device model
+	Model *string `header:"style=simple,explode=false,name=X-Plex-Model"`
+	// The device vendor
+	DeviceVendor *string `header:"style=simple,explode=false,name=X-Plex-Device-Vendor"`
+	// A friendly name for the client
+	DeviceName *string `header:"style=simple,explode=false,name=X-Plex-Device-Name"`
+	// The marketplace on which the client application is distributed
+	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
+	// The ID of the playlist
+	PlaylistID int64 `pathParam:"style=simple,explode=false,name=playlistId"`
+}
+
+func (u UpdatePlaylistRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdatePlaylistRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"playlistId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u *UpdatePlaylistRequest) GetAccepts() *components.Accepts {
+	if u == nil {
+		return nil
+	}
+	return u.Accepts
+}
+
+func (u *UpdatePlaylistRequest) GetClientIdentifier() *string {
+	if u == nil {
+		return nil
+	}
+	return u.ClientIdentifier
+}
+
+func (u *UpdatePlaylistRequest) GetProduct() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Product
+}
+
+func (u *UpdatePlaylistRequest) GetVersion() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Version
+}
+
+func (u *UpdatePlaylistRequest) GetPlatform() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Platform
+}
+
+func (u *UpdatePlaylistRequest) GetPlatformVersion() *string {
+	if u == nil {
+		return nil
+	}
+	return u.PlatformVersion
+}
+
+func (u *UpdatePlaylistRequest) GetDevice() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Device
+}
+
+func (u *UpdatePlaylistRequest) GetModel() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Model
+}
+
+func (u *UpdatePlaylistRequest) GetDeviceVendor() *string {
+	if u == nil {
+		return nil
+	}
+	return u.DeviceVendor
+}
+
+func (u *UpdatePlaylistRequest) GetDeviceName() *string {
+	if u == nil {
+		return nil
+	}
+	return u.DeviceName
+}
+
+func (u *UpdatePlaylistRequest) GetMarketplace() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Marketplace
+}
+
+func (u *UpdatePlaylistRequest) GetPlaylistID() int64 {
+	if u == nil {
+		return 0
 	}
 	return u.PlaylistID
-}
-
-func (u *UpdatePlaylistRequest) GetTitle() *string {
-	if u == nil {
-		return nil
-	}
-	return u.Title
-}
-
-func (u *UpdatePlaylistRequest) GetSummary() *string {
-	if u == nil {
-		return nil
-	}
-	return u.Summary
 }
 
 type UpdatePlaylistResponse struct {

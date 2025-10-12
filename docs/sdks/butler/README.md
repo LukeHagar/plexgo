@@ -3,24 +3,23 @@
 
 ## Overview
 
-Butler is the task manager of the Plex Media Server Ecosystem.
-
+The butler is responsible for running periodic tasks.  Some tasks run daily, others every few days, and some weekly.  These includes database maintenance, metadata updating, thumbnail generation, media analysis, and other tasks.
 
 ### Available Operations
 
-* [GetButlerTasks](#getbutlertasks) - Get Butler tasks
-* [StartAllTasks](#startalltasks) - Start all Butler tasks
-* [StopAllTasks](#stopalltasks) - Stop all Butler tasks
-* [StartTask](#starttask) - Start a single Butler task
+* [StopTasks](#stoptasks) - Stop all Butler tasks
+* [GetTasks](#gettasks) - Get all Butler tasks
+* [StartTasks](#starttasks) - Start all Butler tasks
 * [StopTask](#stoptask) - Stop a single Butler task
+* [StartTask](#starttask) - Start a single Butler task
 
-## GetButlerTasks
+## StopTasks
 
-Returns a list of butler tasks
+This endpoint will stop all currently running tasks and remove any scheduled tasks from the queue.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="getButlerTasks" method="get" path="/butler" -->
+<!-- UsageSnippet language="go" operationID="stopTasks" method="delete" path="/butler" -->
 ```go
 package main
 
@@ -37,7 +36,58 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Butler.GetButlerTasks(ctx)
+    res, err := s.Butler.StopTasks(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
+
+### Response
+
+**[*operations.StopTasksResponse](../../models/operations/stoptasksresponse.md), error**
+
+### Errors
+
+| Error Type         | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4XX, 5XX           | \*/\*              |
+
+## GetTasks
+
+Get the list of butler tasks and their scheduling
+
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="getTasks" method="get" path="/butler" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/LukeHagar/plexgo"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := plexgo.New(
+        plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Butler.GetTasks(ctx)
     if err != nil {
         log.Fatal(err)
     }
@@ -56,28 +106,27 @@ func main() {
 
 ### Response
 
-**[*operations.GetButlerTasksResponse](../../models/operations/getbutlertasksresponse.md), error**
+**[*operations.GetTasksResponse](../../models/operations/gettasksresponse.md), error**
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| sdkerrors.GetButlerTasksBadRequest   | 400                                  | application/json                     |
-| sdkerrors.GetButlerTasksUnauthorized | 401                                  | application/json                     |
-| sdkerrors.SDKError                   | 4XX, 5XX                             | \*/\*                                |
+| Error Type         | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4XX, 5XX           | \*/\*              |
 
-## StartAllTasks
+## StartTasks
 
 This endpoint will attempt to start all Butler tasks that are enabled in the settings. Butler tasks normally run automatically during a time window configured on the server's Settings page but can be manually started using this endpoint. Tasks will run with the following criteria:
-1. Any tasks not scheduled to run on the current day will be skipped.
-2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately.
-3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window.
-4. If we are outside the configured window, the task will start immediately.
+
+  1. Any tasks not scheduled to run on the current day will be skipped.
+  2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately.
+  3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window.
+  4. If we are outside the configured window, the task will start immediately.
 
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="startAllTasks" method="post" path="/butler" -->
+<!-- UsageSnippet language="go" operationID="startTasks" method="post" path="/butler" -->
 ```go
 package main
 
@@ -94,7 +143,7 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Butler.StartAllTasks(ctx)
+    res, err := s.Butler.StartTasks(ctx)
     if err != nil {
         log.Fatal(err)
     }
@@ -113,141 +162,28 @@ func main() {
 
 ### Response
 
-**[*operations.StartAllTasksResponse](../../models/operations/startalltasksresponse.md), error**
+**[*operations.StartTasksResponse](../../models/operations/starttasksresponse.md), error**
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| sdkerrors.StartAllTasksBadRequest   | 400                                 | application/json                    |
-| sdkerrors.StartAllTasksUnauthorized | 401                                 | application/json                    |
-| sdkerrors.SDKError                  | 4XX, 5XX                            | \*/\*                               |
-
-## StopAllTasks
-
-This endpoint will stop all currently running tasks and remove any scheduled tasks from the queue.
-
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="stopAllTasks" method="delete" path="/butler" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/LukeHagar/plexgo"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := plexgo.New(
-        plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
-
-    res, err := s.Butler.StopAllTasks(ctx)
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
-
-### Response
-
-**[*operations.StopAllTasksResponse](../../models/operations/stopalltasksresponse.md), error**
-
-### Errors
-
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| sdkerrors.StopAllTasksBadRequest   | 400                                | application/json                   |
-| sdkerrors.StopAllTasksUnauthorized | 401                                | application/json                   |
-| sdkerrors.SDKError                 | 4XX, 5XX                           | \*/\*                              |
-
-## StartTask
-
-This endpoint will attempt to start a single Butler task that is enabled in the settings. Butler tasks normally run automatically during a time window configured on the server's Settings page but can be manually started using this endpoint. Tasks will run with the following criteria:
-1. Any tasks not scheduled to run on the current day will be skipped.
-2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately.
-3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window.
-4. If we are outside the configured window, the task will start immediately.
-
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="startTask" method="post" path="/butler/{taskName}" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/LukeHagar/plexgo"
-	"github.com/LukeHagar/plexgo/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := plexgo.New(
-        plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
-
-    res, err := s.Butler.StartTask(ctx, operations.TaskNameRefreshPeriodicMetadata)
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                  | Type                                                       | Required                                                   | Description                                                |
-| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
-| `ctx`                                                      | [context.Context](https://pkg.go.dev/context#Context)      | :heavy_check_mark:                                         | The context to use for the request.                        |
-| `taskName`                                                 | [operations.TaskName](../../models/operations/taskname.md) | :heavy_check_mark:                                         | the name of the task to be started.                        |
-| `opts`                                                     | [][operations.Option](../../models/operations/option.md)   | :heavy_minus_sign:                                         | The options for this request.                              |
-
-### Response
-
-**[*operations.StartTaskResponse](../../models/operations/starttaskresponse.md), error**
-
-### Errors
-
-| Error Type                      | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.StartTaskBadRequest   | 400                             | application/json                |
-| sdkerrors.StartTaskUnauthorized | 401                             | application/json                |
-| sdkerrors.SDKError              | 4XX, 5XX                        | \*/\*                           |
+| Error Type         | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4XX, 5XX           | \*/\*              |
 
 ## StopTask
 
-This endpoint will stop a currently running task by name, or remove it from the list of scheduled tasks if it exists. See the section above for a list of task names for this endpoint.
+This endpoint will stop a currently running task by name, or remove it from the list of scheduled tasks if it exists
 
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="stopTask" method="delete" path="/butler/{taskName}" -->
+<!-- UsageSnippet language="go" operationID="stopTask" method="delete" path="/butler/{task}" -->
 ```go
 package main
 
 import(
 	"context"
+	"github.com/LukeHagar/plexgo/models/components"
 	"github.com/LukeHagar/plexgo"
 	"github.com/LukeHagar/plexgo/models/operations"
 	"log"
@@ -257,10 +193,23 @@ func main() {
     ctx := context.Background()
 
     s := plexgo.New(
+        plexgo.WithAccepts(components.AcceptsApplicationXML),
+        plexgo.WithClientIdentifier("abc123"),
+        plexgo.WithProduct("Plex for Roku"),
+        plexgo.WithVersion("2.4.1"),
+        plexgo.WithPlatform("Roku"),
+        plexgo.WithPlatformVersion("4.3 build 1057"),
+        plexgo.WithDevice("Roku 3"),
+        plexgo.WithModel("4200X"),
+        plexgo.WithDeviceVendor("Roku"),
+        plexgo.WithDeviceName("Living Room TV"),
+        plexgo.WithMarketplace("googlePlay"),
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Butler.StopTask(ctx, operations.PathParamTaskNameCleanOldCacheFiles)
+    res, err := s.Butler.StopTask(ctx, operations.StopTaskRequest{
+        Task: operations.TaskCleanOldBundles,
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -272,11 +221,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
-| `taskName`                                                                   | [operations.PathParamTaskName](../../models/operations/pathparamtaskname.md) | :heavy_check_mark:                                                           | The name of the task to be started.                                          |
-| `opts`                                                                       | [][operations.Option](../../models/operations/option.md)                     | :heavy_minus_sign:                                                           | The options for this request.                                                |
+| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `ctx`                                                                    | [context.Context](https://pkg.go.dev/context#Context)                    | :heavy_check_mark:                                                       | The context to use for the request.                                      |
+| `request`                                                                | [operations.StopTaskRequest](../../models/operations/stoptaskrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
+| `opts`                                                                   | [][operations.Option](../../models/operations/option.md)                 | :heavy_minus_sign:                                                       | The options for this request.                                            |
 
 ### Response
 
@@ -284,8 +233,73 @@ func main() {
 
 ### Errors
 
-| Error Type                     | Status Code                    | Content Type                   |
-| ------------------------------ | ------------------------------ | ------------------------------ |
-| sdkerrors.StopTaskBadRequest   | 400                            | application/json               |
-| sdkerrors.StopTaskUnauthorized | 401                            | application/json               |
-| sdkerrors.SDKError             | 4XX, 5XX                       | \*/\*                          |
+| Error Type         | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4XX, 5XX           | \*/\*              |
+
+## StartTask
+
+This endpoint will attempt to start a specific Butler task by name.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="startTask" method="post" path="/butler/{task}" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/LukeHagar/plexgo/models/components"
+	"github.com/LukeHagar/plexgo"
+	"github.com/LukeHagar/plexgo/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := plexgo.New(
+        plexgo.WithAccepts(components.AcceptsApplicationXML),
+        plexgo.WithClientIdentifier("abc123"),
+        plexgo.WithProduct("Plex for Roku"),
+        plexgo.WithVersion("2.4.1"),
+        plexgo.WithPlatform("Roku"),
+        plexgo.WithPlatformVersion("4.3 build 1057"),
+        plexgo.WithDevice("Roku 3"),
+        plexgo.WithModel("4200X"),
+        plexgo.WithDeviceVendor("Roku"),
+        plexgo.WithDeviceName("Living Room TV"),
+        plexgo.WithMarketplace("googlePlay"),
+        plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Butler.StartTask(ctx, operations.StartTaskRequest{
+        Task: operations.PathParamTaskRefreshLocalMedia,
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
+| `request`                                                                  | [operations.StartTaskRequest](../../models/operations/starttaskrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
+| `opts`                                                                     | [][operations.Option](../../models/operations/option.md)                   | :heavy_minus_sign:                                                         | The options for this request.                                              |
+
+### Response
+
+**[*operations.StartTaskResponse](../../models/operations/starttaskresponse.md), error**
+
+### Errors
+
+| Error Type         | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4XX, 5XX           | \*/\*              |

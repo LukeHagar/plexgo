@@ -3,12 +3,12 @@
 package components
 
 type Security struct {
-	AccessToken *string `security:"scheme,type=apiKey,subtype=header,name=X-Plex-Token"`
+	Token *string `security:"scheme,type=apiKey,subtype=header,name=X-Plex-Token"`
 }
 
-func (s *Security) GetAccessToken() *string {
+func (s *Security) GetToken() *string {
 	if s == nil {
 		return nil
 	}
-	return s.AccessToken
+	return s.Token
 }
