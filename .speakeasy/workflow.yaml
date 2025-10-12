@@ -3,7 +3,9 @@ speakeasyVersion: latest
 sources:
     plexapi:
         inputs:
-            - location: registry.speakeasyapi.dev/plexapi/plexapi/plexapi:main
+            - location: https://raw.githubusercontent.com/LukeHagar/plex-api-spec/refs/heads/main/plex-api-spec.yaml
+        registry:
+            location: registry.speakeasyapi.dev/plexapi/plexapi/plexapi
 targets:
     plexgo:
         target: go
