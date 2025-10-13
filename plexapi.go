@@ -21,7 +21,7 @@ import (
 var ServerList = []string{
 	"https://{IP-description}.{identifier}.plex.direct:{port}",
 	"{protocol}://{host}:{port}",
-	"https://{server_url}",
+	"https://{full_server_url}",
 }
 
 // HTTPClient provides an interface for supplying the SDK with a custom HTTP client
@@ -392,9 +392,9 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *PlexAPI {
 	sdk := &PlexAPI{
-		SDKVersion: "0.26.0",
+		SDKVersion: "0.26.1",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 0.26.0 2.723.11 1.1.1 github.com/LukeHagar/plexgo",
+			UserAgent:  "speakeasy-sdk/go 0.26.1 2.723.11 1.1.1 github.com/LukeHagar/plexgo",
 			Globals:    globals.Globals{},
 			ServerList: ServerList,
 			ServerVariables: []map[string]string{

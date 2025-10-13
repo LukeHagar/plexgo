@@ -629,7 +629,7 @@ You can override the default server globally using the `WithServerIndex(serverIn
 | --- | ---------------------------------------------------------- | -------------------------------------------- | ----------- |
 | 0   | `https://{IP-description}.{identifier}.plex.direct:{port}` | `identifier`<br/>`IP-description`<br/>`port` |             |
 | 1   | `{protocol}://{host}:{port}`                               | `protocol`<br/>`host`<br/>`port`             |             |
-| 2   | `https://{server_url}`                                     | `server_url`                                 |             |
+| 2   | `https://{full_server_url}`                                | `server_url`                                 |             |
 
 If the selected server has variables, you may override its default values using the associated option(s):
 
@@ -706,7 +706,7 @@ func main() {
 	ctx := context.Background()
 
 	s := plexgo.New(
-		plexgo.WithServerURL("https://http://localhost:32400"),
+		plexgo.WithServerURL("https://{full_server_url}"),
 		plexgo.WithAccepts(components.AcceptsApplicationXML),
 		plexgo.WithClientIdentifier("abc123"),
 		plexgo.WithProduct("Plex for Roku"),
