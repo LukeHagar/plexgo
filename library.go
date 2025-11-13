@@ -2123,12 +2123,12 @@ func (s *Library) StopAllRefreshes(ctx context.Context, opts ...operations.Optio
 				return nil, err
 			}
 
-			var out components.RequestHandlerSlashGetResponses200
+			var out components.LibrarySections
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.RequestHandlerSlashGetResponses200 = &out
+			res.LibrarySections = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -2348,12 +2348,12 @@ func (s *Library) GetSectionsPrefs(ctx context.Context, request operations.GetSe
 				return nil, err
 			}
 
-			var out components.RequestHandlerSlashGetResponses200
+			var out components.LibrarySections
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.RequestHandlerSlashGetResponses200 = &out
+			res.LibrarySections = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -10492,8 +10492,8 @@ func (s *Library) StartAnalysis(ctx context.Context, request operations.StartAna
 }
 
 // Autocomplete - Get autocompletions for search
-// The field to autocomplete on is specified by the {field}.query parameter. For example `genre.query` or `title.query`.
-// Returns a set of items from the filtered items whose {field} starts with {field}.query.  In the results, a {field}.queryRange will be present to express the range of the match
+// The field to autocomplete on is specified by the `{field}.query` parameter. For example `genre.query` or `title.query`.
+// Returns a set of items from the filtered items whose `{field}` starts with `{field}.query`.  In the results, a `{field}.queryRange` will be present to express the range of the match
 func (s *Library) Autocomplete(ctx context.Context, request operations.AutocompleteRequest, opts ...operations.Option) (*operations.AutocompleteResponse, error) {
 	globals := operations.AutocompleteGlobals{
 		Accepts:          s.sdkConfiguration.Globals.Accepts,

@@ -15,7 +15,7 @@ type StopAllRefreshesResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// OK
-	RequestHandlerSlashGetResponses200 *components.RequestHandlerSlashGetResponses200
+	LibrarySections *components.LibrarySections
 }
 
 func (s *StopAllRefreshesResponse) GetContentType() string {
@@ -39,9 +39,9 @@ func (s *StopAllRefreshesResponse) GetRawResponse() *http.Response {
 	return s.RawResponse
 }
 
-func (s *StopAllRefreshesResponse) GetRequestHandlerSlashGetResponses200() *components.RequestHandlerSlashGetResponses200 {
+func (s *StopAllRefreshesResponse) GetLibrarySections() *components.LibrarySections {
 	if s == nil {
 		return nil
 	}
-	return s.RequestHandlerSlashGetResponses200
+	return s.LibrarySections
 }

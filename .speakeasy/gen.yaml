@@ -17,12 +17,15 @@ generation:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
     hoistGlobalSecurity: true
+  schemas:
+    allOfMergeStrategy: shallowMerge
+  requestBodyFieldName: ""
   tests:
     generateTests: true
     generateNewTests: false
     skipResponseBodyAssertions: false
 go:
-  version: 0.26.1
+  version: 0.27.0
   additionalDependencies: {}
   allowUnknownFieldsInWeakUnions: false
   baseErrorName: PlexAPIError
@@ -37,6 +40,7 @@ go:
       operations: models/operations
       shared: models/components
       webhooks: models/webhooks
+  includeEmptyObjects: false
   inputModelSuffix: input
   maxMethodParams: 4
   methodArguments: require-security-and-request
@@ -47,3 +51,4 @@ go:
   respectRequiredFields: false
   responseFormat: envelope
   sdkPackageName: ""
+  unionDeserializationStrategy: left-to-right

@@ -241,6 +241,21 @@ func isNil(typ reflect.Type, val reflect.Value) bool {
 	return false
 }
 
+func isEmptyContainer(typ reflect.Type, val reflect.Value) bool {
+	if isNil(typ, val) {
+		return true
+	}
+
+	switch typ.Kind() {
+	case reflect.Slice, reflect.Array:
+		return val.Len() == 0
+	case reflect.Map:
+		return val.Len() == 0
+	default:
+		return false
+	}
+}
+
 func contains(arr []string, str string) bool {
 	for _, a := range arr {
 		if a == str {

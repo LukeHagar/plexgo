@@ -2,7 +2,7 @@
 
 package plexgo
 
-// Generated from OpenAPI doc version 1.1.1 and generator version 2.723.11
+// Generated from OpenAPI doc version 1.1.1 and generator version 2.753.1
 
 import (
 	"context"
@@ -262,15 +262,15 @@ func WithHost(host string) SDKOption {
 	}
 }
 
-// WithGlobalServerURL allows setting the server_url variable for url substitution
-func WithGlobalServerURL(serverURL string) SDKOption {
+// WithFullServerURL allows setting the full_server_url variable for url substitution
+func WithFullServerURL(fullServerURL string) SDKOption {
 	return func(sdk *PlexAPI) {
 		for idx := range sdk.sdkConfiguration.ServerVariables {
-			if _, ok := sdk.sdkConfiguration.ServerVariables[idx]["server_url"]; !ok {
+			if _, ok := sdk.sdkConfiguration.ServerVariables[idx]["full_server_url"]; !ok {
 				continue
 			}
 
-			sdk.sdkConfiguration.ServerVariables[idx]["server_url"] = fmt.Sprintf("%v", serverURL)
+			sdk.sdkConfiguration.ServerVariables[idx]["full_server_url"] = fmt.Sprintf("%v", fullServerURL)
 		}
 	}
 }
@@ -392,9 +392,9 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *PlexAPI {
 	sdk := &PlexAPI{
-		SDKVersion: "0.26.1",
+		SDKVersion: "0.27.0",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 0.26.1 2.723.11 1.1.1 github.com/LukeHagar/plexgo",
+			UserAgent:  "speakeasy-sdk/go 0.27.0 2.753.1 1.1.1 github.com/LukeHagar/plexgo",
 			Globals:    globals.Globals{},
 			ServerList: ServerList,
 			ServerVariables: []map[string]string{
@@ -409,7 +409,7 @@ func New(opts ...SDKOption) *PlexAPI {
 					"port":     "32400",
 				},
 				{
-					"server_url": "http://localhost:32400",
+					"full_server_url": "http://localhost:32400",
 				},
 			},
 		},

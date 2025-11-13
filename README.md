@@ -629,18 +629,18 @@ You can override the default server globally using the `WithServerIndex(serverIn
 | --- | ---------------------------------------------------------- | -------------------------------------------- | ----------- |
 | 0   | `https://{IP-description}.{identifier}.plex.direct:{port}` | `identifier`<br/>`IP-description`<br/>`port` |             |
 | 1   | `{protocol}://{host}:{port}`                               | `protocol`<br/>`host`<br/>`port`             |             |
-| 2   | `https://{full_server_url}`                                | `server_url`                                 |             |
+| 2   | `https://{full_server_url}`                                | `full_server_url`                            |             |
 
 If the selected server has variables, you may override its default values using the associated option(s):
 
-| Variable         | Option                                    | Default                              | Description                                                                                                                                                                                                                                                                                                                                                                          |
-| ---------------- | ----------------------------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `identifier`     | `WithIdentifier(identifier string)`       | `"0123456789abcdef0123456789abcdef"` | The unique identifier of this particular PMS                                                                                                                                                                                                                                                                                                                                         |
-| `IP-description` | `WithIPDescription(ipDescription string)` | `"1-2-3-4"`                          | A `-` separated string of the IPv4 or IPv6 address components                                                                                                                                                                                                                                                                                                                        |
-| `port`           | `WithPort(port string)`                   | `"32400"`                            | The Port number configured on the PMS. Typically (`32400`). <br/>If using a reverse proxy, this would be the port number configured on the proxy.<br/>                                                                                                                                                                                                                               |
-| `protocol`       | `WithProtocol(protocol string)`           | `"http"`                             | The network protocol to use. Typically (`http` or `https`)                                                                                                                                                                                                                                                                                                                           |
-| `host`           | `WithHost(host string)`                   | `"localhost"`                        | The Host of the PMS.<br/>If using on a local network, this is the internal IP address of the server hosting the PMS.<br/>If using on an external network, this is the external IP address for your network, and requires port forwarding.<br/>If using a reverse proxy, this would be the external DNS domain for your network, and requires the proxy handle port forwarding. <br/> |
-| `server_url`     | `WithGlobalServerURL(serverURL string)`   | `"http://localhost:32400"`           | The full manual URL to access the PMS                                                                                                                                                                                                                                                                                                                                                |
+| Variable          | Option                                    | Default                              | Description                                                                                                                                                                                                                                                                                                                                                                          |
+| ----------------- | ----------------------------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `identifier`      | `WithIdentifier(identifier string)`       | `"0123456789abcdef0123456789abcdef"` | The unique identifier of this particular PMS                                                                                                                                                                                                                                                                                                                                         |
+| `IP-description`  | `WithIPDescription(ipDescription string)` | `"1-2-3-4"`                          | A `-` separated string of the IPv4 or IPv6 address components                                                                                                                                                                                                                                                                                                                        |
+| `port`            | `WithPort(port string)`                   | `"32400"`                            | The Port number configured on the PMS. Typically (`32400`). <br/>If using a reverse proxy, this would be the port number configured on the proxy.<br/>                                                                                                                                                                                                                               |
+| `protocol`        | `WithProtocol(protocol string)`           | `"http"`                             | The network protocol to use. Typically (`http` or `https`)                                                                                                                                                                                                                                                                                                                           |
+| `host`            | `WithHost(host string)`                   | `"localhost"`                        | The Host of the PMS.<br/>If using on a local network, this is the internal IP address of the server hosting the PMS.<br/>If using on an external network, this is the external IP address for your network, and requires port forwarding.<br/>If using a reverse proxy, this would be the external DNS domain for your network, and requires the proxy handle port forwarding. <br/> |
+| `full_server_url` | `WithFullServerURL(fullServerURL string)` | `"http://localhost:32400"`           | The full manual URL to access the PMS                                                                                                                                                                                                                                                                                                                                                |
 
 #### Example
 
@@ -659,10 +659,10 @@ func main() {
 	ctx := context.Background()
 
 	s := plexgo.New(
-		plexgo.WithServerIndex(1),
-		plexgo.WithProtocol("<value>"),
-		plexgo.WithHost("electric-excess.name"),
-		plexgo.WithPort("36393"),
+		plexgo.WithServerIndex(0),
+		plexgo.WithIdentifier("0123456789abcdef0123456789abcdef"),
+		plexgo.WithIPDescription("1-2-3-4"),
+		plexgo.WithPort("32400"),
 		plexgo.WithAccepts(components.AcceptsApplicationXML),
 		plexgo.WithClientIdentifier("abc123"),
 		plexgo.WithProduct("Plex for Roku"),
@@ -706,7 +706,7 @@ func main() {
 	ctx := context.Background()
 
 	s := plexgo.New(
-		plexgo.WithServerURL("https://{full_server_url}"),
+		plexgo.WithServerURL("https://http://localhost:32400"),
 		plexgo.WithAccepts(components.AcceptsApplicationXML),
 		plexgo.WithClientIdentifier("abc123"),
 		plexgo.WithProduct("Plex for Roku"),

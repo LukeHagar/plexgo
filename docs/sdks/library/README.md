@@ -685,7 +685,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.RequestHandlerSlashGetResponses200 != nil {
+    if res.LibrarySections != nil {
         // handle response
     }
 }
@@ -750,7 +750,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.RequestHandlerSlashGetResponses200 != nil {
+    if res.LibrarySections != nil {
         // handle response
     }
 }
@@ -3354,8 +3354,8 @@ func main() {
 
 ## Autocomplete
 
-The field to autocomplete on is specified by the {field}.query parameter. For example `genre.query` or `title.query`.
-Returns a set of items from the filtered items whose {field} starts with {field}.query.  In the results, a {field}.queryRange will be present to express the range of the match
+The field to autocomplete on is specified by the `{field}.query` parameter. For example `genre.query` or `title.query`.
+Returns a set of items from the filtered items whose `{field}` starts with `{field}.query`.  In the results, a `{field}.queryRange` will be present to express the range of the match
 
 ### Example Usage
 

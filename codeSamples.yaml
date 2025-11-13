@@ -4411,7 +4411,7 @@ actions:
                 if err != nil {
                     log.Fatal(err)
                 }
-                if res.RequestHandlerSlashGetResponses200 != nil {
+                if res.LibrarySections != nil {
                     // handle response
                 }
             }
@@ -4455,7 +4455,7 @@ actions:
                 if err != nil {
                     log.Fatal(err)
                 }
-                if res.RequestHandlerSlashGetResponses200 != nil {
+                if res.LibrarySections != nil {
                     // handle response
                 }
             }

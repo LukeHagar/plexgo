@@ -1,4 +1,4 @@
-# RequestHandlerSlashGetResponses200Directory
+# LibrarySectionsDirectory
 
 
 ## Fields

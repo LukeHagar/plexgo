@@ -260,7 +260,7 @@ type GetSectionsPrefsResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// OK
-	RequestHandlerSlashGetResponses200 *components.RequestHandlerSlashGetResponses200
+	LibrarySections *components.LibrarySections
 }
 
 func (g *GetSectionsPrefsResponse) GetContentType() string {
@@ -284,9 +284,9 @@ func (g *GetSectionsPrefsResponse) GetRawResponse() *http.Response {
 	return g.RawResponse
 }
 
-func (g *GetSectionsPrefsResponse) GetRequestHandlerSlashGetResponses200() *components.RequestHandlerSlashGetResponses200 {
+func (g *GetSectionsPrefsResponse) GetLibrarySections() *components.LibrarySections {
 	if g == nil {
 		return nil
 	}
-	return g.RequestHandlerSlashGetResponses200
+	return g.LibrarySections
 }

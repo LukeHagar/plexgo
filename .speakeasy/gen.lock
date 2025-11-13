@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: dfa99515-01c0-42eb-9be5-ee212fd03eb3
 management:
-  docChecksum: 46ec1ce493542eb1a574ee88fc8b0895
+  docChecksum: e95c0e17d3e268dcd18d26ac8d0bfc98
   docVersion: 1.1.1
-  speakeasyVersion: 1.636.3
-  generationVersion: 2.723.11
-  releaseVersion: 0.26.1
-  configChecksum: 8f12745b80c253e0d17cd4e174948f51
+  speakeasyVersion: 1.656.1
+  generationVersion: 2.753.1
+  releaseVersion: 0.27.0
+  configChecksum: 992bac138343fa32eddfed9ebe4d6270
   repoURL: https://github.com/LukeHagar/plexgo.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexgo
@@ -17,7 +17,7 @@ features:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.2
     constsAndDefaults: 0.1.12
-    core: 3.11.1
+    core: 3.13.2
     deepObjectParams: 0.1.1
     defaultEnabledRetries: 0.2.0
     downloadStreams: 0.1.2
@@ -26,14 +26,14 @@ features:
     globalSecurity: 2.82.12
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
-    globalServerURLs: 2.82.3
+    globalServerURLs: 2.83.0
     globals: 2.82.2
     intellisenseMarkdownSupport: 0.1.0
     nameOverrides: 2.81.2
     responseFormat: 0.1.2
     retries: 2.84.2
     sdkHooks: 0.2.0
-    unions: 2.86.0
+    unions: 2.87.1
     uploadStreams: 0.1.0
 generatedFiles:
   - .gitattributes
@@ -53,6 +53,7 @@ generatedFiles:
   - /models/components/image.go
   - /models/components/items.go
   - /models/components/librarysection.go
+  - /models/components/librarysections.go
   - /models/components/lineup.go
   - /models/components/location.go
   - /models/components/media.go
@@ -76,7 +77,6 @@ generatedFiles:
   - /models/components/player.go
   - /models/components/postresponses200.go
   - /models/components/protocol.go
-  - /models/components/requesthandlerslashgetresponses200.go
   - /models/components/security.go
   - /models/components/session.go
   - /models/components/setting.go
@@ -365,6 +365,9 @@ generatedFiles:
   - docs/models/components/items.md
   - docs/models/components/librarysection.md
   - docs/models/components/librarysectionlocation.md
+  - docs/models/components/librarysections.md
+  - docs/models/components/librarysectionsdirectory.md
+  - docs/models/components/librarysectionsmediacontainer.md
   - docs/models/components/lineup.md
   - docs/models/components/lineuptype.md
   - docs/models/components/location.md
@@ -416,9 +419,6 @@ generatedFiles:
   - docs/models/components/postresponses200type.md
   - docs/models/components/protocol.md
   - docs/models/components/recommendationsvisibility.md
-  - docs/models/components/requesthandlerslashgetresponses200.md
-  - docs/models/components/requesthandlerslashgetresponses200directory.md
-  - docs/models/components/requesthandlerslashgetresponses200mediacontainer.md
   - docs/models/components/security.md
   - docs/models/components/session.md
   - docs/models/components/sessionlocation.md
