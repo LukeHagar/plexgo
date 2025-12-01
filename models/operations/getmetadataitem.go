@@ -146,21 +146,21 @@ type GetMetadataItemRequest struct {
 	Marketplace *string  `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
 	Ids         []string `pathParam:"style=simple,explode=false,name=ids"`
 	// Determines if file check should be performed asynchronously.  An activity is created to indicate progress.  Default is false.
-	AsyncCheckFiles *components.BoolInt `queryParam:"style=form,explode=true,name=asyncCheckFiles"`
+	AsyncCheckFiles *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=asyncCheckFiles"`
 	// Determines if local media agent refresh should be performed asynchronously.  An activity is created to indicate progress.  Default is false.
-	AsyncRefreshLocalMediaAgent *components.BoolInt `queryParam:"style=form,explode=true,name=asyncRefreshLocalMediaAgent"`
+	AsyncRefreshLocalMediaAgent *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=asyncRefreshLocalMediaAgent"`
 	// Determines if analysis refresh should be performed asynchronously.  An activity is created to indicate progress.  Default is false.
-	AsyncRefreshAnalysis *components.BoolInt `queryParam:"style=form,explode=true,name=asyncRefreshAnalysis"`
+	AsyncRefreshAnalysis *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=asyncRefreshAnalysis"`
 	// Determines if file check should be performed synchronously.  Specifying `asyncCheckFiles` will cause this option to be ignored.  Default is false.
-	CheckFiles *components.BoolInt `queryParam:"style=form,explode=true,name=checkFiles"`
+	CheckFiles *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=checkFiles"`
 	// Determines if synchronous local media agent and analysis refresh should be skipped.  Specifying async versions will cause synchronous versions to be skipped.  Default is false.
-	SkipRefresh *components.BoolInt `queryParam:"style=form,explode=true,name=skipRefresh"`
+	SkipRefresh *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=skipRefresh"`
 	// Determines if file existence check should be performed synchronously.  Specifying `checkFiles` will imply this option.  Default is false.
-	CheckFileAvailability *components.BoolInt `queryParam:"style=form,explode=true,name=checkFileAvailability"`
+	CheckFileAvailability *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=checkFileAvailability"`
 	// Add metadata augmentations.  An activity is created to indicate progress.  Option will be ignored if specified by non-admin or if multiple metadata items are requested.  Default is false.
-	AsyncAugmentMetadata *components.BoolInt `queryParam:"style=form,explode=true,name=asyncAugmentMetadata"`
+	AsyncAugmentMetadata *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=asyncAugmentMetadata"`
 	// Number of augmentations to add.  Requires `asyncAugmentMetadata` to be specified.
-	AugmentCount *components.BoolInt `queryParam:"style=form,explode=true,name=augmentCount"`
+	AugmentCount *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=augmentCount"`
 }
 
 func (g GetMetadataItemRequest) MarshalJSON() ([]byte, error) {

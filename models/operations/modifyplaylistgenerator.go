@@ -163,7 +163,18 @@ func (e *QueryParamScope) UnmarshalJSON(data []byte) error {
 type Policy struct {
 	Value     *int64              `queryParam:"name=value"`
 	Scope     *QueryParamScope    `queryParam:"name=scope"`
-	Unwatched *components.BoolInt `queryParam:"name=unwatched"`
+	Unwatched *components.BoolInt `default:"0" queryParam:"name=unwatched"`
+}
+
+func (p Policy) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *Policy) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (p *Policy) GetValue() *int64 {

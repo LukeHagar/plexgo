@@ -151,7 +151,7 @@ type SetStreamSelectionRequest struct {
 	// The id of the subtitle stream to select in this part.  Specify 0 to select no subtitle
 	SubtitleStreamID *int64 `queryParam:"style=form,explode=true,name=subtitleStreamID"`
 	// Perform the same for all parts of this media selecting similar streams in each
-	AllParts *components.BoolInt `queryParam:"style=form,explode=true,name=allParts"`
+	AllParts *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=allParts"`
 }
 
 func (s SetStreamSelectionRequest) MarshalJSON() ([]byte, error) {

@@ -150,7 +150,7 @@ type ListMatchesRequest struct {
 	Agent       *string             `queryParam:"style=form,explode=true,name=agent"`
 	Language    *string             `queryParam:"style=form,explode=true,name=language"`
 	Year        *int64              `queryParam:"style=form,explode=true,name=year"`
-	Manual      *components.BoolInt `queryParam:"style=form,explode=true,name=manual"`
+	Manual      *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=manual"`
 }
 
 func (l ListMatchesRequest) MarshalJSON() ([]byte, error) {

@@ -147,7 +147,7 @@ type GetAugmentationStatusRequest struct {
 	// The id of the augmentation
 	AugmentationID string `pathParam:"style=simple,explode=false,name=augmentationId"`
 	// Wait for augmentation completion before returning
-	Wait *components.BoolInt `queryParam:"style=form,explode=true,name=wait"`
+	Wait *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=wait"`
 }
 
 func (g GetAugmentationStatusRequest) MarshalJSON() ([]byte, error) {

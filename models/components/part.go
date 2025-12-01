@@ -8,22 +8,27 @@ import (
 
 // Part - `Part` represents a particular file or "part" of a media item. The part is the playable unit of the media hierarchy. Suppose that a movie library contains a movie that is broken up into files, reminiscent of a movie split across two BDs. The metadata item represents information about the movie, the media item represents this instance of the movie at this resolution and quality, and the part items represent the two playable files.  If another media were added which contained the joining of these two parts transcoded down to a lower resolution, then this metadata would contain 2 medias, one with 2 parts and one with 1 part.
 type Part struct {
-	AudioProfile any `json:"audioProfile,omitempty"`
+	// Indicates if the part is accessible.
+	Accessible   *bool   `json:"accessible,omitempty"`
+	AudioProfile *string `json:"audioProfile,omitempty"`
 	// The container of the media file, such as `mp4` or `mkv`
-	Container any `json:"container,omitempty"`
+	Container *string `json:"container,omitempty"`
 	// The duration of the media item, in milliseconds
-	Duration *int64 `json:"duration,omitempty"`
+	Duration *int `json:"duration,omitempty"`
+	// Indicates if the part exists.
+	Exists *bool `json:"exists,omitempty"`
 	// The local file path at which the part is stored on the server
-	File            any    `json:"file,omitempty"`
-	Has64bitOffsets *bool  `json:"has64bitOffsets,omitempty"`
-	ID              *int64 `json:"id,omitempty"`
+	File            *string `json:"file,omitempty"`
+	Has64bitOffsets *bool   `json:"has64bitOffsets,omitempty"`
+	ID              int64   `json:"id"`
+	Indexes         *string `json:"indexes,omitempty"`
 	// The key from which the media can be streamed
-	Key                   any   `json:"key,omitempty"`
-	OptimizedForStreaming *bool `json:"optimizedForStreaming,omitempty"`
+	Key                   string `json:"key"`
+	OptimizedForStreaming *bool  `json:"optimizedForStreaming,omitempty"`
 	// The size of the media, in bytes
 	Size                 *int64         `json:"size,omitempty"`
 	Stream               []Stream       `json:"Stream,omitempty"`
-	VideoProfile         any            `json:"videoProfile,omitempty"`
+	VideoProfile         *string        `json:"videoProfile,omitempty"`
 	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
 }
 
@@ -32,34 +37,48 @@ func (p Part) MarshalJSON() ([]byte, error) {
 }
 
 func (p *Part) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"id", "key"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (p *Part) GetAudioProfile() any {
+func (p *Part) GetAccessible() *bool {
+	if p == nil {
+		return nil
+	}
+	return p.Accessible
+}
+
+func (p *Part) GetAudioProfile() *string {
 	if p == nil {
 		return nil
 	}
 	return p.AudioProfile
 }
 
-func (p *Part) GetContainer() any {
+func (p *Part) GetContainer() *string {
 	if p == nil {
 		return nil
 	}
 	return p.Container
 }
 
-func (p *Part) GetDuration() *int64 {
+func (p *Part) GetDuration() *int {
 	if p == nil {
 		return nil
 	}
 	return p.Duration
 }
 
-func (p *Part) GetFile() any {
+func (p *Part) GetExists() *bool {
+	if p == nil {
+		return nil
+	}
+	return p.Exists
+}
+
+func (p *Part) GetFile() *string {
 	if p == nil {
 		return nil
 	}
@@ -73,16 +92,23 @@ func (p *Part) GetHas64bitOffsets() *bool {
 	return p.Has64bitOffsets
 }
 
-func (p *Part) GetID() *int64 {
+func (p *Part) GetID() int64 {
 	if p == nil {
-		return nil
+		return 0
 	}
 	return p.ID
 }
 
-func (p *Part) GetKey() any {
+func (p *Part) GetIndexes() *string {
 	if p == nil {
 		return nil
+	}
+	return p.Indexes
+}
+
+func (p *Part) GetKey() string {
+	if p == nil {
+		return ""
 	}
 	return p.Key
 }
@@ -108,7 +134,7 @@ func (p *Part) GetStream() []Stream {
 	return p.Stream
 }
 
-func (p *Part) GetVideoProfile() any {
+func (p *Part) GetVideoProfile() *string {
 	if p == nil {
 		return nil
 	}

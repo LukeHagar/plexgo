@@ -152,7 +152,7 @@ type UpdateItemsRequest struct {
 	// Set the specified field to a new value
 	FieldValue *string `queryParam:"style=form,explode=true,name=field.value"`
 	// Set the specified field to locked (or unlocked if set to 0)
-	FieldLocked *components.BoolInt `queryParam:"style=form,explode=true,name=field.locked"`
+	FieldLocked *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=field.locked"`
 	// This field is treated specially by albums or artists and may be used for implicit reparenting.
 	TitleValue *string `queryParam:"style=form,explode=true,name=title.value"`
 	// Reparents set of Tracks or Albums - used with album.title.* in the case of tracks

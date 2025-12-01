@@ -2,7 +2,7 @@
 
 package plexgo
 
-// Generated from OpenAPI doc version 1.1.1 and generator version 2.753.1
+// Generated from OpenAPI doc version 1.1.1 and generator version 2.767.2
 
 import (
 	"context"
@@ -156,7 +156,10 @@ type PlexAPI struct {
 	// This describes the API for searching and applying updates to the Plex Media Server.
 	// Updates to the status can be observed via the Event API.
 	//
-	Updater *Updater
+	Updater        *Updater
+	Authentication *Authentication
+	Users          *Users
+	Plex           *Plex
 	// The actual content of the media provider
 	Content *Content
 	// Endpoints for manipulating collections.  In addition to these endpoints, `/library/collections/:collectionId/X` will be rerouted to `/library/metadata/:collectionId/X` and respond to those endpoints as well.
@@ -392,9 +395,9 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *PlexAPI {
 	sdk := &PlexAPI{
-		SDKVersion: "0.27.0",
+		SDKVersion: "0.28.0",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 0.27.0 2.753.1 1.1.1 github.com/LukeHagar/plexgo",
+			UserAgent:  "speakeasy-sdk/go 0.28.0 2.767.2 1.1.1 github.com/LukeHagar/plexgo",
 			Globals:    globals.Globals{},
 			ServerList: ServerList,
 			ServerVariables: []map[string]string{
@@ -457,6 +460,9 @@ func New(opts ...SDKOption) *PlexAPI {
 	sdk.UltraBlur = newUltraBlur(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Status = newStatus(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Updater = newUpdater(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Authentication = newAuthentication(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Users = newUsers(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Plex = newPlex(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Content = newContent(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.LibraryCollections = newLibraryCollections(sdk, sdk.sdkConfiguration, sdk.hooks)
 

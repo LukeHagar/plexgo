@@ -151,8 +151,8 @@ type AddSubtitlesRequest struct {
 	// The URL of the subtitle.  If not provided, the contents of the subtitle must be in the post body
 	URL             *string             `queryParam:"style=form,explode=true,name=url"`
 	Format          *string             `queryParam:"style=form,explode=true,name=format"`
-	Forced          *components.BoolInt `queryParam:"style=form,explode=true,name=forced"`
-	HearingImpaired *components.BoolInt `queryParam:"style=form,explode=true,name=hearingImpaired"`
+	Forced          *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=forced"`
+	HearingImpaired *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=hearingImpaired"`
 }
 
 func (a AddSubtitlesRequest) MarshalJSON() ([]byte, error) {

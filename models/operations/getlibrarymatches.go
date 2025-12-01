@@ -144,11 +144,24 @@ type GetLibraryMatchesRequest struct {
 	DeviceName *string `header:"style=simple,explode=false,name=X-Plex-Device-Name"`
 	// The marketplace on which the client application is distributed
 	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
-	// The metadata type to filter by
-	Type                            *int64              `queryParam:"style=form,explode=true,name=type"`
-	IncludeFullMetadata             *components.BoolInt `queryParam:"style=form,explode=true,name=includeFullMetadata"`
-	IncludeAncestorMetadata         *components.BoolInt `queryParam:"style=form,explode=true,name=includeAncestorMetadata"`
-	IncludeAlternateMetadataSources *components.BoolInt `queryParam:"style=form,explode=true,name=includeAlternateMetadataSources"`
+	// The type of media to retrieve or filter by.
+	//
+	// 1 = movie
+	// 2 = show
+	// 3 = season
+	// 4 = episode
+	// 5 = artist
+	// 6 = album
+	// 7 = track
+	// 8 = photo_album
+	// 9 = photo
+	//
+	// E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
+	//
+	Type                            *components.MediaType `queryParam:"style=form,explode=true,name=type"`
+	IncludeFullMetadata             *components.BoolInt   `default:"0" queryParam:"style=form,explode=true,name=includeFullMetadata"`
+	IncludeAncestorMetadata         *components.BoolInt   `default:"0" queryParam:"style=form,explode=true,name=includeAncestorMetadata"`
+	IncludeAlternateMetadataSources *components.BoolInt   `default:"0" queryParam:"style=form,explode=true,name=includeAlternateMetadataSources"`
 	// Used for movies, shows, artists, albums, and tracks.  Allowed for various URI schemes, to be defined.
 	GUID *string `queryParam:"style=form,explode=true,name=guid"`
 	// The title to filter by or assign
@@ -259,7 +272,7 @@ func (g *GetLibraryMatchesRequest) GetMarketplace() *string {
 	return g.Marketplace
 }
 
-func (g *GetLibraryMatchesRequest) GetType() *int64 {
+func (g *GetLibraryMatchesRequest) GetType() *components.MediaType {
 	if g == nil {
 		return nil
 	}

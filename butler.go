@@ -646,7 +646,7 @@ func (s *Butler) StopTask(ctx context.Context, request operations.StopTaskReques
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/butler/{task}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/butler/{butlerTask}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -849,7 +849,7 @@ func (s *Butler) StartTask(ctx context.Context, request operations.StartTaskRequ
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/butler/{task}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/butler/{butlerTask}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

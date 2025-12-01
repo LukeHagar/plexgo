@@ -125,7 +125,7 @@ func main() {
 
     res, err := s.LibraryPlaylists.UploadPlaylist(ctx, operations.UploadPlaylistRequest{
         Path: plexgo.Pointer("/home/barkley/playlist.m3u"),
-        Force: components.BoolIntOne.ToPointer(),
+        Force: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -665,7 +665,6 @@ func main() {
             Policy: &operations.Policy{
                 Value: plexgo.Pointer[int64](),
                 Scope: operations.QueryParamScopeAll.ToPointer(),
-                Unwatched: components.BoolIntZero.ToPointer(),
             },
             Target: plexgo.Pointer(""),
             TargetTagID: plexgo.Pointer[int64](1),

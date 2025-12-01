@@ -145,7 +145,7 @@ type CheckUpdatesRequest struct {
 	// The marketplace on which the client application is distributed
 	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
 	// Indicate that you want to start download any updates found.
-	Download *components.BoolInt `queryParam:"style=form,explode=true,name=download"`
+	Download *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=download"`
 }
 
 func (c CheckUpdatesRequest) MarshalJSON() ([]byte, error) {

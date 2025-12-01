@@ -147,7 +147,7 @@ type RefreshSectionRequest struct {
 	// Section identifier
 	SectionID int64 `pathParam:"style=simple,explode=false,name=sectionId"`
 	// Whether the update of metadata and items should be performed even if modification dates indicate the items have not change
-	Force *components.BoolInt `queryParam:"style=form,explode=true,name=force"`
+	Force *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=force"`
 	// Restrict refresh to the specified path
 	Path *string `queryParam:"style=form,explode=true,name=path"`
 }

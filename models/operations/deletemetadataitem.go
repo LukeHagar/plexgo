@@ -146,7 +146,7 @@ type DeleteMetadataItemRequest struct {
 	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
 	Ids         string  `pathParam:"style=simple,explode=false,name=ids"`
 	// Whether proxy items, such as media optimized versions, should also be deleted.  Defaults to false.
-	Proxy *components.BoolInt `queryParam:"style=form,explode=true,name=proxy"`
+	Proxy *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=proxy"`
 }
 
 func (d DeleteMetadataItemRequest) MarshalJSON() ([]byte, error) {

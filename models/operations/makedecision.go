@@ -260,19 +260,19 @@ type MakeDecisionRequest struct {
 	// Target video number of audio channels.
 	AudioChannelCount *int64 `queryParam:"style=form,explode=true,name=audioChannelCount"`
 	// Indicates the client supports ABR.
-	AutoAdjustQuality *components.BoolInt `queryParam:"style=form,explode=true,name=autoAdjustQuality"`
+	AutoAdjustQuality *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=autoAdjustQuality"`
 	// Indicates if the server should adjust subtitles based on Voice Activity Data.
-	AutoAdjustSubtitle *components.BoolInt `queryParam:"style=form,explode=true,name=autoAdjustSubtitle"`
+	AutoAdjustSubtitle *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=autoAdjustSubtitle"`
 	// Indicates the client supports direct playing the indicated content.
-	DirectPlay *components.BoolInt `queryParam:"style=form,explode=true,name=directPlay"`
+	DirectPlay *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=directPlay"`
 	// Indicates the client supports direct streaming the video of the indicated content.
-	DirectStream *components.BoolInt `queryParam:"style=form,explode=true,name=directStream"`
+	DirectStream *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=directStream"`
 	// Indicates the client supports direct streaming the audio of the indicated content.
-	DirectStreamAudio *components.BoolInt `queryParam:"style=form,explode=true,name=directStreamAudio"`
+	DirectStreamAudio *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=directStreamAudio"`
 	// Indicates if resolution should be adjusted for orientation.
-	DisableResolutionRotation *components.BoolInt `queryParam:"style=form,explode=true,name=disableResolutionRotation"`
+	DisableResolutionRotation *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=disableResolutionRotation"`
 	// Ignore client profiles when determining if direct play is possible. Only has an effect when directPlay=1 and both mediaIndex and partIndex are specified and neither are -1
-	HasMDE *components.BoolInt `queryParam:"style=form,explode=true,name=hasMDE"`
+	HasMDE *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=hasMDE"`
 	// Network type of the client, can be used to help determine target bitrate.
 	Location *Location `queryParam:"style=form,explode=true,name=location"`
 	// Buffer size used in playback (in KB). Clients should specify a lower bound if not known exactly. This value could make the difference between transcoding and direct play on bandwidth constrained networks.

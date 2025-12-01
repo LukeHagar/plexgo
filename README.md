@@ -25,6 +25,7 @@
   * [Server Selection](#server-selection)
   * [Custom HTTP Client](#custom-http-client)
   * [Authentication](#authentication)
+  * [Special Types](#special-types)
 * [Development](#development)
   * [Maturity](#maturity)
   * [Contributions](#contributions)
@@ -80,13 +81,13 @@ func main() {
 		AdvancedSubtitles:         components.AdvancedSubtitlesBurn.ToPointer(),
 		AudioBoost:                plexgo.Pointer[int64](50),
 		AudioChannelCount:         plexgo.Pointer[int64](5),
-		AutoAdjustQuality:         components.BoolIntOne.ToPointer(),
-		AutoAdjustSubtitle:        components.BoolIntOne.ToPointer(),
-		DirectPlay:                components.BoolIntOne.ToPointer(),
-		DirectStream:              components.BoolIntOne.ToPointer(),
-		DirectStreamAudio:         components.BoolIntOne.ToPointer(),
-		DisableResolutionRotation: components.BoolIntOne.ToPointer(),
-		HasMDE:                    components.BoolIntOne.ToPointer(),
+		AutoAdjustQuality:         components.BoolIntTrue.ToPointer(),
+		AutoAdjustSubtitle:        components.BoolIntTrue.ToPointer(),
+		DirectPlay:                components.BoolIntTrue.ToPointer(),
+		DirectStream:              components.BoolIntTrue.ToPointer(),
+		DirectStreamAudio:         components.BoolIntTrue.ToPointer(),
+		DisableResolutionRotation: components.BoolIntTrue.ToPointer(),
+		HasMDE:                    components.BoolIntTrue.ToPointer(),
 		Location:                  operations.StartTranscodeSessionQueryParamLocationWan.ToPointer(),
 		MediaBufferSize:           plexgo.Pointer[int64](102400),
 		MediaIndex:                plexgo.Pointer[int64](0),
@@ -126,6 +127,11 @@ func main() {
 
 * [ListActivities](docs/sdks/activities/README.md#listactivities) - Get all activities
 * [CancelActivity](docs/sdks/activities/README.md#cancelactivity) - Cancel a running activity
+
+### [Authentication](docs/sdks/authentication/README.md)
+
+* [GetTokenDetails](docs/sdks/authentication/README.md#gettokendetails) - Get Token Details
+* [PostUsersSignInData](docs/sdks/authentication/README.md#postuserssignindata) - Get User Sign In Data
 
 ### [Butler](docs/sdks/butler/README.md)
 
@@ -374,6 +380,10 @@ func main() {
 * [DeletePlayQueueItem](docs/sdks/playqueue/README.md#deleteplayqueueitem) - Delete an item from a play queue
 * [MovePlayQueueItem](docs/sdks/playqueue/README.md#moveplayqueueitem) - Move an item in a play queue
 
+### [Plex](docs/sdks/plex/README.md)
+
+* [GetServerResources](docs/sdks/plex/README.md#getserverresources) - Get Server Resources
+
 ### [Preferences](docs/sdks/preferences/README.md)
 
 * [GetAllPreferences](docs/sdks/preferences/README.md#getallpreferences) - Get all preferences
@@ -442,6 +452,10 @@ func main() {
 * [ApplyUpdates](docs/sdks/updater/README.md#applyupdates) - Applying updates
 * [CheckUpdates](docs/sdks/updater/README.md#checkupdates) - Checking for updates
 * [GetUpdatesStatus](docs/sdks/updater/README.md#getupdatesstatus) - Querying status of updates
+
+### [Users](docs/sdks/users/README.md)
+
+* [GetUsers](docs/sdks/users/README.md#getusers) - Get list of all connected users
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -565,11 +579,13 @@ Handling errors in this SDK should largely match your expectations. All operatio
 
 By Default, an API error will return `sdkerrors.SDKError`. When custom error responses are specified for an operation, the SDK may also return their associated error. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation.
 
-For example, the `GetServerInfo` function may return the following errors:
+For example, the `GetTokenDetails` function may return the following errors:
 
-| Error Type         | Status Code | Content Type |
-| ------------------ | ----------- | ------------ |
-| sdkerrors.SDKError | 4XX, 5XX    | \*/\*        |
+| Error Type                            | Status Code | Content Type     |
+| ------------------------------------- | ----------- | ---------------- |
+| sdkerrors.GetTokenDetailsBadRequest   | 400         | application/json |
+| sdkerrors.GetTokenDetailsUnauthorized | 401         | application/json |
+| sdkerrors.SDKError                    | 4XX, 5XX    | \*/\*            |
 
 ### Example
 
@@ -604,8 +620,20 @@ func main() {
 		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
 	)
 
-	res, err := s.General.GetServerInfo(ctx, operations.GetServerInfoRequest{})
+	res, err := s.Authentication.GetTokenDetails(ctx, operations.GetTokenDetailsRequest{})
 	if err != nil {
+
+		var e *sdkerrors.GetTokenDetailsBadRequest
+		if errors.As(err, &e) {
+			// handle error
+			log.Fatal(e.Error())
+		}
+
+		var e *sdkerrors.GetTokenDetailsUnauthorized
+		if errors.As(err, &e) {
+			// handle error
+			log.Fatal(e.Error())
+		}
 
 		var e *sdkerrors.SDKError
 		if errors.As(err, &e) {
@@ -731,6 +759,49 @@ func main() {
 }
 
 ```
+
+### Override Server URL Per-Operation
+
+The server URL can also be overridden on a per-operation basis, provided a server list was specified for the operation. For example:
+```go
+package main
+
+import (
+	"context"
+	"github.com/LukeHagar/plexgo"
+	"github.com/LukeHagar/plexgo/models/components"
+	"github.com/LukeHagar/plexgo/models/operations"
+	"log"
+)
+
+func main() {
+	ctx := context.Background()
+
+	s := plexgo.New(
+		plexgo.WithAccepts(components.AcceptsApplicationXML),
+		plexgo.WithClientIdentifier("abc123"),
+		plexgo.WithProduct("Plex for Roku"),
+		plexgo.WithVersion("2.4.1"),
+		plexgo.WithPlatform("Roku"),
+		plexgo.WithPlatformVersion("4.3 build 1057"),
+		plexgo.WithDevice("Roku 3"),
+		plexgo.WithModel("4200X"),
+		plexgo.WithDeviceVendor("Roku"),
+		plexgo.WithDeviceName("Living Room TV"),
+		plexgo.WithMarketplace("googlePlay"),
+		plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+	)
+
+	res, err := s.Authentication.GetTokenDetails(ctx, operations.GetTokenDetailsRequest{}, operations.WithServerURL("https://plex.tv/api/v2"))
+	if err != nil {
+		log.Fatal(err)
+	}
+	if res.UserPlexAccount != nil {
+		// handle response
+	}
+}
+
+```
 <!-- End Server Selection [server] -->
 
 <!-- Start Custom HTTP Client [http-client] -->
@@ -815,6 +886,32 @@ func main() {
 
 ```
 <!-- End Authentication [security] -->
+
+<!-- Start Special Types [types] -->
+## Special Types
+
+This SDK defines the following custom types to assist with marshalling and unmarshalling data.
+
+### Date
+
+`types.Date` is a wrapper around time.Time that allows for JSON marshaling a date string formatted as "2006-01-02".
+
+#### Usage
+
+```go
+d1 := types.NewDate(time.Now()) // returns *types.Date
+
+d2 := types.DateFromTime(time.Now()) // returns types.Date
+
+d3, err := types.NewDateFromString("2019-01-01") // returns *types.Date, error
+
+d4, err := types.DateFromString("2019-01-01") // returns types.Date, error
+
+d5 := types.MustNewDateFromString("2019-01-01") // returns *types.Date and panics on error
+
+d6 := types.MustDateFromString("2019-01-01") // returns types.Date and panics on error
+```
+<!-- End Special Types [types] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

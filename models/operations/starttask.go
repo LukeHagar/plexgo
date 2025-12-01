@@ -123,38 +123,38 @@ func (s *StartTaskGlobals) GetMarketplace() *string {
 	return s.Marketplace
 }
 
-// PathParamTask - The task name
-type PathParamTask string
+// PathParamButlerTask - The task name
+type PathParamButlerTask string
 
 const (
-	PathParamTaskAutomaticUpdates                 PathParamTask = "AutomaticUpdates"
-	PathParamTaskBackupDatabase                   PathParamTask = "BackupDatabase"
-	PathParamTaskButlerTaskGenerateAdMarkers      PathParamTask = "ButlerTaskGenerateAdMarkers"
-	PathParamTaskButlerTaskGenerateCreditsMarkers PathParamTask = "ButlerTaskGenerateCreditsMarkers"
-	PathParamTaskButlerTaskGenerateIntroMarkers   PathParamTask = "ButlerTaskGenerateIntroMarkers"
-	PathParamTaskButlerTaskGenerateVoiceActivity  PathParamTask = "ButlerTaskGenerateVoiceActivity"
-	PathParamTaskCleanOldBundles                  PathParamTask = "CleanOldBundles"
-	PathParamTaskCleanOldCacheFiles               PathParamTask = "CleanOldCacheFiles"
-	PathParamTaskDeepMediaAnalysis                PathParamTask = "DeepMediaAnalysis"
-	PathParamTaskGarbageCollectBlobs              PathParamTask = "GarbageCollectBlobs"
-	PathParamTaskGarbageCollectLibraryMedia       PathParamTask = "GarbageCollectLibraryMedia"
-	PathParamTaskGenerateBlurHashes               PathParamTask = "GenerateBlurHashes"
-	PathParamTaskGenerateChapterThumbs            PathParamTask = "GenerateChapterThumbs"
-	PathParamTaskGenerateMediaIndexFiles          PathParamTask = "GenerateMediaIndexFiles"
-	PathParamTaskLoudnessAnalysis                 PathParamTask = "LoudnessAnalysis"
-	PathParamTaskMusicAnalysis                    PathParamTask = "MusicAnalysis"
-	PathParamTaskOptimizeDatabase                 PathParamTask = "OptimizeDatabase"
-	PathParamTaskRefreshEpgGuides                 PathParamTask = "RefreshEpgGuides"
-	PathParamTaskRefreshLibraries                 PathParamTask = "RefreshLibraries"
-	PathParamTaskRefreshLocalMedia                PathParamTask = "RefreshLocalMedia"
-	PathParamTaskRefreshPeriodicMetadata          PathParamTask = "RefreshPeriodicMetadata"
-	PathParamTaskUpgradeMediaAnalysis             PathParamTask = "UpgradeMediaAnalysis"
+	PathParamButlerTaskAutomaticUpdates                 PathParamButlerTask = "AutomaticUpdates"
+	PathParamButlerTaskBackupDatabase                   PathParamButlerTask = "BackupDatabase"
+	PathParamButlerTaskButlerTaskGenerateAdMarkers      PathParamButlerTask = "ButlerTaskGenerateAdMarkers"
+	PathParamButlerTaskButlerTaskGenerateCreditsMarkers PathParamButlerTask = "ButlerTaskGenerateCreditsMarkers"
+	PathParamButlerTaskButlerTaskGenerateIntroMarkers   PathParamButlerTask = "ButlerTaskGenerateIntroMarkers"
+	PathParamButlerTaskButlerTaskGenerateVoiceActivity  PathParamButlerTask = "ButlerTaskGenerateVoiceActivity"
+	PathParamButlerTaskCleanOldBundles                  PathParamButlerTask = "CleanOldBundles"
+	PathParamButlerTaskCleanOldCacheFiles               PathParamButlerTask = "CleanOldCacheFiles"
+	PathParamButlerTaskDeepMediaAnalysis                PathParamButlerTask = "DeepMediaAnalysis"
+	PathParamButlerTaskGarbageCollectBlobs              PathParamButlerTask = "GarbageCollectBlobs"
+	PathParamButlerTaskGarbageCollectLibraryMedia       PathParamButlerTask = "GarbageCollectLibraryMedia"
+	PathParamButlerTaskGenerateBlurHashes               PathParamButlerTask = "GenerateBlurHashes"
+	PathParamButlerTaskGenerateChapterThumbs            PathParamButlerTask = "GenerateChapterThumbs"
+	PathParamButlerTaskGenerateMediaIndexFiles          PathParamButlerTask = "GenerateMediaIndexFiles"
+	PathParamButlerTaskLoudnessAnalysis                 PathParamButlerTask = "LoudnessAnalysis"
+	PathParamButlerTaskMusicAnalysis                    PathParamButlerTask = "MusicAnalysis"
+	PathParamButlerTaskOptimizeDatabase                 PathParamButlerTask = "OptimizeDatabase"
+	PathParamButlerTaskRefreshEpgGuides                 PathParamButlerTask = "RefreshEpgGuides"
+	PathParamButlerTaskRefreshLibraries                 PathParamButlerTask = "RefreshLibraries"
+	PathParamButlerTaskRefreshLocalMedia                PathParamButlerTask = "RefreshLocalMedia"
+	PathParamButlerTaskRefreshPeriodicMetadata          PathParamButlerTask = "RefreshPeriodicMetadata"
+	PathParamButlerTaskUpgradeMediaAnalysis             PathParamButlerTask = "UpgradeMediaAnalysis"
 )
 
-func (e PathParamTask) ToPointer() *PathParamTask {
+func (e PathParamButlerTask) ToPointer() *PathParamButlerTask {
 	return &e
 }
-func (e *PathParamTask) UnmarshalJSON(data []byte) error {
+func (e *PathParamButlerTask) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -203,10 +203,10 @@ func (e *PathParamTask) UnmarshalJSON(data []byte) error {
 	case "RefreshPeriodicMetadata":
 		fallthrough
 	case "UpgradeMediaAnalysis":
-		*e = PathParamTask(v)
+		*e = PathParamButlerTask(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for PathParamTask: %v", v)
+		return fmt.Errorf("invalid value for PathParamButlerTask: %v", v)
 	}
 }
 
@@ -234,7 +234,7 @@ type StartTaskRequest struct {
 	// The marketplace on which the client application is distributed
 	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
 	// The task name
-	Task PathParamTask `pathParam:"style=simple,explode=false,name=task"`
+	ButlerTask PathParamButlerTask `pathParam:"style=simple,explode=false,name=butlerTask"`
 }
 
 func (s StartTaskRequest) MarshalJSON() ([]byte, error) {
@@ -242,7 +242,7 @@ func (s StartTaskRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (s *StartTaskRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"task"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"butlerTask"}); err != nil {
 		return err
 	}
 	return nil
@@ -325,11 +325,11 @@ func (s *StartTaskRequest) GetMarketplace() *string {
 	return s.Marketplace
 }
 
-func (s *StartTaskRequest) GetTask() PathParamTask {
+func (s *StartTaskRequest) GetButlerTask() PathParamButlerTask {
 	if s == nil {
-		return PathParamTask("")
+		return PathParamButlerTask("")
 	}
-	return s.Task
+	return s.ButlerTask
 }
 
 type StartTaskResponse struct {

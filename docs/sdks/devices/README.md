@@ -457,7 +457,7 @@ func main() {
 
     res, err := s.Devices.ModifyDevice(ctx, operations.ModifyDeviceRequest{
         DeviceID: 879135,
-        Enabled: components.BoolIntOne.ToPointer(),
+        Enabled: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)

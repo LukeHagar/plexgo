@@ -146,9 +146,9 @@ type DetectVoiceActivityRequest struct {
 	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
 	Ids         string  `pathParam:"style=simple,explode=false,name=ids"`
 	// Indicate whether detection should be re-run
-	Force *components.BoolInt `queryParam:"style=form,explode=true,name=force"`
+	Force *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=force"`
 	// Indicate whether detection is manually run
-	Manual *components.BoolInt `queryParam:"style=form,explode=true,name=manual"`
+	Manual *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=manual"`
 }
 
 func (d DetectVoiceActivityRequest) MarshalJSON() ([]byte, error) {

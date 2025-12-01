@@ -8,17 +8,18 @@ type Tag struct {
 	Confidence *float64 `json:"confidence,omitempty"`
 	Context    *string  `json:"context,omitempty"`
 	// A filter parameter that can be used to query for more content that matches this tag value.
-	Filter    any     `json:"filter,omitempty"`
-	ID        *int64  `json:"id,omitempty"`
+	Filter *string `json:"filter,omitempty"`
+	ID     *int    `json:"id,omitempty"`
+	// The rating key (Media ID) of this media item. Note: Although this is always an integer, it is represented as a string in the API.
 	RatingKey *string `json:"ratingKey,omitempty"`
 	// The role this actor played
-	Role any `json:"role,omitempty"`
+	Role *string `json:"role,omitempty"`
 	// The value of the tag (the name)
-	Tag any `json:"tag,omitempty"`
+	Tag string `json:"tag"`
 	// Plex identifier for this tag which can be used to fetch additional information from plex.tv
-	TagKey  any    `json:"tagKey,omitempty"`
-	TagType *int64 `json:"tagType,omitempty"`
-	Thumb   any    `json:"thumb,omitempty"`
+	TagKey  *string `json:"tagKey,omitempty"`
+	TagType *int    `json:"tagType,omitempty"`
+	Thumb   *string `json:"thumb,omitempty"`
 }
 
 func (t *Tag) GetConfidence() *float64 {
@@ -35,14 +36,14 @@ func (t *Tag) GetContext() *string {
 	return t.Context
 }
 
-func (t *Tag) GetFilter() any {
+func (t *Tag) GetFilter() *string {
 	if t == nil {
 		return nil
 	}
 	return t.Filter
 }
 
-func (t *Tag) GetID() *int64 {
+func (t *Tag) GetID() *int {
 	if t == nil {
 		return nil
 	}
@@ -56,35 +57,35 @@ func (t *Tag) GetRatingKey() *string {
 	return t.RatingKey
 }
 
-func (t *Tag) GetRole() any {
+func (t *Tag) GetRole() *string {
 	if t == nil {
 		return nil
 	}
 	return t.Role
 }
 
-func (t *Tag) GetTag() any {
+func (t *Tag) GetTag() string {
 	if t == nil {
-		return nil
+		return ""
 	}
 	return t.Tag
 }
 
-func (t *Tag) GetTagKey() any {
+func (t *Tag) GetTagKey() *string {
 	if t == nil {
 		return nil
 	}
 	return t.TagKey
 }
 
-func (t *Tag) GetTagType() *int64 {
+func (t *Tag) GetTagType() *int {
 	if t == nil {
 		return nil
 	}
 	return t.TagType
 }
 
-func (t *Tag) GetThumb() any {
+func (t *Tag) GetThumb() *string {
 	if t == nil {
 		return nil
 	}

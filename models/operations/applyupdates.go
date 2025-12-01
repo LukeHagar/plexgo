@@ -145,9 +145,9 @@ type ApplyUpdatesRequest struct {
 	// The marketplace on which the client application is distributed
 	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
 	// Indicate that you want the update to run during the next Butler execution. Omitting this or setting it to false indicates that the update should install immediately.
-	Tonight *components.BoolInt `queryParam:"style=form,explode=true,name=tonight"`
+	Tonight *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=tonight"`
 	// Indicate that the latest version should be marked as skipped. The <Release> entry for this version will have the `state` set to `skipped`.
-	Skip *components.BoolInt `queryParam:"style=form,explode=true,name=skip"`
+	Skip *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=skip"`
 }
 
 func (a ApplyUpdatesRequest) MarshalJSON() ([]byte, error) {

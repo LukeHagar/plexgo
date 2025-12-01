@@ -145,7 +145,7 @@ type OptimizeDatabaseRequest struct {
 	// The marketplace on which the client application is distributed
 	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
 	// If set, don't wait for completion but return an activity
-	Async *components.BoolInt `queryParam:"style=form,explode=true,name=async"`
+	Async *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=async"`
 }
 
 func (o OptimizeDatabaseRequest) MarshalJSON() ([]byte, error) {

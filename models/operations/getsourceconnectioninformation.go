@@ -147,7 +147,7 @@ type GetSourceConnectionInformationRequest struct {
 	// The source identifier with an included prefix.
 	Source string `queryParam:"style=form,explode=true,name=source"`
 	// Force refresh
-	Refresh *components.BoolInt `queryParam:"style=form,explode=true,name=refresh"`
+	Refresh *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=refresh"`
 }
 
 func (g GetSourceConnectionInformationRequest) MarshalJSON() ([]byte, error) {

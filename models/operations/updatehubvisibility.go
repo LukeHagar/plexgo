@@ -149,11 +149,11 @@ type UpdateHubVisibilityRequest struct {
 	// The identifier of the hub to change
 	Identifier string `pathParam:"style=simple,explode=false,name=identifier"`
 	// Whether this hub should be displayed in recommended
-	PromotedToRecommended *components.BoolInt `queryParam:"style=form,explode=true,name=promotedToRecommended"`
+	PromotedToRecommended *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=promotedToRecommended"`
 	// Whether this hub should be displayed in admin's home
-	PromotedToOwnHome *components.BoolInt `queryParam:"style=form,explode=true,name=promotedToOwnHome"`
+	PromotedToOwnHome *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=promotedToOwnHome"`
 	// Whether this hub should be displayed in shared user's home
-	PromotedToSharedHome *components.BoolInt `queryParam:"style=form,explode=true,name=promotedToSharedHome"`
+	PromotedToSharedHome *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=promotedToSharedHome"`
 }
 
 func (u UpdateHubVisibilityRequest) MarshalJSON() ([]byte, error) {

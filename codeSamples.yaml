@@ -333,9 +333,9 @@ actions:
                     PlayQueueItemID: plexgo.Pointer("123"),
                     Time: plexgo.Pointer[int64](0),
                     Duration: plexgo.Pointer[int64](10000),
-                    Continuing: components.BoolIntOne.ToPointer(),
+                    Continuing: components.BoolIntTrue.ToPointer(),
                     Updated: plexgo.Pointer[int64](14200000),
-                    Offline: components.BoolIntOne.ToPointer(),
+                    Offline: components.BoolIntTrue.ToPointer(),
                     TimeToFirstFrame: plexgo.Pointer[int64](1000),
                     TimeStalled: plexgo.Pointer[int64](1000),
                     Bandwidth: plexgo.Pointer[int64](100),
@@ -595,7 +595,7 @@ actions:
                     // handle response
                 }
             }
-  - target: $["paths"]["/butler/{task}"]["delete"]
+  - target: $["paths"]["/butler/{butlerTask}"]["delete"]
     update:
       x-codeSamples:
         - lang: go
@@ -630,7 +630,7 @@ actions:
                 )
 
                 res, err := s.Butler.StopTask(ctx, operations.StopTaskRequest{
-                    Task: operations.TaskCleanOldBundles,
+                    ButlerTask: operations.ButlerTaskCleanOldBundles,
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -639,7 +639,7 @@ actions:
                     // handle response
                 }
             }
-  - target: $["paths"]["/butler/{task}"]["post"]
+  - target: $["paths"]["/butler/{butlerTask}"]["post"]
     update:
       x-codeSamples:
         - lang: go
@@ -674,7 +674,7 @@ actions:
                 )
 
                 res, err := s.Butler.StartTask(ctx, operations.StartTaskRequest{
-                    Task: operations.PathParamTaskRefreshLocalMedia,
+                    ButlerTask: operations.PathParamButlerTaskRefreshLocalMedia,
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -799,13 +799,13 @@ actions:
                     AdvancedSubtitles: components.AdvancedSubtitlesBurn.ToPointer(),
                     AudioBoost: plexgo.Pointer[int64](50),
                     AudioChannelCount: plexgo.Pointer[int64](5),
-                    AutoAdjustQuality: components.BoolIntOne.ToPointer(),
-                    AutoAdjustSubtitle: components.BoolIntOne.ToPointer(),
-                    DirectPlay: components.BoolIntOne.ToPointer(),
-                    DirectStream: components.BoolIntOne.ToPointer(),
-                    DirectStreamAudio: components.BoolIntOne.ToPointer(),
-                    DisableResolutionRotation: components.BoolIntOne.ToPointer(),
-                    HasMDE: components.BoolIntOne.ToPointer(),
+                    AutoAdjustQuality: components.BoolIntTrue.ToPointer(),
+                    AutoAdjustSubtitle: components.BoolIntTrue.ToPointer(),
+                    DirectPlay: components.BoolIntTrue.ToPointer(),
+                    DirectStream: components.BoolIntTrue.ToPointer(),
+                    DirectStreamAudio: components.BoolIntTrue.ToPointer(),
+                    DisableResolutionRotation: components.BoolIntTrue.ToPointer(),
+                    HasMDE: components.BoolIntTrue.ToPointer(),
                     Location: components.LocationWan.ToPointer(),
                     MediaBufferSize: plexgo.Pointer[int64](102400),
                     MediaIndex: plexgo.Pointer[int64](0),
@@ -1145,7 +1145,7 @@ actions:
                 )
 
                 res, err := s.Hubs.GetAllHubs(ctx, operations.GetAllHubsRequest{
-                    OnlyTransient: components.BoolIntOne.ToPointer(),
+                    OnlyTransient: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -1280,7 +1280,7 @@ actions:
 
                 res, err := s.Hubs.GetMetadataHubs(ctx, operations.GetMetadataHubsRequest{
                     MetadataID: 605482,
-                    OnlyTransient: components.BoolIntOne.ToPointer(),
+                    OnlyTransient: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -1325,7 +1325,7 @@ actions:
 
                 res, err := s.Hubs.GetPostplayHubs(ctx, operations.GetPostplayHubsRequest{
                     MetadataID: 441419,
-                    OnlyTransient: components.BoolIntOne.ToPointer(),
+                    OnlyTransient: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -1370,7 +1370,7 @@ actions:
 
                 res, err := s.Hubs.GetRelatedHubs(ctx, operations.GetRelatedHubsRequest{
                     MetadataID: 8858,
-                    OnlyTransient: components.BoolIntOne.ToPointer(),
+                    OnlyTransient: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -1502,6 +1502,7 @@ actions:
 
                 res, err := s.Search.VoiceSearchHubs(ctx, operations.VoiceSearchHubsRequest{
                     Query: "<value>",
+                    Type: components.MediaTypeTvShow.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -1546,7 +1547,7 @@ actions:
 
                 res, err := s.Hubs.GetSectionHubs(ctx, operations.GetSectionHubsRequest{
                     SectionID: 336924,
-                    OnlyTransient: components.BoolIntOne.ToPointer(),
+                    OnlyTransient: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -1680,9 +1681,9 @@ actions:
                 res, err := s.Hubs.CreateCustomHub(ctx, operations.CreateCustomHubRequest{
                     SectionID: 869922,
                     MetadataItemID: 703843,
-                    PromotedToRecommended: components.BoolIntOne.ToPointer(),
-                    PromotedToOwnHome: components.BoolIntOne.ToPointer(),
-                    PromotedToSharedHome: components.BoolIntOne.ToPointer(),
+                    PromotedToRecommended: components.BoolIntTrue.ToPointer(),
+                    PromotedToOwnHome: components.BoolIntTrue.ToPointer(),
+                    PromotedToSharedHome: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -1818,9 +1819,9 @@ actions:
                 res, err := s.Hubs.UpdateHubVisibility(ctx, operations.UpdateHubVisibilityRequest{
                     SectionID: 341650,
                     Identifier: "<value>",
-                    PromotedToRecommended: components.BoolIntOne.ToPointer(),
-                    PromotedToOwnHome: components.BoolIntOne.ToPointer(),
-                    PromotedToSharedHome: components.BoolIntOne.ToPointer(),
+                    PromotedToRecommended: components.BoolIntTrue.ToPointer(),
+                    PromotedToOwnHome: components.BoolIntTrue.ToPointer(),
+                    PromotedToSharedHome: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -1890,7 +1891,13 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                 )
 
-                res, err := s.Library.GetLibraryItems(ctx, operations.GetLibraryItemsRequest{})
+                res, err := s.Library.GetLibraryItems(ctx, operations.GetLibraryItemsRequest{
+                    MediaQuery: &components.MediaQuery{
+                        Type: components.MediaTypeEpisode.ToPointer(),
+                        SourceType: plexgo.Pointer[int64](2),
+                        Sort: plexgo.Pointer("duration:desc,index"),
+                    },
+                })
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -1992,6 +1999,7 @@ actions:
 
                 res, err := s.Collections.CreateCollection(ctx, operations.CreateCollectionRequest{
                     SectionID: "<id>",
+                    Type: components.MediaTypeTvShow.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -2261,8 +2269,8 @@ actions:
                 res, err := s.Library.IngestTransientItem(ctx, operations.IngestTransientItemRequest{
                     URL: plexgo.Pointer("file:///storage%2Femulated%2F0%2FArcher-S01E01.mkv"),
                     VirtualFilePath: plexgo.Pointer("/Avatar.mkv"),
-                    ComputeHashes: components.BoolIntOne.ToPointer(),
-                    IngestNonMatches: components.BoolIntOne.ToPointer(),
+                    ComputeHashes: components.BoolIntTrue.ToPointer(),
+                    IngestNonMatches: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -2306,9 +2314,10 @@ actions:
                 )
 
                 res, err := s.Library.GetLibraryMatches(ctx, operations.GetLibraryMatchesRequest{
-                    IncludeFullMetadata: components.BoolIntOne.ToPointer(),
-                    IncludeAncestorMetadata: components.BoolIntOne.ToPointer(),
-                    IncludeAlternateMetadataSources: components.BoolIntOne.ToPointer(),
+                    Type: components.MediaTypeTvShow.ToPointer(),
+                    IncludeFullMetadata: components.BoolIntTrue.ToPointer(),
+                    IncludeAncestorMetadata: components.BoolIntTrue.ToPointer(),
+                    IncludeAlternateMetadataSources: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -2398,7 +2407,7 @@ actions:
 
                 res, err := s.Library.GetAugmentationStatus(ctx, operations.GetAugmentationStatusRequest{
                     AugmentationID: "<id>",
-                    Wait: components.BoolIntOne.ToPointer(),
+                    Wait: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -2443,7 +2452,7 @@ actions:
 
                 res, err := s.Library.DeleteMetadataItem(ctx, operations.DeleteMetadataItemRequest{
                     Ids: "<value>",
-                    Proxy: components.BoolIntOne.ToPointer(),
+                    Proxy: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -2488,14 +2497,14 @@ actions:
 
                 res, err := s.Content.GetMetadataItem(ctx, operations.GetMetadataItemRequest{
                     Ids: []string{},
-                    AsyncCheckFiles: components.BoolIntOne.ToPointer(),
-                    AsyncRefreshLocalMediaAgent: components.BoolIntOne.ToPointer(),
-                    AsyncRefreshAnalysis: components.BoolIntOne.ToPointer(),
-                    CheckFiles: components.BoolIntOne.ToPointer(),
-                    SkipRefresh: components.BoolIntOne.ToPointer(),
-                    CheckFileAvailability: components.BoolIntOne.ToPointer(),
-                    AsyncAugmentMetadata: components.BoolIntOne.ToPointer(),
-                    AugmentCount: components.BoolIntOne.ToPointer(),
+                    AsyncCheckFiles: components.BoolIntTrue.ToPointer(),
+                    AsyncRefreshLocalMediaAgent: components.BoolIntTrue.ToPointer(),
+                    AsyncRefreshAnalysis: components.BoolIntTrue.ToPointer(),
+                    CheckFiles: components.BoolIntTrue.ToPointer(),
+                    SkipRefresh: components.BoolIntTrue.ToPointer(),
+                    CheckFileAvailability: components.BoolIntTrue.ToPointer(),
+                    AsyncAugmentMetadata: components.BoolIntTrue.ToPointer(),
+                    AugmentCount: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -2719,7 +2728,7 @@ actions:
 
                 res, err := s.Library.GenerateThumbs(ctx, operations.GenerateThumbsRequest{
                     Ids: "<value>",
-                    Force: components.BoolIntOne.ToPointer(),
+                    Force: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -2764,8 +2773,8 @@ actions:
 
                 res, err := s.Library.DetectCredits(ctx, operations.DetectCreditsRequest{
                     Ids: "<value>",
-                    Force: components.BoolIntOne.ToPointer(),
-                    Manual: components.BoolIntOne.ToPointer(),
+                    Force: components.BoolIntTrue.ToPointer(),
+                    Manual: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -2943,7 +2952,7 @@ actions:
 
                 res, err := s.Library.StartBifGeneration(ctx, operations.StartBifGenerationRequest{
                     Ids: "<value>",
-                    Force: components.BoolIntOne.ToPointer(),
+                    Force: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -2988,7 +2997,7 @@ actions:
 
                 res, err := s.Library.DetectIntros(ctx, operations.DetectIntrosRequest{
                     Ids: "<value>",
-                    Force: components.BoolIntOne.ToPointer(),
+                    Force: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -3217,7 +3226,7 @@ actions:
 
                 res, err := s.Library.ListMatches(ctx, operations.ListMatchesRequest{
                     Ids: "<value>",
-                    Manual: components.BoolIntOne.ToPointer(),
+                    Manual: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -3263,7 +3272,7 @@ actions:
                 res, err := s.Library.DeleteMediaItem(ctx, operations.DeleteMediaItemRequest{
                     Ids: "<value>",
                     MediaItem: "<value>",
-                    Proxy: components.BoolIntOne.ToPointer(),
+                    Proxy: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -3440,7 +3449,7 @@ actions:
 
                 res, err := s.Library.RefreshItemsMetadata(ctx, operations.RefreshItemsMetadataRequest{
                     Ids: "<value>",
-                    MarkUpdated: components.BoolIntOne.ToPointer(),
+                    MarkUpdated: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -3617,8 +3626,8 @@ actions:
 
                 res, err := s.Library.AddSubtitles(ctx, operations.AddSubtitlesRequest{
                     Ids: "<value>",
-                    Forced: components.BoolIntOne.ToPointer(),
-                    HearingImpaired: components.BoolIntOne.ToPointer(),
+                    Forced: components.BoolIntTrue.ToPointer(),
+                    HearingImpaired: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -3795,8 +3804,8 @@ actions:
 
                 res, err := s.Library.DetectVoiceActivity(ctx, operations.DetectVoiceActivityRequest{
                     Ids: "<value>",
-                    Force: components.BoolIntOne.ToPointer(),
-                    Manual: components.BoolIntOne.ToPointer(),
+                    Force: components.BoolIntTrue.ToPointer(),
+                    Manual: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -3976,7 +3985,7 @@ actions:
                 )
 
                 res, err := s.Library.OptimizeDatabase(ctx, operations.OptimizeDatabaseRequest{
-                    Async: components.BoolIntOne.ToPointer(),
+                    Async: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -4021,7 +4030,7 @@ actions:
 
                 res, err := s.Library.SetStreamSelection(ctx, operations.SetStreamSelectionRequest{
                     PartID: 360489,
-                    AllParts: components.BoolIntOne.ToPointer(),
+                    AllParts: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -4159,7 +4168,7 @@ actions:
                     PartID: 877105,
                     Changestamp: 970622,
                     Filename: "example.file",
-                    Download: components.BoolIntOne.ToPointer(),
+                    Download: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -4376,8 +4385,8 @@ actions:
                         "O:\fatboy\\Media\\My Music",
                     },
                     Prefs: &operations.QueryParamPrefs{},
-                    Relative: components.BoolIntOne.ToPointer(),
-                    ImportFromiTunes: components.BoolIntOne.ToPointer(),
+                    Relative: components.BoolIntTrue.ToPointer(),
+                    ImportFromiTunes: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -4537,7 +4546,7 @@ actions:
 
                 res, err := s.Library.DeleteLibrarySection(ctx, operations.DeleteLibrarySectionRequest{
                     SectionID: "<id>",
-                    Async: components.BoolIntOne.ToPointer(),
+                    Async: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -4582,7 +4591,7 @@ actions:
 
                 res, err := s.Library.GetLibraryDetails(ctx, operations.GetLibraryDetailsRequest{
                     SectionID: "<id>",
-                    IncludeDetails: components.BoolIntOne.ToPointer(),
+                    IncludeDetails: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -4720,6 +4729,13 @@ actions:
                 )
 
                 res, err := s.Content.ListContent(ctx, operations.ListContentRequest{
+                    MediaQuery: &components.MediaQuery{
+                        Type: components.MediaTypeEpisode.ToPointer(),
+                        SourceType: plexgo.Pointer[int64](2),
+                        Sort: plexgo.Pointer("duration:desc,index"),
+                    },
+                    IncludeMeta: components.BoolIntTrue.ToPointer(),
+                    IncludeGuids: components.BoolIntTrue.ToPointer(),
                     SectionID: "<id>",
                 })
                 if err != nil {
@@ -4765,7 +4781,7 @@ actions:
 
                 res, err := s.Library.UpdateItems(ctx, operations.UpdateItemsRequest{
                     SectionID: "<id>",
-                    FieldLocked: components.BoolIntOne.ToPointer(),
+                    FieldLocked: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -4942,6 +4958,11 @@ actions:
 
                 res, err := s.Library.Autocomplete(ctx, operations.AutocompleteRequest{
                     SectionID: 942007,
+                    MediaQuery: &components.MediaQuery{
+                        Type: components.MediaTypeEpisode.ToPointer(),
+                        SourceType: plexgo.Pointer[int64](2),
+                        Sort: plexgo.Pointer("duration:desc,index"),
+                    },
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -5119,6 +5140,11 @@ actions:
 
                 res, err := s.Library.GetCollections(ctx, operations.GetCollectionsRequest{
                     SectionID: 348838,
+                    MediaQuery: &components.MediaQuery{
+                        Type: components.MediaTypeEpisode.ToPointer(),
+                        SourceType: plexgo.Pointer[int64](2),
+                        Sort: plexgo.Pointer("duration:desc,index"),
+                    },
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -5163,6 +5189,11 @@ actions:
 
                 res, err := s.Library.GetCommon(ctx, operations.GetCommonRequest{
                     SectionID: 298154,
+                    MediaQuery: &components.MediaQuery{
+                        Type: components.MediaTypeEpisode.ToPointer(),
+                        SourceType: plexgo.Pointer[int64](2),
+                        Sort: plexgo.Pointer("duration:desc,index"),
+                    },
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -5208,6 +5239,11 @@ actions:
                 res, err := s.Library.GetSectionImage(ctx, operations.GetSectionImageRequest{
                     SectionID: 925611,
                     UpdatedAt: 117413,
+                    MediaQuery: &components.MediaQuery{
+                        Type: components.MediaTypeEpisode.ToPointer(),
+                        SourceType: plexgo.Pointer[int64](2),
+                        Sort: plexgo.Pointer("duration:desc,index"),
+                    },
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -5386,6 +5422,11 @@ actions:
 
                 res, err := s.Library.GetFirstCharacters(ctx, operations.GetFirstCharactersRequest{
                     SectionID: 3947,
+                    MediaQuery: &components.MediaQuery{
+                        Type: components.MediaTypeEpisode.ToPointer(),
+                        SourceType: plexgo.Pointer[int64](2),
+                        Sort: plexgo.Pointer("duration:desc,index"),
+                    },
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -5784,7 +5825,7 @@ actions:
 
                 res, err := s.Library.RefreshSection(ctx, operations.RefreshSectionRequest{
                     SectionID: 450300,
-                    Force: components.BoolIntOne.ToPointer(),
+                    Force: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -5919,7 +5960,7 @@ actions:
                 res, err := s.Library.GetStream(ctx, operations.GetStreamRequest{
                     StreamID: 314506,
                     Ext: "<value>",
-                    AutoAdjustSubtitle: components.BoolIntOne.ToPointer(),
+                    AutoAdjustSubtitle: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -6095,7 +6136,9 @@ actions:
                     plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
                 )
 
-                res, err := s.Library.GetTags(ctx, operations.GetTagsRequest{})
+                res, err := s.Library.GetTags(ctx, operations.GetTagsRequest{
+                    Type: components.MediaTypeTvShow.ToPointer(),
+                })
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -7605,7 +7648,7 @@ actions:
 
                 res, err := s.Devices.ModifyDevice(ctx, operations.ModifyDeviceRequest{
                     DeviceID: 879135,
-                    Enabled: components.BoolIntOne.ToPointer(),
+                    Enabled: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -8123,8 +8166,8 @@ actions:
                 )
 
                 res, err := s.Subscriptions.GetAllSubscriptions(ctx, operations.GetAllSubscriptionsRequest{
-                    IncludeGrabs: components.BoolIntOne.ToPointer(),
-                    IncludeStorage: components.BoolIntOne.ToPointer(),
+                    IncludeGrabs: components.BoolIntTrue.ToPointer(),
+                    IncludeStorage: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -8364,8 +8407,8 @@ actions:
 
                 res, err := s.Subscriptions.GetSubscription(ctx, operations.GetSubscriptionRequest{
                     SubscriptionID: 186713,
-                    IncludeGrabs: components.BoolIntOne.ToPointer(),
-                    IncludeStorage: components.BoolIntOne.ToPointer(),
+                    IncludeGrabs: components.BoolIntTrue.ToPointer(),
+                    IncludeStorage: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -8500,9 +8543,9 @@ actions:
                 res, err := s.Transcoder.TranscodeImage(ctx, operations.TranscodeImageRequest{
                     URL: plexgo.Pointer("/library/metadata/265/thumb/1715112705"),
                     Background: plexgo.Pointer("#ff5522"),
-                    Upscale: components.BoolIntOne.ToPointer(),
-                    MinSize: components.BoolIntOne.ToPointer(),
-                    Rotate: components.BoolIntOne.ToPointer(),
+                    Upscale: components.BoolIntTrue.ToPointer(),
+                    MinSize: components.BoolIntTrue.ToPointer(),
+                    Rotate: components.BoolIntTrue.ToPointer(),
                     BlendColor: plexgo.Pointer("#ff5522"),
                 })
                 if err != nil {
@@ -8548,11 +8591,11 @@ actions:
 
                 res, err := s.PlayQueue.CreatePlayQueue(ctx, operations.CreatePlayQueueRequest{
                     Type: operations.TypeAudio,
-                    Shuffle: components.BoolIntOne.ToPointer(),
-                    Repeat: components.BoolIntOne.ToPointer(),
-                    Continuous: components.BoolIntOne.ToPointer(),
-                    Recursive: components.BoolIntOne.ToPointer(),
-                    OnDeck: components.BoolIntOne.ToPointer(),
+                    Shuffle: components.BoolIntTrue.ToPointer(),
+                    Repeat: components.BoolIntTrue.ToPointer(),
+                    Continuous: components.BoolIntTrue.ToPointer(),
+                    Recursive: components.BoolIntTrue.ToPointer(),
+                    OnDeck: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -8597,9 +8640,9 @@ actions:
 
                 res, err := s.PlayQueue.GetPlayQueue(ctx, operations.GetPlayQueueRequest{
                     PlayQueueID: 210646,
-                    Own: components.BoolIntOne.ToPointer(),
-                    IncludeBefore: components.BoolIntOne.ToPointer(),
-                    IncludeAfter: components.BoolIntOne.ToPointer(),
+                    Own: components.BoolIntTrue.ToPointer(),
+                    IncludeBefore: components.BoolIntTrue.ToPointer(),
+                    IncludeAfter: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -8644,7 +8687,7 @@ actions:
 
                 res, err := s.PlayQueue.AddToPlayQueue(ctx, operations.AddToPlayQueueRequest{
                     PlayQueueID: 919248,
-                    Next: components.BoolIntOne.ToPointer(),
+                    Next: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -9039,7 +9082,7 @@ actions:
 
                 res, err := s.LibraryPlaylists.UploadPlaylist(ctx, operations.UploadPlaylistRequest{
                     Path: plexgo.Pointer("/home/barkley/playlist.m3u"),
-                    Force: components.BoolIntOne.ToPointer(),
+                    Force: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -9491,7 +9534,6 @@ actions:
                         Policy: &operations.Policy{
                             Value: plexgo.Pointer[int64](),
                             Scope: operations.QueryParamScopeAll.ToPointer(),
-                            Unwatched: components.BoolIntZero.ToPointer(),
                         },
                         Target: plexgo.Pointer(""),
                         TargetTagID: plexgo.Pointer[int64](1),
@@ -9643,6 +9685,43 @@ actions:
                     // handle response
                 }
             }
+  - target: $["paths"]["/resources"]["get"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: PlexGO
+          source: |-
+            package main
+
+            import(
+            	"context"
+            	"github.com/LukeHagar/plexgo/models/components"
+            	"github.com/LukeHagar/plexgo"
+            	"github.com/LukeHagar/plexgo/models/operations"
+            	"log"
+            )
+
+            func main() {
+                ctx := context.Background()
+
+                s := plexgo.New(
+                    plexgo.WithAccepts(components.AcceptsApplicationXML),
+                    plexgo.WithClientIdentifier("abc123"),
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                )
+
+                res, err := s.Plex.GetServerResources(ctx, operations.GetServerResourcesRequest{
+                    IncludeHTTPS: operations.IncludeHTTPSTrue.ToPointer(),
+                    IncludeRelay: operations.IncludeRelayTrue.ToPointer(),
+                    IncludeIPv6: operations.IncludeIPv6True.ToPointer(),
+                })
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res.PlexDevices != nil {
+                    // handle response
+                }
+            }
   - target: $["paths"]["/security/resources"]["get"]
     update:
       x-codeSamples:
@@ -9679,7 +9758,7 @@ actions:
 
                 res, err := s.General.GetSourceConnectionInformation(ctx, operations.GetSourceConnectionInformationRequest{
                     Source: "<value>",
-                    Refresh: components.BoolIntOne.ToPointer(),
+                    Refresh: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -9818,7 +9897,7 @@ actions:
                     BottomLeft: plexgo.Pointer("1c425d"),
                     Width: plexgo.Pointer[int64](1920),
                     Height: plexgo.Pointer[int64](1080),
-                    Noise: components.BoolIntOne.ToPointer(),
+                    Noise: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -10121,8 +10200,8 @@ actions:
                 )
 
                 res, err := s.Updater.ApplyUpdates(ctx, operations.ApplyUpdatesRequest{
-                    Tonight: components.BoolIntOne.ToPointer(),
-                    Skip: components.BoolIntOne.ToPointer(),
+                    Tonight: components.BoolIntTrue.ToPointer(),
+                    Skip: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -10166,7 +10245,7 @@ actions:
                 )
 
                 res, err := s.Updater.CheckUpdates(ctx, operations.CheckUpdatesRequest{
-                    Download: components.BoolIntOne.ToPointer(),
+                    Download: components.BoolIntTrue.ToPointer(),
                 })
                 if err != nil {
                     log.Fatal(err)
@@ -10201,6 +10280,137 @@ actions:
                     log.Fatal(err)
                 }
                 if res.Object != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/user"]["get"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: PlexGO
+          source: |-
+            package main
+
+            import(
+            	"context"
+            	"github.com/LukeHagar/plexgo/models/components"
+            	"github.com/LukeHagar/plexgo"
+            	"github.com/LukeHagar/plexgo/models/operations"
+            	"log"
+            )
+
+            func main() {
+                ctx := context.Background()
+
+                s := plexgo.New(
+                    plexgo.WithAccepts(components.AcceptsApplicationXML),
+                    plexgo.WithClientIdentifier("abc123"),
+                    plexgo.WithProduct("Plex for Roku"),
+                    plexgo.WithVersion("2.4.1"),
+                    plexgo.WithPlatform("Roku"),
+                    plexgo.WithPlatformVersion("4.3 build 1057"),
+                    plexgo.WithDevice("Roku 3"),
+                    plexgo.WithModel("4200X"),
+                    plexgo.WithDeviceVendor("Roku"),
+                    plexgo.WithDeviceName("Living Room TV"),
+                    plexgo.WithMarketplace("googlePlay"),
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                )
+
+                res, err := s.Authentication.GetTokenDetails(ctx, operations.GetTokenDetailsRequest{})
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res.UserPlexAccount != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/users"]["get"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: PlexGO
+          source: |-
+            package main
+
+            import(
+            	"context"
+            	"github.com/LukeHagar/plexgo/models/components"
+            	"github.com/LukeHagar/plexgo"
+            	"github.com/LukeHagar/plexgo/models/operations"
+            	"log"
+            )
+
+            func main() {
+                ctx := context.Background()
+
+                s := plexgo.New(
+                    plexgo.WithAccepts(components.AcceptsApplicationXML),
+                    plexgo.WithClientIdentifier("abc123"),
+                    plexgo.WithProduct("Plex for Roku"),
+                    plexgo.WithVersion("2.4.1"),
+                    plexgo.WithPlatform("Roku"),
+                    plexgo.WithPlatformVersion("4.3 build 1057"),
+                    plexgo.WithDevice("Roku 3"),
+                    plexgo.WithModel("4200X"),
+                    plexgo.WithDeviceVendor("Roku"),
+                    plexgo.WithDeviceName("Living Room TV"),
+                    plexgo.WithMarketplace("googlePlay"),
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                )
+
+                res, err := s.Users.GetUsers(ctx, operations.GetUsersRequest{})
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res.Object != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/users/signin"]["post"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: PlexGO
+          source: |-
+            package main
+
+            import(
+            	"context"
+            	"github.com/LukeHagar/plexgo/models/components"
+            	"github.com/LukeHagar/plexgo"
+            	"github.com/LukeHagar/plexgo/models/operations"
+            	"log"
+            )
+
+            func main() {
+                ctx := context.Background()
+
+                s := plexgo.New(
+                    plexgo.WithAccepts(components.AcceptsApplicationXML),
+                    plexgo.WithClientIdentifier("abc123"),
+                    plexgo.WithProduct("Plex for Roku"),
+                    plexgo.WithVersion("2.4.1"),
+                    plexgo.WithPlatform("Roku"),
+                    plexgo.WithPlatformVersion("4.3 build 1057"),
+                    plexgo.WithDevice("Roku 3"),
+                    plexgo.WithModel("4200X"),
+                    plexgo.WithDeviceVendor("Roku"),
+                    plexgo.WithDeviceName("Living Room TV"),
+                    plexgo.WithMarketplace("googlePlay"),
+                )
+
+                res, err := s.Authentication.PostUsersSignInData(ctx, operations.PostUsersSignInDataRequest{
+                    RequestBody: &operations.PostUsersSignInDataRequestBody{
+                        Login: "username@email.com",
+                        Password: "password123",
+                        VerificationCode: plexgo.Pointer("123456"),
+                    },
+                })
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res.UserPlexAccount != nil {
                     // handle response
                 }
             }
@@ -10243,13 +10453,13 @@ actions:
                     AdvancedSubtitles: components.AdvancedSubtitlesBurn.ToPointer(),
                     AudioBoost: plexgo.Pointer[int64](50),
                     AudioChannelCount: plexgo.Pointer[int64](5),
-                    AutoAdjustQuality: components.BoolIntOne.ToPointer(),
-                    AutoAdjustSubtitle: components.BoolIntOne.ToPointer(),
-                    DirectPlay: components.BoolIntOne.ToPointer(),
-                    DirectStream: components.BoolIntOne.ToPointer(),
-                    DirectStreamAudio: components.BoolIntOne.ToPointer(),
-                    DisableResolutionRotation: components.BoolIntOne.ToPointer(),
-                    HasMDE: components.BoolIntOne.ToPointer(),
+                    AutoAdjustQuality: components.BoolIntTrue.ToPointer(),
+                    AutoAdjustSubtitle: components.BoolIntTrue.ToPointer(),
+                    DirectPlay: components.BoolIntTrue.ToPointer(),
+                    DirectStream: components.BoolIntTrue.ToPointer(),
+                    DirectStreamAudio: components.BoolIntTrue.ToPointer(),
+                    DisableResolutionRotation: components.BoolIntTrue.ToPointer(),
+                    HasMDE: components.BoolIntTrue.ToPointer(),
                     Location: operations.LocationWan.ToPointer(),
                     MediaBufferSize: plexgo.Pointer[int64](102400),
                     MediaIndex: plexgo.Pointer[int64](0),
@@ -10359,13 +10569,13 @@ actions:
                     AdvancedSubtitles: components.AdvancedSubtitlesBurn.ToPointer(),
                     AudioBoost: plexgo.Pointer[int64](50),
                     AudioChannelCount: plexgo.Pointer[int64](5),
-                    AutoAdjustQuality: components.BoolIntOne.ToPointer(),
-                    AutoAdjustSubtitle: components.BoolIntOne.ToPointer(),
-                    DirectPlay: components.BoolIntOne.ToPointer(),
-                    DirectStream: components.BoolIntOne.ToPointer(),
-                    DirectStreamAudio: components.BoolIntOne.ToPointer(),
-                    DisableResolutionRotation: components.BoolIntOne.ToPointer(),
-                    HasMDE: components.BoolIntOne.ToPointer(),
+                    AutoAdjustQuality: components.BoolIntTrue.ToPointer(),
+                    AutoAdjustSubtitle: components.BoolIntTrue.ToPointer(),
+                    DirectPlay: components.BoolIntTrue.ToPointer(),
+                    DirectStream: components.BoolIntTrue.ToPointer(),
+                    DirectStreamAudio: components.BoolIntTrue.ToPointer(),
+                    DisableResolutionRotation: components.BoolIntTrue.ToPointer(),
+                    HasMDE: components.BoolIntTrue.ToPointer(),
                     Location: operations.StartTranscodeSessionQueryParamLocationWan.ToPointer(),
                     MediaBufferSize: plexgo.Pointer[int64](102400),
                     MediaIndex: plexgo.Pointer[int64](0),
@@ -10430,13 +10640,13 @@ actions:
                     AdvancedSubtitles: components.AdvancedSubtitlesBurn.ToPointer(),
                     AudioBoost: plexgo.Pointer[int64](50),
                     AudioChannelCount: plexgo.Pointer[int64](5),
-                    AutoAdjustQuality: components.BoolIntOne.ToPointer(),
-                    AutoAdjustSubtitle: components.BoolIntOne.ToPointer(),
-                    DirectPlay: components.BoolIntOne.ToPointer(),
-                    DirectStream: components.BoolIntOne.ToPointer(),
-                    DirectStreamAudio: components.BoolIntOne.ToPointer(),
-                    DisableResolutionRotation: components.BoolIntOne.ToPointer(),
-                    HasMDE: components.BoolIntOne.ToPointer(),
+                    AutoAdjustQuality: components.BoolIntTrue.ToPointer(),
+                    AutoAdjustSubtitle: components.BoolIntTrue.ToPointer(),
+                    DirectPlay: components.BoolIntTrue.ToPointer(),
+                    DirectStream: components.BoolIntTrue.ToPointer(),
+                    DirectStreamAudio: components.BoolIntTrue.ToPointer(),
+                    DisableResolutionRotation: components.BoolIntTrue.ToPointer(),
+                    HasMDE: components.BoolIntTrue.ToPointer(),
                     Location: operations.QueryParamLocationWan.ToPointer(),
                     MediaBufferSize: plexgo.Pointer[int64](102400),
                     MediaIndex: plexgo.Pointer[int64](0),

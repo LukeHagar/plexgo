@@ -2,5 +2,66 @@
 
 package components
 
+// MediaQuery - A querystring-based filtering language used to select subsets of media. When provided as an object, properties are serialized as a querystring using form style with explode.
+//
+// Only the defined properties below are allowed. The object serializes to a querystring format like: `type=4&sourceType=2&sort=duration:desc,index`
 type MediaQuery struct {
+	// The type of media to retrieve or filter by.
+	//
+	// 1 = movie
+	// 2 = show
+	// 3 = season
+	// 4 = episode
+	// 5 = artist
+	// 6 = album
+	// 7 = track
+	// 8 = photo_album
+	// 9 = photo
+	//
+	// E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
+	//
+	Type *MediaType `queryParam:"name=type"`
+	// Change the default level to which fields refer (used with type for hierarchical queries)
+	SourceType *int64 `queryParam:"name=sourceType"`
+	// Field(s) to sort by, with optional modifiers. Use comma to separate multiple fields, and :desc or :nullsLast for modifiers (e.g., "duration:desc,index")
+	Sort *string `queryParam:"name=sort"`
+	// Field to group results by (similar to SQL GROUP BY)
+	Group *string `queryParam:"name=group"`
+	// Maximum number of results to return
+	Limit *int64 `queryParam:"name=limit"`
+}
+
+func (m *MediaQuery) GetType() *MediaType {
+	if m == nil {
+		return nil
+	}
+	return m.Type
+}
+
+func (m *MediaQuery) GetSourceType() *int64 {
+	if m == nil {
+		return nil
+	}
+	return m.SourceType
+}
+
+func (m *MediaQuery) GetSort() *string {
+	if m == nil {
+		return nil
+	}
+	return m.Sort
+}
+
+func (m *MediaQuery) GetGroup() *string {
+	if m == nil {
+		return nil
+	}
+	return m.Group
+}
+
+func (m *MediaQuery) GetLimit() *int64 {
+	if m == nil {
+		return nil
+	}
+	return m.Limit
 }

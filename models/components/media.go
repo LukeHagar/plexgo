@@ -8,24 +8,24 @@ import (
 
 // Media - `Media` represents an one or more media files (parts) and is a child of a metadata item. There aren't necessarily any guaranteed attributes on media elements since the attributes will vary based on the type. The possible attributes are not documented here, but they typically have self-evident names. High-level media information that can be used for badging and flagging, such as `videoResolution` and codecs, is included on the media element.
 type Media struct {
-	AspectRatio           *float64       `json:"aspectRatio,omitempty"`
-	AudioChannels         *int64         `json:"audioChannels,omitempty"`
-	AudioCodec            any            `json:"audioCodec,omitempty"`
-	AudioProfile          any            `json:"audioProfile,omitempty"`
-	Bitrate               *int64         `json:"bitrate,omitempty"`
-	Container             any            `json:"container,omitempty"`
-	Duration              *int64         `json:"duration,omitempty"`
+	AspectRatio           *float32       `json:"aspectRatio,omitempty"`
+	AudioChannels         *int           `json:"audioChannels,omitempty"`
+	AudioCodec            *string        `json:"audioCodec,omitempty"`
+	AudioProfile          *string        `json:"audioProfile,omitempty"`
+	Bitrate               *int           `json:"bitrate,omitempty"`
+	Container             *string        `json:"container,omitempty"`
+	Duration              *int           `json:"duration,omitempty"`
 	Has64bitOffsets       *bool          `json:"has64bitOffsets,omitempty"`
 	HasVoiceActivity      *bool          `json:"hasVoiceActivity,omitempty"`
-	Height                *int64         `json:"height,omitempty"`
-	ID                    *int64         `json:"id,omitempty"`
+	Height                *int           `json:"height,omitempty"`
+	ID                    int64          `json:"id"`
 	OptimizedForStreaming *bool          `json:"optimizedForStreaming,omitempty"`
 	Part                  []Part         `json:"Part,omitempty"`
-	VideoCodec            any            `json:"videoCodec,omitempty"`
-	VideoFrameRate        any            `json:"videoFrameRate,omitempty"`
-	VideoProfile          any            `json:"videoProfile,omitempty"`
-	VideoResolution       any            `json:"videoResolution,omitempty"`
-	Width                 *int64         `json:"width,omitempty"`
+	VideoCodec            *string        `json:"videoCodec,omitempty"`
+	VideoFrameRate        *string        `json:"videoFrameRate,omitempty"`
+	VideoProfile          *string        `json:"videoProfile,omitempty"`
+	VideoResolution       *string        `json:"videoResolution,omitempty"`
+	Width                 *int           `json:"width,omitempty"`
 	AdditionalProperties  map[string]any `additionalProperties:"true" json:"-"`
 }
 
@@ -34,55 +34,55 @@ func (m Media) MarshalJSON() ([]byte, error) {
 }
 
 func (m *Media) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &m, "", false, []string{"id"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *Media) GetAspectRatio() *float64 {
+func (m *Media) GetAspectRatio() *float32 {
 	if m == nil {
 		return nil
 	}
 	return m.AspectRatio
 }
 
-func (m *Media) GetAudioChannels() *int64 {
+func (m *Media) GetAudioChannels() *int {
 	if m == nil {
 		return nil
 	}
 	return m.AudioChannels
 }
 
-func (m *Media) GetAudioCodec() any {
+func (m *Media) GetAudioCodec() *string {
 	if m == nil {
 		return nil
 	}
 	return m.AudioCodec
 }
 
-func (m *Media) GetAudioProfile() any {
+func (m *Media) GetAudioProfile() *string {
 	if m == nil {
 		return nil
 	}
 	return m.AudioProfile
 }
 
-func (m *Media) GetBitrate() *int64 {
+func (m *Media) GetBitrate() *int {
 	if m == nil {
 		return nil
 	}
 	return m.Bitrate
 }
 
-func (m *Media) GetContainer() any {
+func (m *Media) GetContainer() *string {
 	if m == nil {
 		return nil
 	}
 	return m.Container
 }
 
-func (m *Media) GetDuration() *int64 {
+func (m *Media) GetDuration() *int {
 	if m == nil {
 		return nil
 	}
@@ -103,16 +103,16 @@ func (m *Media) GetHasVoiceActivity() *bool {
 	return m.HasVoiceActivity
 }
 
-func (m *Media) GetHeight() *int64 {
+func (m *Media) GetHeight() *int {
 	if m == nil {
 		return nil
 	}
 	return m.Height
 }
 
-func (m *Media) GetID() *int64 {
+func (m *Media) GetID() int64 {
 	if m == nil {
-		return nil
+		return 0
 	}
 	return m.ID
 }
@@ -131,35 +131,35 @@ func (m *Media) GetPart() []Part {
 	return m.Part
 }
 
-func (m *Media) GetVideoCodec() any {
+func (m *Media) GetVideoCodec() *string {
 	if m == nil {
 		return nil
 	}
 	return m.VideoCodec
 }
 
-func (m *Media) GetVideoFrameRate() any {
+func (m *Media) GetVideoFrameRate() *string {
 	if m == nil {
 		return nil
 	}
 	return m.VideoFrameRate
 }
 
-func (m *Media) GetVideoProfile() any {
+func (m *Media) GetVideoProfile() *string {
 	if m == nil {
 		return nil
 	}
 	return m.VideoProfile
 }
 
-func (m *Media) GetVideoResolution() any {
+func (m *Media) GetVideoResolution() *string {
 	if m == nil {
 		return nil
 	}
 	return m.VideoResolution
 }
 
-func (m *Media) GetWidth() *int64 {
+func (m *Media) GetWidth() *int {
 	if m == nil {
 		return nil
 	}

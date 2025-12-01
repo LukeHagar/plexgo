@@ -119,7 +119,7 @@ func main() {
         BottomLeft: plexgo.Pointer("1c425d"),
         Width: plexgo.Pointer[int64](1920),
         Height: plexgo.Pointer[int64](1080),
-        Noise: components.BoolIntOne.ToPointer(),
+        Noise: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)

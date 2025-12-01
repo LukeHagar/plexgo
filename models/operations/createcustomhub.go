@@ -149,11 +149,11 @@ type CreateCustomHubRequest struct {
 	// The metadata item on which to base this hub.  This must currently be a collection
 	MetadataItemID int64 `queryParam:"style=form,explode=true,name=metadataItemId"`
 	// Whether this hub should be displayed in recommended
-	PromotedToRecommended *components.BoolInt `queryParam:"style=form,explode=true,name=promotedToRecommended"`
+	PromotedToRecommended *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=promotedToRecommended"`
 	// Whether this hub should be displayed in admin's home
-	PromotedToOwnHome *components.BoolInt `queryParam:"style=form,explode=true,name=promotedToOwnHome"`
+	PromotedToOwnHome *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=promotedToOwnHome"`
 	// Whether this hub should be displayed in shared user's home
-	PromotedToSharedHome *components.BoolInt `queryParam:"style=form,explode=true,name=promotedToSharedHome"`
+	PromotedToSharedHome *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=promotedToSharedHome"`
 }
 
 func (c CreateCustomHubRequest) MarshalJSON() ([]byte, error) {

@@ -147,7 +147,7 @@ type GetLibraryDetailsRequest struct {
 	// The section identifier
 	SectionID string `pathParam:"style=simple,explode=false,name=sectionId"`
 	// Whether or not to include details for a section (types, filters, and sorts). Only exists for backwards compatibility, media providers other than the server libraries have it on always.
-	IncludeDetails *components.BoolInt `queryParam:"style=form,explode=true,name=includeDetails"`
+	IncludeDetails *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=includeDetails"`
 }
 
 func (g GetLibraryDetailsRequest) MarshalJSON() ([]byte, error) {

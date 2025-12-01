@@ -147,7 +147,7 @@ type DeleteLibrarySectionRequest struct {
 	// The section identifier
 	SectionID string `pathParam:"style=simple,explode=false,name=sectionId"`
 	// If set, response will return an activity with the actual deletion process.  Otherwise request will return when deletion is complete
-	Async *components.BoolInt `queryParam:"style=form,explode=true,name=async"`
+	Async *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=async"`
 }
 
 func (d DeleteLibrarySectionRequest) MarshalJSON() ([]byte, error) {

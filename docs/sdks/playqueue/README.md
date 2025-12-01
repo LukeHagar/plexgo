@@ -61,11 +61,11 @@ func main() {
 
     res, err := s.PlayQueue.CreatePlayQueue(ctx, operations.CreatePlayQueueRequest{
         Type: operations.TypeAudio,
-        Shuffle: components.BoolIntOne.ToPointer(),
-        Repeat: components.BoolIntOne.ToPointer(),
-        Continuous: components.BoolIntOne.ToPointer(),
-        Recursive: components.BoolIntOne.ToPointer(),
-        OnDeck: components.BoolIntOne.ToPointer(),
+        Shuffle: components.BoolIntTrue.ToPointer(),
+        Repeat: components.BoolIntTrue.ToPointer(),
+        Continuous: components.BoolIntTrue.ToPointer(),
+        Recursive: components.BoolIntTrue.ToPointer(),
+        OnDeck: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -132,9 +132,9 @@ func main() {
 
     res, err := s.PlayQueue.GetPlayQueue(ctx, operations.GetPlayQueueRequest{
         PlayQueueID: 210646,
-        Own: components.BoolIntOne.ToPointer(),
-        IncludeBefore: components.BoolIntOne.ToPointer(),
-        IncludeAfter: components.BoolIntOne.ToPointer(),
+        Own: components.BoolIntTrue.ToPointer(),
+        IncludeBefore: components.BoolIntTrue.ToPointer(),
+        IncludeAfter: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -201,7 +201,7 @@ func main() {
 
     res, err := s.PlayQueue.AddToPlayQueue(ctx, operations.AddToPlayQueueRequest{
         PlayQueueID: 919248,
-        Next: components.BoolIntOne.ToPointer(),
+        Next: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)

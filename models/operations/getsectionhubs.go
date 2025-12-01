@@ -149,7 +149,7 @@ type GetSectionHubsRequest struct {
 	// Limit results to count items
 	Count *int64 `queryParam:"style=form,explode=true,name=count"`
 	// Only return hubs which are "transient", meaning those which are prone to changing after media playback or addition (e.g. On Deck, or Recently Added)
-	OnlyTransient *components.BoolInt `queryParam:"style=form,explode=true,name=onlyTransient"`
+	OnlyTransient *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=onlyTransient"`
 }
 
 func (g GetSectionHubsRequest) MarshalJSON() ([]byte, error) {

@@ -56,8 +56,8 @@ func main() {
     )
 
     res, err := s.Subscriptions.GetAllSubscriptions(ctx, operations.GetAllSubscriptionsRequest{
-        IncludeGrabs: components.BoolIntOne.ToPointer(),
-        IncludeStorage: components.BoolIntOne.ToPointer(),
+        IncludeGrabs: components.BoolIntTrue.ToPointer(),
+        IncludeStorage: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -494,8 +494,8 @@ func main() {
 
     res, err := s.Subscriptions.GetSubscription(ctx, operations.GetSubscriptionRequest{
         SubscriptionID: 186713,
-        IncludeGrabs: components.BoolIntOne.ToPointer(),
-        IncludeStorage: components.BoolIntOne.ToPointer(),
+        IncludeGrabs: components.BoolIntTrue.ToPointer(),
+        IncludeStorage: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)

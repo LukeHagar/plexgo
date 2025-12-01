@@ -123,38 +123,38 @@ func (s *StopTaskGlobals) GetMarketplace() *string {
 	return s.Marketplace
 }
 
-// Task - The task name
-type Task string
+// ButlerTask - The task name
+type ButlerTask string
 
 const (
-	TaskAutomaticUpdates                 Task = "AutomaticUpdates"
-	TaskBackupDatabase                   Task = "BackupDatabase"
-	TaskButlerTaskGenerateAdMarkers      Task = "ButlerTaskGenerateAdMarkers"
-	TaskButlerTaskGenerateCreditsMarkers Task = "ButlerTaskGenerateCreditsMarkers"
-	TaskButlerTaskGenerateIntroMarkers   Task = "ButlerTaskGenerateIntroMarkers"
-	TaskButlerTaskGenerateVoiceActivity  Task = "ButlerTaskGenerateVoiceActivity"
-	TaskCleanOldBundles                  Task = "CleanOldBundles"
-	TaskCleanOldCacheFiles               Task = "CleanOldCacheFiles"
-	TaskDeepMediaAnalysis                Task = "DeepMediaAnalysis"
-	TaskGarbageCollectBlobs              Task = "GarbageCollectBlobs"
-	TaskGarbageCollectLibraryMedia       Task = "GarbageCollectLibraryMedia"
-	TaskGenerateBlurHashes               Task = "GenerateBlurHashes"
-	TaskGenerateChapterThumbs            Task = "GenerateChapterThumbs"
-	TaskGenerateMediaIndexFiles          Task = "GenerateMediaIndexFiles"
-	TaskLoudnessAnalysis                 Task = "LoudnessAnalysis"
-	TaskMusicAnalysis                    Task = "MusicAnalysis"
-	TaskOptimizeDatabase                 Task = "OptimizeDatabase"
-	TaskRefreshEpgGuides                 Task = "RefreshEpgGuides"
-	TaskRefreshLibraries                 Task = "RefreshLibraries"
-	TaskRefreshLocalMedia                Task = "RefreshLocalMedia"
-	TaskRefreshPeriodicMetadata          Task = "RefreshPeriodicMetadata"
-	TaskUpgradeMediaAnalysis             Task = "UpgradeMediaAnalysis"
+	ButlerTaskAutomaticUpdates                 ButlerTask = "AutomaticUpdates"
+	ButlerTaskBackupDatabase                   ButlerTask = "BackupDatabase"
+	ButlerTaskButlerTaskGenerateAdMarkers      ButlerTask = "ButlerTaskGenerateAdMarkers"
+	ButlerTaskButlerTaskGenerateCreditsMarkers ButlerTask = "ButlerTaskGenerateCreditsMarkers"
+	ButlerTaskButlerTaskGenerateIntroMarkers   ButlerTask = "ButlerTaskGenerateIntroMarkers"
+	ButlerTaskButlerTaskGenerateVoiceActivity  ButlerTask = "ButlerTaskGenerateVoiceActivity"
+	ButlerTaskCleanOldBundles                  ButlerTask = "CleanOldBundles"
+	ButlerTaskCleanOldCacheFiles               ButlerTask = "CleanOldCacheFiles"
+	ButlerTaskDeepMediaAnalysis                ButlerTask = "DeepMediaAnalysis"
+	ButlerTaskGarbageCollectBlobs              ButlerTask = "GarbageCollectBlobs"
+	ButlerTaskGarbageCollectLibraryMedia       ButlerTask = "GarbageCollectLibraryMedia"
+	ButlerTaskGenerateBlurHashes               ButlerTask = "GenerateBlurHashes"
+	ButlerTaskGenerateChapterThumbs            ButlerTask = "GenerateChapterThumbs"
+	ButlerTaskGenerateMediaIndexFiles          ButlerTask = "GenerateMediaIndexFiles"
+	ButlerTaskLoudnessAnalysis                 ButlerTask = "LoudnessAnalysis"
+	ButlerTaskMusicAnalysis                    ButlerTask = "MusicAnalysis"
+	ButlerTaskOptimizeDatabase                 ButlerTask = "OptimizeDatabase"
+	ButlerTaskRefreshEpgGuides                 ButlerTask = "RefreshEpgGuides"
+	ButlerTaskRefreshLibraries                 ButlerTask = "RefreshLibraries"
+	ButlerTaskRefreshLocalMedia                ButlerTask = "RefreshLocalMedia"
+	ButlerTaskRefreshPeriodicMetadata          ButlerTask = "RefreshPeriodicMetadata"
+	ButlerTaskUpgradeMediaAnalysis             ButlerTask = "UpgradeMediaAnalysis"
 )
 
-func (e Task) ToPointer() *Task {
+func (e ButlerTask) ToPointer() *ButlerTask {
 	return &e
 }
-func (e *Task) UnmarshalJSON(data []byte) error {
+func (e *ButlerTask) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -203,10 +203,10 @@ func (e *Task) UnmarshalJSON(data []byte) error {
 	case "RefreshPeriodicMetadata":
 		fallthrough
 	case "UpgradeMediaAnalysis":
-		*e = Task(v)
+		*e = ButlerTask(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Task: %v", v)
+		return fmt.Errorf("invalid value for ButlerTask: %v", v)
 	}
 }
 
@@ -234,7 +234,7 @@ type StopTaskRequest struct {
 	// The marketplace on which the client application is distributed
 	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
 	// The task name
-	Task Task `pathParam:"style=simple,explode=false,name=task"`
+	ButlerTask ButlerTask `pathParam:"style=simple,explode=false,name=butlerTask"`
 }
 
 func (s StopTaskRequest) MarshalJSON() ([]byte, error) {
@@ -242,7 +242,7 @@ func (s StopTaskRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (s *StopTaskRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"task"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"butlerTask"}); err != nil {
 		return err
 	}
 	return nil
@@ -325,11 +325,11 @@ func (s *StopTaskRequest) GetMarketplace() *string {
 	return s.Marketplace
 }
 
-func (s *StopTaskRequest) GetTask() Task {
+func (s *StopTaskRequest) GetButlerTask() ButlerTask {
 	if s == nil {
-		return Task("")
+		return ButlerTask("")
 	}
-	return s.Task
+	return s.ButlerTask
 }
 
 type StopTaskResponse struct {

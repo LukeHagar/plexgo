@@ -123,7 +123,13 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Library.GetLibraryItems(ctx, operations.GetLibraryItemsRequest{})
+    res, err := s.Library.GetLibraryItems(ctx, operations.GetLibraryItemsRequest{
+        MediaQuery: &components.MediaQuery{
+            Type: components.MediaTypeEpisode.ToPointer(),
+            SourceType: plexgo.Pointer[int64](2),
+            Sort: plexgo.Pointer("duration:desc,index"),
+        },
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -291,8 +297,8 @@ func main() {
     res, err := s.Library.IngestTransientItem(ctx, operations.IngestTransientItemRequest{
         URL: plexgo.Pointer("file:///storage%2Femulated%2F0%2FArcher-S01E01.mkv"),
         VirtualFilePath: plexgo.Pointer("/Avatar.mkv"),
-        ComputeHashes: components.BoolIntOne.ToPointer(),
-        IngestNonMatches: components.BoolIntOne.ToPointer(),
+        ComputeHashes: components.BoolIntTrue.ToPointer(),
+        IngestNonMatches: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -362,9 +368,10 @@ func main() {
     )
 
     res, err := s.Library.GetLibraryMatches(ctx, operations.GetLibraryMatchesRequest{
-        IncludeFullMetadata: components.BoolIntOne.ToPointer(),
-        IncludeAncestorMetadata: components.BoolIntOne.ToPointer(),
-        IncludeAlternateMetadataSources: components.BoolIntOne.ToPointer(),
+        Type: components.MediaTypeTvShow.ToPointer(),
+        IncludeFullMetadata: components.BoolIntTrue.ToPointer(),
+        IncludeAncestorMetadata: components.BoolIntTrue.ToPointer(),
+        IncludeAlternateMetadataSources: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -430,7 +437,7 @@ func main() {
     )
 
     res, err := s.Library.OptimizeDatabase(ctx, operations.OptimizeDatabaseRequest{
-        Async: components.BoolIntOne.ToPointer(),
+        Async: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -628,8 +635,8 @@ func main() {
             "O:\fatboy\\Media\\My Music",
         },
         Prefs: &operations.QueryParamPrefs{},
-        Relative: components.BoolIntOne.ToPointer(),
-        ImportFromiTunes: components.BoolIntOne.ToPointer(),
+        Relative: components.BoolIntTrue.ToPointer(),
+        ImportFromiTunes: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -874,7 +881,9 @@ func main() {
         plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Library.GetTags(ctx, operations.GetTagsRequest{})
+    res, err := s.Library.GetTags(ctx, operations.GetTagsRequest{
+        Type: components.MediaTypeTvShow.ToPointer(),
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -940,7 +949,7 @@ func main() {
 
     res, err := s.Library.DeleteMetadataItem(ctx, operations.DeleteMetadataItemRequest{
         Ids: "<value>",
-        Proxy: components.BoolIntOne.ToPointer(),
+        Proxy: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -1274,7 +1283,7 @@ func main() {
 
     res, err := s.Library.GenerateThumbs(ctx, operations.GenerateThumbsRequest{
         Ids: "<value>",
-        Force: components.BoolIntOne.ToPointer(),
+        Force: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -1341,8 +1350,8 @@ func main() {
 
     res, err := s.Library.DetectCredits(ctx, operations.DetectCreditsRequest{
         Ids: "<value>",
-        Force: components.BoolIntOne.ToPointer(),
-        Manual: components.BoolIntOne.ToPointer(),
+        Force: components.BoolIntTrue.ToPointer(),
+        Manual: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -1608,7 +1617,7 @@ func main() {
 
     res, err := s.Library.StartBifGeneration(ctx, operations.StartBifGenerationRequest{
         Ids: "<value>",
-        Force: components.BoolIntOne.ToPointer(),
+        Force: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -1675,7 +1684,7 @@ func main() {
 
     res, err := s.Library.DetectIntros(ctx, operations.DetectIntrosRequest{
         Ids: "<value>",
-        Force: components.BoolIntOne.ToPointer(),
+        Force: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -1877,7 +1886,7 @@ func main() {
 
     res, err := s.Library.ListMatches(ctx, operations.ListMatchesRequest{
         Ids: "<value>",
-        Manual: components.BoolIntOne.ToPointer(),
+        Manual: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -2142,7 +2151,7 @@ func main() {
 
     res, err := s.Library.RefreshItemsMetadata(ctx, operations.RefreshItemsMetadataRequest{
         Ids: "<value>",
-        MarkUpdated: components.BoolIntOne.ToPointer(),
+        MarkUpdated: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -2407,8 +2416,8 @@ func main() {
 
     res, err := s.Library.AddSubtitles(ctx, operations.AddSubtitlesRequest{
         Ids: "<value>",
-        Forced: components.BoolIntOne.ToPointer(),
-        HearingImpaired: components.BoolIntOne.ToPointer(),
+        Forced: components.BoolIntTrue.ToPointer(),
+        HearingImpaired: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -2673,8 +2682,8 @@ func main() {
 
     res, err := s.Library.DetectVoiceActivity(ctx, operations.DetectVoiceActivityRequest{
         Ids: "<value>",
-        Force: components.BoolIntOne.ToPointer(),
-        Manual: components.BoolIntOne.ToPointer(),
+        Force: components.BoolIntTrue.ToPointer(),
+        Manual: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -2741,7 +2750,7 @@ func main() {
 
     res, err := s.Library.GetAugmentationStatus(ctx, operations.GetAugmentationStatusRequest{
         AugmentationID: "<id>",
-        Wait: components.BoolIntOne.ToPointer(),
+        Wait: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -2808,7 +2817,7 @@ func main() {
 
     res, err := s.Library.SetStreamSelection(ctx, operations.SetStreamSelectionRequest{
         PartID: 360489,
-        AllParts: components.BoolIntOne.ToPointer(),
+        AllParts: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -3007,7 +3016,7 @@ func main() {
 
     res, err := s.Library.DeleteLibrarySection(ctx, operations.DeleteLibrarySectionRequest{
         SectionID: "<id>",
-        Async: components.BoolIntOne.ToPointer(),
+        Async: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -3074,7 +3083,7 @@ func main() {
 
     res, err := s.Library.GetLibraryDetails(ctx, operations.GetLibraryDetailsRequest{
         SectionID: "<id>",
-        IncludeDetails: components.BoolIntOne.ToPointer(),
+        IncludeDetails: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -3257,7 +3266,7 @@ func main() {
 
     res, err := s.Library.UpdateItems(ctx, operations.UpdateItemsRequest{
         SectionID: "<id>",
-        FieldLocked: components.BoolIntOne.ToPointer(),
+        FieldLocked: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -3391,6 +3400,11 @@ func main() {
 
     res, err := s.Library.Autocomplete(ctx, operations.AutocompleteRequest{
         SectionID: 942007,
+        MediaQuery: &components.MediaQuery{
+            Type: components.MediaTypeEpisode.ToPointer(),
+            SourceType: plexgo.Pointer[int64](2),
+            Sort: plexgo.Pointer("duration:desc,index"),
+        },
     })
     if err != nil {
         log.Fatal(err)
@@ -3457,6 +3471,11 @@ func main() {
 
     res, err := s.Library.GetCollections(ctx, operations.GetCollectionsRequest{
         SectionID: 348838,
+        MediaQuery: &components.MediaQuery{
+            Type: components.MediaTypeEpisode.ToPointer(),
+            SourceType: plexgo.Pointer[int64](2),
+            Sort: plexgo.Pointer("duration:desc,index"),
+        },
     })
     if err != nil {
         log.Fatal(err)
@@ -3524,6 +3543,11 @@ func main() {
 
     res, err := s.Library.GetCommon(ctx, operations.GetCommonRequest{
         SectionID: 298154,
+        MediaQuery: &components.MediaQuery{
+            Type: components.MediaTypeEpisode.ToPointer(),
+            SourceType: plexgo.Pointer[int64](2),
+            Sort: plexgo.Pointer("duration:desc,index"),
+        },
     })
     if err != nil {
         log.Fatal(err)
@@ -3722,6 +3746,11 @@ func main() {
 
     res, err := s.Library.GetFirstCharacters(ctx, operations.GetFirstCharactersRequest{
         SectionID: 3947,
+        MediaQuery: &components.MediaQuery{
+            Type: components.MediaTypeEpisode.ToPointer(),
+            SourceType: plexgo.Pointer[int64](2),
+            Sort: plexgo.Pointer("duration:desc,index"),
+        },
     })
     if err != nil {
         log.Fatal(err)
@@ -4119,7 +4148,7 @@ func main() {
 
     res, err := s.Library.RefreshSection(ctx, operations.RefreshSectionRequest{
         SectionID: 450300,
-        Force: components.BoolIntOne.ToPointer(),
+        Force: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -4725,7 +4754,7 @@ func main() {
     res, err := s.Library.DeleteMediaItem(ctx, operations.DeleteMediaItemRequest{
         Ids: "<value>",
         MediaItem: "<value>",
-        Proxy: components.BoolIntOne.ToPointer(),
+        Proxy: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -4927,6 +4956,11 @@ func main() {
     res, err := s.Library.GetSectionImage(ctx, operations.GetSectionImageRequest{
         SectionID: 925611,
         UpdatedAt: 117413,
+        MediaQuery: &components.MediaQuery{
+            Type: components.MediaTypeEpisode.ToPointer(),
+            SourceType: plexgo.Pointer[int64](2),
+            Sort: plexgo.Pointer("duration:desc,index"),
+        },
     })
     if err != nil {
         log.Fatal(err)
@@ -5061,7 +5095,7 @@ func main() {
     res, err := s.Library.GetStream(ctx, operations.GetStreamRequest{
         StreamID: 314506,
         Ext: "<value>",
-        AutoAdjustSubtitle: components.BoolIntOne.ToPointer(),
+        AutoAdjustSubtitle: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -5268,7 +5302,7 @@ func main() {
         PartID: 877105,
         Changestamp: 970622,
         Filename: "example.file",
-        Download: components.BoolIntOne.ToPointer(),
+        Download: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)

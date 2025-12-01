@@ -152,8 +152,21 @@ type CreateCollectionRequest struct {
 	Smart *bool `queryParam:"style=form,explode=true,name=smart"`
 	// The URI for processing the smart collection.  Required for a smart collection
 	URI *string `queryParam:"style=form,explode=true,name=uri"`
-	// The metadata type to filter by
-	Type *int64 `queryParam:"style=form,explode=true,name=type"`
+	// The type of media to retrieve or filter by.
+	//
+	// 1 = movie
+	// 2 = show
+	// 3 = season
+	// 4 = episode
+	// 5 = artist
+	// 6 = album
+	// 7 = track
+	// 8 = photo_album
+	// 9 = photo
+	//
+	// E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
+	//
+	Type *components.MediaType `queryParam:"style=form,explode=true,name=type"`
 }
 
 func (c CreateCollectionRequest) MarshalJSON() ([]byte, error) {
@@ -272,7 +285,7 @@ func (c *CreateCollectionRequest) GetURI() *string {
 	return c.URI
 }
 
-func (c *CreateCollectionRequest) GetType() *int64 {
+func (c *CreateCollectionRequest) GetType() *components.MediaType {
 	if c == nil {
 		return nil
 	}

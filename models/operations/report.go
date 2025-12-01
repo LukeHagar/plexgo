@@ -192,11 +192,11 @@ type ReportRequest struct {
 	// The total duration of the item in ms.
 	Duration *int64 `queryParam:"style=form,explode=true,name=duration"`
 	// When state is `stopped`, a flag indicating whether or not the client is going to continue playing anothe item.
-	Continuing *components.BoolInt `queryParam:"style=form,explode=true,name=continuing"`
+	Continuing *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=continuing"`
 	// Used when a sync client comes online and is syncing media timelines, holds the time at which the playback state was last updated.
 	Updated *int64 `queryParam:"style=form,explode=true,name=updated"`
 	// Also used by sync clients, used to indicate that a timeline is being synced from being offline, as opposed to being "live".
-	Offline *components.BoolInt `queryParam:"style=form,explode=true,name=offline"`
+	Offline *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=offline"`
 	// Time in seconds till first frame is displayed.  Sent only on the first playing timeline request.
 	TimeToFirstFrame *int64 `queryParam:"style=form,explode=true,name=timeToFirstFrame"`
 	// Time in seconds spent buffering since last request.

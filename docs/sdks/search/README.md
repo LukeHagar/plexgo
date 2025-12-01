@@ -134,6 +134,7 @@ func main() {
 
     res, err := s.Search.VoiceSearchHubs(ctx, operations.VoiceSearchHubsRequest{
         Query: "<value>",
+        Type: components.MediaTypeTvShow.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)

@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-type ButlerTask struct {
+type GetTasksButlerTask struct {
 	// A user-friendly description of the task
 	Description *string `json:"description,omitempty"`
 	// Whether this task is enabled or not
@@ -21,53 +21,53 @@ type ButlerTask struct {
 	Title *string `json:"title,omitempty"`
 }
 
-func (b *ButlerTask) GetDescription() *string {
-	if b == nil {
+func (g *GetTasksButlerTask) GetDescription() *string {
+	if g == nil {
 		return nil
 	}
-	return b.Description
+	return g.Description
 }
 
-func (b *ButlerTask) GetEnabled() *bool {
-	if b == nil {
+func (g *GetTasksButlerTask) GetEnabled() *bool {
+	if g == nil {
 		return nil
 	}
-	return b.Enabled
+	return g.Enabled
 }
 
-func (b *ButlerTask) GetInterval() *int64 {
-	if b == nil {
+func (g *GetTasksButlerTask) GetInterval() *int64 {
+	if g == nil {
 		return nil
 	}
-	return b.Interval
+	return g.Interval
 }
 
-func (b *ButlerTask) GetName() *string {
-	if b == nil {
+func (g *GetTasksButlerTask) GetName() *string {
+	if g == nil {
 		return nil
 	}
-	return b.Name
+	return g.Name
 }
 
-func (b *ButlerTask) GetScheduleRandomized() *bool {
-	if b == nil {
+func (g *GetTasksButlerTask) GetScheduleRandomized() *bool {
+	if g == nil {
 		return nil
 	}
-	return b.ScheduleRandomized
+	return g.ScheduleRandomized
 }
 
-func (b *ButlerTask) GetTitle() *string {
-	if b == nil {
+func (g *GetTasksButlerTask) GetTitle() *string {
+	if g == nil {
 		return nil
 	}
-	return b.Title
+	return g.Title
 }
 
 type ButlerTasks struct {
-	ButlerTask []ButlerTask `json:"ButlerTask,omitempty"`
+	ButlerTask []GetTasksButlerTask `json:"ButlerTask,omitempty"`
 }
 
-func (b *ButlerTasks) GetButlerTask() []ButlerTask {
+func (b *ButlerTasks) GetButlerTask() []GetTasksButlerTask {
 	if b == nil {
 		return nil
 	}

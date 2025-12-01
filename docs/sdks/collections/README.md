@@ -47,6 +47,7 @@ func main() {
 
     res, err := s.Collections.CreateCollection(ctx, operations.CreateCollectionRequest{
         SectionID: "<id>",
+        Type: components.MediaTypeTvShow.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)

@@ -7,18 +7,18 @@ import (
 	"fmt"
 )
 
-type BoolInt int64
+type BoolInt int
 
 const (
-	BoolIntZero BoolInt = 0
-	BoolIntOne  BoolInt = 1
+	BoolIntFalse BoolInt = 0
+	BoolIntTrue  BoolInt = 1
 )
 
 func (e BoolInt) ToPointer() *BoolInt {
 	return &e
 }
 func (e *BoolInt) UnmarshalJSON(data []byte) error {
-	var v int64
+	var v int
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}

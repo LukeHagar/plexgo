@@ -153,7 +153,7 @@ type GetStreamRequest struct {
 	// The requested format for the subtitle to convert the subtitles to (only used for text subtitles)
 	Format *string `queryParam:"style=form,explode=true,name=format"`
 	// Whether the server should attempt to automatically adjust the subtitle timestamps to match the media
-	AutoAdjustSubtitle *components.BoolInt `queryParam:"style=form,explode=true,name=autoAdjustSubtitle"`
+	AutoAdjustSubtitle *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=autoAdjustSubtitle"`
 }
 
 func (g GetStreamRequest) MarshalJSON() ([]byte, error) {

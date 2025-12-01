@@ -146,9 +146,9 @@ type GetSubscriptionRequest struct {
 	Marketplace    *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
 	SubscriptionID int64   `pathParam:"style=simple,explode=false,name=subscriptionId"`
 	// Indicates whether the active grabs should be included as well
-	IncludeGrabs *components.BoolInt `queryParam:"style=form,explode=true,name=includeGrabs"`
+	IncludeGrabs *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=includeGrabs"`
 	// Compute the storage of recorded items desired by this subscription
-	IncludeStorage *components.BoolInt `queryParam:"style=form,explode=true,name=includeStorage"`
+	IncludeStorage *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=includeStorage"`
 }
 
 func (g GetSubscriptionRequest) MarshalJSON() ([]byte, error) {

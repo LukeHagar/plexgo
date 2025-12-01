@@ -185,17 +185,17 @@ type CreatePlayQueueRequest struct {
 	// The key of the first item to play, defaults to the first in the play queue.
 	Key *string `queryParam:"style=form,explode=true,name=key"`
 	// Whether to shuffle the playlist, defaults to 0.
-	Shuffle *components.BoolInt `queryParam:"style=form,explode=true,name=shuffle"`
+	Shuffle *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=shuffle"`
 	// If the PQ is bigger than the window, fill any empty space with wraparound items, defaults to 0.
-	Repeat *components.BoolInt `queryParam:"style=form,explode=true,name=repeat"`
+	Repeat *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=repeat"`
 	// Whether to create a continuous play queue (e.g. from an episode), defaults to 0.
-	Continuous *components.BoolInt `queryParam:"style=form,explode=true,name=continuous"`
+	Continuous *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=continuous"`
 	// Number of trailers to prepend a movie with not including the pre-roll. If omitted the pre-roll will not be returned in the play queue. When resuming a movie `extrasPrefixCount` should be omitted as a parameter instead of passing 0.
 	ExtrasPrefixCount *int64 `queryParam:"style=form,explode=true,name=extrasPrefixCount"`
 	// Only applies to queues of type photo, whether to retrieve all descendent photos from an album or section, defaults to 1.
-	Recursive *components.BoolInt `queryParam:"style=form,explode=true,name=recursive"`
+	Recursive *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=recursive"`
 	// Only applies to queues of type show or seasons, whether to return a queue that is started on the On Deck episode if one exists. Otherwise begins the play queue on the beginning of the show or season.
-	OnDeck *components.BoolInt `queryParam:"style=form,explode=true,name=onDeck"`
+	OnDeck *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=onDeck"`
 }
 
 func (c CreatePlayQueueRequest) MarshalJSON() ([]byte, error) {

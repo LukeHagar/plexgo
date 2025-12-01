@@ -177,7 +177,7 @@ This endpoint will stop a currently running task by name, or remove it from the 
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="stopTask" method="delete" path="/butler/{task}" -->
+<!-- UsageSnippet language="go" operationID="stopTask" method="delete" path="/butler/{butlerTask}" -->
 ```go
 package main
 
@@ -208,7 +208,7 @@ func main() {
     )
 
     res, err := s.Butler.StopTask(ctx, operations.StopTaskRequest{
-        Task: operations.TaskCleanOldBundles,
+        ButlerTask: operations.ButlerTaskCleanOldBundles,
     })
     if err != nil {
         log.Fatal(err)
@@ -244,7 +244,7 @@ This endpoint will attempt to start a specific Butler task by name.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="startTask" method="post" path="/butler/{task}" -->
+<!-- UsageSnippet language="go" operationID="startTask" method="post" path="/butler/{butlerTask}" -->
 ```go
 package main
 
@@ -275,7 +275,7 @@ func main() {
     )
 
     res, err := s.Butler.StartTask(ctx, operations.StartTaskRequest{
-        Task: operations.PathParamTaskRefreshLocalMedia,
+        ButlerTask: operations.PathParamButlerTaskRefreshLocalMedia,
     })
     if err != nil {
         log.Fatal(err)

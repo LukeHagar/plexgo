@@ -232,11 +232,11 @@ type TranscodeImageRequest struct {
 	// The background color to apply before painting the image.  Only really applicable if image has transparency.  Defaults to none
 	Background *string `queryParam:"style=form,explode=true,name=background"`
 	// Indicates if image should be upscaled to the desired width/height.  Defaults to false
-	Upscale *components.BoolInt `queryParam:"style=form,explode=true,name=upscale"`
+	Upscale *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=upscale"`
 	// Indicates if image should be scaled to fit the smaller dimension.  By default (false) the image is scaled to fit within the width/height specified but if this parameter is true, it will allow overflowing one dimension to fit the other.  Essentially it is making the width/height minimum sizes of the image or sizing the image to fill the entire width/height even if it overflows one dimension.
-	MinSize *components.BoolInt `queryParam:"style=form,explode=true,name=minSize"`
+	MinSize *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=minSize"`
 	// Obey the rotation values specified in EXIF data.  Defaults to true.
-	Rotate *components.BoolInt `queryParam:"style=form,explode=true,name=rotate"`
+	Rotate *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=rotate"`
 	// Apply a blur to the image, Defaults to 0 (none)
 	Blur *int64 `queryParam:"style=form,explode=true,name=blur"`
 	// Scale the image saturation by the specified percentage.  Defaults to 100

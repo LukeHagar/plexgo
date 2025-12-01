@@ -144,8 +144,40 @@ type ListContentRequest struct {
 	DeviceName *string `header:"style=simple,explode=false,name=X-Plex-Device-Name"`
 	// The marketplace on which the client application is distributed
 	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
-	// This is a complex query built of several parameters.  See [API Info section](#section/API-Info/Media-Queries) for information on building media queries
+	// The index of the first item to return. If not specified, the first item will be returned.
+	// If the number of items exceeds the limit, the response will be paginated.
+	// By default this is 0
+	//
+	XPlexContainerStart *int `default:"0" queryParam:"style=form,explode=true,name=X-Plex-Container-Start"`
+	// The number of items to return. If not specified, all items will be returned.
+	// If the number of items exceeds the limit, the response will be paginated.
+	// By default this is 50
+	//
+	XPlexContainerSize *int `default:"50" queryParam:"style=form,explode=true,name=X-Plex-Container-Size"`
+	// A querystring-based filtering language used to select subsets of media. Can be provided as an object with typed properties for type safety, or as a string for complex queries with operators and boolean logic.
+	//
+	// The query supports:
+	// - Fields: integer, boolean, tag, string, date, language
+	// - Operators: =, !=, ==, !==, <=, >=, >>=, <<= (varies by field type)
+	// - Boolean operators: & (AND), , (OR), push/pop (parentheses), or=1 (explicit OR)
+	// - Sorting: sort parameter with :desc, :nullsLast modifiers
+	// - Grouping: group parameter
+	// - Limits: limit parameter
+	//
+	// Examples:
+	// - Object format: `{type: 4, sourceType: 2, title: "24"}` → `type=4&sourceType=2&title=24`
+	// - String format: `type=4&sourceType=2&title==24` - type = 4 AND sourceType = 2 AND title = "24"
+	// - Complex: `push=1&index=1&or=1&rating=2&pop=1&duration=10` - (index = 1 OR rating = 2) AND duration = 10
+	//
+	// See [API Info section](#section/API-Info/Media-Queries) for detailed information on building media queries.
+	//
 	MediaQuery *components.MediaQuery `queryParam:"style=form,explode=true,name=mediaQuery"`
+	// Adds the Meta object to the response
+	//
+	IncludeMeta *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=includeMeta"`
+	// Adds the Guid object to the response
+	//
+	IncludeGuids *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=includeGuids"`
 	// The id of the section
 	SectionID string `pathParam:"style=simple,explode=false,name=sectionId"`
 }
@@ -238,11 +270,39 @@ func (l *ListContentRequest) GetMarketplace() *string {
 	return l.Marketplace
 }
 
+func (l *ListContentRequest) GetXPlexContainerStart() *int {
+	if l == nil {
+		return nil
+	}
+	return l.XPlexContainerStart
+}
+
+func (l *ListContentRequest) GetXPlexContainerSize() *int {
+	if l == nil {
+		return nil
+	}
+	return l.XPlexContainerSize
+}
+
 func (l *ListContentRequest) GetMediaQuery() *components.MediaQuery {
 	if l == nil {
 		return nil
 	}
 	return l.MediaQuery
+}
+
+func (l *ListContentRequest) GetIncludeMeta() *components.BoolInt {
+	if l == nil {
+		return nil
+	}
+	return l.IncludeMeta
+}
+
+func (l *ListContentRequest) GetIncludeGuids() *components.BoolInt {
+	if l == nil {
+		return nil
+	}
+	return l.IncludeGuids
 }
 
 func (l *ListContentRequest) GetSectionID() string {

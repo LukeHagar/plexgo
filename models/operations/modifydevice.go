@@ -147,7 +147,7 @@ type ModifyDeviceRequest struct {
 	// The ID of the device.
 	DeviceID int64 `pathParam:"style=simple,explode=false,name=deviceId"`
 	// Whether to enable the device
-	Enabled *components.BoolInt `queryParam:"style=form,explode=true,name=enabled"`
+	Enabled *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=enabled"`
 }
 
 func (m ModifyDeviceRequest) MarshalJSON() ([]byte, error) {

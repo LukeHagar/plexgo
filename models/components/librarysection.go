@@ -24,21 +24,26 @@ func (l *LibrarySectionLocation) GetPath() any {
 }
 
 type LibrarySection struct {
-	Title            *string `json:"title,omitempty"`
-	Type             *string `json:"type,omitempty"`
-	Agent            *string `json:"agent,omitempty"`
-	AllowSync        *bool   `json:"allowSync,omitempty"`
-	Art              *string `json:"art,omitempty"`
-	Composite        *string `json:"composite,omitempty"`
-	Content          *bool   `json:"content,omitempty"`
-	ContentChangedAt *int64  `json:"contentChangedAt,omitempty"`
-	CreatedAt        *int64  `json:"createdAt,omitempty"`
-	Directory        *bool   `json:"directory,omitempty"`
+	// The title of the library
+	Title *string `json:"title,omitempty"`
+	// The type of media content in the Plex library. This can represent videos, music, or photos.
+	//
+	Type             MediaTypeString `json:"type"`
+	Agent            *string         `json:"agent,omitempty"`
+	AllowSync        *bool           `json:"allowSync,omitempty"`
+	Art              *string         `json:"art,omitempty"`
+	Composite        *string         `json:"composite,omitempty"`
+	Content          *bool           `json:"content,omitempty"`
+	ContentChangedAt *int64          `json:"contentChangedAt,omitempty"`
+	CreatedAt        *int64          `json:"createdAt,omitempty"`
+	Directory        *bool           `json:"directory,omitempty"`
 	// Indicates whether this section has filtering capabilities
-	Filters  *bool                    `json:"filters,omitempty"`
-	Hidden   *bool                    `json:"hidden,omitempty"`
-	Key      *string                  `json:"key,omitempty"`
-	Language *string                  `json:"language,omitempty"`
+	Filters  *bool   `json:"filters,omitempty"`
+	Hidden   *bool   `json:"hidden,omitempty"`
+	Key      *string `json:"key,omitempty"`
+	Language string  `json:"language"`
+	// The universally unique identifier for the library.
+	UUID     string                   `json:"uuid"`
 	Location []LibrarySectionLocation `json:"Location,omitempty"`
 	// Indicates whether this library section is currently scanning
 	Refreshing *bool   `json:"refreshing,omitempty"`
@@ -55,9 +60,9 @@ func (l *LibrarySection) GetTitle() *string {
 	return l.Title
 }
 
-func (l *LibrarySection) GetType() *string {
+func (l *LibrarySection) GetType() MediaTypeString {
 	if l == nil {
-		return nil
+		return MediaTypeString("")
 	}
 	return l.Type
 }
@@ -139,11 +144,18 @@ func (l *LibrarySection) GetKey() *string {
 	return l.Key
 }
 
-func (l *LibrarySection) GetLanguage() *string {
+func (l *LibrarySection) GetLanguage() string {
 	if l == nil {
-		return nil
+		return ""
 	}
 	return l.Language
+}
+
+func (l *LibrarySection) GetUUID() string {
+	if l == nil {
+		return ""
+	}
+	return l.UUID
 }
 
 func (l *LibrarySection) GetLocation() []LibrarySectionLocation {

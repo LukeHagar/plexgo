@@ -149,9 +149,9 @@ type IngestTransientItemRequest struct {
 	// A virtual path to use when the url is opaque.
 	VirtualFilePath *string `queryParam:"style=form,explode=true,name=virtualFilePath"`
 	// Whether or not to compute Plex and OpenSubtitle hashes for the file. Defaults to 0.
-	ComputeHashes *components.BoolInt `queryParam:"style=form,explode=true,name=computeHashes"`
+	ComputeHashes *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=computeHashes"`
 	// Whether or not non matching media should be stored. Defaults to 0.
-	IngestNonMatches *components.BoolInt `queryParam:"style=form,explode=true,name=ingestNonMatches"`
+	IngestNonMatches *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=ingestNonMatches"`
 }
 
 func (i IngestTransientItemRequest) MarshalJSON() ([]byte, error) {

@@ -146,7 +146,7 @@ type RefreshItemsMetadataRequest struct {
 	Marketplace *string             `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
 	Ids         string              `pathParam:"style=simple,explode=false,name=ids"`
 	Agent       *string             `queryParam:"style=form,explode=true,name=agent"`
-	MarkUpdated *components.BoolInt `queryParam:"style=form,explode=true,name=markUpdated"`
+	MarkUpdated *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=markUpdated"`
 }
 
 func (r RefreshItemsMetadataRequest) MarshalJSON() ([]byte, error) {

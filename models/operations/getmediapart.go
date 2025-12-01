@@ -151,7 +151,7 @@ type GetMediaPartRequest struct {
 	// A generic filename used for a client media stack which relies on the extension in the request.  Provided in the `key` for the part
 	Filename string `pathParam:"style=simple,explode=false,name=filename"`
 	// Whether this is a file download
-	Download *components.BoolInt `queryParam:"style=form,explode=true,name=download"`
+	Download *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=download"`
 }
 
 func (g GetMediaPartRequest) MarshalJSON() ([]byte, error) {

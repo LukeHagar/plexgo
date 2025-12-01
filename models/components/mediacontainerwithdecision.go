@@ -6,7 +6,21 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/LukeHagar/plexgo/internal/utils"
+	"github.com/LukeHagar/plexgo/types"
 )
+
+type MediaContainerWithDecisionGuids struct {
+	// The unique identifier for the Guid. Can be prefixed with imdb://, tmdb://, tvdb://
+	//
+	ID string `json:"id"`
+}
+
+func (m *MediaContainerWithDecisionGuids) GetID() string {
+	if m == nil {
+		return ""
+	}
+	return m.ID
+}
 
 type MediaContainerWithDecisionDecision string
 
@@ -92,42 +106,108 @@ func (e *MediaContainerWithDecisionLocation) UnmarshalJSON(data []byte) error {
 
 // MediaContainerWithDecisionStream - `Stream` represents a particular stream from a media item, such as the video stream, audio stream, or subtitle stream. The stream may either be part of the file represented by the parent `Part` or, especially for subtitles, an external file. The stream contains more detailed information about the specific stream. For example, a video may include the `aspectRatio` at the `Media` level, but detailed information about the video stream like the color space will be included on the `Stream` for the video stream.  Note that photos do not have streams (mostly as an optimization).
 type MediaContainerWithDecisionStream struct {
-	Default            *bool  `json:"default,omitempty"`
-	AudioChannelLayout any    `json:"audioChannelLayout,omitempty"`
-	BitDepth           *int64 `json:"bitDepth,omitempty"`
-	Bitrate            *int64 `json:"bitrate,omitempty"`
-	// For subtitle streams only. If `true` then the server can attempt to automatically sync the subtitle timestamps with the video.
-	CanAutoSync       *bool `json:"canAutoSync,omitempty"`
-	ChromaLocation    any   `json:"chromaLocation,omitempty"`
-	ChromaSubsampling any   `json:"chromaSubsampling,omitempty"`
-	// The codec of the stream, such as `h264` or `aac`
-	Codec          any `json:"codec,omitempty"`
-	ColorPrimaries any `json:"colorPrimaries,omitempty"`
-	ColorRange     any `json:"colorRange,omitempty"`
-	ColorSpace     any `json:"colorSpace,omitempty"`
-	ColorTrc       any `json:"colorTrc,omitempty"`
-	// A friendly name for the stream, often comprised of the language and codec information
-	DisplayTitle     any      `json:"displayTitle,omitempty"`
-	FrameRate        *float64 `json:"frameRate,omitempty"`
-	HasScalingMatrix any      `json:"hasScalingMatrix,omitempty"`
-	Height           *int64   `json:"height,omitempty"`
-	ID               *int64   `json:"id,omitempty"`
-	// If the stream is part of the `Part` and not an external resource, the index of the stream within that part
-	Index *int64 `json:"index,omitempty"`
-	// If the stream is independently streamable, the key from which it can be streamed
-	Key      any `json:"key,omitempty"`
-	Language any `json:"language,omitempty"`
-	// The three character language code for the stream contents
-	LanguageCode     any    `json:"languageCode,omitempty"`
-	Level            *int64 `json:"level,omitempty"`
-	Profile          any    `json:"profile,omitempty"`
-	RefFrames        *int64 `json:"refFrames,omitempty"`
-	SamplingRate     *int64 `json:"samplingRate,omitempty"`
-	Selected         *bool  `json:"selected,omitempty"`
-	StreamIdentifier *int64 `json:"streamIdentifier,omitempty"`
-	// A number indicating the type of the stream. `1` for video, `2` for audio, `3` for subtitles, `4` for lyrics
-	StreamType           *int64                              `json:"streamType,omitempty"`
-	Width                *int64                              `json:"width,omitempty"`
+	// Indicates if this stream is default.
+	Default *bool `json:"default,omitempty"`
+	// Audio channel layout.
+	AudioChannelLayout *string `json:"audioChannelLayout,omitempty"`
+	// Number of audio channels (for audio streams).
+	Channels *int `json:"channels,omitempty"`
+	// Bit depth of the video stream.
+	BitDepth *int `json:"bitDepth,omitempty"`
+	// Dolby Vision BL compatibility ID.
+	DOVIBLCompatID *int `json:"DOVIBLCompatID,omitempty"`
+	// Indicates if Dolby Vision BL is present.
+	DOVIBLPresent *bool `json:"DOVIBLPresent,omitempty"`
+	// Indicates if Dolby Vision EL is present.
+	DOVIELPresent *bool `json:"DOVIELPresent,omitempty"`
+	// Dolby Vision level.
+	DOVILevel *int `json:"DOVILevel,omitempty"`
+	// Indicates if Dolby Vision is present.
+	DOVIPresent *bool `json:"DOVIPresent,omitempty"`
+	// Dolby Vision profile.
+	DOVIProfile *int `json:"DOVIProfile,omitempty"`
+	// Indicates if Dolby Vision RPU is present.
+	DOVIRPUPresent *bool `json:"DOVIRPUPresent,omitempty"`
+	// Dolby Vision version.
+	DOVIVersion *string `json:"DOVIVersion,omitempty"`
+	// Bitrate of the stream.
+	Bitrate *int `json:"bitrate,omitempty"`
+	// Indicates if the stream can auto-sync.
+	CanAutoSync *bool `json:"canAutoSync,omitempty"`
+	// Chroma sample location.
+	ChromaLocation *string `json:"chromaLocation,omitempty"`
+	// Chroma subsampling format.
+	ChromaSubsampling *string `json:"chromaSubsampling,omitempty"`
+	// Coded video height.
+	CodedHeight *int `json:"codedHeight,omitempty"`
+	// Coded video width.
+	CodedWidth     *int  `json:"codedWidth,omitempty"`
+	ClosedCaptions *bool `json:"closedCaptions,omitempty"`
+	// Codec used by the stream.
+	Codec string `json:"codec"`
+	// Color primaries used.
+	ColorPrimaries *string `json:"colorPrimaries,omitempty"`
+	// Color range (e.g., tv).
+	ColorRange *string `json:"colorRange,omitempty"`
+	// Color space.
+	ColorSpace *string `json:"colorSpace,omitempty"`
+	// Color transfer characteristics.
+	ColorTrc *string `json:"colorTrc,omitempty"`
+	// Display title for the stream.
+	DisplayTitle string `json:"displayTitle"`
+	// Extended display title for the stream.
+	ExtendedDisplayTitle *string `json:"extendedDisplayTitle,omitempty"`
+	// Frame rate of the stream.
+	FrameRate        *float32 `json:"frameRate,omitempty"`
+	HasScalingMatrix *bool    `json:"hasScalingMatrix,omitempty"`
+	// Height of the video stream.
+	Height *int `json:"height,omitempty"`
+	// Unique stream identifier.
+	ID int `json:"id"`
+	// Index of the stream.
+	Index *int `json:"index,omitempty"`
+	// Key to access this stream part.
+	Key string `json:"key"`
+	// Language of the stream.
+	Language *string `json:"language,omitempty"`
+	// ISO language code.
+	LanguageCode *string `json:"languageCode,omitempty"`
+	// Language tag (e.g., en).
+	LanguageTag *string `json:"languageTag,omitempty"`
+	// Format of the stream (e.g., srt).
+	Format *string `json:"format,omitempty"`
+	// Indicates whether header compression is enabled.
+	HeaderCompression *bool `json:"headerCompression,omitempty"`
+	// Video level.
+	Level *int `json:"level,omitempty"`
+	// Indicates if this is the original stream.
+	Original *bool `json:"original,omitempty"`
+	// Video profile.
+	Profile *string `json:"profile,omitempty"`
+	// Number of reference frames.
+	RefFrames *int `json:"refFrames,omitempty"`
+	// Sampling rate for the audio stream.
+	SamplingRate    *int    `json:"samplingRate,omitempty"`
+	ScanType        *string `json:"scanType,omitempty"`
+	EmbeddedInVideo *string `json:"embeddedInVideo,omitempty"`
+	// Indicates if this stream is selected (applicable for audio streams).
+	Selected *bool `json:"selected,omitempty"`
+	Forced   *bool `json:"forced,omitempty"`
+	// Indicates if the stream is for the hearing impaired.
+	HearingImpaired *bool `json:"hearingImpaired,omitempty"`
+	// Indicates if the stream is a dub.
+	Dub *bool `json:"dub,omitempty"`
+	// Optional title for the stream (e.g., language variant).
+	Title            *string `json:"title,omitempty"`
+	StreamIdentifier *int    `json:"streamIdentifier,omitempty"`
+	// Stream type:
+	//   - VIDEO = 1
+	//   - AUDIO = 2
+	//   - SUBTITLE = 3
+	//
+	streamType int64 `const:"1" json:"streamType"`
+	// Width of the video stream.
+	Width                *int                                `json:"width,omitempty"`
 	Decision             *MediaContainerWithDecisionDecision `json:"decision,omitempty"`
 	Location             *MediaContainerWithDecisionLocation `json:"location,omitempty"`
 	AdditionalProperties map[string]any                      `additionalProperties:"true" json:"-"`
@@ -138,7 +218,7 @@ func (m MediaContainerWithDecisionStream) MarshalJSON() ([]byte, error) {
 }
 
 func (m *MediaContainerWithDecisionStream) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &m, "", false, []string{"codec", "displayTitle", "id", "key", "streamType"}); err != nil {
 		return err
 	}
 	return nil
@@ -151,21 +231,84 @@ func (m *MediaContainerWithDecisionStream) GetDefault() *bool {
 	return m.Default
 }
 
-func (m *MediaContainerWithDecisionStream) GetAudioChannelLayout() any {
+func (m *MediaContainerWithDecisionStream) GetAudioChannelLayout() *string {
 	if m == nil {
 		return nil
 	}
 	return m.AudioChannelLayout
 }
 
-func (m *MediaContainerWithDecisionStream) GetBitDepth() *int64 {
+func (m *MediaContainerWithDecisionStream) GetChannels() *int {
+	if m == nil {
+		return nil
+	}
+	return m.Channels
+}
+
+func (m *MediaContainerWithDecisionStream) GetBitDepth() *int {
 	if m == nil {
 		return nil
 	}
 	return m.BitDepth
 }
 
-func (m *MediaContainerWithDecisionStream) GetBitrate() *int64 {
+func (m *MediaContainerWithDecisionStream) GetDOVIBLCompatID() *int {
+	if m == nil {
+		return nil
+	}
+	return m.DOVIBLCompatID
+}
+
+func (m *MediaContainerWithDecisionStream) GetDOVIBLPresent() *bool {
+	if m == nil {
+		return nil
+	}
+	return m.DOVIBLPresent
+}
+
+func (m *MediaContainerWithDecisionStream) GetDOVIELPresent() *bool {
+	if m == nil {
+		return nil
+	}
+	return m.DOVIELPresent
+}
+
+func (m *MediaContainerWithDecisionStream) GetDOVILevel() *int {
+	if m == nil {
+		return nil
+	}
+	return m.DOVILevel
+}
+
+func (m *MediaContainerWithDecisionStream) GetDOVIPresent() *bool {
+	if m == nil {
+		return nil
+	}
+	return m.DOVIPresent
+}
+
+func (m *MediaContainerWithDecisionStream) GetDOVIProfile() *int {
+	if m == nil {
+		return nil
+	}
+	return m.DOVIProfile
+}
+
+func (m *MediaContainerWithDecisionStream) GetDOVIRPUPresent() *bool {
+	if m == nil {
+		return nil
+	}
+	return m.DOVIRPUPresent
+}
+
+func (m *MediaContainerWithDecisionStream) GetDOVIVersion() *string {
+	if m == nil {
+		return nil
+	}
+	return m.DOVIVersion
+}
+
+func (m *MediaContainerWithDecisionStream) GetBitrate() *int {
 	if m == nil {
 		return nil
 	}
@@ -179,144 +322,214 @@ func (m *MediaContainerWithDecisionStream) GetCanAutoSync() *bool {
 	return m.CanAutoSync
 }
 
-func (m *MediaContainerWithDecisionStream) GetChromaLocation() any {
+func (m *MediaContainerWithDecisionStream) GetChromaLocation() *string {
 	if m == nil {
 		return nil
 	}
 	return m.ChromaLocation
 }
 
-func (m *MediaContainerWithDecisionStream) GetChromaSubsampling() any {
+func (m *MediaContainerWithDecisionStream) GetChromaSubsampling() *string {
 	if m == nil {
 		return nil
 	}
 	return m.ChromaSubsampling
 }
 
-func (m *MediaContainerWithDecisionStream) GetCodec() any {
+func (m *MediaContainerWithDecisionStream) GetCodedHeight() *int {
 	if m == nil {
 		return nil
+	}
+	return m.CodedHeight
+}
+
+func (m *MediaContainerWithDecisionStream) GetCodedWidth() *int {
+	if m == nil {
+		return nil
+	}
+	return m.CodedWidth
+}
+
+func (m *MediaContainerWithDecisionStream) GetClosedCaptions() *bool {
+	if m == nil {
+		return nil
+	}
+	return m.ClosedCaptions
+}
+
+func (m *MediaContainerWithDecisionStream) GetCodec() string {
+	if m == nil {
+		return ""
 	}
 	return m.Codec
 }
 
-func (m *MediaContainerWithDecisionStream) GetColorPrimaries() any {
+func (m *MediaContainerWithDecisionStream) GetColorPrimaries() *string {
 	if m == nil {
 		return nil
 	}
 	return m.ColorPrimaries
 }
 
-func (m *MediaContainerWithDecisionStream) GetColorRange() any {
+func (m *MediaContainerWithDecisionStream) GetColorRange() *string {
 	if m == nil {
 		return nil
 	}
 	return m.ColorRange
 }
 
-func (m *MediaContainerWithDecisionStream) GetColorSpace() any {
+func (m *MediaContainerWithDecisionStream) GetColorSpace() *string {
 	if m == nil {
 		return nil
 	}
 	return m.ColorSpace
 }
 
-func (m *MediaContainerWithDecisionStream) GetColorTrc() any {
+func (m *MediaContainerWithDecisionStream) GetColorTrc() *string {
 	if m == nil {
 		return nil
 	}
 	return m.ColorTrc
 }
 
-func (m *MediaContainerWithDecisionStream) GetDisplayTitle() any {
+func (m *MediaContainerWithDecisionStream) GetDisplayTitle() string {
 	if m == nil {
-		return nil
+		return ""
 	}
 	return m.DisplayTitle
 }
 
-func (m *MediaContainerWithDecisionStream) GetFrameRate() *float64 {
+func (m *MediaContainerWithDecisionStream) GetExtendedDisplayTitle() *string {
+	if m == nil {
+		return nil
+	}
+	return m.ExtendedDisplayTitle
+}
+
+func (m *MediaContainerWithDecisionStream) GetFrameRate() *float32 {
 	if m == nil {
 		return nil
 	}
 	return m.FrameRate
 }
 
-func (m *MediaContainerWithDecisionStream) GetHasScalingMatrix() any {
+func (m *MediaContainerWithDecisionStream) GetHasScalingMatrix() *bool {
 	if m == nil {
 		return nil
 	}
 	return m.HasScalingMatrix
 }
 
-func (m *MediaContainerWithDecisionStream) GetHeight() *int64 {
+func (m *MediaContainerWithDecisionStream) GetHeight() *int {
 	if m == nil {
 		return nil
 	}
 	return m.Height
 }
 
-func (m *MediaContainerWithDecisionStream) GetID() *int64 {
+func (m *MediaContainerWithDecisionStream) GetID() int {
 	if m == nil {
-		return nil
+		return 0
 	}
 	return m.ID
 }
 
-func (m *MediaContainerWithDecisionStream) GetIndex() *int64 {
+func (m *MediaContainerWithDecisionStream) GetIndex() *int {
 	if m == nil {
 		return nil
 	}
 	return m.Index
 }
 
-func (m *MediaContainerWithDecisionStream) GetKey() any {
+func (m *MediaContainerWithDecisionStream) GetKey() string {
 	if m == nil {
-		return nil
+		return ""
 	}
 	return m.Key
 }
 
-func (m *MediaContainerWithDecisionStream) GetLanguage() any {
+func (m *MediaContainerWithDecisionStream) GetLanguage() *string {
 	if m == nil {
 		return nil
 	}
 	return m.Language
 }
 
-func (m *MediaContainerWithDecisionStream) GetLanguageCode() any {
+func (m *MediaContainerWithDecisionStream) GetLanguageCode() *string {
 	if m == nil {
 		return nil
 	}
 	return m.LanguageCode
 }
 
-func (m *MediaContainerWithDecisionStream) GetLevel() *int64 {
+func (m *MediaContainerWithDecisionStream) GetLanguageTag() *string {
+	if m == nil {
+		return nil
+	}
+	return m.LanguageTag
+}
+
+func (m *MediaContainerWithDecisionStream) GetFormat() *string {
+	if m == nil {
+		return nil
+	}
+	return m.Format
+}
+
+func (m *MediaContainerWithDecisionStream) GetHeaderCompression() *bool {
+	if m == nil {
+		return nil
+	}
+	return m.HeaderCompression
+}
+
+func (m *MediaContainerWithDecisionStream) GetLevel() *int {
 	if m == nil {
 		return nil
 	}
 	return m.Level
 }
 
-func (m *MediaContainerWithDecisionStream) GetProfile() any {
+func (m *MediaContainerWithDecisionStream) GetOriginal() *bool {
+	if m == nil {
+		return nil
+	}
+	return m.Original
+}
+
+func (m *MediaContainerWithDecisionStream) GetProfile() *string {
 	if m == nil {
 		return nil
 	}
 	return m.Profile
 }
 
-func (m *MediaContainerWithDecisionStream) GetRefFrames() *int64 {
+func (m *MediaContainerWithDecisionStream) GetRefFrames() *int {
 	if m == nil {
 		return nil
 	}
 	return m.RefFrames
 }
 
-func (m *MediaContainerWithDecisionStream) GetSamplingRate() *int64 {
+func (m *MediaContainerWithDecisionStream) GetSamplingRate() *int {
 	if m == nil {
 		return nil
 	}
 	return m.SamplingRate
+}
+
+func (m *MediaContainerWithDecisionStream) GetScanType() *string {
+	if m == nil {
+		return nil
+	}
+	return m.ScanType
+}
+
+func (m *MediaContainerWithDecisionStream) GetEmbeddedInVideo() *string {
+	if m == nil {
+		return nil
+	}
+	return m.EmbeddedInVideo
 }
 
 func (m *MediaContainerWithDecisionStream) GetSelected() *bool {
@@ -326,21 +539,46 @@ func (m *MediaContainerWithDecisionStream) GetSelected() *bool {
 	return m.Selected
 }
 
-func (m *MediaContainerWithDecisionStream) GetStreamIdentifier() *int64 {
+func (m *MediaContainerWithDecisionStream) GetForced() *bool {
+	if m == nil {
+		return nil
+	}
+	return m.Forced
+}
+
+func (m *MediaContainerWithDecisionStream) GetHearingImpaired() *bool {
+	if m == nil {
+		return nil
+	}
+	return m.HearingImpaired
+}
+
+func (m *MediaContainerWithDecisionStream) GetDub() *bool {
+	if m == nil {
+		return nil
+	}
+	return m.Dub
+}
+
+func (m *MediaContainerWithDecisionStream) GetTitle() *string {
+	if m == nil {
+		return nil
+	}
+	return m.Title
+}
+
+func (m *MediaContainerWithDecisionStream) GetStreamIdentifier() *int {
 	if m == nil {
 		return nil
 	}
 	return m.StreamIdentifier
 }
 
-func (m *MediaContainerWithDecisionStream) GetStreamType() *int64 {
-	if m == nil {
-		return nil
-	}
-	return m.StreamType
+func (m *MediaContainerWithDecisionStream) GetStreamType() int64 {
+	return 1
 }
 
-func (m *MediaContainerWithDecisionStream) GetWidth() *int64 {
+func (m *MediaContainerWithDecisionStream) GetWidth() *int {
 	if m == nil {
 		return nil
 	}
@@ -399,22 +637,27 @@ func (e *Decision) UnmarshalJSON(data []byte) error {
 
 // MediaContainerWithDecisionPart - `Part` represents a particular file or "part" of a media item. The part is the playable unit of the media hierarchy. Suppose that a movie library contains a movie that is broken up into files, reminiscent of a movie split across two BDs. The metadata item represents information about the movie, the media item represents this instance of the movie at this resolution and quality, and the part items represent the two playable files.  If another media were added which contained the joining of these two parts transcoded down to a lower resolution, then this metadata would contain 2 medias, one with 2 parts and one with 1 part.
 type MediaContainerWithDecisionPart struct {
-	AudioProfile any `json:"audioProfile,omitempty"`
+	// Indicates if the part is accessible.
+	Accessible   *bool   `json:"accessible,omitempty"`
+	AudioProfile *string `json:"audioProfile,omitempty"`
 	// The container of the media file, such as `mp4` or `mkv`
-	Container any `json:"container,omitempty"`
+	Container *string `json:"container,omitempty"`
 	// The duration of the media item, in milliseconds
-	Duration *int64 `json:"duration,omitempty"`
+	Duration *int `json:"duration,omitempty"`
+	// Indicates if the part exists.
+	Exists *bool `json:"exists,omitempty"`
 	// The local file path at which the part is stored on the server
-	File            any    `json:"file,omitempty"`
-	Has64bitOffsets *bool  `json:"has64bitOffsets,omitempty"`
-	ID              *int64 `json:"id,omitempty"`
+	File            *string `json:"file,omitempty"`
+	Has64bitOffsets *bool   `json:"has64bitOffsets,omitempty"`
+	ID              int64   `json:"id"`
+	Indexes         *string `json:"indexes,omitempty"`
 	// The key from which the media can be streamed
-	Key                   any   `json:"key,omitempty"`
-	OptimizedForStreaming *bool `json:"optimizedForStreaming,omitempty"`
+	Key                   string `json:"key"`
+	OptimizedForStreaming *bool  `json:"optimizedForStreaming,omitempty"`
 	// The size of the media, in bytes
 	Size                 *int64                             `json:"size,omitempty"`
 	Stream               []MediaContainerWithDecisionStream `json:"Stream,omitempty"`
-	VideoProfile         any                                `json:"videoProfile,omitempty"`
+	VideoProfile         *string                            `json:"videoProfile,omitempty"`
 	Decision             *Decision                          `json:"decision,omitempty"`
 	Selected             *bool                              `json:"selected,omitempty"`
 	AdditionalProperties map[string]any                     `additionalProperties:"true" json:"-"`
@@ -425,34 +668,48 @@ func (m MediaContainerWithDecisionPart) MarshalJSON() ([]byte, error) {
 }
 
 func (m *MediaContainerWithDecisionPart) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &m, "", false, []string{"id", "key"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *MediaContainerWithDecisionPart) GetAudioProfile() any {
+func (m *MediaContainerWithDecisionPart) GetAccessible() *bool {
+	if m == nil {
+		return nil
+	}
+	return m.Accessible
+}
+
+func (m *MediaContainerWithDecisionPart) GetAudioProfile() *string {
 	if m == nil {
 		return nil
 	}
 	return m.AudioProfile
 }
 
-func (m *MediaContainerWithDecisionPart) GetContainer() any {
+func (m *MediaContainerWithDecisionPart) GetContainer() *string {
 	if m == nil {
 		return nil
 	}
 	return m.Container
 }
 
-func (m *MediaContainerWithDecisionPart) GetDuration() *int64 {
+func (m *MediaContainerWithDecisionPart) GetDuration() *int {
 	if m == nil {
 		return nil
 	}
 	return m.Duration
 }
 
-func (m *MediaContainerWithDecisionPart) GetFile() any {
+func (m *MediaContainerWithDecisionPart) GetExists() *bool {
+	if m == nil {
+		return nil
+	}
+	return m.Exists
+}
+
+func (m *MediaContainerWithDecisionPart) GetFile() *string {
 	if m == nil {
 		return nil
 	}
@@ -466,16 +723,23 @@ func (m *MediaContainerWithDecisionPart) GetHas64bitOffsets() *bool {
 	return m.Has64bitOffsets
 }
 
-func (m *MediaContainerWithDecisionPart) GetID() *int64 {
+func (m *MediaContainerWithDecisionPart) GetID() int64 {
 	if m == nil {
-		return nil
+		return 0
 	}
 	return m.ID
 }
 
-func (m *MediaContainerWithDecisionPart) GetKey() any {
+func (m *MediaContainerWithDecisionPart) GetIndexes() *string {
 	if m == nil {
 		return nil
+	}
+	return m.Indexes
+}
+
+func (m *MediaContainerWithDecisionPart) GetKey() string {
+	if m == nil {
+		return ""
 	}
 	return m.Key
 }
@@ -501,7 +765,7 @@ func (m *MediaContainerWithDecisionPart) GetStream() []MediaContainerWithDecisio
 	return m.Stream
 }
 
-func (m *MediaContainerWithDecisionPart) GetVideoProfile() any {
+func (m *MediaContainerWithDecisionPart) GetVideoProfile() *string {
 	if m == nil {
 		return nil
 	}
@@ -531,24 +795,24 @@ func (m *MediaContainerWithDecisionPart) GetAdditionalProperties() map[string]an
 
 // MediaContainerWithDecisionMedia - `Media` represents an one or more media files (parts) and is a child of a metadata item. There aren't necessarily any guaranteed attributes on media elements since the attributes will vary based on the type. The possible attributes are not documented here, but they typically have self-evident names. High-level media information that can be used for badging and flagging, such as `videoResolution` and codecs, is included on the media element.
 type MediaContainerWithDecisionMedia struct {
-	AspectRatio           *float64                         `json:"aspectRatio,omitempty"`
-	AudioChannels         *int64                           `json:"audioChannels,omitempty"`
-	AudioCodec            any                              `json:"audioCodec,omitempty"`
-	AudioProfile          any                              `json:"audioProfile,omitempty"`
-	Bitrate               *int64                           `json:"bitrate,omitempty"`
-	Container             any                              `json:"container,omitempty"`
-	Duration              *int64                           `json:"duration,omitempty"`
+	AspectRatio           *float32                         `json:"aspectRatio,omitempty"`
+	AudioChannels         *int                             `json:"audioChannels,omitempty"`
+	AudioCodec            *string                          `json:"audioCodec,omitempty"`
+	AudioProfile          *string                          `json:"audioProfile,omitempty"`
+	Bitrate               *int                             `json:"bitrate,omitempty"`
+	Container             *string                          `json:"container,omitempty"`
+	Duration              *int                             `json:"duration,omitempty"`
 	Has64bitOffsets       *bool                            `json:"has64bitOffsets,omitempty"`
 	HasVoiceActivity      *bool                            `json:"hasVoiceActivity,omitempty"`
-	Height                *int64                           `json:"height,omitempty"`
-	ID                    *int64                           `json:"id,omitempty"`
+	Height                *int                             `json:"height,omitempty"`
+	ID                    int64                            `json:"id"`
 	OptimizedForStreaming *bool                            `json:"optimizedForStreaming,omitempty"`
 	Part                  []MediaContainerWithDecisionPart `json:"Part,omitempty"`
-	VideoCodec            any                              `json:"videoCodec,omitempty"`
-	VideoFrameRate        any                              `json:"videoFrameRate,omitempty"`
-	VideoProfile          any                              `json:"videoProfile,omitempty"`
-	VideoResolution       any                              `json:"videoResolution,omitempty"`
-	Width                 *int64                           `json:"width,omitempty"`
+	VideoCodec            *string                          `json:"videoCodec,omitempty"`
+	VideoFrameRate        *string                          `json:"videoFrameRate,omitempty"`
+	VideoProfile          *string                          `json:"videoProfile,omitempty"`
+	VideoResolution       *string                          `json:"videoResolution,omitempty"`
+	Width                 *int                             `json:"width,omitempty"`
 	Abr                   *bool                            `json:"abr,omitempty"`
 	ResourceSession       *string                          `json:"resourceSession,omitempty"`
 	Selected              *bool                            `json:"selected,omitempty"`
@@ -560,55 +824,55 @@ func (m MediaContainerWithDecisionMedia) MarshalJSON() ([]byte, error) {
 }
 
 func (m *MediaContainerWithDecisionMedia) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &m, "", false, []string{"id"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *MediaContainerWithDecisionMedia) GetAspectRatio() *float64 {
+func (m *MediaContainerWithDecisionMedia) GetAspectRatio() *float32 {
 	if m == nil {
 		return nil
 	}
 	return m.AspectRatio
 }
 
-func (m *MediaContainerWithDecisionMedia) GetAudioChannels() *int64 {
+func (m *MediaContainerWithDecisionMedia) GetAudioChannels() *int {
 	if m == nil {
 		return nil
 	}
 	return m.AudioChannels
 }
 
-func (m *MediaContainerWithDecisionMedia) GetAudioCodec() any {
+func (m *MediaContainerWithDecisionMedia) GetAudioCodec() *string {
 	if m == nil {
 		return nil
 	}
 	return m.AudioCodec
 }
 
-func (m *MediaContainerWithDecisionMedia) GetAudioProfile() any {
+func (m *MediaContainerWithDecisionMedia) GetAudioProfile() *string {
 	if m == nil {
 		return nil
 	}
 	return m.AudioProfile
 }
 
-func (m *MediaContainerWithDecisionMedia) GetBitrate() *int64 {
+func (m *MediaContainerWithDecisionMedia) GetBitrate() *int {
 	if m == nil {
 		return nil
 	}
 	return m.Bitrate
 }
 
-func (m *MediaContainerWithDecisionMedia) GetContainer() any {
+func (m *MediaContainerWithDecisionMedia) GetContainer() *string {
 	if m == nil {
 		return nil
 	}
 	return m.Container
 }
 
-func (m *MediaContainerWithDecisionMedia) GetDuration() *int64 {
+func (m *MediaContainerWithDecisionMedia) GetDuration() *int {
 	if m == nil {
 		return nil
 	}
@@ -629,16 +893,16 @@ func (m *MediaContainerWithDecisionMedia) GetHasVoiceActivity() *bool {
 	return m.HasVoiceActivity
 }
 
-func (m *MediaContainerWithDecisionMedia) GetHeight() *int64 {
+func (m *MediaContainerWithDecisionMedia) GetHeight() *int {
 	if m == nil {
 		return nil
 	}
 	return m.Height
 }
 
-func (m *MediaContainerWithDecisionMedia) GetID() *int64 {
+func (m *MediaContainerWithDecisionMedia) GetID() int64 {
 	if m == nil {
-		return nil
+		return 0
 	}
 	return m.ID
 }
@@ -657,35 +921,35 @@ func (m *MediaContainerWithDecisionMedia) GetPart() []MediaContainerWithDecision
 	return m.Part
 }
 
-func (m *MediaContainerWithDecisionMedia) GetVideoCodec() any {
+func (m *MediaContainerWithDecisionMedia) GetVideoCodec() *string {
 	if m == nil {
 		return nil
 	}
 	return m.VideoCodec
 }
 
-func (m *MediaContainerWithDecisionMedia) GetVideoFrameRate() any {
+func (m *MediaContainerWithDecisionMedia) GetVideoFrameRate() *string {
 	if m == nil {
 		return nil
 	}
 	return m.VideoFrameRate
 }
 
-func (m *MediaContainerWithDecisionMedia) GetVideoProfile() any {
+func (m *MediaContainerWithDecisionMedia) GetVideoProfile() *string {
 	if m == nil {
 		return nil
 	}
 	return m.VideoProfile
 }
 
-func (m *MediaContainerWithDecisionMedia) GetVideoResolution() any {
+func (m *MediaContainerWithDecisionMedia) GetVideoResolution() *string {
 	if m == nil {
 		return nil
 	}
 	return m.VideoResolution
 }
 
-func (m *MediaContainerWithDecisionMedia) GetWidth() *int64 {
+func (m *MediaContainerWithDecisionMedia) GetWidth() *int {
 	if m == nil {
 		return nil
 	}
@@ -727,37 +991,41 @@ func (m *MediaContainerWithDecisionMedia) GetAdditionalProperties() map[string]a
 // Metadata items can often live in a hierarchy with relationships between them.  For example, the metadata item for an episodes is associated with a season metadata item which is associated with a show metadata item.  A similar hierarchy exists with track, album, and artist and photos and photo album.  The relationships may be expressed via relative terms and absolute terms.  For example, "leaves" refer to metadata items which has associated media (there is no media for a season nor show).  A show will have "children" in the form of seasons and a season will have "children" in the form of episodes and episodes have "parent" in the form of a season which has a "parent" in the form of a show.  Similarly, a show has "grandchildren" in the form of episodse and an episode has a "grandparent" in the form of a show.
 type MediaContainerWithDecisionMetadata struct {
 	// The title of the item (e.g. “300” or “The Simpsons”)
-	Title any `json:"title,omitempty"`
+	Title string `json:"title"`
 	// The type of the video item, such as `movie`, `episode`, or `clip`.
-	Type any `json:"type,omitempty"`
+	Type string `json:"type"`
 	// When present, contains the disc number for a track on multi-disc albums.
-	AbsoluteIndex *int64 `json:"absoluteIndex,omitempty"`
+	AbsoluteIndex *int `json:"absoluteIndex,omitempty"`
 	// In units of seconds since the epoch, returns the time at which the item was added to the library.
-	AddedAt *int64 `json:"addedAt,omitempty"`
+	AddedAt int64 `json:"addedAt"`
 	// When present, the URL for the background artwork for the item.
-	Art any `json:"art,omitempty"`
+	Art *string `json:"art,omitempty"`
 	// Some rating systems separate reviewer ratings from audience ratings
-	AudienceRating *float64 `json:"audienceRating,omitempty"`
+	AudienceRating *float32 `json:"audienceRating,omitempty"`
 	// A URI representing the image to be shown with the audience rating (e.g. rottentomatoes://image.rating.spilled).
-	AudienceRatingImage any   `json:"audienceRatingImage,omitempty"`
-	Autotag             []Tag `json:"Autotag,omitempty"`
+	AudienceRatingImage *string `json:"audienceRatingImage,omitempty"`
+	Autotag             []Tag   `json:"Autotag,omitempty"`
 	// When present, the URL for a banner graphic for the item.
-	Banner any `json:"banner,omitempty"`
+	Banner *string `json:"banner,omitempty"`
 	// When present, indicates the source for the chapters in the media file. Can be media (the chapters were embedded in the media itself), agent (a metadata agent computed them), or mixed (a combination of the two).
-	ChapterSource any `json:"chapterSource,omitempty"`
+	ChapterSource *string `json:"chapterSource,omitempty"`
+	// The number of child items associated with this media item.
+	ChildCount *int `json:"childCount,omitempty"`
 	// When present, the URL for a composite image for descendent items (e.g. photo albums or playlists).
-	Composite any `json:"composite,omitempty"`
+	Composite *string `json:"composite,omitempty"`
 	// If known, the content rating (e.g. MPAA) for an item.
-	ContentRating any   `json:"contentRating,omitempty"`
-	Country       []Tag `json:"Country,omitempty"`
-	Director      []Tag `json:"Director,omitempty"`
+	ContentRating *string `json:"contentRating,omitempty"`
+	Country       []Tag   `json:"Country,omitempty"`
+	Director      []Tag   `json:"Director,omitempty"`
 	// When present, the duration for the item, in units of milliseconds.
-	Duration *int64 `json:"duration,omitempty"`
+	Duration *int `json:"duration,omitempty"`
 	// Typically only seen in metadata at a library's top level
 	Filter []Filter `json:"Filter,omitempty"`
 	Genre  []Tag    `json:"Genre,omitempty"`
 	// The `art` of the grandparent
 	GrandparentArt *string `json:"grandparentArt,omitempty"`
+	// The GUID of the grandparent media item.
+	GrandparentGUID *string `json:"grandparentGuid,omitempty"`
 	// The `hero` of the grandparent
 	GrandparentHero *string `json:"grandparentHero,omitempty"`
 	// The `key` of the grandparent
@@ -770,27 +1038,30 @@ type MediaContainerWithDecisionMetadata struct {
 	GrandparentThumb *string `json:"grandparentThumb,omitempty"`
 	// The `title` of the grandparent
 	GrandparentTitle *string `json:"grandparentTitle,omitempty"`
-	GUID             []Tag   `json:"Guid,omitempty"`
+	// The globally unique identifier for the media item.
+	GUID  *string                           `json:"guid,omitempty"`
+	Guids []MediaContainerWithDecisionGuids `json:"Guid,omitempty"`
 	// When present, the URL for a hero image for the item.
-	Hero  any     `json:"hero,omitempty"`
+	Hero  *string `json:"hero,omitempty"`
 	Image []Image `json:"Image,omitempty"`
 	// When present, this represents the episode number for episodes, season number for seasons, or track number for audio tracks.
-	Index *int64 `json:"index,omitempty"`
+	Index *int `json:"index,omitempty"`
 	// The key at which the item's details can be fetched.  In many cases a metadata item may be passed without all the details (such as in a hub) and this key corresponds to the endpoint to fetch additional details.
-	Key any `json:"key,omitempty"`
-	// When a user has watched or listened to an item, this contains a timestamp (epoch seconds) for that last consumption time.
+	Key          string `json:"key"`
 	LastViewedAt *int64 `json:"lastViewedAt,omitempty"`
 	// For shows and seasons, contains the number of total episodes.
-	LeafCount *int64                            `json:"leafCount,omitempty"`
+	LeafCount *int                              `json:"leafCount,omitempty"`
 	Media     []MediaContainerWithDecisionMedia `json:"Media,omitempty"`
 	// When present, in the format YYYY-MM-DD [HH:MM:SS] (the hours/minutes/seconds part is not always present). The air date, or a higher resolution release date for an item, depending on type. For example, episodes usually have air date like 1979-08-10 (we don't use epoch seconds because media existed prior to 1970). In some cases, recorded over-the-air content has higher resolution air date which includes a time component. Albums and movies may have day-resolution release dates as well.
-	OriginallyAvailableAt any `json:"originallyAvailableAt,omitempty"`
+	OriginallyAvailableAt *types.Date `json:"originallyAvailableAt,omitempty"`
 	// When present, used to indicate an item's original title, e.g. a movie's foreign title.
-	OriginalTitle any `json:"originalTitle,omitempty"`
+	OriginalTitle *string `json:"originalTitle,omitempty"`
+	// The GUID of the parent media item.
+	ParentGUID *string `json:"parentGuid,omitempty"`
 	// The `hero` of the parent
 	ParentHero *string `json:"parentHero,omitempty"`
 	// The `index` of the parent
-	ParentIndex *int64 `json:"parentIndex,omitempty"`
+	ParentIndex *int `json:"parentIndex,omitempty"`
 	// The `key` of the parent
 	ParentKey *string `json:"parentKey,omitempty"`
 	// The `ratingKey` of the parent
@@ -800,19 +1071,19 @@ type MediaContainerWithDecisionMetadata struct {
 	// The `title` of the parent
 	ParentTitle *string `json:"parentTitle,omitempty"`
 	// Indicates that the item has a primary extra; for a movie, this is a trailer, and for a music track it is a music video. The URL points to the metadata details endpoint for the item.
-	PrimaryExtraKey any `json:"primaryExtraKey,omitempty"`
+	PrimaryExtraKey *string `json:"primaryExtraKey,omitempty"`
 	// Prompt to give the user for this directory (such as `Search Movies`)
 	Prompt *string `json:"prompt,omitempty"`
 	// When present, the rating for the item. The exact meaning and representation depends on where the rating was sourced from.
-	Rating      *float64 `json:"rating,omitempty"`
+	Rating      *float32 `json:"rating,omitempty"`
 	RatingArray []Tag    `json:"Rating,omitempty"`
 	// Number of ratings under this metadata
-	RatingCount *int64 `json:"ratingCount,omitempty"`
+	RatingCount *int `json:"ratingCount,omitempty"`
 	// When present, indicates an image to be shown with the rating. This is passed back as a small set of defined URI values, e.g. rottentomatoes://image.rating.rotten.
-	RatingImage any `json:"ratingImage,omitempty"`
+	RatingImage *string `json:"ratingImage,omitempty"`
 	// This is the opaque string to be passed into timeline, scrobble, and rating endpoints to identify them.  While it often appears to be numeric, this is not guaranteed.
-	RatingKey any   `json:"ratingKey,omitempty"`
-	Role      []Tag `json:"Role,omitempty"`
+	RatingKey *string `json:"ratingKey,omitempty"`
+	Role      []Tag   `json:"Role,omitempty"`
 	// Indicates this is a search directory
 	Search *bool `json:"search,omitempty"`
 	// Used by old clients to provide nested menus allowing for primative (but structured) navigation.
@@ -824,32 +1095,32 @@ type MediaContainerWithDecisionMetadata struct {
 	// Typically only seen in metadata at a library's top level
 	Sort []Sort `json:"Sort,omitempty"`
 	// When present, the studio or label which produced an item (e.g. movie studio for movies, record label for albums).
-	Studio any `json:"studio,omitempty"`
+	Studio *string `json:"studio,omitempty"`
 	// The subtype of the video item, such as `photo` when the video item is in a photo library
-	Subtype any `json:"subtype,omitempty"`
+	Subtype *string `json:"subtype,omitempty"`
 	// When present, the extended textual information about the item (e.g. movie plot, artist biography, album review).
-	Summary any `json:"summary,omitempty"`
+	Summary *string `json:"summary,omitempty"`
 	// When present, a pithy one-liner about the item (usually only seen for movies).
-	Tagline any `json:"tagline,omitempty"`
+	Tagline *string `json:"tagline,omitempty"`
 	// When present, the URL for theme music for the item (usually only for TV shows).
-	Theme any `json:"theme,omitempty"`
+	Theme *string `json:"theme,omitempty"`
 	// When present, the URL for the poster or thumbnail for the item. When available for types like movie, it will be the poster graphic, but fall-back to the extracted media thumbnail.
-	Thumb any `json:"thumb,omitempty"`
+	Thumb *string `json:"thumb,omitempty"`
 	// Whene present, this is the string used for sorting the item. It's usually the title with any leading articles removed (e.g. “Simpsons”).
-	TitleSort any `json:"titleSort,omitempty"`
+	TitleSort *string `json:"titleSort,omitempty"`
 	// In units of seconds since the epoch, returns the time at which the item was last changed (e.g. had its metadata updated).
 	UpdatedAt *int64 `json:"updatedAt,omitempty"`
 	// When the user has rated an item, this contains the user rating
-	UserRating *float64 `json:"userRating,omitempty"`
+	UserRating *float32 `json:"userRating,omitempty"`
 	// When a users has completed watched or listened to an item, this attribute contains the number of consumptions.
-	ViewCount *int64 `json:"viewCount,omitempty"`
+	ViewCount *int `json:"viewCount,omitempty"`
 	// For shows and seasons, contains the number of viewed episodes.
-	ViewedLeafCount *int64 `json:"viewedLeafCount,omitempty"`
+	ViewedLeafCount *int `json:"viewedLeafCount,omitempty"`
 	// When a user is in the process of viewing or listening to this item, this attribute contains the current offset, in units of milliseconds.
-	ViewOffset *int64 `json:"viewOffset,omitempty"`
-	Writer     []Tag  `json:"Writer,omitempty"`
+	ViewOffset *int  `json:"viewOffset,omitempty"`
+	Writer     []Tag `json:"Writer,omitempty"`
 	// When present, the year associated with the item's release (e.g. release year for a movie).
-	Year                 *int64         `json:"year,omitempty"`
+	Year                 *int           `json:"year,omitempty"`
 	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
 }
 
@@ -858,55 +1129,55 @@ func (m MediaContainerWithDecisionMetadata) MarshalJSON() ([]byte, error) {
 }
 
 func (m *MediaContainerWithDecisionMetadata) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &m, "", false, []string{"title", "type", "addedAt", "key"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetTitle() any {
+func (m *MediaContainerWithDecisionMetadata) GetTitle() string {
 	if m == nil {
-		return nil
+		return ""
 	}
 	return m.Title
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetType() any {
+func (m *MediaContainerWithDecisionMetadata) GetType() string {
 	if m == nil {
-		return nil
+		return ""
 	}
 	return m.Type
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetAbsoluteIndex() *int64 {
+func (m *MediaContainerWithDecisionMetadata) GetAbsoluteIndex() *int {
 	if m == nil {
 		return nil
 	}
 	return m.AbsoluteIndex
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetAddedAt() *int64 {
+func (m *MediaContainerWithDecisionMetadata) GetAddedAt() int64 {
 	if m == nil {
-		return nil
+		return 0
 	}
 	return m.AddedAt
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetArt() any {
+func (m *MediaContainerWithDecisionMetadata) GetArt() *string {
 	if m == nil {
 		return nil
 	}
 	return m.Art
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetAudienceRating() *float64 {
+func (m *MediaContainerWithDecisionMetadata) GetAudienceRating() *float32 {
 	if m == nil {
 		return nil
 	}
 	return m.AudienceRating
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetAudienceRatingImage() any {
+func (m *MediaContainerWithDecisionMetadata) GetAudienceRatingImage() *string {
 	if m == nil {
 		return nil
 	}
@@ -920,28 +1191,35 @@ func (m *MediaContainerWithDecisionMetadata) GetAutotag() []Tag {
 	return m.Autotag
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetBanner() any {
+func (m *MediaContainerWithDecisionMetadata) GetBanner() *string {
 	if m == nil {
 		return nil
 	}
 	return m.Banner
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetChapterSource() any {
+func (m *MediaContainerWithDecisionMetadata) GetChapterSource() *string {
 	if m == nil {
 		return nil
 	}
 	return m.ChapterSource
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetComposite() any {
+func (m *MediaContainerWithDecisionMetadata) GetChildCount() *int {
+	if m == nil {
+		return nil
+	}
+	return m.ChildCount
+}
+
+func (m *MediaContainerWithDecisionMetadata) GetComposite() *string {
 	if m == nil {
 		return nil
 	}
 	return m.Composite
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetContentRating() any {
+func (m *MediaContainerWithDecisionMetadata) GetContentRating() *string {
 	if m == nil {
 		return nil
 	}
@@ -962,7 +1240,7 @@ func (m *MediaContainerWithDecisionMetadata) GetDirector() []Tag {
 	return m.Director
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetDuration() *int64 {
+func (m *MediaContainerWithDecisionMetadata) GetDuration() *int {
 	if m == nil {
 		return nil
 	}
@@ -988,6 +1266,13 @@ func (m *MediaContainerWithDecisionMetadata) GetGrandparentArt() *string {
 		return nil
 	}
 	return m.GrandparentArt
+}
+
+func (m *MediaContainerWithDecisionMetadata) GetGrandparentGUID() *string {
+	if m == nil {
+		return nil
+	}
+	return m.GrandparentGUID
 }
 
 func (m *MediaContainerWithDecisionMetadata) GetGrandparentHero() *string {
@@ -1032,14 +1317,21 @@ func (m *MediaContainerWithDecisionMetadata) GetGrandparentTitle() *string {
 	return m.GrandparentTitle
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetGUID() []Tag {
+func (m *MediaContainerWithDecisionMetadata) GetGUID() *string {
 	if m == nil {
 		return nil
 	}
 	return m.GUID
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetHero() any {
+func (m *MediaContainerWithDecisionMetadata) GetGuids() []MediaContainerWithDecisionGuids {
+	if m == nil {
+		return nil
+	}
+	return m.Guids
+}
+
+func (m *MediaContainerWithDecisionMetadata) GetHero() *string {
 	if m == nil {
 		return nil
 	}
@@ -1053,16 +1345,16 @@ func (m *MediaContainerWithDecisionMetadata) GetImage() []Image {
 	return m.Image
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetIndex() *int64 {
+func (m *MediaContainerWithDecisionMetadata) GetIndex() *int {
 	if m == nil {
 		return nil
 	}
 	return m.Index
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetKey() any {
+func (m *MediaContainerWithDecisionMetadata) GetKey() string {
 	if m == nil {
-		return nil
+		return ""
 	}
 	return m.Key
 }
@@ -1074,7 +1366,7 @@ func (m *MediaContainerWithDecisionMetadata) GetLastViewedAt() *int64 {
 	return m.LastViewedAt
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetLeafCount() *int64 {
+func (m *MediaContainerWithDecisionMetadata) GetLeafCount() *int {
 	if m == nil {
 		return nil
 	}
@@ -1088,18 +1380,25 @@ func (m *MediaContainerWithDecisionMetadata) GetMedia() []MediaContainerWithDeci
 	return m.Media
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetOriginallyAvailableAt() any {
+func (m *MediaContainerWithDecisionMetadata) GetOriginallyAvailableAt() *types.Date {
 	if m == nil {
 		return nil
 	}
 	return m.OriginallyAvailableAt
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetOriginalTitle() any {
+func (m *MediaContainerWithDecisionMetadata) GetOriginalTitle() *string {
 	if m == nil {
 		return nil
 	}
 	return m.OriginalTitle
+}
+
+func (m *MediaContainerWithDecisionMetadata) GetParentGUID() *string {
+	if m == nil {
+		return nil
+	}
+	return m.ParentGUID
 }
 
 func (m *MediaContainerWithDecisionMetadata) GetParentHero() *string {
@@ -1109,7 +1408,7 @@ func (m *MediaContainerWithDecisionMetadata) GetParentHero() *string {
 	return m.ParentHero
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetParentIndex() *int64 {
+func (m *MediaContainerWithDecisionMetadata) GetParentIndex() *int {
 	if m == nil {
 		return nil
 	}
@@ -1144,7 +1443,7 @@ func (m *MediaContainerWithDecisionMetadata) GetParentTitle() *string {
 	return m.ParentTitle
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetPrimaryExtraKey() any {
+func (m *MediaContainerWithDecisionMetadata) GetPrimaryExtraKey() *string {
 	if m == nil {
 		return nil
 	}
@@ -1158,7 +1457,7 @@ func (m *MediaContainerWithDecisionMetadata) GetPrompt() *string {
 	return m.Prompt
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetRating() *float64 {
+func (m *MediaContainerWithDecisionMetadata) GetRating() *float32 {
 	if m == nil {
 		return nil
 	}
@@ -1172,21 +1471,21 @@ func (m *MediaContainerWithDecisionMetadata) GetRatingArray() []Tag {
 	return m.RatingArray
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetRatingCount() *int64 {
+func (m *MediaContainerWithDecisionMetadata) GetRatingCount() *int {
 	if m == nil {
 		return nil
 	}
 	return m.RatingCount
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetRatingImage() any {
+func (m *MediaContainerWithDecisionMetadata) GetRatingImage() *string {
 	if m == nil {
 		return nil
 	}
 	return m.RatingImage
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetRatingKey() any {
+func (m *MediaContainerWithDecisionMetadata) GetRatingKey() *string {
 	if m == nil {
 		return nil
 	}
@@ -1235,49 +1534,49 @@ func (m *MediaContainerWithDecisionMetadata) GetSort() []Sort {
 	return m.Sort
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetStudio() any {
+func (m *MediaContainerWithDecisionMetadata) GetStudio() *string {
 	if m == nil {
 		return nil
 	}
 	return m.Studio
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetSubtype() any {
+func (m *MediaContainerWithDecisionMetadata) GetSubtype() *string {
 	if m == nil {
 		return nil
 	}
 	return m.Subtype
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetSummary() any {
+func (m *MediaContainerWithDecisionMetadata) GetSummary() *string {
 	if m == nil {
 		return nil
 	}
 	return m.Summary
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetTagline() any {
+func (m *MediaContainerWithDecisionMetadata) GetTagline() *string {
 	if m == nil {
 		return nil
 	}
 	return m.Tagline
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetTheme() any {
+func (m *MediaContainerWithDecisionMetadata) GetTheme() *string {
 	if m == nil {
 		return nil
 	}
 	return m.Theme
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetThumb() any {
+func (m *MediaContainerWithDecisionMetadata) GetThumb() *string {
 	if m == nil {
 		return nil
 	}
 	return m.Thumb
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetTitleSort() any {
+func (m *MediaContainerWithDecisionMetadata) GetTitleSort() *string {
 	if m == nil {
 		return nil
 	}
@@ -1291,28 +1590,28 @@ func (m *MediaContainerWithDecisionMetadata) GetUpdatedAt() *int64 {
 	return m.UpdatedAt
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetUserRating() *float64 {
+func (m *MediaContainerWithDecisionMetadata) GetUserRating() *float32 {
 	if m == nil {
 		return nil
 	}
 	return m.UserRating
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetViewCount() *int64 {
+func (m *MediaContainerWithDecisionMetadata) GetViewCount() *int {
 	if m == nil {
 		return nil
 	}
 	return m.ViewCount
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetViewedLeafCount() *int64 {
+func (m *MediaContainerWithDecisionMetadata) GetViewedLeafCount() *int {
 	if m == nil {
 		return nil
 	}
 	return m.ViewedLeafCount
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetViewOffset() *int64 {
+func (m *MediaContainerWithDecisionMetadata) GetViewOffset() *int {
 	if m == nil {
 		return nil
 	}
@@ -1326,7 +1625,7 @@ func (m *MediaContainerWithDecisionMetadata) GetWriter() []Tag {
 	return m.Writer
 }
 
-func (m *MediaContainerWithDecisionMetadata) GetYear() *int64 {
+func (m *MediaContainerWithDecisionMetadata) GetYear() *int {
 	if m == nil {
 		return nil
 	}

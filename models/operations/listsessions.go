@@ -5,8 +5,22 @@ package operations
 import (
 	"github.com/LukeHagar/plexgo/internal/utils"
 	"github.com/LukeHagar/plexgo/models/components"
+	"github.com/LukeHagar/plexgo/types"
 	"net/http"
 )
+
+type Guids struct {
+	// The unique identifier for the Guid. Can be prefixed with imdb://, tmdb://, tvdb://
+	//
+	ID string `json:"id"`
+}
+
+func (g *Guids) GetID() string {
+	if g == nil {
+		return ""
+	}
+	return g.ID
+}
 
 // Metadata - Items in a library are referred to as "metadata items." These metadata items are distinct from "media items" which represent actual instances of media that can be consumed. Consider a TV library that has a single video file in it for a particular episode of a show. The library has a single media item, but it has three metadata items: one for the show, one for the season, and one for the episode. Consider a movie library that has two video files in it: the same movie, but two different resolutions. The library has a single metadata item for the movie, but that metadata item has two media items, one for each resolution. Additionally a "media item" will have one or more "media parts" where the the parts are intended to be watched together, such as a CD1 and CD2 parts of the same movie.
 //
@@ -21,37 +35,41 @@ type Metadata struct {
 	// The user playing the content
 	User *components.User `json:"User,omitempty"`
 	// The title of the item (e.g. “300” or “The Simpsons”)
-	Title any `json:"title,omitempty"`
+	Title string `json:"title"`
 	// The type of the video item, such as `movie`, `episode`, or `clip`.
-	Type any `json:"type,omitempty"`
+	Type string `json:"type"`
 	// When present, contains the disc number for a track on multi-disc albums.
-	AbsoluteIndex *int64 `json:"absoluteIndex,omitempty"`
+	AbsoluteIndex *int `json:"absoluteIndex,omitempty"`
 	// In units of seconds since the epoch, returns the time at which the item was added to the library.
-	AddedAt *int64 `json:"addedAt,omitempty"`
+	AddedAt int64 `json:"addedAt"`
 	// When present, the URL for the background artwork for the item.
-	Art any `json:"art,omitempty"`
+	Art *string `json:"art,omitempty"`
 	// Some rating systems separate reviewer ratings from audience ratings
-	AudienceRating *float64 `json:"audienceRating,omitempty"`
+	AudienceRating *float32 `json:"audienceRating,omitempty"`
 	// A URI representing the image to be shown with the audience rating (e.g. rottentomatoes://image.rating.spilled).
-	AudienceRatingImage any              `json:"audienceRatingImage,omitempty"`
+	AudienceRatingImage *string          `json:"audienceRatingImage,omitempty"`
 	Autotag             []components.Tag `json:"Autotag,omitempty"`
 	// When present, the URL for a banner graphic for the item.
-	Banner any `json:"banner,omitempty"`
+	Banner *string `json:"banner,omitempty"`
 	// When present, indicates the source for the chapters in the media file. Can be media (the chapters were embedded in the media itself), agent (a metadata agent computed them), or mixed (a combination of the two).
-	ChapterSource any `json:"chapterSource,omitempty"`
+	ChapterSource *string `json:"chapterSource,omitempty"`
+	// The number of child items associated with this media item.
+	ChildCount *int `json:"childCount,omitempty"`
 	// When present, the URL for a composite image for descendent items (e.g. photo albums or playlists).
-	Composite any `json:"composite,omitempty"`
+	Composite *string `json:"composite,omitempty"`
 	// If known, the content rating (e.g. MPAA) for an item.
-	ContentRating any              `json:"contentRating,omitempty"`
+	ContentRating *string          `json:"contentRating,omitempty"`
 	Country       []components.Tag `json:"Country,omitempty"`
 	Director      []components.Tag `json:"Director,omitempty"`
 	// When present, the duration for the item, in units of milliseconds.
-	Duration *int64 `json:"duration,omitempty"`
+	Duration *int `json:"duration,omitempty"`
 	// Typically only seen in metadata at a library's top level
 	Filter []components.Filter `json:"Filter,omitempty"`
 	Genre  []components.Tag    `json:"Genre,omitempty"`
 	// The `art` of the grandparent
 	GrandparentArt *string `json:"grandparentArt,omitempty"`
+	// The GUID of the grandparent media item.
+	GrandparentGUID *string `json:"grandparentGuid,omitempty"`
 	// The `hero` of the grandparent
 	GrandparentHero *string `json:"grandparentHero,omitempty"`
 	// The `key` of the grandparent
@@ -63,28 +81,31 @@ type Metadata struct {
 	// The `thumb` of the grandparent
 	GrandparentThumb *string `json:"grandparentThumb,omitempty"`
 	// The `title` of the grandparent
-	GrandparentTitle *string          `json:"grandparentTitle,omitempty"`
-	GUID             []components.Tag `json:"Guid,omitempty"`
+	GrandparentTitle *string `json:"grandparentTitle,omitempty"`
+	// The globally unique identifier for the media item.
+	GUID  *string `json:"guid,omitempty"`
+	Guids []Guids `json:"Guid,omitempty"`
 	// When present, the URL for a hero image for the item.
-	Hero  any                `json:"hero,omitempty"`
+	Hero  *string            `json:"hero,omitempty"`
 	Image []components.Image `json:"Image,omitempty"`
 	// When present, this represents the episode number for episodes, season number for seasons, or track number for audio tracks.
-	Index *int64 `json:"index,omitempty"`
+	Index *int `json:"index,omitempty"`
 	// The key at which the item's details can be fetched.  In many cases a metadata item may be passed without all the details (such as in a hub) and this key corresponds to the endpoint to fetch additional details.
-	Key any `json:"key,omitempty"`
-	// When a user has watched or listened to an item, this contains a timestamp (epoch seconds) for that last consumption time.
+	Key          string `json:"key"`
 	LastViewedAt *int64 `json:"lastViewedAt,omitempty"`
 	// For shows and seasons, contains the number of total episodes.
-	LeafCount *int64             `json:"leafCount,omitempty"`
+	LeafCount *int               `json:"leafCount,omitempty"`
 	Media     []components.Media `json:"Media,omitempty"`
 	// When present, in the format YYYY-MM-DD [HH:MM:SS] (the hours/minutes/seconds part is not always present). The air date, or a higher resolution release date for an item, depending on type. For example, episodes usually have air date like 1979-08-10 (we don't use epoch seconds because media existed prior to 1970). In some cases, recorded over-the-air content has higher resolution air date which includes a time component. Albums and movies may have day-resolution release dates as well.
-	OriginallyAvailableAt any `json:"originallyAvailableAt,omitempty"`
+	OriginallyAvailableAt *types.Date `json:"originallyAvailableAt,omitempty"`
 	// When present, used to indicate an item's original title, e.g. a movie's foreign title.
-	OriginalTitle any `json:"originalTitle,omitempty"`
+	OriginalTitle *string `json:"originalTitle,omitempty"`
+	// The GUID of the parent media item.
+	ParentGUID *string `json:"parentGuid,omitempty"`
 	// The `hero` of the parent
 	ParentHero *string `json:"parentHero,omitempty"`
 	// The `index` of the parent
-	ParentIndex *int64 `json:"parentIndex,omitempty"`
+	ParentIndex *int `json:"parentIndex,omitempty"`
 	// The `key` of the parent
 	ParentKey *string `json:"parentKey,omitempty"`
 	// The `ratingKey` of the parent
@@ -94,18 +115,18 @@ type Metadata struct {
 	// The `title` of the parent
 	ParentTitle *string `json:"parentTitle,omitempty"`
 	// Indicates that the item has a primary extra; for a movie, this is a trailer, and for a music track it is a music video. The URL points to the metadata details endpoint for the item.
-	PrimaryExtraKey any `json:"primaryExtraKey,omitempty"`
+	PrimaryExtraKey *string `json:"primaryExtraKey,omitempty"`
 	// Prompt to give the user for this directory (such as `Search Movies`)
 	Prompt *string `json:"prompt,omitempty"`
 	// When present, the rating for the item. The exact meaning and representation depends on where the rating was sourced from.
-	Rating      *float64         `json:"rating,omitempty"`
+	Rating      *float32         `json:"rating,omitempty"`
 	RatingArray []components.Tag `json:"Rating,omitempty"`
 	// Number of ratings under this metadata
-	RatingCount *int64 `json:"ratingCount,omitempty"`
+	RatingCount *int `json:"ratingCount,omitempty"`
 	// When present, indicates an image to be shown with the rating. This is passed back as a small set of defined URI values, e.g. rottentomatoes://image.rating.rotten.
-	RatingImage any `json:"ratingImage,omitempty"`
+	RatingImage *string `json:"ratingImage,omitempty"`
 	// This is the opaque string to be passed into timeline, scrobble, and rating endpoints to identify them.  While it often appears to be numeric, this is not guaranteed.
-	RatingKey any              `json:"ratingKey,omitempty"`
+	RatingKey *string          `json:"ratingKey,omitempty"`
 	Role      []components.Tag `json:"Role,omitempty"`
 	// Indicates this is a search directory
 	Search *bool `json:"search,omitempty"`
@@ -118,32 +139,32 @@ type Metadata struct {
 	// Typically only seen in metadata at a library's top level
 	Sort []components.Sort `json:"Sort,omitempty"`
 	// When present, the studio or label which produced an item (e.g. movie studio for movies, record label for albums).
-	Studio any `json:"studio,omitempty"`
+	Studio *string `json:"studio,omitempty"`
 	// The subtype of the video item, such as `photo` when the video item is in a photo library
-	Subtype any `json:"subtype,omitempty"`
+	Subtype *string `json:"subtype,omitempty"`
 	// When present, the extended textual information about the item (e.g. movie plot, artist biography, album review).
-	Summary any `json:"summary,omitempty"`
+	Summary *string `json:"summary,omitempty"`
 	// When present, a pithy one-liner about the item (usually only seen for movies).
-	Tagline any `json:"tagline,omitempty"`
+	Tagline *string `json:"tagline,omitempty"`
 	// When present, the URL for theme music for the item (usually only for TV shows).
-	Theme any `json:"theme,omitempty"`
+	Theme *string `json:"theme,omitempty"`
 	// When present, the URL for the poster or thumbnail for the item. When available for types like movie, it will be the poster graphic, but fall-back to the extracted media thumbnail.
-	Thumb any `json:"thumb,omitempty"`
+	Thumb *string `json:"thumb,omitempty"`
 	// Whene present, this is the string used for sorting the item. It's usually the title with any leading articles removed (e.g. “Simpsons”).
-	TitleSort any `json:"titleSort,omitempty"`
+	TitleSort *string `json:"titleSort,omitempty"`
 	// In units of seconds since the epoch, returns the time at which the item was last changed (e.g. had its metadata updated).
 	UpdatedAt *int64 `json:"updatedAt,omitempty"`
 	// When the user has rated an item, this contains the user rating
-	UserRating *float64 `json:"userRating,omitempty"`
+	UserRating *float32 `json:"userRating,omitempty"`
 	// When a users has completed watched or listened to an item, this attribute contains the number of consumptions.
-	ViewCount *int64 `json:"viewCount,omitempty"`
+	ViewCount *int `json:"viewCount,omitempty"`
 	// For shows and seasons, contains the number of viewed episodes.
-	ViewedLeafCount *int64 `json:"viewedLeafCount,omitempty"`
+	ViewedLeafCount *int `json:"viewedLeafCount,omitempty"`
 	// When a user is in the process of viewing or listening to this item, this attribute contains the current offset, in units of milliseconds.
-	ViewOffset *int64           `json:"viewOffset,omitempty"`
+	ViewOffset *int             `json:"viewOffset,omitempty"`
 	Writer     []components.Tag `json:"Writer,omitempty"`
 	// When present, the year associated with the item's release (e.g. release year for a movie).
-	Year                 *int64         `json:"year,omitempty"`
+	Year                 *int           `json:"year,omitempty"`
 	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
 }
 
@@ -152,7 +173,7 @@ func (m Metadata) MarshalJSON() ([]byte, error) {
 }
 
 func (m *Metadata) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &m, "", false, []string{"title", "type", "addedAt", "key"}); err != nil {
 		return err
 	}
 	return nil
@@ -179,49 +200,49 @@ func (m *Metadata) GetUser() *components.User {
 	return m.User
 }
 
-func (m *Metadata) GetTitle() any {
+func (m *Metadata) GetTitle() string {
 	if m == nil {
-		return nil
+		return ""
 	}
 	return m.Title
 }
 
-func (m *Metadata) GetType() any {
+func (m *Metadata) GetType() string {
 	if m == nil {
-		return nil
+		return ""
 	}
 	return m.Type
 }
 
-func (m *Metadata) GetAbsoluteIndex() *int64 {
+func (m *Metadata) GetAbsoluteIndex() *int {
 	if m == nil {
 		return nil
 	}
 	return m.AbsoluteIndex
 }
 
-func (m *Metadata) GetAddedAt() *int64 {
+func (m *Metadata) GetAddedAt() int64 {
 	if m == nil {
-		return nil
+		return 0
 	}
 	return m.AddedAt
 }
 
-func (m *Metadata) GetArt() any {
+func (m *Metadata) GetArt() *string {
 	if m == nil {
 		return nil
 	}
 	return m.Art
 }
 
-func (m *Metadata) GetAudienceRating() *float64 {
+func (m *Metadata) GetAudienceRating() *float32 {
 	if m == nil {
 		return nil
 	}
 	return m.AudienceRating
 }
 
-func (m *Metadata) GetAudienceRatingImage() any {
+func (m *Metadata) GetAudienceRatingImage() *string {
 	if m == nil {
 		return nil
 	}
@@ -235,28 +256,35 @@ func (m *Metadata) GetAutotag() []components.Tag {
 	return m.Autotag
 }
 
-func (m *Metadata) GetBanner() any {
+func (m *Metadata) GetBanner() *string {
 	if m == nil {
 		return nil
 	}
 	return m.Banner
 }
 
-func (m *Metadata) GetChapterSource() any {
+func (m *Metadata) GetChapterSource() *string {
 	if m == nil {
 		return nil
 	}
 	return m.ChapterSource
 }
 
-func (m *Metadata) GetComposite() any {
+func (m *Metadata) GetChildCount() *int {
+	if m == nil {
+		return nil
+	}
+	return m.ChildCount
+}
+
+func (m *Metadata) GetComposite() *string {
 	if m == nil {
 		return nil
 	}
 	return m.Composite
 }
 
-func (m *Metadata) GetContentRating() any {
+func (m *Metadata) GetContentRating() *string {
 	if m == nil {
 		return nil
 	}
@@ -277,7 +305,7 @@ func (m *Metadata) GetDirector() []components.Tag {
 	return m.Director
 }
 
-func (m *Metadata) GetDuration() *int64 {
+func (m *Metadata) GetDuration() *int {
 	if m == nil {
 		return nil
 	}
@@ -303,6 +331,13 @@ func (m *Metadata) GetGrandparentArt() *string {
 		return nil
 	}
 	return m.GrandparentArt
+}
+
+func (m *Metadata) GetGrandparentGUID() *string {
+	if m == nil {
+		return nil
+	}
+	return m.GrandparentGUID
 }
 
 func (m *Metadata) GetGrandparentHero() *string {
@@ -347,14 +382,21 @@ func (m *Metadata) GetGrandparentTitle() *string {
 	return m.GrandparentTitle
 }
 
-func (m *Metadata) GetGUID() []components.Tag {
+func (m *Metadata) GetGUID() *string {
 	if m == nil {
 		return nil
 	}
 	return m.GUID
 }
 
-func (m *Metadata) GetHero() any {
+func (m *Metadata) GetGuids() []Guids {
+	if m == nil {
+		return nil
+	}
+	return m.Guids
+}
+
+func (m *Metadata) GetHero() *string {
 	if m == nil {
 		return nil
 	}
@@ -368,16 +410,16 @@ func (m *Metadata) GetImage() []components.Image {
 	return m.Image
 }
 
-func (m *Metadata) GetIndex() *int64 {
+func (m *Metadata) GetIndex() *int {
 	if m == nil {
 		return nil
 	}
 	return m.Index
 }
 
-func (m *Metadata) GetKey() any {
+func (m *Metadata) GetKey() string {
 	if m == nil {
-		return nil
+		return ""
 	}
 	return m.Key
 }
@@ -389,7 +431,7 @@ func (m *Metadata) GetLastViewedAt() *int64 {
 	return m.LastViewedAt
 }
 
-func (m *Metadata) GetLeafCount() *int64 {
+func (m *Metadata) GetLeafCount() *int {
 	if m == nil {
 		return nil
 	}
@@ -403,18 +445,25 @@ func (m *Metadata) GetMedia() []components.Media {
 	return m.Media
 }
 
-func (m *Metadata) GetOriginallyAvailableAt() any {
+func (m *Metadata) GetOriginallyAvailableAt() *types.Date {
 	if m == nil {
 		return nil
 	}
 	return m.OriginallyAvailableAt
 }
 
-func (m *Metadata) GetOriginalTitle() any {
+func (m *Metadata) GetOriginalTitle() *string {
 	if m == nil {
 		return nil
 	}
 	return m.OriginalTitle
+}
+
+func (m *Metadata) GetParentGUID() *string {
+	if m == nil {
+		return nil
+	}
+	return m.ParentGUID
 }
 
 func (m *Metadata) GetParentHero() *string {
@@ -424,7 +473,7 @@ func (m *Metadata) GetParentHero() *string {
 	return m.ParentHero
 }
 
-func (m *Metadata) GetParentIndex() *int64 {
+func (m *Metadata) GetParentIndex() *int {
 	if m == nil {
 		return nil
 	}
@@ -459,7 +508,7 @@ func (m *Metadata) GetParentTitle() *string {
 	return m.ParentTitle
 }
 
-func (m *Metadata) GetPrimaryExtraKey() any {
+func (m *Metadata) GetPrimaryExtraKey() *string {
 	if m == nil {
 		return nil
 	}
@@ -473,7 +522,7 @@ func (m *Metadata) GetPrompt() *string {
 	return m.Prompt
 }
 
-func (m *Metadata) GetRating() *float64 {
+func (m *Metadata) GetRating() *float32 {
 	if m == nil {
 		return nil
 	}
@@ -487,21 +536,21 @@ func (m *Metadata) GetRatingArray() []components.Tag {
 	return m.RatingArray
 }
 
-func (m *Metadata) GetRatingCount() *int64 {
+func (m *Metadata) GetRatingCount() *int {
 	if m == nil {
 		return nil
 	}
 	return m.RatingCount
 }
 
-func (m *Metadata) GetRatingImage() any {
+func (m *Metadata) GetRatingImage() *string {
 	if m == nil {
 		return nil
 	}
 	return m.RatingImage
 }
 
-func (m *Metadata) GetRatingKey() any {
+func (m *Metadata) GetRatingKey() *string {
 	if m == nil {
 		return nil
 	}
@@ -550,49 +599,49 @@ func (m *Metadata) GetSort() []components.Sort {
 	return m.Sort
 }
 
-func (m *Metadata) GetStudio() any {
+func (m *Metadata) GetStudio() *string {
 	if m == nil {
 		return nil
 	}
 	return m.Studio
 }
 
-func (m *Metadata) GetSubtype() any {
+func (m *Metadata) GetSubtype() *string {
 	if m == nil {
 		return nil
 	}
 	return m.Subtype
 }
 
-func (m *Metadata) GetSummary() any {
+func (m *Metadata) GetSummary() *string {
 	if m == nil {
 		return nil
 	}
 	return m.Summary
 }
 
-func (m *Metadata) GetTagline() any {
+func (m *Metadata) GetTagline() *string {
 	if m == nil {
 		return nil
 	}
 	return m.Tagline
 }
 
-func (m *Metadata) GetTheme() any {
+func (m *Metadata) GetTheme() *string {
 	if m == nil {
 		return nil
 	}
 	return m.Theme
 }
 
-func (m *Metadata) GetThumb() any {
+func (m *Metadata) GetThumb() *string {
 	if m == nil {
 		return nil
 	}
 	return m.Thumb
 }
 
-func (m *Metadata) GetTitleSort() any {
+func (m *Metadata) GetTitleSort() *string {
 	if m == nil {
 		return nil
 	}
@@ -606,28 +655,28 @@ func (m *Metadata) GetUpdatedAt() *int64 {
 	return m.UpdatedAt
 }
 
-func (m *Metadata) GetUserRating() *float64 {
+func (m *Metadata) GetUserRating() *float32 {
 	if m == nil {
 		return nil
 	}
 	return m.UserRating
 }
 
-func (m *Metadata) GetViewCount() *int64 {
+func (m *Metadata) GetViewCount() *int {
 	if m == nil {
 		return nil
 	}
 	return m.ViewCount
 }
 
-func (m *Metadata) GetViewedLeafCount() *int64 {
+func (m *Metadata) GetViewedLeafCount() *int {
 	if m == nil {
 		return nil
 	}
 	return m.ViewedLeafCount
 }
 
-func (m *Metadata) GetViewOffset() *int64 {
+func (m *Metadata) GetViewOffset() *int {
 	if m == nil {
 		return nil
 	}
@@ -641,7 +690,7 @@ func (m *Metadata) GetWriter() []components.Tag {
 	return m.Writer
 }
 
-func (m *Metadata) GetYear() *int64 {
+func (m *Metadata) GetYear() *int {
 	if m == nil {
 		return nil
 	}

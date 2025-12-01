@@ -165,9 +165,9 @@ type AddSectionRequest struct {
 	// The preferences for this section
 	Prefs *QueryParamPrefs `queryParam:"style=deepObject,explode=true,name=prefs"`
 	// If set, paths are relative to `Media Upload` path
-	Relative *components.BoolInt `queryParam:"style=form,explode=true,name=relative"`
+	Relative *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=relative"`
 	// If set, import media from iTunes.
-	ImportFromiTunes *components.BoolInt `queryParam:"style=form,explode=true,name=importFromiTunes"`
+	ImportFromiTunes *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=importFromiTunes"`
 }
 
 func (a AddSectionRequest) MarshalJSON() ([]byte, error) {

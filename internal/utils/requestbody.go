@@ -207,7 +207,7 @@ func encodeMultipartFormData(w io.Writer, data interface{}) (string, error) {
 			case reflect.Slice, reflect.Array:
 				values := parseDelimitedArray(true, valType, ",")
 				for _, v := range values {
-					if err := writer.WriteField(tag.Name+"[]", v); err != nil {
+					if err := writer.WriteField(tag.Name, v); err != nil {
 						writer.Close()
 						return "", err
 					}
@@ -325,7 +325,7 @@ func encodeFormData(fieldName string, w io.Writer, data interface{}) error {
 				switch tag.Style {
 				// TODO: support other styles
 				case "form":
-					values := populateForm(tag.Name, tag.Explode, fieldType, valType, ",", nil, func(sf reflect.StructField) string {
+					values := populateForm(tag.Name, tag.Explode, fieldType, valType, ",", nil, nil, func(sf reflect.StructField) string {
 						tag := parseFormTag(field)
 						if tag == nil {
 							return ""

@@ -144,8 +144,21 @@ type GetTagsRequest struct {
 	DeviceName *string `header:"style=simple,explode=false,name=X-Plex-Device-Name"`
 	// The marketplace on which the client application is distributed
 	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
-	// The metadata type to filter by
-	Type *int64 `queryParam:"style=form,explode=true,name=type"`
+	// The type of media to retrieve or filter by.
+	//
+	// 1 = movie
+	// 2 = show
+	// 3 = season
+	// 4 = episode
+	// 5 = artist
+	// 6 = album
+	// 7 = track
+	// 8 = photo_album
+	// 9 = photo
+	//
+	// E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
+	//
+	Type *components.MediaType `queryParam:"style=form,explode=true,name=type"`
 }
 
 func (g GetTagsRequest) MarshalJSON() ([]byte, error) {
@@ -236,7 +249,7 @@ func (g *GetTagsRequest) GetMarketplace() *string {
 	return g.Marketplace
 }
 
-func (g *GetTagsRequest) GetType() *int64 {
+func (g *GetTagsRequest) GetType() *components.MediaType {
 	if g == nil {
 		return nil
 	}

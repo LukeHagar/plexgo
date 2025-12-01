@@ -145,7 +145,7 @@ type GenerateThumbsRequest struct {
 	// The marketplace on which the client application is distributed
 	Marketplace *string             `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
 	Ids         string              `pathParam:"style=simple,explode=false,name=ids"`
-	Force       *components.BoolInt `queryParam:"style=form,explode=true,name=force"`
+	Force       *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=force"`
 }
 
 func (g GenerateThumbsRequest) MarshalJSON() ([]byte, error) {

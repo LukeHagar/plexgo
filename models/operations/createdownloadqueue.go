@@ -8,26 +8,26 @@ import (
 	"net/http"
 )
 
-// Status - The state of this queue
+// CreateDownloadQueueStatus - The state of this queue
 //   - deciding: At least one item is still being decided
 //   - waiting: At least one item is waiting for transcode and none are currently transcoding
 //   - processing: At least one item is being transcoded
 //   - done: All items are available (or potentially expired)
 //   - error: At least one item has encountered an error
-type Status string
+type CreateDownloadQueueStatus string
 
 const (
-	StatusDeciding   Status = "deciding"
-	StatusWaiting    Status = "waiting"
-	StatusProcessing Status = "processing"
-	StatusDone       Status = "done"
-	StatusError      Status = "error"
+	CreateDownloadQueueStatusDeciding   CreateDownloadQueueStatus = "deciding"
+	CreateDownloadQueueStatusWaiting    CreateDownloadQueueStatus = "waiting"
+	CreateDownloadQueueStatusProcessing CreateDownloadQueueStatus = "processing"
+	CreateDownloadQueueStatusDone       CreateDownloadQueueStatus = "done"
+	CreateDownloadQueueStatusError      CreateDownloadQueueStatus = "error"
 )
 
-func (e Status) ToPointer() *Status {
+func (e CreateDownloadQueueStatus) ToPointer() *CreateDownloadQueueStatus {
 	return &e
 }
-func (e *Status) UnmarshalJSON(data []byte) error {
+func (e *CreateDownloadQueueStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -42,10 +42,10 @@ func (e *Status) UnmarshalJSON(data []byte) error {
 	case "done":
 		fallthrough
 	case "error":
-		*e = Status(v)
+		*e = CreateDownloadQueueStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Status: %v", v)
+		return fmt.Errorf("invalid value for CreateDownloadQueueStatus: %v", v)
 	}
 }
 
@@ -59,7 +59,7 @@ type DownloadQueue struct {
 	//   - done: All items are available (or potentially expired)
 	//   - error: At least one item has encountered an error
 	//
-	Status *Status `json:"status,omitempty"`
+	Status *CreateDownloadQueueStatus `json:"status,omitempty"`
 }
 
 func (d *DownloadQueue) GetID() *int64 {
@@ -76,7 +76,7 @@ func (d *DownloadQueue) GetItemCount() *int64 {
 	return d.ItemCount
 }
 
-func (d *DownloadQueue) GetStatus() *Status {
+func (d *DownloadQueue) GetStatus() *CreateDownloadQueueStatus {
 	if d == nil {
 		return nil
 	}

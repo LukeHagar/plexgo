@@ -147,15 +147,15 @@ type GetPlayQueueRequest struct {
 	// The ID of the play queue.
 	PlayQueueID int64 `pathParam:"style=simple,explode=false,name=playQueueId"`
 	// If the server should transfer ownership to the requesting client (used in remote control scenarios).
-	Own *components.BoolInt `queryParam:"style=form,explode=true,name=own"`
+	Own *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=own"`
 	// The play queue item ID for the center of the window - this doesn't change the current selected item.
 	Center *string `queryParam:"style=form,explode=true,name=center"`
 	// How many items on each side of the center of the window
 	Window *int64 `queryParam:"style=form,explode=true,name=window"`
 	// Whether to include the items before the center (if 0, center is not included either), defaults to 1.
-	IncludeBefore *components.BoolInt `queryParam:"style=form,explode=true,name=includeBefore"`
+	IncludeBefore *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=includeBefore"`
 	// Whether to include the items after the center (if 0, center is not included either), defaults to 1.
-	IncludeAfter *components.BoolInt `queryParam:"style=form,explode=true,name=includeAfter"`
+	IncludeAfter *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=includeAfter"`
 }
 
 func (g GetPlayQueueRequest) MarshalJSON() ([]byte, error) {

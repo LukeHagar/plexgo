@@ -3,7 +3,7 @@
 
 ## Values
 
-| Name          | Value         |
-| ------------- | ------------- |
-| `BoolIntZero` | 0             |
-| `BoolIntOne`  | 1             |
+| Name           | Value          |
+| -------------- | -------------- |
+| `BoolIntFalse` | 0              |
+| `BoolIntTrue`  | 1              |

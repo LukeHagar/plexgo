@@ -158,7 +158,7 @@ type GetImageRequest struct {
 	// Height in pixels for the image.
 	Height *int64 `queryParam:"style=form,explode=true,name=height"`
 	// Whether to add noise to the ouput image. Noise can reduce color banding with the gradients. Image sizes with noise will be larger.
-	Noise *components.BoolInt `queryParam:"style=form,explode=true,name=noise"`
+	Noise *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=noise"`
 }
 
 func (g GetImageRequest) MarshalJSON() ([]byte, error) {

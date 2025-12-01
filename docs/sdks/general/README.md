@@ -162,7 +162,7 @@ func main() {
 
     res, err := s.General.GetSourceConnectionInformation(ctx, operations.GetSourceConnectionInformationRequest{
         Source: "server://client-identifier",
-        Refresh: components.BoolIntOne.ToPointer(),
+        Refresh: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)

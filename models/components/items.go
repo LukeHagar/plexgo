@@ -4,7 +4,21 @@ package components
 
 import (
 	"github.com/LukeHagar/plexgo/internal/utils"
+	"github.com/LukeHagar/plexgo/types"
 )
+
+type ItemsGuids struct {
+	// The unique identifier for the Guid. Can be prefixed with imdb://, tmdb://, tvdb://
+	//
+	ID string `json:"id"`
+}
+
+func (i *ItemsGuids) GetID() string {
+	if i == nil {
+		return ""
+	}
+	return i.ID
+}
 
 // Items in a library are referred to as "metadata items." These metadata items are distinct from "media items" which represent actual instances of media that can be consumed. Consider a TV library that has a single video file in it for a particular episode of a show. The library has a single media item, but it has three metadata items: one for the show, one for the season, and one for the episode. Consider a movie library that has two video files in it: the same movie, but two different resolutions. The library has a single metadata item for the movie, but that metadata item has two media items, one for each resolution. Additionally a "media item" will have one or more "media parts" where the the parts are intended to be watched together, such as a CD1 and CD2 parts of the same movie.
 //
@@ -13,37 +27,41 @@ import (
 // Metadata items can often live in a hierarchy with relationships between them.  For example, the metadata item for an episodes is associated with a season metadata item which is associated with a show metadata item.  A similar hierarchy exists with track, album, and artist and photos and photo album.  The relationships may be expressed via relative terms and absolute terms.  For example, "leaves" refer to metadata items which has associated media (there is no media for a season nor show).  A show will have "children" in the form of seasons and a season will have "children" in the form of episodes and episodes have "parent" in the form of a season which has a "parent" in the form of a show.  Similarly, a show has "grandchildren" in the form of episodse and an episode has a "grandparent" in the form of a show.
 type Items struct {
 	// The title of the item (e.g. “300” or “The Simpsons”)
-	Title any `json:"title,omitempty"`
+	Title string `json:"title"`
 	// The type of the video item, such as `movie`, `episode`, or `clip`.
-	Type any `json:"type,omitempty"`
+	Type string `json:"type"`
 	// When present, contains the disc number for a track on multi-disc albums.
-	AbsoluteIndex *int64 `json:"absoluteIndex,omitempty"`
+	AbsoluteIndex *int `json:"absoluteIndex,omitempty"`
 	// In units of seconds since the epoch, returns the time at which the item was added to the library.
-	AddedAt *int64 `json:"addedAt,omitempty"`
+	AddedAt int64 `json:"addedAt"`
 	// When present, the URL for the background artwork for the item.
-	Art any `json:"art,omitempty"`
+	Art *string `json:"art,omitempty"`
 	// Some rating systems separate reviewer ratings from audience ratings
-	AudienceRating *float64 `json:"audienceRating,omitempty"`
+	AudienceRating *float32 `json:"audienceRating,omitempty"`
 	// A URI representing the image to be shown with the audience rating (e.g. rottentomatoes://image.rating.spilled).
-	AudienceRatingImage any   `json:"audienceRatingImage,omitempty"`
-	Autotag             []Tag `json:"Autotag,omitempty"`
+	AudienceRatingImage *string `json:"audienceRatingImage,omitempty"`
+	Autotag             []Tag   `json:"Autotag,omitempty"`
 	// When present, the URL for a banner graphic for the item.
-	Banner any `json:"banner,omitempty"`
+	Banner *string `json:"banner,omitempty"`
 	// When present, indicates the source for the chapters in the media file. Can be media (the chapters were embedded in the media itself), agent (a metadata agent computed them), or mixed (a combination of the two).
-	ChapterSource any `json:"chapterSource,omitempty"`
+	ChapterSource *string `json:"chapterSource,omitempty"`
+	// The number of child items associated with this media item.
+	ChildCount *int `json:"childCount,omitempty"`
 	// When present, the URL for a composite image for descendent items (e.g. photo albums or playlists).
-	Composite any `json:"composite,omitempty"`
+	Composite *string `json:"composite,omitempty"`
 	// If known, the content rating (e.g. MPAA) for an item.
-	ContentRating any   `json:"contentRating,omitempty"`
-	Country       []Tag `json:"Country,omitempty"`
-	Director      []Tag `json:"Director,omitempty"`
+	ContentRating *string `json:"contentRating,omitempty"`
+	Country       []Tag   `json:"Country,omitempty"`
+	Director      []Tag   `json:"Director,omitempty"`
 	// When present, the duration for the item, in units of milliseconds.
-	Duration *int64 `json:"duration,omitempty"`
+	Duration *int `json:"duration,omitempty"`
 	// Typically only seen in metadata at a library's top level
 	Filter []Filter `json:"Filter,omitempty"`
 	Genre  []Tag    `json:"Genre,omitempty"`
 	// The `art` of the grandparent
 	GrandparentArt *string `json:"grandparentArt,omitempty"`
+	// The GUID of the grandparent media item.
+	GrandparentGUID *string `json:"grandparentGuid,omitempty"`
 	// The `hero` of the grandparent
 	GrandparentHero *string `json:"grandparentHero,omitempty"`
 	// The `key` of the grandparent
@@ -56,27 +74,30 @@ type Items struct {
 	GrandparentThumb *string `json:"grandparentThumb,omitempty"`
 	// The `title` of the grandparent
 	GrandparentTitle *string `json:"grandparentTitle,omitempty"`
-	GUID             []Tag   `json:"Guid,omitempty"`
+	// The globally unique identifier for the media item.
+	GUID  *string      `json:"guid,omitempty"`
+	Guids []ItemsGuids `json:"Guid,omitempty"`
 	// When present, the URL for a hero image for the item.
-	Hero  any     `json:"hero,omitempty"`
+	Hero  *string `json:"hero,omitempty"`
 	Image []Image `json:"Image,omitempty"`
 	// When present, this represents the episode number for episodes, season number for seasons, or track number for audio tracks.
-	Index *int64 `json:"index,omitempty"`
+	Index *int `json:"index,omitempty"`
 	// The key at which the item's details can be fetched.  In many cases a metadata item may be passed without all the details (such as in a hub) and this key corresponds to the endpoint to fetch additional details.
-	Key any `json:"key,omitempty"`
-	// When a user has watched or listened to an item, this contains a timestamp (epoch seconds) for that last consumption time.
+	Key          string `json:"key"`
 	LastViewedAt *int64 `json:"lastViewedAt,omitempty"`
 	// For shows and seasons, contains the number of total episodes.
-	LeafCount *int64  `json:"leafCount,omitempty"`
+	LeafCount *int    `json:"leafCount,omitempty"`
 	Media     []Media `json:"Media,omitempty"`
 	// When present, in the format YYYY-MM-DD [HH:MM:SS] (the hours/minutes/seconds part is not always present). The air date, or a higher resolution release date for an item, depending on type. For example, episodes usually have air date like 1979-08-10 (we don't use epoch seconds because media existed prior to 1970). In some cases, recorded over-the-air content has higher resolution air date which includes a time component. Albums and movies may have day-resolution release dates as well.
-	OriginallyAvailableAt any `json:"originallyAvailableAt,omitempty"`
+	OriginallyAvailableAt *types.Date `json:"originallyAvailableAt,omitempty"`
 	// When present, used to indicate an item's original title, e.g. a movie's foreign title.
-	OriginalTitle any `json:"originalTitle,omitempty"`
+	OriginalTitle *string `json:"originalTitle,omitempty"`
+	// The GUID of the parent media item.
+	ParentGUID *string `json:"parentGuid,omitempty"`
 	// The `hero` of the parent
 	ParentHero *string `json:"parentHero,omitempty"`
 	// The `index` of the parent
-	ParentIndex *int64 `json:"parentIndex,omitempty"`
+	ParentIndex *int `json:"parentIndex,omitempty"`
 	// The `key` of the parent
 	ParentKey *string `json:"parentKey,omitempty"`
 	// The `ratingKey` of the parent
@@ -86,19 +107,19 @@ type Items struct {
 	// The `title` of the parent
 	ParentTitle *string `json:"parentTitle,omitempty"`
 	// Indicates that the item has a primary extra; for a movie, this is a trailer, and for a music track it is a music video. The URL points to the metadata details endpoint for the item.
-	PrimaryExtraKey any `json:"primaryExtraKey,omitempty"`
+	PrimaryExtraKey *string `json:"primaryExtraKey,omitempty"`
 	// Prompt to give the user for this directory (such as `Search Movies`)
 	Prompt *string `json:"prompt,omitempty"`
 	// When present, the rating for the item. The exact meaning and representation depends on where the rating was sourced from.
-	Rating      *float64 `json:"rating,omitempty"`
+	Rating      *float32 `json:"rating,omitempty"`
 	RatingArray []Tag    `json:"Rating,omitempty"`
 	// Number of ratings under this metadata
-	RatingCount *int64 `json:"ratingCount,omitempty"`
+	RatingCount *int `json:"ratingCount,omitempty"`
 	// When present, indicates an image to be shown with the rating. This is passed back as a small set of defined URI values, e.g. rottentomatoes://image.rating.rotten.
-	RatingImage any `json:"ratingImage,omitempty"`
+	RatingImage *string `json:"ratingImage,omitempty"`
 	// This is the opaque string to be passed into timeline, scrobble, and rating endpoints to identify them.  While it often appears to be numeric, this is not guaranteed.
-	RatingKey any   `json:"ratingKey,omitempty"`
-	Role      []Tag `json:"Role,omitempty"`
+	RatingKey *string `json:"ratingKey,omitempty"`
+	Role      []Tag   `json:"Role,omitempty"`
 	// Indicates this is a search directory
 	Search *bool `json:"search,omitempty"`
 	// Used by old clients to provide nested menus allowing for primative (but structured) navigation.
@@ -110,32 +131,32 @@ type Items struct {
 	// Typically only seen in metadata at a library's top level
 	Sort []Sort `json:"Sort,omitempty"`
 	// When present, the studio or label which produced an item (e.g. movie studio for movies, record label for albums).
-	Studio any `json:"studio,omitempty"`
+	Studio *string `json:"studio,omitempty"`
 	// The subtype of the video item, such as `photo` when the video item is in a photo library
-	Subtype any `json:"subtype,omitempty"`
+	Subtype *string `json:"subtype,omitempty"`
 	// When present, the extended textual information about the item (e.g. movie plot, artist biography, album review).
-	Summary any `json:"summary,omitempty"`
+	Summary *string `json:"summary,omitempty"`
 	// When present, a pithy one-liner about the item (usually only seen for movies).
-	Tagline any `json:"tagline,omitempty"`
+	Tagline *string `json:"tagline,omitempty"`
 	// When present, the URL for theme music for the item (usually only for TV shows).
-	Theme any `json:"theme,omitempty"`
+	Theme *string `json:"theme,omitempty"`
 	// When present, the URL for the poster or thumbnail for the item. When available for types like movie, it will be the poster graphic, but fall-back to the extracted media thumbnail.
-	Thumb any `json:"thumb,omitempty"`
+	Thumb *string `json:"thumb,omitempty"`
 	// Whene present, this is the string used for sorting the item. It's usually the title with any leading articles removed (e.g. “Simpsons”).
-	TitleSort any `json:"titleSort,omitempty"`
+	TitleSort *string `json:"titleSort,omitempty"`
 	// In units of seconds since the epoch, returns the time at which the item was last changed (e.g. had its metadata updated).
 	UpdatedAt *int64 `json:"updatedAt,omitempty"`
 	// When the user has rated an item, this contains the user rating
-	UserRating *float64 `json:"userRating,omitempty"`
+	UserRating *float32 `json:"userRating,omitempty"`
 	// When a users has completed watched or listened to an item, this attribute contains the number of consumptions.
-	ViewCount *int64 `json:"viewCount,omitempty"`
+	ViewCount *int `json:"viewCount,omitempty"`
 	// For shows and seasons, contains the number of viewed episodes.
-	ViewedLeafCount *int64 `json:"viewedLeafCount,omitempty"`
+	ViewedLeafCount *int `json:"viewedLeafCount,omitempty"`
 	// When a user is in the process of viewing or listening to this item, this attribute contains the current offset, in units of milliseconds.
-	ViewOffset *int64 `json:"viewOffset,omitempty"`
-	Writer     []Tag  `json:"Writer,omitempty"`
+	ViewOffset *int  `json:"viewOffset,omitempty"`
+	Writer     []Tag `json:"Writer,omitempty"`
 	// When present, the year associated with the item's release (e.g. release year for a movie).
-	Year                 *int64         `json:"year,omitempty"`
+	Year                 *int           `json:"year,omitempty"`
 	MetadataItem         []Items        `json:"MetadataItem,omitempty"`
 	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
 }
@@ -145,55 +166,55 @@ func (i Items) MarshalJSON() ([]byte, error) {
 }
 
 func (i *Items) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &i, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &i, "", false, []string{"title", "type", "addedAt", "key"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (i *Items) GetTitle() any {
+func (i *Items) GetTitle() string {
 	if i == nil {
-		return nil
+		return ""
 	}
 	return i.Title
 }
 
-func (i *Items) GetType() any {
+func (i *Items) GetType() string {
 	if i == nil {
-		return nil
+		return ""
 	}
 	return i.Type
 }
 
-func (i *Items) GetAbsoluteIndex() *int64 {
+func (i *Items) GetAbsoluteIndex() *int {
 	if i == nil {
 		return nil
 	}
 	return i.AbsoluteIndex
 }
 
-func (i *Items) GetAddedAt() *int64 {
+func (i *Items) GetAddedAt() int64 {
 	if i == nil {
-		return nil
+		return 0
 	}
 	return i.AddedAt
 }
 
-func (i *Items) GetArt() any {
+func (i *Items) GetArt() *string {
 	if i == nil {
 		return nil
 	}
 	return i.Art
 }
 
-func (i *Items) GetAudienceRating() *float64 {
+func (i *Items) GetAudienceRating() *float32 {
 	if i == nil {
 		return nil
 	}
 	return i.AudienceRating
 }
 
-func (i *Items) GetAudienceRatingImage() any {
+func (i *Items) GetAudienceRatingImage() *string {
 	if i == nil {
 		return nil
 	}
@@ -207,28 +228,35 @@ func (i *Items) GetAutotag() []Tag {
 	return i.Autotag
 }
 
-func (i *Items) GetBanner() any {
+func (i *Items) GetBanner() *string {
 	if i == nil {
 		return nil
 	}
 	return i.Banner
 }
 
-func (i *Items) GetChapterSource() any {
+func (i *Items) GetChapterSource() *string {
 	if i == nil {
 		return nil
 	}
 	return i.ChapterSource
 }
 
-func (i *Items) GetComposite() any {
+func (i *Items) GetChildCount() *int {
+	if i == nil {
+		return nil
+	}
+	return i.ChildCount
+}
+
+func (i *Items) GetComposite() *string {
 	if i == nil {
 		return nil
 	}
 	return i.Composite
 }
 
-func (i *Items) GetContentRating() any {
+func (i *Items) GetContentRating() *string {
 	if i == nil {
 		return nil
 	}
@@ -249,7 +277,7 @@ func (i *Items) GetDirector() []Tag {
 	return i.Director
 }
 
-func (i *Items) GetDuration() *int64 {
+func (i *Items) GetDuration() *int {
 	if i == nil {
 		return nil
 	}
@@ -275,6 +303,13 @@ func (i *Items) GetGrandparentArt() *string {
 		return nil
 	}
 	return i.GrandparentArt
+}
+
+func (i *Items) GetGrandparentGUID() *string {
+	if i == nil {
+		return nil
+	}
+	return i.GrandparentGUID
 }
 
 func (i *Items) GetGrandparentHero() *string {
@@ -319,14 +354,21 @@ func (i *Items) GetGrandparentTitle() *string {
 	return i.GrandparentTitle
 }
 
-func (i *Items) GetGUID() []Tag {
+func (i *Items) GetGUID() *string {
 	if i == nil {
 		return nil
 	}
 	return i.GUID
 }
 
-func (i *Items) GetHero() any {
+func (i *Items) GetGuids() []ItemsGuids {
+	if i == nil {
+		return nil
+	}
+	return i.Guids
+}
+
+func (i *Items) GetHero() *string {
 	if i == nil {
 		return nil
 	}
@@ -340,16 +382,16 @@ func (i *Items) GetImage() []Image {
 	return i.Image
 }
 
-func (i *Items) GetIndex() *int64 {
+func (i *Items) GetIndex() *int {
 	if i == nil {
 		return nil
 	}
 	return i.Index
 }
 
-func (i *Items) GetKey() any {
+func (i *Items) GetKey() string {
 	if i == nil {
-		return nil
+		return ""
 	}
 	return i.Key
 }
@@ -361,7 +403,7 @@ func (i *Items) GetLastViewedAt() *int64 {
 	return i.LastViewedAt
 }
 
-func (i *Items) GetLeafCount() *int64 {
+func (i *Items) GetLeafCount() *int {
 	if i == nil {
 		return nil
 	}
@@ -375,18 +417,25 @@ func (i *Items) GetMedia() []Media {
 	return i.Media
 }
 
-func (i *Items) GetOriginallyAvailableAt() any {
+func (i *Items) GetOriginallyAvailableAt() *types.Date {
 	if i == nil {
 		return nil
 	}
 	return i.OriginallyAvailableAt
 }
 
-func (i *Items) GetOriginalTitle() any {
+func (i *Items) GetOriginalTitle() *string {
 	if i == nil {
 		return nil
 	}
 	return i.OriginalTitle
+}
+
+func (i *Items) GetParentGUID() *string {
+	if i == nil {
+		return nil
+	}
+	return i.ParentGUID
 }
 
 func (i *Items) GetParentHero() *string {
@@ -396,7 +445,7 @@ func (i *Items) GetParentHero() *string {
 	return i.ParentHero
 }
 
-func (i *Items) GetParentIndex() *int64 {
+func (i *Items) GetParentIndex() *int {
 	if i == nil {
 		return nil
 	}
@@ -431,7 +480,7 @@ func (i *Items) GetParentTitle() *string {
 	return i.ParentTitle
 }
 
-func (i *Items) GetPrimaryExtraKey() any {
+func (i *Items) GetPrimaryExtraKey() *string {
 	if i == nil {
 		return nil
 	}
@@ -445,7 +494,7 @@ func (i *Items) GetPrompt() *string {
 	return i.Prompt
 }
 
-func (i *Items) GetRating() *float64 {
+func (i *Items) GetRating() *float32 {
 	if i == nil {
 		return nil
 	}
@@ -459,21 +508,21 @@ func (i *Items) GetRatingArray() []Tag {
 	return i.RatingArray
 }
 
-func (i *Items) GetRatingCount() *int64 {
+func (i *Items) GetRatingCount() *int {
 	if i == nil {
 		return nil
 	}
 	return i.RatingCount
 }
 
-func (i *Items) GetRatingImage() any {
+func (i *Items) GetRatingImage() *string {
 	if i == nil {
 		return nil
 	}
 	return i.RatingImage
 }
 
-func (i *Items) GetRatingKey() any {
+func (i *Items) GetRatingKey() *string {
 	if i == nil {
 		return nil
 	}
@@ -522,49 +571,49 @@ func (i *Items) GetSort() []Sort {
 	return i.Sort
 }
 
-func (i *Items) GetStudio() any {
+func (i *Items) GetStudio() *string {
 	if i == nil {
 		return nil
 	}
 	return i.Studio
 }
 
-func (i *Items) GetSubtype() any {
+func (i *Items) GetSubtype() *string {
 	if i == nil {
 		return nil
 	}
 	return i.Subtype
 }
 
-func (i *Items) GetSummary() any {
+func (i *Items) GetSummary() *string {
 	if i == nil {
 		return nil
 	}
 	return i.Summary
 }
 
-func (i *Items) GetTagline() any {
+func (i *Items) GetTagline() *string {
 	if i == nil {
 		return nil
 	}
 	return i.Tagline
 }
 
-func (i *Items) GetTheme() any {
+func (i *Items) GetTheme() *string {
 	if i == nil {
 		return nil
 	}
 	return i.Theme
 }
 
-func (i *Items) GetThumb() any {
+func (i *Items) GetThumb() *string {
 	if i == nil {
 		return nil
 	}
 	return i.Thumb
 }
 
-func (i *Items) GetTitleSort() any {
+func (i *Items) GetTitleSort() *string {
 	if i == nil {
 		return nil
 	}
@@ -578,28 +627,28 @@ func (i *Items) GetUpdatedAt() *int64 {
 	return i.UpdatedAt
 }
 
-func (i *Items) GetUserRating() *float64 {
+func (i *Items) GetUserRating() *float32 {
 	if i == nil {
 		return nil
 	}
 	return i.UserRating
 }
 
-func (i *Items) GetViewCount() *int64 {
+func (i *Items) GetViewCount() *int {
 	if i == nil {
 		return nil
 	}
 	return i.ViewCount
 }
 
-func (i *Items) GetViewedLeafCount() *int64 {
+func (i *Items) GetViewedLeafCount() *int {
 	if i == nil {
 		return nil
 	}
 	return i.ViewedLeafCount
 }
 
-func (i *Items) GetViewOffset() *int64 {
+func (i *Items) GetViewOffset() *int {
 	if i == nil {
 		return nil
 	}
@@ -613,7 +662,7 @@ func (i *Items) GetWriter() []Tag {
 	return i.Writer
 }
 
-func (i *Items) GetYear() *int64 {
+func (i *Items) GetYear() *int {
 	if i == nil {
 		return nil
 	}

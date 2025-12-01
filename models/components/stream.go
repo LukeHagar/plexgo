@@ -8,42 +8,108 @@ import (
 
 // Stream - `Stream` represents a particular stream from a media item, such as the video stream, audio stream, or subtitle stream. The stream may either be part of the file represented by the parent `Part` or, especially for subtitles, an external file. The stream contains more detailed information about the specific stream. For example, a video may include the `aspectRatio` at the `Media` level, but detailed information about the video stream like the color space will be included on the `Stream` for the video stream.  Note that photos do not have streams (mostly as an optimization).
 type Stream struct {
-	Default            *bool  `json:"default,omitempty"`
-	AudioChannelLayout any    `json:"audioChannelLayout,omitempty"`
-	BitDepth           *int64 `json:"bitDepth,omitempty"`
-	Bitrate            *int64 `json:"bitrate,omitempty"`
-	// For subtitle streams only. If `true` then the server can attempt to automatically sync the subtitle timestamps with the video.
-	CanAutoSync       *bool `json:"canAutoSync,omitempty"`
-	ChromaLocation    any   `json:"chromaLocation,omitempty"`
-	ChromaSubsampling any   `json:"chromaSubsampling,omitempty"`
-	// The codec of the stream, such as `h264` or `aac`
-	Codec          any `json:"codec,omitempty"`
-	ColorPrimaries any `json:"colorPrimaries,omitempty"`
-	ColorRange     any `json:"colorRange,omitempty"`
-	ColorSpace     any `json:"colorSpace,omitempty"`
-	ColorTrc       any `json:"colorTrc,omitempty"`
-	// A friendly name for the stream, often comprised of the language and codec information
-	DisplayTitle     any      `json:"displayTitle,omitempty"`
-	FrameRate        *float64 `json:"frameRate,omitempty"`
-	HasScalingMatrix any      `json:"hasScalingMatrix,omitempty"`
-	Height           *int64   `json:"height,omitempty"`
-	ID               *int64   `json:"id,omitempty"`
-	// If the stream is part of the `Part` and not an external resource, the index of the stream within that part
-	Index *int64 `json:"index,omitempty"`
-	// If the stream is independently streamable, the key from which it can be streamed
-	Key      any `json:"key,omitempty"`
-	Language any `json:"language,omitempty"`
-	// The three character language code for the stream contents
-	LanguageCode     any    `json:"languageCode,omitempty"`
-	Level            *int64 `json:"level,omitempty"`
-	Profile          any    `json:"profile,omitempty"`
-	RefFrames        *int64 `json:"refFrames,omitempty"`
-	SamplingRate     *int64 `json:"samplingRate,omitempty"`
-	Selected         *bool  `json:"selected,omitempty"`
-	StreamIdentifier *int64 `json:"streamIdentifier,omitempty"`
-	// A number indicating the type of the stream. `1` for video, `2` for audio, `3` for subtitles, `4` for lyrics
-	StreamType           *int64         `json:"streamType,omitempty"`
-	Width                *int64         `json:"width,omitempty"`
+	// Indicates if this stream is default.
+	Default *bool `json:"default,omitempty"`
+	// Audio channel layout.
+	AudioChannelLayout *string `json:"audioChannelLayout,omitempty"`
+	// Number of audio channels (for audio streams).
+	Channels *int `json:"channels,omitempty"`
+	// Bit depth of the video stream.
+	BitDepth *int `json:"bitDepth,omitempty"`
+	// Dolby Vision BL compatibility ID.
+	DOVIBLCompatID *int `json:"DOVIBLCompatID,omitempty"`
+	// Indicates if Dolby Vision BL is present.
+	DOVIBLPresent *bool `json:"DOVIBLPresent,omitempty"`
+	// Indicates if Dolby Vision EL is present.
+	DOVIELPresent *bool `json:"DOVIELPresent,omitempty"`
+	// Dolby Vision level.
+	DOVILevel *int `json:"DOVILevel,omitempty"`
+	// Indicates if Dolby Vision is present.
+	DOVIPresent *bool `json:"DOVIPresent,omitempty"`
+	// Dolby Vision profile.
+	DOVIProfile *int `json:"DOVIProfile,omitempty"`
+	// Indicates if Dolby Vision RPU is present.
+	DOVIRPUPresent *bool `json:"DOVIRPUPresent,omitempty"`
+	// Dolby Vision version.
+	DOVIVersion *string `json:"DOVIVersion,omitempty"`
+	// Bitrate of the stream.
+	Bitrate *int `json:"bitrate,omitempty"`
+	// Indicates if the stream can auto-sync.
+	CanAutoSync *bool `json:"canAutoSync,omitempty"`
+	// Chroma sample location.
+	ChromaLocation *string `json:"chromaLocation,omitempty"`
+	// Chroma subsampling format.
+	ChromaSubsampling *string `json:"chromaSubsampling,omitempty"`
+	// Coded video height.
+	CodedHeight *int `json:"codedHeight,omitempty"`
+	// Coded video width.
+	CodedWidth     *int  `json:"codedWidth,omitempty"`
+	ClosedCaptions *bool `json:"closedCaptions,omitempty"`
+	// Codec used by the stream.
+	Codec string `json:"codec"`
+	// Color primaries used.
+	ColorPrimaries *string `json:"colorPrimaries,omitempty"`
+	// Color range (e.g., tv).
+	ColorRange *string `json:"colorRange,omitempty"`
+	// Color space.
+	ColorSpace *string `json:"colorSpace,omitempty"`
+	// Color transfer characteristics.
+	ColorTrc *string `json:"colorTrc,omitempty"`
+	// Display title for the stream.
+	DisplayTitle string `json:"displayTitle"`
+	// Extended display title for the stream.
+	ExtendedDisplayTitle *string `json:"extendedDisplayTitle,omitempty"`
+	// Frame rate of the stream.
+	FrameRate        *float32 `json:"frameRate,omitempty"`
+	HasScalingMatrix *bool    `json:"hasScalingMatrix,omitempty"`
+	// Height of the video stream.
+	Height *int `json:"height,omitempty"`
+	// Unique stream identifier.
+	ID int `json:"id"`
+	// Index of the stream.
+	Index *int `json:"index,omitempty"`
+	// Key to access this stream part.
+	Key string `json:"key"`
+	// Language of the stream.
+	Language *string `json:"language,omitempty"`
+	// ISO language code.
+	LanguageCode *string `json:"languageCode,omitempty"`
+	// Language tag (e.g., en).
+	LanguageTag *string `json:"languageTag,omitempty"`
+	// Format of the stream (e.g., srt).
+	Format *string `json:"format,omitempty"`
+	// Indicates whether header compression is enabled.
+	HeaderCompression *bool `json:"headerCompression,omitempty"`
+	// Video level.
+	Level *int `json:"level,omitempty"`
+	// Indicates if this is the original stream.
+	Original *bool `json:"original,omitempty"`
+	// Video profile.
+	Profile *string `json:"profile,omitempty"`
+	// Number of reference frames.
+	RefFrames *int `json:"refFrames,omitempty"`
+	// Sampling rate for the audio stream.
+	SamplingRate    *int    `json:"samplingRate,omitempty"`
+	ScanType        *string `json:"scanType,omitempty"`
+	EmbeddedInVideo *string `json:"embeddedInVideo,omitempty"`
+	// Indicates if this stream is selected (applicable for audio streams).
+	Selected *bool `json:"selected,omitempty"`
+	Forced   *bool `json:"forced,omitempty"`
+	// Indicates if the stream is for the hearing impaired.
+	HearingImpaired *bool `json:"hearingImpaired,omitempty"`
+	// Indicates if the stream is a dub.
+	Dub *bool `json:"dub,omitempty"`
+	// Optional title for the stream (e.g., language variant).
+	Title            *string `json:"title,omitempty"`
+	StreamIdentifier *int    `json:"streamIdentifier,omitempty"`
+	// Stream type:
+	//   - VIDEO = 1
+	//   - AUDIO = 2
+	//   - SUBTITLE = 3
+	//
+	streamType int64 `const:"1" json:"streamType"`
+	// Width of the video stream.
+	Width                *int           `json:"width,omitempty"`
 	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
 }
 
@@ -52,7 +118,7 @@ func (s Stream) MarshalJSON() ([]byte, error) {
 }
 
 func (s *Stream) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"codec", "displayTitle", "id", "key", "streamType"}); err != nil {
 		return err
 	}
 	return nil
@@ -65,21 +131,84 @@ func (s *Stream) GetDefault() *bool {
 	return s.Default
 }
 
-func (s *Stream) GetAudioChannelLayout() any {
+func (s *Stream) GetAudioChannelLayout() *string {
 	if s == nil {
 		return nil
 	}
 	return s.AudioChannelLayout
 }
 
-func (s *Stream) GetBitDepth() *int64 {
+func (s *Stream) GetChannels() *int {
+	if s == nil {
+		return nil
+	}
+	return s.Channels
+}
+
+func (s *Stream) GetBitDepth() *int {
 	if s == nil {
 		return nil
 	}
 	return s.BitDepth
 }
 
-func (s *Stream) GetBitrate() *int64 {
+func (s *Stream) GetDOVIBLCompatID() *int {
+	if s == nil {
+		return nil
+	}
+	return s.DOVIBLCompatID
+}
+
+func (s *Stream) GetDOVIBLPresent() *bool {
+	if s == nil {
+		return nil
+	}
+	return s.DOVIBLPresent
+}
+
+func (s *Stream) GetDOVIELPresent() *bool {
+	if s == nil {
+		return nil
+	}
+	return s.DOVIELPresent
+}
+
+func (s *Stream) GetDOVILevel() *int {
+	if s == nil {
+		return nil
+	}
+	return s.DOVILevel
+}
+
+func (s *Stream) GetDOVIPresent() *bool {
+	if s == nil {
+		return nil
+	}
+	return s.DOVIPresent
+}
+
+func (s *Stream) GetDOVIProfile() *int {
+	if s == nil {
+		return nil
+	}
+	return s.DOVIProfile
+}
+
+func (s *Stream) GetDOVIRPUPresent() *bool {
+	if s == nil {
+		return nil
+	}
+	return s.DOVIRPUPresent
+}
+
+func (s *Stream) GetDOVIVersion() *string {
+	if s == nil {
+		return nil
+	}
+	return s.DOVIVersion
+}
+
+func (s *Stream) GetBitrate() *int {
 	if s == nil {
 		return nil
 	}
@@ -93,144 +222,214 @@ func (s *Stream) GetCanAutoSync() *bool {
 	return s.CanAutoSync
 }
 
-func (s *Stream) GetChromaLocation() any {
+func (s *Stream) GetChromaLocation() *string {
 	if s == nil {
 		return nil
 	}
 	return s.ChromaLocation
 }
 
-func (s *Stream) GetChromaSubsampling() any {
+func (s *Stream) GetChromaSubsampling() *string {
 	if s == nil {
 		return nil
 	}
 	return s.ChromaSubsampling
 }
 
-func (s *Stream) GetCodec() any {
+func (s *Stream) GetCodedHeight() *int {
 	if s == nil {
 		return nil
+	}
+	return s.CodedHeight
+}
+
+func (s *Stream) GetCodedWidth() *int {
+	if s == nil {
+		return nil
+	}
+	return s.CodedWidth
+}
+
+func (s *Stream) GetClosedCaptions() *bool {
+	if s == nil {
+		return nil
+	}
+	return s.ClosedCaptions
+}
+
+func (s *Stream) GetCodec() string {
+	if s == nil {
+		return ""
 	}
 	return s.Codec
 }
 
-func (s *Stream) GetColorPrimaries() any {
+func (s *Stream) GetColorPrimaries() *string {
 	if s == nil {
 		return nil
 	}
 	return s.ColorPrimaries
 }
 
-func (s *Stream) GetColorRange() any {
+func (s *Stream) GetColorRange() *string {
 	if s == nil {
 		return nil
 	}
 	return s.ColorRange
 }
 
-func (s *Stream) GetColorSpace() any {
+func (s *Stream) GetColorSpace() *string {
 	if s == nil {
 		return nil
 	}
 	return s.ColorSpace
 }
 
-func (s *Stream) GetColorTrc() any {
+func (s *Stream) GetColorTrc() *string {
 	if s == nil {
 		return nil
 	}
 	return s.ColorTrc
 }
 
-func (s *Stream) GetDisplayTitle() any {
+func (s *Stream) GetDisplayTitle() string {
 	if s == nil {
-		return nil
+		return ""
 	}
 	return s.DisplayTitle
 }
 
-func (s *Stream) GetFrameRate() *float64 {
+func (s *Stream) GetExtendedDisplayTitle() *string {
+	if s == nil {
+		return nil
+	}
+	return s.ExtendedDisplayTitle
+}
+
+func (s *Stream) GetFrameRate() *float32 {
 	if s == nil {
 		return nil
 	}
 	return s.FrameRate
 }
 
-func (s *Stream) GetHasScalingMatrix() any {
+func (s *Stream) GetHasScalingMatrix() *bool {
 	if s == nil {
 		return nil
 	}
 	return s.HasScalingMatrix
 }
 
-func (s *Stream) GetHeight() *int64 {
+func (s *Stream) GetHeight() *int {
 	if s == nil {
 		return nil
 	}
 	return s.Height
 }
 
-func (s *Stream) GetID() *int64 {
+func (s *Stream) GetID() int {
 	if s == nil {
-		return nil
+		return 0
 	}
 	return s.ID
 }
 
-func (s *Stream) GetIndex() *int64 {
+func (s *Stream) GetIndex() *int {
 	if s == nil {
 		return nil
 	}
 	return s.Index
 }
 
-func (s *Stream) GetKey() any {
+func (s *Stream) GetKey() string {
 	if s == nil {
-		return nil
+		return ""
 	}
 	return s.Key
 }
 
-func (s *Stream) GetLanguage() any {
+func (s *Stream) GetLanguage() *string {
 	if s == nil {
 		return nil
 	}
 	return s.Language
 }
 
-func (s *Stream) GetLanguageCode() any {
+func (s *Stream) GetLanguageCode() *string {
 	if s == nil {
 		return nil
 	}
 	return s.LanguageCode
 }
 
-func (s *Stream) GetLevel() *int64 {
+func (s *Stream) GetLanguageTag() *string {
+	if s == nil {
+		return nil
+	}
+	return s.LanguageTag
+}
+
+func (s *Stream) GetFormat() *string {
+	if s == nil {
+		return nil
+	}
+	return s.Format
+}
+
+func (s *Stream) GetHeaderCompression() *bool {
+	if s == nil {
+		return nil
+	}
+	return s.HeaderCompression
+}
+
+func (s *Stream) GetLevel() *int {
 	if s == nil {
 		return nil
 	}
 	return s.Level
 }
 
-func (s *Stream) GetProfile() any {
+func (s *Stream) GetOriginal() *bool {
+	if s == nil {
+		return nil
+	}
+	return s.Original
+}
+
+func (s *Stream) GetProfile() *string {
 	if s == nil {
 		return nil
 	}
 	return s.Profile
 }
 
-func (s *Stream) GetRefFrames() *int64 {
+func (s *Stream) GetRefFrames() *int {
 	if s == nil {
 		return nil
 	}
 	return s.RefFrames
 }
 
-func (s *Stream) GetSamplingRate() *int64 {
+func (s *Stream) GetSamplingRate() *int {
 	if s == nil {
 		return nil
 	}
 	return s.SamplingRate
+}
+
+func (s *Stream) GetScanType() *string {
+	if s == nil {
+		return nil
+	}
+	return s.ScanType
+}
+
+func (s *Stream) GetEmbeddedInVideo() *string {
+	if s == nil {
+		return nil
+	}
+	return s.EmbeddedInVideo
 }
 
 func (s *Stream) GetSelected() *bool {
@@ -240,21 +439,46 @@ func (s *Stream) GetSelected() *bool {
 	return s.Selected
 }
 
-func (s *Stream) GetStreamIdentifier() *int64 {
+func (s *Stream) GetForced() *bool {
+	if s == nil {
+		return nil
+	}
+	return s.Forced
+}
+
+func (s *Stream) GetHearingImpaired() *bool {
+	if s == nil {
+		return nil
+	}
+	return s.HearingImpaired
+}
+
+func (s *Stream) GetDub() *bool {
+	if s == nil {
+		return nil
+	}
+	return s.Dub
+}
+
+func (s *Stream) GetTitle() *string {
+	if s == nil {
+		return nil
+	}
+	return s.Title
+}
+
+func (s *Stream) GetStreamIdentifier() *int {
 	if s == nil {
 		return nil
 	}
 	return s.StreamIdentifier
 }
 
-func (s *Stream) GetStreamType() *int64 {
-	if s == nil {
-		return nil
-	}
-	return s.StreamType
+func (s *Stream) GetStreamType() int64 {
+	return 1
 }
 
-func (s *Stream) GetWidth() *int64 {
+func (s *Stream) GetWidth() *int {
 	if s == nil {
 		return nil
 	}

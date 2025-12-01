@@ -59,7 +59,7 @@ func main() {
     )
 
     res, err := s.Hubs.GetAllHubs(ctx, operations.GetAllHubsRequest{
-        OnlyTransient: components.BoolIntOne.ToPointer(),
+        OnlyTransient: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -324,7 +324,7 @@ func main() {
 
     res, err := s.Hubs.GetMetadataHubs(ctx, operations.GetMetadataHubsRequest{
         MetadataID: 605482,
-        OnlyTransient: components.BoolIntOne.ToPointer(),
+        OnlyTransient: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -391,7 +391,7 @@ func main() {
 
     res, err := s.Hubs.GetPostplayHubs(ctx, operations.GetPostplayHubsRequest{
         MetadataID: 441419,
-        OnlyTransient: components.BoolIntOne.ToPointer(),
+        OnlyTransient: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -458,7 +458,7 @@ func main() {
 
     res, err := s.Hubs.GetRelatedHubs(ctx, operations.GetRelatedHubsRequest{
         MetadataID: 8858,
-        OnlyTransient: components.BoolIntOne.ToPointer(),
+        OnlyTransient: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -525,7 +525,7 @@ func main() {
 
     res, err := s.Hubs.GetSectionHubs(ctx, operations.GetSectionHubsRequest{
         SectionID: 336924,
-        OnlyTransient: components.BoolIntOne.ToPointer(),
+        OnlyTransient: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -725,9 +725,9 @@ func main() {
     res, err := s.Hubs.CreateCustomHub(ctx, operations.CreateCustomHubRequest{
         SectionID: 869922,
         MetadataItemID: 703843,
-        PromotedToRecommended: components.BoolIntOne.ToPointer(),
-        PromotedToOwnHome: components.BoolIntOne.ToPointer(),
-        PromotedToSharedHome: components.BoolIntOne.ToPointer(),
+        PromotedToRecommended: components.BoolIntTrue.ToPointer(),
+        PromotedToOwnHome: components.BoolIntTrue.ToPointer(),
+        PromotedToSharedHome: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -929,9 +929,9 @@ func main() {
     res, err := s.Hubs.UpdateHubVisibility(ctx, operations.UpdateHubVisibilityRequest{
         SectionID: 341650,
         Identifier: "<value>",
-        PromotedToRecommended: components.BoolIntOne.ToPointer(),
-        PromotedToOwnHome: components.BoolIntOne.ToPointer(),
-        PromotedToSharedHome: components.BoolIntOne.ToPointer(),
+        PromotedToRecommended: components.BoolIntTrue.ToPointer(),
+        PromotedToOwnHome: components.BoolIntTrue.ToPointer(),
+        PromotedToSharedHome: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)

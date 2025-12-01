@@ -125,14 +125,14 @@ func main() {
 
     res, err := s.Content.GetMetadataItem(ctx, operations.GetMetadataItemRequest{
         Ids: []string{},
-        AsyncCheckFiles: components.BoolIntOne.ToPointer(),
-        AsyncRefreshLocalMediaAgent: components.BoolIntOne.ToPointer(),
-        AsyncRefreshAnalysis: components.BoolIntOne.ToPointer(),
-        CheckFiles: components.BoolIntOne.ToPointer(),
-        SkipRefresh: components.BoolIntOne.ToPointer(),
-        CheckFileAvailability: components.BoolIntOne.ToPointer(),
-        AsyncAugmentMetadata: components.BoolIntOne.ToPointer(),
-        AugmentCount: components.BoolIntOne.ToPointer(),
+        AsyncCheckFiles: components.BoolIntTrue.ToPointer(),
+        AsyncRefreshLocalMediaAgent: components.BoolIntTrue.ToPointer(),
+        AsyncRefreshAnalysis: components.BoolIntTrue.ToPointer(),
+        CheckFiles: components.BoolIntTrue.ToPointer(),
+        SkipRefresh: components.BoolIntTrue.ToPointer(),
+        CheckFileAvailability: components.BoolIntTrue.ToPointer(),
+        AsyncAugmentMetadata: components.BoolIntTrue.ToPointer(),
+        AugmentCount: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -264,6 +264,13 @@ func main() {
     )
 
     res, err := s.Content.ListContent(ctx, operations.ListContentRequest{
+        MediaQuery: &components.MediaQuery{
+            Type: components.MediaTypeEpisode.ToPointer(),
+            SourceType: plexgo.Pointer[int64](2),
+            Sort: plexgo.Pointer("duration:desc,index"),
+        },
+        IncludeMeta: components.BoolIntTrue.ToPointer(),
+        IncludeGuids: components.BoolIntTrue.ToPointer(),
         SectionID: "<id>",
     })
     if err != nil {

@@ -151,7 +151,7 @@ type AddToPlayQueueRequest struct {
 	// The ID of the playlist to add to the playQueue.
 	PlaylistID *string `queryParam:"style=form,explode=true,name=playlistID"`
 	// Play this item next (defaults to 0 - queueing at the end of manually queued items).
-	Next *components.BoolInt `queryParam:"style=form,explode=true,name=next"`
+	Next *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=next"`
 }
 
 func (a AddToPlayQueueRequest) MarshalJSON() ([]byte, error) {

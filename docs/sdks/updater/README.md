@@ -50,8 +50,8 @@ func main() {
     )
 
     res, err := s.Updater.ApplyUpdates(ctx, operations.ApplyUpdatesRequest{
-        Tonight: components.BoolIntOne.ToPointer(),
-        Skip: components.BoolIntOne.ToPointer(),
+        Tonight: components.BoolIntTrue.ToPointer(),
+        Skip: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -117,7 +117,7 @@ func main() {
     )
 
     res, err := s.Updater.CheckUpdates(ctx, operations.CheckUpdatesRequest{
-        Download: components.BoolIntOne.ToPointer(),
+        Download: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
