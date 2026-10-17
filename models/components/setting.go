@@ -86,7 +86,14 @@ func CreateDefaultBoolean(boolean bool) Default {
 	}
 }
 
-func (u *Default) UnmarshalJSON(data []byte) error {
+func (u *Default) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = Default{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
@@ -172,7 +179,14 @@ func CreateValueBoolean(boolean bool) Value {
 	}
 }
 
-func (u *Value) UnmarshalJSON(data []byte) error {
+func (u *Value) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = Value{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {

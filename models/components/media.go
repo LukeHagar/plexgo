@@ -69,7 +69,14 @@ func CreateHasVoiceActivityTwo(two Two) HasVoiceActivity {
 	}
 }
 
-func (u *HasVoiceActivity) UnmarshalJSON(data []byte) error {
+func (u *HasVoiceActivity) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = HasVoiceActivity{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var boolean bool = false
 	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {

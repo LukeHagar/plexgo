@@ -313,7 +313,14 @@ func CreateAllowSyncTwo(two Two) AllowSync {
 	}
 }
 
-func (u *AllowSync) UnmarshalJSON(data []byte) error {
+func (u *AllowSync) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = AllowSync{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var boolean bool = false
 	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {

@@ -111,7 +111,14 @@ func CreateMediaContainerWithPlaylistMetadataSkipChildrenMediaContainerWithPlayl
 	}
 }
 
-func (u *MediaContainerWithPlaylistMetadataSkipChildren) UnmarshalJSON(data []byte) error {
+func (u *MediaContainerWithPlaylistMetadataSkipChildren) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = MediaContainerWithPlaylistMetadataSkipChildren{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var boolean bool = false
 	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {
@@ -201,7 +208,14 @@ func CreateMediaContainerWithPlaylistMetadataSkipParentMediaContainerWithPlaylis
 	}
 }
 
-func (u *MediaContainerWithPlaylistMetadataSkipParent) UnmarshalJSON(data []byte) error {
+func (u *MediaContainerWithPlaylistMetadataSkipParent) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = MediaContainerWithPlaylistMetadataSkipParent{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var boolean bool = false
 	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {

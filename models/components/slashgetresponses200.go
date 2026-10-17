@@ -67,7 +67,14 @@ func CreateSlashGetResponses200AllowSyncSlashGetResponses200AllowSync2(slashGetR
 	}
 }
 
-func (u *SlashGetResponses200AllowSync) UnmarshalJSON(data []byte) error {
+func (u *SlashGetResponses200AllowSync) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = SlashGetResponses200AllowSync{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var boolean bool = false
 	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {

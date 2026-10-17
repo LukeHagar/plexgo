@@ -327,7 +327,14 @@ func CreateGetPlaylistGeneratorItemsSkipChildrenGetPlaylistGeneratorItemsSkipChi
 	}
 }
 
-func (u *GetPlaylistGeneratorItemsSkipChildren) UnmarshalJSON(data []byte) error {
+func (u *GetPlaylistGeneratorItemsSkipChildren) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = GetPlaylistGeneratorItemsSkipChildren{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var boolean bool = false
 	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {
@@ -417,7 +424,14 @@ func CreateGetPlaylistGeneratorItemsSkipParentGetPlaylistGeneratorItemsSkipParen
 	}
 }
 
-func (u *GetPlaylistGeneratorItemsSkipParent) UnmarshalJSON(data []byte) error {
+func (u *GetPlaylistGeneratorItemsSkipParent) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = GetPlaylistGeneratorItemsSkipParent{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var boolean bool = false
 	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {

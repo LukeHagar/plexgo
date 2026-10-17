@@ -144,6 +144,9 @@ type ListContentRequest struct {
 	DeviceName *string `header:"style=simple,explode=false,name=X-Plex-Device-Name"`
 	// The marketplace on which the client application is distributed
 	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
+	// The PMS API version requested by the client. If omitted, the server assumes `0.0`.
+	// Use `1.0` for the published PMS API response customization behavior.
+	PmsAPIVersion *string `header:"style=simple,explode=false,name=X-Plex-Pms-Api-Version"`
 	// The index of the first item to return. If not specified, the first item will be returned.
 	// If the number of items exceeds the limit, the response will be paginated.
 	// By default this is 0
@@ -171,6 +174,30 @@ type ListContentRequest struct {
 	MediaQuery *components.MediaQuery `queryParam:"style=form,explode=true,name=mediaQuery"`
 	// The id of the section
 	SectionID int64 `pathParam:"style=simple,explode=false,name=sectionId"`
+	// Return current items whose updatedAt is strictly greater than this Unix timestamp in seconds.
+	// The query key is updatedAt>> (URL-encoded as updatedAt%3E%3E), for example updatedAt%3E%3E=1792000000.
+	// Items updated exactly at the supplied timestamp are excluded; overlap polling windows and deduplicate ratingKey values to avoid missing same-second updates.
+	// Verified for movies, episodes, and tracks on PMS 1.43.4.10903. Support on other server versions and library types may vary.
+	// This filters current items, not a durable change log: deleted items are not returned, and it does not guarantee that every file, part, or stream change updates the parent timestamp.
+	UpdatedAtAfter *int64 `queryParam:"style=form,explode=true,name=updatedAt>>"`
+	// Return current items whose updatedAt is strictly less than this Unix timestamp in seconds.
+	// The query key is updatedAt<< (URL-encoded as updatedAt%3C%3C), for example updatedAt%3C%3C=1792054845.
+	// Items updated exactly at the supplied timestamp are excluded. Combine with updatedAt>> to request a bounded interval; both conditions must match.
+	// Verified for movies on PMS 1.43.4.10903. Support on other server versions and library types may vary.
+	// This filters current items and does not provide an atomic snapshot, a replay cursor, or deleted items.
+	UpdatedAtBefore *int64 `queryParam:"style=form,explode=true,name=updatedAt<<"`
+	// Return current items whose addedAt is strictly greater than this Unix timestamp in seconds.
+	// The query key is addedAt>> (URL-encoded as addedAt%3E%3E), for example addedAt%3E%3E=1791200000.
+	// Items added exactly at the supplied timestamp are excluded; overlap polling windows and deduplicate ratingKey values to avoid missing same-second additions.
+	// Verified for movies on PMS 1.43.4.10903. Support on other server versions and library types may vary.
+	// This filters surviving additions only; it does not identify later metadata updates or deleted items.
+	AddedAtAfter *int64 `queryParam:"style=form,explode=true,name=addedAt>>"`
+	// Return current items whose addedAt is strictly less than this Unix timestamp in seconds.
+	// The query key is addedAt<< (URL-encoded as addedAt%3C%3C), for example addedAt%3C%3C=1791252847.
+	// Items added exactly at the supplied timestamp are excluded. Combine with addedAt>> to request a bounded interval; both conditions must match.
+	// Support on server versions and library types may vary.
+	// This filters surviving additions only; it does not identify later metadata updates or deleted items, or provide an atomic snapshot.
+	AddedAtBefore *int64 `queryParam:"style=form,explode=true,name=addedAt<<"`
 	// Adds the Meta object to the response
 	IncludeMeta *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=includeMeta"`
 	// Adds the Guid object to the response
@@ -217,7 +244,11 @@ type ListContentRequest struct {
 	IncludeBanner *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=includeBanner"`
 	// Force inclusion of theme fields
 	IncludeTheme *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=includeTheme"`
-	// Whitelist of fields to return
+	// Comma-separated whitelist of fields to return.
+	// With PMS API version 1.0.0 or later, this projection also applies to container attributes.
+	// Include size,totalSize,offset alongside item fields when paging, for example ratingKey,updatedAt,size,totalSize,offset.
+	// Otherwise the response may omit the pagination attributes needed to determine whether the complete result has been retrieved.
+	// This does not necessarily remove nested elements; use excludeElements to request their exclusion.
 	IncludeFields *string `queryParam:"style=form,explode=true,name=includeFields"`
 	// Blacklist of fields to omit
 	ExcludeFields *string `queryParam:"style=form,explode=true,name=excludeFields"`
@@ -229,6 +260,10 @@ type ListContentRequest struct {
 	Nocache *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=nocache"`
 	// Skip synchronous refresh
 	SkipRefresh *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=skipRefresh"`
+	// Comma-separated list of optional elements to add to the response.
+	// Use `Stream` to request stream metadata within returned media parts.
+	// Unlike `includeElements`, this adds optional elements without excluding the normal response elements.
+	IncludeOptionalElements *string `queryParam:"style=form,explode=true,name=includeOptionalElements"`
 	// Comma-separated list of elements to exclude from the response
 	ExcludeElements *string `queryParam:"style=form,explode=true,name=excludeElements"`
 	// General filtering expression.
@@ -337,6 +372,13 @@ func (l *ListContentRequest) GetMarketplace() *string {
 	return l.Marketplace
 }
 
+func (l *ListContentRequest) GetPmsAPIVersion() *string {
+	if l == nil {
+		return nil
+	}
+	return l.PmsAPIVersion
+}
+
 func (l *ListContentRequest) GetXPlexContainerStart() *int {
 	if l == nil {
 		return nil
@@ -363,6 +405,34 @@ func (l *ListContentRequest) GetSectionID() int64 {
 		return 0
 	}
 	return l.SectionID
+}
+
+func (l *ListContentRequest) GetUpdatedAtAfter() *int64 {
+	if l == nil {
+		return nil
+	}
+	return l.UpdatedAtAfter
+}
+
+func (l *ListContentRequest) GetUpdatedAtBefore() *int64 {
+	if l == nil {
+		return nil
+	}
+	return l.UpdatedAtBefore
+}
+
+func (l *ListContentRequest) GetAddedAtAfter() *int64 {
+	if l == nil {
+		return nil
+	}
+	return l.AddedAtAfter
+}
+
+func (l *ListContentRequest) GetAddedAtBefore() *int64 {
+	if l == nil {
+		return nil
+	}
+	return l.AddedAtBefore
 }
 
 func (l *ListContentRequest) GetIncludeMeta() *components.BoolInt {
@@ -566,6 +636,13 @@ func (l *ListContentRequest) GetSkipRefresh() *components.BoolInt {
 		return nil
 	}
 	return l.SkipRefresh
+}
+
+func (l *ListContentRequest) GetIncludeOptionalElements() *string {
+	if l == nil {
+		return nil
+	}
+	return l.IncludeOptionalElements
 }
 
 func (l *ListContentRequest) GetExcludeElements() *string {

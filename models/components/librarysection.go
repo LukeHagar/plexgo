@@ -67,7 +67,14 @@ func CreateLibrarySectionAllowSyncAllowSync2(allowSync2 AllowSync2) LibrarySecti
 	}
 }
 
-func (u *LibrarySectionAllowSync) UnmarshalJSON(data []byte) error {
+func (u *LibrarySectionAllowSync) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = LibrarySectionAllowSync{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var boolean bool = false
 	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {

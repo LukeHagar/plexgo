@@ -81,7 +81,14 @@ func CreateMediaContainerWithNestedMetadataSkipChildrenMediaContainerWithNestedM
 	}
 }
 
-func (u *MediaContainerWithNestedMetadataSkipChildren) UnmarshalJSON(data []byte) error {
+func (u *MediaContainerWithNestedMetadataSkipChildren) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = MediaContainerWithNestedMetadataSkipChildren{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var boolean bool = false
 	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {
@@ -171,7 +178,14 @@ func CreateMediaContainerWithNestedMetadataSkipParentMediaContainerWithNestedMet
 	}
 }
 
-func (u *MediaContainerWithNestedMetadataSkipParent) UnmarshalJSON(data []byte) error {
+func (u *MediaContainerWithNestedMetadataSkipParent) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = MediaContainerWithNestedMetadataSkipParent{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var boolean bool = false
 	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {

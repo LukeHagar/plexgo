@@ -82,7 +82,14 @@ func CreateMediaContainerWithDecisionHasVoiceActivityHasVoiceActivity2(hasVoiceA
 	}
 }
 
-func (u *MediaContainerWithDecisionHasVoiceActivity) UnmarshalJSON(data []byte) error {
+func (u *MediaContainerWithDecisionHasVoiceActivity) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = MediaContainerWithDecisionHasVoiceActivity{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var boolean bool = false
 	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {
@@ -224,7 +231,14 @@ func CreateMediaContainerWithDecisionCanAutoSync2Boolean(boolean bool) MediaCont
 	}
 }
 
-func (u *MediaContainerWithDecisionCanAutoSync2) UnmarshalJSON(data []byte) error {
+func (u *MediaContainerWithDecisionCanAutoSync2) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = MediaContainerWithDecisionCanAutoSync2{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var two1 Two1 = Two1("")
 	if err := utils.UnmarshalJSON(data, &two1, "", true, nil); err == nil {
@@ -288,7 +302,14 @@ func CreateMediaContainerWithDecisionCanAutoSyncMediaContainerWithDecisionCanAut
 	}
 }
 
-func (u *MediaContainerWithDecisionCanAutoSync) UnmarshalJSON(data []byte) error {
+func (u *MediaContainerWithDecisionCanAutoSync) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = MediaContainerWithDecisionCanAutoSync{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var boolean bool = false
 	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {
@@ -1616,7 +1637,14 @@ func CreateMediaContainerWithDecisionSkipChildrenMediaContainerWithDecisionSkipC
 	}
 }
 
-func (u *MediaContainerWithDecisionSkipChildren) UnmarshalJSON(data []byte) error {
+func (u *MediaContainerWithDecisionSkipChildren) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = MediaContainerWithDecisionSkipChildren{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var boolean bool = false
 	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {
@@ -1706,7 +1734,14 @@ func CreateMediaContainerWithDecisionSkipParentMediaContainerWithDecisionSkipPar
 	}
 }
 
-func (u *MediaContainerWithDecisionSkipParent) UnmarshalJSON(data []byte) error {
+func (u *MediaContainerWithDecisionSkipParent) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = MediaContainerWithDecisionSkipParent{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var boolean bool = false
 	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {

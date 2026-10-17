@@ -94,7 +94,14 @@ func CreateCanAutoSync2Boolean(boolean bool) CanAutoSync2 {
 	}
 }
 
-func (u *CanAutoSync2) UnmarshalJSON(data []byte) error {
+func (u *CanAutoSync2) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = CanAutoSync2{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var one One = One("")
 	if err := utils.UnmarshalJSON(data, &one, "", true, nil); err == nil {
@@ -158,7 +165,14 @@ func CreateCanAutoSyncCanAutoSync2(canAutoSync2 CanAutoSync2) CanAutoSync {
 	}
 }
 
-func (u *CanAutoSync) UnmarshalJSON(data []byte) error {
+func (u *CanAutoSync) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = CanAutoSync{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var boolean bool = false
 	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {

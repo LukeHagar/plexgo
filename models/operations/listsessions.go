@@ -83,7 +83,14 @@ func CreateSkipChildrenSkipChildren2(skipChildren2 SkipChildren2) SkipChildren {
 	}
 }
 
-func (u *SkipChildren) UnmarshalJSON(data []byte) error {
+func (u *SkipChildren) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = SkipChildren{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var boolean bool = false
 	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {
@@ -173,7 +180,14 @@ func CreateSkipParentSkipParent2(skipParent2 SkipParent2) SkipParent {
 	}
 }
 
-func (u *SkipParent) UnmarshalJSON(data []byte) error {
+func (u *SkipParent) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = SkipParent{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var boolean bool = false
 	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {

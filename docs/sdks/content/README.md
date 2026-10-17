@@ -266,12 +266,17 @@ func main() {
     )
 
     res, err := s.Content.ListContent(ctx, operations.ListContentRequest{
+        PmsAPIVersion: plexgo.Pointer("1.0"),
         MediaQuery: &components.MediaQuery{
             Type: components.MediaTypeEpisode.ToPointer(),
             Sort: plexgo.Pointer("duration:desc,index"),
             SourceType: plexgo.Pointer[int64](2),
         },
         SectionID: 813218,
+        UpdatedAtAfter: plexgo.Pointer[int64](1792000000),
+        UpdatedAtBefore: plexgo.Pointer[int64](1792054845),
+        AddedAtAfter: plexgo.Pointer[int64](1791200000),
+        AddedAtBefore: plexgo.Pointer[int64](1791252847),
         IncludeMeta: components.BoolIntTrue.ToPointer(),
         IncludeGuids: components.BoolIntTrue.ToPointer(),
         IncludeCollections: components.BoolIntTrue.ToPointer(),
@@ -295,10 +300,12 @@ func main() {
         IncludeThumb: components.BoolIntTrue.ToPointer(),
         IncludeBanner: components.BoolIntTrue.ToPointer(),
         IncludeTheme: components.BoolIntTrue.ToPointer(),
+        IncludeFields: plexgo.Pointer("ratingKey,updatedAt,size,totalSize,offset"),
         AsyncAugmentMetadata: components.BoolIntTrue.ToPointer(),
         AsyncRefreshLocalMediaAgent: components.BoolIntTrue.ToPointer(),
         Nocache: components.BoolIntTrue.ToPointer(),
         SkipRefresh: components.BoolIntTrue.ToPointer(),
+        IncludeOptionalElements: plexgo.Pointer("Stream"),
         Unwatched: components.BoolIntTrue.ToPointer(),
     })
     if err != nil {
