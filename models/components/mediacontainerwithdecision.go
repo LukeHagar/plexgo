@@ -173,17 +173,17 @@ func (e *MediaContainerWithDecisionBitrateMode) UnmarshalJSON(data []byte) error
 	}
 }
 
-type Two1 string
+type MediaContainerWithDecisionCanAutoSync2 string
 
 const (
-	Two1Zero Two1 = "0"
-	Two1One  Two1 = "1"
+	MediaContainerWithDecisionCanAutoSync2Zero MediaContainerWithDecisionCanAutoSync2 = "0"
+	MediaContainerWithDecisionCanAutoSync2One  MediaContainerWithDecisionCanAutoSync2 = "1"
 )
 
-func (e Two1) ToPointer() *Two1 {
+func (e MediaContainerWithDecisionCanAutoSync2) ToPointer() *MediaContainerWithDecisionCanAutoSync2 {
 	return &e
 }
-func (e *Two1) UnmarshalJSON(data []byte) error {
+func (e *MediaContainerWithDecisionCanAutoSync2) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -192,81 +192,11 @@ func (e *Two1) UnmarshalJSON(data []byte) error {
 	case "0":
 		fallthrough
 	case "1":
-		*e = Two1(v)
+		*e = MediaContainerWithDecisionCanAutoSync2(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Two1: %v", v)
+		return fmt.Errorf("invalid value for MediaContainerWithDecisionCanAutoSync2: %v", v)
 	}
-}
-
-type MediaContainerWithDecisionCanAutoSync2Type string
-
-const (
-	MediaContainerWithDecisionCanAutoSync2TypeTwo1    MediaContainerWithDecisionCanAutoSync2Type = "2_1"
-	MediaContainerWithDecisionCanAutoSync2TypeBoolean MediaContainerWithDecisionCanAutoSync2Type = "boolean"
-)
-
-type MediaContainerWithDecisionCanAutoSync2 struct {
-	Two1    *Two1 `queryParam:"inline" union:"member"`
-	Boolean *bool `queryParam:"inline" union:"member"`
-
-	Type MediaContainerWithDecisionCanAutoSync2Type
-}
-
-func CreateMediaContainerWithDecisionCanAutoSync2Two1(two1 Two1) MediaContainerWithDecisionCanAutoSync2 {
-	typ := MediaContainerWithDecisionCanAutoSync2TypeTwo1
-
-	return MediaContainerWithDecisionCanAutoSync2{
-		Two1: &two1,
-		Type: typ,
-	}
-}
-
-func CreateMediaContainerWithDecisionCanAutoSync2Boolean(boolean bool) MediaContainerWithDecisionCanAutoSync2 {
-	typ := MediaContainerWithDecisionCanAutoSync2TypeBoolean
-
-	return MediaContainerWithDecisionCanAutoSync2{
-		Boolean: &boolean,
-		Type:    typ,
-	}
-}
-
-func (u *MediaContainerWithDecisionCanAutoSync2) UnmarshalJSON(data []byte) (err error) {
-	previous := *u
-	*u = MediaContainerWithDecisionCanAutoSync2{}
-	defer func() {
-		if err != nil {
-			*u = previous
-		}
-	}()
-
-	var two1 Two1 = Two1("")
-	if err := utils.UnmarshalJSON(data, &two1, "", true, nil); err == nil {
-		u.Two1 = &two1
-		u.Type = MediaContainerWithDecisionCanAutoSync2TypeTwo1
-		return nil
-	}
-
-	var boolean bool = false
-	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {
-		u.Boolean = &boolean
-		u.Type = MediaContainerWithDecisionCanAutoSync2TypeBoolean
-		return nil
-	}
-
-	return fmt.Errorf("could not unmarshal `%s` into any supported union types for MediaContainerWithDecisionCanAutoSync2", string(data))
-}
-
-func (u MediaContainerWithDecisionCanAutoSync2) MarshalJSON() ([]byte, error) {
-	if u.Two1 != nil {
-		return utils.MarshalJSON(u.Two1, "", true)
-	}
-
-	if u.Boolean != nil {
-		return utils.MarshalJSON(u.Boolean, "", true)
-	}
-
-	return nil, errors.New("could not marshal union type MediaContainerWithDecisionCanAutoSync2: all fields are null")
 }
 
 type MediaContainerWithDecisionCanAutoSyncType string
@@ -318,7 +248,7 @@ func (u *MediaContainerWithDecisionCanAutoSync) UnmarshalJSON(data []byte) (err 
 		return nil
 	}
 
-	var mediaContainerWithDecisionCanAutoSync2 MediaContainerWithDecisionCanAutoSync2 = MediaContainerWithDecisionCanAutoSync2{}
+	var mediaContainerWithDecisionCanAutoSync2 MediaContainerWithDecisionCanAutoSync2 = MediaContainerWithDecisionCanAutoSync2("")
 	if err := utils.UnmarshalJSON(data, &mediaContainerWithDecisionCanAutoSync2, "", true, nil); err == nil {
 		u.MediaContainerWithDecisionCanAutoSync2 = &mediaContainerWithDecisionCanAutoSync2
 		u.Type = MediaContainerWithDecisionCanAutoSyncTypeMediaContainerWithDecisionCanAutoSync2
@@ -338,6 +268,245 @@ func (u MediaContainerWithDecisionCanAutoSync) MarshalJSON() ([]byte, error) {
 	}
 
 	return nil, errors.New("could not marshal union type MediaContainerWithDecisionCanAutoSync: all fields are null")
+}
+
+type MediaContainerWithDecisionLoudnessType string
+
+const (
+	MediaContainerWithDecisionLoudnessTypeNumber MediaContainerWithDecisionLoudnessType = "number"
+	MediaContainerWithDecisionLoudnessTypeStr    MediaContainerWithDecisionLoudnessType = "str"
+)
+
+// MediaContainerWithDecisionLoudness - Integrated loudness in LUFS. Plex may return a numeric value as a number or numeric string, or the sentinel string "-inf".
+type MediaContainerWithDecisionLoudness struct {
+	Number *float64 `queryParam:"inline" union:"member"`
+	Str    *string  `queryParam:"inline" union:"member"`
+
+	Type MediaContainerWithDecisionLoudnessType
+}
+
+func CreateMediaContainerWithDecisionLoudnessNumber(number float64) MediaContainerWithDecisionLoudness {
+	typ := MediaContainerWithDecisionLoudnessTypeNumber
+
+	return MediaContainerWithDecisionLoudness{
+		Number: &number,
+		Type:   typ,
+	}
+}
+
+func CreateMediaContainerWithDecisionLoudnessStr(str string) MediaContainerWithDecisionLoudness {
+	typ := MediaContainerWithDecisionLoudnessTypeStr
+
+	return MediaContainerWithDecisionLoudness{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func (u *MediaContainerWithDecisionLoudness) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = MediaContainerWithDecisionLoudness{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
+
+	var number float64 = float64(0)
+	if err := utils.UnmarshalJSON(data, &number, "", true, nil); err == nil {
+		u.Number = &number
+		u.Type = MediaContainerWithDecisionLoudnessTypeNumber
+		return nil
+	}
+
+	var str string = ""
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
+		u.Str = &str
+		u.Type = MediaContainerWithDecisionLoudnessTypeStr
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for MediaContainerWithDecisionLoudness", string(data))
+}
+
+func (u MediaContainerWithDecisionLoudness) MarshalJSON() ([]byte, error) {
+	if u.Number != nil {
+		return utils.MarshalJSON(u.Number, "", true)
+	}
+
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type MediaContainerWithDecisionLoudness: all fields are null")
+}
+
+type MediaContainerWithDecisionPeakType string
+
+const (
+	MediaContainerWithDecisionPeakTypeNumber MediaContainerWithDecisionPeakType = "number"
+	MediaContainerWithDecisionPeakTypeStr    MediaContainerWithDecisionPeakType = "str"
+)
+
+// MediaContainerWithDecisionPeak - Track peak amplitude. Plex may return a numeric value as a number or numeric string, or the sentinel string "-inf".
+type MediaContainerWithDecisionPeak struct {
+	Number *float64 `queryParam:"inline" union:"member"`
+	Str    *string  `queryParam:"inline" union:"member"`
+
+	Type MediaContainerWithDecisionPeakType
+}
+
+func CreateMediaContainerWithDecisionPeakNumber(number float64) MediaContainerWithDecisionPeak {
+	typ := MediaContainerWithDecisionPeakTypeNumber
+
+	return MediaContainerWithDecisionPeak{
+		Number: &number,
+		Type:   typ,
+	}
+}
+
+func CreateMediaContainerWithDecisionPeakStr(str string) MediaContainerWithDecisionPeak {
+	typ := MediaContainerWithDecisionPeakTypeStr
+
+	return MediaContainerWithDecisionPeak{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func (u *MediaContainerWithDecisionPeak) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = MediaContainerWithDecisionPeak{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
+
+	var number float64 = float64(0)
+	if err := utils.UnmarshalJSON(data, &number, "", true, nil); err == nil {
+		u.Number = &number
+		u.Type = MediaContainerWithDecisionPeakTypeNumber
+		return nil
+	}
+
+	var str string = ""
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
+		u.Str = &str
+		u.Type = MediaContainerWithDecisionPeakTypeStr
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for MediaContainerWithDecisionPeak", string(data))
+}
+
+func (u MediaContainerWithDecisionPeak) MarshalJSON() ([]byte, error) {
+	if u.Number != nil {
+		return utils.MarshalJSON(u.Number, "", true)
+	}
+
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type MediaContainerWithDecisionPeak: all fields are null")
+}
+
+type MediaContainerWithDecisionPerfectMatch2 string
+
+const (
+	MediaContainerWithDecisionPerfectMatch2Zero MediaContainerWithDecisionPerfectMatch2 = "0"
+	MediaContainerWithDecisionPerfectMatch2One  MediaContainerWithDecisionPerfectMatch2 = "1"
+)
+
+func (e MediaContainerWithDecisionPerfectMatch2) ToPointer() *MediaContainerWithDecisionPerfectMatch2 {
+	return &e
+}
+func (e *MediaContainerWithDecisionPerfectMatch2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "0":
+		fallthrough
+	case "1":
+		*e = MediaContainerWithDecisionPerfectMatch2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for MediaContainerWithDecisionPerfectMatch2: %v", v)
+	}
+}
+
+type MediaContainerWithDecisionPerfectMatchType string
+
+const (
+	MediaContainerWithDecisionPerfectMatchTypeBoolean                                 MediaContainerWithDecisionPerfectMatchType = "boolean"
+	MediaContainerWithDecisionPerfectMatchTypeMediaContainerWithDecisionPerfectMatch2 MediaContainerWithDecisionPerfectMatchType = "MediaContainerWithDecision_perfectMatch_2"
+)
+
+// MediaContainerWithDecisionPerfectMatch - Whether the subtitle is an exact match.
+type MediaContainerWithDecisionPerfectMatch struct {
+	Boolean                                 *bool                                    `queryParam:"inline" union:"member"`
+	MediaContainerWithDecisionPerfectMatch2 *MediaContainerWithDecisionPerfectMatch2 `queryParam:"inline" union:"member"`
+
+	Type MediaContainerWithDecisionPerfectMatchType
+}
+
+func CreateMediaContainerWithDecisionPerfectMatchBoolean(boolean bool) MediaContainerWithDecisionPerfectMatch {
+	typ := MediaContainerWithDecisionPerfectMatchTypeBoolean
+
+	return MediaContainerWithDecisionPerfectMatch{
+		Boolean: &boolean,
+		Type:    typ,
+	}
+}
+
+func CreateMediaContainerWithDecisionPerfectMatchMediaContainerWithDecisionPerfectMatch2(mediaContainerWithDecisionPerfectMatch2 MediaContainerWithDecisionPerfectMatch2) MediaContainerWithDecisionPerfectMatch {
+	typ := MediaContainerWithDecisionPerfectMatchTypeMediaContainerWithDecisionPerfectMatch2
+
+	return MediaContainerWithDecisionPerfectMatch{
+		MediaContainerWithDecisionPerfectMatch2: &mediaContainerWithDecisionPerfectMatch2,
+		Type:                                    typ,
+	}
+}
+
+func (u *MediaContainerWithDecisionPerfectMatch) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = MediaContainerWithDecisionPerfectMatch{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
+
+	var boolean bool = false
+	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {
+		u.Boolean = &boolean
+		u.Type = MediaContainerWithDecisionPerfectMatchTypeBoolean
+		return nil
+	}
+
+	var mediaContainerWithDecisionPerfectMatch2 MediaContainerWithDecisionPerfectMatch2 = MediaContainerWithDecisionPerfectMatch2("")
+	if err := utils.UnmarshalJSON(data, &mediaContainerWithDecisionPerfectMatch2, "", true, nil); err == nil {
+		u.MediaContainerWithDecisionPerfectMatch2 = &mediaContainerWithDecisionPerfectMatch2
+		u.Type = MediaContainerWithDecisionPerfectMatchTypeMediaContainerWithDecisionPerfectMatch2
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for MediaContainerWithDecisionPerfectMatch", string(data))
+}
+
+func (u MediaContainerWithDecisionPerfectMatch) MarshalJSON() ([]byte, error) {
+	if u.Boolean != nil {
+		return utils.MarshalJSON(u.Boolean, "", true)
+	}
+
+	if u.MediaContainerWithDecisionPerfectMatch2 != nil {
+		return utils.MarshalJSON(u.MediaContainerWithDecisionPerfectMatch2, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type MediaContainerWithDecisionPerfectMatch: all fields are null")
 }
 
 // MediaContainerWithDecisionStreamType - Stream type:
@@ -371,6 +540,200 @@ func (e *MediaContainerWithDecisionStreamType) UnmarshalJSON(data []byte) error 
 	default:
 		return fmt.Errorf("invalid value for MediaContainerWithDecisionStreamType: %v", v)
 	}
+}
+
+type MediaContainerWithDecisionTimed2 string
+
+const (
+	MediaContainerWithDecisionTimed2Zero MediaContainerWithDecisionTimed2 = "0"
+	MediaContainerWithDecisionTimed2One  MediaContainerWithDecisionTimed2 = "1"
+)
+
+func (e MediaContainerWithDecisionTimed2) ToPointer() *MediaContainerWithDecisionTimed2 {
+	return &e
+}
+func (e *MediaContainerWithDecisionTimed2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "0":
+		fallthrough
+	case "1":
+		*e = MediaContainerWithDecisionTimed2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for MediaContainerWithDecisionTimed2: %v", v)
+	}
+}
+
+type MediaContainerWithDecisionTimedType string
+
+const (
+	MediaContainerWithDecisionTimedTypeBoolean                          MediaContainerWithDecisionTimedType = "boolean"
+	MediaContainerWithDecisionTimedTypeMediaContainerWithDecisionTimed2 MediaContainerWithDecisionTimedType = "MediaContainerWithDecision_timed_2"
+)
+
+// MediaContainerWithDecisionTimed - Whether lyrics are timestamped.
+type MediaContainerWithDecisionTimed struct {
+	Boolean                          *bool                             `queryParam:"inline" union:"member"`
+	MediaContainerWithDecisionTimed2 *MediaContainerWithDecisionTimed2 `queryParam:"inline" union:"member"`
+
+	Type MediaContainerWithDecisionTimedType
+}
+
+func CreateMediaContainerWithDecisionTimedBoolean(boolean bool) MediaContainerWithDecisionTimed {
+	typ := MediaContainerWithDecisionTimedTypeBoolean
+
+	return MediaContainerWithDecisionTimed{
+		Boolean: &boolean,
+		Type:    typ,
+	}
+}
+
+func CreateMediaContainerWithDecisionTimedMediaContainerWithDecisionTimed2(mediaContainerWithDecisionTimed2 MediaContainerWithDecisionTimed2) MediaContainerWithDecisionTimed {
+	typ := MediaContainerWithDecisionTimedTypeMediaContainerWithDecisionTimed2
+
+	return MediaContainerWithDecisionTimed{
+		MediaContainerWithDecisionTimed2: &mediaContainerWithDecisionTimed2,
+		Type:                             typ,
+	}
+}
+
+func (u *MediaContainerWithDecisionTimed) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = MediaContainerWithDecisionTimed{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
+
+	var boolean bool = false
+	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {
+		u.Boolean = &boolean
+		u.Type = MediaContainerWithDecisionTimedTypeBoolean
+		return nil
+	}
+
+	var mediaContainerWithDecisionTimed2 MediaContainerWithDecisionTimed2 = MediaContainerWithDecisionTimed2("")
+	if err := utils.UnmarshalJSON(data, &mediaContainerWithDecisionTimed2, "", true, nil); err == nil {
+		u.MediaContainerWithDecisionTimed2 = &mediaContainerWithDecisionTimed2
+		u.Type = MediaContainerWithDecisionTimedTypeMediaContainerWithDecisionTimed2
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for MediaContainerWithDecisionTimed", string(data))
+}
+
+func (u MediaContainerWithDecisionTimed) MarshalJSON() ([]byte, error) {
+	if u.Boolean != nil {
+		return utils.MarshalJSON(u.Boolean, "", true)
+	}
+
+	if u.MediaContainerWithDecisionTimed2 != nil {
+		return utils.MarshalJSON(u.MediaContainerWithDecisionTimed2, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type MediaContainerWithDecisionTimed: all fields are null")
+}
+
+type MediaContainerWithDecisionTransient2 string
+
+const (
+	MediaContainerWithDecisionTransient2Zero MediaContainerWithDecisionTransient2 = "0"
+	MediaContainerWithDecisionTransient2One  MediaContainerWithDecisionTransient2 = "1"
+)
+
+func (e MediaContainerWithDecisionTransient2) ToPointer() *MediaContainerWithDecisionTransient2 {
+	return &e
+}
+func (e *MediaContainerWithDecisionTransient2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "0":
+		fallthrough
+	case "1":
+		*e = MediaContainerWithDecisionTransient2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for MediaContainerWithDecisionTransient2: %v", v)
+	}
+}
+
+type MediaContainerWithDecisionTransientType string
+
+const (
+	MediaContainerWithDecisionTransientTypeBoolean                              MediaContainerWithDecisionTransientType = "boolean"
+	MediaContainerWithDecisionTransientTypeMediaContainerWithDecisionTransient2 MediaContainerWithDecisionTransientType = "MediaContainerWithDecision_transient_2"
+)
+
+// MediaContainerWithDecisionTransient - Whether the subtitle is temporary or downloaded.
+type MediaContainerWithDecisionTransient struct {
+	Boolean                              *bool                                 `queryParam:"inline" union:"member"`
+	MediaContainerWithDecisionTransient2 *MediaContainerWithDecisionTransient2 `queryParam:"inline" union:"member"`
+
+	Type MediaContainerWithDecisionTransientType
+}
+
+func CreateMediaContainerWithDecisionTransientBoolean(boolean bool) MediaContainerWithDecisionTransient {
+	typ := MediaContainerWithDecisionTransientTypeBoolean
+
+	return MediaContainerWithDecisionTransient{
+		Boolean: &boolean,
+		Type:    typ,
+	}
+}
+
+func CreateMediaContainerWithDecisionTransientMediaContainerWithDecisionTransient2(mediaContainerWithDecisionTransient2 MediaContainerWithDecisionTransient2) MediaContainerWithDecisionTransient {
+	typ := MediaContainerWithDecisionTransientTypeMediaContainerWithDecisionTransient2
+
+	return MediaContainerWithDecisionTransient{
+		MediaContainerWithDecisionTransient2: &mediaContainerWithDecisionTransient2,
+		Type:                                 typ,
+	}
+}
+
+func (u *MediaContainerWithDecisionTransient) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = MediaContainerWithDecisionTransient{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
+
+	var boolean bool = false
+	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {
+		u.Boolean = &boolean
+		u.Type = MediaContainerWithDecisionTransientTypeBoolean
+		return nil
+	}
+
+	var mediaContainerWithDecisionTransient2 MediaContainerWithDecisionTransient2 = MediaContainerWithDecisionTransient2("")
+	if err := utils.UnmarshalJSON(data, &mediaContainerWithDecisionTransient2, "", true, nil); err == nil {
+		u.MediaContainerWithDecisionTransient2 = &mediaContainerWithDecisionTransient2
+		u.Type = MediaContainerWithDecisionTransientTypeMediaContainerWithDecisionTransient2
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for MediaContainerWithDecisionTransient", string(data))
+}
+
+func (u MediaContainerWithDecisionTransient) MarshalJSON() ([]byte, error) {
+	if u.Boolean != nil {
+		return utils.MarshalJSON(u.Boolean, "", true)
+	}
+
+	if u.MediaContainerWithDecisionTransient2 != nil {
+		return utils.MarshalJSON(u.MediaContainerWithDecisionTransient2, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type MediaContainerWithDecisionTransient: all fields are null")
 }
 
 type MediaContainerWithDecisionDecision string
@@ -551,18 +914,18 @@ type MediaContainerWithDecisionStream struct {
 	LanguageTag *string `json:"languageTag,omitempty"`
 	// Video level.
 	Level *int `json:"level,omitempty"`
-	// Integrated loudness in LUFS.
-	Loudness *float64 `json:"loudness,omitempty"`
+	// Integrated loudness in LUFS. Plex may return a numeric value as a number or numeric string, or the sentinel string "-inf".
+	Loudness *MediaContainerWithDecisionLoudness `json:"loudness,omitempty"`
 	// Loudness range in LU.
 	Lra *float64 `json:"lra,omitempty"`
 	// Minimum lines in the lyric file.
 	MinLines *int64 `json:"minLines,omitempty"`
 	// Indicates if this is the original stream.
 	Original *bool `json:"original,omitempty"`
-	// Track peak amplitude.
-	Peak *float64 `json:"peak,omitempty"`
+	// Track peak amplitude. Plex may return a numeric value as a number or numeric string, or the sentinel string "-inf".
+	Peak *MediaContainerWithDecisionPeak `json:"peak,omitempty"`
 	// Whether the subtitle is an exact match.
-	PerfectMatch *bool `json:"perfectMatch,omitempty"`
+	PerfectMatch *MediaContainerWithDecisionPerfectMatch `json:"perfectMatch,omitempty"`
 	// Video profile.
 	Profile *string `json:"profile,omitempty"`
 	// Lyric or subtitle provider name.
@@ -585,9 +948,9 @@ type MediaContainerWithDecisionStream struct {
 	StreamIdentifier *int                                 `json:"streamIdentifier,omitempty"`
 	StreamType       MediaContainerWithDecisionStreamType `json:"streamType"`
 	// Whether lyrics are timestamped.
-	Timed *bool `json:"timed,omitempty"`
+	Timed *MediaContainerWithDecisionTimed `json:"timed,omitempty"`
 	// Whether the subtitle is temporary or downloaded.
-	Transient *bool `json:"transient,omitempty"`
+	Transient *MediaContainerWithDecisionTransient `json:"transient,omitempty"`
 	// ID of the user who added the subtitle.
 	UserID *int64 `json:"userID,omitempty"`
 	// Whether this audio track is an audio description track.
@@ -953,7 +1316,7 @@ func (m *MediaContainerWithDecisionStream) GetLevel() *int {
 	return m.Level
 }
 
-func (m *MediaContainerWithDecisionStream) GetLoudness() *float64 {
+func (m *MediaContainerWithDecisionStream) GetLoudness() *MediaContainerWithDecisionLoudness {
 	if m == nil {
 		return nil
 	}
@@ -981,14 +1344,14 @@ func (m *MediaContainerWithDecisionStream) GetOriginal() *bool {
 	return m.Original
 }
 
-func (m *MediaContainerWithDecisionStream) GetPeak() *float64 {
+func (m *MediaContainerWithDecisionStream) GetPeak() *MediaContainerWithDecisionPeak {
 	if m == nil {
 		return nil
 	}
 	return m.Peak
 }
 
-func (m *MediaContainerWithDecisionStream) GetPerfectMatch() *bool {
+func (m *MediaContainerWithDecisionStream) GetPerfectMatch() *MediaContainerWithDecisionPerfectMatch {
 	if m == nil {
 		return nil
 	}
@@ -1079,14 +1442,14 @@ func (m *MediaContainerWithDecisionStream) GetStreamType() MediaContainerWithDec
 	return m.StreamType
 }
 
-func (m *MediaContainerWithDecisionStream) GetTimed() *bool {
+func (m *MediaContainerWithDecisionStream) GetTimed() *MediaContainerWithDecisionTimed {
 	if m == nil {
 		return nil
 	}
 	return m.Timed
 }
 
-func (m *MediaContainerWithDecisionStream) GetTransient() *bool {
+func (m *MediaContainerWithDecisionStream) GetTransient() *MediaContainerWithDecisionTransient {
 	if m == nil {
 		return nil
 	}

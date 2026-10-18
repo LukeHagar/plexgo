@@ -13,25 +13,37 @@ import (
 // 2 = show
 // 3 = season
 // 4 = episode
-// 5 = artist
-// 6 = album
-// 7 = track
-// 8 = photo_album
-// 9 = photo
+// 5 = trailer
+// 7 = person
+// 8 = artist
+// 9 = album
+// 10 = track
+// 12 = clip
+// 13 = photo
+// 14 = photoalbum
+// 15 = playlist
+// 16 = playlistfolder
+// 18 = collection
 //
 // E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
 type MediaType int64
 
 const (
-	MediaTypeMovie      MediaType = 1
-	MediaTypeTvShow     MediaType = 2
-	MediaTypeSeason     MediaType = 3
-	MediaTypeEpisode    MediaType = 4
-	MediaTypeArtist     MediaType = 5
-	MediaTypeAlbum      MediaType = 6
-	MediaTypeTrack      MediaType = 7
-	MediaTypePhotoAlbum MediaType = 8
-	MediaTypePhoto      MediaType = 9
+	MediaTypeMovie          MediaType = 1
+	MediaTypeTvShow         MediaType = 2
+	MediaTypeSeason         MediaType = 3
+	MediaTypeEpisode        MediaType = 4
+	MediaTypeTrailer        MediaType = 5
+	MediaTypePerson         MediaType = 7
+	MediaTypeArtist         MediaType = 8
+	MediaTypeAlbum          MediaType = 9
+	MediaTypeTrack          MediaType = 10
+	MediaTypeClip           MediaType = 12
+	MediaTypePhoto          MediaType = 13
+	MediaTypePhotoAlbum     MediaType = 14
+	MediaTypePlaylist       MediaType = 15
+	MediaTypePlaylistFolder MediaType = 16
+	MediaTypeCollection     MediaType = 18
 )
 
 func (e MediaType) ToPointer() *MediaType {
@@ -53,13 +65,25 @@ func (e *MediaType) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case 5:
 		fallthrough
-	case 6:
-		fallthrough
 	case 7:
 		fallthrough
 	case 8:
 		fallthrough
 	case 9:
+		fallthrough
+	case 10:
+		fallthrough
+	case 12:
+		fallthrough
+	case 13:
+		fallthrough
+	case 14:
+		fallthrough
+	case 15:
+		fallthrough
+	case 16:
+		fallthrough
+	case 18:
 		*e = MediaType(v)
 		return nil
 	default:

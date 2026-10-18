@@ -129,7 +129,7 @@ func (l *LibrarySectionLocation) GetPath() any {
 type LibrarySection struct {
 	// The title of the library
 	Title *string `json:"title,omitempty"`
-	// The type of media content in the Plex library. This can represent videos, music, or photos.
+	// The Plex media type name, corresponding to the numeric MediaType schema.
 	Type      MediaTypeString          `json:"type"`
 	Agent     *string                  `json:"agent,omitempty"`
 	AllowSync *LibrarySectionAllowSync `json:"allowSync,omitempty"`

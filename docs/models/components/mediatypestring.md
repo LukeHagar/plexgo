@@ -1,6 +1,6 @@
 # MediaTypeString
 
-The type of media content in the Plex library. This can represent videos, music, or photos.
+The Plex media type name, corresponding to the numeric MediaType schema.
 
 ## Example Usage
 
@@ -15,15 +15,20 @@ value := components.MediaTypeStringMovie
 
 ## Values
 
-| Name                        | Value                       |
-| --------------------------- | --------------------------- |
-| `MediaTypeStringMovie`      | movie                       |
-| `MediaTypeStringTvShow`     | show                        |
-| `MediaTypeStringSeason`     | season                      |
-| `MediaTypeStringEpisode`    | episode                     |
-| `MediaTypeStringArtist`     | artist                      |
-| `MediaTypeStringAlbum`      | album                       |
-| `MediaTypeStringTrack`      | track                       |
-| `MediaTypeStringPhotoAlbum` | photoalbum                  |
-| `MediaTypeStringPhoto`      | photo                       |
-| `MediaTypeStringCollection` | collection                  |
+| Name                            | Value                           |
+| ------------------------------- | ------------------------------- |
+| `MediaTypeStringMovie`          | movie                           |
+| `MediaTypeStringTvShow`         | show                            |
+| `MediaTypeStringSeason`         | season                          |
+| `MediaTypeStringEpisode`        | episode                         |
+| `MediaTypeStringTrailer`        | trailer                         |
+| `MediaTypeStringPerson`         | person                          |
+| `MediaTypeStringArtist`         | artist                          |
+| `MediaTypeStringAlbum`          | album                           |
+| `MediaTypeStringTrack`          | track                           |
+| `MediaTypeStringClip`           | clip                            |
+| `MediaTypeStringPhoto`          | photo                           |
+| `MediaTypeStringPhotoAlbum`     | photoalbum                      |
+| `MediaTypeStringPlaylist`       | playlist                        |
+| `MediaTypeStringPlaylistFolder` | playlistfolder                  |
+| `MediaTypeStringCollection`     | collection                      |

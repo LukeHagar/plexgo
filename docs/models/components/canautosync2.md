@@ -1,29 +1,19 @@
 # CanAutoSync2
 
-
-## Supported Types
-
-### One
+## Example Usage
 
 ```go
-canAutoSync2 := components.CreateCanAutoSync2One(components.One{/* values here */})
+import (
+	"github.com/LukeHagar/plexgo/models/components"
+)
+
+value := components.CanAutoSync2Zero
 ```
 
-### 
 
-```go
-canAutoSync2 := components.CreateCanAutoSync2Boolean(bool{/* values here */})
-```
+## Values
 
-## Union Discrimination
-
-Use the `Type` field to determine which variant is active, then access the corresponding field:
-
-```go
-switch canAutoSync2.Type {
-	case components.CanAutoSync2TypeOne:
-		// canAutoSync2.One is populated
-	case components.CanAutoSync2TypeBoolean:
-		// canAutoSync2.Boolean is populated
-}
-```
+| Name               | Value              |
+| ------------------ | ------------------ |
+| `CanAutoSync2Zero` | 0                  |
+| `CanAutoSync2One`  | 1                  |

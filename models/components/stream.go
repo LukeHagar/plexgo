@@ -36,17 +36,17 @@ func (e *BitrateMode) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type One string
+type CanAutoSync2 string
 
 const (
-	OneZero One = "0"
-	OneOne  One = "1"
+	CanAutoSync2Zero CanAutoSync2 = "0"
+	CanAutoSync2One  CanAutoSync2 = "1"
 )
 
-func (e One) ToPointer() *One {
+func (e CanAutoSync2) ToPointer() *CanAutoSync2 {
 	return &e
 }
-func (e *One) UnmarshalJSON(data []byte) error {
+func (e *CanAutoSync2) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -55,81 +55,11 @@ func (e *One) UnmarshalJSON(data []byte) error {
 	case "0":
 		fallthrough
 	case "1":
-		*e = One(v)
+		*e = CanAutoSync2(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for One: %v", v)
+		return fmt.Errorf("invalid value for CanAutoSync2: %v", v)
 	}
-}
-
-type CanAutoSync2Type string
-
-const (
-	CanAutoSync2TypeOne     CanAutoSync2Type = "1"
-	CanAutoSync2TypeBoolean CanAutoSync2Type = "boolean"
-)
-
-type CanAutoSync2 struct {
-	One     *One  `queryParam:"inline" union:"member"`
-	Boolean *bool `queryParam:"inline" union:"member"`
-
-	Type CanAutoSync2Type
-}
-
-func CreateCanAutoSync2One(one One) CanAutoSync2 {
-	typ := CanAutoSync2TypeOne
-
-	return CanAutoSync2{
-		One:  &one,
-		Type: typ,
-	}
-}
-
-func CreateCanAutoSync2Boolean(boolean bool) CanAutoSync2 {
-	typ := CanAutoSync2TypeBoolean
-
-	return CanAutoSync2{
-		Boolean: &boolean,
-		Type:    typ,
-	}
-}
-
-func (u *CanAutoSync2) UnmarshalJSON(data []byte) (err error) {
-	previous := *u
-	*u = CanAutoSync2{}
-	defer func() {
-		if err != nil {
-			*u = previous
-		}
-	}()
-
-	var one One = One("")
-	if err := utils.UnmarshalJSON(data, &one, "", true, nil); err == nil {
-		u.One = &one
-		u.Type = CanAutoSync2TypeOne
-		return nil
-	}
-
-	var boolean bool = false
-	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {
-		u.Boolean = &boolean
-		u.Type = CanAutoSync2TypeBoolean
-		return nil
-	}
-
-	return fmt.Errorf("could not unmarshal `%s` into any supported union types for CanAutoSync2", string(data))
-}
-
-func (u CanAutoSync2) MarshalJSON() ([]byte, error) {
-	if u.One != nil {
-		return utils.MarshalJSON(u.One, "", true)
-	}
-
-	if u.Boolean != nil {
-		return utils.MarshalJSON(u.Boolean, "", true)
-	}
-
-	return nil, errors.New("could not marshal union type CanAutoSync2: all fields are null")
 }
 
 type CanAutoSyncType string
@@ -181,7 +111,7 @@ func (u *CanAutoSync) UnmarshalJSON(data []byte) (err error) {
 		return nil
 	}
 
-	var canAutoSync2 CanAutoSync2 = CanAutoSync2{}
+	var canAutoSync2 CanAutoSync2 = CanAutoSync2("")
 	if err := utils.UnmarshalJSON(data, &canAutoSync2, "", true, nil); err == nil {
 		u.CanAutoSync2 = &canAutoSync2
 		u.Type = CanAutoSyncTypeCanAutoSync2
@@ -201,6 +131,245 @@ func (u CanAutoSync) MarshalJSON() ([]byte, error) {
 	}
 
 	return nil, errors.New("could not marshal union type CanAutoSync: all fields are null")
+}
+
+type LoudnessType string
+
+const (
+	LoudnessTypeNumber LoudnessType = "number"
+	LoudnessTypeStr    LoudnessType = "str"
+)
+
+// Loudness - Integrated loudness in LUFS. Plex may return a numeric value as a number or numeric string, or the sentinel string "-inf".
+type Loudness struct {
+	Number *float64 `queryParam:"inline" union:"member"`
+	Str    *string  `queryParam:"inline" union:"member"`
+
+	Type LoudnessType
+}
+
+func CreateLoudnessNumber(number float64) Loudness {
+	typ := LoudnessTypeNumber
+
+	return Loudness{
+		Number: &number,
+		Type:   typ,
+	}
+}
+
+func CreateLoudnessStr(str string) Loudness {
+	typ := LoudnessTypeStr
+
+	return Loudness{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func (u *Loudness) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = Loudness{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
+
+	var number float64 = float64(0)
+	if err := utils.UnmarshalJSON(data, &number, "", true, nil); err == nil {
+		u.Number = &number
+		u.Type = LoudnessTypeNumber
+		return nil
+	}
+
+	var str string = ""
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
+		u.Str = &str
+		u.Type = LoudnessTypeStr
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for Loudness", string(data))
+}
+
+func (u Loudness) MarshalJSON() ([]byte, error) {
+	if u.Number != nil {
+		return utils.MarshalJSON(u.Number, "", true)
+	}
+
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type Loudness: all fields are null")
+}
+
+type PeakType string
+
+const (
+	PeakTypeNumber PeakType = "number"
+	PeakTypeStr    PeakType = "str"
+)
+
+// Peak - Track peak amplitude. Plex may return a numeric value as a number or numeric string, or the sentinel string "-inf".
+type Peak struct {
+	Number *float64 `queryParam:"inline" union:"member"`
+	Str    *string  `queryParam:"inline" union:"member"`
+
+	Type PeakType
+}
+
+func CreatePeakNumber(number float64) Peak {
+	typ := PeakTypeNumber
+
+	return Peak{
+		Number: &number,
+		Type:   typ,
+	}
+}
+
+func CreatePeakStr(str string) Peak {
+	typ := PeakTypeStr
+
+	return Peak{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func (u *Peak) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = Peak{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
+
+	var number float64 = float64(0)
+	if err := utils.UnmarshalJSON(data, &number, "", true, nil); err == nil {
+		u.Number = &number
+		u.Type = PeakTypeNumber
+		return nil
+	}
+
+	var str string = ""
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
+		u.Str = &str
+		u.Type = PeakTypeStr
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for Peak", string(data))
+}
+
+func (u Peak) MarshalJSON() ([]byte, error) {
+	if u.Number != nil {
+		return utils.MarshalJSON(u.Number, "", true)
+	}
+
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type Peak: all fields are null")
+}
+
+type PerfectMatch2 string
+
+const (
+	PerfectMatch2Zero PerfectMatch2 = "0"
+	PerfectMatch2One  PerfectMatch2 = "1"
+)
+
+func (e PerfectMatch2) ToPointer() *PerfectMatch2 {
+	return &e
+}
+func (e *PerfectMatch2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "0":
+		fallthrough
+	case "1":
+		*e = PerfectMatch2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PerfectMatch2: %v", v)
+	}
+}
+
+type PerfectMatchType string
+
+const (
+	PerfectMatchTypeBoolean       PerfectMatchType = "boolean"
+	PerfectMatchTypePerfectMatch2 PerfectMatchType = "perfectMatch_2"
+)
+
+// PerfectMatch - Whether the subtitle is an exact match.
+type PerfectMatch struct {
+	Boolean       *bool          `queryParam:"inline" union:"member"`
+	PerfectMatch2 *PerfectMatch2 `queryParam:"inline" union:"member"`
+
+	Type PerfectMatchType
+}
+
+func CreatePerfectMatchBoolean(boolean bool) PerfectMatch {
+	typ := PerfectMatchTypeBoolean
+
+	return PerfectMatch{
+		Boolean: &boolean,
+		Type:    typ,
+	}
+}
+
+func CreatePerfectMatchPerfectMatch2(perfectMatch2 PerfectMatch2) PerfectMatch {
+	typ := PerfectMatchTypePerfectMatch2
+
+	return PerfectMatch{
+		PerfectMatch2: &perfectMatch2,
+		Type:          typ,
+	}
+}
+
+func (u *PerfectMatch) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = PerfectMatch{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
+
+	var boolean bool = false
+	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {
+		u.Boolean = &boolean
+		u.Type = PerfectMatchTypeBoolean
+		return nil
+	}
+
+	var perfectMatch2 PerfectMatch2 = PerfectMatch2("")
+	if err := utils.UnmarshalJSON(data, &perfectMatch2, "", true, nil); err == nil {
+		u.PerfectMatch2 = &perfectMatch2
+		u.Type = PerfectMatchTypePerfectMatch2
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for PerfectMatch", string(data))
+}
+
+func (u PerfectMatch) MarshalJSON() ([]byte, error) {
+	if u.Boolean != nil {
+		return utils.MarshalJSON(u.Boolean, "", true)
+	}
+
+	if u.PerfectMatch2 != nil {
+		return utils.MarshalJSON(u.PerfectMatch2, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type PerfectMatch: all fields are null")
 }
 
 // StreamType - Stream type:
@@ -234,6 +403,200 @@ func (e *StreamType) UnmarshalJSON(data []byte) error {
 	default:
 		return fmt.Errorf("invalid value for StreamType: %v", v)
 	}
+}
+
+type Timed2 string
+
+const (
+	Timed2Zero Timed2 = "0"
+	Timed2One  Timed2 = "1"
+)
+
+func (e Timed2) ToPointer() *Timed2 {
+	return &e
+}
+func (e *Timed2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "0":
+		fallthrough
+	case "1":
+		*e = Timed2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Timed2: %v", v)
+	}
+}
+
+type TimedType string
+
+const (
+	TimedTypeBoolean TimedType = "boolean"
+	TimedTypeTimed2  TimedType = "timed_2"
+)
+
+// Timed - Whether lyrics are timestamped.
+type Timed struct {
+	Boolean *bool   `queryParam:"inline" union:"member"`
+	Timed2  *Timed2 `queryParam:"inline" union:"member"`
+
+	Type TimedType
+}
+
+func CreateTimedBoolean(boolean bool) Timed {
+	typ := TimedTypeBoolean
+
+	return Timed{
+		Boolean: &boolean,
+		Type:    typ,
+	}
+}
+
+func CreateTimedTimed2(timed2 Timed2) Timed {
+	typ := TimedTypeTimed2
+
+	return Timed{
+		Timed2: &timed2,
+		Type:   typ,
+	}
+}
+
+func (u *Timed) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = Timed{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
+
+	var boolean bool = false
+	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {
+		u.Boolean = &boolean
+		u.Type = TimedTypeBoolean
+		return nil
+	}
+
+	var timed2 Timed2 = Timed2("")
+	if err := utils.UnmarshalJSON(data, &timed2, "", true, nil); err == nil {
+		u.Timed2 = &timed2
+		u.Type = TimedTypeTimed2
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for Timed", string(data))
+}
+
+func (u Timed) MarshalJSON() ([]byte, error) {
+	if u.Boolean != nil {
+		return utils.MarshalJSON(u.Boolean, "", true)
+	}
+
+	if u.Timed2 != nil {
+		return utils.MarshalJSON(u.Timed2, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type Timed: all fields are null")
+}
+
+type Transient2 string
+
+const (
+	Transient2Zero Transient2 = "0"
+	Transient2One  Transient2 = "1"
+)
+
+func (e Transient2) ToPointer() *Transient2 {
+	return &e
+}
+func (e *Transient2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "0":
+		fallthrough
+	case "1":
+		*e = Transient2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Transient2: %v", v)
+	}
+}
+
+type TransientType string
+
+const (
+	TransientTypeBoolean    TransientType = "boolean"
+	TransientTypeTransient2 TransientType = "transient_2"
+)
+
+// Transient - Whether the subtitle is temporary or downloaded.
+type Transient struct {
+	Boolean    *bool       `queryParam:"inline" union:"member"`
+	Transient2 *Transient2 `queryParam:"inline" union:"member"`
+
+	Type TransientType
+}
+
+func CreateTransientBoolean(boolean bool) Transient {
+	typ := TransientTypeBoolean
+
+	return Transient{
+		Boolean: &boolean,
+		Type:    typ,
+	}
+}
+
+func CreateTransientTransient2(transient2 Transient2) Transient {
+	typ := TransientTypeTransient2
+
+	return Transient{
+		Transient2: &transient2,
+		Type:       typ,
+	}
+}
+
+func (u *Transient) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = Transient{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
+
+	var boolean bool = false
+	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {
+		u.Boolean = &boolean
+		u.Type = TransientTypeBoolean
+		return nil
+	}
+
+	var transient2 Transient2 = Transient2("")
+	if err := utils.UnmarshalJSON(data, &transient2, "", true, nil); err == nil {
+		u.Transient2 = &transient2
+		u.Type = TransientTypeTransient2
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for Transient", string(data))
+}
+
+func (u Transient) MarshalJSON() ([]byte, error) {
+	if u.Boolean != nil {
+		return utils.MarshalJSON(u.Boolean, "", true)
+	}
+
+	if u.Transient2 != nil {
+		return utils.MarshalJSON(u.Transient2, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type Transient: all fields are null")
 }
 
 // Stream - `Stream` represents a particular stream from a media item, such as the video stream, audio stream, or subtitle stream. The stream may either be part of the file represented by the parent `Part` or, especially for subtitles, an external file. The stream contains more detailed information about the specific stream. For example, a video may include the `aspectRatio` at the `Media` level, but detailed information about the video stream like the color space will be included on the `Stream` for the video stream.  Note that photos do not have streams (mostly as an optimization).
@@ -332,18 +695,18 @@ type Stream struct {
 	LanguageTag *string `json:"languageTag,omitempty"`
 	// Video level.
 	Level *int `json:"level,omitempty"`
-	// Integrated loudness in LUFS.
-	Loudness *float64 `json:"loudness,omitempty"`
+	// Integrated loudness in LUFS. Plex may return a numeric value as a number or numeric string, or the sentinel string "-inf".
+	Loudness *Loudness `json:"loudness,omitempty"`
 	// Loudness range in LU.
 	Lra *float64 `json:"lra,omitempty"`
 	// Minimum lines in the lyric file.
 	MinLines *int64 `json:"minLines,omitempty"`
 	// Indicates if this is the original stream.
 	Original *bool `json:"original,omitempty"`
-	// Track peak amplitude.
-	Peak *float64 `json:"peak,omitempty"`
+	// Track peak amplitude. Plex may return a numeric value as a number or numeric string, or the sentinel string "-inf".
+	Peak *Peak `json:"peak,omitempty"`
 	// Whether the subtitle is an exact match.
-	PerfectMatch *bool `json:"perfectMatch,omitempty"`
+	PerfectMatch *PerfectMatch `json:"perfectMatch,omitempty"`
 	// Video profile.
 	Profile *string `json:"profile,omitempty"`
 	// Lyric or subtitle provider name.
@@ -366,9 +729,9 @@ type Stream struct {
 	StreamIdentifier *int       `json:"streamIdentifier,omitempty"`
 	StreamType       StreamType `json:"streamType"`
 	// Whether lyrics are timestamped.
-	Timed *bool `json:"timed,omitempty"`
+	Timed *Timed `json:"timed,omitempty"`
 	// Whether the subtitle is temporary or downloaded.
-	Transient *bool `json:"transient,omitempty"`
+	Transient *Transient `json:"transient,omitempty"`
 	// ID of the user who added the subtitle.
 	UserID *int64 `json:"userID,omitempty"`
 	// Whether this audio track is an audio description track.
@@ -732,7 +1095,7 @@ func (s *Stream) GetLevel() *int {
 	return s.Level
 }
 
-func (s *Stream) GetLoudness() *float64 {
+func (s *Stream) GetLoudness() *Loudness {
 	if s == nil {
 		return nil
 	}
@@ -760,14 +1123,14 @@ func (s *Stream) GetOriginal() *bool {
 	return s.Original
 }
 
-func (s *Stream) GetPeak() *float64 {
+func (s *Stream) GetPeak() *Peak {
 	if s == nil {
 		return nil
 	}
 	return s.Peak
 }
 
-func (s *Stream) GetPerfectMatch() *bool {
+func (s *Stream) GetPerfectMatch() *PerfectMatch {
 	if s == nil {
 		return nil
 	}
@@ -858,14 +1221,14 @@ func (s *Stream) GetStreamType() StreamType {
 	return s.StreamType
 }
 
-func (s *Stream) GetTimed() *bool {
+func (s *Stream) GetTimed() *Timed {
 	if s == nil {
 		return nil
 	}
 	return s.Timed
 }
 
-func (s *Stream) GetTransient() *bool {
+func (s *Stream) GetTransient() *Transient {
 	if s == nil {
 		return nil
 	}

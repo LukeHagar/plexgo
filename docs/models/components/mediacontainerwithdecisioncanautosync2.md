@@ -1,29 +1,19 @@
 # MediaContainerWithDecisionCanAutoSync2
 
-
-## Supported Types
-
-### Two1
+## Example Usage
 
 ```go
-mediaContainerWithDecisionCanAutoSync2 := components.CreateMediaContainerWithDecisionCanAutoSync2Two1(components.Two1{/* values here */})
+import (
+	"github.com/LukeHagar/plexgo/models/components"
+)
+
+value := components.MediaContainerWithDecisionCanAutoSync2Zero
 ```
 
-### 
 
-```go
-mediaContainerWithDecisionCanAutoSync2 := components.CreateMediaContainerWithDecisionCanAutoSync2Boolean(bool{/* values here */})
-```
+## Values
 
-## Union Discrimination
-
-Use the `Type` field to determine which variant is active, then access the corresponding field:
-
-```go
-switch mediaContainerWithDecisionCanAutoSync2.Type {
-	case components.MediaContainerWithDecisionCanAutoSync2TypeTwo1:
-		// mediaContainerWithDecisionCanAutoSync2.Two1 is populated
-	case components.MediaContainerWithDecisionCanAutoSync2TypeBoolean:
-		// mediaContainerWithDecisionCanAutoSync2.Boolean is populated
-}
-```
+| Name                                         | Value                                        |
+| -------------------------------------------- | -------------------------------------------- |
+| `MediaContainerWithDecisionCanAutoSync2Zero` | 0                                            |
+| `MediaContainerWithDecisionCanAutoSync2One`  | 1                                            |

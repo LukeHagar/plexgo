@@ -7,20 +7,25 @@ import (
 	"fmt"
 )
 
-// MediaTypeString - The type of media content in the Plex library. This can represent videos, music, or photos.
+// MediaTypeString - The Plex media type name, corresponding to the numeric MediaType schema.
 type MediaTypeString string
 
 const (
-	MediaTypeStringMovie      MediaTypeString = "movie"
-	MediaTypeStringTvShow     MediaTypeString = "show"
-	MediaTypeStringSeason     MediaTypeString = "season"
-	MediaTypeStringEpisode    MediaTypeString = "episode"
-	MediaTypeStringArtist     MediaTypeString = "artist"
-	MediaTypeStringAlbum      MediaTypeString = "album"
-	MediaTypeStringTrack      MediaTypeString = "track"
-	MediaTypeStringPhotoAlbum MediaTypeString = "photoalbum"
-	MediaTypeStringPhoto      MediaTypeString = "photo"
-	MediaTypeStringCollection MediaTypeString = "collection"
+	MediaTypeStringMovie          MediaTypeString = "movie"
+	MediaTypeStringTvShow         MediaTypeString = "show"
+	MediaTypeStringSeason         MediaTypeString = "season"
+	MediaTypeStringEpisode        MediaTypeString = "episode"
+	MediaTypeStringTrailer        MediaTypeString = "trailer"
+	MediaTypeStringPerson         MediaTypeString = "person"
+	MediaTypeStringArtist         MediaTypeString = "artist"
+	MediaTypeStringAlbum          MediaTypeString = "album"
+	MediaTypeStringTrack          MediaTypeString = "track"
+	MediaTypeStringClip           MediaTypeString = "clip"
+	MediaTypeStringPhoto          MediaTypeString = "photo"
+	MediaTypeStringPhotoAlbum     MediaTypeString = "photoalbum"
+	MediaTypeStringPlaylist       MediaTypeString = "playlist"
+	MediaTypeStringPlaylistFolder MediaTypeString = "playlistfolder"
+	MediaTypeStringCollection     MediaTypeString = "collection"
 )
 
 func (e MediaTypeString) ToPointer() *MediaTypeString {
@@ -40,15 +45,25 @@ func (e *MediaTypeString) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "episode":
 		fallthrough
+	case "trailer":
+		fallthrough
+	case "person":
+		fallthrough
 	case "artist":
 		fallthrough
 	case "album":
 		fallthrough
 	case "track":
 		fallthrough
-	case "photoalbum":
+	case "clip":
 		fallthrough
 	case "photo":
+		fallthrough
+	case "photoalbum":
+		fallthrough
+	case "playlist":
+		fallthrough
+	case "playlistfolder":
 		fallthrough
 	case "collection":
 		*e = MediaTypeString(v)

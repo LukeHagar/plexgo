@@ -424,10 +424,10 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *PlexAPI {
 	sdk := &PlexAPI{
-		SDKVersion: "0.30.0",
+		SDKVersion: "0.30.1",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:         "speakeasy-sdk/go 0.30.0 2.948.4 1.1.1 github.com/LukeHagar/plexgo",
-			SDKVersion:        "0.30.0",
+			UserAgent:         "speakeasy-sdk/go 0.30.1 2.948.4 1.1.1 github.com/LukeHagar/plexgo",
+			SDKVersion:        "0.30.1",
 			GenVersion:        "2.948.4",
 			OpenAPIDocVersion: "1.1.1",
 			Globals:           globals.Globals{},
