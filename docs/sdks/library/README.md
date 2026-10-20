@@ -88,6 +88,7 @@ Library endpoints which are outside of the Media Provider API.  Typically this i
 * [GetSectionEpisodes](#getsectionepisodes) - Get Section Episodes
 * [GetSectionFilters](#getsectionfilters) - Get section filters
 * [GetFirstCharacters](#getfirstcharacters) - Get list of first characters
+* [GetSectionFolder](#getsectionfolder) - Get library folder contents
 * [GetLibrarySectionHubs](#getlibrarysectionhubs) - Get Section Hubs
 * [DeleteIndexes](#deleteindexes) - Delete section indexes
 * [DeleteIntros](#deleteintros) - Delete section intro markers
@@ -863,7 +864,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.MediaContainerWithDirectory != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -1344,7 +1345,8 @@ func main() {
 
 ## GetMetadataChildren
 
-Get children of a show, season, artist, or album.
+Get children of a show, season, artist, or album, including a photo album.
+Photo album children can include both photos and video clips; omit media-type filters to retrieve all members.
 
 ### Example Usage: include-stream
 
@@ -1379,6 +1381,7 @@ func main() {
     )
 
     res, err := s.Library.GetMetadataChildren(ctx, operations.GetMetadataChildrenRequest{
+        IncludeMeta: components.BoolIntTrue.ToPointer(),
         ID: 240367,
     })
     if err != nil {
@@ -1422,6 +1425,7 @@ func main() {
     )
 
     res, err := s.Library.GetMetadataChildren(ctx, operations.GetMetadataChildrenRequest{
+        IncludeMeta: components.BoolIntTrue.ToPointer(),
         ID: 240367,
     })
     if err != nil {
@@ -1465,6 +1469,7 @@ func main() {
     )
 
     res, err := s.Library.GetMetadataChildren(ctx, operations.GetMetadataChildrenRequest{
+        IncludeMeta: components.BoolIntTrue.ToPointer(),
         ID: 240367,
     })
     if err != nil {
@@ -5738,6 +5743,68 @@ func main() {
 ### Response
 
 **[*operations.GetFirstCharactersResponse](../../models/operations/getfirstcharactersresponse.md), error**
+
+### Errors
+
+| Error Type         | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.Error    | 401                | application/json   |
+| sdkerrors.SDKError | 4XX, 5XX           | \*/\*              |
+
+## GetSectionFolder
+
+Browse the physical folders and direct media items in a library section.
+Omit parent to retrieve the root page. For a child folder, use the parent query value from the folder key returned by Plex.
+A folder token is distinct from a metadata rating key; do not substitute an album rating key.
+Photo libraries can return navigation directories, photos, and video clips in the same response.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="getSectionFolder" method="get" path="/library/sections/{sectionId}/folder" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/LukeHagar/plexgo/models/components"
+	"github.com/LukeHagar/plexgo"
+	"github.com/LukeHagar/plexgo/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := plexgo.New(
+        plexgo.WithAccepts(components.AcceptsApplicationXML),
+        plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Library.GetSectionFolder(ctx, operations.GetSectionFolderRequest{
+        SectionID: 924129,
+        Parent: plexgo.Pointer("3706"),
+        IncludeMeta: components.BoolIntTrue.ToPointer(),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.MediaContainerWithMetadata != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
+| `request`                                                                                | [operations.GetSectionFolderRequest](../../models/operations/getsectionfolderrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `opts`                                                                                   | [][operations.Option](../../models/operations/option.md)                                 | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
+
+### Response
+
+**[*operations.GetSectionFolderResponse](../../models/operations/getsectionfolderresponse.md), error**
 
 ### Errors
 

@@ -144,6 +144,16 @@ type GetMetadataChildrenRequest struct {
 	DeviceName *string `header:"style=simple,explode=false,name=X-Plex-Device-Name"`
 	// The marketplace on which the client application is distributed
 	Marketplace *string `header:"style=simple,explode=false,name=X-Plex-Marketplace"`
+	// The index of the first item to return. If not specified, the first item will be returned.
+	// If the number of items exceeds the limit, the response will be paginated.
+	// By default this is 0
+	XPlexContainerStart *int `default:"0" queryParam:"style=form,explode=true,name=X-Plex-Container-Start"`
+	// The number of items to return. If not specified, all items will be returned.
+	// If the number of items exceeds the limit, the response will be paginated.
+	// By default this is 50
+	XPlexContainerSize *int `default:"50" queryParam:"style=form,explode=true,name=X-Plex-Container-Size"`
+	// Include the Meta object in the response.
+	IncludeMeta *components.BoolInt `default:"0" queryParam:"style=form,explode=true,name=includeMeta"`
 	// The unique identifier of the item
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
@@ -234,6 +244,27 @@ func (g *GetMetadataChildrenRequest) GetMarketplace() *string {
 		return nil
 	}
 	return g.Marketplace
+}
+
+func (g *GetMetadataChildrenRequest) GetXPlexContainerStart() *int {
+	if g == nil {
+		return nil
+	}
+	return g.XPlexContainerStart
+}
+
+func (g *GetMetadataChildrenRequest) GetXPlexContainerSize() *int {
+	if g == nil {
+		return nil
+	}
+	return g.XPlexContainerSize
+}
+
+func (g *GetMetadataChildrenRequest) GetIncludeMeta() *components.BoolInt {
+	if g == nil {
+		return nil
+	}
+	return g.IncludeMeta
 }
 
 func (g *GetMetadataChildrenRequest) GetID() int64 {

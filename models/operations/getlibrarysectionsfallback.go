@@ -7,6 +7,66 @@ import (
 	"net/http"
 )
 
+// GetLibrarySectionsFallbackMediaContainer - `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.
+// Common attributes: - identifier: Unique identifier for this container - size: Number of items in this response page - totalSize: Total number of items available (for pagination) - offset: Starting index of this page (for pagination)
+// The container often "hoists" common attributes from its children. For example, if all tracks in a container share the same album title, the `parentTitle` attribute may appear on the MediaContainer rather than being repeated on each track.
+type GetLibrarySectionsFallbackMediaContainer struct {
+	Identifier *string `json:"identifier,omitempty"`
+	// The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
+	Offset *int64 `json:"offset,omitempty"`
+	Size   *int64 `json:"size,omitempty"`
+	// The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
+	TotalSize *int64                      `json:"totalSize,omitempty"`
+	Directory []components.LibrarySection `json:"Directory,omitempty"`
+}
+
+func (g *GetLibrarySectionsFallbackMediaContainer) GetIdentifier() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Identifier
+}
+
+func (g *GetLibrarySectionsFallbackMediaContainer) GetOffset() *int64 {
+	if g == nil {
+		return nil
+	}
+	return g.Offset
+}
+
+func (g *GetLibrarySectionsFallbackMediaContainer) GetSize() *int64 {
+	if g == nil {
+		return nil
+	}
+	return g.Size
+}
+
+func (g *GetLibrarySectionsFallbackMediaContainer) GetTotalSize() *int64 {
+	if g == nil {
+		return nil
+	}
+	return g.TotalSize
+}
+
+func (g *GetLibrarySectionsFallbackMediaContainer) GetDirectory() []components.LibrarySection {
+	if g == nil {
+		return nil
+	}
+	return g.Directory
+}
+
+// GetLibrarySectionsFallbackResponseBody - OK
+type GetLibrarySectionsFallbackResponseBody struct {
+	MediaContainer *GetLibrarySectionsFallbackMediaContainer `json:"MediaContainer,omitempty"`
+}
+
+func (g *GetLibrarySectionsFallbackResponseBody) GetMediaContainer() *GetLibrarySectionsFallbackMediaContainer {
+	if g == nil {
+		return nil
+	}
+	return g.MediaContainer
+}
+
 type GetLibrarySectionsFallbackResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -15,7 +75,7 @@ type GetLibrarySectionsFallbackResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// OK
-	MediaContainerWithDirectory *components.MediaContainerWithDirectory
+	Object *GetLibrarySectionsFallbackResponseBody
 }
 
 func (g *GetLibrarySectionsFallbackResponse) GetContentType() string {
@@ -39,9 +99,9 @@ func (g *GetLibrarySectionsFallbackResponse) GetRawResponse() *http.Response {
 	return g.RawResponse
 }
 
-func (g *GetLibrarySectionsFallbackResponse) GetMediaContainerWithDirectory() *components.MediaContainerWithDirectory {
+func (g *GetLibrarySectionsFallbackResponse) GetObject() *GetLibrarySectionsFallbackResponseBody {
 	if g == nil {
 		return nil
 	}
-	return g.MediaContainerWithDirectory
+	return g.Object
 }

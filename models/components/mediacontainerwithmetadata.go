@@ -11,8 +11,14 @@ type MediaContainerWithMetadataMediaContainer struct {
 	Offset *int64 `json:"offset,omitempty"`
 	Size   *int64 `json:"size,omitempty"`
 	// The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
-	TotalSize *int64     `json:"totalSize,omitempty"`
+	TotalSize *int64 `json:"totalSize,omitempty"`
+	// Navigation folders or metadata items returned under the Directory element.
+	Directory []Metadata `json:"Directory,omitempty"`
 	Metadata  []Metadata `json:"Metadata,omitempty"`
+	// Photo items returned under the Photo element.
+	Photo []Metadata `json:"Photo,omitempty"`
+	// Video items, including photo-library clips, returned under the Video element.
+	Video []Metadata `json:"Video,omitempty"`
 }
 
 func (m *MediaContainerWithMetadataMediaContainer) GetIdentifier() *string {
@@ -43,6 +49,13 @@ func (m *MediaContainerWithMetadataMediaContainer) GetTotalSize() *int64 {
 	return m.TotalSize
 }
 
+func (m *MediaContainerWithMetadataMediaContainer) GetDirectory() []Metadata {
+	if m == nil {
+		return nil
+	}
+	return m.Directory
+}
+
 func (m *MediaContainerWithMetadataMediaContainer) GetMetadata() []Metadata {
 	if m == nil {
 		return nil
@@ -50,7 +63,22 @@ func (m *MediaContainerWithMetadataMediaContainer) GetMetadata() []Metadata {
 	return m.Metadata
 }
 
-// MediaContainerWithMetadata - A MediaContainer that includes metadata items. When `includeCollections=1` is passed to endpoints such as `/library/sections/{sectionId}/all`, this container may also include `Collection` items.
+func (m *MediaContainerWithMetadataMediaContainer) GetPhoto() []Metadata {
+	if m == nil {
+		return nil
+	}
+	return m.Photo
+}
+
+func (m *MediaContainerWithMetadataMediaContainer) GetVideo() []Metadata {
+	if m == nil {
+		return nil
+	}
+	return m.Video
+}
+
+// MediaContainerWithMetadata - A MediaContainer that includes metadata items. Photo library responses can also expose items under Directory, Photo, or Video; these optional arrays retain the same item metadata and Media/Part file information.
+// When includeCollections=1 is passed to endpoints such as /library/sections/{sectionId}/all, this container may also include Collection items.
 type MediaContainerWithMetadata struct {
 	MediaContainer *MediaContainerWithMetadataMediaContainer `json:"MediaContainer,omitempty"`
 }

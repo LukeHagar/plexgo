@@ -5517,6 +5517,7 @@ actions:
                 )
 
                 res, err := s.Library.GetMetadataChildren(ctx, operations.GetMetadataChildrenRequest{
+                    IncludeMeta: components.BoolIntTrue.ToPointer(),
                     ID: 240367,
                 })
                 if err != nil {
@@ -6448,7 +6449,7 @@ actions:
                 if err != nil {
                     log.Fatal(err)
                 }
-                if res.MediaContainerWithDirectory != nil {
+                if res.Object != nil {
                     // handle response
                 }
             }
@@ -8219,6 +8220,42 @@ actions:
                     log.Fatal(err)
                 }
                 if res.Object != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/library/sections/{sectionId}/folder"]["get"]
+    update:
+      x-codeSamples:
+        - lang: go
+          label: PlexGO
+          source: |-
+            package main
+
+            import(
+            	"context"
+            	"github.com/LukeHagar/plexgo/models/components"
+            	"github.com/LukeHagar/plexgo"
+            	"github.com/LukeHagar/plexgo/models/operations"
+            	"log"
+            )
+
+            func main() {
+                ctx := context.Background()
+
+                s := plexgo.New(
+                    plexgo.WithAccepts(components.AcceptsApplicationXML),
+                    plexgo.WithSecurity("<YOUR_API_KEY_HERE>"),
+                )
+
+                res, err := s.Library.GetSectionFolder(ctx, operations.GetSectionFolderRequest{
+                    SectionID: 924129,
+                    Parent: plexgo.Pointer("3706"),
+                    IncludeMeta: components.BoolIntTrue.ToPointer(),
+                })
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res.MediaContainerWithMetadata != nil {
                     // handle response
                 }
             }

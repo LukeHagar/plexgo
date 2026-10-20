@@ -54,7 +54,6 @@ plex.tv auth endpoints (PIN creation, sign-in) enforce rate limits. Clients shou
   * [Server Selection](#server-selection)
   * [Custom HTTP Client](#custom-http-client)
   * [Authentication](#authentication-1)
-  * [Special Types](#special-types)
 * [Development](#development)
   * [Maturity](#maturity)
   * [Contributions](#contributions)
@@ -416,6 +415,7 @@ func main() {
 * [GetSectionEpisodes](docs/sdks/library/README.md#getsectionepisodes) - Get Section Episodes
 * [GetSectionFilters](docs/sdks/library/README.md#getsectionfilters) - Get section filters
 * [GetFirstCharacters](docs/sdks/library/README.md#getfirstcharacters) - Get list of first characters
+* [GetSectionFolder](docs/sdks/library/README.md#getsectionfolder) - Get library folder contents
 * [GetLibrarySectionHubs](docs/sdks/library/README.md#getlibrarysectionhubs) - Get Section Hubs
 * [DeleteIndexes](docs/sdks/library/README.md#deleteindexes) - Delete section indexes
 * [DeleteIntros](docs/sdks/library/README.md#deleteintros) - Delete section intro markers
@@ -1112,32 +1112,6 @@ func main() {
 
 ```
 <!-- End Authentication [security] -->
-
-<!-- Start Special Types [types] -->
-## Special Types
-
-This SDK defines the following custom types to assist with marshalling and unmarshalling data.
-
-### Date
-
-`types.Date` is a wrapper around time.Time that allows for JSON marshaling a date string formatted as "2006-01-02".
-
-#### Usage
-
-```go
-d1 := types.NewDate(time.Now()) // returns *types.Date
-
-d2 := types.DateFromTime(time.Now()) // returns types.Date
-
-d3, err := types.NewDateFromString("2019-01-01") // returns *types.Date, error
-
-d4, err := types.DateFromString("2019-01-01") // returns types.Date, error
-
-d5 := types.MustNewDateFromString("2019-01-01") // returns *types.Date and panics on error
-
-d6 := types.MustDateFromString("2019-01-01") // returns types.Date and panics on error
-```
-<!-- End Special Types [types] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

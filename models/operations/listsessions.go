@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"github.com/LukeHagar/plexgo/internal/utils"
 	"github.com/LukeHagar/plexgo/models/components"
-	"github.com/LukeHagar/plexgo/types"
 	"net/http"
 )
 
@@ -233,11 +232,11 @@ type Metadata struct {
 	// The title of the item (e.g. “300” or “The Simpsons”)
 	Title string `json:"title"`
 	// The type of the video item, such as `movie`, `episode`, or `clip`.
-	Type string `json:"type"`
+	Type *string `json:"type,omitempty"`
 	// When present, contains the disc number for a track on multi-disc albums.
 	AbsoluteIndex *int `json:"absoluteIndex,omitempty"`
 	// In units of seconds since the epoch, returns the time at which the item was added to the library.
-	AddedAt int64 `json:"addedAt"`
+	AddedAt *int64 `json:"addedAt,omitempty"`
 	// When present, the URL for the background artwork for the item.
 	Art *string `json:"art,omitempty"`
 	// Blur hash for background art.
@@ -302,12 +301,16 @@ type Metadata struct {
 	LastRatedAt  *int64 `json:"lastRatedAt,omitempty"`
 	LastViewedAt *int64 `json:"lastViewedAt,omitempty"`
 	// For shows and seasons, contains the number of total episodes.
-	LeafCount *int               `json:"leafCount,omitempty"`
-	Media     []components.Media `json:"Media,omitempty"`
+	LeafCount *int `json:"leafCount,omitempty"`
+	// The library section containing this metadata item, when reported by the server.
+	LibrarySectionID *int64             `json:"librarySectionID,omitempty"`
+	Media            []components.Media `json:"Media,omitempty"`
 	// Analysis version for music items.
 	MusicAnalysisVersion *int64 `json:"musicAnalysisVersion,omitempty"`
-	// When present, in the format YYYY-MM-DD [HH:MM:SS] (the hours/minutes/seconds part is not always present). The air date, or a higher resolution release date for an item, depending on type. For example, episodes usually have air date like 1979-08-10 (we don't use epoch seconds because media existed prior to 1970). In some cases, recorded over-the-air content has higher resolution air date which includes a time component. Albums and movies may have day-resolution release dates as well.
-	OriginallyAvailableAt *types.Date `json:"originallyAvailableAt,omitempty"`
+	// The original release or capture date as reported by the server.
+	// Values can be a date (YYYY-MM-DD), a date with a time (YYYY-MM-DD HH:MM:SS), or an ISO 8601 timestamp.
+	// Preserve the string representation so higher-resolution timestamps are not reduced to a date-only value.
+	OriginallyAvailableAt *string `json:"originallyAvailableAt,omitempty"`
 	// When present, used to indicate an item's original title, e.g. a movie's foreign title.
 	OriginalTitle *string `json:"originalTitle,omitempty"`
 	// The GUID of the parent media item.
@@ -429,9 +432,9 @@ func (m *Metadata) GetTitle() string {
 	return m.Title
 }
 
-func (m *Metadata) GetType() string {
+func (m *Metadata) GetType() *string {
 	if m == nil {
-		return ""
+		return nil
 	}
 	return m.Type
 }
@@ -443,9 +446,9 @@ func (m *Metadata) GetAbsoluteIndex() *int {
 	return m.AbsoluteIndex
 }
 
-func (m *Metadata) GetAddedAt() int64 {
+func (m *Metadata) GetAddedAt() *int64 {
 	if m == nil {
-		return 0
+		return nil
 	}
 	return m.AddedAt
 }
@@ -702,6 +705,13 @@ func (m *Metadata) GetLeafCount() *int {
 	return m.LeafCount
 }
 
+func (m *Metadata) GetLibrarySectionID() *int64 {
+	if m == nil {
+		return nil
+	}
+	return m.LibrarySectionID
+}
+
 func (m *Metadata) GetMedia() []components.Media {
 	if m == nil {
 		return nil
@@ -716,7 +726,7 @@ func (m *Metadata) GetMusicAnalysisVersion() *int64 {
 	return m.MusicAnalysisVersion
 }
 
-func (m *Metadata) GetOriginallyAvailableAt() *types.Date {
+func (m *Metadata) GetOriginallyAvailableAt() *string {
 	if m == nil {
 		return nil
 	}

@@ -109,7 +109,7 @@ func (u LibrarySectionAllowSync) MarshalJSON() ([]byte, error) {
 type LibrarySectionLocation struct {
 	ID *int64 `json:"id,omitempty"`
 	// The path of where this directory exists on disk
-	Path any `json:"path,omitempty"`
+	Path *string `json:"path,omitempty"`
 }
 
 func (l *LibrarySectionLocation) GetID() *int64 {
@@ -119,7 +119,7 @@ func (l *LibrarySectionLocation) GetID() *int64 {
 	return l.ID
 }
 
-func (l *LibrarySectionLocation) GetPath() any {
+func (l *LibrarySectionLocation) GetPath() *string {
 	if l == nil {
 		return nil
 	}

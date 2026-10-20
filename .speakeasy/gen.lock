@@ -1,20 +1,20 @@
 lockVersion: 2.0.0
 id: dfa99515-01c0-42eb-9be5-ee212fd03eb3
 management:
-  docChecksum: ebfbd9cbbebaec0d97992b0bf4e40078
+  docChecksum: 4b535643b6ff4e822193d73d0ffc5003
   docVersion: 1.1.1
   speakeasyVersion: 1.802.0
   generationVersion: 2.948.4
-  releaseVersion: 0.30.1
-  configChecksum: bd987ce4d1b104806734b32146baadde
+  releaseVersion: 0.30.2
+  configChecksum: 68b661bba4bc02ba8d8466b35cfe9343
   repoURL: https://github.com/LukasParke/plexgo.git
   repoSubDirectory: .
   installationURL: https://github.com/LukasParke/plexgo
   published: true
 persistentEdits:
-  generation_id: 1952f4b8-4eb4-44b5-bb60-d02bda91630d
-  pristine_commit_hash: d3ba568b30d736e97bd996ba421cbaf48188463f
-  pristine_tree_hash: 6d523ca8ec77770735e41c4e4465ad6b0337e6d0
+  generation_id: 6f5ca30e-e644-49f9-8027-ee367796a222
+  pristine_commit_hash: 05057c48908f215e91d5ba8d9710b191c458b5ea
+  pristine_tree_hash: a7466d9a984fa94c1aa2439d11dda8593b834791
 features:
   go:
     acceptHeaders: 2.81.2
@@ -386,8 +386,8 @@ trackedFiles:
     pristine_git_object: 4f8744f170603f1e4ebd21791d763cf21efbc624
   docs/models/components/items.md:
     id: 88ffcd973b51
-    last_write_checksum: sha1:20a00cc55ceba29dcb91dfb52a56e493e42e822d
-    pristine_git_object: 04be4ea021f038b4ff3345d0c821b7bd8801e4c2
+    last_write_checksum: sha1:b086a1c1378f92ea05a043249ca611db2221109f
+    pristine_git_object: 496720f9b88e01f878d15aac07f57ae071297765
   docs/models/components/itemsguids.md:
     id: 593b3339f60b
     last_write_checksum: sha1:55d4ff83cd7e1cf496af118b599505d5ed262fed
@@ -438,8 +438,8 @@ trackedFiles:
     pristine_git_object: c51b997a3237fd5e7fd97cd467b763d1d7f44121
   docs/models/components/librarysectionlocation.md:
     id: 7210a10b2867
-    last_write_checksum: sha1:6be66171c7e07239ddd0974eb8182f8a30076f60
-    pristine_git_object: 3786f16b36b9531fba51576e1b3ee337f789a761
+    last_write_checksum: sha1:f6cf39a78cadcd3c2d26f1ea73ac27738c37a04d
+    pristine_git_object: 0fc0cc7f4d836f8a98a8afb781d8cab8961ddf02
   docs/models/components/librarysections.md:
     id: 1a2fbaf35ad8
     last_write_checksum: sha1:317a965005e185dfacf7b601127e463a60bfef53
@@ -546,8 +546,8 @@ trackedFiles:
     pristine_git_object: a9df26a0c531b6e3ab5c2050a17cc453a532819f
   docs/models/components/mediacontainerwithdecisionmetadata.md:
     id: ad27e0e2a4aa
-    last_write_checksum: sha1:606a560c9fa20895d4b0785c7af05aa8e1627f27
-    pristine_git_object: ff58c5afd16c7e6a2131e6cb929991cfa0903dae
+    last_write_checksum: sha1:d061e48360428948ce93436480ac8024f599d7ed
+    pristine_git_object: d7d2a0c6b892448b86fae92f3f0dd9b75ef05e97
   docs/models/components/mediacontainerwithdecisionoptimizedforstreaming.md:
     id: 529dd531da32
     last_write_checksum: sha1:c7e68f6944cab474fc7495c0b4a4f9c7eedec621
@@ -658,12 +658,12 @@ trackedFiles:
     pristine_git_object: b355de0ef5757aa4353b287f267c05982aa97595
   docs/models/components/mediacontainerwithmetadata.md:
     id: 6757dc407e3c
-    last_write_checksum: sha1:cac12d88690ea9a0203b9ffd6f131cecadd8bb74
-    pristine_git_object: c399364e668627a9c9d074920093ee386bb8bdc9
+    last_write_checksum: sha1:8ac928c7b868bab945777c733502ab1a52ce2e41
+    pristine_git_object: 1232f89b2575f25f3ddd4a276c2dfd344d7492fc
   docs/models/components/mediacontainerwithmetadatamediacontainer.md:
     id: cdfe192009c1
-    last_write_checksum: sha1:701a55558a8cae00aeebdfd9f52cc0fb8da2a79c
-    pristine_git_object: fc9a43d39ebaca677445fb599efde517b21dff78
+    last_write_checksum: sha1:a2239327a389ca4946cb57bd998874a5ada77e7a
+    pristine_git_object: f9a2b8526d3f586e315b8b7a270622925d48c044
   docs/models/components/mediacontainerwithnestedmetadata.md:
     id: 919000bebc46
     last_write_checksum: sha1:ff168f81b826318bfa52a85e5c98b15b5a34e313
@@ -706,8 +706,8 @@ trackedFiles:
     pristine_git_object: f7f8224efebcb61455b4d4414ef7ccbc346184bf
   docs/models/components/mediacontainerwithplaylistmetadatametadata.md:
     id: 48624e3cddfa
-    last_write_checksum: sha1:52854a3b2c9fa13bffc4a921581719ecfec7bd31
-    pristine_git_object: 94a7cfcdc63c09de8b2a554da958e1da4d7ab1e3
+    last_write_checksum: sha1:a96055bf4b643f1273b428012faaf45a3df5f6d6
+    pristine_git_object: 767fde0890e2c90c1c7703822bd7a88113f9e791
   docs/models/components/mediacontainerwithplaylistmetadataskipchildren.md:
     id: a1006526080e
     last_write_checksum: sha1:67ee2c657d1d30abf3fafe2f9546045d26739bb9
@@ -802,12 +802,12 @@ trackedFiles:
     pristine_git_object: 4210c9950e8492cc2bbf9f56a45617d4f7dc7068
   docs/models/components/metadata.md:
     id: 06867fa888c8
-    last_write_checksum: sha1:13e7d7216d8bb291ca771c71e3f61ea0e992449d
-    pristine_git_object: c9bb0031b2029cec438078d9ea30649e2482a613
+    last_write_checksum: sha1:bd4177487b61fdbd57bbf902b6e283e08285f507
+    pristine_git_object: 472b3c3dd3862a6dfb38f01bc5826dcfc2d77952
   docs/models/components/metadataitem.md:
     id: 7e4e9cf7db57
-    last_write_checksum: sha1:ede673710e5d9a0935832c104345ac71ac117cb1
-    pristine_git_object: 1f35da8a700a22ca2cf19c6c5d56f3cf3bf1a71e
+    last_write_checksum: sha1:13bc3acd53b065c484b5818779acb9039064cef9
+    pristine_git_object: 84295e1cf564a11e720cea72bbc1e8c16017c621
   docs/models/components/notificationcontainer.md:
     id: 61b0f18fa5ab
     last_write_checksum: sha1:af5f017b54908ab66f7d25c1288fc05337586d89
@@ -3300,10 +3300,18 @@ trackedFiles:
     id: fa9c3a1af6a7
     last_write_checksum: sha1:cd300c2f839b406a0a93e062c65aaf24fe4716ba
     pristine_git_object: ee589b5b5a000a88de064a0215d7ec742f5051b0
+  docs/models/operations/getlibrarysectionsfallbackmediacontainer.md:
+    id: 64ab8fe12ae9
+    last_write_checksum: sha1:3d8cd895ed80d0934e9399df509aa3627da309aa
+    pristine_git_object: d71b5266bcfca71be94dd64e75bc19476b8cdc33
   docs/models/operations/getlibrarysectionsfallbackresponse.md:
     id: 889221e3c06a
-    last_write_checksum: sha1:cb411b9f1664642ada4d7c38cb22a36a0effdb54
-    pristine_git_object: 6db87f3e6af25d28566989855c70681fc6927321
+    last_write_checksum: sha1:d42e02ba1bbac6a7fbd740fd73ff40d8ac6d3b54
+    pristine_git_object: 3569edb978fbbeceef1c68f49dc4d39a85f7938c
+  docs/models/operations/getlibrarysectionsfallbackresponsebody.md:
+    id: 7e8a5b3222aa
+    last_write_checksum: sha1:b1560d100268b317d8fb42b0017d35d0dfb99765
+    pristine_git_object: 43e43c227167bc7ff45b24aa14589b79420d635b
   docs/models/operations/getlineupchannelsglobals.md:
     id: 30488d375c99
     last_write_checksum: sha1:f8cf0d41d26342c052851358ed2bf5fee69ae5fa
@@ -3402,8 +3410,8 @@ trackedFiles:
     pristine_git_object: 5fa45845139f5b921255aa8835cb101fbecf181d
   docs/models/operations/getmetadatachildrenrequest.md:
     id: f13ee1566d8c
-    last_write_checksum: sha1:5ca1c77e8ebb8c4f83b9fd61063f522819a86478
-    pristine_git_object: c07fdf55b0c4ff6c3b53a3ce277a6baa401ab0d5
+    last_write_checksum: sha1:99a1e64139fbd617da17feb0c9bd36d66194d995
+    pristine_git_object: e4a7ebfce3404af30b41d446b4413eaad5f68bb2
   docs/models/operations/getmetadatachildrenresponse.md:
     id: 8c8dfb83b76d
     last_write_checksum: sha1:421b297935abdea0f3c7c5e8e1d05d4f6e922e24
@@ -3610,8 +3618,8 @@ trackedFiles:
     pristine_git_object: 30fe11f1b608507f24f3557a2fe7c521b592b58a
   docs/models/operations/getplaylistgeneratoritemsmetadata.md:
     id: 0cd744dc7ddd
-    last_write_checksum: sha1:2ed301b0616dedd9866ab7582f172ee1408820b2
-    pristine_git_object: 8e37ae427d756fa138d7c90e68c301f9504a0f1d
+    last_write_checksum: sha1:c4f0a7d7c8b25d4ef085b55a4ef46e3220223f55
+    pristine_git_object: c110f6e3331119cf4b2544b14e8fa25497b381bd
   docs/models/operations/getplaylistgeneratoritemsrequest.md:
     id: dbf77c1a41f8
     last_write_checksum: sha1:52f3c5e777023123eb89d3842d5ef9b2be4afc70
@@ -3956,6 +3964,18 @@ trackedFiles:
     id: 37553a0f6c98
     last_write_checksum: sha1:00db55c85232cba021ca8f61b4e569256f602965
     pristine_git_object: 193713cf90e988996d564fda52800422feba9ede
+  docs/models/operations/getsectionfolderglobals.md:
+    id: 11e7f679833b
+    last_write_checksum: sha1:9a6b01789b5c732b2df87efb1cbb3c32114e26b5
+    pristine_git_object: fd8173de006f277cfddc1bf3a614f68276152be4
+  docs/models/operations/getsectionfolderrequest.md:
+    id: 837dc408c8c8
+    last_write_checksum: sha1:888649ce56670de65f9684de390c32c876bcd396
+    pristine_git_object: 899b837b9c8f2b06dc926a1f4d67217c5ad7d4ea
+  docs/models/operations/getsectionfolderresponse.md:
+    id: 55c2f7efc8a1
+    last_write_checksum: sha1:bbf8ca5ed7f6ced0de2972932f2985fc322af988
+    pristine_git_object: a063047be2ba15bbfa6adbc6dd297f2055ff9330
   docs/models/operations/getsectionhubsglobals.md:
     id: 0bf95b75f142
     last_write_checksum: sha1:cbc82ca78d5c68921a9d07875f9045da75ff9c40
@@ -4970,8 +4990,8 @@ trackedFiles:
     pristine_git_object: 5de0e6e418880fdd2f84949ec9f1f752eb62f676
   docs/models/operations/metadata.md:
     id: 4c22404ca93c
-    last_write_checksum: sha1:2d69dde000fb9784a98d85ecdc737a48e1acfd07
-    pristine_git_object: b3cd22c5a69846cf79761a472026d5cd035f2566
+    last_write_checksum: sha1:1d3276bfaa98686f54fa77fe1ece77f0cbef45d1
+    pristine_git_object: 08c010a6cfb4efeb306a918dc720d3184823e56c
   docs/models/operations/modifydeviceglobals.md:
     id: 29c22800e2f7
     last_write_checksum: sha1:038ad3492c63af776d4763d2f17b0c83b83e48a1
@@ -6670,8 +6690,8 @@ trackedFiles:
     pristine_git_object: f1ff0dba96f01a7d172c0308a4b3e1e81ae8aa68
   docs/sdks/library/README.md:
     id: a0b6032768bb
-    last_write_checksum: sha1:f0f1d3498351439456260cfe344d8630787025d6
-    pristine_git_object: a06aebcb94b1bf21e4ccee6e066ac1aec96e2dcd
+    last_write_checksum: sha1:d88923886d74364a0b07ee696dafb39b5020950c
+    pristine_git_object: e57d728a12a46816c674894af328f969ffa5b53b
   docs/sdks/librarycollections/README.md:
     id: 3b31de82c185
     last_write_checksum: sha1:23225884b87df8163978cd782d970231c3c0c92e
@@ -6752,10 +6772,6 @@ trackedFiles:
     id: 5d80027045fe
     last_write_checksum: sha1:72597514bf711a97a24e48d0fea250f5e0a3631a
     pristine_git_object: 6c4201e606cf31f4be98df894b3b90d3ef0a354f
-  docs/types/date.md:
-    id: 3a10eb495943
-    last_write_checksum: sha1:45ab0675ea1c52ce29e9b5c70c4ef5c0ae29f2bf
-    pristine_git_object: 3d83ed2f48ff36968042694693ec08d892ef94fe
   downloadqueue.go:
     id: 3b8b1d14db4c
     last_write_checksum: sha1:7ae3b52ff97a5c407aca1221eda54a54ce3ba023
@@ -6850,8 +6866,8 @@ trackedFiles:
     pristine_git_object: c8fda53c130862fea51980d0cebf6d39a584656b
   library.go:
     id: 4589ea25a7b8
-    last_write_checksum: sha1:36ef44148ba50c1b73b8ed9bc4843752a8cd98d3
-    pristine_git_object: 1b8f051aa7caf601d04ed8140c591b4f70deb864
+    last_write_checksum: sha1:4117b50166ce2e89bba0c5d0bc5ef4d48ac4156e
+    pristine_git_object: 9393c544c37455cbffd21a7e9967b7475f96664d
   librarycollections.go:
     id: 775f42efc160
     last_write_checksum: sha1:c663f2f95c74976109d972b124fe44deffb9eadf
@@ -7030,8 +7046,8 @@ trackedFiles:
     pristine_git_object: 9ad6bc5ed45dc7119dd542cde79ebe40729973cd
   models/components/items.go:
     id: 0bcaa91a6499
-    last_write_checksum: sha1:a6e4699c4825a7f0d19aabc3a4b073e8b469b757
-    pristine_git_object: b566ff079c159cd33c4b6a2b5b8526b94c96411a
+    last_write_checksum: sha1:9615188c15dbdec0e93dc90250dcf9fed72c49f8
+    pristine_git_object: d9d0cf7b1786645f912c2fd3e18fec5fab48c6db
   models/components/jwkregistrationrequest.go:
     id: 514cad1c2370
     last_write_checksum: sha1:f9697829e4a2c06de48eac461cdfb15db06204c3
@@ -7046,8 +7062,8 @@ trackedFiles:
     pristine_git_object: ec41618be418daad0b40b99c83c627e0e3766d5b
   models/components/librarysection.go:
     id: a2413b0c9db8
-    last_write_checksum: sha1:7b095c483a300bfd06346f5de376828b023df3bf
-    pristine_git_object: cd0ee9480336dcb9c26a187516f073f415980824
+    last_write_checksum: sha1:1242920a4e2364dd3ec2b241252138556bdc51e1
+    pristine_git_object: 47ea0863d07693732fa8e020561643cedf490db7
   models/components/librarysections.go:
     id: 899ddc41f505
     last_write_checksum: sha1:2985d0615a32f8b09e1c7ad82385231d3012e756
@@ -7078,8 +7094,8 @@ trackedFiles:
     pristine_git_object: e36d542b39693cfa5f7e8ed9d69a363006a68aed
   models/components/mediacontainerwithdecision.go:
     id: 5866c8fe727f
-    last_write_checksum: sha1:58b3037c3fbe39cb76e966966e74de5cb96b37de
-    pristine_git_object: b85c96921acb41affbaa948b90d806f45bb096e3
+    last_write_checksum: sha1:af90eefd2fbdbd36026b1ad907941b5a48ddb486
+    pristine_git_object: b7f38b43ec83270e820f3f707fbc09e61d3ede61
   models/components/mediacontainerwithdevice.go:
     id: 707d3a38f518
     last_write_checksum: sha1:1e19742ce9c7cd3c8b140f5c0998060277c51879
@@ -7106,16 +7122,16 @@ trackedFiles:
     pristine_git_object: 969ff0b0c9435a01af43f02376fcd33c5a2ac039
   models/components/mediacontainerwithmetadata.go:
     id: f584c8cd02c6
-    last_write_checksum: sha1:13003fabab1f5e7ba59678574fa8d79a0fc59a8c
-    pristine_git_object: 0d9948160daebb3f6eb842ef52d79dbbb10fc221
+    last_write_checksum: sha1:9542ca756584f742373e3caf291f2f8991755dca
+    pristine_git_object: bd2e380ffc9ed3b84929f19292f84d26e0b4276e
   models/components/mediacontainerwithnestedmetadata.go:
     id: ec0a94479d97
-    last_write_checksum: sha1:3abdf4e65453ff103959bc2fea712b1d29bd83db
-    pristine_git_object: 7962d7f773563d47317d398da7212beb77661e95
+    last_write_checksum: sha1:d8704be0cfa553a7e46932cc79cd6acb3ec93ebc
+    pristine_git_object: b6e5970b96b91a05ce98b1f1ce55def713f9fcee
   models/components/mediacontainerwithplaylistmetadata.go:
     id: 0d7491db326b
-    last_write_checksum: sha1:b494c211fc5ed5c1b66f4bd1a69f550a72bc4601
-    pristine_git_object: e86c7c0e647fec8d15453a4d325083a9f678757d
+    last_write_checksum: sha1:d1f75b36eb2e5705dc7a58e4115c035acc5baa37
+    pristine_git_object: be1181e04d044d20857d8fe0f2cbe97ae2ad998a
   models/components/mediacontainerwithplayqueue.go:
     id: 6807cb159ee2
     last_write_checksum: sha1:6dc87a7b4443a13a2efbe28455d55e137c69e59c
@@ -7166,8 +7182,8 @@ trackedFiles:
     pristine_git_object: f1f7b7b204dede2c831301d7ccb740c969826560
   models/components/metadata.go:
     id: 4cf51d051463
-    last_write_checksum: sha1:49e11bc1f94114f6d893263066ecfb3ceaec7c9b
-    pristine_git_object: 507fcefff259ac699e2261694a9950f199a2a6be
+    last_write_checksum: sha1:d71a924c3cfa9f92b084f35ced47a7815c042bc0
+    pristine_git_object: 28954bf21e99def6f8152013cabc5b0ea443817d
   models/components/notificationcontainer.go:
     id: 9175050ef905
     last_write_checksum: sha1:a713a7fada04cc94a81fa639277f6708b2820041
@@ -7978,8 +7994,8 @@ trackedFiles:
     pristine_git_object: 5aa6173e5c7b05315324cd891e9acc4ae4b49d1a
   models/operations/getlibrarysectionsfallback.go:
     id: 3288df0f3871
-    last_write_checksum: sha1:e4f6c0473998a2471055c8a7428159e30adc915c
-    pristine_git_object: 9c4ca8f56efcbb2efef7a12bedeb68b5ead3b3cf
+    last_write_checksum: sha1:0fad916e425917fd10d44394c01593304222f486
+    pristine_git_object: 767d937596089b218c78bf2af273bc42bba78f54
   models/operations/getlineup.go:
     id: 4171c3d867dc
     last_write_checksum: sha1:08dd2fecdc11fde1c7109db7769bbad01f9b2ef7
@@ -8010,8 +8026,8 @@ trackedFiles:
     pristine_git_object: 6fdc1505fda3efa625cece3835adf52edf4c7b0d
   models/operations/getmetadatachildren.go:
     id: e12f5fc0b248
-    last_write_checksum: sha1:620a2a7cb6db770ce0ec2affd0e98ed0a721b144
-    pristine_git_object: dd33be0af1a7808306a5d657f8acaaca5a7eea77
+    last_write_checksum: sha1:8e0235cbcbb386f329b56ced4f6ffbfe0bb727ed
+    pristine_git_object: 497ed81270276644157fbbcc8a785fcfc1910018
   models/operations/getmetadatagrandchildren.go:
     id: 199fac4b1a65
     last_write_checksum: sha1:8cd7b1db620065916672fe21da2df87f73d9d73a
@@ -8082,8 +8098,8 @@ trackedFiles:
     pristine_git_object: 9feaaa7ac6689df9a6430dde87646386e837a570
   models/operations/getplaylistgeneratoritems.go:
     id: 3bf15140565a
-    last_write_checksum: sha1:4501f28988b2eefea53c62f924868e1979d09301
-    pristine_git_object: cc8a29e16198900ac5d9e4de6b0b19967f931ddd
+    last_write_checksum: sha1:a6e069544a72ed02a2dcfde911411c052b808fb6
+    pristine_git_object: 676d7f81f8a8356aa2237901bed70f6e0881a7d7
   models/operations/getplaylistgenerators.go:
     id: 035927da5b24
     last_write_checksum: sha1:14bce2ed51b964a9935061bde0b12ccf9bb5c4a4
@@ -8172,6 +8188,10 @@ trackedFiles:
     id: b3f5ad7df1d8
     last_write_checksum: sha1:1a6201b7af528fec768c4b3c86992a6ab28af39b
     pristine_git_object: 153f63e945bc0ccbea8dab5923f482e156cf383d
+  models/operations/getsectionfolder.go:
+    id: 08a7b98a974f
+    last_write_checksum: sha1:0bc7a592f1f291bc33e557b94ea0894a5026ea5b
+    pristine_git_object: 6c449f9de6db1f181df8344196751f64405e96d7
   models/operations/getsectionhubs.go:
     id: 40d517a70e43
     last_write_checksum: sha1:3733675f7b13d4c804e0217bb9ce274fb31c4d84
@@ -8442,8 +8462,8 @@ trackedFiles:
     pristine_git_object: f4c976da6e8fa13c140f8db53f3b0e896efa8327
   models/operations/listsessions.go:
     id: ddef02fe1441
-    last_write_checksum: sha1:1c48589b63f7154c06679d2d32e03d8d509d1e72
-    pristine_git_object: 8f13018782bc5fa4f5b27a001220bdf7e09b9779
+    last_write_checksum: sha1:84d62d92d0da72d473e37ad54c591a5c86120650
+    pristine_git_object: 7fc546c0413d05c1ae848a7a69aec464553833af
   models/operations/listsimilar.go:
     id: be4b5e8da433
     last_write_checksum: sha1:5b8ffc230665079efccfd416528ef419a33183b1
@@ -8998,8 +9018,8 @@ trackedFiles:
     pristine_git_object: 08b82d22188dd9ca07303bfbce2e10e612ed5cdf
   plexapi.go:
     id: 08c9dfa9b434
-    last_write_checksum: sha1:0b0ae01d39acf8449d78b85d873d3c355789e18c
-    pristine_git_object: ecb56b91b7338b8a181d7d2659c187faa0ffc6ec
+    last_write_checksum: sha1:43c4cb453bce89b1dee7b1ef2e2cb99f5bf5342a
+    pristine_git_object: c2494953ec54cbb011aa1d9f9999e4a782084db5
   preferences.go:
     id: fcfda30d344e
     last_write_checksum: sha1:f2829691331776f30e4847cfe4b71a62711cd807
@@ -9942,6 +9962,10 @@ examples:
       parameters:
         path:
           id: 240367
+        query:
+          X-Plex-Container-Start: 0
+          X-Plex-Container-Size: 50
+          includeMeta: 1
         header:
           accepts: "application/xml"
           X-Plex-Client-Identifier: "abc123"
@@ -17271,7 +17295,7 @@ examples:
     speakeasy-default-get-library-sections-fallback:
       responses:
         "200":
-          application/json: {"MediaContainer": {"identifier": "com.plexapp.plugins.library", "size": 1, "Directory": []}}
+          application/json: {"MediaContainer": {"identifier": "com.plexapp.plugins.library", "offset": 0, "size": 1, "totalSize": 100}}
         "401":
           application/json: {"errors": [{"code": 1, "message": "string value", "status": 1}]}
   uploadArt:
@@ -18550,9 +18574,26 @@ examples:
           application/xml: "0xA9fA681439"
         "401":
           application/json: {"errors": [{"code": 1, "message": "string value", "status": 1}]}
+  getSectionFolder:
+    speakeasy-default-get-section-folder:
+      parameters:
+        path:
+          sectionId: 924129
+        query:
+          X-Plex-Container-Start: 0
+          X-Plex-Container-Size: 50
+          parent: "3706"
+          includeMeta: 1
+        header:
+          accepts: "application/xml"
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"identifier": "com.plexapp.plugins.library", "size": 1, "Metadata": []}}
+        "401":
+          application/json: {"errors": [{"code": 1, "message": "string value", "status": 1}]}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Go SDK Changes:\n* `PlexApi.Playback.GetProgress()`:  `response.MediaContainer.Video[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Provider.SearchDiscover()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Provider.GetWatchlist()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Users.GetHome()`:  `response.MediaContainer.Hub[].Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.DownloadQueue.GetItemDecision()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Hubs.GetAllHubs()`:  `response.MediaContainer.Hub[].Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Hubs.GetContinueWatching()`:  `response.MediaContainer.Hub[].Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Hubs.GetContinueWatchingItems()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Hubs.GetHomeRecentlyAdded()`:  `response.MediaContainer.Hub[].Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Hubs.GetPromotedHubs()`:  `response.MediaContainer.Hub[].Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Hubs.GetMetadataHubs()`:  `response.MediaContainer.Hub[].Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Hubs.GetPostplayHubs()`:  `response.MediaContainer.Hub[].Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Hubs.GetRelatedHubs()`:  `response.MediaContainer.Hub[].Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Hubs.GetSectionHubs()`:  `response.MediaContainer.Hub[].Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Search.SearchHubs()`:  `response.MediaContainer.Hub[].Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Search.VoiceSearchHubs()`: \n  *  `request.Request.Type` **Changed** (Breaking ⚠️)\n  *  `response.MediaContainer.Hub[].Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetLibraryItems()`: \n  *  `request.Request.MediaQuery` **Changed** (Breaking ⚠️)\n  *  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.IngestTransientItem()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetLibraryMatches()`: \n  *  `request.Request.Type` **Changed** (Breaking ⚠️)\n  *  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetRecentlyAddedGlobal()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetSections()`:  `response.MediaContainer.Directory[].Type` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.AddSection()`:  `response.MediaContainer.Directory[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetTags()`: \n  *  `request.Request.Type` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetMetadataChildren()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.ComputeSonicPath()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetMetadataGrandchildren()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetMetadataGrandparent()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetNearestMetadata()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetMetadataOnDeck()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetMetadataParent()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetMetadataReviews()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetAllItemLeaves()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetExtras()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.ListMatches()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetRelatedItems()`:  `response.MediaContainer.Hub[].Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.ListSimilar()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetItemTree()`:  `response.MediaContainer.MetadataItem[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.ListPersonMedia()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetLibraryDetails()`:  `response.MediaContainer.Directory[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetSectionArtists()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.Autocomplete()`: \n  *  `request.Request.MediaQuery` **Changed** (Breaking ⚠️)\n  *  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetByContentRating()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetByDecade()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetByFolder()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetByResolution()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetByYear()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetSectionClips()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetCollections()`: \n  *  `request.Request.MediaQuery` **Changed** (Breaking ⚠️)\n  *  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetCommon()`: \n  *  `request.Request.MediaQuery` **Changed** (Breaking ⚠️)\n  *  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetSectionEpisodes()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetFirstCharacters()`: \n  *  `request.Request.MediaQuery` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetLibrarySectionHubs()`:  `response.MediaContainer.Hub[].Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetSectionMovies()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetNewestForSection()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetOnDeckForSection()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetSectionPhotos()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetSectionPlaylists()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetRecentlyAddedForSection()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.SearchSection()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetSectionShows()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetUnwatchedForSection()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetSectionImage()`: \n  *  `request.Request.MediaQuery` **Changed** (Breaking ⚠️)\n* `PlexApi.Collections.CreateCollection()`: \n  *  `request.Request.Type` **Changed** (Breaking ⚠️)\n* `PlexApi.DvRs.GetDvrChannels()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.DvRs.GetDvrGuide()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.DvRs.TuneChannel()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Epg.GetEpgGuide()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Epg.SearchEpg()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.LiveTv.GetDvrRecordings()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.LiveTv.GetSessions()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.LiveTv.GetDvrRecordingsByDvr()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.LiveTv.GetLiveTvSession()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Subscriptions.GetAllSubscriptions()`:  `response.MediaContainer.MediaSubscription[].MediaGrabOperation[].Metadata.Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Subscriptions.CreateSubscription()`:  `response.MediaContainer.MediaSubscription[].MediaGrabOperation[].Metadata.Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Subscriptions.GetScheduledRecordings()`:  `response.MediaContainer.MediaGrabOperation[].Metadata.Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Subscriptions.GetTemplate()`:  `response.MediaContainer.SubscriptionTemplate[].MediaSubscription[].MediaGrabOperation[].Metadata.Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Subscriptions.GetSubscription()`:  `response.MediaContainer.MediaSubscription[].MediaGrabOperation[].Metadata.Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Subscriptions.EditSubscriptionPreferences()`:  `response.MediaContainer.MediaSubscription[].MediaGrabOperation[].Metadata.Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Subscriptions.ReorderSubscription()`:  `response.MediaContainer.MediaSubscription[].MediaGrabOperation[].Metadata.Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Transcoder.GetTranscodeSessions()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Transcoder.MakeDecision()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Playlist.ListPlaylists()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Playlist.GetPlaylist()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Playlist.GetPlaylistItems()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.LibraryPlaylists.CreatePlaylist()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.LibraryPlaylists.ClearPlaylistItems()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.LibraryPlaylists.AddPlaylistItems()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.LibraryPlaylists.DeletePlaylistItem()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.LibraryPlaylists.ModifyPlaylistGenerator()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.LibraryPlaylists.GetPlaylistGeneratorItems()`:  `response.MediaContainer.Metadata.Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.LibraryPlaylists.MovePlaylistItem()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.PlayQueue.AddToPlayQueue()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.PlayQueue.ClearPlayQueue()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.PlayQueue.ResetPlayQueue()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.PlayQueue.Shuffle()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.PlayQueue.Unshuffle()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.PlayQueue.DeletePlayQueueItem()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.PlayQueue.MovePlayQueueItem()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Status.ListSessions()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Content.GetCollectionItems()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Content.GetMetadataItem()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Content.GetAlbums()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Content.ListContent()`: \n  *  `request.Request.MediaQuery` **Changed** (Breaking ⚠️)\n  *  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Content.GetAllLeaves()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Content.GetSonicPath()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Content.GetSonicallySimilar()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.LibraryCollections.AddCollectionItems()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.LibraryCollections.UpdateCollectionItem()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n* `PlexApi.LibraryCollections.MoveCollectionItem()`:  `response.MediaContainer.Metadata[].Media[].Part[].Stream[]` **Changed** (Breaking ⚠️)\n"
+releaseNotes: "## Go SDK Changes:\n* `PlexApi.Playback.GetProgress()`:  `response.MediaContainer.Video[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Provider.SearchDiscover()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Provider.GetWatchlist()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Users.GetHome()`:  `response.MediaContainer.Hub[].Metadata[]` **Changed** (Breaking ⚠️)\n* `PlexApi.DownloadQueue.GetItemDecision()`:  `response.MediaContainer.Metadata[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Hubs.GetAllHubs()`:  `response.MediaContainer.Hub[].Metadata[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Hubs.GetContinueWatching()`:  `response.MediaContainer.Hub[].Metadata[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Hubs.GetContinueWatchingItems()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Hubs.GetHomeRecentlyAdded()`:  `response.MediaContainer.Hub[].Metadata[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Hubs.GetPromotedHubs()`:  `response.MediaContainer.Hub[].Metadata[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Hubs.GetMetadataHubs()`:  `response.MediaContainer.Hub[].Metadata[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Hubs.GetPostplayHubs()`:  `response.MediaContainer.Hub[].Metadata[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Hubs.GetRelatedHubs()`:  `response.MediaContainer.Hub[].Metadata[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Hubs.GetSectionHubs()`:  `response.MediaContainer.Hub[].Metadata[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Search.SearchHubs()`:  `response.MediaContainer.Hub[].Metadata[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Search.VoiceSearchHubs()`:  `response.MediaContainer.Hub[].Metadata[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetLibraryItems()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.IngestTransientItem()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetLibraryMatches()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetRecentlyAddedGlobal()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetLibrarySectionsFallback()`:  `response.MediaContainer.Directory[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetSections()`:  `response.MediaContainer.Directory[].Location[].Path` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.AddSection()`:  `response.MediaContainer.Directory[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetMetadataChildren()`: \n  *  `request.Request` **Changed**\n  *  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.ComputeSonicPath()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetMetadataGrandchildren()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetMetadataGrandparent()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetNearestMetadata()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetMetadataOnDeck()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetMetadataParent()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetMetadataReviews()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetAllItemLeaves()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetExtras()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.ListMatches()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetRelatedItems()`:  `response.MediaContainer.Hub[].Metadata[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.ListSimilar()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetItemTree()`:  `response.MediaContainer.MetadataItem[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.ListPersonMedia()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetLibraryDetails()`:  `response.MediaContainer.Directory[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetSectionArtists()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.Autocomplete()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetByContentRating()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetByDecade()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetByFolder()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetByResolution()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetByYear()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetSectionClips()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetCollections()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetCommon()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetSectionEpisodes()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetLibrarySectionHubs()`:  `response.MediaContainer.Hub[].Metadata[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetSectionMovies()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetNewestForSection()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetOnDeckForSection()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetSectionPhotos()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetSectionPlaylists()`:  `response.MediaContainer.Metadata[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetRecentlyAddedForSection()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.SearchSection()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetSectionShows()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetUnwatchedForSection()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.DvRs.GetDvrChannels()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.DvRs.GetDvrGuide()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.DvRs.TuneChannel()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Epg.GetEpgGuide()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Epg.SearchEpg()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.LiveTv.GetDvrRecordings()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.LiveTv.GetSessions()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.LiveTv.GetDvrRecordingsByDvr()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.LiveTv.GetLiveTvSession()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Subscriptions.GetAllSubscriptions()`:  `response.MediaContainer.MediaSubscription[].MediaGrabOperation[].Metadata` **Changed** (Breaking ⚠️)\n* `PlexApi.Subscriptions.CreateSubscription()`:  `response.MediaContainer.MediaSubscription[].MediaGrabOperation[].Metadata` **Changed** (Breaking ⚠️)\n* `PlexApi.Subscriptions.GetScheduledRecordings()`:  `response.MediaContainer.MediaGrabOperation[].Metadata` **Changed** (Breaking ⚠️)\n* `PlexApi.Subscriptions.GetTemplate()`:  `response.MediaContainer.SubscriptionTemplate[].MediaSubscription[].MediaGrabOperation[].Metadata` **Changed** (Breaking ⚠️)\n* `PlexApi.Subscriptions.GetSubscription()`:  `response.MediaContainer.MediaSubscription[].MediaGrabOperation[].Metadata` **Changed** (Breaking ⚠️)\n* `PlexApi.Subscriptions.EditSubscriptionPreferences()`:  `response.MediaContainer.MediaSubscription[].MediaGrabOperation[].Metadata` **Changed** (Breaking ⚠️)\n* `PlexApi.Subscriptions.ReorderSubscription()`:  `response.MediaContainer.MediaSubscription[].MediaGrabOperation[].Metadata` **Changed** (Breaking ⚠️)\n* `PlexApi.Transcoder.GetTranscodeSessions()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Transcoder.MakeDecision()`:  `response.MediaContainer.Metadata[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Playlist.ListPlaylists()`:  `response.MediaContainer.Metadata[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Playlist.GetPlaylist()`:  `response.MediaContainer.Metadata[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Playlist.GetPlaylistItems()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.LibraryPlaylists.CreatePlaylist()`:  `response.MediaContainer.Metadata[]` **Changed** (Breaking ⚠️)\n* `PlexApi.LibraryPlaylists.ClearPlaylistItems()`:  `response.MediaContainer.Metadata[]` **Changed** (Breaking ⚠️)\n* `PlexApi.LibraryPlaylists.AddPlaylistItems()`:  `response.MediaContainer.Metadata[]` **Changed** (Breaking ⚠️)\n* `PlexApi.LibraryPlaylists.DeletePlaylistItem()`:  `response.MediaContainer.Metadata[]` **Changed** (Breaking ⚠️)\n* `PlexApi.LibraryPlaylists.ModifyPlaylistGenerator()`:  `response.MediaContainer.Metadata[]` **Changed** (Breaking ⚠️)\n* `PlexApi.LibraryPlaylists.GetPlaylistGeneratorItems()`:  `response.MediaContainer.Metadata` **Changed** (Breaking ⚠️)\n* `PlexApi.LibraryPlaylists.MovePlaylistItem()`:  `response.MediaContainer.Metadata[]` **Changed** (Breaking ⚠️)\n* `PlexApi.PlayQueue.AddToPlayQueue()`:  `response.MediaContainer.Metadata[]` **Changed** (Breaking ⚠️)\n* `PlexApi.PlayQueue.ClearPlayQueue()`:  `response.MediaContainer.Metadata[]` **Changed** (Breaking ⚠️)\n* `PlexApi.PlayQueue.ResetPlayQueue()`:  `response.MediaContainer.Metadata[]` **Changed** (Breaking ⚠️)\n* `PlexApi.PlayQueue.Shuffle()`:  `response.MediaContainer.Metadata[]` **Changed** (Breaking ⚠️)\n* `PlexApi.PlayQueue.Unshuffle()`:  `response.MediaContainer.Metadata[]` **Changed** (Breaking ⚠️)\n* `PlexApi.PlayQueue.DeletePlayQueueItem()`:  `response.MediaContainer.Metadata[]` **Changed** (Breaking ⚠️)\n* `PlexApi.PlayQueue.MovePlayQueueItem()`:  `response.MediaContainer.Metadata[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Status.ListSessions()`:  `response.MediaContainer.Metadata[]` **Changed** (Breaking ⚠️)\n* `PlexApi.Content.GetCollectionItems()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Content.GetMetadataItem()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Content.GetAlbums()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Content.ListContent()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Content.GetAllLeaves()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Content.GetSonicPath()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Content.GetSonicallySimilar()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.LibraryCollections.AddCollectionItems()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.LibraryCollections.UpdateCollectionItem()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.LibraryCollections.MoveCollectionItem()`:  `response.MediaContainer` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetSectionFolder()`: **Added**\n"
 generatedFiles:
   - .gitattributes
   - /models/components/accepts.go
